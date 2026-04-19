@@ -1,0 +1,107 @@
+---
+// EUBanner.astro — European Union co-financing banner
+---
+
+<div class="eu-banner">
+  <div class="container eu-banner-inner">
+    <div class="eu-stars" aria-hidden="true">
+      {Array.from({ length: 12 }).map((_, i) => (
+        <span
+          class="eu-star"
+          style={`transform: rotate(${i * 30}deg) translateY(-18px);`}
+        >★</span>
+      ))}
+    </div>
+
+    <div class="eu-text">
+      <p class="eu-label">Cofinanciado por la Unión Europea</p>
+      <p class="eu-programs">
+        <span>Erasmus+</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span>Cuerpo Europeo de Solidaridad</span>
+      </p>
+    </div>
+
+    <div class="eu-disclaimer">
+      <p>
+        Las opiniones y puntos de vista expresados son responsabilidad exclusiva de Estrellas del Sur
+        y no reflejan necesariamente la posición de la Unión Europea ni de la Agencia Nacional Erasmus+.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .eu-banner {
+    background: linear-gradient(135deg, #003399 0%, #0047cc 100%);
+    padding: 1.5rem 0;
+  }
+
+  .eu-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* EU circle of stars */
+  .eu-stars {
+    position: relative;
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+  }
+
+  .eu-star {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: .55rem;
+    color: #ffcc00;
+    margin-top: -6px;
+    margin-left: -4px;
+    transform-origin: center center;
+  }
+
+  /* Text */
+  .eu-text {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .eu-label {
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.65);
+    margin-bottom: .2rem;
+  }
+
+  .eu-programs {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .sep { color: rgba(255,255,255,.45); }
+
+  /* Disclaimer */
+  .eu-disclaimer {
+    max-width: 420px;
+  }
+
+  .eu-disclaimer p {
+    font-size: .76rem;
+    color: rgba(255,255,255,.5);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 640px) {
+    .eu-banner-inner { gap: 1.25rem; }
+    .eu-disclaimer { display: none; }
+  }
+</style>

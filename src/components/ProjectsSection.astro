@@ -1,0 +1,196 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  activeOnly?: boolean;
+  limit?: number;
+}
+
+const { activeOnly = false, limit } = Astro.props;
+
+let projects = await getCollection('projects');
+
+// Sort by order field
+projects.sort((a, b) => a.data.order - b.data.order);
+
+if (activeOnly) {
+  projects = projects.filter(p => p.data.status === 'active');
+}
+
+if (limit) {
+  projects = projects.slice(0, limit);
+}
+---
+
+{!activeOnly && (
+  <div class="filter-bar fade-in">
+    <div class="filter-types">
+      <button class="filter-btn is-active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="Intercambio">Intercambio</button>
+      <button class="filter-btn" data-filter="Voluntariado">Voluntariado</button>
+      <button class="filter-btn" data-filter="Formación">Formación</button>
+    </div>
+    <div class="filter-status">
+      <button class="status-btn is-active" data-status="active">Activos</button>
+      <button class="status-btn" data-status="all">Todos</button>
+    </div>
+  </div>
+)}
+
+<div class="projects-grid" id="projects-grid">
+  {projects.map((project, i) => (
+    <div
+      class={`project-wrapper fade-in fade-in-delay-${Math.min((i % 3) + 1, 4)}`}
+      data-type={project.data.type}
+      data-status={project.data.status}
+    >
+      <ProjectCard
+        title={project.data.title}
+        type={project.data.type}
+        status={project.data.status}
+        flag={project.data.flag}
+        description={project.data.description}
+        location={project.data.location}
+        slug={project.slug}
+      />
+    </div>
+  ))}
+</div>
+
+{!activeOnly && (
+  <div class="no-results" id="no-results" style="display:none">
+    <p>No hay proyectos que coincidan con los filtros seleccionados.</p>
+  </div>
+)}
+
+<!-- Filter script: only runs when filter bar is present -->
+<script>
+  const filterBar = document.querySelector('.filter-bar');
+  if (filterBar) {
+    const typeButtons   = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const statusButtons = document.querySelectorAll<HTMLButtonElement>('.status-btn');
+    const wrappers      = document.querySelectorAll<HTMLElement>('.project-wrapper');
+    const noResults     = document.getElementById('no-results');
+
+    let activeType   = 'all';
+    let activeStatus = 'active';
+
+    function applyFilters() {
+      let visible = 0;
+      wrappers.forEach(w => {
+        const t = w.dataset.type ?? '';
+        const s = w.dataset.status ?? '';
+        const typeMatch   = activeType   === 'all' || t === activeType;
+        const statusMatch = activeStatus === 'all' || s === activeStatus;
+        const show = typeMatch && statusMatch;
+        w.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    typeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeButtons.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        activeType = btn.dataset.filter ?? 'all';
+        applyFilters();
+      });
+    });
+
+    statusButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        statusButtons.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        activeStatus = btn.dataset.status ?? 'all';
+        applyFilters();
+      });
+    });
+
+    applyFilters();
+  }
+</script>
+
+<style>
+  /* Filter bar */
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+  }
+
+  .filter-types,
+  .filter-status {
+    display: flex;
+    gap: .4rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn,
+  .status-btn {
+    padding: .4rem .9rem;
+    border-radius: var(--radius-full);
+    font-size: .85rem;
+    font-weight: 500;
+    border: 1.5px solid var(--gray-200);
+    color: var(--gray-600);
+    background: transparent;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .filter-btn.is-active,
+  .status-btn.is-active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+
+  .filter-btn:hover:not(.is-active),
+  .status-btn:hover:not(.is-active) {
+    border-color: var(--navy);
+    color: var(--navy);
+  }
+
+  .filter-status {
+    border-left: 1px solid var(--gray-200);
+    padding-left: 1rem;
+  }
+
+  /* Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-wrapper { height: 100%; }
+
+  /* No results */
+  .no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--gray-500);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .filter-bar { flex-direction: column; align-items: flex-start; }
+    .filter-status {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid var(--gray-200);
+      padding-top: .75rem;
+      width: 100%;
+    }
+  }
+</style>

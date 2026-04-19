@@ -1,0 +1,385 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EUBanner from '../components/EUBanner.astro';
+
+const team = [
+  {
+    name: 'Pablo',
+    role: 'Cofundador',
+    bio: 'Graduado en Administración y Dirección de Empresas y máster en International Economics. Business developer con experiencia en proyectos europeos y emprendimiento internacional.',
+    emoji: '🚀',
+  },
+  {
+    name: 'Maxi',
+    role: 'Cofundador y Presidente',
+    bio: 'Investigador doctoral en economía ambiental en la Paris School of Economics (PSE) y la Universidad de Córdoba. Especializado en políticas de sostenibilidad y transición ecológica.',
+    emoji: '🌱',
+  },
+];
+
+const milestones = [
+  { year: '2020', text: 'Fundación de la asociación en Córdoba por Pablo y Maxi.' },
+  { year: '2021', text: 'Primer proyecto Erasmus+. Inicio de la red europea de socios.' },
+  { year: '2022', text: 'Acreditación del Cuerpo Europeo de Solidaridad como organización de envío.' },
+  { year: '2023', text: 'Superamos los 300 participantes y 10 países colaboradores.' },
+  { year: '2024', text: 'Acreditación Erasmus+ activa y 7 proyectos simultáneos en marcha.' },
+  { year: '2025', text: 'Más de 500 participantes y 15 países conectados.' },
+];
+---
+
+<BaseLayout
+  title="Sobre Nosotros"
+  description="Conoce la historia, el equipo y la misión de Estrellas del Sur, la asociación juvenil de Córdoba fundada en 2020 para conectar jóvenes con Europa."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Nuestra historia
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Sobre Estrellas del Sur</h1>
+      <p class="fade-in fade-in-delay-2">
+        Una asociación nacida en Córdoba en 2020 con la misión de conectar jóvenes con Europa
+        a través de proyectos Erasmus+ y voluntariados del Cuerpo Europeo de Solidaridad.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="section mission-section">
+    <div class="container mission-grid">
+      <div class="mission-text fade-in">
+        <p class="section-label">Nuestra misión</p>
+        <h2 class="section-title">Creemos en el poder de la movilidad europea</h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          En Estrellas del Sur creemos que vivir una experiencia internacional transforma la vida de
+          los jóvenes. Por eso trabajamos para que la movilidad europea sea accesible a todos,
+          especialmente a quienes tienen menos oportunidades.
+        </p>
+        <p class="body-text">
+          Desde Córdoba, gestionamos proyectos europeos que conectan a jóvenes con experiencias
+          de aprendizaje, voluntariado y formación en toda Europa. Somos puente entre jóvenes
+          andaluces y el resto del continente.
+        </p>
+        <div class="mission-values">
+          {['Inclusión', 'Solidaridad', 'Sostenibilidad', 'Aprendizaje no formal'].map(v => (
+            <span class="value-tag">{v}</span>
+          ))}
+        </div>
+      </div>
+      <div class="mission-visual fade-in fade-in-delay-2">
+        <div class="big-star" aria-hidden="true">★</div>
+        <div class="mission-stat-card">
+          <p class="mission-stat-value">2020</p>
+          <p class="mission-stat-label">Año de fundación en Córdoba</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section timeline-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Historia</p>
+        <h2 class="section-title">Nuestro recorrido</h2>
+      </div>
+      <div class="timeline">
+        {milestones.map((m, i) => (
+          <div class={`timeline-item fade-in fade-in-delay-${(i % 3) + 1}`}>
+            <div class="timeline-year">{m.year}</div>
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-text">{m.text}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section team-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">El equipo</p>
+        <h2 class="section-title">Las personas detrás de Estrellas del Sur</h2>
+        <p class="section-subtitle">
+          Dos cofundadores con perfiles complementarios unidos por una misma visión: hacer Europa más accesible para los jóvenes.
+        </p>
+      </div>
+      <div class="team-grid">
+        {team.map((member, i) => (
+          <div class={`team-card card fade-in fade-in-delay-${i + 1}`}>
+            <div class="team-avatar" aria-hidden="true">{member.emoji}</div>
+            <div class="team-info">
+              <h3 class="team-name">{member.name}</h3>
+              <p class="team-role">{member.role}</p>
+              <p class="team-bio">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Accreditations -->
+  <section class="section accreditations-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Reconocimientos</p>
+        <h2 class="section-title">Acreditaciones europeas</h2>
+      </div>
+      <div class="accred-grid">
+        <div class="accred-card card fade-in fade-in-delay-1">
+          <div class="accred-logo" aria-hidden="true">🎓</div>
+          <div class="accred-content">
+            <h3>Acreditación Erasmus+</h3>
+            <p>
+              Estrellas del Sur cuenta con acreditación Erasmus+ activa, lo que nos permite gestionar
+              proyectos de intercambio juvenil (KA1), asociaciones de colaboración (KA2) y formaciones
+              para trabajadores juveniles con plenas garantías del programa europeo.
+            </p>
+          </div>
+        </div>
+        <div class="accred-card card fade-in fade-in-delay-2">
+          <div class="accred-logo" aria-hidden="true">🤝</div>
+          <div class="accred-content">
+            <h3>Organización de Envío ESC</h3>
+            <p>
+              Somos organización de envío acreditada por el Cuerpo Europeo de Solidaridad. Esto nos
+              permite preparar, seleccionar y acompañar a jóvenes en sus voluntariados europeos,
+              garantizando el apoyo antes, durante y después de la experiencia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <EUBanner />
+</BaseLayout>
+
+<style>
+  /* Mission */
+  .mission-section { background: var(--cream); }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .body-text {
+    font-size: 1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .mission-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: 1.5rem;
+  }
+
+  .value-tag {
+    padding: .35rem .85rem;
+    background: var(--teal-dim);
+    color: var(--teal);
+    border: 1px solid rgba(13,148,136,.2);
+    border-radius: var(--radius-full);
+    font-size: .85rem;
+    font-weight: 500;
+  }
+
+  .mission-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .big-star {
+    font-size: 8rem;
+    color: #f59e0b;
+    line-height: 1;
+    filter: drop-shadow(0 4px 24px rgba(245,158,11,.35));
+    animation: starFloat 4s ease-in-out infinite;
+  }
+
+  @keyframes starFloat {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-12px); }
+  }
+
+  .mission-stat-card {
+    background: var(--navy);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+  }
+
+  .mission-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f59e0b;
+  }
+
+  .mission-stat-label {
+    font-size: .9rem;
+    color: rgba(255,255,255,.65);
+    margin-top: .25rem;
+  }
+
+  /* Timeline */
+  .timeline-section { background: var(--cream-dark); }
+
+  .section-header { margin-bottom: 3rem; }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 5rem;
+    border-left: 2px solid var(--gray-200);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--gray-200);
+    margin-left: -5rem;
+  }
+
+  .timeline-item:last-child { border-bottom: none; }
+
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--teal);
+    text-align: right;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(13,148,136,.2);
+    margin-left: -7px;
+  }
+
+  .timeline-text {
+    font-size: .95rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* Team */
+  .team-section { background: var(--cream); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    align-items: flex-start;
+  }
+
+  .team-avatar {
+    font-size: 3rem;
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream-dark);
+    border-radius: var(--radius-md);
+  }
+
+  .team-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .15rem;
+  }
+
+  .team-role {
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: .75rem;
+  }
+
+  .team-bio {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  /* Accreditations */
+  .accreditations-section { background: var(--cream-dark); }
+
+  .accred-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .accred-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    align-items: flex-start;
+  }
+
+  .accred-logo {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .accred-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .75rem;
+  }
+
+  .accred-content p {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .mission-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .mission-visual { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .timeline { padding-left: 3.5rem; }
+    .timeline-item { grid-template-columns: 60px auto 1fr; margin-left: -3.5rem; gap: 1rem; }
+    .team-card { flex-direction: column; }
+  }
+</style>

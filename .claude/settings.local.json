@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Read(//mnt/c/Users/maxim/**)",
+      "Read(//mnt/c/Users/**)",
+      "Read(//c/Program Files/nodejs//**)",
+      "Read(//c/Users/maxim/AppData/Roaming/**)",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
+      "Bash(npm run:*)"
+    ]
+  }
+}

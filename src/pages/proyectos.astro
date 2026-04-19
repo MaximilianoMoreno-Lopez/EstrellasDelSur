@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+import EUBanner from '../components/EUBanner.astro';
+---
+
+<BaseLayout
+  title="Proyectos"
+  description="Catálogo completo de proyectos Erasmus+ y Cuerpo Europeo de Solidaridad de Estrellas del Sur: intercambios juveniles, voluntariados y formaciones europeas."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Erasmus+ · Cuerpo Europeo de Solidaridad
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Nuestros proyectos</h1>
+      <p class="fade-in fade-in-delay-2">
+        Intercambios juveniles, voluntariados europeos y formaciones internacionales.
+        Filtra por tipo o estado para encontrar tu oportunidad.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section">
+    <div class="container">
+      <ProjectsSection />
+    </div>
+  </section>
+
+  <!-- EU Banner -->
+  <EUBanner />
+
+  <!-- CTA -->
+  <section class="projects-cta-section">
+    <div class="container cta-content fade-in">
+      <h2>¿No encuentras lo que buscas?</h2>
+      <p>
+        Escríbenos y te informamos de las próximas convocatorias y proyectos en preparación.
+      </p>
+      <a href="mailto:info@estrellasdelsur.eu" class="btn btn-primary btn-lg">
+        Contactar
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-cta-section {
+    background: var(--cream-dark);
+    padding: 4rem 0;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: .75rem;
+    color: var(--navy);
+  }
+
+  .cta-content p {
+    color: var(--gray-600);
+    margin-bottom: 1.75rem;
+    line-height: 1.7;
+  }
+</style>

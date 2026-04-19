@@ -1,0 +1,378 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EUBanner from '../components/EUBanner.astro';
+
+const steps = [
+  {
+    num: '01',
+    title: 'Regístrate en la plataforma europea',
+    desc: 'Crea tu perfil en youth.europa.eu (European Youth Portal). Es gratuito y solo necesitas tu correo electrónico.',
+    icon: '🌐',
+  },
+  {
+    num: '02',
+    title: 'Busca un proyecto que te interese',
+    desc: 'Explora los proyectos disponibles en la plataforma o consulta los que gestionamos directamente desde Estrellas del Sur.',
+    icon: '🔍',
+  },
+  {
+    num: '03',
+    title: 'Contáctanos',
+    desc: 'Escríbenos a info@estrellasdelsur.eu. Como organización de envío, te acompañamos en todo el proceso de solicitud y selección.',
+    icon: '✉️',
+  },
+  {
+    num: '04',
+    title: 'Preparación y gestión',
+    desc: 'Te preparamos lingüística, cultural y prácticamente para tu voluntariado. Gestionamos los trámites burocráticos por ti.',
+    icon: '📋',
+  },
+];
+
+const benefits = [
+  { icon: '✈️', title: 'Transporte', desc: 'Viaje de ida y vuelta cubierto hasta el lugar del voluntariado.' },
+  { icon: '🏠', title: 'Alojamiento', desc: 'Alojamiento gratuito durante toda la estancia proporcionado por la organización de acogida.' },
+  { icon: '🍽️', title: 'Manutención', desc: 'Comidas incluidas o compensación económica equivalente.' },
+  { icon: '🛡️', title: 'Seguro europeo', desc: 'Cobertura de seguro médico, de responsabilidad civil y de accidentes durante toda la estancia.' },
+  { icon: '💶', title: 'Pocket money', desc: 'Dinero de bolsillo mensual para gastos personales (importe variable según país de destino).' },
+  { icon: '🎓', title: 'Certificado Youthpass', desc: 'Reconocimiento oficial europeo de las competencias adquiridas durante el voluntariado.' },
+];
+
+const faqs = [
+  {
+    q: '¿Quién puede participar?',
+    a: 'Jóvenes de entre 18 y 30 años residentes en España. No se requiere experiencia previa ni nivel de idioma específico.',
+  },
+  {
+    q: '¿Cuánto dura un voluntariado ESC?',
+    a: 'Los voluntariados pueden durar de 2 semanas a 12 meses, dependiendo del proyecto. Los voluntariados cortos (2-8 semanas) son ideales para una primera experiencia.',
+  },
+  {
+    q: '¿En qué países puedo hacer el voluntariado?',
+    a: 'En todos los países elegibles del programa ESC: países de la UE, más Noruega, Islandia, Macedonia del Norte, Serbia, Turquía, Armenia, Azerbaiyán, Georgia, entre otros.',
+  },
+  {
+    q: '¿Tengo que pagar algo?',
+    a: 'No. El transporte, el alojamiento, la manutención y el seguro están cubiertos por el programa. Además recibirás pocket money mensual.',
+  },
+];
+---
+
+<BaseLayout
+  title="Voluntariado ESC"
+  description="Descubre el Cuerpo Europeo de Solidaridad: cómo apuntarte, qué incluye y qué beneficios tiene hacer un voluntariado europeo con Estrellas del Sur como organización de envío."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Cuerpo Europeo de Solidaridad
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Voluntariado ESC</h1>
+      <p class="fade-in fade-in-delay-2">
+        El Cuerpo Europeo de Solidaridad (ESC) es la iniciativa de la Unión Europea que permite
+        a jóvenes de 18 a 30 años realizar voluntariados en toda Europa de forma gratuita.
+        Nosotros somos tu organización de envío.
+      </p>
+    </div>
+  </section>
+
+  <!-- What is ESC -->
+  <section class="section what-section">
+    <div class="container what-grid">
+      <div class="what-text fade-in">
+        <p class="section-label">¿Qué es?</p>
+        <h2 class="section-title">El Cuerpo Europeo de Solidaridad</h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          El <strong>Cuerpo Europeo de Solidaridad (ESC)</strong> es un programa de la Unión Europea
+          que ofrece a los jóvenes la oportunidad de contribuir a la sociedad europea a través del
+          voluntariado. Fue creado para fomentar la solidaridad, el espíritu de iniciativa y la
+          ciudadanía activa entre los jóvenes europeos.
+        </p>
+        <p class="body-text">
+          A través del ESC, los jóvenes pueden pasar de 2 semanas a 12 meses en una organización
+          en el extranjero, contribuyendo a proyectos sociales, medioambientales, culturales o humanitarios,
+          con todos los gastos cubiertos.
+        </p>
+        <p class="body-text">
+          <strong>Estrellas del Sur</strong> es una organización de envío acreditada, lo que significa
+          que nos encargamos de todo el proceso: desde la selección del proyecto ideal hasta el apoyo
+          antes, durante y después de tu voluntariado.
+        </p>
+      </div>
+      <div class="what-highlights fade-in fade-in-delay-2">
+        <div class="highlight-card">
+          <span class="highlight-num">18-30</span>
+          <span class="highlight-label">años de edad</span>
+        </div>
+        <div class="highlight-card">
+          <span class="highlight-num">2-52</span>
+          <span class="highlight-label">semanas de duración</span>
+        </div>
+        <div class="highlight-card">
+          <span class="highlight-num">36+</span>
+          <span class="highlight-label">países elegibles</span>
+        </div>
+        <div class="highlight-card highlight-card-full">
+          <span class="highlight-num highlight-num-big">100%</span>
+          <span class="highlight-label">Gastos cubiertos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section benefits-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Qué incluye</p>
+        <h2 class="section-title">Beneficios del voluntariado ESC</h2>
+        <p class="section-subtitle">
+          Hacer un voluntariado europeo no te cuesta nada. Estos son todos los beneficios que cubre el programa.
+        </p>
+      </div>
+      <div class="benefits-grid">
+        {benefits.map((b, i) => (
+          <div class={`benefit-card card fade-in fade-in-delay-${(i % 3) + 1}`}>
+            <div class="benefit-icon" aria-hidden="true">{b.icon}</div>
+            <h3 class="benefit-title">{b.title}</h3>
+            <p class="benefit-desc">{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="section steps-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Cómo participar</p>
+        <h2 class="section-title">Pasos para apuntarte</h2>
+        <p class="section-subtitle">El proceso es más sencillo de lo que parece. Te acompañamos en cada paso.</p>
+      </div>
+      <div class="steps-list">
+        {steps.map((step, i) => (
+          <div class={`step-item fade-in fade-in-delay-${(i % 3) + 1}`}>
+            <div class="step-num" aria-hidden="true">{step.num}</div>
+            <div class="step-icon" aria-hidden="true">{step.icon}</div>
+            <div class="step-content">
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-desc">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="steps-cta fade-in">
+        <a href="mailto:info@estrellasdelsur.eu" class="btn btn-primary btn-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Escríbenos para empezar
+        </a>
+        <a href="https://youth.europa.eu/solidarity_es" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          Visita la plataforma europea
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Preguntas frecuentes</p>
+        <h2 class="section-title">Dudas habituales sobre el ESC</h2>
+      </div>
+      <div class="faq-grid">
+        {faqs.map((faq, i) => (
+          <div class={`faq-item card fade-in fade-in-delay-${(i % 2) + 1}`}>
+            <h3 class="faq-q">{faq.q}</h3>
+            <p class="faq-a">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <EUBanner />
+</BaseLayout>
+
+<style>
+  /* What section */
+  .what-section { background: var(--cream); }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .body-text {
+    font-size: 1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .what-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .highlight-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: .35rem;
+  }
+
+  .highlight-card-full {
+    grid-column: span 2;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+  }
+
+  .highlight-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f59e0b;
+  }
+
+  .highlight-num-big { font-size: 2.75rem; color: #fff; }
+
+  .highlight-label {
+    font-size: .8rem;
+    color: rgba(255,255,255,.65);
+    text-align: center;
+  }
+
+  /* Benefits */
+  .benefits-section { background: var(--cream-dark); }
+
+  .section-header { margin-bottom: 3rem; }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  .benefit-icon { font-size: 2rem; }
+
+  .benefit-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .benefit-desc {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* Steps */
+  .steps-section { background: var(--cream); }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .step-item {
+    display: grid;
+    grid-template-columns: 56px 48px 1fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.75rem;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .25s;
+  }
+  .step-item:hover { box-shadow: var(--shadow-md); }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+    padding-top: .1rem;
+  }
+
+  .step-icon { font-size: 2rem; }
+
+  .step-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .4rem;
+  }
+
+  .step-desc {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  .steps-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* FAQ */
+  .faq-section { background: var(--cream-dark); }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 0;
+  }
+
+  .faq-item { padding: 1.75rem; }
+
+  .faq-q {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .75rem;
+  }
+
+  .faq-a {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .what-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .what-highlights { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .step-item { grid-template-columns: 40px 1fr; }
+    .step-icon { display: none; }
+    .steps-cta { flex-direction: column; }
+  }
+</style>

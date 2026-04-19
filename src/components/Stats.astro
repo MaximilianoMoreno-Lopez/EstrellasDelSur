@@ -1,0 +1,113 @@
+---
+const stats = [
+  {
+    value: '25+',
+    label: 'Proyectos realizados',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+  },
+  {
+    value: '500+',
+    label: 'Participantes',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  },
+  {
+    value: '15+',
+    label: 'Países conectados',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  },
+  {
+    value: '2020',
+    label: 'Año de fundación',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  },
+];
+---
+
+<section class="stats section-sm">
+  <div class="container">
+    <div class="stats-grid">
+      {stats.map((stat, i) => (
+        <div class={`stat-card fade-in fade-in-delay-${i + 1}`}>
+          <div class="stat-icon" aria-hidden="true">
+            <Fragment set:html={stat.icon} />
+          </div>
+          <div class="stat-value">{stat.value}</div>
+          <div class="stat-label">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats { background: var(--navy); }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .stat-card:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: rgba(255,255,255,.1);
+  }
+
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13, 148, 136, .15);
+    border-radius: 12px;
+    color: var(--teal-light);
+    margin-bottom: 1rem;
+  }
+
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: .4rem;
+  }
+
+  .stat-label {
+    font-size: .88rem;
+    color: rgba(255,255,255,.55);
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stat-card:not(:last-child)::after { display: none; }
+    .stat-card { border-bottom: 1px solid rgba(255,255,255,.07); }
+    .stat-card:nth-child(1),
+    .stat-card:nth-child(2) { border-right: none; }
+    .stat-card:nth-child(1),
+    .stat-card:nth-child(3) { border-right: 1px solid rgba(255,255,255,.07); }
+  }
+
+  @media (max-width: 420px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-card { border-right: none !important; }
+  }
+</style>

@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import EUBanner from '../components/EUBanner.astro';
+import Stats from '../components/Stats.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+---
+
+<BaseLayout
+  title="Estrellas del Sur"
+  description="Asociación juvenil de Córdoba que gestiona proyectos Erasmus+ y voluntariados del Cuerpo Europeo de Solidaridad. Conectamos jóvenes con Europa."
+>
+  <!-- 1. Hero -->
+  <Hero />
+
+  <!-- 2. EU Banner -->
+  <EUBanner />
+
+  <!-- 3. Stats -->
+  <Stats />
+
+  <!-- 4. Featured Projects -->
+  <section class="section projects-home" id="proyectos">
+    <div class="container">
+      <header class="section-header fade-in">
+        <p class="section-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Proyectos en marcha
+        </p>
+        <h2 class="section-title">Nuestros proyectos activos</h2>
+        <p class="section-subtitle">
+          Intercambios, voluntariados y formaciones europeas abiertas a jóvenes de España y toda Europa.
+        </p>
+      </header>
+
+      <ProjectsSection activeOnly={true} />
+
+      <div class="projects-cta fade-in">
+        <a href="/proyectos/" class="btn btn-outline">
+          Ver todos los proyectos
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. About Summary -->
+  <section class="section about-summary" id="nosotros">
+    <div class="container about-grid">
+      <div class="about-text fade-in">
+        <p class="section-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Quiénes somos
+        </p>
+        <h2 class="section-title">Una asociación nacida para conectar</h2>
+        <div class="divider"></div>
+        <p class="about-body">
+          Fundada en 2020 en Córdoba por Pablo y Maxi, Estrellas del Sur nació con una misión clara:
+          abrir las puertas de Europa a los jóvenes cordobeses y andaluces, especialmente a quienes
+          tienen menos oportunidades de acceder a experiencias internacionales.
+        </p>
+        <p class="about-body">
+          Somos una organización de envío acreditada por el Cuerpo Europeo de Solidaridad y
+          contamos con acreditación Erasmus+ activa, lo que nos permite gestionar proyectos de
+          intercambio, voluntariado y formación con plenas garantías europeas.
+        </p>
+        <div class="about-actions">
+          <a href="/sobre-nosotros/" class="btn btn-primary">Conoce nuestro equipo</a>
+          <a href="/voluntariado-esc/" class="btn btn-outline">Voluntariado ESC</a>
+        </div>
+      </div>
+
+      <div class="about-cards fade-in fade-in-delay-2">
+        <div class="about-card card">
+          <div class="about-card-icon">🎓</div>
+          <h3>Erasmus+</h3>
+          <p>Acreditación activa para gestionar proyectos de intercambio juvenil y formación en toda Europa.</p>
+        </div>
+        <div class="about-card card">
+          <div class="about-card-icon">🤝</div>
+          <h3>Cuerpo Europeo de Solidaridad</h3>
+          <p>Organización de envío certificada que facilita voluntariados internacionales a jóvenes de 18 a 30 años.</p>
+        </div>
+        <div class="about-card card">
+          <div class="about-card-icon">🌍</div>
+          <h3>Red europea</h3>
+          <p>Colaboramos con organizaciones socias en más de 15 países para crear proyectos con impacto real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Contact CTA -->
+  <section class="contact-cta">
+    <div class="container cta-inner fade-in">
+      <div class="cta-text">
+        <h2>¿Quieres participar en un proyecto?</h2>
+        <p>
+          Escríbenos y te contamos todas las oportunidades disponibles.
+          Sin experiencia previa necesaria.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:info@estrellasdelsur.eu" class="btn btn-gold btn-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Escríbenos
+        </a>
+        <a href="/contacto/" class="btn btn-outline-white btn-lg">Contacto</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Projects section */
+  .projects-home { background: var(--cream-dark); }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .projects-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  /* About section */
+  .about-summary { background: var(--cream); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-body {
+    font-size: 1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .about-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .about-card-icon {
+    font-size: 1.75rem;
+    margin-bottom: .25rem;
+  }
+
+  .about-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .about-card p {
+    font-size: .88rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* Contact CTA */
+  .contact-cta {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(13,148,136,.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-text h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    color: #fff;
+    margin-bottom: .75rem;
+  }
+
+  .cta-text p {
+    color: rgba(255,255,255,.65);
+    font-size: 1rem;
+    max-width: 400px;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  @media (max-width: 640px) {
+    .cta-inner { flex-direction: column; }
+    .cta-actions { flex-direction: column; width: 100%; }
+    .cta-actions .btn { justify-content: center; }
+    .about-actions { flex-direction: column; }
+  }
+</style>

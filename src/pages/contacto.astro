@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EUBanner from '../components/EUBanner.astro';
+
+const socials = [
+  {
+    name: 'Instagram',
+    handle: '@estrellasdelsur.eu',
+    href: 'https://instagram.com/estrellasdelsur.eu',
+    color: '#e1306c',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+    desc: 'Fotos, stories y proyectos en imágenes.',
+  },
+  {
+    name: 'Facebook',
+    handle: '@estrellasdelsur.eu',
+    href: 'https://facebook.com/estrellasdelsur.eu',
+    color: '#1877f2',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+    desc: 'Noticias, eventos y comunidad.',
+  },
+  {
+    name: 'TikTok',
+    handle: '@estrellasdelsur.eu',
+    href: 'https://tiktok.com/@estrellasdelsur.eu',
+    color: '#000000',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>`,
+    desc: 'Vídeos de proyectos y vida europea.',
+  },
+];
+---
+
+<BaseLayout
+  title="Contacto"
+  description="Contacta con Estrellas del Sur. Email: info@estrellasdelsur.eu. Córdoba, España. Síguenos en Instagram, Facebook y TikTok @estrellasdelsur.eu."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Estamos aquí para ayudarte
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Contacto</h1>
+      <p class="fade-in fade-in-delay-2">
+        ¿Tienes dudas sobre nuestros proyectos? ¿Quieres saber cómo participar?
+        Escríbenos sin compromiso.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact info + CTA -->
+  <section class="section contact-section">
+    <div class="container contact-grid">
+
+      <!-- Left: Contact info -->
+      <div class="contact-info">
+        <div class="info-block fade-in">
+          <h2 class="section-title" style="margin-bottom:1.5rem">Habla con nosotros</h2>
+          <p style="color:var(--gray-600); margin-bottom:2.5rem; line-height:1.7">
+            Somos una asociación pequeña y cercana. Respondemos a todos los mensajes lo antes posible.
+            No dudes en escribirnos con cualquier pregunta sobre nuestros proyectos, el voluntariado ESC
+            o cómo colaborar con nosotros.
+          </p>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <p class="contact-label">Email</p>
+              <a href="mailto:info@estrellasdelsur.eu" class="contact-value">
+                info@estrellasdelsur.eu
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="contact-label">Ubicación</p>
+              <p class="contact-value-plain">Córdoba, Andalucía, España</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <p class="contact-label">Tiempo de respuesta</p>
+              <p class="contact-value-plain">Generalmente en menos de 48 horas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Email CTA card -->
+      <div class="contact-cta-card fade-in fade-in-delay-2">
+        <div class="cta-card-header">
+          <div class="cta-card-icon" aria-hidden="true">✉️</div>
+          <h3>¿Primera vez que nos contactas?</h3>
+          <p>Cuéntanos quién eres y qué te interesa. Estamos aquí para orientarte.</p>
+        </div>
+        <div class="cta-card-body">
+          <div class="cta-tip">
+            <strong>¿Interesado en un voluntariado ESC?</strong>
+            <span>Indica tu edad y los países o ámbitos que te interesan.</span>
+          </div>
+          <div class="cta-tip">
+            <strong>¿Quieres participar en un intercambio?</strong>
+            <span>Dinos cuándo tienes disponibilidad y qué tipo de proyecto buscas.</span>
+          </div>
+          <div class="cta-tip">
+            <strong>¿Organización que quiere colaborar?</strong>
+            <span>Explícanos vuestra entidad y los proyectos que os interesan.</span>
+          </div>
+        </div>
+        <a href="mailto:info@estrellasdelsur.eu" class="btn btn-primary btn-lg cta-card-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Enviar email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social media -->
+  <section class="section socials-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Redes sociales</p>
+        <h2 class="section-title">Síguenos</h2>
+        <p class="section-subtitle">
+          Comparte nuestros proyectos y mantente al día de todas las oportunidades.
+        </p>
+      </div>
+      <div class="socials-grid">
+        {socials.map((s, i) => (
+          <a
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`social-card card fade-in fade-in-delay-${i + 1}`}
+            aria-label={`Visítanos en ${s.name}`}
+          >
+            <div class="social-icon" style={`color:${s.color}`}>
+              <Fragment set:html={s.icon} />
+            </div>
+            <div class="social-info">
+              <p class="social-name">{s.name}</p>
+              <p class="social-handle">{s.handle}</p>
+              <p class="social-desc">{s.desc}</p>
+            </div>
+            <div class="social-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <EUBanner />
+</BaseLayout>
+
+<style>
+  .contact-section { background: var(--cream); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Contact items */
+  .contact-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    margin-bottom: 1.75rem;
+  }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--teal-dim);
+    border-radius: var(--radius-md);
+    color: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: .2rem;
+  }
+
+  .contact-value {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--teal);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .contact-value:hover { color: var(--teal-light); }
+
+  .contact-value-plain {
+    font-size: 1rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* CTA Card */
+  .contact-cta-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .cta-card-header {
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .cta-card-icon {
+    font-size: 2rem;
+    margin-bottom: .75rem;
+  }
+
+  .cta-card-header h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: .5rem;
+  }
+
+  .cta-card-header p {
+    font-size: .9rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.6;
+  }
+
+  .cta-card-body {
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .cta-tip {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+  }
+
+  .cta-tip strong {
+    font-size: .9rem;
+    color: rgba(255,255,255,.85);
+    font-weight: 600;
+  }
+
+  .cta-tip span {
+    font-size: .85rem;
+    color: rgba(255,255,255,.5);
+    line-height: 1.55;
+  }
+
+  .cta-card-btn {
+    display: flex;
+    margin: 1.5rem 2rem;
+    justify-content: center;
+  }
+
+  /* Socials */
+  .socials-section { background: var(--cream-dark); }
+
+  .section-header { margin-bottom: 2.5rem; }
+
+  .socials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .social-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--navy);
+    position: relative;
+  }
+
+  .social-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--gray-100);
+    flex-shrink: 0;
+  }
+
+  .social-info { flex: 1; min-width: 0; }
+
+  .social-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: .1rem;
+  }
+
+  .social-handle {
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--gray-500);
+    margin-bottom: .35rem;
+  }
+
+  .social-desc {
+    font-size: .83rem;
+    color: var(--gray-500);
+  }
+
+  .social-arrow {
+    color: var(--gray-400);
+    flex-shrink: 0;
+    transition: color .2s, transform .2s;
+  }
+
+  .social-card:hover .social-arrow {
+    color: var(--teal);
+    transform: translate(2px, -2px);
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>

@@ -1,0 +1,234 @@
+---
+const year = new Date().getFullYear();
+
+const socials = [
+  {
+    name: 'Instagram',
+    href: 'https://instagram.com/estrellasdelsur.eu',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+  },
+  {
+    name: 'Facebook',
+    href: 'https://facebook.com/estrellasdelsur.eu',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+  },
+  {
+    name: 'TikTok',
+    href: 'https://tiktok.com/@estrellasdelsur.eu',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>`,
+  },
+];
+
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/proyectos/', label: 'Proyectos' },
+  { href: '/sobre-nosotros/', label: 'Sobre Nosotros' },
+  { href: '/voluntariado-esc/', label: 'Voluntariado ESC' },
+  { href: '/contacto/', label: 'Contacto' },
+];
+---
+
+<footer class="footer">
+  <!-- EU co-financing notice -->
+  <div class="eu-notice">
+    <div class="container eu-notice-inner">
+      <div class="eu-flag" aria-hidden="true">🇪🇺</div>
+      <p>
+        Financiado por la Unión Europea a través del programa <strong>Erasmus+</strong> y el <strong>Cuerpo Europeo de Solidaridad</strong>.
+        Las opiniones expresadas son responsabilidad exclusiva de Estrellas del Sur y no reflejan necesariamente la posición oficial de la Unión Europea.
+      </p>
+    </div>
+  </div>
+
+  <!-- Main footer -->
+  <div class="footer-main">
+    <div class="container footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <polygon
+              points="14,2 17.1,10.3 26,10.3 18.9,15.6 21.6,24 14,18.7 6.4,24 9.1,15.6 2,10.3 10.9,10.3"
+              fill="#f59e0b"
+            />
+          </svg>
+          <span>Estrellas del Sur</span>
+        </a>
+        <p class="footer-desc">
+          Asociación juvenil de Córdoba comprometida con la movilidad europea, la solidaridad y el aprendizaje intercultural.
+        </p>
+        <div class="footer-socials">
+          {socials.map(s => (
+            <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.name} class="social-link">
+              <Fragment set:html={s.icon} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="footer-col">
+        <h3 class="footer-col-title">Navegación</h3>
+        <ul class="footer-links">
+          {navLinks.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h3 class="footer-col-title">Contacto</h3>
+        <ul class="footer-links">
+          <li>
+            <a href="mailto:info@estrellasdelsur.eu">
+              info@estrellasdelsur.eu
+            </a>
+          </li>
+          <li>
+            <span class="footer-text">Córdoba, España</span>
+          </li>
+        </ul>
+        <div class="footer-social-handles">
+          <p class="footer-text" style="font-size:.82rem; margin-top:1rem; color:rgba(255,255,255,.45)">
+            @estrellasdelsur.eu en Instagram, Facebook y TikTok
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© {year} Estrellas del Sur. Todos los derechos reservados.</p>
+      <p class="footer-bottom-right">Hecho con amor en Córdoba</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { background: var(--navy); color: rgba(255,255,255,.75); }
+
+  /* EU notice */
+  .eu-notice {
+    background: rgba(255,255,255,.05);
+    border-top: 1px solid rgba(255,255,255,.07);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    padding: 1.1rem 0;
+  }
+  .eu-notice-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .eu-flag { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+  .eu-notice p {
+    font-size: .82rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,.55);
+  }
+  .eu-notice strong { color: rgba(255,255,255,.75); }
+
+  /* Main */
+  .footer-main { padding: 3.5rem 0 2.5rem; }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  /* Brand */
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .footer-desc {
+    font-size: .88rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,.55);
+    max-width: 300px;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: .6rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.15);
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .social-link:hover {
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    border-color: rgba(255,255,255,.3);
+  }
+
+  /* Columns */
+  .footer-col-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.4);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+  }
+
+  .footer-links a,
+  .footer-text {
+    font-size: .9rem;
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: #f59e0b; }
+
+  /* Bottom bar */
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 1.25rem 0;
+  }
+  .footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .footer-bottom p {
+    font-size: .82rem;
+    color: rgba(255,255,255,.35);
+  }
+  .footer-bottom-right { color: rgba(255,255,255,.25) !important; }
+
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom-inner { flex-direction: column; text-align: center; }
+    .footer-bottom-right { display: none; }
+  }
+</style>
