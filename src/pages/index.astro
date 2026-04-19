@@ -5,7 +5,7 @@ import EUBanner from '../components/EUBanner.astro';
 import Stats from '../components/Stats.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout
@@ -38,7 +38,7 @@ const base = import.meta.env.BASE_URL;
       <ProjectsSection activeOnly={true} />
 
       <div class="projects-cta fade-in">
-        <a href={`${base}proyectos/`} class="btn btn-outline">
+        <a href={`${base}/proyectos/`} class="btn btn-outline">
           Ver todos los proyectos
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
@@ -67,8 +67,8 @@ const base = import.meta.env.BASE_URL;
           intercambio, voluntariado y formación con plenas garantías europeas.
         </p>
         <div class="about-actions">
-          <a href={`${base}sobre-nosotros/`} class="btn btn-primary">Conoce nuestro equipo</a>
-          <a href={`${base}voluntariado-esc/`} class="btn btn-outline">Voluntariado ESC</a>
+          <a href={`${base}/sobre-nosotros/`} class="btn btn-primary">Conoce nuestro equipo</a>
+          <a href={`${base}/voluntariado-esc/`} class="btn btn-outline">Voluntariado ESC</a>
         </div>
       </div>
 
@@ -107,7 +107,7 @@ const base = import.meta.env.BASE_URL;
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Escríbenos
         </a>
-        <a href={`${base}contacto/`} class="btn btn-outline-white btn-lg">Contacto</a>
+        <a href={`${base}/contacto/`} class="btn btn-outline-white btn-lg">Contacto</a>
       </div>
     </div>
   </section>
