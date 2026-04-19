@@ -5,11 +5,12 @@ interface Props {
   status: 'active' | 'past';
   flag: string;
   description: string;
+  image?: string;
   location?: string;
   slug: string;
 }
 
-const { title, type, status, flag, description, location, slug } = Astro.props;
+const { title, type, status, flag, description, image, location, slug } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const typeClass = {
@@ -17,51 +18,177 @@ const typeClass = {
   'Voluntariado': 'badge-gold',
   'Formación':    'badge-purple',
 }[type];
+
+// Gradiente de fallback según tipo de proyecto
+const fallbackGradient = {
+  'Intercambio': 'linear-gradient(135deg, #0d9488 0%, #0a1628 100%)',
+  'Voluntariado': 'linear-gradient(135deg, #d97706 0%, #0a1628 100%)',
+  'Formación':    'linear-gradient(135deg, #7c3aed 0%, #0a1628 100%)',
+}[type];
 ---
 
 <article class="project-card card" data-type={type} data-status={status}>
-  <div class="card-header">
-    <div class="card-tags">
-      <span class={`badge ${typeClass}`}>{type}</span>
-      {status === 'active' && (
-        <span class="badge badge-active">Activo</span>
-      )}
-    </div>
-    <span class="project-flag" aria-label="País">{flag}</span>
+  <!-- Imagen destacada -->
+  <div class="card-image">
+    {image ? (
+      <img
+        src={`${base}/${image}`}
+        alt={`Imagen de ${title}`}
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <div class="card-image-fallback" style={`background: ${fallbackGradient}`}>
+        <span class="fallback-flag" aria-hidden="true">{flag}</span>
+        <span class="fallback-type">{type}</span>
+      </div>
+    )}
+    {status === 'active' && (
+      <span class="card-status-badge">Activo</span>
+    )}
   </div>
 
-  <h3 class="card-title">{title}</h3>
-  <p class="card-desc">{description}</p>
+  <!-- Contenido -->
+  <div class="card-body">
+    <div class="card-tags">
+      <span class={`badge ${typeClass}`}>{type}</span>
+      <span class="card-flag" aria-label="País">{flag}</span>
+    </div>
 
-  {location && (
-    <p class="card-location">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      {location}
-    </p>
-  )}
+    <h3 class="card-title">{title}</h3>
+    <p class="card-desc">{description}</p>
 
-  <a href={`${base}/proyectos/#${slug}`} class="card-link" aria-label={`Ver más sobre ${title}`}>
-    Saber más
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-  </a>
+    {location && (
+      <p class="card-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        {location}
+      </p>
+    )}
+
+    <a href={`${base}/proyectos/#${slug}`} class="card-link" aria-label={`Ver más sobre ${title}`}>
+      Saber más
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
 </article>
 
 <style>
-  .project-card { display: flex; flex-direction: column; padding: 1.6rem; gap: .8rem; height: 100%; }
-  .card-header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
-  .card-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
-  .badge-active {
-    background: rgba(16, 185, 129, .12); color: #059669;
-    border: 1px solid rgba(16, 185, 129, .25); font-size: .72rem;
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
   }
-  .project-flag { font-size: 1.25rem; flex-shrink: 0; }
-  .card-title { font-size: 1.1rem; font-weight: 700; color: var(--navy); line-height: 1.25; }
-  .card-desc { font-size: .9rem; color: var(--gray-600); line-height: 1.6; flex: 1; }
-  .card-location { display: flex; align-items: center; gap: .3rem; font-size: .82rem; color: var(--gray-500); }
+
+  /* ── Imagen ── */
+  .card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+
+  .project-card:hover .card-image img {
+    transform: scale(1.04);
+  }
+
+  /* Fallback cuando no hay imagen */
+  .card-image-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+  }
+
+  .fallback-flag {
+    font-size: 2.75rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,.3));
+  }
+
+  .fallback-type {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+  }
+
+  /* Badge "Activo" sobre la imagen */
+  .card-status-badge {
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+    background: #059669;
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    letter-spacing: .04em;
+  }
+
+  /* ── Cuerpo ── */
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    padding: 1.4rem;
+    flex: 1;
+  }
+
+  .card-tags {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-flag { font-size: 1.15rem; }
+
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.25;
+  }
+
+  .card-desc {
+    font-size: .88rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .card-location {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: .8rem;
+    color: var(--gray-500);
+  }
+
   .card-link {
-    display: inline-flex; align-items: center; gap: .35rem;
-    font-size: .88rem; font-weight: 500; color: var(--teal);
-    text-decoration: none; margin-top: .25rem; transition: gap .2s, color .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .88rem;
+    font-weight: 500;
+    color: var(--teal);
+    text-decoration: none;
+    margin-top: .25rem;
+    transition: gap .2s, color .2s;
   }
   .card-link:hover { color: var(--teal-light); gap: .5rem; }
 </style>
