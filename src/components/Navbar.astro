@@ -1,16 +1,18 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const navLinks = [
-  { href: '/',                 label: 'Inicio' },
-  { href: '/proyectos/',       label: 'Proyectos' },
-  { href: '/sobre-nosotros/',  label: 'Sobre Nosotros' },
-  { href: '/voluntariado-esc/', label: 'Voluntariado ESC' },
-  { href: '/contacto/',        label: 'Contacto' },
+  { href: base,                         label: 'Inicio' },
+  { href: `${base}proyectos/`,          label: 'Proyectos' },
+  { href: `${base}sobre-nosotros/`,     label: 'Sobre Nosotros' },
+  { href: `${base}voluntariado-esc/`,   label: 'Voluntariado ESC' },
+  { href: `${base}contacto/`,           label: 'Contacto' },
 ];
 
 const { pathname } = Astro.url;
 
 function isActive(href: string) {
-  if (href === '/') return pathname === '/';
+  if (href === base) return pathname === base || pathname === base.replace(/\/$/, '');
   return pathname.startsWith(href);
 }
 ---
@@ -18,7 +20,7 @@ function isActive(href: string) {
 <header class="navbar" id="navbar">
   <div class="container nav-inner">
     <!-- Logo -->
-    <a href="/" class="nav-logo">
+    <a href={base} class="nav-logo">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <polygon
           points="14,2 17.1,10.3 26,10.3 18.9,15.6 21.6,24 14,18.7 6.4,24 9.1,15.6 2,10.3 10.9,10.3"
@@ -68,14 +70,12 @@ function isActive(href: string) {
   const hamburger = document.getElementById('hamburger')!;
   const mobileNav = document.getElementById('mobile-nav')!;
 
-  // Scroll: add .scrolled class when page is scrolled
   function onScroll() {
     navbar.classList.toggle('scrolled', window.scrollY > 40);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // Mobile toggle
   hamburger.addEventListener('click', () => {
     const open = hamburger.getAttribute('aria-expanded') === 'true';
     hamburger.setAttribute('aria-expanded', String(!open));
@@ -84,7 +84,6 @@ function isActive(href: string) {
     mobileNav.setAttribute('aria-hidden', String(open));
   });
 
-  // Close on link click
   mobileNav.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       hamburger.setAttribute('aria-expanded', 'false');
@@ -117,7 +116,6 @@ function isActive(href: string) {
     height: 68px;
   }
 
-  /* Logo */
   .nav-logo {
     display: flex;
     align-items: center;
@@ -131,7 +129,6 @@ function isActive(href: string) {
     flex-shrink: 0;
   }
 
-  /* Desktop links */
   .nav-links {
     display: flex;
     align-items: center;
@@ -153,11 +150,8 @@ function isActive(href: string) {
     color: #fff;
     background: rgba(255, 255, 255, .1);
   }
-  .nav-link.is-active {
-    color: #f59e0b;
-  }
+  .nav-link.is-active { color: #f59e0b; }
 
-  /* Hamburger */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -188,7 +182,6 @@ function isActive(href: string) {
   .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* Mobile nav */
   .mobile-nav {
     display: none;
     background: rgba(10, 22, 40, .98);

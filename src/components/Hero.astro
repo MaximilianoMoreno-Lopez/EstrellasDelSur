@@ -1,16 +1,13 @@
 ---
-// Hero.astro — Home hero with animated starfield
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="hero" aria-label="Inicio">
   <canvas id="stars-canvas" aria-hidden="true"></canvas>
-
-  <!-- Gradient overlays -->
   <div class="hero-gradient-radial" aria-hidden="true"></div>
   <div class="hero-gradient-bottom" aria-hidden="true"></div>
 
   <div class="container hero-content">
-    <!-- Badge -->
     <div class="hero-badge fade-in">
       <span class="badge badge-white">
         <svg width="12" height="12" viewBox="0 0 28 28" fill="#f59e0b" aria-hidden="true">
@@ -20,31 +17,27 @@
       </span>
     </div>
 
-    <!-- Headline -->
     <h1 class="hero-title fade-in fade-in-delay-1">
       Conectando jóvenes<br />
       <em>con Europa</em>
     </h1>
 
-    <!-- Sub -->
     <p class="hero-sub fade-in fade-in-delay-2">
       Somos una asociación juvenil de Córdoba que impulsa proyectos <strong>Erasmus+</strong>
       y voluntariados del <strong>Cuerpo Europeo de Solidaridad</strong>.
       Más de 25 proyectos, 500 participantes y 15 países conectados.
     </p>
 
-    <!-- CTAs -->
     <div class="hero-ctas fade-in fade-in-delay-3">
-      <a href="/proyectos/" class="btn btn-primary btn-lg">
+      <a href={`${base}proyectos/`} class="btn btn-primary btn-lg">
         Conoce nuestros proyectos
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
-      <a href="/voluntariado-esc/" class="btn btn-outline-white btn-lg">
+      <a href={`${base}voluntariado-esc/`} class="btn btn-outline-white btn-lg">
         Voluntariado ESC
       </a>
     </div>
 
-    <!-- Scroll indicator -->
     <div class="hero-scroll fade-in fade-in-delay-4" aria-hidden="true">
       <span>Descubre más</span>
       <div class="scroll-line"></div>
@@ -96,7 +89,6 @@
 
     draw();
 
-    // Resize
     let resizeTimer: ReturnType<typeof setTimeout>;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
@@ -106,14 +98,9 @@
       }, 150);
     }, { passive: true });
 
-    // Stop when hero leaves viewport
     const heroObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        if (!raf) draw();
-      } else {
-        cancelAnimationFrame(raf);
-        raf = 0;
-      }
+      if (entry.isIntersecting) { if (!raf) draw(); }
+      else { cancelAnimationFrame(raf); raf = 0; }
     });
     heroObserver.observe(canvas.parentElement!);
   })();
@@ -161,9 +148,7 @@
     max-width: 720px;
   }
 
-  .hero-badge {
-    margin-bottom: 1.5rem;
-  }
+  .hero-badge { margin-bottom: 1.5rem; }
 
   .hero-title {
     font-size: clamp(2.5rem, 6vw, 4.25rem);
@@ -172,11 +157,7 @@
     line-height: 1.1;
     margin-bottom: 1.5rem;
   }
-
-  .hero-title em {
-    font-style: italic;
-    color: #f59e0b;
-  }
+  .hero-title em { font-style: italic; color: #f59e0b; }
 
   .hero-sub {
     font-size: clamp(1rem, 2vw, 1.15rem);
@@ -185,21 +166,11 @@
     margin-bottom: 2.5rem;
     max-width: 580px;
   }
-
   .hero-sub strong { color: rgba(255, 255, 255, .9); }
 
-  .hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-lg { padding: .85rem 2rem; font-size: 1rem; }
 
-  .btn-lg {
-    padding: .85rem 2rem;
-    font-size: 1rem;
-  }
-
-  /* Scroll indicator */
   .hero-scroll {
     position: absolute;
     bottom: 3.5rem;

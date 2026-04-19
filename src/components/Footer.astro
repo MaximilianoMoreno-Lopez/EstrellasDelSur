@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
 
 const socials = [
@@ -20,16 +21,15 @@ const socials = [
 ];
 
 const navLinks = [
-  { href: '/', label: 'Inicio' },
-  { href: '/proyectos/', label: 'Proyectos' },
-  { href: '/sobre-nosotros/', label: 'Sobre Nosotros' },
-  { href: '/voluntariado-esc/', label: 'Voluntariado ESC' },
-  { href: '/contacto/', label: 'Contacto' },
+  { href: base,                       label: 'Inicio' },
+  { href: `${base}proyectos/`,        label: 'Proyectos' },
+  { href: `${base}sobre-nosotros/`,   label: 'Sobre Nosotros' },
+  { href: `${base}voluntariado-esc/`, label: 'Voluntariado ESC' },
+  { href: `${base}contacto/`,         label: 'Contacto' },
 ];
 ---
 
 <footer class="footer">
-  <!-- EU co-financing notice -->
   <div class="eu-notice">
     <div class="container eu-notice-inner">
       <div class="eu-flag" aria-hidden="true">🇪🇺</div>
@@ -40,17 +40,12 @@ const navLinks = [
     </div>
   </div>
 
-  <!-- Main footer -->
   <div class="footer-main">
     <div class="container footer-grid">
-      <!-- Brand -->
       <div class="footer-brand">
-        <a href="/" class="footer-logo">
+        <a href={base} class="footer-logo">
           <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-            <polygon
-              points="14,2 17.1,10.3 26,10.3 18.9,15.6 21.6,24 14,18.7 6.4,24 9.1,15.6 2,10.3 10.9,10.3"
-              fill="#f59e0b"
-            />
+            <polygon points="14,2 17.1,10.3 26,10.3 18.9,15.6 21.6,24 14,18.7 6.4,24 9.1,15.6 2,10.3 10.9,10.3" fill="#f59e0b"/>
           </svg>
           <span>Estrellas del Sur</span>
         </a>
@@ -66,7 +61,6 @@ const navLinks = [
         </div>
       </div>
 
-      <!-- Navigation -->
       <div class="footer-col">
         <h3 class="footer-col-title">Navegación</h3>
         <ul class="footer-links">
@@ -76,29 +70,19 @@ const navLinks = [
         </ul>
       </div>
 
-      <!-- Contact -->
       <div class="footer-col">
         <h3 class="footer-col-title">Contacto</h3>
         <ul class="footer-links">
-          <li>
-            <a href="mailto:info@estrellasdelsur.eu">
-              info@estrellasdelsur.eu
-            </a>
-          </li>
-          <li>
-            <span class="footer-text">Córdoba, España</span>
-          </li>
+          <li><a href="mailto:info@estrellasdelsur.eu">info@estrellasdelsur.eu</a></li>
+          <li><span class="footer-text">Córdoba, España</span></li>
         </ul>
-        <div class="footer-social-handles">
-          <p class="footer-text" style="font-size:.82rem; margin-top:1rem; color:rgba(255,255,255,.45)">
-            @estrellasdelsur.eu en Instagram, Facebook y TikTok
-          </p>
-        </div>
+        <p class="footer-text" style="font-size:.82rem; margin-top:1rem; color:rgba(255,255,255,.45)">
+          @estrellasdelsur.eu en Instagram, Facebook y TikTok
+        </p>
       </div>
     </div>
   </div>
 
-  <!-- Bottom bar -->
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
       <p>© {year} Estrellas del Sur. Todos los derechos reservados.</p>
@@ -110,120 +94,50 @@ const navLinks = [
 <style>
   .footer { background: var(--navy); color: rgba(255,255,255,.75); }
 
-  /* EU notice */
   .eu-notice {
     background: rgba(255,255,255,.05);
     border-top: 1px solid rgba(255,255,255,.07);
     border-bottom: 1px solid rgba(255,255,255,.07);
     padding: 1.1rem 0;
   }
-  .eu-notice-inner {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
+  .eu-notice-inner { display: flex; align-items: flex-start; gap: 1rem; }
   .eu-flag { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
-  .eu-notice p {
-    font-size: .82rem;
-    line-height: 1.6;
-    color: rgba(255,255,255,.55);
-  }
+  .eu-notice p { font-size: .82rem; line-height: 1.6; color: rgba(255,255,255,.55); }
   .eu-notice strong { color: rgba(255,255,255,.75); }
 
-  /* Main */
   .footer-main { padding: 3.5rem 0 2.5rem; }
+  .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3rem; }
 
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr;
-    gap: 3rem;
-  }
-
-  /* Brand */
   .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    text-decoration: none;
-    color: #fff;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
+    display: flex; align-items: center; gap: .5rem;
+    text-decoration: none; color: #fff;
+    font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600;
     margin-bottom: 1rem;
   }
 
-  .footer-desc {
-    font-size: .88rem;
-    line-height: 1.65;
-    color: rgba(255,255,255,.55);
-    max-width: 300px;
-    margin-bottom: 1.25rem;
-  }
+  .footer-desc { font-size: .88rem; line-height: 1.65; color: rgba(255,255,255,.55); max-width: 300px; margin-bottom: 1.25rem; }
 
-  .footer-socials {
-    display: flex;
-    gap: .6rem;
-  }
-
+  .footer-socials { display: flex; gap: .6rem; }
   .social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,.15);
-    color: rgba(255,255,255,.65);
-    text-decoration: none;
-    transition: background .2s, color .2s, border-color .2s;
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.65);
+    text-decoration: none; transition: background .2s, color .2s, border-color .2s;
   }
-  .social-link:hover {
-    background: rgba(255,255,255,.1);
-    color: #fff;
-    border-color: rgba(255,255,255,.3);
-  }
+  .social-link:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.3); }
 
-  /* Columns */
   .footer-col-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .8rem;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.4);
-    margin-bottom: 1.25rem;
+    font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: rgba(255,255,255,.4); margin-bottom: 1.25rem;
   }
-
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: .65rem;
-  }
-
-  .footer-links a,
-  .footer-text {
-    font-size: .9rem;
-    color: rgba(255,255,255,.6);
-    text-decoration: none;
-    transition: color .2s;
-  }
+  .footer-links { display: flex; flex-direction: column; gap: .65rem; }
+  .footer-links a, .footer-text { font-size: .9rem; color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
   .footer-links a:hover { color: #f59e0b; }
 
-  /* Bottom bar */
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,.08);
-    padding: 1.25rem 0;
-  }
-  .footer-bottom-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  .footer-bottom p {
-    font-size: .82rem;
-    color: rgba(255,255,255,.35);
-  }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 1.25rem 0; }
+  .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.35); }
   .footer-bottom-right { color: rgba(255,255,255,.25) !important; }
 
   @media (max-width: 768px) {
