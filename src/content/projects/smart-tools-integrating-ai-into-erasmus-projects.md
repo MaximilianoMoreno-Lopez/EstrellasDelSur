@@ -3,11 +3,18 @@ title: "Smart Tools: Integrating AI into Erasmus+ Projects"
 type: "Formación"
 status: "active"
 flag: "🇪🇺"
-description: "Formación Erasmus+ centrado en competencias digitales e innovación"
+description: "Curso de formación Erasmus+ sobre transformación digital"
 year: 2025
 order: 44
+location: "Moravia, República Checa"
 ---
 
-Smart Tools: Integrating AI into Erasmus+ Projects fue un proyecto Erasmus+ de tipo formación organizado por Estrellas del Sur, centrado en la cooperación juvenil europea.
+## Datos del proyecto
 
-Los participantes tuvieron la oportunidad de desarrollar competencias clave, conocer otras culturas y construir redes de colaboración internacionales en el marco del programa Erasmus+, cofinanciado por la Unión Europea.
+- **Temática del Proyecto:** Transformación Digital
+- **Fechas:** Del 06/09/2025 al 13/09/2025
+- **Lugar:** Moravia, República Checa
+
+## Sobre el proyecto
+
+Smart Tools: Integrating AI into Erasmus+ Projects es una formación para personas que trabajan con jóvenes y quieren empezar a usar la inteligencia artificial como aliada en sus proyectos. Durante siete días, en República Checa, explorarás cómo integrar herramientas de IA en el diseño, la gestión y la evaluación de intercambios juveniles y otras actividades formativas. Todo se enfoca desde la práctica: probarás diferentes aplicaciones, trabajarás en grupo, y adaptarás lo aprendido a situaciones reales del día a día. Además de aprender a usar la IA para organizar mejor tu trabajo, también se abordarán temas importantes como el uso ético, la inclusión y cómo garantizar espacios seguros cuando se usan herramientas digitales. Al finalizar, no solo tendrás nuevas habilidades y recursos listos para aplicar, sino también nuevas ideas y conexiones con otras personas que comparten tus mismas inquietudes.

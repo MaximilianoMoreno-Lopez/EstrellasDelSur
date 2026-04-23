@@ -3,11 +3,18 @@ title: "Rise Yourself!"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio Erasmus+ centrado en inclusión, diversidad y bienestar juvenil"
+description: "Intercambio juvenil Erasmus+ sobre emprendimiento y habilidades laborales"
 year: 2022
 order: 13
+location: "Pákozd (Hungría)"
 ---
 
-Rise Yourself! fue un proyecto Erasmus+ de tipo intercambio organizado por Estrellas del Sur, centrado en la cooperación juvenil europea.
+## Datos del proyecto
 
-Los participantes tuvieron la oportunidad de desarrollar competencias clave, conocer otras culturas y construir redes de colaboración internacionales en el marco del programa Erasmus+, cofinanciado por la Unión Europea.
+- **Temática del Proyecto:** Emprendimiento y habilidades laborales
+- **Fechas:** Del 21/04/2022 al 29/04/2022
+- **Lugar:** Pákozd (Hungría)
+
+## Sobre el proyecto
+
+Rise yourself! es un proyecto en el que se trabajarán medidas contra la inactividad y el desempleo, promocionar el emprendimiento laboral, preparar a los participantes para cambios que puedan ocurrir en sus puestos de trabajo trabajando la adaptabilidad a los mismos. También trataremos temas como la formación continua para ser personas actualizadas en nuestro ámbito de trabajo, la inversión en el capital humano asegurando en todo momento la igualdad de género en el ámbito laboral. En el proyecto participarán 36 jóvenes de 6 países diferentes (Estonia, Grecia, Italia, Portugal, Hungría y España) durante 9 días de formación.

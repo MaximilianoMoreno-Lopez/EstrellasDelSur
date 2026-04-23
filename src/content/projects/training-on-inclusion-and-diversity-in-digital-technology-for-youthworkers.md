@@ -3,11 +3,18 @@ title: "Training on Inclusion and Diversity in Digital Technology for YouthWorke
 type: "Formación"
 status: "active"
 flag: "🇪🇺"
-description: "Formación Erasmus+ centrado en competencias digitales e innovación"
+description: "Curso de formación Erasmus+ sobre inclusión y diversidad"
 year: 2025
 order: 52
+location: "Targu Jiu, Rumanía"
 ---
 
-Training on Inclusion and Diversity in Digital Technology for YouthWorkers fue un proyecto Erasmus+ de tipo formación organizado por Estrellas del Sur, centrado en la cooperación juvenil europea.
+## Datos del proyecto
 
-Los participantes tuvieron la oportunidad de desarrollar competencias clave, conocer otras culturas y construir redes de colaboración internacionales en el marco del programa Erasmus+, cofinanciado por la Unión Europea.
+- **Temática del Proyecto:** Inclusión y diversidad
+- **Fechas:** Del 02/12/2025 al 06/12/2025
+- **Lugar:** Targu Jiu, Rumanía
+
+## Sobre el proyecto
+
+Explorar cómo la tecnología digital puede fomentar la inclusión y la diversidad en el trabajo con jóvenes. En un mundo donde las herramientas digitales moldean las interacciones, la educación y la participación, los trabajadores juveniles deben comprender tanto las oportunidades como los riesgos que la tecnología conlleva. Esta formación se centrará en: Hacer que los espacios digitales sean inclusivos y accesibles. Abordar la exclusión digital y la discriminación oculta. Explorar la ciudadanía digital y la participación en línea de los jóvenes. Utilizar herramientas y métodos innovadores para fomentar la diversidad y la equidad.
