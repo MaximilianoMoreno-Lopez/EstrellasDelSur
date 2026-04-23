@@ -1,0 +1,365 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const { title, type, status, flag, description, location, year, image } = project.data;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const typeClass = {
+  'Intercambio': 'badge-teal',
+  'Voluntariado': 'badge-gold',
+  'Formación':    'badge-purple',
+}[type];
+
+const fallbackGradient = {
+  'Intercambio': 'linear-gradient(135deg, #0d9488 0%, #0a1628 100%)',
+  'Voluntariado': 'linear-gradient(135deg, #d97706 0%, #0a1628 100%)',
+  'Formación':    'linear-gradient(135deg, #7c3aed 0%, #0a1628 100%)',
+}[type];
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Back link -->
+  <div class="back-bar">
+    <div class="container">
+      <a href={`${base}/proyectos/`} class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        Todos los proyectos
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero del proyecto -->
+  <section class="project-hero">
+    <div class="hero-image">
+      {image ? (
+        <img src={`${base}/${image}`} alt={`Imagen de ${title}`} />
+      ) : (
+        <div class="hero-fallback" style={`background: ${fallbackGradient}`}>
+          <span class="hero-flag" aria-hidden="true">{flag}</span>
+        </div>
+      )}
+      <div class="hero-overlay" />
+    </div>
+    <div class="container hero-content">
+      <div class="hero-meta fade-in">
+        <span class={`badge ${typeClass}`}>{type}</span>
+        {status === 'active' && <span class="badge-active">Activo</span>}
+        <span class="hero-flag-inline" aria-label="País">{flag}</span>
+      </div>
+      <h1 class="hero-title fade-in fade-in-delay-1">{title}</h1>
+      <p class="hero-desc fade-in fade-in-delay-2">{description}</p>
+      {(location || year) && (
+        <div class="hero-details fade-in fade-in-delay-3">
+          {location && (
+            <span class="detail-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              {location}
+            </span>
+          )}
+          {year && (
+            <span class="detail-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              {year}
+            </span>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Contenido del proyecto -->
+  <section class="section">
+    <div class="container content-layout">
+      <article class="project-content prose fade-in">
+        <Content />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="project-sidebar fade-in fade-in-delay-1">
+        <div class="sidebar-card">
+          <h3>Información</h3>
+          <dl class="info-list">
+            <dt>Tipo</dt>
+            <dd><span class={`badge ${typeClass}`}>{type}</span></dd>
+
+            <dt>Estado</dt>
+            <dd>
+              {status === 'active'
+                ? <span class="status-dot active">Activo</span>
+                : <span class="status-dot past">Finalizado</span>
+              }
+            </dd>
+
+            {location && (
+              <>
+                <dt>Lugar</dt>
+                <dd>{location}</dd>
+              </>
+            )}
+
+            {year && (
+              <>
+                <dt>Año</dt>
+                <dd>{year}</dd>
+              </>
+            )}
+          </dl>
+
+          <a href="mailto:info@estrellasdelsur.eu" class="btn btn-primary sidebar-cta">
+            Quiero participar
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Back bar */
+  .back-bar {
+    background: var(--cream-dark);
+    border-bottom: 1px solid var(--gray-200);
+    padding: .75rem 0;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .back-link:hover { color: var(--navy); }
+
+  /* Hero */
+  .project-hero {
+    position: relative;
+    background: var(--navy);
+    color: #fff;
+    overflow: hidden;
+    min-height: 340px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-image {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-fallback .hero-flag { font-size: 5rem; opacity: .35; }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,22,40,.9) 0%, rgba(10,22,40,.4) 60%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .badge-active {
+    background: #059669;
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    letter-spacing: .04em;
+  }
+
+  .hero-flag-inline { font-size: 1.4rem; }
+
+  .hero-title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: .75rem;
+    max-width: 700px;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,.8);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .hero-details {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .88rem;
+    color: rgba(255,255,255,.7);
+  }
+
+  /* Content layout */
+  .content-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3rem;
+    align-items: start;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Prose content */
+  .project-content {
+    max-width: none;
+  }
+  .prose :global(p) {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--gray-700);
+    margin-bottom: 1.25rem;
+  }
+  .prose :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 2.5rem;
+    margin-bottom: .75rem;
+  }
+  .prose :global(h3) {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+  }
+  .prose :global(ul), .prose :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .prose :global(li) {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--gray-700);
+    margin-bottom: .4rem;
+  }
+  .prose :global(strong) { color: var(--navy); }
+  .prose :global(a) { color: var(--teal); }
+
+  /* Sidebar */
+  .sidebar-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    position: sticky;
+    top: 5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sidebar-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+    padding-bottom: .75rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .info-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .6rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-list dt {
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    align-self: center;
+  }
+
+  .info-list dd {
+    font-size: .9rem;
+    color: var(--gray-700);
+    align-self: center;
+  }
+
+  .status-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .88rem;
+    font-weight: 500;
+  }
+  .status-dot::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .status-dot.active { color: #059669; }
+  .status-dot.active::before { background: #059669; }
+  .status-dot.past { color: var(--gray-500); }
+  .status-dot.past::before { background: var(--gray-400); }
+
+  .sidebar-cta {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .content-layout {
+      grid-template-columns: 1fr;
+    }
+    .sidebar-card {
+      position: static;
+    }
+    .project-sidebar {
+      order: -1;
+    }
+  }
+</style>
