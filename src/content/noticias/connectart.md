@@ -2,11 +2,12 @@
 title: "ConnectART"
 type: "Formación"
 status: "past"
-location: "1.8em; /"
-description: ".markdown.markdown-main-panel p { margin-bottom: 1.5em; /* Ajusta el espaciado según tus preferencias */ } ¡Arranca nuestro nuevo proyecto Erasmus+… ConnectART!"
+order: 6
+location: "Romagnese, Italia"
+description: "¡Arranca nuestro nuevo proyecto Erasmus+… ConnectART! Este proyecto busca sensibilizar a los jóvenes sobre la inclusión y la diversidad a través de diversas for"
 ---
 
-.markdown.markdown-main-panel p { margin-bottom: 1.5em; /* Ajusta el espaciado según tus preferencias */ } ¡Arranca nuestro nuevo proyecto Erasmus+… ConnectART! Este proyecto busca sensibilizar a los jóvenes sobre la inclusión y la diversidad a través de diversas formas de arte y herramientas digitales.
+¡Arranca nuestro nuevo proyecto Erasmus+… ConnectART! Este proyecto busca sensibilizar a los jóvenes sobre la inclusión y la diversidad a través de diversas formas de arte y herramientas digitales.
 
 Del 25 al 26 de enero, nos reunimos en la encantadora Alessandria, Italia, con dos increíbles organizaciones: DiversaMente APS (Italia) y Asociacija Tavo Europa (Lituania) para profundizar en los objetivos del proyecto y planificar las actividades que se llevarán a cabo durante este año.
 
@@ -16,7 +17,7 @@ Pero esto es solo el principio.
 
 ConnectART es un proyecto que se desarrollará a lo largo de todo el año, con próximas paradas en Lituania, donde del 4 al 9 de agosto tendrá lugar Inclusion Through Photography, un taller que explorará el poder de la fotografía para capturar y comunicar la diversidad.
 
-Y en noviembre, nos trasladaremos a España para nuestro último taller, donde seguiremos utilizando el arte como herramienta para la inclusión. /* Ajusta el interlineado */ .markdown.markdown-main-panel p { line-height: 1.8em; /* Aumenta el interlineado */ margin-bottom: 1.8em; /* Aumenta el espacio entre los párrafos */ text-align: justify; } /* Animación inspirada en la bandera italiana */ @keyframes waveFlag { 0% { transform: rotate(0deg); } 25% { transform: rotate(3deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(-3deg); } 100% { transform: rotate(0deg); } } .italian-flag { width: 100px; height: 60px; background: linear-gradient(to right, #008C45, #F4F5F0, #CD212A); /* Colores de la bandera italiana */ border: 1px solid #000; animation: waveFlag 2s infinite; margin: 0 auto; /* Centrar la bandera */ display: block; } h2, h5 { margin-top: 2em; margin-bottom: 1em; text-align: center; } Dancing Diversity Romagnese, Italia. 20 al 25 de mayo.
+Y en noviembre, nos trasladaremos a España para nuestro último taller, donde seguiremos utilizando el arte como herramienta para la inclusión. /* Ajusta el interlineado */ /* Animación inspirada en la bandera italiana */ @ 25% 50% 75% 100% } Dancing Diversity Romagnese, Italia. 20 al 25 de mayo.
 
 En el corazón de la pintoresca región italiana de Lombardía, en el encantador pueblo de Romagnese, se llevó a cabo Dancing Diversity, el primer taller del proyecto Erasmus+ ConnectART, una iniciativa conjunta de Estrellas del Sur, Tavo Europa y DiversaMente APS. Durante cinco días inolvidables, del 20 al 25 de mayo, un grupo diverso de jóvenes se sumergió en un viaje de autodescubrimiento, conexión y crecimiento a través del poder universal de la danza.
 
@@ -46,7 +47,7 @@ Fue un momento emotivo y lleno de energía, que dejó una huella imborrable en l
 
 Dancing Diversity ha demostrado que la danza es mucho más que una forma de arte; es un lenguaje universal que puede unir a personas de diferentes orígenes y culturas, un catalizador para el crecimiento personal y una herramienta poderosa para construir un mundo más inclusivo y compasivo.
 
-Este taller es solo el primer paso en el emocionante viaje de ConnectART, un proyecto que continuará explorando el potencial transformador del arte en todas sus formas. /* Ajuste del interlineado */ .markdown.markdown-main-panel p { line-height: 1.8em; /* Aumenta el interlineado */ margin-bottom: 1.8em; /* Aumenta el espacio entre párrafos */ text-align: justify; } /* Efecto cuando se selecciona el texto (colores de la bandera lituana) */ ::selection { background-color: #FDB913; /* Amarillo de la bandera lituana para el fondo */ color: #006A44; /* Verde de la bandera lituana para el texto seleccionado */ } /* Alternativa para navegadores de WebKit (Chrome, Safari, etc.) */ ::-moz-selection { background-color: #FDB913; /* Amarillo para Mozilla Firefox */ color: #006A44; /* Verde para Mozilla Firefox */ } /* Para mejorar visibilidad en caso de selección */ .markdown.markdown-main-panel p:hover::selection { background-color: #C1272D; /* Rojo bandera lituana */ color: #FFFFFF; /* Blanco para el texto seleccionado sobre rojo */ } Inclusion Through Photography Vilna, Lituania. 4 al 9 de agosto.
+Este taller es solo el primer paso en el emocionante viaje de ConnectART, un proyecto que continuará explorando el potencial transformador del arte en todas sus formas. /* Ajuste del interlineado */ /* Efecto cuando se selecciona el texto (colores de la bandera lituana) */ /* Alternativa para navegadores de WebKit (Chrome, Safari, etc.) */ /* Para mejorar visibilidad en caso de selección */ Inclusion Through Photography Vilna, Lituania. 4 al 9 de agosto.
 
 Siguiendo con el emocionante recorrido de ConnectART, la segunda etapa del proyecto nos llevó a Vilna, Lituania, del 4 al 9 de agosto, donde se desarrolló Inclusion Through Photography.
 
@@ -120,7 +121,7 @@ Queremos agradecer a cada persona que formó parte de este viaje.
 
 Cada movimiento, imagen y palabra creados a lo largo de ConnectART demuestran que la inclusión no es solo un objetivo, sino un proceso colectivo que trasciende fronteras.
 
-Este proyecto nos ha dejado una lección inolvidable: juntos podemos construir un mundo para todos. // Frases con sus respectivas banderas const quotes = [ { text: "ConnectART: la danza, la fotografía y la escritura nos enseñaron que la inclusión es el arte de crear un mundo para todos.", flag: "🇪🇸" // Bandera de España }, { text: "ConnectART: dance, photography, and writing taught us that inclusion is the art of creating a world for everyone.", flag: "🇬🇧" // Bandera del Reino Unido }, { text: "ConnectART: la danza, la fotografia e la scrittura ci hanno insegnato che l'inclusione è l'arte di creare un mondo per tutti.", flag: "🇮🇹" // Bandera de Italia }, { text: "ConnectART: šokis, fotografija ir rašymas mus išmokė, kad įtrauktis yra menas kurti pasaulį visiems.", flag: "🇱🇹" // Bandera de Lituania } ]; // Contenedor para la cita const container = document.getElementById("connectart-quote"); // Función para mostrar una frase let currentIndex = 0; function showQuote() { const currentQuote = quotes; container.innerHTML = ` ${currentQuote.flag} ${currentQuote.text} `; currentIndex = (currentIndex + 1) % quotes.length; // Cambia al siguiente índice, vuelve al inicio si llega al final } // Mostrar la primera frase inmediatamente showQuote(); // Cambiar la frase cada 6 segundos setInterval(showQuote, 6000); Esto no es el final, sino el comienzo de nuevas historias por escribir juntos.
+Este proyecto nos ha dejado una lección inolvidable: juntos podemos construir un mundo para todos. // ]; // Contenedor para la cita const container = document.getElementById("connectart-quote"); // Función para mostrar una frase let currentIndex = 0; ${currentQuote.text} `; currentIndex = (currentIndex + 1) % quotes.length; // Cambia al siguiente índice, vuelve al inicio si llega al final } // Mostrar la primera frase inmediatamente showQuote(); // Cambiar la frase cada 6 segundos setInterval(showQuote, 6000); Esto no es el final, sino el comienzo de nuevas historias por escribir juntos.
 
 ConnectART Toolkit En Estrellas del Sur creemos que la educación no formal y el trabajo juvenil deben ser herramientas de transformación social.
 

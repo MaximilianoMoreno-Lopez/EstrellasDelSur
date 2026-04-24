@@ -25,6 +25,7 @@ const noticias = defineCollection({
     title: z.string(),
     type: z.enum(['Intercambio', 'Voluntariado', 'Formación']),
     status: z.string().default('past'),
+    order: z.number().default(99),
     date: z.string().optional(),
     dates: z.string().optional(),
     location: z.string().optional(),

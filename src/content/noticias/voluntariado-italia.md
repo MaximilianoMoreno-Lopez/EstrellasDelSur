@@ -2,6 +2,8 @@
 title: "Voluntariado Italia"
 type: "Formación"
 status: "past"
+order: 12
+location: "Molfetta Sergio, Martín tuvo la oportunidad de p"
 description: "Una experiencia educativa en Molfetta Sergio Martín tuvo la oportunidad de participar en un proyecto de voluntariado en el Istituto Comprensivo Battisti-Pascoli"
 ---
 
@@ -15,7 +17,9 @@ Los voluntarios apoyaron en las clases de inglés, organizaron talleres de cocin
 
 Esta experiencia reforzó valores como la empatía, la cooperación y la importancia de la educación como herramienta de transformación social.
 
-## Voces de los participantes El impacto del proyecto se refleja en las palabras de sus protagonistas: "Una experiencia que me ha servido para reforzar los idiomas y poder conocer gente nueva" "He podido ayudar dando clases de español, lo cuál ha sido muy gratificante para mi :)"
+## Voces de los participantes
+
+## El impacto del proyecto se refleja en las palabras de sus protagonistas: "Una experiencia que me ha servido para reforzar los idiomas y poder conocer gente nueva" "He podido ayudar dando clases de español, lo cuál ha sido muy gratificante para mi :)"
 
 ## Un legado que continúa Aunque el proyecto en Molfetta ha llegado a su fin, su huella sigue presente.
 

@@ -2,12 +2,16 @@
 title: "Eco‑YOUth"
 type: "Formación"
 status: "past"
+order: 14
+location: "Kakopetria, Chipre"
 description: "Del 24 de octubre al 2 de noviembre de 2025, un grupo de jóvenes de distintos países europeos se reunió en Kakopetria (Chipre) para participar en el proyecto Ec"
 ---
 
 Del 24 de octubre al 2 de noviembre de 2025, un grupo de jóvenes de distintos países europeos se reunió en Kakopetria (Chipre) para participar en el proyecto Eco‑YOUth: United for a Sustainable Future.
 
-Durante diez días intensos, compartieron vivencias, aprendizajes y acciones destinadas a fomentar un estilo de vida más ecológico y responsable . 🌿 Naturaleza, acción y conciencia ambiental Los días comenzaban con actividades al aire libre: recolección de aceitunas , plantación de árboles, rutas de senderismo por paisajes naturales… Un contacto directo con la tierra que invitaba a reflexionar sobre nuestra huella ecológica.
+Durante diez días intensos, compartieron vivencias, aprendizajes y acciones destinadas a fomentar un estilo de vida más ecológico y responsable . 🌿
+
+## Naturaleza, acción y conciencia ambiental Los días comenzaban con actividades al aire libre: recolección de aceitunas , plantación de árboles, rutas de senderismo por paisajes naturales… Un contacto directo con la tierra que invitaba a reflexionar sobre nuestra huella ecológica.
 
 A esta inmersión en la naturaleza se sumaron talleres de formación práctica: análisis del cambio climático, dinámicas de grupo para proponer soluciones locales, y espacios de reflexión colectiva.
 
@@ -25,7 +29,9 @@ Habilidades, conocimiento y compromiso Gracias a Eco‑YOUth, los jóvenes adqui
 
 Además, el proyecto ofreció un marco de educación no formal reconocido mediante Youthpass, valorando su aprendizaje más allá del formato tradicional.
 
-Este conjunto de herramientas no solo sirve para su desarrollo personal, sino también para impulsar proyectos sostenibles en sus comunidades de origen: un cambio que trasciende su estancia en Chipre. 🌍 Un impacto que va más allá del viaje Eco‑YOUth no fue solo una experiencia temporal, sino el inicio de un compromiso a largo plazo.
+Este conjunto de herramientas no solo sirve para su desarrollo personal, sino también para impulsar proyectos sostenibles en sus comunidades de origen: un cambio que trasciende su estancia en Chipre.
+
+🌍 Un impacto que va más allá del viaje Eco‑YOUth no fue solo una experiencia temporal, sino el inicio de un compromiso a largo plazo.
 
 Los participantes volvieron con energía renovada, conciencia ecológica reforzada y ganas de implicarse en acciones concretas: campañas locales, proyectos de voluntariado, iniciativas verdes… En definitiva: llevar lo aprendido a su día a día.
 

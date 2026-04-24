@@ -1,85 +1,39 @@
 ---
-title: "Referee for Life"
+title: "Referee For Life"
 type: "Intercambio"
 status: "past"
-date: "2022-05-28"
-dates: "21/09/2022 – 28/09/2022"
-location: "Molfetta/Puglia"
-description: "También se hablará de la educación no formal que suele darse en los proyectos Erasmus+, cómo funcionan y en qué consisten."
+order: 1
+description: "A día de hoy puede decirse que la práctica deportiva es uno de los aspectos más importantes a practicar en nuestra vida diaria, ya que no solo es bueno para nue"
 ---
 
-## Datos del proyecto - **- **Temática del Proyecto:** ** Deporte, concentración y bienestar por la actividad física - **Fechas:** Del 21/09/2022 al 28/09/2022 - **Lugar:** Molfetta/Puglia (Italia) - **Participantes:** 6 participantes de entre 18 y 25 años residentes en España - **Fecha límite de recepción de inscripciones:** 05/06/2022
+A día de hoy puede decirse que la práctica deportiva es uno de los aspectos más importantes a practicar en nuestra vida diaria, ya que no solo es bueno para nuestro cuerpo y para nuestra salud mental, sino que también nos ayuda a prevenir multitud de patologías.
 
-## Sobre el Proyecto Como todo proyecto Erasmus+, una parte muy importante será la promoción del diálogo intercultural y mejorar la dimensión internacional del participante.
+Este proyecto nos permitió conocer estos beneficios de primera mano, practicando gran variedad de deportes, juegos tradicionales de cada país y como podéis ver en el vídeo, aprendimos a querernos mucho a través de la actividad física.
 
-También se hablará de la educación no formal que suele darse en los proyectos Erasmus+, cómo funcionan y en qué consisten.
+Es por eso, que poder combinar una actividad tan esencial como es el deporte con la oportunidad de viajar a otro país, en este caso a Italia, es una experiencia única.
 
-El participante también tendrá oportunidad de mejorar sus habilidades básicas y tratar las competencias claves, haciéndose responsable de las elecciones que elija a lo largo del curso y aprenderá a autoevaluarse de manera eficaz, enfocándose en el proceso de aprendizaje y en los ítems que realmente le interesa evaluar.
+Como resultado se crea un entorno especial en el que los integrantes de los diferentes países se conocen personalmente y aprenden diferentes aspectos de las culturas del otro.
 
-Esto es muy importante para desarrollar en un futuro proyectos personales por parte del participante.
+Al fin y al cabo se trata de una vivencia que ayuda a levantar barreras y concienciar sobre las diferencias interpersonales.
 
-En cuanto a la dimensión deportiva, se promoverá los estilos de vida saludables relacionándolos con la actividad física, concentración durante la práctica deportiva y la preparación física y mental para una competición.
+Durante la semana del Proyecto, se han ido desarrollando diferentes actividades, todas con algo en común: la actividad física y la interculturalidad.
 
-Se enfocará desde un punto de vista diferente al que se suele ver el deporte, el del árbitro.
+De este modo, cada mañana, los miembros de un país eran los encargados de realizar una actividad en la que se combinaban juegos, deporte y cultura del país correspondiente.
 
-Eso no quiere decir que no se vaya a practicar deporte, que irá incluido en toda la programación.
+Cada noche tenían lugar las “Intercultural evening” donde cada país cocinaba platos típicos que podían probar todos los participantes, y mostraban sus características culturales más importantes, así como la música o lugares emblemáticos.
 
-El proyecto incluirá actividades deportivas, eventos, juegos, tours guiados, debates, actividades recreativas... El grupo de españoles deberá plantear una actividad previa al proyecto para ser realizada durante el mismo.
+Tuvimos la oportunidad de tener un encuentro con miembros políticos de Molfetta, quienes nos recibieron en sus dependencias, al igual que los miembros de la asociación de árbitros local.
 
-## Condiciones de Participación Actualmente no existe ningún requisito para entrar a Italia ni para volver a España relacionado con las restricciones por la COVID-19 siempre que el participante tenga la pauta completa de vacunación frente a este virus.
+Este encuentro sirvió para explicar qué hacía cada una de las organizaciones de cada país, darle las gracias por el apoyo que dan a estos proyectos y la transcendencia que puede llegar a tener.
 
-No obstante, somos conscientes que esto puede cambiar antes del proyecto.
+Una de las actividades que motivó mucho a todo el grupo fue poder practicar submarinismo de la mano de profesionales, en un entorno tan peculiar como la playa de Giovinazzo.
 
-Animamos a que próximo a la fecha del proyecto se revisen los requisitos tanto para entrar a Italia desde España como para realizar la vuelta.
+Un deporte donde la concentración y confianza en uno mismo son fundamentales.
 
-Si la compañía aérea cancelase los vuelos, sería el participante el total responsable para solicitar la devolución del billete y buscar la alternativa oportuna para llegar al lugar de realización del proyecto en fecha y hora.
+Finalmente se hace necesario exponer el desarrollo personal que hemos experimentado durante este proyecto de Erasmus+. Esta experiencia ha sido una de las mejores de nuestra vida y gracias a ella hemos podido descubrir aspectos de otras culturas que no conocíamos.
 
-El participante que pase el proceso de selección y vaya al proyecto como representación de Estrellas del Sur, se compromete a realizar todas las actividades y cumplir todas las normas que se soliciten desde la organización de acogida así como la normativa que exija el país del proyecto.
+Hemos crecido personalmente y hemos aprendido de nuestros compañeros de otros países y hemos podido mejorar nuestro inglés o aprender otros idiomas como el alemán, el italiano o el francés.
 
-Será responsabilidad del participante guardar todos los resguardos, billetes y facturas relacionadas con el viaje a la ciudad en la que se realice el proyecto.
+De modo que fue muy inspirador poder estar en un ambiente de aprendizaje con personas muy diferentes a ti.
 
-Además, el participante, al aceptar estas condiciones, acepta el uso de su imagen por parte de Estrellas del Sur en cualquier formato.
-
-No se solicitará ningún certificado de idiomas al participante, pero sí que hacemos saber que todas las actividades serán en inglés y asistirán participantes de un total de 5 países de la Unión Europea, por lo que será requisito que el participante tenga cierto nivel de inglés para poder desenvolverse a lo largo de toda la estancia.
-
-Recomendamos tener en vigor y llevar consigo la tarjeta sanitaria europea.
-
-Estrellas del Sur se hará cargo de contratar un seguro para cada participante asistente al proyecto.
-
-## Perfil del Participante Jóvenes de entre 18 y 25 años residentes en España que sepan comunicarse en inglés y se comprometan a cumplir las medidas COVID, que no siempre son las mismas que en nuestro país.
-
-También buscamos personas interesadas en el tema del proyecto así como personas que en su vida profesional o personal esté muy ligada al deporte.
-
-Recordamos que convivirán varias personas de diferentes países por lo que se pide al participante que sea una persona flexible y se adapte bien a todas las actividades propuestas por la organización.
-
-Se atenderá a personas con dificultades económicas, geográficas, étnicas o culturales y se promoverá que estas personas puedan participar en este tipo de proyectos.
-
-Gastos En estos gastos irá incluido el alojamiento en la iglesia local en Molfetta (por confirmar), la comida la cual será adaptada a las necesidades de cada participante, los gastos que puedan acarrear las distintas actividades realizadas durante vuestra estancia así como un seguro.
-
-Los gastos de transporte serán pagados por el participante y devueltos por Estrellas del Sur una vez terminado el proyecto.
-
-Es por esto, que pedimos y recordamos que todos los billetes y facturas de gastos de transporte sean cuidadosamente guardados y entregados a Estrellas del Sur una vez finalizado el viaje para que se pueda proceder a la devolución de su importe.
-
-Por ello, aunque el participante pague los gastos de transporte en un primer momento, todo el importe será devuelto al mismo y una vez realizado el proyecto siempre que se cumplan los requisitos que Estrellas del Sur ponga en su conocimiento.
-
-Todos los requisitos relacionados con el transporte serán informados a los participantes una vez finalizado el proceso de selección.
-
-Antes de comprar cualquier billete de transporte, Estrellas del Sur debe dar el visto bueno.
-
-Habrá una cuota de participación de 80€ que solo pagará aquel participante que salga elegido.
-
-YouthPass Al finalizar el proyecto, se emitirá un certificado llamado YouthPass en el que aparece todo lo relativo al proyecto, como puede ser la duración del mismo, las competencias adquiridas, el idioma en el que se realizó el proyecto… Asistencia Si quisieras aprovechar el viaje a Italia y pasar más días de los que dura el proyecto, contacta con nosotros y solicítanos la posibilidad de llegar antes al país o volver más tarde.
-
-Ningún gasto externo al proyecto será subvencionado.
-
-## Presentación de Solicitudes El siguiente enlace, le llevará a un formulario, el cual deberá rellenar con sus datos y adjuntar una carta de motivación al final.
-
-Esta carta de motivación es la que nos sirve para elegir a los participantes que más se ajusten a las necesidades del proyecto.
-
-Se valorará positivamente todas aquellas personas que anteriormente han solicitado participar en un proyecto con Estrellas del Sur y no han sido elegidos.
-
-Por otra parte se valorará negativamente aquellas personas que hayan sido seleccionadas para un proyecto de Estrellas del Sur y no hayan asistido al mismo.
-
-Recordamos que la fecha límite para realizar el formulario de inscripción es el 18 de mayo, por lo que todas las inscripciones deben ser realizadas antes de dicha fecha.
-
-Solicitud de inscripciones
+Esta experiencia ha sido muy beneficiosa y gratificante y nos sentimos muy afortunados de haber tenido la oportunidad de participar en esta aventura.

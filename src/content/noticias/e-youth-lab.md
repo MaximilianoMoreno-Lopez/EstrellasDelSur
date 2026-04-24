@@ -2,15 +2,18 @@
 title: "E-Youth Lab"
 type: "Formación"
 status: "past"
-location: "por un lado, profundizar en métodos de cuidado del medioambiente y, por otro, ap"
-description: "¿Qué es E-YouthLab? ¡Bienvenid@s a E-Youth Lab ! Una inspiradora iniciativa que apuesta por el empoderamiento juvenil a través de talleres, mentorías y experien"
+order: 16
+location: "Hacienda y en la Seguridad, Social"
+description: "Nuestra misión es potenciar el liderazgo, la igualdad, la conciencia medioambiental y la inclusión mediante actividades formativas presenciales y colaborativas,"
 ---
 
-¿Qué es E-YouthLab? ¡Bienvenid@s a E-Youth Lab ! Una inspiradora iniciativa que apuesta por el empoderamiento juvenil a través de talleres, mentorías y experiencias de participación activa en el diseño de proyectos sostenibles y accesibles.
+## ¿Qué es E-YouthLab? ¡Bienvenid@s a E-Youth Lab ! Una inspiradora iniciativa que apuesta por el empoderamiento juvenil a través de talleres, mentorías y experiencias de participación activa en el diseño de proyectos sostenibles y accesibles.
 
 Nuestra misión es potenciar el liderazgo, la igualdad, la conciencia medioambiental y la inclusión mediante actividades formativas presenciales y colaborativas, fomentando el compromiso cívico y la creatividad.
 
-¡Súmate y sé protagonista del cambio! Actividades Se desarrolla a lo largo de varios meses mediante una programación estructurada y dinámica, que incluye: Talleres formativos sobre liderazgo, igualdad de género, emprendimiento sostenible e inclusivo.
+¡Súmate y sé protagonista del cambio!
+
+## Actividades Se desarrolla a lo largo de varios meses mediante una programación estructurada y dinámica, que incluye: Talleres formativos sobre liderazgo, igualdad de género, emprendimiento sostenible e inclusivo.
 
 Sesiones de mentoría personalizadas para el desarrollo de proyectos juveniles.
 
@@ -22,7 +25,7 @@ Evento final donde los proyectos son presentados ante la ciudadanía y sociedad 
 
 Evaluación y difusión para visibilizar los resultados y aprendizajes.
 
-Objetivos Impulsar el protagonismo juvenil en el diseño y ejecución de iniciativas con impacto social.
+## Objetivos Impulsar el protagonismo juvenil en el diseño y ejecución de iniciativas con impacto social.
 
 Fomentar valores de igualdad, sostenibilidad y accesibilidad en el desarrollo de proyectos.
 
@@ -36,7 +39,7 @@ E-Youth Lab es un proyecto apoyado por entidades públicas en el marco de subven
 
 Los costes de planificación, ejecución, materiales, transporte, manutención, alojamiento y honorarios están cubiertos a través del presupuesto gestionado por el equipo técnico.
 
-Actividades Almodóvar del Río, Córdoba, 08/07/2025 La primera actividad de E-YouthLab tuvo lugar en el pintoresco pueblo cordobés de Almodóvar del Río , donde jóvenes participaron en una actividad que mezcló sostenibilidad, comunicación y cooperación.
+## Actividades Almodóvar del Río, Córdoba, 08/07/2025 La primera actividad de E-YouthLab tuvo lugar en el pintoresco pueblo cordobés de Almodóvar del Río , donde jóvenes participaron en una actividad que mezcló sostenibilidad, comunicación y cooperación.
 
 Aprendizajes que inspiran El objetivo del proyecto fue doble: por un lado, profundizar en métodos de cuidado del medioambiente y, por otro, aprender a comunicar de manera efectiva estos conocimientos para que lleguen a más personas.
 
@@ -46,7 +49,9 @@ En palabras de los participantes: “Aprendimos técnicas de expresión de ideas
 
 Entre paseos, actividades al aire libre y momentos de grupo, se reforzó la importancia de actuar de forma conjunta frente a los desafíos medioambientales.
 
-Los jóvenes incluso se propusieron pequeños retos ecológicos para cumplir después de la actividad, demostrando que la acción empieza en lo cotidiano. 🌍💪 Un inicio prometedor Esta actividad marcó el arranque de las actividades de E-YouthLab y dejó claro que la juventud tiene un papel esencial en la construcción de un futuro sostenible.
+Los jóvenes incluso se propusieron pequeños retos ecológicos para cumplir después de la actividad, demostrando que la acción empieza en lo cotidiano.
+
+🌍💪 Un inicio prometedor Esta actividad marcó el arranque de las actividades de E-YouthLab y dejó claro que la juventud tiene un papel esencial en la construcción de un futuro sostenible.
 
 Fue una experiencia de aprendizaje, compromiso y cooperación que seguirá inspirando a quienes participaron y a sus comunidades.
 

@@ -2,6 +2,7 @@
 title: "EFFA"
 type: "Formación"
 status: "past"
+order: 15
 description: "En el corazón de la vibrante y diversa comunidad andaluza, nace un proyecto visionario respaldado por la Junta de Andalucía: 'El Futuro de Andalucía es Ahora'."
 ---
 
