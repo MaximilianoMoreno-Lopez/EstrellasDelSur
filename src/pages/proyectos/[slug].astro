@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-const { title, type, status, flag, description, location, year, image } = project.data;
+const { title, type, status, flag, description, location, year, image, infopack, apply } = project.data;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -117,9 +117,23 @@ const fallbackGradient = {
             )}
           </dl>
 
-          <a href="mailto:info@estrellasdelsur.eu" class="btn btn-primary sidebar-cta">
-            Quiero participar
-          </a>
+          <div class="sidebar-actions">
+            {apply && (
+              <a href={apply} target="_blank" rel="noopener" class="btn btn-primary sidebar-cta">
+                Preinscribirme
+              </a>
+            )}
+            {infopack && (
+              <a href={infopack} target="_blank" rel="noopener" class="btn btn-outline sidebar-cta">
+                Ver Infopack
+              </a>
+            )}
+            {!apply && (
+              <a href="mailto:info@estrellasdelsur.eu" class="btn btn-primary sidebar-cta">
+                Quiero participar
+              </a>
+            )}
+          </div>
         </div>
       </aside>
     </div>
@@ -345,10 +359,35 @@ const fallbackGradient = {
   .status-dot.past { color: var(--gray-500); }
   .status-dot.past::before { background: var(--gray-400); }
 
+  .sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+
   .sidebar-cta {
     width: 100%;
     text-align: center;
     justify-content: center;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--teal);
+    color: var(--teal);
+    padding: .6rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: .9rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s, color .2s;
+  }
+  .btn-outline:hover {
+    background: var(--teal);
+    color: #fff;
   }
 
   @media (max-width: 768px) {

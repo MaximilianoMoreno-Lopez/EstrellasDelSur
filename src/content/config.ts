@@ -8,10 +8,12 @@ const projects = defineCollection({
     status: z.enum(['active', 'past']),
     flag: z.string(),
     description: z.string(),
-    image: z.string().optional(),   // ruta relativa a public/, ej: "images/projects/green-glow.jpg"
+    image: z.string().optional(),
     location: z.string().optional(),
     year: z.number().optional(),
     order: z.number().default(99),
+    infopack: z.string().optional(),
+    apply: z.string().optional(),
   }),
 });
 
