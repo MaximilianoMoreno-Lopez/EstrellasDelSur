@@ -8,6 +8,8 @@ location: "Región de Małopolska, Polonia (principalmente Rabka-Zdrój)"
 year: 2026
 dates: "03/06/2026 – 07/07/2026"
 order: 2
+image: "images/projects/malopolski-youth-festival-2026.png"
+poster: "images/projects/malopolski-youth-festival-2026.png"
 apply: "https://forms.gle/c8Q8Pg2bJkAzbj5q7"
 infopack: "https://www.canva.com/design/DAHE9OM1YwI/vrKDppoE12SNwCV-PWzKhw/edit"
 ---
