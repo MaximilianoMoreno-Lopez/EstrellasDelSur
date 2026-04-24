@@ -16,6 +16,12 @@ const { title, type, status, flag, description, location, year, image, infopack,
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const typeLabel = {
+  'Intercambio': 'Youth Exchange',
+  'Voluntariado': 'Voluntariado',
+  'Formación':    'Training Course',
+}[type];
+
 const typeClass = {
   'Intercambio': 'badge-teal',
   'Voluntariado': 'badge-gold',
@@ -54,7 +60,7 @@ const fallbackGradient = {
     </div>
     <div class="container hero-content">
       <div class="hero-meta fade-in">
-        <span class={`badge ${typeClass}`}>{type}</span>
+        <span class={`badge ${typeClass}`}>{typeLabel}</span>
         {status === 'active' && <span class="badge-active">Activo</span>}
         <span class="hero-flag-inline" aria-label="País">{flag}</span>
       </div>
@@ -102,7 +108,7 @@ const fallbackGradient = {
           <h3>Información</h3>
           <dl class="info-list">
             <dt>Tipo</dt>
-            <dd><span class={`badge ${typeClass}`}>{type}</span></dd>
+            <dd><span class={`badge ${typeClass}`}>{typeLabel}</span></dd>
 
             <dt>Estado</dt>
             <dd>
