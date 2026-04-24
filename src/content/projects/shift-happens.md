@@ -7,6 +7,8 @@ description: "Curso de formación Erasmus+ sobre adaptabilidad, gestión del cam
 location: "Moravec, República Checa"
 year: 2026
 order: 1
+infopack: "https://drive.google.com/file/d/1FHnP8e3vBL6zY-pb2QqEJbUz5VuP-VTr/view?usp=drive_link"
+apply: "https://forms.gle/cmf6EEfN9bCuzd6U6"
 ---
 
 ## Datos del proyecto
