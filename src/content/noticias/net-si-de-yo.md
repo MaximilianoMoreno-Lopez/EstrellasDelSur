@@ -2,7 +2,7 @@
 title: "NeT.-Si.De.Yo!"
 type: "Formación"
 status: "past"
-order: 17
+order: 1
 date: "2026-03"
 location: "Tortorella, Italia"
 cover: "images/noticias/net-si-de-yo-1.jpg"
