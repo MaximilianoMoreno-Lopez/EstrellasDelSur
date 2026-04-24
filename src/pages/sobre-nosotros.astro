@@ -4,15 +4,17 @@ import EUBanner from '../components/EUBanner.astro';
 
 const team = [
   {
-    name: 'Pablo',
-    role: 'Cofundador',
-    bio: 'Graduado en Administración y Dirección de Empresas y máster en International Economics. Business developer con experiencia en proyectos europeos y emprendimiento internacional.',
+    name: 'Pablo Sánchez Ruiz',
+    role: 'Cofundador y Vicepresidente',
+    bio: 'Profesor y cofundador de Estrellas del Sur. Responsable de la gestión de proyectos europeos y la coordinación con organizaciones socias en toda Europa.',
+    email: 'pablo@estrellasdelsur.eu',
     emoji: '🚀',
   },
   {
-    name: 'Maxi',
+    name: 'Maximiliano Moreno López',
     role: 'Cofundador y Presidente',
-    bio: 'Investigador doctoral en economía ambiental en la Paris School of Economics (PSE) y la Universidad de Córdoba. Especializado en políticas de sostenibilidad y transición ecológica.',
+    bio: 'Graduado en Administración y Dirección de Empresas. Investigador en economía ambiental en la Paris School of Economics (PSE) y la Universidad de Córdoba.',
+    email: 'maxi@estrellasdelsur.eu',
     emoji: '🌱',
   },
 ];
@@ -116,6 +118,7 @@ const milestones = [
               <h3 class="team-name">{member.name}</h3>
               <p class="team-role">{member.role}</p>
               <p class="team-bio">{member.bio}</p>
+              <a href={`mailto:${member.email}`} class="team-email">{member.email}</a>
             </div>
           </div>
         ))}
@@ -134,11 +137,11 @@ const milestones = [
         <div class="accred-card card fade-in fade-in-delay-1">
           <div class="accred-logo" aria-hidden="true">🎓</div>
           <div class="accred-content">
-            <h3>Acreditación Erasmus+</h3>
+            <h3>Registro Erasmus+</h3>
             <p>
-              Estrellas del Sur cuenta con acreditación Erasmus+ activa, lo que nos permite gestionar
-              proyectos de intercambio juvenil (KA1), asociaciones de colaboración (KA2) y formaciones
-              para trabajadores juveniles con plenas garantías del programa europeo.
+              Estrellas del Sur está registrada como organización participante en el programa Erasmus+,
+              con OID (Organisation Identifier) activo. Esto nos permite colaborar en proyectos de
+              intercambio juvenil y movilidad europea junto a organizaciones socias de toda Europa.
             </p>
           </div>
         </div>
@@ -336,6 +339,15 @@ const milestones = [
     color: var(--gray-600);
     line-height: 1.65;
   }
+
+  .team-email {
+    display: inline-block;
+    margin-top: .6rem;
+    font-size: .82rem;
+    color: var(--teal);
+    text-decoration: none;
+  }
+  .team-email:hover { text-decoration: underline; }
 
   /* Accreditations */
   .accreditations-section { background: var(--cream-dark); }
