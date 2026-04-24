@@ -93,6 +93,8 @@ h1, h2, h3, h4, h5 {
   color: var(--gray-600);
   max-width: 580px;
   line-height: 1.7;
+  text-align: justify;
+  hyphens: auto;
 }
 
 /* ─── Badges ─────────────────────────────────────────── */
