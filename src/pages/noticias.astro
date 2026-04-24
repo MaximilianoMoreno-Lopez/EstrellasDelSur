@@ -41,7 +41,7 @@ const typeClass = {
       <div class="articles-grid">
         {articles.map((article, i) => (
           <a
-            href={`${base}/noticias/${article.slug}/`}
+            href={`${base}/noticias/${article.id}/`}
             class={`article-card card fade-in fade-in-delay-${(i % 3) + 1}`}
           >
             {article.data.cover && (
