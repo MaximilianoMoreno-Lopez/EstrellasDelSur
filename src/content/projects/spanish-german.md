@@ -4,11 +4,11 @@ type: "Intercambio"
 status: "past"
 flag: "🇪🇸🇩🇪"
 description: "Intercambio juvenil Erasmus+ sobre intercambio lingüístico y cultural españa-alemania"
+dates: "13/07/2022 – 20/07/2022"
 order: 12
 location: "Málaga (España)"
 year: 2022
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Intercambio lingüístico y cultural España-Alemania

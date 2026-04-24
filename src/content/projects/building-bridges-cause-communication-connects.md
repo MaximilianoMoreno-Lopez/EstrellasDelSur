@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre comunicación efectiva"
 year: 2022
+dates: "11/07/2022 – 23/07/2022"
 order: 15
 location: "Lommel (Bélgica)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Comunicación efectiva

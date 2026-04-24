@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre autodescubrimiento, aventura y conexión con la naturaleza"
 year: 2024
+dates: "24/08/2024 – 04/09/2024"
 order: 35
 location: "Airuno, Lecco (Italia)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Autodescubrimiento, aventura y conexión con la naturaleza

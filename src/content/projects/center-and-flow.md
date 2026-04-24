@@ -1,14 +1,14 @@
 ---
 title: "Center and Flow"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre crecimiento personal y conexión con la naturaleza"
 year: 2025
+dates: "03/08/2025 – 14/08/2025"
 order: 42
 location: "Bátonyterenye, Hungría"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Crecimiento personal y conexión con la naturaleza

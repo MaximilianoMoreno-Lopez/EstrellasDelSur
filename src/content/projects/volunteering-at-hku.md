@@ -1,14 +1,13 @@
 ---
 title: "Volunteering at HKU"
 type: "Voluntariado"
-status: "active"
+status: "past"
 flag: "🇭🇰"
 description: "Proyecto de voluntariado Erasmus+ sobre voluntariado grupal en actividades sociales, culturales y comunitarias"
 year: 2026
 order: 58
 location: "Gaziantep, Turquía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Voluntariado grupal en actividades sociales, culturales y comunitarias

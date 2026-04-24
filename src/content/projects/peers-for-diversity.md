@@ -1,14 +1,14 @@
 ---
 title: "Peers for Diversity"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre diversidad, inclusión y educación intercultural"
 year: 2025
+dates: "16/11/2025 – 25/11/2025"
 order: 47
 location: "Baile Govora, Rumanía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Diversidad, inclusión y educación intercultural

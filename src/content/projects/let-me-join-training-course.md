@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre inclusión social"
 year: 2022
+dates: "18/10/2022 – 26/10/2022"
 order: 22
 location: "PÁKOZD, HUNGRÍA"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Inclusión social

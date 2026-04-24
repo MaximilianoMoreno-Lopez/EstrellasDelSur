@@ -1,14 +1,14 @@
 ---
 title: "Peers for Inclusivity – TAT"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre transformación digital"
 year: 2025
+dates: "01/09/2025 – 10/09/2025"
 order: 45
 location: "Arad, Rumanía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Transformación Digital

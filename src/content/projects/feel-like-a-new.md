@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre habilidades relacionadas con el empleo juvenil"
 year: 2023
+dates: "10/07/2023 – 16/07/2023"
 order: 25
 location: "Konya (Turquía)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Habilidades relacionadas con el empleo juvenil

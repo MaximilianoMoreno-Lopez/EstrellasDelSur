@@ -1,14 +1,14 @@
 ---
 title: "Cultural Diplomacy"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre diplomacia y solidaridad"
 year: 2026
+dates: "25/01/2026 – 02/02/2026"
 order: 54
 location: "Antalya, Turquía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Diplomacia y solidaridad

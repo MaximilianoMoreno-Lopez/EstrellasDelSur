@@ -1,14 +1,14 @@
 ---
 title: "Active Citizenship & Youth Entrepreneurship"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre participación ciudadana"
 year: 2026
+dates: "04/05/2026 – 13/05/2026"
 order: 59
 location: "Arad, Rumanía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Participación ciudadana

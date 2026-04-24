@@ -1,14 +1,14 @@
 ---
 title: "Youth Inclusion Lab"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre inclusión e innovación"
 year: 2026
+dates: "12/01/2026 – 20/01/2026"
 order: 56
 location: "Gazantiep, Turquía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Inclusión e innovación

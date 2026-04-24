@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre emprendimiento y habilidades laborales"
 year: 2022
+dates: "21/04/2022 – 29/04/2022"
 order: 13
 location: "Pákozd (Hungría)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Emprendimiento y habilidades laborales

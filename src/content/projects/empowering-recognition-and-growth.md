@@ -1,14 +1,14 @@
 ---
 title: "Empowering Recognition and Growth"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre voluntariado y programas de reconocimiento"
 year: 2025
+dates: "01/11/2025 – 09/11/2025"
 order: 50
 location: "Gaziantep, Turquía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Voluntariado y programas de reconocimiento

@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre habilidades digitales"
 year: 2022
+dates: "05/10/2022 – 13/10/2022"
 order: 23
 location: "Rabka-Zdrój (Polonia)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Habilidades digitales

@@ -1,14 +1,14 @@
 ---
 title: "The Next Beat II"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre desarrollo del auto-recurso creativo y el desarrollo personal"
 year: 2025
+dates: "04/05/2025 – 15/05/2025"
 order: 66
 location: "Bátonyterenye, Hungría"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Desarrollo del auto-recurso creativo y el desarrollo personal

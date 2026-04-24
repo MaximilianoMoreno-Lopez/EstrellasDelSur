@@ -1,14 +1,14 @@
 ---
 title: "Music 4Unity"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre música e inclusión juvenil a través de la expresión artística"
 year: 2025
+dates: "21/07/2025 – 29/07/2025"
 order: 43
 location: "Rabka-Zdrój, Polonia"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Música e inclusión juvenil a través de la expresión artística

@@ -1,14 +1,14 @@
 ---
 title: "YRIC II"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre apoyo a jóvenes de ucrania"
+dates: "02/02/2026 – 05/03/2026"
 order: 1
 location: "Rabka-Zdrój (Polonia)"
 year: 2026
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Apoyo a jóvenes de Ucrania

@@ -4,11 +4,11 @@ type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre voluntariado y programas de reconocimiento"
+dates: "24/10/2025 – 02/11/2025"
 order: 10
 location: "Kakopetria, Chipre"
 year: 2025
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Voluntariado y programas de reconocimiento

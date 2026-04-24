@@ -1,14 +1,14 @@
 ---
 title: "Future Eco-Guardians"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre sostenibilidad, medio ambiente y aventura"
 year: 2025
+dates: "05/07/2025 – 12/07/2025"
 order: 46
 location: "Almodóvar del Río (Córdoba) en julio , Vrchlabí (República Checa) en agosto y Hérouville Saint-Clair (Francia) en verano de 2026"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Sostenibilidad, medio ambiente y aventura

@@ -1,14 +1,13 @@
 ---
 title: "Green and Inclusive Volunteering"
 type: "Voluntariado"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Proyecto de voluntariado Erasmus+ sobre voluntariado verde e inclusivo"
 order: 4
 location: "Drăgășani, Rumanía"
 year: 2026
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Voluntariado verde e inclusivo

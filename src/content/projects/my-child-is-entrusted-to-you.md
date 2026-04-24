@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre educación y cuidado de la primera infancia y diálogo social"
 year: 2022
+dates: "12/09/2022 – 19/09/2022"
 order: 20
 location: "Ankara (Turkía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Educación y cuidado de la primera infancia y diálogo social

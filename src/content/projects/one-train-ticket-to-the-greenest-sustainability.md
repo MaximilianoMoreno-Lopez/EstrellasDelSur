@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre sostenibilidad"
 year: 2022
+dates: "29/08/2022 – 06/09/2022"
 order: 21
 location: "Kose-Uuemõisa(Estonia)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Sostenibilidad

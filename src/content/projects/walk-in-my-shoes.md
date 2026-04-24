@@ -1,14 +1,14 @@
 ---
 title: "Walk in my Shoes"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre comunicación"
 year: 2025
+dates: "11/07/2025 – 19/07/2025"
 order: 41
 location: "Rabka-Zdrój, Polonia"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Comunicación

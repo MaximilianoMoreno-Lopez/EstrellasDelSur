@@ -4,11 +4,11 @@ type: "Formación"
 status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre emprendimiento"
+dates: "17/09/2023 – 28/09/2023"
 order: 17
 location: "Castelo Novo (Portugal)"
 year: 2023
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Emprendimiento

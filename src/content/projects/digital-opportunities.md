@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre capacitación juvenil y empleabilidad"
 year: 2024
+dates: "17/05/2024 – 26/05/2024"
 order: 34
 location: "Horezu, Rumania"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Capacitación juvenil y empleabilidad

@@ -1,14 +1,14 @@
 ---
 title: "Creating Sustainable Projects"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre cooperación europea, gestión de proyectos"
 year: 2025
+dates: "18/05/2025 – 26/05/2025"
 order: 37
 location: "Fundao, Portugal"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Cooperación Europea, gestión de proyectos

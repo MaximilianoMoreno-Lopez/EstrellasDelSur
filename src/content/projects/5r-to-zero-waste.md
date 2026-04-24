@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre medioambiente"
 year: 2022
+dates: "14/10/2022 – 23/10/2022"
 order: 24
 location: "Kaunas (Lituania)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Medioambiente

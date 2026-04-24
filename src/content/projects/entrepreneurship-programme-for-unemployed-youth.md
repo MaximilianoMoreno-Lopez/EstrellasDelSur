@@ -1,14 +1,14 @@
 ---
 title: "Entrepreneurship Programme for Unemployed Youth"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre emprendimiento"
 year: 2026
+dates: "14/04/2026 – 22/04/2026"
 order: 62
 location: "Gaziantep, Turquía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Emprendimiento

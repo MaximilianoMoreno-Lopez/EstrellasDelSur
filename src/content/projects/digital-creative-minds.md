@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre habilidades digitales en el ámbito educativo"
 year: 2022
+dates: "03/06/2022 – 11/06/2022"
 order: 16
 location: "Sibari (Italia)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Habilidades digitales en el ámbito educativo

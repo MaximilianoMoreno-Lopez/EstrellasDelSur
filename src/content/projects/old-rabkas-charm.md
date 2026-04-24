@@ -1,14 +1,14 @@
 ---
 title: "Old Rabka's Charm"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Intercambio juvenil Erasmus+ sobre teatro, juegos de rol e historia"
 year: 2025
+dates: "05/06/2025 – 24/06/2025"
 order: 38
 location: "Rabka-Zdrój (Polonia)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Teatro, Juegos de rol e historia

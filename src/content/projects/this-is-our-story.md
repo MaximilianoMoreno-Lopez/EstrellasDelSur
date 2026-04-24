@@ -1,14 +1,14 @@
 ---
 title: "This is Our Story"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre comunicación y medioambiente"
 year: 2025
+dates: "25/06/2025 – 01/07/2025"
 order: 40
 location: "Estambul (Turquía) en junio/julio y Córdoba (España) en septiembre"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Comunicación y medioambiente

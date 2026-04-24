@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre mejora de las habilidades blandas en relación al futuro laboral"
 year: 2023
+dates: "14/10/2023 – 22/10/2023"
 order: 28
 location: "Kaunas (Lituania)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Mejora de las habilidades blandas en relación al futuro laboral

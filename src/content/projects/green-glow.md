@@ -1,14 +1,14 @@
 ---
 title: "Green Glow"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Intercambio juvenil Erasmus+ sobre bienestar juvenil y conexión con la naturaleza"
 location: "Godinești, Rumanía"
+dates: "01/07/2025 – 09/07/2025"
 order: 5
 year: 2025
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Bienestar juvenil y conexión con la naturaleza

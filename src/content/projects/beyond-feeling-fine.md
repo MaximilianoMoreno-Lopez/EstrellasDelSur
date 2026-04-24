@@ -1,14 +1,14 @@
 ---
 title: "Beyond Feeling Fine"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre bienestar y psicología"
 year: 2026
+dates: "04/04/2026 – 11/04/2026"
 order: 57
 location: "Conil de la Frontera, España"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Bienestar y psicología

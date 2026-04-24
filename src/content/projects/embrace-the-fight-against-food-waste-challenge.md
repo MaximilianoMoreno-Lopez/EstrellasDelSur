@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre sostenibilidad y juventud"
 year: 2024
+dates: "23/06/2024 – 29/06/2024"
 order: 30
 location: "Lisboa (Portugal)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Sostenibilidad y Juventud

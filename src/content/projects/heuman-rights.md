@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre derechos humanos y dinamismo europeo"
 year: 2024
+dates: "08/04/2024 – 16/04/2024"
 order: 31
 location: "Enying, Hungria 3"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Derechos Humanos y Dinamismo Europeo

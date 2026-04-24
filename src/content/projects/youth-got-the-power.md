@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre dinamismo juvenil y conocimiento sobre europa"
 year: 2024
+dates: "21/04/2024 – 28/04/2024"
 order: 36
 location: "Osijek, Croatia"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Dinamismo Juvenil y Conocimiento sobre Europa

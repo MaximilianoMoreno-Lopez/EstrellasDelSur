@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre consciencia digital"
 year: 2023
+dates: "23/07/2023 – 31/07/2023"
 order: 26
 location: "Rabka-zdrój (Polonia)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Consciencia Digital

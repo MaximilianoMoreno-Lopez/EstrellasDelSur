@@ -1,14 +1,14 @@
 ---
 title: "My Body, My Gender"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre desarrollo personal y tolerancia a través del arte terapéutico"
 year: 2025
+dates: "12/07/2025 – 19/07/2025"
 order: 63
 location: "Moravia, República Checa"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Desarrollo personal y tolerancia a través del arte terapéutico

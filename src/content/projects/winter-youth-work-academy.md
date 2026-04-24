@@ -1,14 +1,14 @@
 ---
 title: "Winter Youth Work Academy"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre trabajo con la juventud"
 year: 2025
+dates: "01/12/2025 – 09/12/2025"
 order: 51
 location: "Rabka-Zdrój, Polonia"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Trabajo con la juventud

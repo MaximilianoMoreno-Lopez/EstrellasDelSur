@@ -1,14 +1,14 @@
 ---
 title: "Pathway to Green Jobs"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre empleo verde y medio ambiente"
+dates: "11/09/2023 – 19/09/2023"
 order: 7
 location: "Saulkrasti (Letonia)"
 year: 2023
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Empleo verde y medio ambiente

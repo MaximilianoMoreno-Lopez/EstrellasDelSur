@@ -5,10 +5,10 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre bienestar y salud mental"
 year: 2022
+dates: "02/06/2022 – 13/06/2022"
 order: 11
 location: "Kisterenye (Hungría)"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Bienestar y Salud Mental

@@ -4,11 +4,11 @@ type: "Intercambio"
 status: "past"
 flag: "🇪🇸🇫🇷"
 description: "Intercambio juvenil Erasmus+ sobre intercambio de culturas española-francesa"
+dates: "06/07/2024 – 12/07/2024"
 order: 11
 location: "Almodóvar del Río (Córdoba) en julio y Caen (Francia) en agosto"
 year: 2024
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Intercambio de culturas Española-Francesa

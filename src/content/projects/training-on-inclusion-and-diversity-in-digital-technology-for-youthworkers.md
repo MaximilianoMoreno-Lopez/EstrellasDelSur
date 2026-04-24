@@ -1,14 +1,14 @@
 ---
 title: "Training on Inclusion and Diversity in Digital Technology for YouthWorkers"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre inclusión y diversidad"
 year: 2025
+dates: "02/12/2025 – 06/12/2025"
 order: 52
 location: "Targu Jiu, Rumanía"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Inclusión y diversidad

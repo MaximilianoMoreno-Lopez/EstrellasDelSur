@@ -1,14 +1,14 @@
 ---
 title: "NeT.-Si.De.Yo!"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre networking y soft skills"
 year: 2026
+dates: "23/03/2026 – 28/03/2026"
 order: 61
 location: "Tortorella, Italy"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Networking y Soft Skills

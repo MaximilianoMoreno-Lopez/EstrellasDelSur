@@ -1,14 +1,14 @@
 ---
 title: "INCLUDE+ Youth Well-being"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre inclusión social y el bienestar integral"
+dates: "20/04/2026 – 28/04/2026"
 order: 3
 location: "Brașov, Rumanía"
 year: 2026
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Inclusión social y el bienestar integral

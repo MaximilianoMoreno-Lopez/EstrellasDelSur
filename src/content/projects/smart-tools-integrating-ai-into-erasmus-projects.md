@@ -1,14 +1,14 @@
 ---
 title: "Smart Tools: Integrating AI into Erasmus+ Projects"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre transformación digital"
 year: 2025
+dates: "06/09/2025 – 13/09/2025"
 order: 44
 location: "Moravia, República Checa"
 ---
-
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Transformación Digital
