@@ -7,19 +7,24 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  jsonLd?: object;
 }
 
 const {
   title = 'Estrellas del Sur',
   description = 'Asociación juvenil de Córdoba que gestiona proyectos Erasmus+ y voluntariados del Cuerpo Europeo de Solidaridad.',
   ogImage = '/og-image.jpg',
+  jsonLd,
 } = Astro.props;
 
 const pageTitle = title === 'Estrellas del Sur'
   ? 'Estrellas del Sur — Asociación Juvenil Erasmus+ Córdoba'
   : `${title} | Estrellas del Sur`;
 
+const siteBase = (Astro.site ?? new URL('https://estrellasdelsur.eu')).origin;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://estrellasdelsur.eu');
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ogImageURL = new URL(`${base}${ogImage}`, Astro.site ?? 'https://estrellasdelsur.eu').href;
 ---
 
 <!doctype html>
@@ -28,6 +33,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://estrella
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0a1628" />
 
     <!-- SEO -->
     <title>{pageTitle}</title>
@@ -39,10 +45,23 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://estrella
     <meta property="og:url"         content={canonicalURL} />
     <meta property="og:title"       content={pageTitle} />
     <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImageURL} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:site_name"   content="Estrellas del Sur" />
+    <meta property="og:locale"      content="es_ES" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImageURL} />
+
+    <!-- JSON-LD -->
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 
     <!-- Fonts (preconnect + stylesheet) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
