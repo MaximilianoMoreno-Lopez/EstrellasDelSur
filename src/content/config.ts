@@ -30,6 +30,7 @@ const noticias = defineCollection({
     dates: z.string().optional(),
     location: z.string().optional(),
     description: z.string().optional(),
+    cover: z.string().optional(),
   }),
 });
 

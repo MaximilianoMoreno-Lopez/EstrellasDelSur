@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = await article.render();
-const { title, type, date, dates, location, description } = article.data;
+const { title, type, date, dates, location, description, cover } = article.data;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -48,6 +48,9 @@ const fallbackGradient = {
 
   <!-- Hero -->
   <section class="article-hero" style={`background: ${fallbackGradient}`}>
+    {cover && (
+      <img class="hero-bg-img" src={`${base}/${cover}`} alt="" aria-hidden="true" />
+    )}
     <div class="hero-overlay" />
     <div class="container hero-content">
       <div class="hero-meta fade-in">
@@ -126,6 +129,11 @@ const fallbackGradient = {
     align-items: flex-end;
     overflow: hidden;
   }
+  .hero-bg-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
   .hero-overlay {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(10,22,40,.85) 0%, rgba(10,22,40,.3) 100%);
@@ -181,6 +189,13 @@ const fallbackGradient = {
     font-size: 1rem; line-height: 1.7; color: var(--gray-700); margin-bottom: .35rem;
   }
   .prose :global(strong) { color: var(--navy); }
+  .prose :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-sm);
+  }
   .prose :global(blockquote) {
     border-left: 3px solid var(--teal); padding-left: 1rem;
     color: var(--gray-600); font-style: italic; margin: 1.5rem 0;
