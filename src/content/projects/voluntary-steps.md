@@ -1,10 +1,10 @@
----
+﻿---
 title: "Voluntary Steps"
 type: "Voluntariado"
 status: "past"
 flag: "🇪🇺"
 description: "Proyecto de voluntariado Erasmus+ sobre voluntariado grupal en actividades sociales, culturales y comunitarias"
-order: 6
+order: 15
 location: "Ankara, Turquía"
 year: 2026
 ---

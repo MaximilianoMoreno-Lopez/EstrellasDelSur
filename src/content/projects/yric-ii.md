@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre apoyo a jóvenes de ucrania"
 dates: "02/02/2026 – 05/03/2026"
-order: 1
+order: 10
 location: "Rabka-Zdrój (Polonia)"
 year: 2026
 ---
