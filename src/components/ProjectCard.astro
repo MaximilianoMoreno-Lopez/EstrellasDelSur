@@ -7,10 +7,11 @@ interface Props {
   description: string;
   image?: string;
   location?: string;
+  dates?: string;
   slug: string;
 }
 
-const { title, type, status, flag, description, image, location, slug } = Astro.props;
+const { title, type, status, flag, description, image, location, dates, slug } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const typeLabel = {
@@ -63,12 +64,20 @@ const fallbackGradient = {
     <h3 class="card-title">{title}</h3>
     <p class="card-desc">{description}</p>
 
-    {location && (
-      <p class="card-location">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        {location}
-      </p>
-    )}
+    <div class="card-meta">
+      {dates && (
+        <p class="card-dates">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          {dates}
+        </p>
+      )}
+      {location && (
+        <p class="card-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          {location}
+        </p>
+      )}
+    </div>
 
     <a href={`${base}/proyectos/${slug}/`} class="card-link" aria-label={`Ver más sobre ${title}`}>
       Saber más
@@ -176,12 +185,24 @@ const fallbackGradient = {
     flex: 1;
   }
 
+  .card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  .card-dates,
   .card-location {
     display: flex;
     align-items: center;
     gap: .3rem;
     font-size: .8rem;
     color: var(--gray-500);
+  }
+
+  .card-dates {
+    color: var(--teal);
+    font-weight: 500;
   }
 
   .card-link {

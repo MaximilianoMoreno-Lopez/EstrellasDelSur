@@ -6,6 +6,7 @@ flag: "🇨🇿"
 description: "Curso de formación Erasmus+ sobre adaptabilidad, gestión del cambio y desarrollo de competencias en el trabajo juvenil"
 location: "Moravec, República Checa"
 year: 2026
+dates: "21/06/2026 – 28/06/2026"
 order: 1
 image: "images/projects/shift-happens.png"
 poster: "images/projects/shift-happens.png"
