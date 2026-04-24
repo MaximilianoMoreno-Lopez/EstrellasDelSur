@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+let articles = await getCollection('noticias');
+articles.sort((a, b) => (b.data.date ?? '0') .localeCompare(a.data.date ?? '0'));
+
+const typeLabel = {
+  'Intercambio': 'Youth Exchange',
+  'Voluntariado': 'Voluntariado',
+  'Formación':    'Training Course',
+};
+const typeClass = {
+  'Intercambio': 'badge-teal',
+  'Voluntariado': 'badge-gold',
+  'Formación':    'badge-purple',
+};
+---
+
+<BaseLayout
+  title="Artículos"
+  description="Crónicas y artículos sobre proyectos Erasmus+ y voluntariados internacionales gestionados por Estrellas del Sur desde 2022."
+>
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Nuestros proyectos
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Artículos de proyectos</h1>
+      <p class="fade-in fade-in-delay-2">
+        Más de {articles.length} proyectos Erasmus+ y voluntariados en los que hemos participado desde 2022.
+        Intercambios, formaciones y voluntariados por toda Europa.
+      </p>
+    </div>
+  </section>
+
+  <section class="section articles-section">
+    <div class="container">
+      <div class="articles-grid">
+        {articles.map((article, i) => (
+          <a
+            href={`${base}/noticias/${article.slug}/`}
+            class={`article-card card fade-in fade-in-delay-${(i % 3) + 1}`}
+          >
+            <div class="article-meta">
+              <span class={`badge ${typeClass[article.data.type]}`}>
+                {typeLabel[article.data.type]}
+              </span>
+              {article.data.date && (
+                <span class="article-date">{article.data.date.slice(0,7).replace('-','/')}</span>
+              )}
+            </div>
+            <h2 class="article-title">{article.data.title}</h2>
+            {article.data.description && (
+              <p class="article-desc">{article.data.description}</p>
+            )}
+            <div class="article-footer">
+              {article.data.location && (
+                <span class="article-loc">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  {article.data.location}
+                </span>
+              )}
+              <span class="article-read">Leer más →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .articles-section { background: var(--cream-dark); }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    flex-wrap: wrap;
+  }
+
+  .article-date {
+    font-size: .78rem;
+    color: var(--gray-500);
+    font-weight: 500;
+  }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .article-desc {
+    font-size: .88rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .article-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+    margin-top: .25rem;
+    padding-top: .75rem;
+    border-top: 1px solid var(--gray-200);
+    flex-wrap: wrap;
+  }
+
+  .article-loc {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: .78rem;
+    color: var(--gray-500);
+  }
+
+  .article-read {
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--teal);
+    white-space: nowrap;
+  }
+
+  .article-card:hover .article-title { color: var(--teal); }
+</style>

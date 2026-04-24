@@ -19,4 +19,17 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+const noticias = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    type: z.enum(['Intercambio', 'Voluntariado', 'Formación']),
+    status: z.string().default('past'),
+    date: z.string().optional(),
+    dates: z.string().optional(),
+    location: z.string().optional(),
+    description: z.string().optional(),
+  }),
+});
+
+export const collections = { projects, noticias };
