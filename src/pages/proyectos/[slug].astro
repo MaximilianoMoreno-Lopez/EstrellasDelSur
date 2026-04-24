@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-const { title, type, status, flag, description, location, year, image, infopack, apply } = project.data;
+const { title, type, status, flag, description, location, year, image, poster, infopack, apply } = project.data;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -89,10 +89,10 @@ const fallbackGradient = {
   <section class="section">
     <div class="container content-layout">
       <article class="project-content prose fade-in">
-        {image && (
-          <figure class="content-cover">
+        {poster && (
+          <figure class="content-poster">
             <img
-              src={`${base}/${image}`}
+              src={`${base}/${poster}`}
               alt={`Imagen de ${title}`}
               loading="eager"
               decoding="async"
@@ -282,17 +282,16 @@ const fallbackGradient = {
     max-width: none;
   }
 
-  .content-cover {
+  .content-poster {
     margin: 0 0 2rem;
     border-radius: var(--radius-md);
     overflow: hidden;
-    aspect-ratio: 16 / 9;
+    box-shadow: var(--shadow-sm);
   }
 
-  .content-cover img {
+  .content-poster img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
   .prose :global(p) {
