@@ -22,10 +22,7 @@ const navLinks = [
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href={`${base}/`} class="footer-logo">
-          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-            <polygon points="14,2 17.1,10.3 26,10.3 18.9,15.6 21.6,24 14,18.7 6.4,24 9.1,15.6 2,10.3 10.9,10.3" fill="#f59e0b"/>
-          </svg>
-          <span>Estrellas del Sur</span>
+          <img src={`${base}/images/logo.svg`} alt="Estrellas del Sur" class="footer-logo-img" />
         </a>
         <p class="footer-desc">Asociación juvenil de Córdoba comprometida con la movilidad europea, la solidaridad y el aprendizaje intercultural.</p>
         <div class="footer-socials">
@@ -67,7 +64,8 @@ const navLinks = [
   .footer { background: var(--navy); color: rgba(255,255,255,.75); }
   .footer-main { padding: 3.5rem 0 2.5rem; }
   .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3rem; }
-  .footer-logo { display: flex; align-items: center; gap: .5rem; text-decoration: none; color: #fff; font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem; }
+  .footer-logo { display: inline-block; text-decoration: none; margin-bottom: 1rem; }
+  .footer-logo-img { width: 110px; height: auto; display: block; }
   .footer-desc { font-size: .88rem; line-height: 1.65; color: rgba(255,255,255,.55); max-width: 300px; margin-bottom: 1.25rem; }
   .footer-socials { display: flex; gap: .6rem; }
   .social-link { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.65); text-decoration: none; transition: background .2s, color .2s, border-color .2s; }

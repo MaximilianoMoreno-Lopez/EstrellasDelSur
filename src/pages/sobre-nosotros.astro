@@ -4,6 +4,13 @@ import EUBanner from '../components/EUBanner.astro';
 
 const team = [
   {
+    name: 'Maximiliano Moreno López',
+    role: 'Cofundador y Presidente',
+    bio: 'Profesor de matemáticas y economía en Sciences Po, investigador en economía ambiental en la Paris School of Economics (PSE) y colaborador del Ministerio de Transición Ecológica de Francia.',
+    email: 'maxi@estrellasdelsur.eu',
+    emoji: '🌱',
+  },
+  {
     name: 'Pablo Sánchez Ruiz',
     role: 'Cofundador y Vicepresidente',
     bio: 'Profesor y cofundador de Estrellas del Sur. Responsable de la gestión de proyectos europeos y la coordinación con organizaciones socias en toda Europa.',
@@ -11,11 +18,11 @@ const team = [
     emoji: '🚀',
   },
   {
-    name: 'Maximiliano Moreno López',
-    role: 'Cofundador y Presidente',
-    bio: 'Profesor de matemáticas y economía en Sciences Po, investigador en economía ambiental en la Paris School of Economics (PSE) y colaborador del Ministerio de Transición Ecológica de Francia.',
-    email: 'maxi@estrellasdelsur.eu',
-    emoji: '🌱',
+    name: 'Paula Arroyo',
+    role: 'International Project Manager',
+    bio: 'Graduada en protocolo, organización de eventos y comunicación corporativa, con perspectiva europea a través del Máster en Estudios Avanzados de la UE.',
+    email: null,
+    emoji: '🎯',
   },
 ];
 
@@ -72,7 +79,7 @@ const milestones = [
         </div>
       </div>
       <div class="mission-visual fade-in fade-in-delay-2">
-        <div class="big-star" aria-hidden="true">★</div>
+        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/logo.svg`} alt="Logo Estrellas del Sur" class="mission-logo" />
         <div class="mission-stat-card">
           <p class="mission-stat-value">2020</p>
           <p class="mission-stat-label">Año de fundación en Córdoba</p>
@@ -107,7 +114,7 @@ const milestones = [
         <p class="section-label">El equipo</p>
         <h2 class="section-title">Las personas detrás de Estrellas del Sur</h2>
         <p class="section-subtitle">
-          Dos cofundadores con perfiles complementarios unidos por una misma visión: hacer Europa más accesible para los jóvenes.
+          Un equipo con perfiles complementarios unido por una misma visión: hacer Europa más accesible para los jóvenes.
         </p>
       </div>
       <div class="team-grid">
@@ -118,7 +125,7 @@ const milestones = [
               <h3 class="team-name">{member.name}</h3>
               <p class="team-role">{member.role}</p>
               <p class="team-bio">{member.bio}</p>
-              <a href={`mailto:${member.email}`} class="team-email">{member.email}</a>
+              {member.email && <a href={`mailto:${member.email}`} class="team-email">{member.email}</a>}
             </div>
           </div>
         ))}
@@ -207,17 +214,16 @@ const milestones = [
     gap: 2rem;
   }
 
-  .big-star {
-    font-size: 8rem;
-    color: #f59e0b;
-    line-height: 1;
-    filter: drop-shadow(0 4px 24px rgba(245,158,11,.35));
+  .mission-logo {
+    width: 220px;
+    height: auto;
+    filter: drop-shadow(0 8px 32px rgba(0,0,0,.18));
     animation: starFloat 4s ease-in-out infinite;
   }
 
   @keyframes starFloat {
     0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-12px); }
+    50%       { transform: translateY(-10px); }
   }
 
   .mission-stat-card {
