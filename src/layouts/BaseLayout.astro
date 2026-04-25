@@ -12,13 +12,13 @@ interface Props {
 
 const {
   title = 'Estrellas del Sur',
-  description = 'Asociación juvenil de Córdoba que gestiona proyectos Erasmus+ y voluntariados del Cuerpo Europeo de Solidaridad.',
+  description = 'Conectamos jóvenes con oportunidades europeas. Proyectos de intercambio, voluntariado y formación internacional desde Córdoba.',
   ogImage = '/og-image.png',
   jsonLd,
 } = Astro.props;
 
 const pageTitle = title === 'Estrellas del Sur'
-  ? 'Estrellas del Sur — Asociación Juvenil Erasmus+ Córdoba'
+  ? 'Estrellas del Sur'
   : `${title} | Estrellas del Sur`;
 
 const siteBase = (Astro.site ?? new URL('https://estrellasdelsur.eu')).origin;

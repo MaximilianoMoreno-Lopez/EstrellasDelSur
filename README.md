@@ -1,6 +1,6 @@
 # Estrellas del Sur — Web oficial
 
-Sitio web de **Estrellas del Sur**, asociación juvenil de Córdoba que gestiona proyectos **Erasmus+** y voluntariados del **Cuerpo Europeo de Solidaridad (ESC)**.
+Sitio web de **Estrellas del Sur**, asociación juvenil de Córdoba que conecta jóvenes con oportunidades europeas a través de proyectos **Erasmus+** y voluntariados del **Cuerpo Europeo de Solidaridad (ESC)**.
 
 **Web:** [estrellasdelsur.eu](https://estrellasdelsur.eu)
 
@@ -10,7 +10,7 @@ Sitio web de **Estrellas del Sur**, asociación juvenil de Córdoba que gestiona
 
 | Tecnología | Uso |
 |---|---|
-| [Astro 4](https://astro.build) | Framework web (SSG) |
+| [Astro 6](https://astro.build) | Framework web (SSG) |
 | CSS nativo | Estilos (sin framework externo) |
 | GitHub Pages | Hosting |
 | GitHub Actions | CI/CD automático |
@@ -26,32 +26,39 @@ Sitio web de **Estrellas del Sur**, asociación juvenil de Córdoba que gestiona
 /
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml          # CI/CD → GitHub Pages
+│       └── deploy.yml              # CI/CD → GitHub Pages
 ├── public/
-│   ├── CNAME                   # Dominio personalizado
-│   └── favicon.svg
+│   ├── CNAME                       # Dominio personalizado
+│   ├── favicon.svg
+│   ├── og-image.png
+│   └── images/
+│       └── noticias/               # Fotos de artículos
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.astro
 │   │   ├── Footer.astro
-│   │   ├── Hero.astro          # Hero animado con estrellas (canvas)
-│   │   ├── EUBanner.astro      # Banner de cofinanciación UE
-│   │   ├── Stats.astro         # Cifras destacadas
-│   │   ├── ProjectCard.astro   # Tarjeta de proyecto
-│   │   └── ProjectsSection.astro  # Grid con filtros
+│   │   ├── Hero.astro              # Hero animado con estrellas (canvas)
+│   │   ├── EUBanner.astro          # Banner de cofinanciación UE
+│   │   ├── Stats.astro             # Cifras destacadas
+│   │   ├── ProjectCard.astro       # Tarjeta de proyecto
+│   │   └── ProjectsSection.astro   # Grid con filtros
 │   ├── content/
-│   │   ├── config.ts           # Schema de la colección
-│   │   └── projects/           # Markdown de cada proyecto
+│   │   ├── content.config.ts       # Schema de colecciones (Astro 6)
+│   │   ├── projects/               # Markdown de cada proyecto Erasmus+
+│   │   └── noticias/               # Artículos de experiencias
 │   ├── layouts/
-│   │   └── BaseLayout.astro    # Layout base con SEO
+│   │   └── BaseLayout.astro        # Layout base con SEO y OG
 │   ├── pages/
-│   │   ├── index.astro         # Home
-│   │   ├── proyectos.astro     # Catálogo completo
+│   │   ├── index.astro             # Home
+│   │   ├── proyectos.astro         # Catálogo completo
+│   │   ├── proyectos/[slug].astro  # Detalle de proyecto
+│   │   ├── noticias.astro          # Listado de noticias
+│   │   ├── noticias/[slug].astro   # Artículo completo
 │   │   ├── sobre-nosotros.astro
 │   │   ├── voluntariado-esc.astro
 │   │   └── contacto.astro
 │   └── styles/
-│       └── global.css          # Design tokens y utilidades
+│       └── global.css              # Design tokens y utilidades
 ├── astro.config.mjs
 ├── package.json
 └── tsconfig.json
@@ -83,16 +90,20 @@ npm run preview
 |---|---|
 | `/` | Home: hero, stats, proyectos activos, sobre nosotros, CTA |
 | `/proyectos/` | Catálogo completo con filtros por tipo y estado |
-| `/sobre-nosotros/` | Historia, equipo (Pablo y Maxi), acreditaciones |
+| `/proyectos/[slug]/` | Detalle de cada proyecto |
+| `/noticias/` | Artículos de experiencias y noticias |
+| `/noticias/[slug]/` | Artículo completo |
+| `/sobre-nosotros/` | Historia, equipo, acreditaciones (OID + PIC) |
 | `/voluntariado-esc/` | Explicación ESC, pasos, beneficios, FAQ |
 | `/contacto/` | Email, ubicación, redes sociales |
 
 ---
 
-## Proyectos (Content Collections)
+## Contenido (Content Collections)
 
-Los proyectos se gestionan como archivos Markdown en `src/content/projects/`. Cada proyecto tiene el siguiente frontmatter:
+Los proyectos y noticias se gestionan como archivos Markdown en `src/content/`. Astro 6 usa la Content Layer API con `glob` loader.
 
+**Proyecto** (`src/content/projects/*.md`):
 ```yaml
 ---
 title: "Nombre del proyecto"
@@ -100,13 +111,24 @@ type: "Intercambio"      # Intercambio | Voluntariado | Formación
 status: "active"          # active | past
 flag: "🇪🇺"
 description: "Descripción corta"
-location: "Ciudad, País"  # (opcional)
-year: 2024                # (opcional)
-order: 1                  # Orden en el grid
+location: "Ciudad, País"
+year: 2024
+order: 1
 ---
 ```
 
-Para añadir un nuevo proyecto, crea un archivo `.md` en `src/content/projects/`.
+**Noticia** (`src/content/noticias/*.md`):
+```yaml
+---
+title: "Título del artículo"
+type: "Formación"
+status: "past"
+date: "2026-03"
+location: "Ciudad, País"
+cover: "images/noticias/imagen.jpg"
+description: "Descripción corta"
+---
+```
 
 ---
 
@@ -116,9 +138,9 @@ El despliegue es automático via GitHub Actions al hacer push a `main`.
 
 1. GitHub Actions ejecuta `npm run build`
 2. El directorio `dist/` se publica en GitHub Pages
-3. El dominio `estrellasdelsur.eu` apunta a GitHub Pages via DNS
+3. El dominio `estrellasdelsur.eu` apunta a GitHub Pages via DNS (Cloudflare)
 
-### Configuración requerida en GitHub
+### Configuración en GitHub
 
 En **Settings → Pages**:
 - Source: `GitHub Actions`
@@ -129,7 +151,7 @@ En **Settings → Pages**:
 
 ## Contacto
 
-- **Email:** info@estrellasdelsur.eu
+- **Email:** maxi@estrellasdelsur.eu · pablo@estrellasdelsur.eu
 - **Instagram / Facebook / TikTok:** @estrellasdelsur.eu
 - **Ubicación:** Córdoba, España
 
