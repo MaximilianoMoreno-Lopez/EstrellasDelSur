@@ -13,7 +13,7 @@ El pasado mes de marzo de 2026, el pequeño y encantador pueblo de Tortorella se
 
 Bajo el lema del desarrollo de Soft Skills y Networking, el proyecto ha dejado una huella profunda tanto en los asistentes como en la comunidad local que los acogió.
 
-![Participantes del proyecto NeT.-Si.De.Yo! en Tortorella](/EstrellasDelSur/images/noticias/net-si-de-yo-1.jpg)
+![Participantes del proyecto NeT.-Si.De.Yo! en Tortorella](/images/noticias/net-si-de-yo-1.jpg)
 
 ## 🌍 Un encuentro de impacto europeo
 
@@ -23,7 +23,7 @@ Aunque lo mejor de estos días no solo fue el paisaje, sino lo que nos trajimos 
 
 Además, nuestras "mochilas" regresaron cargadas de herramientas prácticas y nuevas formas de trabajar con jóvenes que más lo necesitan aquí en España. Y, por si fuera poco, la pequeña localidad de Tortorella nos demostró que no hace falta estar en una gran capital para innovar; el entorno rural nos enseñó que, cuando hay ganas, el talento y las buenas ideas surgen en cualquier rincón, rompiendo cualquier barrera o frontera.
 
-![Actividades del seminario en Tortorella](/EstrellasDelSur/images/noticias/net-si-de-yo-2.jpg)
+![Actividades del seminario en Tortorella](/images/noticias/net-si-de-yo-2.jpg)
 
 ## 💡 Perfil y Actitud: La clave del éxito
 
@@ -31,7 +31,7 @@ Lo que hizo especial a este grupo fue, sin duda, su actitud. Más allá de sus c
 
 Junto a esto, el aprendizaje constante se hace mucho más ameno y personal, aportando no solo un valor educativo sino uno más personal y gratificante para todos los involucrados.
 
-![Grupo de participantes europeos en NeT.-Si.De.Yo!](/EstrellasDelSur/images/noticias/net-si-de-yo-3.jpg)
+![Grupo de participantes europeos en NeT.-Si.De.Yo!](/images/noticias/net-si-de-yo-3.jpg)
 
 ## 🔙 Mirando hacia atrás
 
