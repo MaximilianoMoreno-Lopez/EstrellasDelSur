@@ -7,6 +7,7 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  ogTitle?: string;
   jsonLd?: object;
 }
 
@@ -14,12 +15,15 @@ const {
   title = 'Estrellas del Sur',
   description = 'Working for a better world · Asociación juvenil de Córdoba con proyectos de movilidad y voluntariado internacional.',
   ogImage = '/og-image.png',
+  ogTitle,
   jsonLd,
 } = Astro.props;
 
 const pageTitle = title === 'Estrellas del Sur'
-  ? 'Estrellas del Sur'
+  ? 'Estrellas del Sur | Erasmus+ y Voluntariado Europeo · Córdoba'
   : `${title} | Estrellas del Sur`;
+
+const socialTitle = ogTitle ?? (title === 'Estrellas del Sur' ? 'Estrellas del Sur' : pageTitle);
 
 const siteBase = (Astro.site ?? new URL('https://estrellasdelsur.eu')).origin;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://estrellasdelsur.eu');
@@ -43,7 +47,7 @@ const ogImageURL = new URL(`${base}${ogImage}`, Astro.site ?? 'https://estrellas
     <!-- Open Graph -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content={canonicalURL} />
-    <meta property="og:title"       content={pageTitle} />
+    <meta property="og:title"       content={socialTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image"       content={ogImageURL} />
     <meta property="og:image:width"  content="1200" />
@@ -53,9 +57,12 @@ const ogImageURL = new URL(`${base}${ogImage}`, Astro.site ?? 'https://estrellas
 
     <!-- Twitter / X -->
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content={pageTitle} />
+    <meta name="twitter:title"       content={socialTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={ogImageURL} />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 
     <!-- JSON-LD -->
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
