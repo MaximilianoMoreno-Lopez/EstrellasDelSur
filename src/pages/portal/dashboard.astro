@@ -1,0 +1,395 @@
+---
+import PortalLayout from '../../layouts/PortalLayout.astro';
+---
+
+<PortalLayout title="Mi perfil">
+  <!-- Loading state while auth check runs -->
+  <div id="loadingState" class="state-center">
+    <div class="spinner"></div>
+    <p>Cargando…</p>
+  </div>
+
+  <!-- Main content (hidden until auth confirmed) -->
+  <div id="dashContent" style="display:none">
+    <div class="dash-header">
+      <div>
+        <h1 class="dash-title">Mi perfil de participante</h1>
+        <p class="dash-sub" id="userEmail"></p>
+      </div>
+      <div id="adminLink" style="display:none">
+        <a href="/admin/" class="btn-admin">Panel de admin →</a>
+      </div>
+    </div>
+
+    <div id="alertMsg" class="alert" style="display:none"></div>
+
+    <form id="participantForm" novalidate>
+      <!-- Personal data -->
+      <section class="form-section">
+        <h2 class="section-title">Datos personales</h2>
+        <div class="form-grid">
+          <div class="field">
+            <label for="nombre">Nombre <span class="req">*</span></label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+          <div class="field">
+            <label for="apellidos">Apellidos <span class="req">*</span></label>
+            <input type="text" id="apellidos" name="apellidos" required />
+          </div>
+          <div class="field">
+            <label for="dni">DNI / NIE <span class="req">*</span></label>
+            <input type="text" id="dni" name="dni" required placeholder="12345678A" />
+          </div>
+          <div class="field">
+            <label for="fecha_nacimiento">Fecha de nacimiento <span class="req">*</span></label>
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required />
+          </div>
+          <div class="field">
+            <label for="telefono">Teléfono <span class="req">*</span></label>
+            <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000" />
+          </div>
+          <div class="field">
+            <label for="nacionalidad">Nacionalidad <span class="req">*</span></label>
+            <input type="text" id="nacionalidad" name="nacionalidad" required placeholder="Española" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Travel plan -->
+      <section class="form-section">
+        <h2 class="section-title">Plan de viaje</h2>
+        <div class="form-grid">
+          <div class="field">
+            <label for="dia_salida">Día de salida</label>
+            <input type="date" id="dia_salida" name="dia_salida" />
+          </div>
+          <div class="field">
+            <label for="ciudad_salida">Ciudad de inicio del viaje</label>
+            <input type="text" id="ciudad_salida" name="ciudad_salida" placeholder="Córdoba" />
+          </div>
+          <div class="field">
+            <label for="aeropuerto_salida">Aeropuerto / ciudad de salida de España</label>
+            <input type="text" id="aeropuerto_salida" name="aeropuerto_salida" placeholder="Aeropuerto de Málaga (AGP)" />
+          </div>
+          <div class="field">
+            <label for="dia_llegada">Día de llegada a España</label>
+            <input type="date" id="dia_llegada" name="dia_llegada" />
+          </div>
+          <div class="field">
+            <label for="ciudad_llegada">Ciudad de llegada a España</label>
+            <input type="text" id="ciudad_llegada" name="ciudad_llegada" placeholder="Córdoba" />
+          </div>
+          <div class="field">
+            <label for="aeropuerto_llegada">Aeropuerto de llegada</label>
+            <input type="text" id="aeropuerto_llegada" name="aeropuerto_llegada" placeholder="Aeropuerto de Málaga (AGP)" />
+          </div>
+          <div class="field">
+            <label for="precio_total">Precio total del viaje (€)</label>
+            <input type="number" id="precio_total" name="precio_total" min="0" step="0.01" placeholder="0.00" />
+          </div>
+        </div>
+      </section>
+
+      <!-- PDF upload -->
+      <section class="form-section">
+        <h2 class="section-title">Travel plan (PDF)</h2>
+        <p class="section-desc">Sube el PDF con los billetes y reservas de tu viaje antes de salir.</p>
+        <div id="currentPdf" style="display:none" class="current-pdf">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <a id="pdfLink" href="#" target="_blank" rel="noopener">Ver PDF subido</a>
+          <span class="pdf-replace">· <label for="pdfFile" class="pdf-replace-label">Reemplazar</label></span>
+        </div>
+        <div class="field file-field" id="uploadField">
+          <label for="pdfFile" class="file-label">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span id="fileLabel">Seleccionar PDF</span>
+          </label>
+          <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" class="file-input" />
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-save" id="saveBtn">
+          <span id="saveBtnText">Guardar datos</span>
+          <span id="saveBtnSpinner" style="display:none">Guardando…</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    import { supabase, isAdmin } from '../../lib/supabase.js';
+
+    let userId = null;
+    let existingRecord = null;
+
+    async function init() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.replace('/portal/login/');
+        return;
+      }
+
+      userId = session.user.id;
+      const email = session.user.email;
+
+      document.getElementById('userEmail').textContent = email;
+      if (isAdmin(email)) {
+        document.getElementById('adminLink').style.display = 'block';
+      }
+
+      // Load existing participant data
+      const { data } = await supabase
+        .from('participantes')
+        .select('*')
+        .eq('user_id', userId)
+        .maybeSingle();
+
+      if (data) {
+        existingRecord = data;
+        fillForm(data);
+      }
+
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('dashContent').style.display = 'block';
+    }
+
+    function fillForm(d) {
+      const set = (id, val) => { if (val != null) document.getElementById(id).value = val; };
+      set('nombre', d.nombre);
+      set('apellidos', d.apellidos);
+      set('dni', d.dni);
+      set('fecha_nacimiento', d.fecha_nacimiento);
+      set('telefono', d.telefono);
+      set('nacionalidad', d.nacionalidad);
+      set('dia_salida', d.dia_salida);
+      set('ciudad_salida', d.ciudad_salida);
+      set('aeropuerto_salida', d.aeropuerto_salida);
+      set('dia_llegada', d.dia_llegada);
+      set('ciudad_llegada', d.ciudad_llegada);
+      set('aeropuerto_llegada', d.aeropuerto_llegada);
+      set('precio_total', d.precio_total);
+
+      if (d.travel_plan_path) {
+        const { data: { publicUrl } } = supabase.storage
+          .from('travel-plans')
+          .getPublicUrl(d.travel_plan_path);
+        const pdfLink = document.getElementById('pdfLink');
+        pdfLink.href = publicUrl;
+        document.getElementById('currentPdf').style.display = 'flex';
+        document.getElementById('uploadField').style.display = 'none';
+      }
+    }
+
+    // Show file name on input change
+    document.getElementById('pdfFile').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) document.getElementById('fileLabel').textContent = file.name;
+      // Show upload field if replacing
+      document.getElementById('uploadField').style.display = 'block';
+    });
+
+    // Show upload field when clicking Replace
+    document.querySelectorAll('.pdf-replace-label').forEach(el => {
+      el.addEventListener('click', () => {
+        document.getElementById('uploadField').style.display = 'block';
+      });
+    });
+
+    document.getElementById('participantForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const alertEl = document.getElementById('alertMsg');
+      alertEl.style.display = 'none';
+      alertEl.className = 'alert';
+
+      const saveBtn = document.getElementById('saveBtn');
+      document.getElementById('saveBtnText').style.display = 'none';
+      document.getElementById('saveBtnSpinner').style.display = 'inline';
+      saveBtn.disabled = true;
+
+      const get = (id) => document.getElementById(id).value.trim() || null;
+
+      const payload = {
+        user_id: userId,
+        nombre: get('nombre'),
+        apellidos: get('apellidos'),
+        dni: get('dni'),
+        fecha_nacimiento: get('fecha_nacimiento') || null,
+        telefono: get('telefono'),
+        nacionalidad: get('nacionalidad'),
+        dia_salida: get('dia_salida') || null,
+        ciudad_salida: get('ciudad_salida'),
+        aeropuerto_salida: get('aeropuerto_salida'),
+        dia_llegada: get('dia_llegada') || null,
+        ciudad_llegada: get('ciudad_llegada'),
+        aeropuerto_llegada: get('aeropuerto_llegada'),
+        precio_total: get('precio_total') ? parseFloat(get('precio_total')) : null,
+      };
+
+      // Upload PDF if selected
+      const pdfFile = document.getElementById('pdfFile').files[0];
+      if (pdfFile) {
+        const filePath = `${userId}/travel-plan.pdf`;
+        const { error: uploadError } = await supabase.storage
+          .from('travel-plans')
+          .upload(filePath, pdfFile, { upsert: true, contentType: 'application/pdf' });
+
+        if (uploadError) {
+          showAlert('Error al subir el PDF: ' + uploadError.message, 'error');
+          resetSaveBtn();
+          return;
+        }
+        payload.travel_plan_path = filePath;
+      }
+
+      // Upsert participant record
+      const { error } = await supabase
+        .from('participantes')
+        .upsert(payload, { onConflict: 'user_id' });
+
+      if (error) {
+        showAlert('Error al guardar: ' + error.message, 'error');
+      } else {
+        showAlert('¡Datos guardados correctamente!', 'success');
+        // Reload to reflect current PDF state
+        setTimeout(() => init(), 800);
+      }
+      resetSaveBtn();
+    });
+
+    function showAlert(msg, type) {
+      const el = document.getElementById('alertMsg');
+      el.textContent = msg;
+      el.className = `alert alert-${type}`;
+      el.style.display = 'block';
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetSaveBtn() {
+      document.getElementById('saveBtnText').style.display = 'inline';
+      document.getElementById('saveBtnSpinner').style.display = 'none';
+      document.getElementById('saveBtn').disabled = false;
+    }
+
+    init();
+  </script>
+</PortalLayout>
+
+<style>
+.state-center {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1rem;
+  min-height: 40vh; color: #6b7280; font-size: .95rem;
+}
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #0d9488;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.dash-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  margin-bottom: 2rem;
+}
+.dash-title { font-size: 1.6rem; font-weight: 700; color: #0a1628; }
+.dash-sub { font-size: .88rem; color: #6b7280; margin-top: .25rem; }
+.btn-admin {
+  display: inline-block;
+  background: #0a1628; color: #fff;
+  padding: .5rem 1rem; border-radius: 8px;
+  font-size: .82rem; font-weight: 600;
+  text-decoration: none; transition: background .15s;
+}
+.btn-admin:hover { background: #162035; }
+
+.alert {
+  padding: .85rem 1rem; border-radius: 8px;
+  font-size: .88rem; margin-bottom: 1.5rem;
+}
+.alert-error { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.alert-success { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+
+.form-section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.section-title {
+  font-size: 1.05rem; font-weight: 700; color: #0a1628;
+  margin-bottom: 1.25rem; padding-bottom: .75rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+.section-desc { font-size: .88rem; color: #6b7280; margin-bottom: 1.25rem; }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem 1.5rem;
+}
+.field {
+  display: flex; flex-direction: column; gap: .4rem;
+}
+.field label { font-size: .84rem; font-weight: 600; color: #374151; }
+.req { color: #ef4444; }
+.field input {
+  padding: .65rem .9rem;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: .92rem;
+  font-family: inherit;
+  color: #0a1628;
+  background: #fff;
+  transition: border-color .15s;
+  outline: none;
+  width: 100%;
+}
+.field input:focus { border-color: #0d9488; }
+
+/* PDF upload */
+.current-pdf {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .88rem; color: #374151;
+  margin-bottom: .75rem;
+}
+.current-pdf a { color: #0d9488; text-decoration: none; }
+.current-pdf a:hover { text-decoration: underline; }
+.pdf-replace { color: #9ca3af; }
+.pdf-replace-label { color: #0d9488; cursor: pointer; }
+.pdf-replace-label:hover { text-decoration: underline; }
+
+.file-field { margin-top: .5rem; }
+.file-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .6rem 1.1rem;
+  border: 1.5px dashed #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .88rem; color: #6b7280;
+  transition: border-color .15s, color .15s;
+}
+.file-label:hover { border-color: #0d9488; color: #0d9488; }
+.file-input { display: none; }
+
+.form-actions { display: flex; justify-content: flex-end; margin-top: .5rem; }
+.btn-save {
+  background: #0d9488; color: #fff;
+  border: none; border-radius: 8px;
+  padding: .8rem 2rem;
+  font-size: .95rem; font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+  min-width: 160px;
+}
+.btn-save:hover { background: #0f766e; }
+.btn-save:disabled { opacity: .7; cursor: not-allowed; }
+
+@media (max-width: 600px) {
+  .form-section { padding: 1.25rem 1rem; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+</style>

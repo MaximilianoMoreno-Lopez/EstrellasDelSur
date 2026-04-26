@@ -1,0 +1,122 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = 'Portal' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title} — Estrellas del Sur</title>
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="portal-header">
+      <div class="portal-header-inner">
+        <a href={`${base}/`} class="portal-logo">
+          <img src={`${base}/images/logo.svg`} alt="Estrellas del Sur" />
+          <span>Estrellas del Sur</span>
+        </a>
+        <nav class="portal-nav" id="portalNav" style="display:none">
+          <a href={`${base}/portal/dashboard/`} class="portal-nav-link">Mi perfil</a>
+          <button id="logoutBtn" class="portal-nav-link portal-nav-btn">Cerrar sesión</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="portal-main">
+      <slot />
+    </main>
+
+    <footer class="portal-footer">
+      <p>© 2025 Estrellas del Sur · <a href="mailto:admin@estrellasdelsur.eu">admin@estrellasdelsur.eu</a></p>
+    </footer>
+
+    <script>
+      import { supabase } from '../lib/supabase.js';
+
+      supabase.auth.onAuthStateChange((event, session) => {
+        const nav = document.getElementById('portalNav');
+        if (nav) nav.style.display = session ? 'flex' : 'none';
+      });
+
+      document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+        await supabase.auth.signOut();
+        window.location.href = '/portal/login/';
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: #f8f9fb;
+  color: #0a1628;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-header {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky; top: 0; z-index: 100;
+}
+.portal-header-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: .9rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.portal-logo {
+  display: flex; align-items: center; gap: .6rem;
+  text-decoration: none; color: #0a1628;
+  font-weight: 600; font-size: .95rem;
+}
+.portal-logo img { height: 32px; width: auto; }
+
+.portal-nav {
+  align-items: center; gap: 1rem;
+}
+.portal-nav-link {
+  font-size: .88rem; font-weight: 500; color: #4b5563;
+  text-decoration: none; transition: color .15s;
+}
+.portal-nav-link:hover { color: #0d9488; }
+.portal-nav-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: inherit; font-size: .88rem;
+  color: #ef4444; font-weight: 500; padding: 0;
+}
+.portal-nav-btn:hover { color: #dc2626; }
+
+.portal-main {
+  flex: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+}
+
+.portal-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: .8rem;
+  color: #9ca3af;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+}
+.portal-footer a { color: #0d9488; text-decoration: none; }
+</style>

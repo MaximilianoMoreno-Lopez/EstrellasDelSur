@@ -1,0 +1,280 @@
+---
+import PortalLayout from '../../layouts/PortalLayout.astro';
+---
+
+<PortalLayout title="Panel de administración">
+  <div id="loadingState" class="state-center">
+    <div class="spinner"></div>
+    <p>Cargando…</p>
+  </div>
+
+  <div id="adminContent" style="display:none">
+    <div class="admin-header">
+      <div>
+        <h1 class="admin-title">Panel de administración</h1>
+        <p class="admin-sub" id="participantCount"></p>
+      </div>
+      <a href="/portal/dashboard/" class="btn-portal">Mi perfil</a>
+    </div>
+
+    <!-- Summary stats -->
+    <div class="stats-row" id="statsRow"></div>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Buscar por nombre, apellidos, DNI…" />
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table id="adminTable">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Teléfono</th>
+            <th>Nacimiento</th>
+            <th>Salida</th>
+            <th>Llegada</th>
+            <th>Precio €</th>
+            <th>Travel Plan</th>
+            <th>Actualizado</th>
+          </tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+      </table>
+      <p id="noResults" style="display:none" class="no-results">No se encontraron participantes.</p>
+    </div>
+  </div>
+
+  <script>
+    import { supabase, isAdmin } from '../../lib/supabase.js';
+
+    let allParticipants = [];
+
+    async function init() {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        window.location.replace('/portal/login/');
+        return;
+      }
+      if (!isAdmin(session.user.email)) {
+        window.location.replace('/portal/dashboard/');
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('participantes')
+        .select('*')
+        .order('updated_at', { ascending: false });
+
+      if (error) {
+        document.getElementById('loadingState').innerHTML = `<p style="color:#dc2626">Error: ${error.message}</p>`;
+        return;
+      }
+
+      allParticipants = data || [];
+      renderStats(allParticipants);
+      renderTable(allParticipants);
+
+      document.getElementById('participantCount').textContent =
+        `${allParticipants.length} participante${allParticipants.length !== 1 ? 's' : ''} registrado${allParticipants.length !== 1 ? 's' : ''}`;
+
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('adminContent').style.display = 'block';
+    }
+
+    function renderStats(data) {
+      const withPdf = data.filter(p => p.travel_plan_path).length;
+      const withDates = data.filter(p => p.dia_salida).length;
+      const totalPrice = data.reduce((sum, p) => sum + (p.precio_total || 0), 0);
+
+      const statsRow = document.getElementById('statsRow');
+      statsRow.innerHTML = [
+        { label: 'Participantes', value: data.length },
+        { label: 'Con travel plan', value: withPdf },
+        { label: 'Con fechas de viaje', value: withDates },
+        { label: 'Coste total estimado', value: `${totalPrice.toFixed(2)} €` },
+      ].map(s => `
+        <div class="stat-card">
+          <span class="stat-value">${s.value}</span>
+          <span class="stat-label">${s.label}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderTable(data) {
+      const tbody = document.getElementById('adminTableBody');
+      const noResults = document.getElementById('noResults');
+
+      if (data.length === 0) {
+        tbody.innerHTML = '';
+        noResults.style.display = 'block';
+        return;
+      }
+      noResults.style.display = 'none';
+
+      tbody.innerHTML = data.map(p => {
+        let pdfCell = '<span class="badge badge-missing">Sin PDF</span>';
+        if (p.travel_plan_path) {
+          const { data: { publicUrl } } = supabase.storage
+            .from('travel-plans')
+            .getPublicUrl(p.travel_plan_path);
+          pdfCell = `<a href="${publicUrl}" target="_blank" rel="noopener" class="pdf-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Ver PDF
+          </a>`;
+        }
+
+        const updated = p.updated_at ? new Date(p.updated_at).toLocaleDateString('es-ES') : '—';
+
+        return `
+          <tr>
+            <td>${p.nombre || '—'}</td>
+            <td>${p.apellidos || '—'}</td>
+            <td><code>${p.dni || '—'}</code></td>
+            <td>${p.telefono || '—'}</td>
+            <td>${fmt(p.fecha_nacimiento)}</td>
+            <td>${fmt(p.dia_salida)}</td>
+            <td>${fmt(p.dia_llegada)}</td>
+            <td>${p.precio_total != null ? p.precio_total.toFixed(2) + ' €' : '—'}</td>
+            <td>${pdfCell}</td>
+            <td class="muted">${updated}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function fmt(dateStr) {
+      if (!dateStr) return '—';
+      return new Date(dateStr + 'T00:00:00').toLocaleDateString('es-ES');
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = allParticipants.filter(p =>
+        (p.nombre || '').toLowerCase().includes(q) ||
+        (p.apellidos || '').toLowerCase().includes(q) ||
+        (p.dni || '').toLowerCase().includes(q) ||
+        (p.telefono || '').includes(q)
+      );
+      renderTable(filtered);
+    });
+
+    init();
+  </script>
+</PortalLayout>
+
+<style>
+.state-center {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1rem;
+  min-height: 40vh; color: #6b7280; font-size: .95rem;
+}
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #e5e7eb; border-top-color: #0d9488;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.admin-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+.admin-title { font-size: 1.6rem; font-weight: 700; color: #0a1628; }
+.admin-sub { font-size: .88rem; color: #6b7280; margin-top: .25rem; }
+.btn-portal {
+  display: inline-block;
+  border: 1.5px solid #d1d5db;
+  color: #374151; background: #fff;
+  padding: .5rem 1rem; border-radius: 8px;
+  font-size: .82rem; font-weight: 600;
+  text-decoration: none; transition: border-color .15s;
+}
+.btn-portal:hover { border-color: #0d9488; color: #0d9488; }
+
+.stats-row {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+.stat-card {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 10px; padding: 1rem 1.5rem;
+  display: flex; flex-direction: column; gap: .25rem;
+  min-width: 140px;
+}
+.stat-value { font-size: 1.5rem; font-weight: 700; color: #0a1628; }
+.stat-label { font-size: .78rem; color: #6b7280; }
+
+.search-bar {
+  display: flex; align-items: center; gap: .6rem;
+  background: #fff; border: 1.5px solid #e5e7eb;
+  border-radius: 8px; padding: .6rem .9rem;
+  margin-bottom: 1.25rem;
+  color: #9ca3af;
+}
+.search-bar input {
+  border: none; outline: none; flex: 1;
+  font-size: .92rem; font-family: inherit; color: #0a1628;
+  background: transparent;
+}
+
+.table-wrap {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 12px; overflow-x: auto;
+}
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: .85rem;
+}
+th {
+  background: #f9fafb;
+  padding: .75rem 1rem;
+  text-align: left;
+  font-size: .75rem; font-weight: 600;
+  color: #6b7280; text-transform: uppercase; letter-spacing: .05em;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+td {
+  padding: .85rem 1rem;
+  color: #0a1628;
+  border-bottom: 1px solid #f3f4f6;
+  white-space: nowrap;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f9fafb; }
+td code {
+  font-family: monospace; font-size: .82rem;
+  background: #f3f4f6; padding: .15rem .4rem;
+  border-radius: 4px;
+}
+td.muted { color: #9ca3af; font-size: .8rem; }
+
+.badge-missing {
+  font-size: .72rem; padding: .2rem .6rem;
+  background: #fef3c7; color: #92400e;
+  border-radius: 999px; border: 1px solid #fde68a;
+  font-weight: 500;
+}
+.pdf-link {
+  display: inline-flex; align-items: center; gap: .35rem;
+  color: #0d9488; text-decoration: none;
+  font-weight: 500; font-size: .82rem;
+}
+.pdf-link:hover { text-decoration: underline; }
+.no-results {
+  text-align: center; color: #9ca3af;
+  padding: 2rem; font-size: .9rem;
+}
+
+@media (max-width: 600px) {
+  .stats-row { flex-direction: column; }
+}
+</style>

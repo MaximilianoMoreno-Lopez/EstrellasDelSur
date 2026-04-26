@@ -1,0 +1,26 @@
+---
+// Redirect: logged in → dashboard, guest → login
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>Portal — Estrellas del Sur</title>
+  </head>
+  <body>
+    <script>
+      import { supabase } from '../../lib/supabase.js';
+
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+          window.location.replace('/portal/dashboard/');
+        } else {
+          window.location.replace('/portal/login/');
+        }
+      });
+    </script>
+  </body>
+</html>
