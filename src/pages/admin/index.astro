@@ -174,7 +174,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
         (p.nombre || '').toLowerCase().includes(q) ||
         (p.apellidos || '').toLowerCase().includes(q) ||
         (p.dni || '').toLowerCase().includes(q) ||
-        (p.telefono || '').includes(q)
+        (p.siglas_proyecto || '').toLowerCase().includes(q)
       );
       renderTable(filtered); // async, intentional fire-and-forget
     });
