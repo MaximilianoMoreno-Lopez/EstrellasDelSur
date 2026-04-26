@@ -36,8 +36,12 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <th>DNI</th>
             <th>Proyecto</th>
             <th>Nacimiento</th>
-            <th>Llegada destino</th>
-            <th>Salida destino</th>
+            <th>Llegada al destino</th>
+            <th>Ciudad destino</th>
+            <th>Aeropuerto salida ES</th>
+            <th>Salida del destino</th>
+            <th>Ciudad vuelta</th>
+            <th>Aeropuerto llegada ES</th>
             <th>Precio €</th>
             <th>Travel Plan</th>
             <th>Actualizado</th>
@@ -141,7 +145,11 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <td>${p.siglas_proyecto ? `<span class="badge-proyecto">${p.siglas_proyecto}</span>` : '—'}</td>
             <td>${fmt(p.fecha_nacimiento)}</td>
             <td>${fmt(p.dia_salida)}</td>
+            <td>${p.ciudad_salida || '—'}</td>
+            <td>${p.aeropuerto_salida_espana || '—'}</td>
             <td>${fmt(p.dia_llegada_espana)}</td>
+            <td>${p.ciudad_llegada_espana || '—'}</td>
+            <td>${p.aeropuerto_llegada || '—'}</td>
             <td>${p.precio_total != null ? p.precio_total.toFixed(2) + ' €' : '—'}</td>
             <td>${pdfCell}</td>
             <td class="muted">${updated}</td>
@@ -227,6 +235,9 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
   font-size: .92rem; font-family: inherit; color: #0a1628;
   background: transparent;
 }
+
+/* Override portal-main max-width for admin */
+:global(.portal-main) { max-width: 100% !important; padding-left: 2rem !important; padding-right: 2rem !important; }
 
 .table-wrap {
   background: #fff; border: 1px solid #e5e7eb;
