@@ -45,12 +45,8 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required />
           </div>
           <div class="field">
-            <label for="telefono">Teléfono <span class="req">*</span></label>
-            <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000" />
-          </div>
-          <div class="field">
-            <label for="nacionalidad">Nacionalidad <span class="req">*</span></label>
-            <input type="text" id="nacionalidad" name="nacionalidad" required placeholder="Española" />
+            <label for="siglas_proyecto">Siglas del proyecto <span class="req">*</span></label>
+            <input type="text" id="siglas_proyecto" name="siglas_proyecto" required placeholder="KA153, NEST…" />
           </div>
         </div>
       </section>
@@ -58,29 +54,35 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       <!-- Travel plan -->
       <section class="form-section">
         <h2 class="section-title">Plan de viaje</h2>
-        <div class="form-grid">
+
+        <p class="subsection-label">Llegada al país de destino</p>
+        <div class="form-grid" style="margin-bottom:1.5rem">
           <div class="field">
-            <label for="dia_salida">Día de salida</label>
+            <label for="dia_salida">Fecha de llegada al destino</label>
             <input type="date" id="dia_salida" name="dia_salida" />
           </div>
           <div class="field">
-            <label for="ciudad_salida">Ciudad de inicio del viaje</label>
-            <input type="text" id="ciudad_salida" name="ciudad_salida" placeholder="Córdoba" />
+            <label for="ciudad_salida">Ciudad de destino</label>
+            <input type="text" id="ciudad_salida" name="ciudad_salida" placeholder="Varsovia, Roma…" />
           </div>
           <div class="field">
-            <label for="aeropuerto_salida">Aeropuerto / ciudad de salida de España</label>
+            <label for="aeropuerto_salida">Aeropuerto de salida desde España</label>
             <input type="text" id="aeropuerto_salida" name="aeropuerto_salida" placeholder="Aeropuerto de Málaga (AGP)" />
           </div>
+        </div>
+
+        <p class="subsection-label">Vuelta a España</p>
+        <div class="form-grid">
           <div class="field">
-            <label for="dia_llegada">Día de llegada a España</label>
+            <label for="dia_llegada">Fecha de salida del destino</label>
             <input type="date" id="dia_llegada" name="dia_llegada" />
           </div>
           <div class="field">
-            <label for="ciudad_llegada">Ciudad de llegada a España</label>
-            <input type="text" id="ciudad_llegada" name="ciudad_llegada" placeholder="Córdoba" />
+            <label for="ciudad_llegada">Ciudad desde la que vuelves</label>
+            <input type="text" id="ciudad_llegada" name="ciudad_llegada" placeholder="Varsovia, Roma…" />
           </div>
           <div class="field">
-            <label for="aeropuerto_llegada">Aeropuerto de llegada</label>
+            <label for="aeropuerto_llegada">Aeropuerto de llegada a España</label>
             <input type="text" id="aeropuerto_llegada" name="aeropuerto_llegada" placeholder="Aeropuerto de Málaga (AGP)" />
           </div>
           <div class="field">
@@ -160,8 +162,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       set('apellidos', d.apellidos);
       set('dni', d.dni);
       set('fecha_nacimiento', d.fecha_nacimiento);
-      set('telefono', d.telefono);
-      set('nacionalidad', d.nacionalidad);
+      set('siglas_proyecto', d.siglas_proyecto);
       set('dia_salida', d.dia_salida);
       set('ciudad_salida', d.ciudad_salida);
       set('aeropuerto_salida', d.aeropuerto_salida_espana);
@@ -216,8 +217,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
         apellidos: get('apellidos'),
         dni: get('dni'),
         fecha_nacimiento: get('fecha_nacimiento') || null,
-        telefono: get('telefono'),
-        nacionalidad: get('nacionalidad'),
+        siglas_proyecto: get('siglas_proyecto'),
         dia_salida: get('dia_salida') || null,
         ciudad_salida: get('ciudad_salida'),
         aeropuerto_salida_espana: get('aeropuerto_salida'),
@@ -328,6 +328,10 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
   border-bottom: 1px solid #f3f4f6;
 }
 .section-desc { font-size: .88rem; color: #6b7280; margin-bottom: 1.25rem; }
+.subsection-label {
+  font-size: .75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: #0d9488; margin-bottom: .75rem;
+}
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
