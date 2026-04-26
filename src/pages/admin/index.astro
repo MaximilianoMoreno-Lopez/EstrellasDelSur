@@ -17,9 +17,6 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       <a href="/portal/dashboard/" class="btn-portal">Mi perfil</a>
     </div>
 
-    <!-- Summary stats -->
-    <div class="stats-row" id="statsRow"></div>
-
     <!-- Search -->
     <div class="search-bar">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -83,7 +80,6 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       }
 
       allParticipants = data || [];
-      renderStats(allParticipants);
       renderTable(allParticipants);
 
       document.getElementById('participantCount').textContent =
@@ -93,26 +89,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       document.getElementById('adminContent').style.display = 'block';
     }
 
-    function renderStats(data) {
-      const withPdf = data.filter(p => p.pdf_url).length;
-      const withDates = data.filter(p => p.dia_salida).length;
-      const totalPrice = data.reduce((sum, p) => sum + (p.precio_total || 0), 0);
-
-      const statsRow = document.getElementById('statsRow');
-      statsRow.innerHTML = [
-        { label: 'Participantes', value: data.length },
-        { label: 'Con travel plan', value: withPdf },
-        { label: 'Con fechas de viaje', value: withDates },
-        { label: 'Coste total estimado', value: `${totalPrice.toFixed(2)} €` },
-      ].map(s => `
-        <div class="stat-card">
-          <span class="stat-value">${s.value}</span>
-          <span class="stat-label">${s.label}</span>
-        </div>
-      `).join('');
-    }
-
-    async function renderTable(data) {
+async function renderTable(data) {
       const tbody = document.getElementById('adminTableBody');
       const noResults = document.getElementById('noResults');
 
@@ -213,19 +190,6 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
   text-decoration: none; transition: border-color .15s;
 }
 .btn-portal:hover { border-color: #0d9488; color: #0d9488; }
-
-.stats-row {
-  display: flex; flex-wrap: wrap; gap: 1rem;
-  margin-bottom: 1.75rem;
-}
-.stat-card {
-  background: #fff; border: 1px solid #e5e7eb;
-  border-radius: 10px; padding: 1rem 1.5rem;
-  display: flex; flex-direction: column; gap: .25rem;
-  min-width: 140px;
-}
-.stat-value { font-size: 1.5rem; font-weight: 700; color: #0a1628; }
-.stat-label { font-size: .78rem; color: #6b7280; }
 
 .search-bar {
   display: flex; align-items: center; gap: .6rem;
