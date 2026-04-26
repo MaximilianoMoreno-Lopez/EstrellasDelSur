@@ -36,16 +36,16 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <th>DNI</th>
             <th>Proyecto</th>
             <th>Nacimiento</th>
-            <th>Llegada al destino</th>
-            <th>Hora llegada</th>
-            <th>Ciudad destino</th>
-            <th>Aeropuerto salida ES</th>
-            <th>Salida del destino</th>
-            <th>Hora salida</th>
-            <th>Ciudad vuelta</th>
-            <th>Aeropuerto llegada ES</th>
+            <th class="th-ida">Llegada</th>
+            <th class="th-ida">Hora</th>
+            <th class="th-ida">Ciudad</th>
+            <th class="th-ida">Aeropuerto ida</th>
+            <th class="th-vuelta">Salida</th>
+            <th class="th-vuelta">Hora</th>
+            <th class="th-vuelta">Ciudad</th>
+            <th class="th-vuelta">Aeropuerto vuelta</th>
             <th>Precio €</th>
-            <th>Travel Plan</th>
+            <th>PDF</th>
             <th>Actualizado</th>
           </tr>
         </thead>
@@ -287,6 +287,8 @@ td.muted { color: #9ca3af; font-size: .8rem; }
   font-weight: 500; font-size: .82rem;
 }
 .pdf-link:hover { text-decoration: underline; }
+.th-ida { background: #f0fdf4 !important; color: #166534 !important; }
+.th-vuelta { background: #eff6ff !important; color: #1e40af !important; }
 .badge-proyecto {
   font-size: .72rem; font-weight: 700;
   padding: .2rem .6rem; border-radius: 999px;
