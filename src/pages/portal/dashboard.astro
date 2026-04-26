@@ -154,7 +154,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       document.getElementById('dashContent').style.display = 'block';
     }
 
-    function fillForm(d) {
+    async function fillForm(d) {
       const set = (id, val) => { if (val != null) document.getElementById(id).value = val; };
       set('nombre', d.nombre);
       set('apellidos', d.apellidos);
@@ -164,18 +164,19 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       set('nacionalidad', d.nacionalidad);
       set('dia_salida', d.dia_salida);
       set('ciudad_salida', d.ciudad_salida);
-      set('aeropuerto_salida', d.aeropuerto_salida);
-      set('dia_llegada', d.dia_llegada);
-      set('ciudad_llegada', d.ciudad_llegada);
+      set('aeropuerto_salida', d.aeropuerto_salida_espana);
+      set('dia_llegada', d.dia_llegada_espana);
+      set('ciudad_llegada', d.ciudad_llegada_espana);
       set('aeropuerto_llegada', d.aeropuerto_llegada);
       set('precio_total', d.precio_total);
 
-      if (d.travel_plan_path) {
-        const { data: { publicUrl } } = supabase.storage
+      if (d.pdf_url) {
+        const { data: signedData } = await supabase.storage
           .from('travel-plans')
-          .getPublicUrl(d.travel_plan_path);
+          .createSignedUrl(d.pdf_url, 3600);
         const pdfLink = document.getElementById('pdfLink');
-        pdfLink.href = publicUrl;
+        if (signedData) pdfLink.href = signedData.signedUrl;
+        pdfLink.textContent = d.pdf_nombre || 'Ver PDF subido';
         document.getElementById('currentPdf').style.display = 'flex';
         document.getElementById('uploadField').style.display = 'none';
       }
@@ -219,9 +220,9 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
         nacionalidad: get('nacionalidad'),
         dia_salida: get('dia_salida') || null,
         ciudad_salida: get('ciudad_salida'),
-        aeropuerto_salida: get('aeropuerto_salida'),
-        dia_llegada: get('dia_llegada') || null,
-        ciudad_llegada: get('ciudad_llegada'),
+        aeropuerto_salida_espana: get('aeropuerto_salida'),
+        dia_llegada_espana: get('dia_llegada') || null,
+        ciudad_llegada_espana: get('ciudad_llegada'),
         aeropuerto_llegada: get('aeropuerto_llegada'),
         precio_total: get('precio_total') ? parseFloat(get('precio_total')) : null,
       };
@@ -239,7 +240,8 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
           resetSaveBtn();
           return;
         }
-        payload.travel_plan_path = filePath;
+        payload.pdf_url = filePath;
+        payload.pdf_nombre = pdfFile.name;
       }
 
       // Upsert participant record

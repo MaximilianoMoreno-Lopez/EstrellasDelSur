@@ -88,7 +88,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
     }
 
     function renderStats(data) {
-      const withPdf = data.filter(p => p.travel_plan_path).length;
+      const withPdf = data.filter(p => p.pdf_url).length;
       const withDates = data.filter(p => p.dia_salida).length;
       const totalPrice = data.reduce((sum, p) => sum + (p.precio_total || 0), 0);
 
@@ -106,7 +106,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       `).join('');
     }
 
-    function renderTable(data) {
+    async function renderTable(data) {
       const tbody = document.getElementById('adminTableBody');
       const noResults = document.getElementById('noResults');
 
@@ -117,16 +117,18 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       }
       noResults.style.display = 'none';
 
-      tbody.innerHTML = data.map(p => {
+      const rows = await Promise.all(data.map(async p => {
         let pdfCell = '<span class="badge badge-missing">Sin PDF</span>';
-        if (p.travel_plan_path) {
-          const { data: { publicUrl } } = supabase.storage
+        if (p.pdf_url) {
+          const { data: signedData } = await supabase.storage
             .from('travel-plans')
-            .getPublicUrl(p.travel_plan_path);
-          pdfCell = `<a href="${publicUrl}" target="_blank" rel="noopener" class="pdf-link">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            Ver PDF
-          </a>`;
+            .createSignedUrl(p.pdf_url, 3600);
+          if (signedData) {
+            pdfCell = `<a href="${signedData.signedUrl}" target="_blank" rel="noopener" class="pdf-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              ${p.pdf_nombre || 'Ver PDF'}
+            </a>`;
+          }
         }
 
         const updated = p.updated_at ? new Date(p.updated_at).toLocaleDateString('es-ES') : '—';
@@ -139,13 +141,14 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <td>${p.telefono || '—'}</td>
             <td>${fmt(p.fecha_nacimiento)}</td>
             <td>${fmt(p.dia_salida)}</td>
-            <td>${fmt(p.dia_llegada)}</td>
+            <td>${fmt(p.dia_llegada_espana)}</td>
             <td>${p.precio_total != null ? p.precio_total.toFixed(2) + ' €' : '—'}</td>
             <td>${pdfCell}</td>
             <td class="muted">${updated}</td>
           </tr>
         `;
-      }).join('');
+      }));
+      tbody.innerHTML = rows.join('');
     }
 
     function fmt(dateStr) {
@@ -161,7 +164,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
         (p.dni || '').toLowerCase().includes(q) ||
         (p.telefono || '').includes(q)
       );
-      renderTable(filtered);
+      renderTable(filtered); // async, intentional fire-and-forget
     });
 
     init();
