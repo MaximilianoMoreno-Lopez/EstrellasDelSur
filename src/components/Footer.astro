@@ -42,6 +42,18 @@ const navLinks = [
       </div>
 
       <div class="footer-col">
+        <h3 class="footer-col-title">Participantes</h3>
+        <ul class="footer-links">
+          <li><a href={`${base}/portal/`} class="footer-portal-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+            Portal de participantes
+          </a></li>
+          <li><a href={`${base}/portal/registro/`}>Crear cuenta</a></li>
+          <li><a href={`${base}/portal/login/`}>Iniciar sesión</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
         <h3 class="footer-col-title">Contacto</h3>
         <ul class="footer-links">
           <li><a href="mailto:admin@estrellasdelsur.eu">admin@estrellasdelsur.eu</a></li>
@@ -63,7 +75,7 @@ const navLinks = [
 <style>
   .footer { background: var(--navy); color: rgba(255,255,255,.75); }
   .footer-main { padding: 3.5rem 0 2.5rem; }
-  .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3rem; }
+  .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 3rem; }
   .footer-logo { display: inline-block; text-decoration: none; margin-bottom: 1rem; }
   .footer-logo-img { width: 110px; height: auto; display: block; }
   .footer-desc { font-size: .88rem; line-height: 1.65; color: rgba(255,255,255,.55); max-width: 300px; margin-bottom: 1.25rem; }
@@ -74,11 +86,19 @@ const navLinks = [
   .footer-links { display: flex; flex-direction: column; gap: .65rem; }
   .footer-links a, .footer-text { font-size: .9rem; color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
   .footer-links a:hover { color: #f59e0b; }
+  .footer-portal-link { display: inline-flex !important; align-items: center; gap: .35rem; color: #5eead4 !important; font-weight: 500; }
+  .footer-portal-link:hover { color: #99f6e4 !important; }
   .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 1.25rem 0; }
   .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.35); }
   .footer-bottom-right { color: rgba(255,255,255,.25) !important; }
+  @media (max-width: 960px) {
+    .footer-grid { grid-template-columns: 1.8fr 1fr 1fr; gap: 2rem; }
+  }
   @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  @media (max-width: 500px) {
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     .footer-bottom-inner { flex-direction: column; text-align: center; }
     .footer-bottom-right { display: none; }
