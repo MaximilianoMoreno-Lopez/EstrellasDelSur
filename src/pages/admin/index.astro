@@ -37,9 +37,11 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <th>Proyecto</th>
             <th>Nacimiento</th>
             <th>Llegada al destino</th>
+            <th>Hora llegada</th>
             <th>Ciudad destino</th>
             <th>Aeropuerto salida ES</th>
             <th>Salida del destino</th>
+            <th>Hora salida</th>
             <th>Ciudad vuelta</th>
             <th>Aeropuerto llegada ES</th>
             <th>Precio €</th>
@@ -145,9 +147,11 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <td>${p.siglas_proyecto ? `<span class="badge-proyecto">${p.siglas_proyecto}</span>` : '—'}</td>
             <td>${fmt(p.fecha_nacimiento)}</td>
             <td>${fmt(p.dia_salida)}</td>
+            <td>${p.hora_salida ? p.hora_salida.slice(0,5) : '—'}</td>
             <td>${p.ciudad_salida || '—'}</td>
             <td>${p.aeropuerto_salida_espana || '—'}</td>
             <td>${fmt(p.dia_llegada_espana)}</td>
+            <td>${p.hora_llegada ? p.hora_llegada.slice(0,5) : '—'}</td>
             <td>${p.ciudad_llegada_espana || '—'}</td>
             <td>${p.aeropuerto_llegada || '—'}</td>
             <td>${p.precio_total != null ? p.precio_total.toFixed(2) + ' €' : '—'}</td>
