@@ -1,6 +1,5 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const year = new Date().getFullYear();
 
 const socials = [
   { name: 'Instagram', href: 'https://instagram.com/estrellasdelsur.eu', icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>` },
@@ -66,11 +65,15 @@ const navLinks = [
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>© {year} Estrellas del Sur. Todos los derechos reservados.</p>
+      <p>© <span id="mainFooterYear"></span> Estrellas del Sur. Todos los derechos reservados.</p>
       <p class="footer-bottom-right">Hecho con ilusión en Córdoba</p>
     </div>
   </div>
 </footer>
+
+<script>
+  document.getElementById('mainFooterYear').textContent = String(new Date().getFullYear());
+</script>
 
 <style>
   .footer { background: var(--navy); color: rgba(255,255,255,.75); }
@@ -92,6 +95,7 @@ const navLinks = [
   .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.35); }
   .footer-bottom-right { color: rgba(255,255,255,.25) !important; }
+  #mainFooterYear { font-variant-numeric: tabular-nums; }
   @media (max-width: 960px) {
     .footer-grid { grid-template-columns: 1.8fr 1fr 1fr; gap: 2rem; }
   }
