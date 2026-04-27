@@ -5,14 +5,19 @@ import ProjectCard from './ProjectCard.astro';
 interface Props {
   activeOnly?: boolean;
   limit?: number;
+  includeLocal?: boolean;
 }
 
-const { activeOnly = false, limit } = Astro.props;
+const { activeOnly = false, limit, includeLocal = false } = Astro.props;
 
 let projects = await getCollection('projects');
 
 // Sort by order field
 projects.sort((a, b) => a.data.order - b.data.order);
+
+if (!includeLocal) {
+  projects = projects.filter(p => !p.data.localInitiative);
+}
 
 if (activeOnly) {
   projects = projects.filter(p => p.data.status === 'active');
@@ -55,6 +60,7 @@ if (limit) {
         location={project.data.location}
         dates={project.data.dates}
         slug={project.id}
+        localInitiative={project.data.localInitiative}
       />
     </div>
   ))}
