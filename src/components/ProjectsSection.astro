@@ -6,9 +6,10 @@ interface Props {
   activeOnly?: boolean;
   limit?: number;
   includeLocal?: boolean;
+  includeCoordinated?: boolean;
 }
 
-const { activeOnly = false, limit, includeLocal = false } = Astro.props;
+const { activeOnly = false, limit, includeLocal = false, includeCoordinated = false } = Astro.props;
 
 let projects = await getCollection('projects');
 
@@ -17,6 +18,10 @@ projects.sort((a, b) => a.data.order - b.data.order);
 
 if (!includeLocal) {
   projects = projects.filter(p => !p.data.localInitiative);
+}
+
+if (!includeCoordinated) {
+  projects = projects.filter(p => !p.data.coordinated);
 }
 
 if (activeOnly) {

@@ -1,7 +1,7 @@
 ---
 title: "DiáLogos Europeos"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇺"
 description: "Proyecto coordinado por Estrellas del Sur que promueve el debate y la oratoria con enfoque europeo a través de torneos presenciales y formaciones online."
 year: 2026
