@@ -8,6 +8,7 @@ year: 2023
 order: 65
 location: "Andalucía"
 localInitiative: true
+image: "images/projects/effa/banner.png"
 ---
 
 En el corazón de la vibrante y diversa comunidad andaluza, nace un proyecto visionario respaldado por la **Junta de Andalucía**: *"El Futuro de Andalucía es Ahora"*. Este ambicioso programa, en su búsqueda de un futuro más inclusivo y próspero, se enfoca en el empoderamiento de diversos grupos de la población andaluza:

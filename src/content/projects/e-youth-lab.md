@@ -99,3 +99,5 @@ Desde Estrellas del Sur, seguimos apostando por iniciativas que empoderan a la j
 ## Coordina
 
 Este proyecto está subvencionado por el **Instituto Andaluz de la Juventud (IAJ)**, Consejería de Inclusión Social, Juventud, Familias e Igualdad de la Junta de Andalucía.
+
+![Junta de Andalucía · Consejería de Inclusión Social, Juventud, Familias e Igualdad · Instituto Andaluz de la Juventud](/images/projects/e-youth-lab/junta-andalucia-iaj.png)
