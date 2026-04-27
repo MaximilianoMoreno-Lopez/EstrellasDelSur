@@ -44,7 +44,6 @@ export default defineConfig({
     '/social-ecologic-actions/':                 '/proyectos/social-ecologic-actions/',
     '/upscale-your-skills/':                     '/proyectos/upscale-your-skills/',
     '/empowering-recognition-and-growth/':       '/proyectos/empowering-recognition-and-growth/',
-    '/volunteering-at-hku':                      '/proyectos/volunteering-at-hku/',
     '/volunteering-at-hku/':                     '/proyectos/volunteering-at-hku/',
   },
 });

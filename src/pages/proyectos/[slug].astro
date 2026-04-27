@@ -26,6 +26,12 @@ const courseCategory = {
   'Formación':    'Training Course',
 }[type];
 
+const fallbackGradient = {
+  'Intercambio': 'linear-gradient(135deg, #0d9488 0%, #0a1628 100%)',
+  'Voluntariado': 'linear-gradient(135deg, #d97706 0%, #0a1628 100%)',
+  'Formación':    'linear-gradient(135deg, #7c3aed 0%, #0a1628 100%)',
+}[type];
+
 const courseJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Course',
@@ -73,11 +79,6 @@ const typeClass = {
   'Formación':    'badge-purple',
 }[type];
 
-const fallbackGradient = {
-  'Intercambio': 'linear-gradient(135deg, #0d9488 0%, #0a1628 100%)',
-  'Voluntariado': 'linear-gradient(135deg, #d97706 0%, #0a1628 100%)',
-  'Formación':    'linear-gradient(135deg, #7c3aed 0%, #0a1628 100%)',
-}[type];
 ---
 
 <BaseLayout
