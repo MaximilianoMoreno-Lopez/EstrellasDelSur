@@ -16,6 +16,45 @@ const { title, type, date, dates, location, description, cover } = article.data;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const SITE = 'https://estrellasdelsur.eu';
+const articleUrl = `${SITE}/noticias/${article.id}/`;
+const articleImage = cover ? `${SITE}/${cover}` : `${SITE}/og-image.png`;
+const articleDescription = description ?? `Crónica de ${title}: experiencias de jóvenes en proyectos Erasmus+ y voluntariados europeos gestionados por Estrellas del Sur.`;
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: articleDescription,
+  image: articleImage,
+  ...(date && { datePublished: date }),
+  inLanguage: 'es-ES',
+  author: {
+    '@type': 'Organization',
+    name: 'Estrellas del Sur',
+    url: SITE,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Estrellas del Sur',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE}/images/logo.svg`,
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': articleUrl,
+  },
+  ...(location && { contentLocation: { '@type': 'Place', name: location } }),
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/' },
+  { name: 'Noticias', url: '/noticias/' },
+  { name: title, url: `/noticias/${article.id}/` },
+];
+
 const typeLabel = {
   'Intercambio': 'Youth Exchange',
   'Voluntariado': 'Voluntariado',
@@ -37,7 +76,12 @@ const fallbackGradient = {
 
 <BaseLayout
   title={title}
-  description={description ?? `Crónica de ${title}: experiencias de jóvenes en proyectos Erasmus+ y voluntariados europeos gestionados por Estrellas del Sur.`}
+  description={articleDescription}
+  ogType="article"
+  ogImage={cover ? `/${cover}` : '/og-image.png'}
+  publishedTime={date}
+  jsonLd={articleJsonLd}
+  breadcrumbs={breadcrumbs}
 >
   <!-- Back -->
   <div class="back-bar">
@@ -52,7 +96,15 @@ const fallbackGradient = {
   <!-- Hero -->
   <section class="article-hero" style={`background: ${fallbackGradient}`}>
     {cover && (
-      <img class="hero-bg-img" src={`${base}/${cover}`} alt="" aria-hidden="true" />
+      <img
+        class="hero-bg-img"
+        src={`${base}/${cover}`}
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
     )}
     <div class="hero-overlay" />
     <div class="container hero-content">

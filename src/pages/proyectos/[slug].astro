@@ -12,9 +12,54 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, type, status, flag, description, location, year, image, poster, infopack, apply } = project.data;
+const { title, type, status, flag, description, location, year, image, poster, infopack, apply, dates } = project.data;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const SITE = 'https://estrellasdelsur.eu';
+const projectUrl = `${SITE}/proyectos/${project.id}/`;
+const projectImage = image ? `${SITE}/${image}` : `${SITE}/og-image.png`;
+
+const courseCategory = {
+  'Intercambio': 'Youth Exchange',
+  'Voluntariado': 'Volunteering',
+  'Formación':    'Training Course',
+}[type];
+
+const courseJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: title,
+  description,
+  url: projectUrl,
+  image: projectImage,
+  inLanguage: 'es-ES',
+  educationalCredentialAwarded: 'Youthpass',
+  courseCode: project.id,
+  about: courseCategory,
+  provider: {
+    '@type': 'Organization',
+    name: 'Estrellas del Sur',
+    sameAs: SITE,
+    url: SITE,
+  },
+  ...(location && {
+    locationCreated: { '@type': 'Place', name: location },
+  }),
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'in-person',
+    ...(dates && { name: dates }),
+    ...(location && { location: { '@type': 'Place', name: location } }),
+    ...(year && { startDate: String(year) }),
+  },
+};
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/' },
+  { name: 'Proyectos', url: '/proyectos/' },
+  { name: title, url: `/proyectos/${project.id}/` },
+];
 
 const typeLabel = {
   'Intercambio': 'Youth Exchange',
@@ -35,7 +80,14 @@ const fallbackGradient = {
 }[type];
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  ogImage={image ? `/${image}` : '/og-image.png'}
+  jsonLd={courseJsonLd}
+  breadcrumbs={breadcrumbs}
+>
   <!-- Back link -->
   <div class="back-bar">
     <div class="container">
@@ -50,7 +102,13 @@ const fallbackGradient = {
   <section class="project-hero">
     <div class="hero-image">
       {image ? (
-        <img src={`${base}/${image}`} alt={`Imagen de ${title}`} />
+        <img
+          src={`${base}/${image}`}
+          alt={`Imagen de ${title}`}
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
       ) : (
         <div class="hero-fallback" style={`background: ${fallbackGradient}`}>
           <span class="hero-flag" aria-hidden="true">{flag}</span>

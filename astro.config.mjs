@@ -4,7 +4,39 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://estrellasdelsur.eu',
   output: 'static',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.includes('/admin') &&
+        !page.includes('/portal') &&
+        !page.endsWith('/404/'),
+      changefreq: 'weekly',
+      priority: 0.7,
+      serialize(item) {
+        const url = item.url;
+        if (url === 'https://estrellasdelsur.eu/') {
+          return { ...item, priority: 1.0, changefreq: 'weekly' };
+        }
+        if (
+          url === 'https://estrellasdelsur.eu/proyectos/' ||
+          url === 'https://estrellasdelsur.eu/noticias/'
+        ) {
+          return { ...item, priority: 0.9, changefreq: 'weekly' };
+        }
+        if (
+          url === 'https://estrellasdelsur.eu/sobre-nosotros/' ||
+          url === 'https://estrellasdelsur.eu/voluntariado-esc/' ||
+          url === 'https://estrellasdelsur.eu/contacto/'
+        ) {
+          return { ...item, priority: 0.8, changefreq: 'monthly' };
+        }
+        if (url.includes('/proyectos/') || url.includes('/noticias/')) {
+          return { ...item, priority: 0.6, changefreq: 'monthly' };
+        }
+        return item;
+      },
+    }),
+  ],
   redirects: {
     // Old WordPress project/noticia URLs → new Astro routes
     '/el-futuro-de-andalucia-es-ahora/':        '/noticias/el-futuro-de-andalucia-es-ahora/',

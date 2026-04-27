@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
 
+# Block internal/private pages
+Disallow: /admin/
+Disallow: /portal/
+
 # Block old WordPress infrastructure paths (site migrated to Astro)
 Disallow: /wp-includes/
 Disallow: /wp-content/

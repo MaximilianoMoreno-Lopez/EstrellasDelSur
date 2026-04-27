@@ -3,12 +3,21 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
+interface Breadcrumb {
+  name: string;
+  url: string;
+}
+
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   ogTitle?: string;
-  jsonLd?: object;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
+  jsonLd?: object | object[];
+  breadcrumbs?: Breadcrumb[];
+  noindex?: boolean;
 }
 
 const {
@@ -16,7 +25,11 @@ const {
   description = 'Working for a better world · Asociación juvenil de Córdoba con proyectos de movilidad y voluntariado internacional.',
   ogImage = '/og-image.png',
   ogTitle,
+  ogType = 'website',
+  publishedTime,
   jsonLd,
+  breadcrumbs,
+  noindex = false,
 } = Astro.props;
 
 const pageTitle = title === 'Estrellas del Sur'
@@ -25,10 +38,30 @@ const pageTitle = title === 'Estrellas del Sur'
 
 const socialTitle = ogTitle ?? (title === 'Estrellas del Sur' ? 'Estrellas del Sur' : pageTitle);
 
-const siteBase = (Astro.site ?? new URL('https://estrellasdelsur.eu')).origin;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://estrellasdelsur.eu');
+const siteOrigin = Astro.site ?? new URL('https://estrellasdelsur.eu');
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const ogImageURL = new URL(`${base}${ogImage}`, Astro.site ?? 'https://estrellasdelsur.eu').href;
+const ogImageURL = new URL(`${base}${ogImage}`, siteOrigin).href;
+
+const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((b, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: b.name,
+    item: new URL(b.url, siteOrigin).href,
+  })),
+} : null;
+
+const jsonLdEntries: object[] = [];
+if (Array.isArray(jsonLd)) jsonLdEntries.push(...jsonLd);
+else if (jsonLd) jsonLdEntries.push(jsonLd);
+if (breadcrumbJsonLd) jsonLdEntries.push(breadcrumbJsonLd);
+
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-snippet:-1, max-image-preview:large';
 ---
 
 <!doctype html>
@@ -45,7 +78,7 @@ const ogImageURL = new URL(`${base}${ogImage}`, Astro.site ?? 'https://estrellas
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
-    <meta property="og:type"        content="website" />
+    <meta property="og:type"        content={ogType} />
     <meta property="og:url"         content={canonicalURL} />
     <meta property="og:title"       content={socialTitle} />
     <meta property="og:description" content={description} />
@@ -54,6 +87,9 @@ const ogImageURL = new URL(`${base}${ogImage}`, Astro.site ?? 'https://estrellas
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name"   content="Estrellas del Sur" />
     <meta property="og:locale"      content="es_ES" />
+    {ogType === 'article' && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
 
     <!-- Twitter / X -->
     <meta name="twitter:card"        content="summary_large_image" />
@@ -62,10 +98,12 @@ const ogImageURL = new URL(`${base}${ogImage}`, Astro.site ?? 'https://estrellas
     <meta name="twitter:image"       content={ogImageURL} />
 
     <!-- Robots -->
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <meta name="robots" content={robotsContent} />
 
     <!-- JSON-LD -->
-    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {jsonLdEntries.map((entry) => (
+      <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
