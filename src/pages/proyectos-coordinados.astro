@@ -1,0 +1,118 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import EUBanner from '../components/EUBanner.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+let projects = await getCollection('projects');
+projects = projects
+  .filter((p) => p.data.coordinated)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<BaseLayout
+  title="Proyectos Coordinados"
+  description="Proyectos Erasmus+ coordinados directamente por Estrellas del Sur: iniciativas que diseñamos, lideramos y gestionamos en colaboración con socios europeos."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="14,2 17.1,10.3 26,10.3 18.9,15.6 21.6,24 14,18.7 6.4,24 9.1,15.6 2,10.3 10.9,10.3" transform="scale(0.8) translate(2 1)"/></svg>
+        Erasmus+ · Coordinación nacional
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Proyectos Coordinados</h1>
+      <p class="fade-in fade-in-delay-2">
+        Proyectos que diseñamos, lideramos y gestionamos directamente desde Estrellas del Sur,
+        en colaboración con socios europeos y entidades juveniles de toda España.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section intro-section">
+    <div class="container intro-container fade-in">
+      <p class="intro-body">
+        Más allá de participar en proyectos europeos, en Estrellas del Sur también
+        <strong>coordinamos nuestras propias iniciativas</strong> dentro del programa Erasmus+.
+        Diseñamos las actividades, formamos los partenariados, gestionamos la financiación
+        y acompañamos a los participantes durante todo el ciclo del proyecto. A continuación,
+        las iniciativas insignia que hemos liderado.
+      </p>
+    </div>
+  </section>
+
+  <!-- Listado -->
+  <section class="section coord-section">
+    <div class="container">
+      {projects.length > 0 ? (
+        <div class="coord-grid">
+          {projects.map((p) => (
+            <ProjectCard
+              title={p.data.title}
+              type={p.data.type}
+              status={p.data.status}
+              flag={p.data.flag}
+              description={p.data.description}
+              image={p.data.image}
+              location={p.data.location}
+              dates={p.data.dates}
+              slug={p.id}
+              coordinated={true}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty">Pronto compartiremos los próximos proyectos coordinados.</p>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="coord-cta">
+    <div class="container cta-content fade-in">
+      <h2>¿Quieres colaborar como organización socia?</h2>
+      <p>
+        Si representas a una asociación juvenil interesada en sumarse a nuestros próximos
+        proyectos coordinados, escríbenos.
+      </p>
+      <a href="mailto:admin@estrellasdelsur.eu" class="btn btn-primary btn-lg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Escríbenos
+      </a>
+    </div>
+  </section>
+
+  <EUBanner />
+</BaseLayout>
+
+<style>
+  .intro-section { background: var(--cream); padding-top: 3rem; padding-bottom: 1rem; }
+  .intro-container { max-width: 720px; margin: 0 auto; }
+  .intro-body {
+    font-size: 1.05rem; line-height: 1.8; color: var(--gray-700);
+    text-align: justify; hyphens: auto;
+  }
+  .intro-body strong { color: var(--navy); }
+
+  .coord-section { padding-top: 1rem; }
+  .coord-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .empty {
+    text-align: center; color: var(--gray-500); font-style: italic; padding: 2rem 0;
+  }
+
+  .coord-cta {
+    background: var(--cream-dark);
+    padding: 4rem 0;
+    border-top: 1px solid var(--gray-200);
+  }
+  .cta-content { text-align: center; max-width: 520px; margin: 0 auto; }
+  .cta-content h2 { font-size: 1.75rem; margin-bottom: .75rem; color: var(--navy); }
+  .cta-content p { color: var(--gray-600); margin-bottom: 1.75rem; line-height: 1.7; }
+</style>

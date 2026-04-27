@@ -10,9 +10,10 @@ interface Props {
   dates?: string;
   slug: string;
   localInitiative?: boolean;
+  coordinated?: boolean;
 }
 
-const { title, type, status, flag, description, image, location, dates, slug, localInitiative = false } = Astro.props;
+const { title, type, status, flag, description, image, location, dates, slug, localInitiative = false, coordinated = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const erasmusLabel = {
@@ -56,6 +57,12 @@ const fallbackGradient = localInitiative
     )}
     {status === 'active' && (
       <span class="card-status-badge">Activo</span>
+    )}
+    {coordinated && (
+      <span class="card-coord-badge" title="Proyecto coordinado por Estrellas del Sur">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 14.85 8.62 22 9.27l-5.5 4.73L18.18 21 12 17.27 5.82 21 7.5 14 2 9.27l7.15-.65z"/></svg>
+        Coordinado
+      </span>
     )}
   </div>
 
@@ -157,6 +164,25 @@ const fallbackGradient = localInitiative
     padding: .25rem .65rem;
     border-radius: 999px;
     letter-spacing: .04em;
+  }
+
+  /* Badge "Coordinado" sobre la imagen (esquina superior izquierda) */
+  .card-coord-badge {
+    position: absolute;
+    top: .75rem;
+    left: .75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    background: rgba(10, 22, 40, .85);
+    backdrop-filter: blur(4px);
+    color: #f59e0b;
+    font-size: .7rem;
+    font-weight: 600;
+    padding: .25rem .6rem;
+    border-radius: 999px;
+    letter-spacing: .03em;
+    border: 1px solid rgba(245, 158, 11, .35);
   }
 
   /* ── Cuerpo ── */

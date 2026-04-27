@@ -3,13 +3,14 @@
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const navLinks = [
-  { href: `${base}/`,                    label: 'Inicio' },
-  { href: `${base}/proyectos/`,          label: 'Proyectos' },
-  { href: `${base}/iniciativas-locales/`, label: 'Iniciativas' },
-  { href: `${base}/sobre-nosotros/`,     label: 'Sobre Nosotros' },
-  { href: `${base}/voluntariado-esc/`,   label: 'Voluntariado ESC' },
-  { href: `${base}/noticias/`,           label: 'Artículos' },
-  { href: `${base}/contacto/`,           label: 'Contacto' },
+  { href: `${base}/`,                       label: 'Inicio' },
+  { href: `${base}/proyectos/`,             label: 'Proyectos' },
+  { href: `${base}/proyectos-coordinados/`, label: 'Coordinados' },
+  { href: `${base}/iniciativas-locales/`,   label: 'Iniciativas' },
+  { href: `${base}/sobre-nosotros/`,        label: 'Sobre Nosotros' },
+  { href: `${base}/voluntariado-esc/`,      label: 'Voluntariado ESC' },
+  { href: `${base}/noticias/`,              label: 'Artículos' },
+  { href: `${base}/contacto/`,              label: 'Contacto' },
 ];
 
 const { pathname } = Astro.url;

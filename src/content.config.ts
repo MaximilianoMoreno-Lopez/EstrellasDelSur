@@ -18,6 +18,7 @@ const projects = defineCollection({
     infopack: z.string().optional(),
     apply: z.string().optional(),
     localInitiative: z.boolean().default(false),
+    coordinated: z.boolean().default(false),
   }),
 });
 

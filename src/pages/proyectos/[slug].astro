@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, type, status, flag, description, location, year, image, poster, infopack, apply, dates, localInitiative } = project.data;
+const { title, type, status, flag, description, location, year, image, poster, infopack, apply, dates, localInitiative, coordinated } = project.data;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -97,7 +97,9 @@ const breadcrumbs = [
   { name: 'Inicio', url: '/' },
   ...(localInitiative
     ? [{ name: 'Iniciativas Locales', url: '/iniciativas-locales/' }]
-    : [{ name: 'Proyectos', url: '/proyectos/' }]),
+    : coordinated
+      ? [{ name: 'Proyectos Coordinados', url: '/proyectos-coordinados/' }]
+      : [{ name: 'Proyectos', url: '/proyectos/' }]),
   { name: title, url: `/proyectos/${project.id}/` },
 ];
 
@@ -114,9 +116,16 @@ const breadcrumbs = [
   <!-- Back link -->
   <div class="back-bar">
     <div class="container">
-      <a href={localInitiative ? `${base}/iniciativas-locales/` : `${base}/proyectos/`} class="back-link">
+      <a
+        href={
+          localInitiative ? `${base}/iniciativas-locales/`
+            : coordinated ? `${base}/proyectos-coordinados/`
+            : `${base}/proyectos/`
+        }
+        class="back-link"
+      >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-        {localInitiative ? 'Iniciativas locales' : 'Todos los proyectos'}
+        {localInitiative ? 'Iniciativas locales' : coordinated ? 'Proyectos coordinados' : 'Todos los proyectos'}
       </a>
     </div>
   </div>
@@ -142,6 +151,12 @@ const breadcrumbs = [
     <div class="container hero-content">
       <div class="hero-meta fade-in">
         <span class={`badge ${typeClass}`}>{typeLabel}</span>
+        {coordinated && (
+          <span class="badge-coord">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 14.85 8.62 22 9.27l-5.5 4.73L18.18 21 12 17.27 5.82 21 7.5 14 2 9.27l7.15-.65z"/></svg>
+            Coordinado
+          </span>
+        )}
         {status === 'active' && <span class="badge-active">Activo</span>}
         <span class="hero-flag-inline" aria-label="País">{flag}</span>
       </div>
@@ -313,6 +328,20 @@ const breadcrumbs = [
     padding: .25rem .65rem;
     border-radius: 999px;
     letter-spacing: .04em;
+  }
+
+  .badge-coord {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    background: rgba(245, 158, 11, .18);
+    color: #fbbf24;
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    letter-spacing: .03em;
+    border: 1px solid rgba(245, 158, 11, .35);
   }
 
   .hero-flag-inline { font-size: 1.4rem; }
