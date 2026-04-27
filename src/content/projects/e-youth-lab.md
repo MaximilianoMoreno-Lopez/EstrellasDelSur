@@ -8,6 +8,7 @@ year: 2025
 order: 49
 location: "Almodóvar del Río · Córdoba"
 localInitiative: true
+image: "images/projects/e-youth-lab/cover.jpg"
 ---
 
 ## ¿Qué es E-YouthLab?
@@ -41,6 +42,8 @@ Se desarrolla a lo largo de varios meses mediante una programación estructurada
 
 La primera actividad de E-YouthLab tuvo lugar en el pintoresco pueblo cordobés de **Almodóvar del Río**, donde jóvenes participaron en una jornada que mezcló sostenibilidad, comunicación y cooperación.
 
+![Jornada de acción medioambiental junto al embalse de Almodóvar del Río](/images/projects/e-youth-lab/almodovar-naturaleza.jpg)
+
 ### Aprendizajes que inspiran
 
 El objetivo de la jornada fue doble: **profundizar en métodos de cuidado del medioambiente** y **aprender a comunicar de manera efectiva** estos conocimientos para que lleguen a más personas. A través de talleres y dinámicas, los participantes mejoraron su capacidad de expresión, aprendieron a estructurar mejor sus ideas y trabajaron la gesticulación como herramienta comunicativa.
@@ -57,6 +60,8 @@ Los jóvenes incluso se propusieron pequeños **retos ecológicos** para cumplir
 
 Durante el mes de agosto, Estrellas del Sur desarrolló dos talleres enmarcados en la convocatoria del Instituto Andaluz de la Juventud bajo el lema **"Fortaleciendo el liderazgo juvenil y la sostenibilidad desde lo local"**.
 
+![Participantes del taller del Instituto Andaluz de la Juventud](/images/projects/e-youth-lab/taller-iaj.jpg)
+
 ### Liderazgo juvenil e igualdad de género
 
 Celebrado el 5 de agosto y facilitado por **Maximiliano Moreno**. A través de dinámicas participativas y estudios de caso, trabajamos el liderazgo desde una perspectiva inclusiva, abordando conceptos como el liderazgo transformador, los estereotipos de género y la toma de decisiones equitativa. Las personas participantes reflexionaron sobre su papel como agentes de cambio en sus comunidades, identificando barreras y oportunidades para fomentar la igualdad real.
@@ -71,6 +76,8 @@ Ambas actividades ofrecieron herramientas clave para la transformación social, 
 
 Nuestra misión se estructuró en **sesiones grupales y sesiones individuales de mentorización**, combinando formación teórica, actividades prácticas y acompañamiento personalizado.
 
+![Sesión individual de mentoría con una participante de E-Youth Lab](/images/projects/e-youth-lab/mentoria.png)
+
 En las **sesiones grupales**, se trabajaron aspectos clave del emprendimiento. En un primer momento, se creó un espacio de encuentro y participación para que las personas jóvenes se conocieran entre sí y compartieran sus inquietudes, intereses y expectativas. A partir de ahí, se introdujo al grupo en el mundo del autoempleo, abordando de forma práctica los principales trámites administrativos necesarios para iniciar una actividad económica: la obtención de la firma digital, el alta en Hacienda y en la Seguridad Social, y una breve explicación de las principales formas jurídicas de empresa.
 
 Asimismo, se fomentó la creatividad emprendedora mediante dinámicas de *brainstorming* orientadas a la generación de ideas de negocio con impacto social y medioambiental positivo, uno de los ejes centrales del proyecto.
@@ -82,6 +89,8 @@ De manera paralela, se desarrollaron **sesiones individuales de mentorización**
 ## Primer paso del cambio
 
 Llevamos a cabo la presentación de los proyectos el **16 de diciembre en el Instituto Andaluz de la Juventud**, una oportunidad para que los participantes pudieran exponer ante un público el trabajo realizado y dar luz a sus ideas innovadoras.
+
+![Equipo de E-Youth Lab tras la presentación de proyectos en el Instituto Andaluz de la Juventud](/images/projects/e-youth-lab/presentacion-iaj.png)
 
 Desde la Asociación valoramos muy positivamente el desarrollo del proyecto y el compromiso mostrado por las personas jóvenes participantes, reafirmando así nuestra apuesta por el **emprendimiento juvenil como herramienta de inserción laboral y desarrollo local sostenible**.
 
