@@ -26,7 +26,8 @@ export default defineConfig({
         if (
           url === 'https://estrellasdelsur.eu/sobre-nosotros/' ||
           url === 'https://estrellasdelsur.eu/voluntariado-esc/' ||
-          url === 'https://estrellasdelsur.eu/contacto/'
+          url === 'https://estrellasdelsur.eu/contacto/' ||
+          url === 'https://estrellasdelsur.eu/iniciativas-locales/'
         ) {
           return { ...item, priority: 0.8, changefreq: 'monthly' };
         }

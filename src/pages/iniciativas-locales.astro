@@ -1,0 +1,156 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import EUBanner from '../components/EUBanner.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+let projects = await getCollection('projects');
+projects = projects
+  .filter((p) => p.data.localInitiative)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<BaseLayout
+  title="Iniciativas Locales"
+  description="Proyectos de Estrellas del Sur impulsados con apoyo del Instituto Andaluz de la Juventud, Consejería de Empleo y otras entidades públicas, dirigidos a la juventud cordobesa y andaluza."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Andalucía · Córdoba
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Iniciativas Locales</h1>
+      <p class="fade-in fade-in-delay-2">
+        Proyectos que nacen de nuestro compromiso con la juventud cordobesa y andaluza
+        y el desarrollo de nuestra comunidad.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section intro-section">
+    <div class="container intro-container fade-in">
+      <p class="intro-body">
+        Desde Estrellas del Sur impulsamos proyectos que nacen de nuestro compromiso con la
+        juventud cordobesa y andaluza y el desarrollo de nuestra comunidad. Gracias al apoyo
+        del <strong>Instituto Andaluz de la Juventud</strong>, la <strong>Consejería de Empleo</strong>
+        y otras entidades públicas, llevamos a cabo iniciativas que promueven el pensamiento
+        crítico, el emprendimiento, el debate, la participación juvenil y el fortalecimiento
+        de una ciudadanía activa.
+      </p>
+    </div>
+  </section>
+
+  <!-- Listado -->
+  <section class="section initiatives-section">
+    <div class="container">
+      {projects.length > 0 ? (
+        <div class="initiatives-grid">
+          {projects.map((p) => (
+            <ProjectCard
+              title={p.data.title}
+              type={p.data.type}
+              status={p.data.status}
+              flag={p.data.flag}
+              description={p.data.description}
+              image={p.data.image}
+              location={p.data.location}
+              dates={p.data.dates}
+              slug={p.id}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty">Pronto compartiremos las próximas iniciativas locales.</p>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="initiatives-cta">
+    <div class="container cta-content fade-in">
+      <h2>¿Tienes una idea para Córdoba o Andalucía?</h2>
+      <p>
+        Si quieres colaborar en una iniciativa local o proponer un proyecto con impacto
+        en tu comunidad, escríbenos.
+      </p>
+      <a href="mailto:admin@estrellasdelsur.eu" class="btn btn-primary btn-lg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Escríbenos
+      </a>
+    </div>
+  </section>
+
+  <!-- EU Banner -->
+  <EUBanner />
+</BaseLayout>
+
+<style>
+  .intro-section {
+    background: var(--cream);
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+  }
+
+  .intro-container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .intro-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--gray-700);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .intro-body strong {
+    color: var(--navy);
+  }
+
+  .initiatives-section {
+    padding-top: 1rem;
+  }
+
+  .initiatives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--gray-500);
+    font-style: italic;
+    padding: 2rem 0;
+  }
+
+  .initiatives-cta {
+    background: var(--cream-dark);
+    padding: 4rem 0;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: .75rem;
+    color: var(--navy);
+  }
+
+  .cta-content p {
+    color: var(--gray-600);
+    margin-bottom: 1.75rem;
+    line-height: 1.7;
+  }
+</style>

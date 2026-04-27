@@ -17,6 +17,7 @@ const projects = defineCollection({
     poster: z.string().optional(),
     infopack: z.string().optional(),
     apply: z.string().optional(),
+    localInitiative: z.boolean().default(false),
   }),
 });
 

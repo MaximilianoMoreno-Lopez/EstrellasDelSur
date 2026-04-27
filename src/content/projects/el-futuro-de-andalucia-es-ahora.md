@@ -6,6 +6,7 @@ flag: "🇪🇸"
 description: "Intercambio Erasmus+ centrado en descubrimiento cultural y movilidad europea"
 year: 2023
 order: 65
+localInitiative: true
 ---
 El Futuro de Andalucía es Ahora fue un proyecto Erasmus+ de tipo intercambio organizado por Estrellas del Sur, centrado en la cooperación juvenil europea.
 
