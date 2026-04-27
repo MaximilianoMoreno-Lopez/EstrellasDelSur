@@ -2,7 +2,7 @@
 title: "DiáLogos Europeos"
 type: "Formación"
 status: "past"
-order: 7
+order: 1.5
 date: "2026-03-08"
 location: "Toledo, España"
 cover: "images/noticias/dialogos-1.jpg"
