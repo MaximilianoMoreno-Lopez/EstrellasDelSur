@@ -1,6 +1,6 @@
 ---
 title: "D-EU-BATING"
-type: "Formación"
+type: "Participación"
 status: "past"
 flag: "🇪🇺"
 description: "Proyecto coordinado por Estrellas del Sur (Erasmus+ KA154) que promueve el debate europeo, la oratoria y la participación cívica de jóvenes españoles."

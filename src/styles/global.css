@@ -111,6 +111,7 @@ h1, h2, h3, h4, h5 {
 .badge-teal      { background: var(--teal-dim);    color: var(--teal);   border: 1px solid rgba(13,148,136,.25); }
 .badge-gold      { background: var(--gold-dim);    color: #b45309;       border: 1px solid rgba(245,158,11,.3);  }
 .badge-purple    { background: var(--purple-dim);  color: var(--purple); border: 1px solid rgba(124,58,237,.25); }
+.badge-sky       { background: rgba(2,132,199,.12); color: #0369a1;      border: 1px solid rgba(2,132,199,.3);   }
 .badge-andalucia { background: rgba(22,163,74,.12); color: #15803d;      border: 1px solid rgba(22,163,74,.3);   }
 .badge-navy   { background: rgba(10,22,40,.07); color: var(--navy);  border: 1px solid rgba(10,22,40,.12);   }
 .badge-white  { background: rgba(255,255,255,.15); color: #fff;       border: 1px solid rgba(255,255,255,.3); }

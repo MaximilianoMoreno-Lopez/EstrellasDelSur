@@ -21,25 +21,28 @@ const projectUrl = `${SITE}/proyectos/${project.id}/`;
 const projectImage = image ? `${SITE}/${image}` : `${SITE}/og-image.png`;
 
 const erasmusLabel = {
-  'Intercambio': 'Youth Exchange',
-  'Voluntariado': 'Voluntariado',
-  'Formación':    'Training Course',
+  'Intercambio':   'Youth Exchange',
+  'Voluntariado':  'Voluntariado',
+  'Formación':     'Training Course',
+  'Participación': 'Youth Participation',
 }[type];
 const typeLabel = localInitiative ? 'Iniciativa Local' : erasmusLabel;
 
 const erasmusClass = {
-  'Intercambio': 'badge-teal',
-  'Voluntariado': 'badge-gold',
-  'Formación':    'badge-purple',
+  'Intercambio':   'badge-teal',
+  'Voluntariado':  'badge-gold',
+  'Formación':     'badge-purple',
+  'Participación': 'badge-sky',
 }[type];
 const typeClass = localInitiative ? 'badge-andalucia' : erasmusClass;
 
 const fallbackGradient = localInitiative
   ? 'linear-gradient(135deg, #15803d 0%, #0a1628 100%)'
   : {
-      'Intercambio': 'linear-gradient(135deg, #0d9488 0%, #0a1628 100%)',
-      'Voluntariado': 'linear-gradient(135deg, #d97706 0%, #0a1628 100%)',
-      'Formación':    'linear-gradient(135deg, #7c3aed 0%, #0a1628 100%)',
+      'Intercambio':   'linear-gradient(135deg, #0d9488 0%, #0a1628 100%)',
+      'Voluntariado':  'linear-gradient(135deg, #d97706 0%, #0a1628 100%)',
+      'Formación':     'linear-gradient(135deg, #7c3aed 0%, #0a1628 100%)',
+      'Participación': 'linear-gradient(135deg, #0284c7 0%, #0a1628 100%)',
     }[type];
 
 const courseJsonLd = localInitiative

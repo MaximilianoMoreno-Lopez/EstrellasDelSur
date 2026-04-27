@@ -8,14 +8,16 @@ let articles = await getCollection('noticias');
 articles.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const typeLabel = {
-  'Intercambio': 'Youth Exchange',
-  'Voluntariado': 'Voluntariado',
-  'Formación':    'Training Course',
+  'Intercambio':   'Youth Exchange',
+  'Voluntariado':  'Voluntariado',
+  'Formación':     'Training Course',
+  'Participación': 'Youth Participation',
 };
 const typeClass = {
-  'Intercambio': 'badge-teal',
-  'Voluntariado': 'badge-gold',
-  'Formación':    'badge-purple',
+  'Intercambio':   'badge-teal',
+  'Voluntariado':  'badge-gold',
+  'Formación':     'badge-purple',
+  'Participación': 'badge-sky',
 };
 ---
 

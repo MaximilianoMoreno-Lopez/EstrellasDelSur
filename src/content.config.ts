@@ -5,7 +5,7 @@ const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
-    type: z.enum(['Intercambio', 'Voluntariado', 'Formación']),
+    type: z.enum(['Intercambio', 'Voluntariado', 'Formación', 'Participación']),
     status: z.enum(['active', 'past']),
     flag: z.string(),
     description: z.string(),
@@ -26,7 +26,7 @@ const noticias = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/noticias' }),
   schema: z.object({
     title: z.string(),
-    type: z.enum(['Intercambio', 'Voluntariado', 'Formación']),
+    type: z.enum(['Intercambio', 'Voluntariado', 'Formación', 'Participación']),
     status: z.string().default('past'),
     order: z.number().default(99),
     date: z.string().optional(),
