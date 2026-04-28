@@ -1,6 +1,6 @@
 ---
 title: "DiáLogos Europeos"
-type: "Formación"
+type: "Participación"
 status: "past"
 order: 1.5
 date: "2026-03-08"
