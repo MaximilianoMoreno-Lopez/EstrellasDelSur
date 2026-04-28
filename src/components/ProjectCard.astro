@@ -47,7 +47,7 @@ const fallbackGradient = localInitiative
   <div class="card-image">
     {image ? (
       <img
-        src={`${base}/${image}`}
+        src={`${base}/${image.replace(/^\//, '')}`}
         alt={`Imagen de ${title}`}
         loading="lazy"
         decoding="async"

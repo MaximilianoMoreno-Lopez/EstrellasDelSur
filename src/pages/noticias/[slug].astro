@@ -101,7 +101,7 @@ const fallbackGradient = {
     {cover && (
       <img
         class="hero-bg-img"
-        src={`${base}/${cover}`}
+        src={`${base}/${cover.replace(/^\//, '')}`}
         alt=""
         aria-hidden="true"
         loading="eager"

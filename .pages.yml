@@ -5,11 +5,11 @@ media:
   - name: projects
     label: Imágenes de proyectos
     input: public/images/projects
-    output: /images/projects
+    output: images/projects
   - name: noticias
     label: Imágenes de artículos
     input: public/images/noticias
-    output: /images/noticias
+    output: images/noticias
 
 settings:
   merge: true

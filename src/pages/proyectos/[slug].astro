@@ -138,7 +138,7 @@ const breadcrumbs = [
     <div class="hero-image">
       {image ? (
         <img
-          src={`${base}/${image}`}
+          src={`${base}/${image.replace(/^\//, '')}`}
           alt={`Imagen de ${title}`}
           loading="eager"
           decoding="async"
@@ -191,7 +191,7 @@ const breadcrumbs = [
         {poster && (
           <figure class="content-poster">
             <img
-              src={`${base}/${poster}`}
+              src={`${base}/${poster.replace(/^\//, '')}`}
               alt={`Imagen de ${title}`}
               loading="eager"
               decoding="async"

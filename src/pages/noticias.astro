@@ -48,7 +48,7 @@ const typeClass = {
           >
             {article.data.cover && (
               <div class="article-cover">
-                <img src={`${base}/${article.data.cover}`} alt={article.data.title} loading="lazy" />
+                <img src={`${base}/${article.data.cover.replace(/^\//, '')}`} alt={article.data.title} loading="lazy" />
               </div>
             )}
             <div class="article-meta">
