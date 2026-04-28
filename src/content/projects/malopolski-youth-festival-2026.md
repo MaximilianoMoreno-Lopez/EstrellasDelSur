@@ -7,7 +7,7 @@ description: "El Małopolski Youth Festival 2026 es un proyecto de voluntariado 
 location: "Región de Małopolska, Polonia (principalmente Rabka-Zdrój)"
 year: 2026
 dates: "03/06/2026 – 07/07/2026"
-order: 2
+order: 3
 image: "images/projects/malopolski-youth-festival-2026.png"
 poster: "images/projects/malopolski-youth-festival-2026.png"
 apply: "https://forms.gle/c8Q8Pg2bJkAzbj5q7"

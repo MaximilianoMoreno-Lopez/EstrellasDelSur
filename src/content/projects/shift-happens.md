@@ -7,7 +7,7 @@ description: "El proyecto explora cómo las personas reaccionan ante la incertid
 location: "Moravec, República Checa"
 year: 2026
 dates: "21/06/2026 – 28/06/2026"
-order: 1
+order: 2
 image: "images/projects/shift-happens.png"
 poster: "images/projects/shift-happens.png"
 infopack: "https://drive.google.com/file/d/1FHnP8e3vBL6zY-pb2QqEJbUz5VuP-VTr/view?usp=drive_link"
