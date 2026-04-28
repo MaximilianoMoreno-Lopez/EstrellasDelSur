@@ -12,6 +12,8 @@ Del 12 al 19 de julio de 2025, diez jóvenes de España participaron en el curso
 
 Rodeados de naturaleza y en un ambiente seguro e inclusivo, vivieron ocho días de arte, autoconocimiento y convivencia intercultural .
 
+![Otoño en la ciudad de Telč, escenario de la formación en Moravia](/images/noticias/my-body-my-gender/img-1.jpg)
+
 ## Arte terapia y conexión personal Las mañanas arrancaban con una sesión de yoga para conectar con el cuerpo , y el resto del día se llenaba de actividades muy variadas: pintura, escritura, dinámicas de expresión corporal, creación libre y debates en grupo.
 
 Todo con un objetivo común: explorar la relación con el cuerpo, el género y la identidad personal . Entre las experiencias más especiales estuvo el land art con elementos naturales y la actividad de dibujar la silueta del propio cuerpo en tamaño real y decorarla con materiales diversos.

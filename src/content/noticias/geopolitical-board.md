@@ -15,6 +15,8 @@ Además de los logros lingüísticos, el proyecto ofreció un entorno de diversi
 
 Se establecieron lazos de amistad entre individuos provenientes de diversas culturas, y estas relaciones perduran hasta el día de hoy.
 
+![Participantes del intercambio Geopolitical Board en grupo](/images/noticias/geopolitical-board/img-1.jpg)
+
 Durante el periodo de participación, los asistentes se involucraron en una amplia gama de actividades que abarcaron desde emocionantes excursiones hasta eventos culturales y académicos.
 
 Estas actividades proporcionaron oportunidades constantes para el aprendizaje, el crecimiento personal y la diversión.
@@ -32,5 +34,7 @@ Las actividades relacionadas con el tema del Youth Exchange fueron igualmente ca
 Lo más destacable de esta experiencia fue el enfoque en el aprendizaje no formal, que nos permitió abordar temas complejos como los conflictos mundiales y sus consecuencias de una manera dinámica y participativa.
 
 A través de representaciones teatrales, proyecciones de películas, bailes y simulaciones, adquirimos un entendimiento más profundo y significativo de estos temas, lo que enriqueció enormemente nuestra experiencia educativa.
+
+![Una de las actividades grupales del proyecto en Fundão](/images/noticias/geopolitical-board/img-2.jpg)
 
 En conjunto, el proyecto contribuyó a empoderar a la juventud, permitiéndoles comprender y participar en cuestiones geopolíticas y de paz, promoviendo así un futuro más informado y comprometido.

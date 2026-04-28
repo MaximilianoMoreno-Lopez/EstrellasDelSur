@@ -10,6 +10,8 @@ cover: "images/noticias/connectart/cover.jpg"
 
 ¡Arranca nuestro nuevo proyecto Erasmus+… ConnectART! Este proyecto busca sensibilizar a los jóvenes sobre la inclusión y la diversidad a través de diversas formas de arte y herramientas digitales.
 
+![Participantes del proyecto ConnectART durante uno de sus encuentros](/images/noticias/connectart/img-1.jpg)
+
 Del 25 al 26 de enero, nos reunimos en la encantadora Alessandria, Italia, con dos increíbles organizaciones: DiversaMente APS (Italia) y Asociacija Tavo Europa (Lituania) para profundizar en los objetivos del proyecto y planificar las actividades que se llevarán a cabo durante este año.
 
 El pistoletazo de salida lo dimos con Dancing Diversity, celebrado del 20 al 25 de mayo en Romagnese, Italia, un taller que utilizó el baile como herramienta para promover la inclusión social y explorar diferentes formas de expresión artística.

@@ -9,7 +9,7 @@ cover: "images/noticias/dialogos-1.jpg"
 description: "Crónica de la segunda edición del Torneo de Debate DiáLogos Europeos en Toledo: tres días de argumentación, formación y convivencia europea entre jóvenes de toda España."
 ---
 
-Toledo se convirtió durante un fin de semana en escenario de la **segunda edición del Torneo de Debate DiáLogos Europeos**, una iniciativa de Estrellas del Sur que reunió a jóvenes de toda España en torno a la oratoria, el pensamiento crítico y los grandes temas de la Unión Europea.
+Toledo se convirtió durante un fin de semana en escenario de la **segunda edición del Torneo de Debate DiáLogos Europeos**, una iniciativa de Estrellas del Sur que reunió a jóvenes de toda España en torno a la oratoria, el pensamiento crítico y los grandes temas de la Unión Europea. *Conoce más sobre el [proyecto DiáLogos Europeos →](/proyectos/dialogos/)*.
 
 Tres días intensos en los que la palabra fue protagonista, pero también la convivencia, el aprendizaje compartido y las amistades nacidas al calor de un buen debate.
 
