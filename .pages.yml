@@ -97,6 +97,9 @@ content:
       - name: apply
         label: URL del formulario de inscripción
         type: string
+      - name: body
+        label: Contenido del proyecto (con encabezados, listas, imágenes…)
+        type: rich-text
 
   # ────────────────────────── NOTICIAS / ARTÍCULOS ──────────────────────────
   - name: noticias
@@ -152,3 +155,6 @@ content:
         label: Orden de aparición (menor = primero)
         type: number
         default: 99
+      - name: body
+        label: Contenido del artículo (con encabezados, listas, imágenes…)
+        type: rich-text
