@@ -1,0 +1,154 @@
+# Pages CMS configuration — https://pagescms.org/docs/
+# Acceso al panel: https://app.pagescms.org/
+
+media:
+  - name: projects
+    label: Imágenes de proyectos
+    input: public/images/projects
+    output: /images/projects
+  - name: noticias
+    label: Imágenes de artículos
+    input: public/images/noticias
+    output: /images/noticias
+
+settings:
+  merge: true
+
+content:
+  # ────────────────────────── PROYECTOS ──────────────────────────
+  - name: projects
+    label: Proyectos
+    type: collection
+    path: src/content/projects
+    filename: "{primary}.md"
+    view:
+      fields: [title, type, status, year, location]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+      search: [title, description, location]
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: type
+        label: Tipo de proyecto
+        type: select
+        required: true
+        options:
+          values:
+            - { label: "Intercambio (Youth Exchange)", value: "Intercambio" }
+            - { label: "Voluntariado", value: "Voluntariado" }
+            - { label: "Formación (Training Course)", value: "Formación" }
+            - { label: "Participación (Youth Participation)", value: "Participación" }
+      - name: status
+        label: Estado
+        type: select
+        required: true
+        options:
+          values:
+            - { label: "Activo (en marcha o próximo)", value: "active" }
+            - { label: "Finalizado", value: "past" }
+      - name: flag
+        label: Bandera (emoji del país, ej. 🇪🇸 🇪🇺)
+        type: string
+        required: true
+      - name: description
+        label: Descripción corta (1-2 frases, aparece en la card)
+        type: text
+        required: true
+      - name: image
+        label: Imagen de portada
+        type: image
+        options:
+          media: projects
+      - name: location
+        label: Lugar (ciudad, país)
+        type: string
+      - name: year
+        label: Año
+        type: number
+      - name: dates
+        label: Fechas (formato libre, ej. "05/07/2025 – 12/07/2025")
+        type: string
+      - name: order
+        label: Orden de aparición (menor = primero)
+        type: number
+        default: 99
+      - name: localInitiative
+        label: ¿Es una iniciativa local? (financiada por Junta de Andalucía / IAJ)
+        type: boolean
+        default: false
+      - name: coordinated
+        label: ¿Lo coordinamos nosotros? (proyecto Erasmus+ liderado por EdS)
+        type: boolean
+        default: false
+      - name: poster
+        label: Póster del proyecto (imagen opcional, mostrada arriba del contenido)
+        type: image
+        options:
+          media: projects
+      - name: infopack
+        label: URL del Infopack (Google Drive / PDF)
+        type: string
+      - name: apply
+        label: URL del formulario de inscripción
+        type: string
+
+  # ────────────────────────── NOTICIAS / ARTÍCULOS ──────────────────────────
+  - name: noticias
+    label: Artículos
+    type: collection
+    path: src/content/noticias
+    filename: "{primary}.md"
+    view:
+      fields: [title, type, date, location]
+      primary: title
+      sort: [order, date]
+      default:
+        sort: order
+        order: asc
+      search: [title, description, location]
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: type
+        label: Tipo
+        type: select
+        required: true
+        options:
+          values:
+            - { label: "Intercambio (Youth Exchange)", value: "Intercambio" }
+            - { label: "Voluntariado", value: "Voluntariado" }
+            - { label: "Formación (Training Course)", value: "Formación" }
+            - { label: "Participación (Youth Participation)", value: "Participación" }
+      - name: status
+        label: Estado
+        type: string
+        default: past
+      - name: cover
+        label: Imagen de portada
+        type: image
+        options:
+          media: noticias
+      - name: description
+        label: Resumen (1-2 frases)
+        type: text
+      - name: location
+        label: Lugar
+        type: string
+      - name: date
+        label: Fecha de publicación (YYYY-MM o YYYY-MM-DD)
+        type: string
+      - name: dates
+        label: Fechas del proyecto (formato libre)
+        type: string
+      - name: order
+        label: Orden de aparición (menor = primero)
+        type: number
+        default: 99
