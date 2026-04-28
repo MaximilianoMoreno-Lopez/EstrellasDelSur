@@ -8,6 +8,7 @@ year: 2026
 dates: "25/01/2026 – 02/02/2026"
 order: 54
 location: "Antalya, Turquía"
+image: "images/projects/cultural-diplomacy/cover.jpg"
 ---
 ## Datos del proyecto
 

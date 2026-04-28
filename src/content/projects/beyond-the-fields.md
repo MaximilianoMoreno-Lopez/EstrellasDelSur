@@ -8,6 +8,7 @@ dates: "07/10/2024 – 13/10/2024"
 order: 16
 location: "Castelo Novo, Portugal"
 year: 2024
+image: "images/projects/beyond-the-fields/cover.jpg"
 ---
 ## Datos del proyecto
 

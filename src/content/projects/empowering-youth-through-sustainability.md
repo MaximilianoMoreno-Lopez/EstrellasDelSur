@@ -8,6 +8,7 @@ year: 2025
 dates: "12/04/2025 – 18/04/2025"
 order: 71
 location: "Targu Jiu, Rumanía"
+image: "images/projects/empowering-youth-through-sustainability/cover.jpg"
 ---
 ## Datos del proyecto
 

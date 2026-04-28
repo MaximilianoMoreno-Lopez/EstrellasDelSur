@@ -8,6 +8,7 @@ year: 2025
 dates: "18/05/2025 – 26/05/2025"
 order: 37
 location: "Fundao, Portugal"
+image: "images/projects/creating-sustainable-projects/cover.jpg"
 ---
 ## Datos del proyecto
 

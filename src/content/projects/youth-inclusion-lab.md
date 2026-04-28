@@ -8,6 +8,7 @@ year: 2026
 dates: "12/01/2026 – 20/01/2026"
 order: 56
 location: "Gazantiep, Turquía"
+image: "images/projects/youth-inclusion-lab/cover.jpg"
 ---
 ## Datos del proyecto
 

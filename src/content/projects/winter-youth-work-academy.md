@@ -8,6 +8,7 @@ year: 2025
 dates: "01/12/2025 – 09/12/2025"
 order: 51
 location: "Rabka-Zdrój, Polonia"
+image: "images/projects/winter-youth-work-academy/cover.jpg"
 ---
 ## Datos del proyecto
 

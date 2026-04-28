@@ -8,6 +8,7 @@ year: 2024
 dates: "23/06/2024 – 29/06/2024"
 order: 30
 location: "Lisboa (Portugal)"
+image: "images/projects/embrace-the-fight-against-food-waste-challenge/cover.png"
 ---
 ## Datos del proyecto
 

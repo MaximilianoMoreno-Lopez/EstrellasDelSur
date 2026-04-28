@@ -5,6 +5,7 @@ status: "past"
 order: 14
 location: "Kakopetria, Chipre"
 description: "Del 24 de octubre al 2 de noviembre de 2025, un grupo de jóvenes de distintos países europeos se reunió en Kakopetria (Chipre) para participar en el proyecto Ec"
+cover: "images/noticias/eco-youth/cover.png"
 ---
 
 Del 24 de octubre al 2 de noviembre de 2025, un grupo de jóvenes de distintos países europeos se reunió en Kakopetria (Chipre) para participar en el proyecto Eco‑YOUth: United for a Sustainable Future.

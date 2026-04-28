@@ -4,6 +4,7 @@ type: "Intercambio"
 status: "past"
 order: 10
 description: "El proyecto Beyond the Fields , organizado por la asociación portuguesa Selfmade en colaboración con diferentes entidades europeas, ha llegado a su fin, dejando"
+cover: "images/noticias/beyond-the-fields/cover.jpg"
 ---
 
 El proyecto Beyond the Fields , organizado por la asociación portuguesa Selfmade en colaboración con diferentes entidades europeas, ha llegado a su fin, dejando una huella imborrable en sus participantes.

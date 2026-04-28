@@ -5,6 +5,7 @@ status: "past"
 order: 6
 location: "Romagnese, Italia"
 description: "¡Arranca nuestro nuevo proyecto Erasmus+… ConnectART! Este proyecto busca sensibilizar a los jóvenes sobre la inclusión y la diversidad a través de diversas for"
+cover: "images/noticias/connectart/cover.jpg"
 ---
 
 ¡Arranca nuestro nuevo proyecto Erasmus+… ConnectART! Este proyecto busca sensibilizar a los jóvenes sobre la inclusión y la diversidad a través de diversas formas de arte y herramientas digitales.

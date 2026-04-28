@@ -8,6 +8,7 @@ location: "Rabka-Zdrój, Polonia"
 year: 2025
 dates: "25/04/2025 – 31/05/2025"
 order: 99
+image: "images/projects/lesser-poland-youth-festival/cover.jpg"
 ---
 
 ## Datos del proyecto

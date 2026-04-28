@@ -5,6 +5,7 @@ status: "past"
 order: 16
 location: "Hacienda y en la Seguridad, Social"
 description: "Nuestra misión es potenciar el liderazgo, la igualdad, la conciencia medioambiental y la inclusión mediante actividades formativas presenciales y colaborativas,"
+cover: "images/noticias/e-youth-lab/cover.png"
 ---
 
 ## ¿Qué es E-YouthLab? ¡Bienvenid@s a E-Youth Lab ! Una inspiradora iniciativa que apuesta por el empoderamiento juvenil a través de talleres, mentorías y experiencias de participación activa en el diseño de proyectos sostenibles y accesibles.

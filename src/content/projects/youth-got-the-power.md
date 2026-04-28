@@ -8,6 +8,7 @@ year: 2024
 dates: "21/04/2024 – 28/04/2024"
 order: 36
 location: "Osijek, Croatia"
+image: "images/projects/youth-got-the-power/cover.png"
 ---
 ## Datos del proyecto
 

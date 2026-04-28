@@ -8,6 +8,7 @@ year: 2022
 dates: "03/06/2022 – 11/06/2022"
 order: 16
 location: "Sibari (Italia)"
+image: "images/projects/digital-creative-minds/cover.png"
 ---
 ## Datos del proyecto
 

@@ -8,6 +8,7 @@ year: 2025
 dates: "11/07/2025 – 19/07/2025"
 order: 41
 location: "Rabka-Zdrój, Polonia"
+image: "images/projects/walk-in-my-shoes/cover.jpg"
 ---
 ## Datos del proyecto
 

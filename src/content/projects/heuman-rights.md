@@ -8,6 +8,7 @@ year: 2024
 dates: "08/04/2024 – 16/04/2024"
 order: 31
 location: "Enying, Hungria 3"
+image: "images/projects/heuman-rights/cover.png"
 ---
 ## Datos del proyecto
 

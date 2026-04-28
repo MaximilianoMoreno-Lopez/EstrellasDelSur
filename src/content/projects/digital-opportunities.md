@@ -8,6 +8,7 @@ year: 2024
 dates: "17/05/2024 – 26/05/2024"
 order: 34
 location: "Horezu, Rumania"
+image: "images/projects/digital-opportunities/cover.png"
 ---
 ## Datos del proyecto
 

@@ -5,6 +5,7 @@ status: "past"
 order: 13
 location: "Moravia, República Checa"
 description: "Del 12 al 19 de julio de 2025, diez jóvenes de España participaron en el curso de formación My Body, My Gender, celebrado en Moravia, República Checa."
+cover: "images/noticias/my-body-my-gender/cover.jpg"
 ---
 
 Del 12 al 19 de julio de 2025, diez jóvenes de España participaron en el curso de formación My Body, My Gender, celebrado en Moravia, República Checa.

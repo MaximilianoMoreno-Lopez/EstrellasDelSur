@@ -8,6 +8,7 @@ year: 2025
 dates: "25/06/2025 – 01/07/2025"
 order: 40
 location: "Estambul (Turquía) en junio/julio y Córdoba (España) en septiembre"
+image: "images/projects/this-is-our-story/cover.jpg"
 ---
 ## Datos del proyecto
 

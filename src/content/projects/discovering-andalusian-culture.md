@@ -8,6 +8,7 @@ year: 2024
 dates: "22/07/2024 – 30/07/2024"
 order: 33
 location: "Andalucía (Sevilla, Granada, Málaga y Córdoba)"
+image: "images/projects/discovering-andalusian-culture/cover.png"
 ---
 ## Datos del proyecto
 

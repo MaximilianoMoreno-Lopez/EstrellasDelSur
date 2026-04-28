@@ -8,6 +8,7 @@ year: 2025
 dates: "06/09/2025 – 13/09/2025"
 order: 44
 location: "Moravia, República Checa"
+image: "images/projects/smart-tools-integrating-ai-into-erasmus-projects/cover.jpg"
 ---
 ## Datos del proyecto
 

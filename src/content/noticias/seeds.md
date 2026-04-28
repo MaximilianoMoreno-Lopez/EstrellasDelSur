@@ -5,6 +5,7 @@ status: "past"
 order: 11
 location: "Horezu, Rumanía! Del 30 de noviembre al"
 description: "Estrellas del Sur ¡Un viaje inolvidable hacia la sostenibilidad y el desarrollo personal en Horezu, Rumanía! Del 30 de noviembre al 8 de diciembre de 2024, dos "
+cover: "images/noticias/seeds/cover.jpg"
 ---
 
 Estrellas del Sur ¡Un viaje inolvidable hacia la sostenibilidad y el desarrollo personal en Horezu, Rumanía! Del 30 de noviembre al 8 de diciembre de 2024, dos jóvenes trabajadores juveniles españoles, Izan y Javier, participaron en el seminario Erasmus+ "Sustainability Education and Ecological Development for Society" (SEEDS).

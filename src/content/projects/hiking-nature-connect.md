@@ -8,6 +8,7 @@ year: 2026
 dates: "28/03/2026 – 04/04/2026"
 order: 55
 location: "Almodóvar del Río (Córdoba) en marzo, Vrchlabí (República Checa) en agosto"
+image: "images/projects/hiking-nature-connect/cover.jpg"
 ---
 ## Datos del proyecto
 

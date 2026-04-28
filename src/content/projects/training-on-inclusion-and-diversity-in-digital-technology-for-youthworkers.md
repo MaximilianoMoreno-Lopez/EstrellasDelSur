@@ -8,6 +8,7 @@ year: 2025
 dates: "02/12/2025 – 06/12/2025"
 order: 52
 location: "Targu Jiu, Rumanía"
+image: "images/projects/training-on-inclusion-and-diversity-in-digital-technology-for-youthworkers/cover.jpg"
 ---
 ## Datos del proyecto
 

@@ -7,6 +7,7 @@ description: "Proyecto de voluntariado Erasmus+ sobre voluntariado grupal en act
 year: 2026
 order: 58
 location: "Gaziantep, Turquía"
+image: "images/projects/volunteering-at-hku/cover.png"
 ---
 ## Datos del proyecto
 

@@ -5,6 +5,7 @@ status: "past"
 order: 8
 location: "Vrchlabí, República Checa"
 description: "¡Una aventura inolvidable en la naturaleza! Del 25 de agosto al 1 de septiembre de 2024, seis jóvenes españoles de Estrellas del Sur tuvieron la oportunidad de "
+cover: "images/noticias/on-the-way-to-myself/cover.jpg"
 ---
 
 ¡Una aventura inolvidable en la naturaleza! Del 25 de agosto al 1 de septiembre de 2024, seis jóvenes españoles de Estrellas del Sur tuvieron la oportunidad de participar en el intercambio juvenil On the Way to Myself: Outdoor Adventure , celebrado en Vrchlabí, República Checa . Durante estos días, Noelia, Álvaro, Nuria, Daniel, Claudia y Estrella compartieron experiencias inolvidables junto a participantes de Turquía, Eslovaquia, Hungría y la propia Chequia.

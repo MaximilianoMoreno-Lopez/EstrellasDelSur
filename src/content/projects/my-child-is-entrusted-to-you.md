@@ -8,6 +8,7 @@ year: 2022
 dates: "12/09/2022 – 19/09/2022"
 order: 20
 location: "Ankara (Turkía"
+image: "images/projects/my-child-is-entrusted-to-you/cover.png"
 ---
 ## Datos del proyecto
 

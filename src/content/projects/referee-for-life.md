@@ -8,6 +8,7 @@ year: 2022
 dates: "21/09/2022 – 28/09/2022"
 order: 17
 location: "Molfetta/Puglia (Italia)"
+image: "images/projects/referee-for-life/cover.png"
 ---
 ## Datos del proyecto
 

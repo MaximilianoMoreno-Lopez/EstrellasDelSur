@@ -8,6 +8,7 @@ year: 2025
 dates: "01/11/2025 – 09/11/2025"
 order: 50
 location: "Gaziantep, Turquía"
+image: "images/projects/empowering-recognition-and-growth/cover.png"
 ---
 ## Datos del proyecto
 

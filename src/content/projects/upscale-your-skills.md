@@ -8,6 +8,7 @@ year: 2023
 dates: "14/10/2023 – 22/10/2023"
 order: 28
 location: "Kaunas (Lituania)"
+image: "images/projects/upscale-your-skills/cover.png"
 ---
 ## Datos del proyecto
 

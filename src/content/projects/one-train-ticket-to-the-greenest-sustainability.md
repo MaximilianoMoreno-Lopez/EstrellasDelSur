@@ -8,6 +8,7 @@ year: 2022
 dates: "29/08/2022 – 06/09/2022"
 order: 21
 location: "Kose-Uuemõisa(Estonia)"
+image: "images/projects/one-train-ticket-to-the-greenest-sustainability/cover.png"
 ---
 ## Datos del proyecto
 

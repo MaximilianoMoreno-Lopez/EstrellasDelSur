@@ -8,6 +8,7 @@ dates: "02/02/2026 – 05/03/2026"
 order: 10
 location: "Rabka-Zdrój (Polonia)"
 year: 2026
+image: "images/projects/yric-ii/cover.png"
 ---
 ## Datos del proyecto
 

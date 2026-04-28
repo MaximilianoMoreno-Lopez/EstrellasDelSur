@@ -8,6 +8,7 @@ year: 2025
 dates: "23/08/2025 – 03/09/2025"
 order: 39
 location: "Airuno, Lecco (Italia)"
+image: "images/projects/active-for-nature-united-in-diversity/cover.jpg"
 ---
 ## Datos del proyecto
 

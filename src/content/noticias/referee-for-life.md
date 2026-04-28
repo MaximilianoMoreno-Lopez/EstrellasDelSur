@@ -4,6 +4,7 @@ type: "Intercambio"
 status: "past"
 order: 1.7
 description: "A día de hoy puede decirse que la práctica deportiva es uno de los aspectos más importantes a practicar en nuestra vida diaria, ya que no solo es bueno para nue"
+cover: "images/noticias/referee-for-life/cover.png"
 ---
 
 A día de hoy puede decirse que la práctica deportiva es uno de los aspectos más importantes a practicar en nuestra vida diaria, ya que no solo es bueno para nuestro cuerpo y para nuestra salud mental, sino que también nos ayuda a prevenir multitud de patologías.

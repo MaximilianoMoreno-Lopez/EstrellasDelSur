@@ -8,6 +8,7 @@ year: 2023
 dates: "23/07/2023 – 31/07/2023"
 order: 26
 location: "Rabka-zdrój (Polonia)"
+image: "images/projects/digital-detox/cover.png"
 ---
 ## Datos del proyecto
 

@@ -4,6 +4,7 @@ type: "Intercambio"
 status: "past"
 order: 5
 description: "Durante el transcurso de este proyecto, los participantes experimentaron un notable avance en su dominio del idioma inglés, inicialmente ubicado en un nivel int"
+cover: "images/noticias/geopolitical-board/cover.png"
 ---
 
 Durante el transcurso de este proyecto, los participantes experimentaron un notable avance en su dominio del idioma inglés, inicialmente ubicado en un nivel intermedio.

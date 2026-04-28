@@ -8,6 +8,7 @@ year: 2026
 dates: "04/05/2026 – 10/05/2026"
 order: 60
 location: "Fethiye, Turquía"
+image: "images/projects/crossroads-cultural-diplomacy-seminar/cover.jpg"
 ---
 ## Datos del proyecto
 

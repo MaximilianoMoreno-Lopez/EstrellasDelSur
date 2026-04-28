@@ -8,6 +8,7 @@ year: 2025
 dates: "01/09/2025 – 10/09/2025"
 order: 45
 location: "Arad, Rumanía"
+image: "images/projects/peers-for-inclusivity-tat/cover.jpg"
 ---
 ## Datos del proyecto
 

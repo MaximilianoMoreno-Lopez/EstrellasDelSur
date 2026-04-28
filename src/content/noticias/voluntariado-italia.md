@@ -5,6 +5,7 @@ status: "past"
 order: 12
 location: "Molfetta Sergio, Martín tuvo la oportunidad de p"
 description: "Una experiencia educativa en Molfetta Sergio Martín tuvo la oportunidad de participar en un proyecto de voluntariado en el Istituto Comprensivo Battisti-Pascoli"
+cover: "images/noticias/voluntariado-italia/cover.jpg"
 ---
 
 Una experiencia educativa en Molfetta Sergio Martín tuvo la oportunidad de participar en un proyecto de voluntariado en el Istituto Comprensivo Battisti-Pascoli , en la ciudad de Molfetta, Italia, gracias al programa Erasmus+ y a la organización coordinadora InCo.

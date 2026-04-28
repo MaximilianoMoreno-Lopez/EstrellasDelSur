@@ -8,6 +8,7 @@ year: 2023
 dates: "10/07/2023 – 16/07/2023"
 order: 25
 location: "Konya (Turquía)"
+image: "images/projects/feel-like-a-new/cover.png"
 ---
 ## Datos del proyecto
 

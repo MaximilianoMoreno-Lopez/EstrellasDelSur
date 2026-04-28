@@ -8,6 +8,7 @@ dates: "06/07/2024 – 12/07/2024"
 order: 11
 location: "Almodóvar del Río (Córdoba) en julio y Caen (Francia) en agosto"
 year: 2024
+image: "images/projects/crossing-borders/cover.png"
 ---
 ## Datos del proyecto
 

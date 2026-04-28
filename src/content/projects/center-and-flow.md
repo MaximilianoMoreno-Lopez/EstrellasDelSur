@@ -8,6 +8,7 @@ year: 2025
 dates: "03/08/2025 – 14/08/2025"
 order: 42
 location: "Bátonyterenye, Hungría"
+image: "images/projects/center-and-flow/cover.jpg"
 ---
 ## Datos del proyecto
 

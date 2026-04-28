@@ -8,6 +8,7 @@ year: 2022
 dates: "05/10/2022 – 13/10/2022"
 order: 23
 location: "Rabka-Zdrój (Polonia)"
+image: "images/projects/gamification-digital-skills-in-youth-work/cover.png"
 ---
 ## Datos del proyecto
 

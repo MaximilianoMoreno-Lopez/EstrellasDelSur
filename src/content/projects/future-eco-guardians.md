@@ -8,6 +8,7 @@ year: 2025
 dates: "05/07/2025 – 12/07/2025"
 order: 46
 location: "Almodóvar del Río (Córdoba) en julio , Vrchlabí (República Checa) en agosto y Hérouville Saint-Clair (Francia) en verano de 2026"
+image: "images/projects/future-eco-guardians/cover.jpg"
 ---
 ## Datos del proyecto
 

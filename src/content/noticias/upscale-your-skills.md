@@ -4,6 +4,7 @@ type: "Intercambio"
 status: "past"
 order: 3
 description: "El proyecto Upscale your skills consistió en una semana de descubrimientos en la que exploramos el mundo de youthpass y sus 8 competencias clave, mejoramos nues"
+cover: "images/noticias/upscale-your-skills/cover.png"
 ---
 
 El proyecto Upscale your skills consistió en una semana de descubrimientos en la que exploramos el mundo de youthpass y sus 8 competencias clave, mejoramos nuestras habilidades de negociación a través de BATNA (Best Alternative to a Negotiated Agreement) y obtuvimos valiosos conocimientos de la startup de aplicaciones Gilia.

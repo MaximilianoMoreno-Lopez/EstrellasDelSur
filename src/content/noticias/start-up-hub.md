@@ -4,6 +4,7 @@ type: "Intercambio"
 status: "past"
 order: 4
 description: "El impactante proyecto 'Start-Up Hub' nos sumergió en una travesía transformadora, revelándonos la capacidad de generar cambios significativos en la sociedad a "
+cover: "images/noticias/start-up-hub/cover.png"
 ---
 
 El impactante proyecto "Start-Up Hub" nos sumergió en una travesía transformadora, revelándonos la capacidad de generar cambios significativos en la sociedad a través del emprendimiento social.

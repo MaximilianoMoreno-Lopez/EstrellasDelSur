@@ -8,6 +8,7 @@ year: 2022
 dates: "11/07/2022 – 23/07/2022"
 order: 15
 location: "Lommel (Bélgica)"
+image: "images/projects/building-bridges-cause-communication-connects/cover.png"
 ---
 ## Datos del proyecto
 

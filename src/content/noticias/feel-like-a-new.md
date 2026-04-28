@@ -4,6 +4,7 @@ type: "Intercambio"
 status: "past"
 order: 2
 description: "Aparte de convivir en un ambiente internacional, nuestro equipo ha adquirido nuevas habilidades que servirán tanto para su desarrollo personal como en su futuro"
+cover: "images/noticias/feel-like-a-new/cover.png"
 ---
 
 Aparte de convivir en un ambiente internacional, nuestro equipo ha adquirido nuevas habilidades que servirán tanto para su desarrollo personal como en su futuro laboral😁 Durante esta semana han podido reflexionar acerca de los retos que su profesión exige y las diferencias que cada país ofrece en ello.

@@ -8,6 +8,7 @@ year: 2024
 dates: "24/08/2024 – 04/09/2024"
 order: 35
 location: "Airuno, Lecco (Italia)"
+image: "images/projects/bodies-minds-and-souls-in-the-nature/cover.jpg"
 ---
 ## Datos del proyecto
 

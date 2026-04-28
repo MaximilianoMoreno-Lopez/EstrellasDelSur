@@ -8,6 +8,7 @@ year: 2025
 dates: "16/11/2025 – 25/11/2025"
 order: 47
 location: "Baile Govora, Rumanía"
+image: "images/projects/peers-for-diversity/cover.jpg"
 ---
 ## Datos del proyecto
 
