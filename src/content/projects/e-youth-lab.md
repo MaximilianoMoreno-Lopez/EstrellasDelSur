@@ -8,7 +8,7 @@ year: 2025
 order: 49
 location: "Almodóvar del Río · Córdoba"
 localInitiative: true
-image: "images/projects/e-youth-lab/cover.jpg"
+image: "images/projects/e-youth-lab/cover.png"
 ---
 
 ## ¿Qué es E-YouthLab?

@@ -40,12 +40,24 @@ export default defineConfig({
     }),
   ],
   redirects: {
-    // Old WordPress project/noticia URLs → new Astro routes
-    '/el-futuro-de-andalucia-es-ahora/':        '/noticias/el-futuro-de-andalucia-es-ahora/',
+    // Old WordPress project URLs → new Astro routes
+    '/el-futuro-de-andalucia-es-ahora/':        '/proyectos/el-futuro-de-andalucia-es-ahora/',
     '/e-youth-lab/':                             '/proyectos/e-youth-lab/',
     '/social-ecologic-actions/':                 '/proyectos/social-ecologic-actions/',
     '/upscale-your-skills/':                     '/proyectos/upscale-your-skills/',
     '/empowering-recognition-and-growth/':       '/proyectos/empowering-recognition-and-growth/',
     '/volunteering-at-hku/':                     '/proyectos/volunteering-at-hku/',
+
+    // Removed noticias → corresponding project page (preserve indexed links)
+    '/noticias/referee-for-life/':                  '/proyectos/referee-for-life/',
+    '/noticias/feel-like-a-new/':                   '/proyectos/feel-like-a-new/',
+    '/noticias/upscale-your-skills/':               '/proyectos/upscale-your-skills/',
+    '/noticias/start-up-hub/':                      '/proyectos/startup-hub/',
+    '/noticias/embrace-food-waste/':                '/proyectos/embrace-the-fight-against-food-waste-challenge/',
+    '/noticias/beyond-the-fields/':                 '/proyectos/beyond-the-fields/',
+    '/noticias/eco-youth/':                         '/proyectos/eco-youth/',
+    '/noticias/el-futuro-de-andalucia-es-ahora/':   '/proyectos/el-futuro-de-andalucia-es-ahora/',
+    '/noticias/e-youth-lab/':                       '/proyectos/e-youth-lab/',
+    '/noticias/seeds/':                             '/noticias/',
   },
 });
