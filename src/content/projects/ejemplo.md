@@ -11,6 +11,7 @@ dates: 050505 - 050505
 order: 99
 localInitiative: false
 coordinated: false
+poster: images/projects/Copia de Logo Vectorizado (150 x 150 px).png
 infopack: https://drive.google.com/file/d/1FHnP8e3vBL6zY-pb2QqEJbUz5VuP-VTr/view?usp=drive_link
 apply: https://drive.google.com/file/d/1FHnP8e3vBL6zY-pb2QqEJbUz5VuP-VTr/view?usp=drive_link
 ---
