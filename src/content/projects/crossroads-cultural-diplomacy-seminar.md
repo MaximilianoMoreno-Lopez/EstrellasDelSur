@@ -3,7 +3,7 @@ title: "Crossroads: Cultural Diplomacy Seminar"
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
-description: "Curso de formación Erasmus+ sobre multiculturalidad"
+description: "En un mundo cada vez más marcado por la polarización, la desinformación y la fragmentación social, la diplomacia cultural surge como un puente entre personas, naciones y generaciones."
 year: 2026
 dates: "04/05/2026 – 10/05/2026"
 order: 60

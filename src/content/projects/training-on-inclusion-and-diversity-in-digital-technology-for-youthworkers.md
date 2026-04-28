@@ -3,7 +3,7 @@ title: "Training on Inclusion and Diversity in Digital Technology for YouthWorke
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
-description: "Curso de formación Erasmus+ sobre inclusión y diversidad"
+description: "Explorar cómo la tecnología digital puede fomentar la inclusión y la diversidad en el trabajo con jóvenes."
 year: 2025
 dates: "02/12/2025 – 06/12/2025"
 order: 52

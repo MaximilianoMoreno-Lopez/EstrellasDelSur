@@ -3,7 +3,7 @@ title: "Entrepreneurship Programme for Unemployed Youth"
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
-description: "Curso de formación Erasmus+ sobre emprendimiento"
+description: "Entrepreneurship Programme for Unemployed Youth es un curso internacional de formación Erasmus+ centrado en el emprendimiento juvenil y la empleabilidad."
 year: 2026
 dates: "14/04/2026 – 22/04/2026"
 order: 62

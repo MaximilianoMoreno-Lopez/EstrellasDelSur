@@ -3,7 +3,7 @@ title: "Lesser Poland Youth Festival"
 type: "Voluntariado"
 status: "past"
 flag: "🇵🇱"
-description: "Proyecto de voluntariado Erasmus+ sobre desarrollo de un festival juvenil europeo en Rabka-Zdrój, Polonia"
+description: "El Lesser Poland Youth Festival es la evolución del Rabka Youth Festival, un evento que busca involucrar a los jóvenes en el activismo, la cultura y el diálogo con los responsables de la toma de decisiones."
 location: "Rabka-Zdrój, Polonia"
 year: 2025
 dates: "25/04/2025 – 31/05/2025"

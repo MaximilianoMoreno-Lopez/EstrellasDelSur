@@ -3,7 +3,7 @@ title: "Gamification & Digital Skills in Youth Work"
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
-description: "Curso de formación Erasmus+ sobre habilidades digitales"
+description: "Las personas que trabajamos con la juventud, tenemos que afrontar muchos retos en nuestro campo de trabajo. Los jóvenes se adaptan muy rápido a nuevos hábitos y nosotros tenemos que aprender a hacerlo también."
 year: 2022
 dates: "05/10/2022 – 13/10/2022"
 order: 23

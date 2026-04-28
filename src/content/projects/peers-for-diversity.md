@@ -3,7 +3,7 @@ title: "Peers for Diversity"
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
-description: "Curso de formación Erasmus+ sobre diversidad, inclusión y educación intercultural"
+description: "Peers for Diversity es una formación diseñada para empoderar a trabajadores juveniles, educadores y formadores en la creación de espacios inclusivos y diversos."
 year: 2025
 dates: "16/11/2025 – 25/11/2025"
 order: 47

@@ -3,7 +3,7 @@ title: "Małopolski Youth Festival 2026"
 type: "Voluntariado"
 status: "active"
 flag: "🇵🇱"
-description: "Proyecto de voluntariado Erasmus+ sobre organización de un festival juvenil europeo en la región de Małopolska, Polonia"
+description: "El Małopolski Youth Festival 2026 es un proyecto de voluntariado internacional en el que jóvenes de distintos países colaboran en la organización de un festival juvenil en la región de Małopolska, Polonia."
 location: "Región de Małopolska, Polonia (principalmente Rabka-Zdrój)"
 year: 2026
 dates: "03/06/2026 – 07/07/2026"

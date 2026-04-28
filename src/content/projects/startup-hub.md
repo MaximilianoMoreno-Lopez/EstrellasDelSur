@@ -3,7 +3,7 @@ title: "Start-Up Hub"
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
-description: "Curso de formación Erasmus+ sobre emprendimiento"
+description: "El proyecto «Start-Up Hub» busca enseñar cómo se puede crear una diferencia en la sociedad, transformando las necesidades de esta y las ideas de unas cuantas personas con una mente emprendedora, en negocios."
 dates: "17/09/2023 – 28/09/2023"
 order: 17
 location: "Castelo Novo (Portugal)"

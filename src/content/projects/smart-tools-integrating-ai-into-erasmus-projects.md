@@ -3,7 +3,7 @@ title: "Smart Tools: Integrating AI into Erasmus+ Projects"
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
-description: "Curso de formación Erasmus+ sobre transformación digital"
+description: "Smart Tools: Integrating AI into Erasmus+ Projects es una formación para personas que trabajan con jóvenes y quieren empezar a usar la inteligencia artificial como aliada en sus proyectos."
 year: 2025
 dates: "06/09/2025 – 13/09/2025"
 order: 44

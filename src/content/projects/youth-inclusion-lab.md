@@ -3,7 +3,7 @@ title: "Youth Inclusion Lab"
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
-description: "Curso de formación Erasmus+ sobre inclusión e innovación"
+description: "Youth Inclusion Lab es un curso de formación internacional Erasmus+ que apuesta por algo tan potente como urgente: construir una Europa más inclusiva, empática y participativa, donde cada joven, venga de donde venga, pueda encontrar su…"
 year: 2026
 dates: "12/01/2026 – 20/01/2026"
 order: 56

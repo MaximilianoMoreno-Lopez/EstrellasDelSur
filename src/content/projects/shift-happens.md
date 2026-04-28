@@ -3,7 +3,7 @@ title: "Shift Happens"
 type: "Formación"
 status: "active"
 flag: "🇨🇿"
-description: "Curso de formación Erasmus+ sobre adaptabilidad, gestión del cambio y desarrollo de competencias en el trabajo juvenil"
+description: "El proyecto explora cómo las personas reaccionan ante la incertidumbre, el estrés y nuevas situaciones, y cómo estos desafíos pueden convertirse en oportunidades de crecimiento personal y profesional."
 location: "Moravec, República Checa"
 year: 2026
 dates: "21/06/2026 – 28/06/2026"
