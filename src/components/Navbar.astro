@@ -139,12 +139,22 @@ function isParentActive(link: NavLink): boolean {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  function setMobileLinkAccess(visible: boolean) {
+    mobileNav.querySelectorAll<HTMLAnchorElement>('a').forEach(a => {
+      if (visible) a.removeAttribute('tabindex');
+      else a.setAttribute('tabindex', '-1');
+    });
+  }
+  // Initial state: closed → links not focusable
+  setMobileLinkAccess(false);
+
   hamburger.addEventListener('click', () => {
     const open = hamburger.getAttribute('aria-expanded') === 'true';
     hamburger.setAttribute('aria-expanded', String(!open));
     hamburger.classList.toggle('is-open', !open);
     mobileNav.classList.toggle('is-open', !open);
     mobileNav.setAttribute('aria-hidden', String(open));
+    setMobileLinkAccess(!open);
   });
 
   mobileNav.querySelectorAll('a').forEach(a => {
@@ -153,6 +163,7 @@ function isParentActive(link: NavLink): boolean {
       hamburger.classList.remove('is-open');
       mobileNav.classList.remove('is-open');
       mobileNav.setAttribute('aria-hidden', 'true');
+      setMobileLinkAccess(false);
     });
   });
 

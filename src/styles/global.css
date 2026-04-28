@@ -1,5 +1,4 @@
 /* ─── Fonts ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
 /* ─── Design Tokens ─────────────────────────────────── */
 :root {
@@ -134,11 +133,11 @@ h1, h2, h3, h4, h5 {
 }
 
 .btn-primary {
-  background: var(--teal);
+  background: #0a7270;
   color: #fff;
 }
 .btn-primary:hover {
-  background: var(--teal-light);
+  background: var(--teal);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(13,148,136,.35);
 }
