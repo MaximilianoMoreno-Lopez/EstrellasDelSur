@@ -1,0 +1,67 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  width?: number | string;
+  height?: number | string;
+  ariaHidden?: boolean;
+}
+
+const {
+  src,
+  alt,
+  loading = 'lazy',
+  decoding = 'async',
+  fetchpriority,
+  class: className,
+  width,
+  height,
+  ariaHidden = false,
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const clean = src.replace(/^\//, '');
+const fullSrc = `${base}/${clean}`;
+
+const isRaster = /\.(jpe?g|png)$/i.test(clean);
+const webpSrc = isRaster ? fullSrc.replace(/\.(jpe?g|png)$/i, '.webp') : null;
+---
+
+{webpSrc ? (
+  <picture class="estrellas-picture">
+    <source srcset={webpSrc} type="image/webp" />
+    <img
+      src={fullSrc}
+      alt={alt}
+      loading={loading}
+      decoding={decoding}
+      fetchpriority={fetchpriority}
+      class={className}
+      width={width}
+      height={height}
+      aria-hidden={ariaHidden ? 'true' : undefined}
+    />
+  </picture>
+) : (
+  <img
+    src={fullSrc}
+    alt={alt}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    class={className}
+    width={width}
+    height={height}
+    aria-hidden={ariaHidden ? 'true' : undefined}
+  />
+)}
+
+<style is:global>
+  picture.estrellas-picture {
+    display: contents;
+  }
+</style>

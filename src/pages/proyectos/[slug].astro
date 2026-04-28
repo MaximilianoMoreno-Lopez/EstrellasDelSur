@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Picture from '../../components/Picture.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -137,11 +138,10 @@ const breadcrumbs = [
   <section class="project-hero">
     <div class="hero-image">
       {image ? (
-        <img
-          src={`${base}/${image.replace(/^\//, '')}`}
+        <Picture
+          src={image}
           alt={`Imagen de ${title}`}
           loading="eager"
-          decoding="async"
           fetchpriority="high"
         />
       ) : (
@@ -190,11 +190,10 @@ const breadcrumbs = [
       <article class="project-content prose fade-in">
         {poster && (
           <figure class="content-poster">
-            <img
-              src={`${base}/${poster.replace(/^\//, '')}`}
+            <Picture
+              src={poster}
               alt={`Imagen de ${title}`}
               loading="eager"
-              decoding="async"
             />
           </figure>
         )}

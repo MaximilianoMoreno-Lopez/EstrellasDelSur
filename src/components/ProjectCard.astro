@@ -1,4 +1,6 @@
 ---
+import Picture from './Picture.astro';
+
 interface Props {
   title: string;
   type: 'Intercambio' | 'Voluntariado' | 'Formación' | 'Participación';
@@ -46,11 +48,10 @@ const fallbackGradient = localInitiative
   <!-- Imagen destacada -->
   <div class="card-image">
     {image ? (
-      <img
-        src={`${base}/${image.replace(/^\//, '')}`}
+      <Picture
+        src={image}
         alt={`Imagen de ${title}`}
         loading="lazy"
-        decoding="async"
       />
     ) : (
       <div class="card-image-fallback" style={`background: ${fallbackGradient}`}>

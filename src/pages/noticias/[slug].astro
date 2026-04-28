@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Picture from '../../components/Picture.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('noticias');
@@ -99,13 +100,12 @@ const fallbackGradient = {
   <!-- Hero -->
   <section class="article-hero" style={`background: ${fallbackGradient}`}>
     {cover && (
-      <img
+      <Picture
         class="hero-bg-img"
-        src={`${base}/${cover.replace(/^\//, '')}`}
+        src={cover}
         alt=""
-        aria-hidden="true"
+        ariaHidden={true}
         loading="eager"
-        decoding="async"
         fetchpriority="high"
       />
     )}

@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/generate-webp.mjs && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "webp": "node scripts/generate-webp.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
