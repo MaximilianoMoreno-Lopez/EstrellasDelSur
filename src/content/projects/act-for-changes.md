@@ -8,6 +8,8 @@ location: "Moravec (República Checa) + Alicante (España)"
 year: 2026
 dates: "Fase 1: 22/08/2026 – 29/08/2026 · Fase 2: 17/10/2026 – 24/10/2026"
 order: 1
+image: "images/projects/act-for-changes.png"
+poster: "images/projects/act-for-changes.png"
 ---
 
 ## Datos del proyecto
