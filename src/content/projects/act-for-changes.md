@@ -10,6 +10,8 @@ dates: "Fase 1: 22/08/2026 – 29/08/2026 · Fase 2: 17/10/2026 – 24/10/2026"
 order: 1
 image: "images/projects/act-for-changes.png"
 poster: "images/projects/act-for-changes.png"
+infopack: "https://drive.google.com/file/d/1QH6BNT09A_WDpGBaFn4T6M7WOG1WeqQh/view?usp=drive_link"
+apply: "https://forms.gle/ZBj5NU4rtXMAv5oG8"
 ---
 
 ## Datos del proyecto
