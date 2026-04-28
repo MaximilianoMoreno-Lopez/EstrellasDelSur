@@ -105,10 +105,16 @@ const robotsContent = noindex
       <script type="application/ld+json" set:html={JSON.stringify(entry)} />
     ))}
 
-    <!-- Favicon -->
+    <!-- Favicon (multiple sizes so Google search results pick a good one) -->
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
-    <link rel="shortcut icon" href={`${base}/favicon.svg`} />
-    <link rel="apple-touch-icon" href={`${base}/images/logo.svg`} />
+    <link rel="icon" type="image/png" sizes="32x32"   href={`${base}/favicon-32x32.png`} />
+    <link rel="icon" type="image/png" sizes="48x48"   href={`${base}/favicon-48x48.png`} />
+    <link rel="icon" type="image/png" sizes="96x96"   href={`${base}/favicon-96x96.png`} />
+    <link rel="icon" type="image/png" sizes="192x192" href={`${base}/favicon-192x192.png`} />
+    <link rel="icon" type="image/png" sizes="512x512" href={`${base}/favicon-512x512.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
+    <link rel="shortcut icon" href={`${base}/favicon.ico`} />
+    <link rel="manifest" href={`${base}/site.webmanifest`} />
 
     <!-- Fonts (preconnect + stylesheet) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

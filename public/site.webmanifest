@@ -1,0 +1,13 @@
+{
+  "name": "Estrellas del Sur",
+  "short_name": "Estrellas del Sur",
+  "description": "Asociación juvenil de Córdoba acreditada en Erasmus+ y el Cuerpo Europeo de Solidaridad.",
+  "icons": [
+    { "src": "/favicon-192x192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/favicon-512x512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#0a1628",
+  "background_color": "#0a1628",
+  "display": "standalone",
+  "start_url": "/"
+}
