@@ -63,7 +63,7 @@ El participante es responsable del acceso a asistencia sanitaria durante todo el
 
 ## Cuota de Socio
 
-Estrellas del Sur cobra una cuota de socio de **160 €** que solo pagará aquel participante que salga elegido. Esta cuota incluye:
+Estrellas del Sur cobra una cuota de socio de **175 €** que solo pagará aquel participante que salga elegido. Esta cuota incluye:
 
 - **Seguro de viaje y asistencia** durante ambas fases del proyecto.
 - **Acompañante** designado por Estrellas del Sur durante los desplazamientos y la estancia, al tratarse de un proyecto con menores de edad.
