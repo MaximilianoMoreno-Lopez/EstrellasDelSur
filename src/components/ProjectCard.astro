@@ -52,6 +52,9 @@ const fallbackGradient = localInitiative
         src={image}
         alt={`Imagen de ${title}`}
         loading="lazy"
+        width="640"
+        height="360"
+        sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 380px"
       />
     ) : (
       <div class="card-image-fallback" style={`background: ${fallbackGradient}`}>

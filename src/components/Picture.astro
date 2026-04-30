@@ -9,6 +9,10 @@ interface Props {
   width?: number | string;
   height?: number | string;
   ariaHidden?: boolean;
+  /** When set, the browser will pick between the small (-card, ~800w)
+   *  and the full WebP. Pass the layout sizes hint, e.g.
+   *  "(max-width: 768px) 100vw, 380px" for project cards. */
+  sizes?: string;
 }
 
 const {
@@ -21,6 +25,7 @@ const {
   width,
   height,
   ariaHidden = false,
+  sizes,
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -29,11 +34,22 @@ const fullSrc = `${base}/${clean}`;
 
 const isRaster = /\.(jpe?g|png)$/i.test(clean);
 const webpSrc = isRaster ? fullSrc.replace(/\.(jpe?g|png)$/i, '.webp') : null;
+const cardSrc = isRaster ? fullSrc.replace(/\.(jpe?g|png)$/i, '-card.webp') : null;
+
+// Use the responsive srcset only when the consumer provided a sizes hint;
+// otherwise fall back to a single WebP source.
+const webpSrcset = sizes && cardSrc && webpSrc
+  ? `${cardSrc} 800w, ${webpSrc} 1800w`
+  : webpSrc;
 ---
 
 {webpSrc ? (
   <picture class="estrellas-picture">
-    <source srcset={webpSrc} type="image/webp" />
+    <source
+      type="image/webp"
+      srcset={webpSrcset}
+      sizes={sizes}
+    />
     <img
       src={fullSrc}
       alt={alt}

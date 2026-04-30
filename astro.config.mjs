@@ -16,6 +16,12 @@ const projectRootRedirects = Object.fromEntries(
 export default defineConfig({
   site: 'https://estrellasdelsur.eu',
   output: 'static',
+  build: {
+    // Inline all stylesheets into the HTML to avoid render-blocking <link>
+    // requests on first load. CSS payload is small and GitHub Pages caches
+    // for only 10 min, so the cache benefit of external CSS is minimal.
+    inlineStylesheets: 'always',
+  },
   integrations: [
     sitemap({
       filter: (page) =>

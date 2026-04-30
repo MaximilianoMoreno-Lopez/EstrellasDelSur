@@ -188,6 +188,30 @@ h1, h2, h3, h4, h5 {
 .fade-in-delay-3 { transition-delay: .3s; }
 .fade-in-delay-4 { transition-delay: .4s; }
 
+/* Above-the-fold heroes use a pure-CSS animation so they render at
+   first paint without waiting for the IntersectionObserver script.
+   This keeps LCP fast on slow networks. */
+.hero .fade-in,
+.page-hero .fade-in {
+  animation: heroFadeUp .7s ease-out both;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.hero .fade-in-delay-1, .page-hero .fade-in-delay-1 { animation-delay: .1s; }
+.hero .fade-in-delay-2, .page-hero .fade-in-delay-2 { animation-delay: .2s; }
+.hero .fade-in-delay-3, .page-hero .fade-in-delay-3 { animation-delay: .3s; }
+.hero .fade-in-delay-4, .page-hero .fade-in-delay-4 { animation-delay: .4s; }
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .fade-in, .page-hero .fade-in {
+    animation: none;
+  }
+}
+
 /* ─── Page Hero (inner pages) ────────────────────────── */
 .page-hero {
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #0d2040 100%);

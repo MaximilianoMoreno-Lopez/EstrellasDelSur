@@ -47,7 +47,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 </section>
 
 <script>
-  (function initStars() {
+  function initStars() {
     const canvas = document.getElementById('stars-canvas') as HTMLCanvasElement | null;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -116,7 +116,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       else { cancelAnimationFrame(raf); raf = 0; }
     });
     heroObserver.observe(canvas.parentElement!);
-  })();
+  }
+
+  // Defer the starfield setup until the browser is idle so it doesn't
+  // block first paint. Reading innerWidth/Height + drawing forces layout.
+  if ('requestIdleCallback' in window) {
+    (window as any).requestIdleCallback(initStars, { timeout: 1500 });
+  } else {
+    setTimeout(initStars, 1);
+  }
 </script>
 
 <style>

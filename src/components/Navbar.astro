@@ -137,7 +137,6 @@ function isParentActive(link: NavLink): boolean {
 
   function onScroll() { navbar.classList.toggle('scrolled', window.scrollY > 40); }
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
   function setMobileLinkAccess(visible: boolean) {
     mobileNav.querySelectorAll<HTMLAnchorElement>('a').forEach(a => {
@@ -145,8 +144,14 @@ function isParentActive(link: NavLink): boolean {
       else a.setAttribute('tabindex', '-1');
     });
   }
-  // Initial state: closed → links not focusable
-  setMobileLinkAccess(false);
+
+  // Defer the initial layout-reading work until after first paint so the
+  // browser doesn't have to compute layout synchronously while parsing the page.
+  // Scroll position resets to 0 on most loads, so deferring this is safe.
+  requestAnimationFrame(() => {
+    onScroll();
+    setMobileLinkAccess(false);
+  });
 
   hamburger.addEventListener('click', () => {
     const open = hamburger.getAttribute('aria-expanded') === 'true';
