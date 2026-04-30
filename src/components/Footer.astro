@@ -61,6 +61,18 @@ const navLinks = [
         <p class="footer-text" style="font-size:.82rem; margin-top:1rem; color:rgba(255,255,255,.7)">@estrellasdelsur.eu en Instagram, Facebook y TikTok</p>
       </div>
     </div>
+
+    <div class="container footer-credentials">
+      <p>
+        <span class="footer-cred-label">Organización de envío ESC</span>
+        <span class="footer-cred-sep" aria-hidden="true">·</span>
+        <span><strong>OID</strong>: E10264295</span>
+        <span class="footer-cred-sep" aria-hidden="true">·</span>
+        <span><strong>PIC</strong>: 892239563</span>
+        <span class="footer-cred-sep" aria-hidden="true">·</span>
+        <span>Acreditación Erasmus+ y Cuerpo Europeo de Solidaridad</span>
+      </p>
+    </div>
   </div>
 
   <div class="footer-bottom">
@@ -91,6 +103,23 @@ const navLinks = [
   .footer-links a:hover { color: #f59e0b; }
   .footer-portal-link { display: inline-flex !important; align-items: center; gap: .35rem; color: #5eead4 !important; font-weight: 500; }
   .footer-portal-link:hover { color: #99f6e4 !important; }
+  .footer-credentials {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .footer-credentials p {
+    font-size: .8rem;
+    color: rgba(255,255,255,.55);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem .65rem;
+    line-height: 1.6;
+  }
+  .footer-cred-label { color: #fbbf24; font-weight: 600; }
+  .footer-cred-sep { color: rgba(255,255,255,.25); }
+  .footer-credentials strong { color: rgba(255,255,255,.85); font-weight: 600; }
   .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 1.25rem 0; }
   .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.7); }

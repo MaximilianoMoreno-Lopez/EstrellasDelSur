@@ -38,29 +38,61 @@ const benefits = [
   { icon: '🎓', title: 'Certificado Youthpass', desc: 'Reconocimiento oficial europeo de las competencias adquiridas durante el voluntariado.' },
 ];
 
+const PIF_URL = 'https://docs.google.com/document/d/1wCkmLqWXf05GYl8gI5qZkfZIYotKVm3k/edit?usp=sharing&ouid=108748510715926905720&rtpof=true&sd=true';
+
 const faqs = [
   {
+    q: '¿Qué es el Cuerpo Europeo de Solidaridad?',
+    a: 'El Cuerpo Europeo de Solidaridad (ESC) es un programa oficial de la Unión Europea que permite a jóvenes de 18 a 30 años hacer voluntariados de 2 semanas a 12 meses en cualquier país europeo, con todos los gastos cubiertos.',
+  },
+  {
+    q: '¿Qué es una organización de envío y qué hace Estrellas del Sur?',
+    a: 'Una organización de envío es una entidad acreditada por la Comisión Europea que selecciona, prepara y acompaña a jóvenes para que realicen su voluntariado ESC en otro país. Estrellas del Sur, basada en Córdoba (Andalucía), es organización de envío acreditada y trabaja con jóvenes de toda España.',
+  },
+  {
     q: '¿Quién puede participar?',
-    a: 'Jóvenes de entre 18 y 30 años residentes en España. No se requiere experiencia previa ni nivel de idioma específico.',
+    a: 'Jóvenes de entre 18 y 30 años residentes en España (cualquier comunidad autónoma). No se requiere experiencia previa ni un nivel de idioma específico, aunque un inglés básico ayuda a desenvolverse en el país de destino.',
   },
   {
     q: '¿Cuánto dura un voluntariado ESC?',
-    a: 'Los voluntariados pueden durar de 2 semanas a 12 meses, dependiendo del proyecto. Los voluntariados cortos (2-8 semanas) son ideales para una primera experiencia.',
+    a: 'Los voluntariados pueden durar de 2 semanas a 12 meses, dependiendo del proyecto. Los voluntariados cortos (2-8 semanas) son ideales para una primera experiencia internacional.',
   },
   {
     q: '¿En qué países puedo hacer el voluntariado?',
-    a: 'En todos los países elegibles del programa ESC: países de la UE, más Noruega, Islandia, Macedonia del Norte, Serbia, Turquía, Armenia, Azerbaiyán, Georgia, entre otros.',
+    a: 'En todos los países elegibles del programa ESC: países de la Unión Europea más Noruega, Islandia, Macedonia del Norte, Serbia, Turquía, Armenia, Azerbaiyán y Georgia, entre otros.',
   },
   {
     q: '¿Tengo que pagar algo?',
-    a: 'No. El transporte, el alojamiento, la manutención y el seguro están cubiertos por el programa. Además recibirás pocket money mensual.',
+    a: 'No. El transporte, el alojamiento, la manutención y el seguro están cubiertos por el programa. Además recibirás "pocket money" mensual para gastos personales.',
+  },
+  {
+    q: '¿Necesito hablar inglés?',
+    a: 'No de forma obligatoria. Ayuda tener un nivel básico para comunicarte en el país de destino, pero el ESC también ofrece formación lingüística online (OLS) gratuita antes y durante el voluntariado.',
+  },
+  {
+    q: '¿Qué documentación recibiré antes de salir?',
+    a: 'Te enviaremos nuestro Documento de Información (PIF) con todos los detalles del proyecto, condiciones, derechos del voluntario y contactos. Puedes consultarlo aquí: ' + PIF_URL,
   },
 ];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
 ---
 
 <BaseLayout
   title="Voluntariado Europeo ESC — Cuerpo Europeo de Solidaridad"
-  description="Haz un voluntariado europeo con el Cuerpo Europeo de Solidaridad (ESC). Estrellas del Sur es organización de envío acreditada: manutención, alojamiento y vuelos incluidos."
+  description="Voluntariado europeo gratuito con el Cuerpo Europeo de Solidaridad (ESC). Estrellas del Sur es organización de envío acreditada en España, basada en Córdoba (Andalucía). Acompañamos a jóvenes de toda España: vuelos, alojamiento y manutención cubiertos."
+  jsonLd={faqJsonLd}
 >
   <!-- Hero -->
   <section class="page-hero">
@@ -73,7 +105,8 @@ const faqs = [
       <p class="fade-in fade-in-delay-2">
         El Cuerpo Europeo de Solidaridad (ESC) es la iniciativa de la Unión Europea que permite
         a jóvenes de 18 a 30 años realizar voluntariados en toda Europa de forma gratuita.
-        Nosotros somos tu organización de envío.
+        Estrellas del Sur es <strong>organización de envío acreditada</strong> y, desde Córdoba (Andalucía),
+        acompañamos a jóvenes de <strong>toda España</strong> a vivir su voluntariado europeo.
       </p>
     </div>
   </section>
@@ -169,6 +202,10 @@ const faqs = [
         <a href="mailto:admin@estrellasdelsur.eu" class="btn btn-primary btn-lg">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Escríbenos para empezar
+        </a>
+        <a href={PIF_URL} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Consulta nuestro PIF
         </a>
         <a href="https://youth.europa.eu/solidarity_es" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
           Visita la plataforma europea

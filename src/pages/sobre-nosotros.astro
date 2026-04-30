@@ -26,6 +26,8 @@ const team = [
   },
 ];
 
+const PARTNERS_PIF_URL = 'https://docs.google.com/document/d/1wCkmLqWXf05GYl8gI5qZkfZIYotKVm3k/edit?usp=sharing&ouid=108748510715926905720&rtpof=true&sd=true';
+
 const milestones = [
   { year: '2020', text: 'Fundación de la asociación en Córdoba por Pablo y Maxi.' },
   { year: '2021', text: 'Primer proyecto Erasmus+. Inicio de la red europea de socios.' },
@@ -133,6 +135,60 @@ const milestones = [
     </div>
   </section>
 
+  <!-- For European partners (bilingual section) -->
+  <section class="section partners-section">
+    <div class="container partners-grid">
+      <div class="partners-content fade-in">
+        <p class="section-label">For European partners</p>
+        <h2 class="section-title">Looking for a partner in Spain?</h2>
+        <div class="divider"></div>
+        <p class="body-text" lang="en">
+          <strong>Estrellas del Sur</strong> is a youth NGO based in <strong>Córdoba (Andalusia, Spain)</strong>,
+          accredited as an <strong>Erasmus+ organisation</strong> and as a <strong>Sending Organisation</strong>
+          under the European Solidarity Corps (ESC). We work with young people from all over Spain
+          and we are open to partnering on:
+        </p>
+        <ul class="partners-list" lang="en">
+          <li>Youth exchanges (KA152)</li>
+          <li>Training courses for youth workers (KA153)</li>
+          <li>ESC volunteering projects (short and long term)</li>
+          <li>Local solidarity initiatives</li>
+        </ul>
+        <p class="body-text" lang="en">
+          Our accreditations: <strong>OID E10264295</strong> · <strong>PIC 892239563</strong>.
+          For project enquiries, methodology, target groups and previous experience, please consult
+          our <a href={PARTNERS_PIF_URL} target="_blank" rel="noopener noreferrer">Partner Information File (PIF)</a>
+          or write us at
+          <a href="mailto:admin@estrellasdelsur.eu">admin@estrellasdelsur.eu</a>.
+        </p>
+      </div>
+      <aside class="partners-card fade-in fade-in-delay-2">
+        <div class="partners-card-header">
+          <span class="partners-flag" aria-hidden="true">🇪🇺</span>
+          <span>Quick info</span>
+        </div>
+        <dl class="partners-info">
+          <dt>Country</dt>
+          <dd>Spain</dd>
+          <dt>City</dt>
+          <dd>Córdoba (Andalusia)</dd>
+          <dt>Founded</dt>
+          <dd>2020</dd>
+          <dt>Erasmus+</dt>
+          <dd>OID E10264295</dd>
+          <dt>PIC</dt>
+          <dd>892239563</dd>
+          <dt>ESC</dt>
+          <dd>Sending Organisation (since 2022)</dd>
+        </dl>
+        <a href={PARTNERS_PIF_URL} target="_blank" rel="noopener noreferrer" class="partners-pif-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Open PIF
+        </a>
+      </aside>
+    </div>
+  </section>
+
   <!-- Accreditations -->
   <section class="section accreditations-section">
     <div class="container">
@@ -205,6 +261,88 @@ const milestones = [
     border-radius: var(--radius-full);
     font-size: .85rem;
     font-weight: 500;
+  }
+
+  /* For European partners (bilingual) */
+  .partners-section { background: var(--cream); }
+  .partners-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+  .partners-list {
+    margin: 0 0 1.25rem 1.25rem;
+    padding: 0;
+    list-style: disc;
+    color: var(--gray-600);
+  }
+  .partners-list li {
+    font-size: .98rem;
+    line-height: 1.7;
+    margin-bottom: .25rem;
+  }
+  .partners-card {
+    background: linear-gradient(180deg, #0a1628 0%, #0f2244 100%);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    color: rgba(255,255,255,.85);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 5rem;
+  }
+  .partners-card-header {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.65);
+    margin-bottom: 1.25rem;
+    padding-bottom: .85rem;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .partners-flag { font-size: 1.2rem; }
+  .partners-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .5rem 1rem;
+    font-size: .88rem;
+    margin-bottom: 1.5rem;
+  }
+  .partners-info dt {
+    color: rgba(255,255,255,.5);
+    font-weight: 600;
+  }
+  .partners-info dd {
+    color: #fff;
+  }
+  .partners-pif-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    width: 100%;
+    padding: .65rem 1rem;
+    background: rgba(13,148,136,.2);
+    border: 1px solid rgba(13,148,136,.45);
+    color: #5eead4;
+    border-radius: var(--radius-full);
+    font-size: .88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .partners-pif-btn:hover {
+    background: rgba(13,148,136,.35);
+    color: #99f6e4;
+    border-color: rgba(13,148,136,.7);
+  }
+  @media (max-width: 768px) {
+    .partners-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .partners-card { position: static; }
   }
 
   .mission-visual {
