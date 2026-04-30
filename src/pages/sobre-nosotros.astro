@@ -31,7 +31,7 @@ const PARTNERS_PIF_URL = 'https://docs.google.com/document/d/1wCkmLqWXf05GYl8gI5
 const milestones = [
   { year: '2020', text: 'Fundación de la asociación en Córdoba por Pablo y Maxi.' },
   { year: '2021', text: 'Primer proyecto Erasmus+. Inicio de la red europea de socios.' },
-  { year: '2022', text: 'Acreditación del Cuerpo Europeo de Solidaridad como organización de envío.' },
+  { year: '2023', text: 'Acreditación del Cuerpo Europeo de Solidaridad como organización de envío.' },
   { year: '2023', text: 'Superamos los 300 participantes y 10 países colaboradores.' },
   { year: '2024', text: 'Incorporación al programa Erasmus+ y 7 proyectos simultáneos en marcha.' },
   { year: '2025', text: 'Más de 500 participantes y 15 países conectados.' },
@@ -140,22 +140,26 @@ const milestones = [
     <div class="container partners-grid">
       <div class="partners-content fade-in">
         <p class="section-label">For European partners</p>
-        <h2 class="section-title">Looking for a partner in Spain?</h2>
+        <h2 class="section-title">Sending Organisation in Spain — Looking for a partner?</h2>
         <div class="divider"></div>
         <p class="body-text" lang="en">
           <strong>Estrellas del Sur</strong> is a youth NGO based in <strong>Córdoba (Andalusia, Spain)</strong>,
-          accredited as an <strong>Erasmus+ organisation</strong> and as a <strong>Sending Organisation</strong>
-          under the European Solidarity Corps (ESC). We work with young people from all over Spain
-          and we are open to partnering on:
+          accredited as an <strong>Erasmus+ organisation</strong> and as a <strong>Sending Organisation
+          under the European Solidarity Corps (ESC) in Spain</strong>. We work with young people from all
+          over Spain and we are open to partnering on:
         </p>
         <ul class="partners-list" lang="en">
-          <li>Youth exchanges (KA152)</li>
+          <li>Youth exchanges (KA152) and youth participation activities (KA154)</li>
           <li>Training courses for youth workers (KA153)</li>
+          <li>Cooperation partnerships (KA2)</li>
+          <li>Policy and youth dialogue actions (KA3)</li>
           <li>ESC volunteering projects (short and long term)</li>
+          <li>CERV — Citizens, Equality, Rights and Values</li>
           <li>Local solidarity initiatives</li>
         </ul>
         <p class="body-text" lang="en">
-          Our accreditations: <strong>OID E10264295</strong> · <strong>PIC 892239563</strong>.
+          Our accreditations: <strong>OID E10264295</strong> · <strong>PIC 892239563</strong> ·
+          ESC Sending Organisation since 2023.
           For project enquiries, methodology, target groups and previous experience, please consult
           our <a href={PARTNERS_PIF_URL} target="_blank" rel="noopener noreferrer">Partner Information File (PIF)</a>
           or write us at
@@ -179,7 +183,7 @@ const milestones = [
           <dt>PIC</dt>
           <dd>892239563</dd>
           <dt>ESC</dt>
-          <dd>Sending Organisation (since 2022)</dd>
+          <dd>Sending Organisation in Spain (since 2023)</dd>
         </dl>
         <a href={PARTNERS_PIF_URL} target="_blank" rel="noopener noreferrer" class="partners-pif-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -211,10 +215,11 @@ const milestones = [
         <div class="accred-card card fade-in fade-in-delay-2">
           <div class="accred-logo" aria-hidden="true">🤝</div>
           <div class="accred-content">
-            <h3>Organización de Envío ESC</h3>
+            <h3>Organización de Envío ESC <span lang="en" class="accred-en">· Sending Organisation Spain</span></h3>
             <p>
-              Somos organización de envío acreditada por el Cuerpo Europeo de Solidaridad. Esto nos
-              permite preparar, seleccionar y acompañar a jóvenes en sus voluntariados europeos,
+              Somos <strong>organización de envío</strong> (en inglés <em lang="en">Sending Organisation</em>)
+              acreditada por el Cuerpo Europeo de Solidaridad desde 2023. Esto nos permite preparar,
+              seleccionar y acompañar a jóvenes de toda España en sus voluntariados europeos,
               garantizando el apoyo antes, durante y después de la experiencia.
             </p>
           </div>
@@ -281,6 +286,12 @@ const milestones = [
     font-size: .98rem;
     line-height: 1.7;
     margin-bottom: .25rem;
+  }
+  .accred-en {
+    font-weight: 400;
+    color: var(--gray-500);
+    font-size: .85em;
+    font-family: 'DM Sans Variable', 'DM Sans', 'DM Sans Fallback', sans-serif;
   }
   .partners-card {
     background: linear-gradient(180deg, #0a1628 0%, #0f2244 100%);
