@@ -1,5 +1,17 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { readdirSync } from 'node:fs';
+
+// Old WordPress project URLs lived at /<slug>/. The new site has them
+// under /proyectos/<slug>/. Generate a redirect for every project file
+// so Google (and old inbound links) land on the right page.
+const projectSlugs = readdirSync('./src/content/projects')
+  .filter((f) => f.endsWith('.md'))
+  .map((f) => f.replace(/\.md$/, ''));
+
+const projectRootRedirects = Object.fromEntries(
+  projectSlugs.map((slug) => [`/${slug}/`, `/proyectos/${slug}/`]),
+);
 
 export default defineConfig({
   site: 'https://estrellasdelsur.eu',
@@ -40,13 +52,14 @@ export default defineConfig({
     }),
   ],
   redirects: {
-    // Old WordPress project URLs → new Astro routes
-    '/el-futuro-de-andalucia-es-ahora/':        '/proyectos/el-futuro-de-andalucia-es-ahora/',
-    '/e-youth-lab/':                             '/proyectos/e-youth-lab/',
-    '/social-ecologic-actions/':                 '/proyectos/social-ecologic-actions/',
-    '/upscale-your-skills/':                     '/proyectos/upscale-your-skills/',
-    '/empowering-recognition-and-growth/':       '/proyectos/empowering-recognition-and-growth/',
-    '/volunteering-at-hku/':                     '/proyectos/volunteering-at-hku/',
+    // Old WordPress project URLs at root /<slug>/ → /proyectos/<slug>/
+    ...projectRootRedirects,
+
+    // Old WP pages with no direct equivalent
+    '/proyectos-erasmus/':         '/proyectos/',
+    '/get-involved/':              '/voluntariado-esc/',
+    '/intercultural-exchange-3/':  '/proyectos/',
+    '/login/':                     '/portal/login/',
 
     // Removed noticias → corresponding project page (preserve indexed links)
     '/noticias/referee-for-life/':                  '/proyectos/referee-for-life/',
