@@ -47,7 +47,7 @@ La participación en el proyecto es obligatoria. La no asistencia a una de las d
 
 ## Perfil del Participante
 
-Buscamos personas mayores de 18 años, residentes en España. Deben tener un nivel de inglés suficiente para comunicarse en un entorno internacional, así como una fuerte motivación para participar de manera activa en el proyecto. Se requiere compromiso total y participación durante todos los días de ambas fases.
+Buscamos personas de entre 18 y 25 años, residentes en España. Deben tener un nivel de inglés suficiente para comunicarse en un entorno internacional, así como una fuerte motivación para participar de manera activa en el proyecto. Se requiere compromiso total y participación durante todos los días de ambas fases.
 
 No nos interesa tanto tu experiencia previa ni tu formación, sino tu actitud: queremos contar con personas dispuestas a salir de su zona de confort, a escuchar otras realidades y a compartir la suya propia desde el respeto.
 
