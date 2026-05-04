@@ -8,6 +8,7 @@ export const supabase = createClient(
 export const ADMIN_EMAILS = [
   'maxi@estrellasdelsur.eu',
   'pablo@estrellasdelsur.eu',
+  'paula@estrellasdelsur.eu',
   'admin@estrellasdelsur.eu',
 ];
 
