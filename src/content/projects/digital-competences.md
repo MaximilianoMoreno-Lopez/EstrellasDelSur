@@ -19,7 +19,7 @@ apply: "https://forms.gle/PA6cSgg53E9k2wLAA"
 - **Temática del Proyecto:** Competencias digitales — información, comunicación, producción y seguridad
 - **Fechas:** Del 10/07/2026 al 18/07/2026
 - **Lugar:** Rabka-Zdrój, Polonia (Europe4Youth Association's Training & Education Centre)
-- **Participantes:** Grupos nacionales de 5 personas (4 jóvenes y 1 líder). Jóvenes de 18 a 25 años residentes en países de la UE o asociados
+- **Participantes:** Grupos nacionales de 5 personas (4 jóvenes y 1 líder). Jóvenes de 18 a 25 años residentes en España
 - **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha — ¡no te lo pienses más!
 
 > **Importante:** Es obligatorio asistir a la reunión de preparación online y realizar la encuesta *"Wheel of Digital Competences"* antes del inicio del proyecto.
