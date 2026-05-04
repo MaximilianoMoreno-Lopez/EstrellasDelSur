@@ -1,7 +1,7 @@
 ---
 title: "Shift Happens"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇨🇿"
 description: "El proyecto explora cómo las personas reaccionan ante la incertidumbre, el estrés y nuevas situaciones, y cómo estos desafíos pueden convertirse en oportunidades de crecimiento personal y profesional."
 location: "Moravec, República Checa"
