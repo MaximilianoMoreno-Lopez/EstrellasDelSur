@@ -26,24 +26,36 @@ apply: "https://forms.gle/PA6cSgg53E9k2wLAA"
 
 ## Sobre el proyecto
 
-El objetivo es reunir a jóvenes para explorar las competencias digitales y su aplicación en todos los aspectos de la vida. Se trabajarán cuatro áreas:
+**"Youth Exchange on Digital Competences"** es un intercambio juvenil internacional cofinanciado por Erasmus+ y organizado por **Europe4Youth Association** en su Centro de Formación de Rabka-Zdrój (Polonia). Reunirá a 30 jóvenes de 6 países europeos (6 grupos de 5 personas: 4 participantes + 1 líder) durante una semana para explorar las competencias digitales y cómo se aplican en todos los aspectos de la vida.
 
-- **Gestión crítica de información**
-- **Comunicación efectiva en entornos digitales**
-- **Producción de contenidos y herramientas**
-- **Seguridad de datos y salud**
+Todos somos *nativos digitales*, pero no todos disponemos de las mismas herramientas para movernos con soltura en el entorno digital. El objetivo del intercambio es crear un espacio seguro y productivo donde los participantes identifiquen dónde son fuertes y dónde pueden mejorar, compartan sus conocimientos con el resto del grupo y desarrollen las competencias que ellos mismos elijan.
 
-El proyecto busca que los participantes identifiquen sus fortalezas y áreas de mejora, compartan conocimientos y creen contenido para otros jóvenes.
+El proyecto se estructura en torno a **cuatro áreas** del marco europeo de competencias digitales:
+
+- **Información** — buscar, gestionar y analizar críticamente la información digital
+- **Comunicación** — comunicarse con eficacia en entornos digitales y formar parte de una comunidad online
+- **Producción** — crear contenidos y herramientas digitales, o usar herramientas digitales para crear
+- **Seguridad** — proteger los datos personales, la identidad digital y la salud (legal y física)
+
+### Metodología
+
+El intercambio se basa en **educación no formal**: talleres facilitados, dinámicas de grupo, *Skill Markets*, *Workshop JAMs* y sesiones lideradas por los propios participantes. A lo largo de la semana se trabajará la encuesta *"Wheel of Digital Competences"* (parte 1 y parte 2), creación de contenido digital, ciberseguridad, robo de identidad, *Search Fu* y colaboración digital, terminando con una sesión de Open Space, evaluación y entrega del **Youthpass**.
+
+El resultado del proyecto será **contenido digital creado por los propios participantes** para llegar a otros jóvenes y ayudarles a desarrollar sus propias competencias digitales de forma asíncrona.
+
+### Alojamiento e instalaciones
+
+El centro de Europe4Youth en Rabka-Zdrój está a disposición exclusiva del grupo durante toda la estancia: habitaciones de 2-3 personas con baño privado, tres comidas diarias (con opciones vegetariana, vegana y adaptaciones para alergias), sala común con piano, juegos de mesa, ping-pong y futbolín. Rabka-Zdrój está en zona de montaña, con un parque con gimnasio al aire libre, río y senderos.
 
 ## Condiciones de Participación
 
-El participante que pase el proceso de selección y vaya al proyecto en representación de Estrellas del Sur, se compromete a realizar todas las actividades y cumplir todas las normas que se soliciten desde la organización de acogida, así como la normativa que exija el país del proyecto. Será responsabilidad del participante guardar todos los resguardos, billetes y facturas relacionadas con el viaje. Además, el participante (y sus tutores legales, al tratarse de un menor), al aceptar estas condiciones, acepta el uso de su imagen por parte de Estrellas del Sur en cualquier formato.
+El participante que pase el proceso de selección y vaya al proyecto en representación de Estrellas del Sur, se compromete a realizar todas las actividades y cumplir todas las normas que se soliciten desde la organización de acogida, así como la normativa que exija el país del proyecto. Será responsabilidad del participante guardar todos los resguardos, billetes, facturas y tarjetas de embarque originales relacionados con el viaje. Además, el participante, al aceptar estas condiciones, acepta el uso de su imagen por parte de Estrellas del Sur en cualquier formato.
 
 Si la compañía aérea (o cualquier compañía de viajes) cancelase los vuelos, sería el participante el total responsable para solicitar la devolución del billete y buscar la alternativa oportuna para llegar al lugar de realización del proyecto en fecha y hora.
 
 No se solicitará ningún certificado de idiomas al participante, pero sí que hacemos saber que todas las actividades serán en inglés y asistirán participantes de otros países de la Unión Europea, por lo que será requisito que el participante tenga cierto nivel de inglés para poder desenvolverse a lo largo de toda la estancia.
 
-La participación en el proyecto es obligatoria. La no asistencia a una de las dos fases supondrá la pérdida automática de la plaza y podrá conllevar la reclamación de los gastos asumidos por la organización.
+La participación en la fase online de preparación es **igual de importante** que la participación en la movilidad presencial. La no asistencia a una de las dos fases supondrá la pérdida automática de la plaza y podrá conllevar la reclamación de los gastos asumidos por la organización.
 
 ## Perfil del Participante
 
