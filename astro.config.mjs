@@ -62,10 +62,20 @@ export default defineConfig({
     ...projectRootRedirects,
 
     // Old WP pages with no direct equivalent
-    '/proyectos-erasmus/':         '/proyectos/',
-    '/get-involved/':              '/voluntariado-esc/',
-    '/intercultural-exchange-3/':  '/proyectos/',
-    '/login/':                     '/portal/login/',
+    '/proyectos-erasmus/':            '/proyectos/',
+    '/get-involved/':                 '/voluntariado-esc/',
+    '/intercultural-exchange-3/':     '/proyectos/',
+    '/european-solidarity-corps-esc/':'/voluntariado-esc/',
+    '/the-rythm-of-unit/':            '/proyectos/',
+    '/breath-balance-bloom/':         '/proyectos/',
+    '/techwise-youth/':               '/proyectos/',
+    '/login/':                        '/portal/login/',
+
+    // Old WP project URLs without an Astro file (or with -2 / variant slugs)
+    '/against-food-waste/':           '/proyectos/embrace-the-fight-against-food-waste-challenge/',
+    '/referee-for-life-2/':           '/proyectos/referee-for-life/',
+    '/upscale-your-skills-2/':        '/proyectos/upscale-your-skills/',
+    '/seeds-2/':                      '/proyectos/seeds-of-change/',
 
     // Removed noticias → corresponding project page (preserve indexed links)
     '/noticias/referee-for-life/':                  '/proyectos/referee-for-life/',
