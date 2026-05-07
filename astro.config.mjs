@@ -70,6 +70,8 @@ export default defineConfig({
     '/breath-balance-bloom/':         '/proyectos/',
     '/techwise-youth/':               '/proyectos/',
     '/login/':                        '/portal/login/',
+    '/password-reset/':               '/portal/login/',
+    '/volunteering-at-hku':           '/proyectos/volunteering-at-hku/',
 
     // Old WP project URLs without an Astro file (or with -2 / variant slugs)
     '/against-food-waste/':           '/proyectos/embrace-the-fight-against-food-waste-challenge/',
