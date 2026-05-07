@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  loader: glob({ pattern: ['**/*.md', '!**/_*.md'], base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     type: z.enum(['Intercambio', 'Voluntariado', 'Formación', 'Participación']),
@@ -23,7 +23,7 @@ const projects = defineCollection({
 });
 
 const noticias = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/noticias' }),
+  loader: glob({ pattern: ['**/*.md', '!**/_*.md'], base: './src/content/noticias' }),
   schema: z.object({
     title: z.string(),
     type: z.enum(['Intercambio', 'Voluntariado', 'Formación', 'Participación']),

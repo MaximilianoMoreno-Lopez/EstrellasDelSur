@@ -76,7 +76,6 @@ export default defineConfig({
     '/against-food-waste/':           '/proyectos/embrace-the-fight-against-food-waste-challenge/',
     '/referee-for-life-2/':           '/proyectos/referee-for-life/',
     '/upscale-your-skills-2/':        '/proyectos/upscale-your-skills/',
-    '/seeds-2/':                      '/proyectos/seeds-of-change/',
 
     // Removed noticias → corresponding project page (preserve indexed links)
     '/noticias/referee-for-life/':                  '/proyectos/referee-for-life/',
