@@ -46,7 +46,7 @@ const fallbackGradient = localInitiative
 
 <article class="project-card card" data-type={type} data-status={status}>
   <!-- Imagen destacada -->
-  <div class="card-image">
+  <a href={`${base}/proyectos/${slug}/`} class="card-image" aria-label={`Ver ${title}`}>
     {image ? (
       <Picture
         src={image}
@@ -71,7 +71,7 @@ const fallbackGradient = localInitiative
         Coordinado
       </span>
     )}
-  </div>
+  </a>
 
   <!-- Contenido -->
   <div class="card-body">
@@ -117,10 +117,13 @@ const fallbackGradient = localInitiative
   /* ── Imagen ── */
   .card-image {
     position: relative;
+    display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     flex-shrink: 0;
+    text-decoration: none;
+    color: inherit;
   }
 
   .card-image :global(img) {
