@@ -15,7 +15,6 @@ Disallow: /author/
 Disallow: /user/
 Disallow: /feed/
 Disallow: /feed
-Disallow: /login/
 Disallow: /logout/
 Disallow: /account/
 Disallow: /sample-page/
