@@ -71,7 +71,8 @@ const faqs = [
   },
   {
     q: '¿Qué documentación recibiré antes de salir?',
-    a: 'Te enviaremos nuestro Documento de Información (PIF) con todos los detalles del proyecto, condiciones, derechos del voluntario y contactos. Puedes consultarlo aquí: ' + PIF_URL,
+    a: 'Te enviaremos nuestro Documento de Información (PIF) con todos los detalles del proyecto, condiciones, derechos del voluntario y contactos.',
+    link: { label: 'Consulta nuestro PIF', href: PIF_URL },
   },
 ];
 
@@ -83,7 +84,7 @@ const faqJsonLd = {
     name: f.q,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: f.a,
+      text: f.link ? `${f.a} ${f.link.href}` : f.a,
     },
   })),
 };
@@ -226,7 +227,17 @@ const faqJsonLd = {
         {faqs.map((faq, i) => (
           <div class={`faq-item card fade-in fade-in-delay-${(i % 2) + 1}`}>
             <h3 class="faq-q">{faq.q}</h3>
-            <p class="faq-a">{faq.a}</p>
+            <p class="faq-a">
+              {faq.a}
+              {faq.link && (
+                <>
+                  {' '}
+                  <a href={faq.link.href} target="_blank" rel="noopener noreferrer" class="faq-link">
+                    {faq.link.label}
+                  </a>
+                </>
+              )}
+            </p>
           </div>
         ))}
       </div>
@@ -409,6 +420,14 @@ const faqJsonLd = {
     text-align: justify;
     hyphens: auto;
   }
+
+  .faq-link {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .faq-link:hover { color: var(--navy); }
 
   @media (max-width: 900px) {
     .what-grid { grid-template-columns: 1fr; gap: 3rem; }
