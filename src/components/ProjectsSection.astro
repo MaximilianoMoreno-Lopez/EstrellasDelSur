@@ -13,8 +13,23 @@ const { activeOnly = false, limit, includeLocal = false, includeCoordinated = fa
 
 let projects = await getCollection('projects');
 
-// Sort by order field
-projects.sort((a, b) => a.data.order - b.data.order);
+function projectStartTime(p: typeof projects[number]): number {
+  const m = p.data.dates?.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+  if (m) return new Date(+m[3], +m[2] - 1, +m[1]).getTime();
+  if (p.data.year) return new Date(p.data.year, 11, 31).getTime();
+  return 0;
+}
+
+// Active first (by order ASC), then past (by start date DESC — most recent first)
+projects.sort((a, b) => {
+  if (a.data.status !== b.data.status) {
+    return a.data.status === 'active' ? -1 : 1;
+  }
+  if (a.data.status === 'active') {
+    return a.data.order - b.data.order;
+  }
+  return projectStartTime(b) - projectStartTime(a);
+});
 
 if (!includeLocal) {
   projects = projects.filter(p => !p.data.localInitiative);

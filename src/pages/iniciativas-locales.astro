@@ -7,9 +7,25 @@ import EUBanner from '../components/EUBanner.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 let projects = await getCollection('projects');
+
+function projectStartTime(p: typeof projects[number]): number {
+  const m = p.data.dates?.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+  if (m) return new Date(+m[3], +m[2] - 1, +m[1]).getTime();
+  if (p.data.year) return new Date(p.data.year, 11, 31).getTime();
+  return 0;
+}
+
 projects = projects
   .filter((p) => p.data.localInitiative)
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+  .sort((a, b) => {
+    if (a.data.status !== b.data.status) {
+      return a.data.status === 'active' ? -1 : 1;
+    }
+    if (a.data.status === 'active') {
+      return (a.data.order ?? 99) - (b.data.order ?? 99);
+    }
+    return projectStartTime(b) - projectStartTime(a);
+  });
 ---
 
 <BaseLayout
