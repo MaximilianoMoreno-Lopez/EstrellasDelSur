@@ -19,6 +19,7 @@ apply: "https://forms.gle/7YW9tkHxXJ7ernyDA"
 - **Fechas:** Del 04/07/2026 al 12/07/2026
 - **Lugar:** Grandcamp-Maisy, Normandía (Francia)
 - **Participantes:** Hasta 10 participantes por país. Jóvenes de 14 a 17 años residentes en países Erasmus+
+- **Transporte:** 🌱 **Transporte verde** — desplazamiento en autobús desde España para reducir la huella de carbono
 - **Fecha límite de inscripciones:** Inscripciones abiertas — ¡no te lo pienses mucho!
 
 > Este proyecto forma parte de **Future Eco-Guardians**, un intercambio juvenil internacional en tres fases (España, República Checa y Francia). Estrellas del Sur ha participado en las tres fases: las dos primeras se celebraron el año pasado y esta convocatoria corresponde a la **Fase 3** en Normandía.
