@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const sections = [
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+    title: 'Estatutos y documentos constitutivos',
+    desc: 'Estatutos de la asociación, acta fundacional e inscripción en el Registro de Asociaciones de Andalucía.',
+    status: 'En preparación',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    title: 'Órganos de gobierno',
+    desc: 'Junta directiva, miembros, cargos y funciones. Actas de las asambleas generales.',
+    status: 'En preparación',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    title: 'Cuentas anuales y financiación',
+    desc: 'Balance económico anual, fuentes de financiación (subvenciones Erasmus+, CES y aportaciones), y memoria económica.',
+    status: 'En preparación',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+    title: 'Proyectos y subvenciones recibidas',
+    desc: 'Detalle de los proyectos Erasmus+ y CES financiados, importes concedidos por la Comisión Europea y SEPIE, y resultados.',
+    status: 'En preparación',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+    title: 'Memoria anual de actividades',
+    desc: 'Resumen anual de proyectos realizados, participantes, países socios e impacto.',
+    status: 'En preparación',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    title: 'Políticas y código ético',
+    desc: 'Política de protección de menores, código de conducta para voluntarios y participantes, protocolo anti-acoso, y política de privacidad.',
+    status: 'En preparación',
+  },
+];
+---
+
+<BaseLayout
+  title="Portal de Transparencia"
+  description="Portal de transparencia de Estrellas del Sur. Acceso público a estatutos, cuentas anuales, órganos de gobierno, proyectos financiados y memorias de actividad."
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Rendición de cuentas
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Portal de Transparencia</h1>
+      <p class="fade-in fade-in-delay-2">
+        En Estrellas del Sur creemos que la confianza se construye con información clara y accesible.
+        En este portal puedes consultar nuestros documentos institucionales, cuentas y memoria de actividades.
+      </p>
+    </div>
+  </section>
+
+  <!-- Notice -->
+  <section class="section notice-section">
+    <div class="container">
+      <div class="notice-card fade-in">
+        <div class="notice-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <h2>Portal en construcción</h2>
+          <p>
+            Estamos preparando la publicación progresiva de toda la documentación. Los apartados se
+            irán habilitando a lo largo de las próximas semanas. Si necesitas algún documento concreto
+            antes de su publicación, puedes solicitarlo a
+            <a href="mailto:admin@estrellasdelsur.eu">admin@estrellasdelsur.eu</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <section class="section sections-section">
+    <div class="container">
+      <p class="section-label fade-in" style="justify-content:center">Documentación pública</p>
+      <h2 class="section-title fade-in" style="text-align:center">Qué encontrarás en este portal</h2>
+      <div class="divider" style="margin-left:auto; margin-right:auto"></div>
+
+      <div class="sections-grid">
+        {sections.map((s, i) => (
+          <article class={`section-card fade-in fade-in-delay-${(i % 3) + 1}`}>
+            <div class="section-card-icon">
+              <Fragment set:html={s.icon} />
+            </div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+            <span class="section-card-status">{s.status}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Identification -->
+  <section class="section ident-section">
+    <div class="container">
+      <div class="ident-card fade-in">
+        <p class="section-label">Datos identificativos</p>
+        <h2 class="section-title">Estrellas del Sur</h2>
+        <div class="divider"></div>
+        <dl class="ident-grid">
+          <div>
+            <dt>Denominación</dt>
+            <dd>Asociación Juvenil Estrellas del Sur</dd>
+          </div>
+          <div>
+            <dt>Sede</dt>
+            <dd>Córdoba, España</dd>
+          </div>
+          <div>
+            <dt>Año de constitución</dt>
+            <dd>2020</dd>
+          </div>
+          <div>
+            <dt>OID (Organisation ID)</dt>
+            <dd>E10264295</dd>
+          </div>
+          <div>
+            <dt>PIC (Participant Identification Code)</dt>
+            <dd>892239563</dd>
+          </div>
+          <div>
+            <dt>Acreditaciones</dt>
+            <dd>Erasmus+ y Cuerpo Europeo de Solidaridad (CES)</dd>
+          </div>
+          <div>
+            <dt>Correo institucional</dt>
+            <dd><a href="mailto:admin@estrellasdelsur.eu">admin@estrellasdelsur.eu</a></dd>
+          </div>
+          <div>
+            <dt>Presidencia</dt>
+            <dd><a href={`${base}/sobre-nosotros/`}>Ver junta directiva</a></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="section contact-cta-section">
+    <div class="container">
+      <div class="contact-cta fade-in">
+        <h2>¿Echas en falta algún documento?</h2>
+        <p>Solicita cualquier información complementaria y te responderemos en un plazo máximo de 15 días.</p>
+        <a href="mailto:admin@estrellasdelsur.eu" class="btn btn-primary">Escríbenos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notice-section { padding-top: 2rem; padding-bottom: 0; }
+  .notice-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: 14px;
+    padding: 1.5rem 1.75rem;
+  }
+  .notice-icon { color: #b45309; flex-shrink: 0; padding-top: .15rem; }
+  .notice-card h2 { font-size: 1.1rem; margin: 0 0 .5rem; color: #78350f; font-family: 'DM Sans Variable', sans-serif; font-weight: 600; }
+  .notice-card p { color: #78350f; line-height: 1.65; margin: 0; font-size: .95rem; }
+  .notice-card a { color: #92400e; text-decoration: underline; font-weight: 500; }
+
+  .sections-section { padding-top: 4rem; }
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .section-card {
+    background: #fff;
+    border: 1px solid var(--gray-200, #e5e7eb);
+    border-radius: 14px;
+    padding: 1.75rem;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .section-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(10, 22, 40, .08);
+    border-color: var(--teal, #0d9488);
+  }
+  .section-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(13, 148, 136, .1);
+    color: var(--teal, #0d9488);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .section-card h3 {
+    font-size: 1.05rem;
+    font-family: 'DM Sans Variable', sans-serif;
+    font-weight: 600;
+    color: var(--navy, #0a1628);
+    margin: 0;
+  }
+  .section-card p {
+    font-size: .9rem;
+    color: var(--gray-600, #4b5563);
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+  }
+  .section-card-status {
+    display: inline-block;
+    margin-top: .5rem;
+    align-self: flex-start;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #92400e;
+    background: #fef3c7;
+    padding: .3rem .65rem;
+    border-radius: 6px;
+  }
+
+  .ident-section { padding-top: 4rem; }
+  .ident-card {
+    background: var(--navy, #0a1628);
+    color: #fff;
+    border-radius: 18px;
+    padding: 3rem 3rem;
+  }
+  .ident-card .section-label { color: #5eead4; }
+  .ident-card .section-title { color: #fff; }
+  .ident-card .divider { background: rgba(255,255,255,.2); }
+  .ident-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem 2.5rem;
+    margin: 0;
+  }
+  .ident-grid dt {
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: rgba(255,255,255,.6);
+    margin-bottom: .35rem;
+    font-weight: 600;
+  }
+  .ident-grid dd {
+    margin: 0;
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.5;
+  }
+  .ident-grid a { color: #fbbf24; text-decoration: none; }
+  .ident-grid a:hover { text-decoration: underline; }
+
+  .contact-cta-section { padding-top: 4rem; padding-bottom: 5rem; }
+  .contact-cta {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(13, 148, 136, .08), rgba(245, 158, 11, .08));
+    border-radius: 18px;
+    padding: 3.5rem 2rem;
+  }
+  .contact-cta h2 {
+    font-size: 1.75rem;
+    color: var(--navy, #0a1628);
+    margin: 0 0 .75rem;
+    font-family: 'Playfair Display Variable', serif;
+  }
+  .contact-cta p {
+    color: var(--gray-600, #4b5563);
+    margin: 0 0 1.75rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .ident-card { padding: 2rem 1.5rem; }
+    .notice-card { flex-direction: column; gap: .75rem; padding: 1.25rem; }
+  }
+</style>

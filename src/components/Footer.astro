@@ -78,6 +78,10 @@ const navLinks = [
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
       <p>© <span id="mainFooterYear"></span> Estrellas del Sur. Todos los derechos reservados.</p>
+      <a href={`${base}/transparencia/`} class="footer-transparency-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Portal de Transparencia
+      </a>
       <p class="footer-bottom-right">Hecho con ilusión en Córdoba</p>
     </div>
   </div>
@@ -121,9 +125,26 @@ const navLinks = [
   .footer-cred-sep { color: rgba(255,255,255,.25); }
   .footer-credentials strong { color: rgba(255,255,255,.85); font-weight: 600; }
   .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 1.25rem 0; }
-  .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.7); }
   .footer-bottom-right { color: rgba(255,255,255,.55) !important; }
+  .footer-transparency-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .82rem;
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    padding: .35rem .75rem;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 999px;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .footer-transparency-link:hover {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    border-color: rgba(255,255,255,.35);
+  }
   #mainFooterYear { font-variant-numeric: tabular-nums; }
   @media (max-width: 960px) {
     .footer-grid { grid-template-columns: 1.8fr 1fr 1fr; gap: 2rem; }
