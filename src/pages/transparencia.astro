@@ -34,11 +34,43 @@ const sections = [
     desc: 'Resumen anual de proyectos realizados, participantes, países socios e impacto.',
     status: 'En preparación',
   },
+];
+
+const internalDocs = [
   {
-    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-    title: 'Políticas y código ético',
-    desc: 'Política de protección de menores, código de conducta para voluntarios y participantes, protocolo anti-acoso, y política de privacidad.',
-    status: 'En preparación',
+    title: 'Política de Protección de la Infancia',
+    desc: 'Compromiso, protocolos de actuación y medidas de salvaguarda para personas menores de edad en nuestras actividades.',
+    file: 'Politica_Proteccion_Infancia_Estrellas_del_Sur.pdf',
+  },
+  {
+    title: 'Plan de Voluntariado',
+    desc: 'Marco de incorporación, formación, acompañamiento y reconocimiento de las personas voluntarias.',
+    file: 'Plan_Voluntariado_Estrellas_del_Sur.pdf',
+  },
+  {
+    title: 'Código Ético y de Conducta',
+    desc: 'Principios de actuación, valores y normas de comportamiento aplicables a personas socias, voluntarias y participantes.',
+    file: null,
+  },
+  {
+    title: 'Plan de Calidad',
+    desc: 'Estándares de calidad para proyectos Erasmus+ y Cuerpo Europeo de Solidaridad: planificación, seguimiento y evaluación.',
+    file: null,
+  },
+  {
+    title: 'Plan de Igualdad',
+    desc: 'Medidas para garantizar la igualdad efectiva entre mujeres y hombres y prevenir cualquier forma de discriminación.',
+    file: null,
+  },
+  {
+    title: 'Protocolo de prevención del acoso',
+    desc: 'Procedimiento de prevención, detección y actuación ante situaciones de acoso laboral, sexual o por razón de sexo.',
+    file: null,
+  },
+  {
+    title: 'Política de Privacidad y Protección de Datos',
+    desc: 'Tratamiento de datos personales conforme al RGPD y la LOPDGDD.',
+    file: null,
   },
 ];
 ---
@@ -101,6 +133,43 @@ const sections = [
           </article>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- Internal plans and policies -->
+  <section class="section internal-docs-section">
+    <div class="container">
+      <p class="section-label fade-in" style="justify-content:center">Planes y políticas internas</p>
+      <h2 class="section-title fade-in" style="text-align:center">Marco normativo de la asociación</h2>
+      <div class="divider" style="margin-left:auto; margin-right:auto"></div>
+      <p class="internal-docs-intro fade-in">
+        Documentos internos que orientan nuestra actividad, garantizan la calidad de los proyectos
+        y protegen los derechos de las personas participantes.
+      </p>
+
+      <ul class="docs-list fade-in">
+        {internalDocs.map((doc) => (
+          <li class="doc-item">
+            <div class="doc-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="doc-item-content">
+              <h3>{doc.title}</h3>
+              <p>{doc.desc}</p>
+            </div>
+            <div class="doc-item-action">
+              {doc.file ? (
+                <a href={`${base}/docs/${doc.file}`} target="_blank" rel="noopener" class="doc-link">
+                  <span>Descargar PDF</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
+              ) : (
+                <span class="doc-status">En preparación</span>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
@@ -237,6 +306,87 @@ const sections = [
     border-radius: 6px;
   }
 
+  .internal-docs-section { padding-top: 4rem; }
+  .internal-docs-intro {
+    text-align: center;
+    max-width: 640px;
+    margin: 1.5rem auto 2.5rem;
+    color: var(--gray-600, #4b5563);
+    line-height: 1.65;
+  }
+  .docs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    border: 1px solid var(--gray-200, #e5e7eb);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .doc-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--gray-200, #e5e7eb);
+    transition: background .15s;
+  }
+  .doc-item:last-child { border-bottom: none; }
+  .doc-item:hover { background: rgba(13, 148, 136, .03); }
+  .doc-item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(13, 148, 136, .1);
+    color: var(--teal, #0d9488);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .doc-item-content { flex-grow: 1; min-width: 0; }
+  .doc-item-content h3 {
+    font-size: 1rem;
+    font-family: 'DM Sans Variable', sans-serif;
+    font-weight: 600;
+    color: var(--navy, #0a1628);
+    margin: 0 0 .25rem;
+  }
+  .doc-item-content p {
+    font-size: .88rem;
+    color: var(--gray-600, #4b5563);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .doc-item-action { flex-shrink: 0; }
+  .doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .55rem .95rem;
+    background: var(--teal, #0d9488);
+    color: #fff;
+    border-radius: 8px;
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .15s, transform .15s;
+    white-space: nowrap;
+  }
+  .doc-link:hover { background: #0f766e; transform: translateY(-1px); }
+  .doc-status {
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #92400e;
+    background: #fef3c7;
+    padding: .35rem .7rem;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
   .ident-section { padding-top: 4rem; }
   .ident-card {
     background: var(--navy, #0a1628);
@@ -292,5 +442,15 @@ const sections = [
   @media (max-width: 640px) {
     .ident-card { padding: 2rem 1.5rem; }
     .notice-card { flex-direction: column; gap: .75rem; padding: 1.25rem; }
+    .doc-item {
+      flex-wrap: wrap;
+      padding: 1.1rem 1.1rem;
+      gap: .9rem;
+    }
+    .doc-item-action {
+      width: 100%;
+      padding-left: 56px;
+    }
+    .doc-link, .doc-status { width: auto; }
   }
 </style>
