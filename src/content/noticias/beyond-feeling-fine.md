@@ -6,11 +6,11 @@ order: 0.5
 date: "2026-04"
 dates: "04/04/2026 – 11/04/2026"
 location: "Conil de la Frontera, España"
-description: "Dos participantes de Estrellas del Sur viajaron al Training Course Beyond Feeling Fine: Exploring Well-being in Today's World, donde youth workers de toda Europa exploraron herramientas para promover el bienestar a través del trabajo juvenil."
+description: "Estrellas del Sur participó en el Training Course Beyond Feeling Fine: Exploring Well-being in Today's World, donde youth workers de toda Europa exploraron herramientas para promover el bienestar a través del trabajo juvenil."
 cover: "images/noticias/beyond-feeling-fine/cover.jpg"
 ---
 
-Del 4 al 11 de abril de 2026, dos participantes de Estrellas del Sur participaron en el Training Course Erasmus+ **Beyond Feeling Fine: Exploring Well-being in Today's World**, celebrado en la hermosa ciudad de Conil de la Frontera, al sur de España.
+Del 4 al 11 de abril de 2026, Estrellas del Sur participó en el Training Course Erasmus+ **Beyond Feeling Fine: Exploring Well-being in Today's World**, celebrado en la hermosa ciudad de Conil de la Frontera, al sur de España.
 
 El proyecto reunió a youth workers y jóvenes de diferentes países europeos con el objetivo de profundizar en el tema del bienestar en la sociedad actual, explorando herramientas prácticas y metodologías útiles para promover la salud mental, el equilibrio personal y la conexión humana a través del trabajo juvenil y la educación no formal.
 
@@ -40,7 +40,7 @@ Un momento especial fue el **Local Workshop**, durante el cual el grupo tuvo la 
 
 ## Más que una movilidad
 
-Para los dos participantes de Estrellas del Sur, Beyond Feeling Fine representó mucho más que una simple movilidad Erasmus+. Fue una oportunidad para salir de la rutina, conocer personas de diferentes culturas, compartir experiencias y reflexionar sobre la importancia del bienestar personal y colectivo en el trabajo con jóvenes.
+Para Estrellas del Sur, Beyond Feeling Fine representó mucho más que una simple movilidad Erasmus+. Fue una oportunidad para salir de la rutina, conocer personas de diferentes culturas, compartir experiencias y reflexionar sobre la importancia del bienestar personal y colectivo en el trabajo con jóvenes.
 
 A través del diálogo y el intercambio de buenas prácticas, el grupo construyó un espacio seguro y auténtico basado en la escucha mutua, la empatía y el deseo de crecer juntos.
 
