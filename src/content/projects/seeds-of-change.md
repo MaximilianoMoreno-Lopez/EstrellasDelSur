@@ -7,7 +7,7 @@ description: "Intercambio juvenil internacional en Normandía (Francia) sobre me
 location: "Grandcamp-Maisy, Normandía (Francia)"
 year: 2026
 dates: "04/07/2026 – 12/07/2026"
-order: 1
+order: 0
 image: "images/projects/seeds-of-change/cover.png"
 infopack: "https://drive.google.com/file/d/1lBo9QSnlImml5AfCCNi9nNlJpPgW5dqL/view?usp=drive_link"
 apply: "https://forms.gle/7YW9tkHxXJ7ernyDA"
