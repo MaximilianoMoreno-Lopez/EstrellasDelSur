@@ -6,7 +6,7 @@ flag: "🇹🇷"
 description: "Intercambio juvenil internacional en Karaman (Türkiye) sobre comunidades inclusivas, diversidad e igualdad de oportunidades, con foco en jóvenes con menos oportunidades, discapacidad y neurodiversidad."
 location: "Karaman, Türkiye"
 year: 2026
-dates: "22/06/2026 – 01/07/2026"
+dates: "22/06/2026 - 01/07/2026"
 order: 0
 image: "images/projects/inclusive-communities.png"
 poster: "images/projects/inclusive-communities.png"
@@ -17,16 +17,16 @@ apply: "https://forms.gle/i4dYSy7CbbgE1ZFv6"
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Inclusión, diversidad, igualdad de oportunidades, accesibilidad y participación juvenil
-- **Fechas:** Del 22/06/2026 al 01/07/2026 (actividades del 23 al 30 de junio — 8 días)
+- **Fechas:** Del 22/06/2026 al 01/07/2026 (actividades del 23 al 30 de junio, 8 días)
 - **Lugar:** Karaman, Türkiye (Grand Hotel & Convention Center Karaman)
-- **Participantes:** Grupos nacionales de 7-8 personas (6-7 jóvenes y 1 líder). Jóvenes de 16 a 24 años residentes en España (líder 18+)
-- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha — ¡no te lo pienses más!
+- **Participantes:** Grupos nacionales de 8 personas (7 jóvenes y 1 líder). Jóvenes de 18 a 24 años residentes en España
+- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
 > **Importante:** Se dará prioridad a jóvenes con menos oportunidades, incluyendo personas con discapacidad o de contextos neurodiversos. Se garantizará el equilibrio de género y se proporcionará apoyo según las necesidades de cada participante.
 
 ## Sobre el proyecto
 
-**"Different but Equal – Youth for Inclusive Communities"** es un intercambio juvenil internacional cofinanciado por Erasmus+ y coordinado por **Colour Your Dreams Association** en Karaman (Türkiye). Reunirá a 45 jóvenes y 8 líderes/facilitadores de varios países europeos durante una semana en el centro de Anatolia para construir comunidades más inclusivas a través de la diversidad y la participación.
+**"Different but Equal: Youth for Inclusive Communities"** es un intercambio juvenil internacional cofinanciado por Erasmus+ y coordinado por **Colour Your Dreams Association** en Karaman (Türkiye). Reunirá a 45 jóvenes y 8 líderes/facilitadores de varios países europeos durante una semana en el centro de Anatolia para construir comunidades más inclusivas a través de la diversidad y la participación.
 
 El proyecto parte de una idea sencilla: todas las personas somos diferentes, y todas merecemos las mismas oportunidades. Trabajaremos sobre inclusión social, discriminación, estereotipos, empatía, accesibilidad y participación juvenil, con un enfoque especial en quienes encuentran más barreras para acceder al programa Erasmus+.
 
@@ -60,9 +60,9 @@ Está estrictamente prohibido el consumo de alcohol por menores de edad, así co
 
 ## Perfil del Participante
 
-Buscamos personas de entre 16 y 24 años, residentes en España. Deben tener un nivel de inglés suficiente para comunicarse en un entorno internacional, así como una fuerte motivación para participar de manera activa en el proyecto. Se requiere compromiso total y participación durante todos los días del proyecto.
+Buscamos personas de entre 18 y 24 años, residentes en España. Deben tener un nivel de inglés suficiente para comunicarse en un entorno internacional, así como una fuerte motivación para participar de manera activa en el proyecto. Se requiere compromiso total y participación durante todos los días del proyecto.
 
-Se dará **prioridad a jóvenes con menos oportunidades**, incluyendo personas con discapacidad y de contextos neurodiversos. La organización adaptará el apoyo según las necesidades de cada participante. **Los menores de edad deberán aportar autorización paterna/materna y documentación adicional.**
+Se dará **prioridad a jóvenes con menos oportunidades**, incluyendo personas con discapacidad y de contextos neurodiversos. La organización adaptará el apoyo según las necesidades de cada participante.
 
 No nos interesa tanto tu experiencia previa ni tu formación, sino tu actitud: queremos contar con personas dispuestas a salir de su zona de confort, a escuchar otras realidades y a compartir la suya propia desde el respeto.
 
@@ -70,7 +70,7 @@ No nos interesa tanto tu experiencia previa ni tu formación, sino tu actitud: q
 
 En estos gastos irá incluido el alojamiento, las comidas (pensión completa con coffee breaks) y los materiales de todas las actividades realizadas durante la estancia.
 
-Los gastos de transporte serán pagados por el participante y devueltos por Estrellas del Sur una vez terminado el proyecto hasta **580 €** (banda Erasmus+ correspondiente a Córdoba–Karaman). Si se utiliza **green travel** (autobús, tren, bicicleta o carpooling), el límite se amplía a **785 €**. Para ello, el participante debe:
+Los gastos de transporte serán pagados por el participante y devueltos por Estrellas del Sur una vez terminado el proyecto hasta **580 €** (banda Erasmus+ correspondiente a Córdoba-Karaman). Para ello, el participante debe:
 
 - Aportar a Estrellas del Sur las facturas de los transportes utilizados, así como las tarjetas de embarque en caso de viaje en avión (haz captura de la boarding pass digital el mismo día del vuelo, ya que las apps las eliminan al cabo de un tiempo).
 - Realizar las actividades previas a la parte presencial, las presenciales, y las actividades de difusión de resultados posteriores al proyecto.
