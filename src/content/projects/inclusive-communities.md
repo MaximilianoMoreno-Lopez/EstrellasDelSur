@@ -22,8 +22,6 @@ apply: "https://forms.gle/i4dYSy7CbbgE1ZFv6"
 - **Participantes:** Grupos nacionales de 8 personas (7 jóvenes y 1 líder). Jóvenes de 18 a 24 años residentes en España
 - **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
-> **Importante:** Se dará prioridad a jóvenes con menos oportunidades, incluyendo personas con discapacidad o de contextos neurodiversos. Se garantizará el equilibrio de género y se proporcionará apoyo según las necesidades de cada participante.
-
 ## Sobre el proyecto
 
 **"Different but Equal: Youth for Inclusive Communities"** es un intercambio juvenil internacional cofinanciado por Erasmus+ y coordinado por **Colour Your Dreams Association** en Karaman (Türkiye). Reunirá a 45 jóvenes y 8 líderes/facilitadores de varios países europeos durante una semana en el centro de Anatolia para construir comunidades más inclusivas a través de la diversidad y la participación.
@@ -61,8 +59,6 @@ Está estrictamente prohibido el consumo de alcohol por menores de edad, así co
 ## Perfil del Participante
 
 Buscamos personas de entre 18 y 24 años, residentes en España. Deben tener un nivel de inglés suficiente para comunicarse en un entorno internacional, así como una fuerte motivación para participar de manera activa en el proyecto. Se requiere compromiso total y participación durante todos los días del proyecto.
-
-Se dará **prioridad a jóvenes con menos oportunidades**, incluyendo personas con discapacidad y de contextos neurodiversos. La organización adaptará el apoyo según las necesidades de cada participante.
 
 No nos interesa tanto tu experiencia previa ni tu formación, sino tu actitud: queremos contar con personas dispuestas a salir de su zona de confort, a escuchar otras realidades y a compartir la suya propia desde el respeto.
 
