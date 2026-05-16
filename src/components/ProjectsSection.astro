@@ -20,13 +20,18 @@ function projectStartTime(p: typeof projects[number]): number {
   return 0;
 }
 
-// Active first (by order ASC), then past (by start date DESC — most recent first)
+// Active first (by order ASC), then past (with explicit dates first by start date DESC, then dateless)
 projects.sort((a, b) => {
   if (a.data.status !== b.data.status) {
     return a.data.status === 'active' ? -1 : 1;
   }
   if (a.data.status === 'active') {
     return a.data.order - b.data.order;
+  }
+  const aHasDates = !!a.data.dates;
+  const bHasDates = !!b.data.dates;
+  if (aHasDates !== bHasDates) {
+    return aHasDates ? -1 : 1;
   }
   return projectStartTime(b) - projectStartTime(a);
 });
