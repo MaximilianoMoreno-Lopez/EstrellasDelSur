@@ -26,7 +26,7 @@ Siempre usar `${base}/ruta/` donde `base = import.meta.env.BASE_URL.replace(/\/$
 ## Equipo
 - **Maximiliano Moreno López** — Cofundador y Presidente · maxi@estrellasdelsur.eu
 - **Pablo Sánchez Ruiz** — Cofundador y Vicepresidente · pablo@estrellasdelsur.eu
-- **Paula Arroyo** — International Project Manager · pablo@estrellasdelsur.eu
+- **Paula Arroyo** — International Project Manager · paula@estrellasdelsur.eu
 
 ## Identidad
 - OID: E10264295 · PIC: 892239563

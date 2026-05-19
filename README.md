@@ -151,7 +151,7 @@ En **Settings → Pages**:
 
 ## Contacto
 
-- **Email:** maxi@estrellasdelsur.eu · pablo@estrellasdelsur.eu
+- **Email:** maxi@estrellasdelsur.eu · paula@estrellasdelsur.eu
 - **Instagram / Facebook / TikTok:** @estrellasdelsur.eu
 - **Ubicación:** Córdoba, España
 
