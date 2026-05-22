@@ -19,7 +19,7 @@ apply: "https://forms.gle/ZQ5k7XXuJP2oMvz97"
 - **Temática del Proyecto:** Música, cultura europea, valores de la UE (inclusión, igualdad, libertad, solidaridad, respeto a la diversidad) y participación juvenil
 - **Fechas:** Del 10/08/2026 al 18/08/2026 (actividades del 11 al 17 de agosto, 7 días + 2 días de viaje)
 - **Lugar:** Rabka-Zdrój, Polonia (Centro de Formación y Educación de Europe4Youth, ul. Cicha 12)
-- **Participantes:** Grupos nacionales de 8 personas (7 jóvenes y 1 líder). Jóvenes de 18 a 25 años residentes en España
+- **Participantes:** Grupos nacionales de 5 personas (4 jóvenes y 1 líder). Jóvenes de 18 a 25 años residentes en España
 - **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
 ## Sobre el proyecto
