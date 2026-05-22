@@ -198,6 +198,21 @@ const breadcrumbs = [
           </figure>
         )}
         <Content />
+
+        {(apply || infopack) && (
+          <div class="bottom-cta">
+            {apply && (
+              <a href={apply} target="_blank" rel="noopener" class="btn btn-primary">
+                Preinscribirme
+              </a>
+            )}
+            {infopack && (
+              <a href={infopack} target="_blank" rel="noopener" class="btn btn-outline">
+                Ver Infopack
+              </a>
+            )}
+          </div>
+        )}
       </article>
 
       <!-- Sidebar -->
@@ -509,6 +524,21 @@ const breadcrumbs = [
     display: flex;
     flex-direction: column;
     gap: .6rem;
+  }
+
+  .bottom-cta {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-200);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    justify-content: center;
+  }
+  .bottom-cta .btn { min-width: 200px; }
+  @media (max-width: 480px) {
+    .bottom-cta { flex-direction: column; align-items: stretch; }
+    .bottom-cta .btn { width: 100%; }
   }
 
   .sidebar-cta {
