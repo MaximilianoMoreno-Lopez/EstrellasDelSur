@@ -1,7 +1,7 @@
 ---
 title: "Digital Competences"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇵🇱"
 description: "Intercambio juvenil internacional en Rabka-Zdrój (Polonia) sobre competencias digitales: gestión crítica de información, comunicación digital, producción de contenidos y seguridad de datos."
 location: "Rabka-Zdrój, Polonia"
