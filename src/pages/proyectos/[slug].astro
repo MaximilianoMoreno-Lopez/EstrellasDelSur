@@ -536,6 +536,9 @@ const breadcrumbs = [
     justify-content: center;
   }
   .bottom-cta .btn { min-width: 200px; }
+  .bottom-cta :global(.btn-primary) { color: #fff; }
+  .bottom-cta :global(.btn-outline) { color: var(--teal); }
+  .bottom-cta :global(.btn-outline:hover) { color: #fff; }
   @media (max-width: 480px) {
     .bottom-cta { flex-direction: column; align-items: stretch; }
     .bottom-cta .btn { width: 100%; }
