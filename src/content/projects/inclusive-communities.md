@@ -7,7 +7,7 @@ description: "Intercambio juvenil internacional en Karaman (Türkiye) sobre comu
 location: "Karaman, Türkiye"
 year: 2026
 dates: "22/06/2026 - 01/07/2026"
-order: 0
+order: 1
 image: "images/projects/inclusive-communities.png"
 poster: "images/projects/inclusive-communities.png"
 infopack: "https://drive.google.com/file/d/1xrTfj9qFDnhN_H5Zks8TGv6xAT2ckNM2/view?usp=drive_link"

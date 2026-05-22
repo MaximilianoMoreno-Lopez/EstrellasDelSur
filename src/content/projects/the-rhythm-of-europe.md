@@ -7,7 +7,7 @@ description: "Intercambio juvenil internacional en Rabka-Zdrój (Polonia) sobre 
 location: "Rabka-Zdrój, Polonia"
 year: 2026
 dates: "10/08/2026 - 18/08/2026"
-order: 3
+order: 0
 image: "images/projects/the-rhythm-of-europe.png"
 poster: "images/projects/the-rhythm-of-europe.png"
 infopack: "https://drive.google.com/file/d/1MH_sC75dOdwC4na0cnYIkrOEnmxEjLYX/view?usp=drive_link"
