@@ -90,7 +90,7 @@ Los gastos de transporte serán pagados por el participante y devueltos por Estr
 - Realizar las actividades previas a la parte presencial (preparación online en Discord), las presenciales, y las actividades de difusión de resultados posteriores al proyecto.
 - Obtener el visto bueno de Estrellas del Sur antes de comprar cualquier billete de transporte.
 
-**No se reembolsarán** suplementos de equipaje, cargos extra de facturación en el aeropuerto ni transportes privados (taxi, Uber, Bolt). El traslado desde el aeropuerto de Cracovia hasta Rabka-Zdrój se realiza en bus o tren (Flixbus directo o tren a Kraków Główny + bus/tren a Rabka-Zdrój).
+**No se reembolsarán** suplementos de equipaje, cargos extra de facturación en el aeropuerto ni transportes privados (taxi, Uber, Bolt).
 
 Las llegadas al alojamiento deben producirse entre las 15:00 y las 22:00 del día de llegada (idealmente antes de las 19:00 para cenar), y las salidas no más tarde de las 10:00 del día de salida.
 
