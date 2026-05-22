@@ -84,7 +84,7 @@ Valoramos especialmente a personas con interés (no necesariamente formación) e
 
 En estos gastos irá incluido el alojamiento, las comidas (pensión completa) y los materiales de todas las actividades realizadas durante la estancia.
 
-Los gastos de transporte serán pagados por el participante y devueltos por Estrellas del Sur una vez terminado el proyecto, hasta el límite Erasmus+ correspondiente a la distancia Córdoba-Rabka-Zdrój (banda 2000-2999 km): **395 € en transporte estándar** o **535 € si se utiliza transporte verde** (tren, autobús u otras opciones bajas en emisiones). Para ello, el participante debe:
+Los gastos de transporte serán pagados por el participante y devueltos por Estrellas del Sur una vez terminado el proyecto, hasta el límite Erasmus+ correspondiente a la distancia (calculada en línea recta desde la ciudad de residencia hasta Rabka-Zdrój). El reembolso varía según la banda de kilómetros aplicable y aumenta si se utiliza **transporte verde** (tren, autobús u otras opciones bajas en emisiones). Para ello, el participante debe:
 
 - Aportar a Estrellas del Sur las facturas de los transportes utilizados, así como las tarjetas de embarque en caso de viaje en avión (haz captura de la boarding pass digital el mismo día del vuelo, ya que las apps las eliminan al cabo de un tiempo).
 - Viajar únicamente con opciones económicas (2ª clase, clase turista, opciones budget) y en transporte público (no se reembolsan taxis, Uber, Bolt ni similares).
