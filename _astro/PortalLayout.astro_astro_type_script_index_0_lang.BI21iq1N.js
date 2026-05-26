@@ -1,0 +1,1 @@
+import{s as e}from"./supabase.Cwf-B4Rc.js";e.auth.onAuthStateChange((a,n)=>{const t=document.getElementById("portalNav");t&&(t.style.display=n?"flex":"none")});document.getElementById("footerYear").textContent=new Date().getFullYear();document.getElementById("logoutBtn")?.addEventListener("click",async()=>{await e.auth.signOut(),window.location.href="/portal/login/"});

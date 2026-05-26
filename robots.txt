@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Block internal/private pages
+Disallow: /admin/
+Disallow: /portal/
+
+# Block old WordPress infrastructure paths (site migrated to Astro)
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /wp-admin/
+Disallow: /category/
+Disallow: /tag/
+Disallow: /author/
+Disallow: /user/
+Disallow: /feed/
+Disallow: /feed
+Disallow: /logout/
+Disallow: /account/
+Disallow: /sample-page/
+Disallow: /cdn-cgi/
+
+Sitemap: https://estrellasdelsur.eu/sitemap-index.xml
