@@ -1,4 +1,4 @@
-# Estrellas del Sur — Web oficial
+# Estrellas del Sur - Web oficial
 
 Sitio web de **Estrellas del Sur**, asociación juvenil de Córdoba que conecta jóvenes con oportunidades europeas a través de proyectos **Erasmus+** y voluntariados del **Cuerpo Europeo de Solidaridad (ESC)**.
 
