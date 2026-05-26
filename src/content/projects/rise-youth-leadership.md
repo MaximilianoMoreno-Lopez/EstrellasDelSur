@@ -10,6 +10,7 @@ dates: "15/10/2026 - 24/10/2026"
 order: -1
 image: "images/projects/rise-youth-leadership.png"
 poster: "images/projects/rise-youth-leadership.png"
+infopack: "https://drive.google.com/file/d/1QsZVvYfS4q92ncVjUdNexwcsJw1ewSJN/view?usp=drive_link"
 ---
 
 ## Datos del proyecto
