@@ -70,7 +70,7 @@ Si la compañía aérea (o cualquier compañía de viajes) cancelase los vuelos,
 
 No se solicitará ningún certificado de idiomas al participante, pero sí que hacemos saber que todas las actividades serán en inglés y asistirán participantes de otros países de la Unión Europea, por lo que será requisito que el participante tenga cierto nivel de inglés para poder desenvolverse a lo largo de toda la estancia.
 
-Está estrictamente prohibido el consumo de alcohol por menores de edad, así como el consumo de drogas o sustancias ilegales y cualquier comportamiento agresivo o discriminatorio. El incumplimiento de estas normas puede conllevar la expulsión del proyecto.
+Está estrictamente prohibido el consumo de drogas o sustancias ilegales, así como cualquier comportamiento agresivo o discriminatorio. El incumplimiento de estas normas puede conllevar la expulsión del proyecto.
 
 Las actividades tratarán temas sensibles (aislamiento, exclusión, radicalización, identidad y pertenencia). Las sesiones se facilitarán en un entorno seguro y respetuoso, y nadie será obligado a compartir experiencias personales con las que no se sienta cómodo.
 
