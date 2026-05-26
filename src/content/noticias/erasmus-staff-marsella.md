@@ -43,3 +43,5 @@ Uno de los aspectos más importantes de la experiencia fue el ambiente de partic
 ## Mirando hacia futuras colaboraciones
 
 Esta experiencia representa un primer paso hacia nuevas colaboraciones europeas y la realización de futuros proyectos Erasmus+, intercambios juveniles y actividades internacionales dirigidas a los jóvenes de los territorios implicados. Una semana intensa y enriquecedora, llena de encuentros, ideas y nuevas perspectivas para el futuro.
+
+![Las 17 participantes con los certificados de la movilidad al final de la semana](/images/noticias/erasmus-staff-marsella/img-3.jpg)
