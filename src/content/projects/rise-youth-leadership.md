@@ -1,7 +1,7 @@
 ---
 title: "RISE: Resilient Youth Leadership Against Isolation and Radicalisation"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇮🇹"
 description: "Intercambio juvenil en Costacciaro (Umbría, Italia) sobre liderazgo joven, prevención de la radicalización y nuevas formas de participación."
 location: "Costacciaro (Perugia), Italia"
@@ -109,6 +109,6 @@ Si quisieras aprovechar el viaje a Italia y pasar más días de los que dura el 
 
 El botón de preinscripciones te llevará a un formulario donde deberás rellenar tus datos y adjuntar una carta de motivación al final. Esta carta es la que nos sirve para elegir a los participantes que más se ajusten a las necesidades del proyecto.
 
-Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. **Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.**
+Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.
 
 Aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.
