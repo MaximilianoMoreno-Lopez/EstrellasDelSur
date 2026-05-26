@@ -8,6 +8,8 @@ location: "Costacciaro (Perugia), Italia"
 year: 2026
 dates: "15/10/2026 - 24/10/2026"
 order: -1
+image: "images/projects/rise-youth-leadership.png"
+poster: "images/projects/rise-youth-leadership.png"
 ---
 
 ## Datos del proyecto
