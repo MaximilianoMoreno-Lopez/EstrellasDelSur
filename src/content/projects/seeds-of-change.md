@@ -1,7 +1,7 @@
 ---
 title: "Future Eco-Guardians III"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇫🇷"
 description: "Intercambio juvenil internacional en Normandía (Francia) sobre medioambiente, sostenibilidad y compromiso ecológico, dirigido a jóvenes de 14 a 17 años. Fase 3 del proyecto Future Eco-Guardians."
 location: "Grandcamp-Maisy, Normandía (Francia)"

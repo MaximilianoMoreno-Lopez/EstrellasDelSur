@@ -1,7 +1,7 @@
 ---
 title: "Inclusive Communities"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇹🇷"
 description: "Intercambio juvenil internacional en Karaman (Türkiye) sobre comunidades inclusivas, diversidad e igualdad de oportunidades, con foco en jóvenes con menos oportunidades, discapacidad y neurodiversidad."
 location: "Karaman, Türkiye"
