@@ -1,7 +1,7 @@
 ---
 title: "RISE: Resilient Youth Leadership Against Isolation and Radicalisation"
 type: "Intercambio"
-status: "past"
+status: "active"
 flag: "🇮🇹"
 description: "Intercambio juvenil en Costacciaro (Umbría, Italia) sobre liderazgo joven, prevención de la radicalización y nuevas formas de participación."
 location: "Costacciaro (Perugia), Italia"
