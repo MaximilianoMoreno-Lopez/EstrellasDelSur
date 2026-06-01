@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre conservación del litoral cantábrico y práctica del surf"
 year: 2022
-dates: "17/07/2022 – 24/07/2022"
+dates: "17/07/2022 - 24/07/2022"
 order: 12
 location: "Cantabria (España)"
 image: "images/projects/social-ecologic-actions/cover.png"

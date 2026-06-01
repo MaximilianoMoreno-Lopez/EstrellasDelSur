@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre promoción de la inclusión a través de la danza"
 year: 2024
-dates: "20/05/2024 – 25/05/2024"
+dates: "20/05/2024 - 25/05/2024"
 order: 32
 location: "Romagnese, Italia"
 image: "images/projects/dancing-diversity/cover.png"

@@ -6,7 +6,7 @@ flag: "🇨🇿"
 description: "El proyecto explora cómo las personas reaccionan ante la incertidumbre, el estrés y nuevas situaciones, y cómo estos desafíos pueden convertirse en oportunidades de crecimiento personal y profesional."
 location: "Moravec, República Checa"
 year: 2026
-dates: "21/06/2026 – 28/06/2026"
+dates: "21/06/2026 - 28/06/2026"
 order: 2
 image: "images/projects/shift-happens.png"
 poster: "images/projects/shift-happens.png"
@@ -20,7 +20,7 @@ apply: "https://forms.gle/cmf6EEfN9bCuzd6U6"
 - **Fechas:** Del 21/06/2026 al 28/06/2026
 - **Lugar:** Moravec, República Checa (punto de encuentro en Brno)
 - **Participantes:** Hasta 30 participantes mayores de 18 años, youth workers o personas involucradas en trabajo con jóvenes, residentes en países participantes del programa Erasmus+
-- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha — ¡no te lo pienses más!
+- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
 ## Sobre el proyecto
 

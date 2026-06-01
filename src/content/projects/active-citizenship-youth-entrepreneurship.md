@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre participación ciudadana"
 year: 2026
-dates: "04/05/2026 – 13/05/2026"
+dates: "04/05/2026 - 13/05/2026"
 order: 59
 location: "Arad, Rumanía"
 image: "images/projects/active-citizenship-youth-entrepreneurship/cover.jpg"

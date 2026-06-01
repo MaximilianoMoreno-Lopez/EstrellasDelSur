@@ -4,7 +4,7 @@ type: "Formación"
 status: "past"
 order: 0.5
 date: "2026-04"
-dates: "04/04/2026 – 11/04/2026"
+dates: "04/04/2026 - 11/04/2026"
 location: "Conil de la Frontera, España"
 description: "Estrellas del Sur participó en el Training Course Beyond Feeling Fine: Exploring Well-being in Today's World, donde youth workers de toda Europa exploraron herramientas para promover el bienestar a través del trabajo juvenil."
 cover: "images/noticias/beyond-feeling-fine/cover.jpg"

@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "El proyecto de intercambio juvenil «Upscale Your Skills» tiene por objeto ofrecer a los jóvenes la oportunidad de mejorar sus capacidades interpersonales y concienciar a los jóvenes sobre la importancia de estas competencias y cómo con la…"
 year: 2023
-dates: "14/10/2023 – 22/10/2023"
+dates: "14/10/2023 - 22/10/2023"
 order: 28
 location: "Kaunas (Lituania)"
 image: "images/projects/upscale-your-skills/cover.png"

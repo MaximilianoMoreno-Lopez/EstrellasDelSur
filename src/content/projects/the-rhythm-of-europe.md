@@ -12,6 +12,9 @@ image: "images/projects/the-rhythm-of-europe.png"
 poster: "images/projects/the-rhythm-of-europe.png"
 infopack: "https://drive.google.com/file/d/1MH_sC75dOdwC4na0cnYIkrOEnmxEjLYX/view?usp=drive_link"
 apply: "https://forms.gle/ZQ5k7XXuJP2oMvz97"
+edad: "18-25 años"
+idioma: "Inglés"
+coste: "Cuota de socio 70 € (solo si te seleccionan)"
 ---
 
 ## Datos del proyecto

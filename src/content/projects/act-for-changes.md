@@ -6,7 +6,7 @@ flag: "🇨🇿"
 description: "Intercambio juvenil internacional en dos fases (R. Checa y España) para jóvenes de 15 a 17 años. Combinamos teatro, dinámicas y aprendizaje experiencial para explorar sostenibilidad, cambio climático, identidad y participación juvenil."
 location: "Moravec (República Checa) + Alicante (España)"
 year: 2026
-dates: "Fase 1: 22/08/2026 – 29/08/2026 · Fase 2: 17/10/2026 – 24/10/2026"
+dates: "Fase 1: 22/08/2026 - 29/08/2026 · Fase 2: 17/10/2026 - 24/10/2026"
 order: 99
 image: "images/projects/act-for-changes.png"
 poster: "images/projects/act-for-changes.png"
@@ -22,7 +22,7 @@ apply: "https://forms.gle/ZBj5NU4rtXMAv5oG8"
   - **Fase 2 (España):** del 17/10/2026 al 24/10/2026
 - **Lugar:** Moravec (República Checa) + Alicante (España)
 - **Participantes:** Hasta 6 participantes por país. Jóvenes de 15 a 17 años residentes en países Erasmus+
-- **Fecha límite de inscripciones:** Inscripciones abiertas — ¡no te lo pienses mucho!
+- **Fecha límite de inscripciones:** Inscripciones abiertas, ¡no te lo pienses mucho!
 
 > **Importante:** es **imprescindible participar en las dos fases del proyecto** (República Checa y España). No se admiten participantes que solo puedan asistir a una de las dos.
 

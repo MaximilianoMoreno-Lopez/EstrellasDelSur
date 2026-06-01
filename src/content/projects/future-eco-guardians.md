@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil internacional en tres fases (España, República Checa y Francia) que reúne a adolescentes de 13 a 17 años para luchar contra el cambio climático y convertirse en líderes ambientales."
 year: 2025
-dates: "05/07/2025 – 12/07/2025"
+dates: "05/07/2025 - 12/07/2025"
 order: 46
 location: "Almodóvar del Río · Vrchlabí · Hérouville Saint-Clair"
 image: "images/projects/future-eco-guardians/cover.jpg"
@@ -22,15 +22,15 @@ image: "images/projects/future-eco-guardians/cover.jpg"
 
 Este proyecto internacional se desarrolla en tres fases y reúne a jóvenes de **España, Francia y República Checa** con un objetivo en común: luchar contra el cambio climático y convertirse en líderes ambientales.
 
-### Fase 1 — Shaping Tomorrow, Today (Almodóvar del Río · julio 2025)
+### Fase 1: Shaping Tomorrow, Today (Almodóvar del Río · julio 2025)
 
 En la primera fase viajamos a **Almodóvar, Córdoba**, del 5 al 12 de julio de 2025, donde exploramos una de las regiones más afectadas por la sequía. A través de talleres ecológicos, actividades al aire libre, deportes acuáticos y simulaciones de las Naciones Unidas, los participantes aprenden sobre **sostenibilidad, liderazgo y acción climática** mientras disfrutan de la cultura española.
 
-### Fase 2 — ReRoot (Vrchlabí · agosto 2025)
+### Fase 2: ReRoot (Vrchlabí · agosto 2025)
 
 La segunda fase tiene lugar en **Vrchlabí, República Checa**, del 23 al 30 de agosto de 2025. Nos sumergimos en la naturaleza para reconectar con nosotros mismos y con el medio ambiente. A través del **senderismo en las montañas Krkonoše** y dinámicas al aire libre, profundizamos en temas como la salud mental, el crecimiento personal y la sostenibilidad.
 
-### Fase 3 — Hérouville Saint-Clair (Francia · verano 2026)
+### Fase 3: Hérouville Saint-Clair (Francia · verano 2026)
 
 La tercera y última fase se celebra en **Francia** en el verano de 2026, donde culminamos nuestro viaje como guardianes del medioambiente, aplicando todo lo aprendido para generar un impacto real.
 

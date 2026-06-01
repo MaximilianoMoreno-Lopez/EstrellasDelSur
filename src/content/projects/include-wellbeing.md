@@ -4,7 +4,7 @@ type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre inclusión social y el bienestar integral"
-dates: "20/04/2026 – 28/04/2026"
+dates: "20/04/2026 - 28/04/2026"
 order: 12
 location: "Brașov, Rumanía"
 year: 2026

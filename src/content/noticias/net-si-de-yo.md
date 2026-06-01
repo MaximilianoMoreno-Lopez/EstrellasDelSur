@@ -17,7 +17,7 @@ Bajo el lema del desarrollo de Soft Skills y Networking, el proyecto ha dejado u
 
 ## 🌍 Un encuentro de impacto europeo
 
-El seminario no solo cumplió sus objetivos, sino que superó las expectativas en cuanto a la creación de sinergias. El programa se centró en la educación no formal, permitiendo que profesionales de diversos contextos —desde iniciativas artísticas hasta el desarrollo rural— compartieran sus realidades y metodologías.
+El seminario no solo cumplió sus objetivos, sino que superó las expectativas en cuanto a la creación de sinergias. El programa se centró en la educación no formal, permitiendo que profesionales de diversos contextos, desde iniciativas artísticas hasta el desarrollo rural, compartieran sus realidades y metodologías.
 
 Aunque lo mejor de estos días no solo fue el paisaje, sino lo que nos trajimos de vuelta. No volvimos con las manos vacías: tejimos una red de contactos increíble con la que ya estamos planeando nuevas aventuras europeas para los próximos meses.
 
@@ -35,7 +35,7 @@ Junto a esto, el aprendizaje constante se hace mucho más ameno y personal, apor
 
 ## 🔙 Mirando hacia atrás
 
-Este evento ha reafirmado la importancia de las redes de contacto —conocido como networking— en el ámbito de la juventud. El éxito de la convocatoria (cerrada el pasado 10 de febrero de 2026) y la calidad de los resultados obtenidos demuestran que el interés por la educación internacional sigue más vivo que nunca.
+Este evento ha reafirmado la importancia de las redes de contacto, conocido como networking, en el ámbito de la juventud. El éxito de la convocatoria (cerrada el pasado 10 de febrero de 2026) y la calidad de los resultados obtenidos demuestran que el interés por la educación internacional sigue más vivo que nunca.
 
 Desde Estrellas del Sur, agradecemos a los participantes su compromiso y a la organización de acogida en Italia por su hospitalidad y profesionalidad.
 

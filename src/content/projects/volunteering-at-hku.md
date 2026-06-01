@@ -2,7 +2,7 @@
 title: "Volunteering at HKU"
 type: "Voluntariado"
 status: "past"
-flag: "🇭🇰"
+flag: "🇹🇷"
 description: "El proyecto de voluntariado grupal en la Universidad Hasan Kalyoncu (HKU) se desarrolla en Gaziantep, una ciudad emblemática del sureste de Turquía, donde confluyen diversas culturas, idiomas y tradiciones."
 year: 2026
 order: 58

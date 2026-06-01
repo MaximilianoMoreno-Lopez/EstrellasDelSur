@@ -12,6 +12,9 @@ image: "images/projects/rise-youth-leadership.png"
 poster: "images/projects/rise-youth-leadership.png"
 infopack: "https://drive.google.com/file/d/1QsZVvYfS4q92ncVjUdNexwcsJw1ewSJN/view?usp=drive_link"
 apply: "https://forms.gle/T7WbCogWo2GrvahJA"
+edad: "18-30 años"
+idioma: "Inglés"
+coste: "Cuota de socio 50 € (solo si te seleccionan)"
 ---
 
 ## Datos del proyecto

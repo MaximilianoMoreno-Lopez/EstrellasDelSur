@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre bienestar y psicología"
 year: 2026
-dates: "04/04/2026 – 11/04/2026"
+dates: "04/04/2026 - 11/04/2026"
 order: 57
 location: "Conil de la Frontera, España"
 image: "images/projects/beyond-feeling-fine/cover.jpg"

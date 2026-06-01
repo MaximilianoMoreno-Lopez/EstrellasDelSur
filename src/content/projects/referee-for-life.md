@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre deporte, concentración y bienestar por la actividad física"
 year: 2022
-dates: "21/09/2022 – 28/09/2022"
+dates: "21/09/2022 - 28/09/2022"
 order: 17
 location: "Molfetta/Puglia (Italia)"
 image: "images/projects/referee-for-life/cover.png"

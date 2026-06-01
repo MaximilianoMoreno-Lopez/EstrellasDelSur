@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "El objetivo de este curso de formación es promover la importancia de la inclusión entre los trabajadores juveniles y los jóvenes que están abiertos a nuevas experiencias de aprendizaje."
 year: 2022
-dates: "18/10/2022 – 26/10/2022"
+dates: "18/10/2022 - 26/10/2022"
 order: 22
 location: "PÁKOZD, HUNGRÍA"
 ---

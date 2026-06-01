@@ -6,7 +6,7 @@ flag: "🇵🇱"
 description: "Intercambio juvenil internacional en Rabka-Zdrój (Polonia) sobre competencias digitales: gestión crítica de información, comunicación digital, producción de contenidos y seguridad de datos."
 location: "Rabka-Zdrój, Polonia"
 year: 2026
-dates: "10/07/2026 – 18/07/2026"
+dates: "10/07/2026 - 18/07/2026"
 order: 3
 image: "images/projects/digital-competences.png"
 poster: "images/projects/digital-competences.png"
@@ -16,11 +16,11 @@ apply: "https://forms.gle/PA6cSgg53E9k2wLAA"
 
 ## Datos del proyecto
 
-- **Temática del Proyecto:** Competencias digitales — información, comunicación, producción y seguridad
+- **Temática del Proyecto:** Competencias digitales: información, comunicación, producción y seguridad
 - **Fechas:** Del 10/07/2026 al 18/07/2026
 - **Lugar:** Rabka-Zdrój, Polonia (Europe4Youth Association's Training & Education Centre)
 - **Participantes:** Grupos nacionales de 5 personas (4 jóvenes y 1 líder). Jóvenes de 18 a 25 años residentes en España
-- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha — ¡no te lo pienses más!
+- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
 > **Importante:** Es obligatorio asistir a la reunión de preparación online y realizar la encuesta *"Wheel of Digital Competences"* antes del inicio del proyecto.
 
@@ -32,10 +32,10 @@ Todos somos *nativos digitales*, pero no todos disponemos de las mismas herramie
 
 El proyecto se estructura en torno a **cuatro áreas** del marco europeo de competencias digitales:
 
-- **Información** — buscar, gestionar y analizar críticamente la información digital
-- **Comunicación** — comunicarse con eficacia en entornos digitales y formar parte de una comunidad online
-- **Producción** — crear contenidos y herramientas digitales, o usar herramientas digitales para crear
-- **Seguridad** — proteger los datos personales, la identidad digital y la salud (legal y física)
+- **Información:** buscar, gestionar y analizar críticamente la información digital
+- **Comunicación:** comunicarse con eficacia en entornos digitales y formar parte de una comunidad online
+- **Producción:** crear contenidos y herramientas digitales, o usar herramientas digitales para crear
+- **Seguridad:** proteger los datos personales, la identidad digital y la salud (legal y física)
 
 ### Metodología
 

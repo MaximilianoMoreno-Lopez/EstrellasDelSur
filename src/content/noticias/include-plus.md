@@ -5,11 +5,11 @@ status: "past"
 order: 0
 date: "2026-05"
 location: "Brașov, Rumanía"
-description: "43 jóvenes de 7 países nos reunimos en Brașov para hablar de bienestar, empatía y mindfulness en el intercambio Erasmus+ INCLUDE+ – Wellbeing in Action."
+description: "43 jóvenes de 7 países nos reunimos en Brașov para hablar de bienestar, empatía y mindfulness en el intercambio Erasmus+ INCLUDE+ - Wellbeing in Action."
 cover: "images/noticias/include-plus/cover.jpg"
 ---
 
-Participar en el proyecto Erasmus+ **INCLUDE+ – Wellbeing in Action** en Brașov, Rumanía, ha sido una de esas experiencias que realmente te cambian algo por dentro. No fue solo un intercambio juvenil, sino un viaje lleno de emociones, encuentros, reflexiones y momentos que difícilmente olvidaré.
+Participar en el proyecto Erasmus+ **INCLUDE+ - Wellbeing in Action** en Brașov, Rumanía, ha sido una de esas experiencias que realmente te cambian algo por dentro. No fue solo un intercambio juvenil, sino un viaje lleno de emociones, encuentros, reflexiones y momentos que difícilmente olvidaré.
 
 Durante varios días convivimos 43 jóvenes de 7 países diferentes, compartiendo culturas, ideas e historias personales. Desde el primer día se respiraba un ambiente especial: nadie conocía realmente a los demás, pero gracias a actividades simples y divertidas como *Human Bingo* conseguimos romper el hielo rápidamente y crear un entorno acogedor y lleno de energía positiva. En muy poco tiempo, quienes al principio eran completos desconocidos se convirtieron en compañeros de aventura con los que compartir risas, conversaciones profundas y momentos inolvidables.
 

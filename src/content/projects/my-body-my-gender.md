@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre desarrollo personal y tolerancia a través del arte terapéutico"
 year: 2025
-dates: "12/07/2025 – 19/07/2025"
+dates: "12/07/2025 - 19/07/2025"
 order: 63
 location: "Moravia, República Checa"
 image: "images/projects/my-body-my-gender/cover.jpg"

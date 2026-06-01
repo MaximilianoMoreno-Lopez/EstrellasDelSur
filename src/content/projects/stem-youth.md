@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre stem como metodología novedosa de aprendizaje"
 year: 2023
-dates: "17/10/2023 – 23/10/2023"
+dates: "17/10/2023 - 23/10/2023"
 order: 27
 location: "Rabka-zdrój (Polonia)"
 image: "images/projects/stem-youth/cover.png"

@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre desarrollo del auto-recurso creativo y el desarrollo personal"
 year: 2025
-dates: "04/05/2025 – 15/05/2025"
+dates: "04/05/2025 - 15/05/2025"
 order: 66
 location: "Bátonyterenye, Hungría"
 image: "images/projects/the-next-beat-ii/cover.jpg"

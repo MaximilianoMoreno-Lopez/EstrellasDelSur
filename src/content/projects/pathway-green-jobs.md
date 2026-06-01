@@ -4,7 +4,7 @@ type: "Formación"
 status: "past"
 flag: "🇪🇺"
 description: "Curso de formación Erasmus+ sobre empleo verde y medio ambiente"
-dates: "11/09/2023 – 19/09/2023"
+dates: "11/09/2023 - 19/09/2023"
 order: 16
 location: "Saulkrasti (Letonia)"
 year: 2023

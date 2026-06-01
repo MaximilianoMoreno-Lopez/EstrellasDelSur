@@ -3,8 +3,9 @@ title: "Voluntariado Italia"
 type: "Voluntariado"
 status: "past"
 flag: "🇮🇹"
-description: "Una experiencia educativa en Molfetta Sergio Martín tuvo la oportunidad de participar en un proyecto de voluntariado en el Istituto Comprensivo..."
+description: "Voluntariado Erasmus+ en el Istituto Comprensivo Battisti-Pascoli de Molfetta (Italia): apoyo en clases, talleres interculturales y actividades con el alumnado."
 year: 2025
+location: "Molfetta (Italia)"
 order: 64
 image: "images/projects/voluntariado-italia/cover.jpg"
 ---

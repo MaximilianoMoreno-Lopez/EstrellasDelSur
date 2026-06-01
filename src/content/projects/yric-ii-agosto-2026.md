@@ -6,12 +6,15 @@ flag: "🇵🇱"
 description: "Voluntariado de larga duración (1 mes) en Rabka-Zdrój (Polonia) apoyando el centro juvenil polaco-ucraniano Kefirek: integración, apoyo emocional y dinamización de jóvenes locales y refugiados ucranianos."
 location: "Rabka-Zdrój (Polonia)"
 year: 2026
-dates: "10/08/2026 – 10/09/2026"
+dates: "10/08/2026 - 10/09/2026"
 order: -2
 image: "images/projects/yric-ii-agosto-2026/cover.png"
 poster: "images/projects/yric-ii-agosto-2026/cover.png"
 infopack: "https://drive.google.com/file/d/1GULr6e-0GQsz48Nxq0UFxU0xJZeLTFN4/view?usp=drive_link"
 apply: "https://forms.gle/66rVMU8hFuEXFmkK6"
+edad: "18-30 años"
+idioma: "Inglés"
+coste: "Sin cuota · pocket money 6 €/día"
 ---
 
 ## Datos del proyecto

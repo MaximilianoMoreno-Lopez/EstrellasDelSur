@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Entrepreneurship Programme for Unemployed Youth es un curso internacional de formación Erasmus+ centrado en el emprendimiento juvenil y la empleabilidad."
 year: 2026
-dates: "14/04/2026 – 22/04/2026"
+dates: "14/04/2026 - 22/04/2026"
 order: 62
 location: "Gaziantep, Turquía"
 image: "images/projects/entrepreneurship-programme-for-unemployed-youth/cover.png"

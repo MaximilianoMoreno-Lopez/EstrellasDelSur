@@ -4,6 +4,7 @@ type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
 description: "¡Arranca nuestro nuevo proyecto Erasmus+… ConnectART!"
+year: 2024
 order: 14
 image: "images/projects/connectart/cover.jpg"
 ---

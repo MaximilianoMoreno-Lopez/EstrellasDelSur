@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre música e inclusión juvenil a través de la expresión artística"
 year: 2025
-dates: "21/07/2025 – 29/07/2025"
+dates: "21/07/2025 - 29/07/2025"
 order: 43
 location: "Rabka-Zdrój, Polonia"
 image: "images/projects/music-4unity/cover.jpg"

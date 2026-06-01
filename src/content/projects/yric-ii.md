@@ -4,7 +4,7 @@ type: "Formación"
 status: "past"
 flag: "🇪🇺"
 description: "El proyecto YRIC II es un voluntariado de larga duración (1 mes) que continua el trabajo de jóvenes de Polonia, Ucrania, Alemania, Hungría y Francia que renovaron un antiguo edificio convirtiéndose en un centro polaco-ucraniano para…"
-dates: "02/02/2026 – 05/03/2026"
+dates: "02/02/2026 - 05/03/2026"
 order: 10
 location: "Rabka-Zdrój (Polonia)"
 year: 2026

@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, type, status, flag, description, location, year, image, poster, infopack, apply, dates, localInitiative, coordinated } = project.data;
+const { title, type, status, flag, description, location, year, image, poster, infopack, apply, dates, localInitiative, coordinated, edad, idioma, coste } = project.data;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -181,6 +181,20 @@ const breadcrumbs = [
           )}
         </div>
       )}
+      {status === 'active' && (apply || infopack) && (
+        <div class="hero-ctas fade-in fade-in-delay-3">
+          {apply && (
+            <a href={apply} target="_blank" rel="noopener" class="btn btn-primary">
+              Preinscribirme
+            </a>
+          )}
+          {infopack && (
+            <a href={infopack} target="_blank" rel="noopener" class="btn btn-hero-ghost">
+              Ver Infopack
+            </a>
+          )}
+        </div>
+      )}
     </div>
   </section>
 
@@ -242,6 +256,27 @@ const breadcrumbs = [
               <>
                 <dt>Año</dt>
                 <dd>{year}</dd>
+              </>
+            )}
+
+            {edad && (
+              <>
+                <dt>Edad</dt>
+                <dd>{edad}</dd>
+              </>
+            )}
+
+            {idioma && (
+              <>
+                <dt>Idioma</dt>
+                <dd>{idioma}</dd>
+              </>
+            )}
+
+            {coste && (
+              <>
+                <dt>Coste</dt>
+                <dd>{coste}</dd>
               </>
             )}
           </dl>
@@ -396,6 +431,37 @@ const breadcrumbs = [
     gap: .35rem;
     font-size: .88rem;
     color: rgba(255,255,255,.7);
+  }
+
+  /* Hero CTA (solo proyectos activos) */
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1.5rem;
+  }
+  .hero-ctas :global(.btn-primary) { color: #fff; }
+  .btn-hero-ghost {
+    background: rgba(255, 255, 255, .08);
+    border: 2px solid rgba(255, 255, 255, .55);
+    color: #fff;
+    padding: .6rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: .9rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s, border-color .2s;
+  }
+  .btn-hero-ghost:hover {
+    background: rgba(255, 255, 255, .18);
+    border-color: #fff;
+  }
+  @media (max-width: 480px) {
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .hero-ctas .btn, .hero-ctas .btn-hero-ghost { width: 100%; }
   }
 
   /* Content layout */

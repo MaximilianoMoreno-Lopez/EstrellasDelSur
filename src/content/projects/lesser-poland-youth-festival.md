@@ -6,7 +6,7 @@ flag: "🇵🇱"
 description: "El Lesser Poland Youth Festival es la evolución del Rabka Youth Festival, un evento que busca involucrar a los jóvenes en el activismo, la cultura y el diálogo con los responsables de la toma de decisiones."
 location: "Rabka-Zdrój, Polonia"
 year: 2025
-dates: "25/04/2025 – 31/05/2025"
+dates: "25/04/2025 - 31/05/2025"
 order: 99
 image: "images/projects/lesser-poland-youth-festival/cover.jpg"
 ---

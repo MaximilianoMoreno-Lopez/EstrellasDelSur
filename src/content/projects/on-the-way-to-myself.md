@@ -5,6 +5,8 @@ status: "past"
 flag: "🇪🇺"
 description: "¡Una aventura inolvidable en la naturaleza!"
 year: 2024
+dates: "25/08/2024 - 01/09/2024"
+location: "Vrchlabí (República Checa)"
 order: 29
 image: "images/projects/on-the-way-to-myself/cover.jpg"
 ---

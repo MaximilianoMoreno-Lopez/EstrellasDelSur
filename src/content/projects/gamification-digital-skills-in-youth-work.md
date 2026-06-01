@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Las personas que trabajamos con la juventud, tenemos que afrontar muchos retos en nuestro campo de trabajo. Los jóvenes se adaptan muy rápido a nuevos hábitos y nosotros tenemos que aprender a hacerlo también."
 year: 2022
-dates: "05/10/2022 – 13/10/2022"
+dates: "05/10/2022 - 13/10/2022"
 order: 23
 location: "Rabka-Zdrój (Polonia)"
 image: "images/projects/gamification-digital-skills-in-youth-work/cover.png"

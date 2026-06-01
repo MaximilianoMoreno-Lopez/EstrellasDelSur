@@ -5,6 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Durante el transcurso de este proyecto, los participantes experimentaron un notable avance en su dominio del idioma inglés, inicialmente ubicado en un nivel..."
 order: 13
+location: "Fundão (Portugal)"
 image: "images/projects/geopolitical-board/cover.png"
 ---
 

@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre bienestar personal"
 year: 2025
-dates: "13/11/2025 – 20/11/2025"
+dates: "13/11/2025 - 20/11/2025"
 order: 48
 location: "Trakai, Lituania"
 image: "images/projects/improve-yourself/cover.jpg"

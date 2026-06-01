@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre promoción de la paz"
 year: 2022
-dates: "13/09/2022 – 21/09/2022"
+dates: "13/09/2022 - 21/09/2022"
 order: 18
 location: "Saulkrasti (Letonia)"
 image: "images/projects/erasmus-plus-peace/cover.png"

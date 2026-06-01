@@ -4,7 +4,7 @@ type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre habilidades digitales"
-dates: "08/09/2025 – 15/09/2025"
+dates: "08/09/2025 - 15/09/2025"
 order: 15
 location: "Godinesti, Rumanía"
 year: 2025

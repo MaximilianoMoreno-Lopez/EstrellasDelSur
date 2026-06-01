@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Intercambio juvenil Erasmus+ sobre discurso del odio y desinformación"
 year: 2022
-dates: "09/05/2022 – 17/05/2022"
+dates: "09/05/2022 - 17/05/2022"
 order: 14
 location: "Boldesti-Scaeni (Rumanía)"
 image: "images/projects/counter-hate-is-possible/cover.png"

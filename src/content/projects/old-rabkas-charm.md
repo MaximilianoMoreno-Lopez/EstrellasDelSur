@@ -5,7 +5,7 @@ status: "past"
 flag: "🇷🇴"
 description: "Intercambio juvenil Erasmus+ sobre teatro, juegos de rol e historia"
 year: 2025
-dates: "05/06/2025 – 24/06/2025"
+dates: "05/06/2025 - 24/06/2025"
 order: 38
 location: "Rabka-Zdrój (Polonia)"
 image: "images/projects/old-rabkas-charm/cover.png"

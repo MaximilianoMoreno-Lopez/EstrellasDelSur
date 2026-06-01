@@ -1,11 +1,11 @@
 ---
-title: "Peers for Inclusivity – TAT"
+title: "Peers for Inclusivity - TAT"
 type: "Formación"
 status: "past"
 flag: "🇪🇺"
 description: "Peers for Inclusivity es mucho más que una formación: es una experiencia transformadora para quienes trabajan con jóvenes y quieren crear espacios educativos realmente inclusivos, donde todas las personas se sientan seguras, valoradas y…"
 year: 2025
-dates: "01/09/2025 – 10/09/2025"
+dates: "01/09/2025 - 10/09/2025"
 order: 45
 location: "Arad, Rumanía"
 image: "images/projects/peers-for-inclusivity-tat/cover.jpg"

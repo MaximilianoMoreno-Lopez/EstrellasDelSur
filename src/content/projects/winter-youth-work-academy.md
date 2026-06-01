@@ -5,7 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Una persona puede convertirse en Youth Worker de diversas maneras: algunas optan por caminos de educación formal, estudiando pedagogía, psicología, animación sociocultural u otras ciencias sociales; otras se dan cuenta de que quieren…"
 year: 2025
-dates: "01/12/2025 – 09/12/2025"
+dates: "01/12/2025 - 09/12/2025"
 order: 51
 location: "Rabka-Zdrój, Polonia"
 image: "images/projects/winter-youth-work-academy/cover.jpg"

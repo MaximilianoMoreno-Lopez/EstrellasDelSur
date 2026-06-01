@@ -6,7 +6,7 @@ flag: "🇫🇷"
 description: "Intercambio juvenil internacional en Normandía (Francia) sobre medioambiente, sostenibilidad y compromiso ecológico, dirigido a jóvenes de 14 a 17 años. Fase 3 del proyecto Future Eco-Guardians."
 location: "Grandcamp-Maisy, Normandía (Francia)"
 year: 2026
-dates: "04/07/2026 – 12/07/2026"
+dates: "04/07/2026 - 12/07/2026"
 order: 2
 image: "images/projects/seeds-of-change/cover.png"
 infopack: "https://drive.google.com/file/d/1lBo9QSnlImml5AfCCNi9nNlJpPgW5dqL/view?usp=drive_link"
@@ -19,8 +19,8 @@ apply: "https://forms.gle/7YW9tkHxXJ7ernyDA"
 - **Fechas:** Del 04/07/2026 al 12/07/2026
 - **Lugar:** Grandcamp-Maisy, Normandía (Francia)
 - **Participantes:** Hasta 10 participantes por país. Jóvenes de 14 a 17 años residentes en países Erasmus+
-- **Transporte:** 🌱 **Transporte verde** — desplazamiento en autobús desde España para reducir la huella de carbono
-- **Fecha límite de inscripciones:** Inscripciones abiertas — ¡no te lo pienses mucho!
+- **Transporte:** 🌱 **Transporte verde:** desplazamiento en autobús desde España para reducir la huella de carbono
+- **Fecha límite de inscripciones:** Inscripciones abiertas, ¡no te lo pienses mucho!
 
 > Este proyecto forma parte de **Future Eco-Guardians**, un intercambio juvenil internacional en tres fases (España, República Checa y Francia). Estrellas del Sur ha participado en las tres fases: las dos primeras se celebraron el año pasado y esta convocatoria corresponde a la **Fase 3** en Normandía.
 
@@ -42,7 +42,7 @@ Durante una semana, 30 jóvenes de entre 14 y 17 años conviven en Grandcamp-Mai
 
 ## Alojamiento y manutención
 
-- **Centro UNCMT – Les Quiéri-Quiérettes**, en Grandcamp-Maisy, a 20 metros de la playa.
+- **Centro UNCMT - Les Quiéri-Quiérettes**, en Grandcamp-Maisy, a 20 metros de la playa.
 - Habitaciones compartidas con participantes de los tres países.
 - Sala común con mesa de ping-pong y bola de discoteca.
 - Todas las comidas cubiertas (desayuno, almuerzo, merienda y cena), con adaptación a necesidades dietéticas siempre que se comuniquen con antelación.

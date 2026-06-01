@@ -25,7 +25,7 @@ Todos encontrarán en este proyecto una oportunidad única para forjar su camino
 
 La idea angular del proyecto es realizar un análisis holístico de la situación laboral actual a la que se enfrenta Andalucía. Primero, se lleva a cabo una investigación científica para determinar las características del mercado laboral andaluz y de cada territorio para, posteriormente, sacar unas conclusiones y difundirlas entre la comunidad afectada.
 
-Especialmente, nuestra actuación se centra en personas jóvenes —todavía discerniendo su futuro laboral y tomando decisiones para estar adaptadas al mercado del futuro— con un enfoque mayor en quienes están en riesgo de exclusión social. Sin embargo, también trabajamos sobre aquellas personas que puedan verse afectadas laboralmente por el **cambio climático y la Transición Justa** hacia una sociedad de cero emisiones netas.
+Especialmente, nuestra actuación se centra en personas jóvenes, todavía discerniendo su futuro laboral y tomando decisiones para estar adaptadas al mercado del futuro, con un enfoque mayor en quienes están en riesgo de exclusión social. Sin embargo, también trabajamos sobre aquellas personas que puedan verse afectadas laboralmente por el **cambio climático y la Transición Justa** hacia una sociedad de cero emisiones netas.
 
 ## Mejorar la empleabilidad andaluza
 
