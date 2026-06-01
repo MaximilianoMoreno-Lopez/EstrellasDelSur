@@ -24,7 +24,7 @@ apply: "https://forms.gle/66rVMU8hFuEXFmkK6"
 
 ## Sobre el proyecto
 
-**YRIC II** es un voluntariado Erasmus+ / Cuerpo Europeo de Solidaridad de larga duración (un mes) coordinado por **Europe4Youth** en Rabka-Zdrój, en la región polaca de Małopolska. Es la continuación del proyecto YRIC, en el que jóvenes de Polonia, Ucrania, Alemania, Hungría y Francia renovaron en 2023 un antiguo edificio que se convirtió en **Kefirek**, un Centro Juvenil polaco-ucraniano y punto de integración de personas refugiadas.
+**YRIC II** es un voluntariado del Cuerpo Europeo de Solidaridad (ESC) de larga duración (un mes) coordinado por **Europe4Youth** en Rabka-Zdrój, en la región polaca de Małopolska. Es la continuación del proyecto YRIC, en el que jóvenes de Polonia, Ucrania, Alemania, Hungría y Francia renovaron en 2023 un antiguo edificio que se convirtió en **Kefirek**, un Centro Juvenil polaco-ucraniano y punto de integración de personas refugiadas.
 
 El centro funciona desde entonces y lo frecuentan a diario jóvenes polacos y ucranianos, pero la necesidad de apoyo continuo sigue siendo evidente: en 2024 vivían en Rabka unas 1.500 personas ucranianas sobre una población total de 13.000, y unas 60.000 en toda la región. YRIC II busca profesionalizar el trabajo del centro, aumentar la relevancia de sus actividades y responder a necesidades concretas de la comunidad, en especial las de jóvenes con menos oportunidades.
 
@@ -91,23 +91,18 @@ El voluntario no asume los gastos básicos durante su estancia:
 
 ## Gastos
 
-Los gastos de transporte serán pagados por el participante y devueltos por Estrellas del Sur una vez terminado el proyecto, hasta el límite Erasmus+ correspondiente a la distancia (calculada en línea recta desde la ciudad de residencia hasta Rabka-Zdrój). Para España aplica la franja de **2000-2999 km**, con un máximo de **395 €** por participante en régimen de viaje estándar y **535 €** si se viaja en *green travel* (sin avión, máximo 3 días consecutivos por trayecto). Para ello, el participante debe:
+Los gastos de transporte serán pagados por el participante y devueltos por Estrellas del Sur una vez terminado el proyecto, hasta el límite del Cuerpo Europeo de Solidaridad correspondiente a la distancia (calculada en línea recta desde la ciudad de residencia hasta Rabka-Zdrój). Para España aplica la franja de **2000-2999 km**, con un máximo de **395 €** por participante en régimen de viaje estándar y **535 €** si se viaja en *green travel* (sin avión, máximo 3 días consecutivos por trayecto). Para ello, el participante debe:
 
 - Aportar a Estrellas del Sur las facturas de los transportes utilizados, así como las tarjetas de embarque en caso de viaje en avión (descarga la boarding pass en PDF A4 desde la web de la aerolínea el mismo día del vuelo: las capturas y fotos no se aceptan, y las apps borran las tarjetas al cabo de un tiempo).
-- Comprar los billetes directamente en la web oficial de la aerolínea (Ryanair, Vueling, WizzAir, EasyJet, etc.) o de la compañía de tren/autobús. No se aceptan compras a través de intermediarios tipo eDreams, Kiwi u Opodo.
 - Usar opciones económicas (2ª clase, clase turista) y transporte público. No se reembolsan taxis, Ubers, Bolts ni alojamiento durante el viaje, ni siquiera en *green travel*.
 - Realizar las actividades previas a la parte presencial, las presenciales y las actividades de difusión de resultados posteriores al proyecto.
-- Obtener el visto bueno de Estrellas del Sur antes de comprar cualquier billete de transporte, y consultar el plan de viaje con la organización de acogida (Tom, t.varzic@europe4youth.eu).
+- Obtener el visto bueno de Estrellas del Sur antes de comprar cualquier billete de transporte, y consultar el plan de viaje con la organización de acogida.
 
 **No se reembolsarán** suplementos de equipaje, cargos extra de facturación en el aeropuerto, transportes privados ni alojamiento durante el trayecto.
 
 El punto de referencia es la ciudad de **Cracovia**, con conexión directa en Flixbus, autobús RAB-BUS o tren hasta Rabka-Zdrój (1-2,5 horas según opción). Se recomienda llegar al centro de Cracovia antes de las 18:00 para enlazar con el transporte hasta Rabka y no perder la cena del día de llegada. La dirección del alojamiento es Cicha 12, 34-700 Rabka-Zdrój.
 
 El participante es responsable del acceso a asistencia sanitaria durante todo el proyecto, ya sea a través de la Tarjeta Sanitaria Europea o de un seguro privado.
-
-## Cuota de Socio
-
-Estrellas del Sur cobra una cuota de socio de **50 €** que solo pagará aquel participante que salga elegido. Esta cuota no será reembolsable en ningún caso.
 
 ## Asistencia
 
