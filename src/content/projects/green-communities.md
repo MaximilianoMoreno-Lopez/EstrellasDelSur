@@ -7,7 +7,7 @@ description: "Intercambio juvenil internacional en Karaman (Türkiye) sobre sost
 location: "Karaman, Türkiye"
 year: 2026
 dates: "13/07/2026 - 22/07/2026"
-order: 1
+order: -3
 image: "images/projects/green-communities/cover.png"
 poster: "images/projects/green-communities/cover.png"
 infopack: "https://drive.google.com/file/d/1DT7ty6hZE2mwY0yVSqm7yfdN3mq4ZSGw/view?usp=drive_link"
