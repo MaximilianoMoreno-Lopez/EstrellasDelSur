@@ -120,7 +120,7 @@ async function renderTable(data) {
           <tr>
             <td>${p.nombre || '—'}</td>
             <td>${p.apellidos || '—'}</td>
-            <td><code>${p.dni || '—'}</code></td>
+            <td>${p.dni ? `<code class="dni-cell" data-full="${p.dni}" title="Click para mostrar u ocultar">${maskDni(p.dni)}</code>` : '—'}</td>
             <td>${p.siglas_proyecto ? `<span class="badge-proyecto">${p.siglas_proyecto}</span>` : '—'}</td>
             <td>${fmt(p.fecha_nacimiento)}</td>
             <td>${fmt(p.dia_salida)}</td>
@@ -144,6 +144,27 @@ async function renderTable(data) {
       if (!dateStr) return '—';
       return new Date(dateStr + 'T00:00:00').toLocaleDateString('es-ES');
     }
+
+    // Enmascara el DNI dejando visibles solo los últimos 4 caracteres
+    function maskDni(dni) {
+      const v = String(dni);
+      if (v.length <= 4) return v;
+      return '•'.repeat(v.length - 4) + v.slice(-4);
+    }
+
+    // Click en un DNI: alterna entre enmascarado y completo
+    document.getElementById('adminTableBody').addEventListener('click', (e) => {
+      const cell = e.target.closest('.dni-cell');
+      if (!cell) return;
+      const full = cell.getAttribute('data-full');
+      if (cell.dataset.shown === '1') {
+        cell.textContent = maskDni(full);
+        cell.dataset.shown = '';
+      } else {
+        cell.textContent = full;
+        cell.dataset.shown = '1';
+      }
+    });
 
     document.getElementById('searchInput').addEventListener('input', (e) => {
       const q = e.target.value.toLowerCase();
@@ -237,6 +258,8 @@ td code {
   background: #f3f4f6; padding: .15rem .4rem;
   border-radius: 4px;
 }
+.dni-cell { cursor: pointer; user-select: none; }
+.dni-cell:hover { background: #e5e7eb; }
 td.muted { color: #9ca3af; font-size: .8rem; }
 
 .badge-missing {

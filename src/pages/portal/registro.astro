@@ -31,6 +31,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <label for="password2">Repite la contraseña</label>
           <input type="password" id="password2" name="password2" required placeholder="••••••••" />
         </div>
+        <div class="field-check">
+          <input type="checkbox" id="consent" name="consent" required />
+          <label for="consent">
+            He leído y acepto la
+            <a href={`${base}/privacidad/`} target="_blank" rel="noopener">Política de Privacidad</a>.
+          </label>
+        </div>
         <button type="submit" class="btn-primary" id="submitBtn">
           <span id="btnText">Crear cuenta</span>
           <span id="btnSpinner" style="display:none">Creando…</span>
@@ -67,7 +74,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       const password2 = document.getElementById('password2').value;
+      const consent = document.getElementById('consent').checked;
 
+      if (!consent) {
+        errorMsg.textContent = 'Debes aceptar la Política de Privacidad para crear tu cuenta.';
+        errorMsg.style.display = 'block';
+        return;
+      }
       if (password !== password2) {
         errorMsg.textContent = 'Las contraseñas no coinciden.';
         errorMsg.style.display = 'block';
@@ -144,6 +157,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   outline: none;
 }
 .field input:focus { border-color: #0d9488; }
+.field-check {
+  display: flex; align-items: flex-start; gap: .6rem;
+  margin-bottom: 1.1rem;
+}
+.field-check input {
+  width: 1.05rem; height: 1.05rem;
+  margin-top: .15rem; flex-shrink: 0;
+  accent-color: #0d9488; cursor: pointer;
+}
+.field-check label {
+  font-size: .85rem; color: #4b5563; line-height: 1.5;
+}
+.field-check a { color: #0d9488; text-decoration: underline; font-weight: 500; }
 .btn-primary {
   width: 100%;
   background: #0d9488; color: #fff;

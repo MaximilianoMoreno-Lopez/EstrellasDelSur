@@ -71,6 +71,7 @@ const internalDocs = [
     title: 'Política de Privacidad y Protección de Datos',
     desc: 'Tratamiento de datos personales conforme al RGPD y la LOPDGDD.',
     file: null,
+    href: '/privacidad/',
   },
 ];
 ---
@@ -162,6 +163,11 @@ const internalDocs = [
                 <a href={`${base}/docs/${doc.file}`} target="_blank" rel="noopener" class="doc-link">
                   <span>Descargar PDF</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
+              ) : doc.href ? (
+                <a href={`${base}${doc.href}`} class="doc-link">
+                  <span>Ver política</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
               ) : (
                 <span class="doc-status">En preparación</span>
