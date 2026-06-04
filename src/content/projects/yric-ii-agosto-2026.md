@@ -1,7 +1,7 @@
 ---
 title: "YRIC II"
 type: "Voluntariado"
-status: "active"
+status: "past"
 flag: "🇵🇱"
 description: "Voluntariado de larga duración (1 mes) en Rabka-Zdrój (Polonia) apoyando el centro juvenil polaco-ucraniano Kefirek: integración, apoyo emocional y dinamización de jóvenes locales y refugiados ucranianos."
 location: "Rabka-Zdrój (Polonia)"

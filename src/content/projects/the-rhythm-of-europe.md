@@ -1,7 +1,7 @@
 ---
 title: "The Rhythm of Europe"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇵🇱"
 description: "Intercambio juvenil internacional en Rabka-Zdrój (Polonia) sobre música, cultura europea y valores de la UE. Acaba con un concierto en vivo en Cracovia."
 location: "Rabka-Zdrój, Polonia"
