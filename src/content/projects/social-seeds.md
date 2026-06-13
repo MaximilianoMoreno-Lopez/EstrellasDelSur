@@ -11,6 +11,7 @@ order: -6
 edad: "14-35 años"
 idioma: "Español"
 coste: "Gratuito"
+image: "images/projects/social-seeds/logo.svg"
 localInitiative: true
 ---
 
@@ -74,4 +75,4 @@ Aunque el proyecto se centra en el emprendimiento social, integra la sostenibili
 
 Este proyecto está subvencionado por el **Instituto Andaluz de la Juventud (IAJ)**, Consejería de Inclusión Social, Juventud, Familias e Igualdad de la Junta de Andalucía.
 
-![Social Seeds: Impulsando el cambio](/images/projects/social-seeds/logo.svg)
+![Junta de Andalucía · Consejería de Inclusión Social, Juventud, Familias e Igualdad · Instituto Andaluz de la Juventud](/images/projects/social-seeds/junta-andalucia-iaj.png)
