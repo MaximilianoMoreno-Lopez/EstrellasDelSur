@@ -1,0 +1,33 @@
+<svg viewBox="0 0 1040 360" xmlns="http://www.w3.org/2000/svg" font-family="'Trebuchet MS','Segoe UI',Verdana,sans-serif">
+  <defs>
+    <linearGradient id="g2leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3DB063"/>
+      <stop offset="1" stop-color="#157C3C"/>
+    </linearGradient>
+    <linearGradient id="g2hand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FBC65A"/>
+      <stop offset="1" stop-color="#EE8E27"/>
+    </linearGradient>
+  </defs>
+
+  <!-- cupped hand (abstract arc) -->
+  <path d="M70 230 C70 300 150 330 200 330 C250 330 330 300 330 230"
+        fill="none" stroke="url(#g2hand)" stroke-width="26" stroke-linecap="round"/>
+
+  <!-- stem -->
+  <path d="M200 250 C200 215 200 165 200 120" fill="none" stroke="#157C3C" stroke-width="13" stroke-linecap="round"/>
+
+  <!-- seed dot -->
+  <circle cx="200" cy="255" r="13" fill="#EE8E27"/>
+
+  <!-- left leaf -->
+  <path d="M200 185 C148 188 116 152 116 108 C162 110 198 142 200 185 Z" fill="url(#g2leaf)"/>
+  <!-- right leaf -->
+  <path d="M200 170 C252 173 284 137 284 93 C238 95 202 127 200 170 Z" fill="url(#g2leaf)"/>
+  <!-- center young leaf -->
+  <path d="M200 150 C188 118 192 78 200 52 C208 78 212 118 200 150 Z" fill="#3DB063"/>
+
+  <!-- wordmark -->
+  <text x="380" y="175" font-size="80" font-weight="bold" fill="#157C3C" letter-spacing="1">Social Seeds</text>
+  <text x="384" y="225" font-size="31" fill="#EE8E27" letter-spacing="7">IMPULSANDO EL CAMBIO</text>
+</svg>
