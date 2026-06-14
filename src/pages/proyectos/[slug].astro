@@ -491,6 +491,15 @@ const breadcrumbs = [
     height: auto;
     display: block;
   }
+  /* Body images: cap height so portrait phone photos don't dominate, and center them. */
+  .prose :global(picture) { display: block; }
+  .prose :global(img) {
+    height: auto;
+    max-height: 60vh;
+    margin: 1.75rem auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
   .prose :global(p) {
     font-size: 1.05rem;
     line-height: 1.8;
