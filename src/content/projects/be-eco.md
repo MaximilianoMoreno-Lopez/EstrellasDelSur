@@ -1,7 +1,7 @@
 ---
 title: "Be Eco"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Intercambio juvenil internacional en Godinești (Rumanía) sobre sostenibilidad, ecología y reconexión con la naturaleza, para jóvenes que quieran adoptar un estilo de vida más ecológico y vivir una experiencia intercultural."
 location: "Godinești, Rumanía"

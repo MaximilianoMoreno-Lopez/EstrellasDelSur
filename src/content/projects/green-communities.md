@@ -1,7 +1,7 @@
 ---
 title: "Green Communities"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇹🇷"
 description: "Intercambio juvenil internacional en Karaman (Türkiye) sobre sostenibilidad, acción climática y transición verde, para jóvenes que quieren construir comunidades más sostenibles."
 location: "Karaman, Türkiye"
