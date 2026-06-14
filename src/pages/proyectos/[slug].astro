@@ -494,7 +494,9 @@ const breadcrumbs = [
   /* Body images: cap height so portrait phone photos don't dominate, and center them. */
   .prose :global(picture) { display: block; }
   .prose :global(img) {
+    width: auto;
     height: auto;
+    max-width: 100%;
     max-height: 60vh;
     margin: 1.75rem auto;
     border-radius: var(--radius-md);
