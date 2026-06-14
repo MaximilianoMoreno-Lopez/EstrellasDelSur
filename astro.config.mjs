@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { readdirSync } from 'node:fs';
+import rehypeContentPictures from './scripts/rehype-content-pictures.mjs';
 
 // Old WordPress project URLs lived at /<slug>/. The new site has them
 // under /proyectos/<slug>/. Generate a redirect for every project file
@@ -16,6 +17,11 @@ const projectRootRedirects = Object.fromEntries(
 export default defineConfig({
   site: 'https://estrellasdelsur.eu',
   output: 'static',
+  markdown: {
+    // Serve WebP + lazy-load + intrinsic dimensions for images written inline
+    // in Markdown article bodies (see scripts/rehype-content-pictures.mjs).
+    rehypePlugins: [rehypeContentPictures],
+  },
   build: {
     // Inline all stylesheets into the HTML to avoid render-blocking <link>
     // requests on first load. CSS payload is small and GitHub Pages caches
