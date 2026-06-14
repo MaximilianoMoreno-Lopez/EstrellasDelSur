@@ -5,6 +5,7 @@ status: "past"
 flag: "🇪🇸"
 description: "Iniciativa local de empoderamiento juvenil con talleres, mentorías y proyectos sostenibles, subvencionada por el Instituto Andaluz de la Juventud."
 year: 2025
+dates: "01/07/2025 - 31/12/2025"
 order: 49
 location: "Almodóvar del Río · Córdoba"
 localInitiative: true
