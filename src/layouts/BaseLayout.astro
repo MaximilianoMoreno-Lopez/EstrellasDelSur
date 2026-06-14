@@ -141,10 +141,14 @@ const robotsContent = noindex
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        // threshold 0: reveal as soon as any pixel enters. A percentage
+        // threshold never fires for elements much taller than the viewport
+        // (e.g. long article bodies), leaving their content stuck invisible.
+        { threshold: 0, rootMargin: '0px 0px -40px 0px' }
       );
 
       document.querySelectorAll('.fade-in').forEach((el) => {
