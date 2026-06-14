@@ -102,6 +102,12 @@ const robotsContent = noindex
     <!-- Robots -->
     <meta name="robots" content={robotsContent} />
 
+    <!-- RSS feed (noticias) -->
+    <link rel="alternate" type="application/rss+xml" title="Estrellas del Sur · Noticias" href={`${base}/rss.xml`} />
+
+    <!-- Without JS the IntersectionObserver never runs, so reveal everything. -->
+    <noscript><style>.fade-in{opacity:1 !important;transform:none !important;}</style></noscript>
+
     <!-- JSON-LD -->
     {jsonLdEntries.map((entry) => (
       <script type="application/ld+json" set:html={JSON.stringify(entry)} />

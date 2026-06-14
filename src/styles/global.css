@@ -235,6 +235,12 @@ h1, h2, h3, h4, h5 {
   .hero .fade-in, .page-hero .fade-in {
     animation: none;
   }
+  /* No slide for the scroll-revealed content either: it still appears once
+     the observer adds .visible, just without the movement. */
+  .fade-in {
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ─── Page Hero (inner pages) ────────────────────────── */
