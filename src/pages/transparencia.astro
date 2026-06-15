@@ -215,6 +215,13 @@ const junta = [
         ))}
       </ul>
       <p class="junta-note fade-in">Junta Directiva vigente. Mandato: del 28/05/2024 al 28/05/2028.</p>
+      <div class="gobierno-doc fade-in">
+        <a href={`${base}/docs/Certificado_Registro_Junta_Directiva_Estrellas_del_Sur.pdf`} target="_blank" rel="noopener" class="doc-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span>Certificado del Registro de Asociaciones de Andalucía</span>
+        </a>
+        <p class="gobierno-doc-note">Inscripción nº 14-1-10481 · Certificación oficial de la Junta de Andalucía.</p>
+      </div>
     </div>
   </section>
 
@@ -416,6 +423,16 @@ const junta = [
     text-align: center;
     margin-top: 1.75rem;
     font-size: .85rem;
+    color: var(--gray-500, #6b7280);
+  }
+  .gobierno-doc {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  .gobierno-doc .doc-link { display: inline-flex; }
+  .gobierno-doc-note {
+    margin-top: .85rem;
+    font-size: .8rem;
     color: var(--gray-500, #6b7280);
   }
 
