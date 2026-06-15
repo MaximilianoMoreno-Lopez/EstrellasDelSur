@@ -13,8 +13,10 @@ const sections = [
   {
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
     title: 'Órganos de gobierno',
-    desc: 'Junta directiva, miembros, cargos y funciones. Actas de las asambleas generales.',
-    status: 'En preparación',
+    desc: 'Asamblea General y Junta Directiva: miembros, cargos y mandato vigente.',
+    status: 'Disponible',
+    href: '#organos-de-gobierno',
+    cta: 'Ver Junta Directiva',
   },
   {
     icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
@@ -74,6 +76,13 @@ const internalDocs = [
     href: '/privacidad/',
   },
 ];
+
+const junta = [
+  { role: 'Presidencia', name: 'Maximiliano Moreno López' },
+  { role: 'Vicepresidencia', name: 'Ángel González Ruiz' },
+  { role: 'Secretaría', name: 'Pablo Sánchez Ruiz' },
+  { role: 'Tesorería', name: 'Cristina Peralbo Villamandos' },
+];
 ---
 
 <BaseLayout
@@ -130,7 +139,14 @@ const internalDocs = [
             </div>
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
-            <span class="section-card-status">{s.status}</span>
+            {s.href ? (
+              <a href={s.href} class="section-card-link">
+                <span>{s.cta}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            ) : (
+              <span class="section-card-status">{s.status}</span>
+            )}
           </article>
         ))}
       </div>
@@ -179,6 +195,29 @@ const internalDocs = [
     </div>
   </section>
 
+  <!-- Órganos de gobierno -->
+  <section class="section gobierno-section" id="organos-de-gobierno">
+    <div class="container">
+      <p class="section-label fade-in" style="justify-content:center">Órganos de gobierno</p>
+      <h2 class="section-title fade-in" style="text-align:center">Junta Directiva</h2>
+      <div class="divider" style="margin-left:auto; margin-right:auto"></div>
+      <p class="gobierno-intro fade-in">
+        La Asociación Cultural Estrellas del Sur se rige por una <strong>Asamblea General</strong>, órgano
+        soberano integrado por todas las personas socias, y por una <strong>Junta Directiva</strong>
+        responsable de la gestión, la representación y el cumplimiento de los fines de la asociación.
+      </p>
+      <ul class="junta-grid fade-in">
+        {junta.map((m) => (
+          <li class="junta-card">
+            <span class="junta-role">{m.role}</span>
+            <span class="junta-name">{m.name}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="junta-note fade-in">Junta Directiva vigente. Mandato: del 28/05/2024 al 28/05/2028.</p>
+    </div>
+  </section>
+
   <!-- Identification -->
   <section class="section ident-section">
     <div class="container">
@@ -217,7 +256,7 @@ const internalDocs = [
           </div>
           <div>
             <dt>Presidencia</dt>
-            <dd><a href={`${base}/sobre-nosotros/`}>Ver junta directiva</a></dd>
+            <dd><a href="#organos-de-gobierno">Ver Junta Directiva</a></dd>
           </div>
         </dl>
       </div>
@@ -310,6 +349,74 @@ const internalDocs = [
     background: #fef3c7;
     padding: .3rem .65rem;
     border-radius: 6px;
+  }
+
+  .section-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    margin-top: .5rem;
+    align-self: flex-start;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--teal, #0d9488);
+    text-decoration: none;
+    transition: gap .15s, color .15s;
+  }
+  .section-card-link:hover { gap: .65rem; color: #0f766e; }
+
+  /* Órganos de gobierno */
+  .gobierno-section { padding-top: 4rem; }
+  .gobierno-intro {
+    text-align: center;
+    max-width: 680px;
+    margin: 1.5rem auto 2.5rem;
+    color: var(--gray-600, #4b5563);
+    line-height: 1.7;
+  }
+  .gobierno-intro strong { color: var(--navy, #0a1628); }
+  .junta-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .junta-card {
+    background: #fff;
+    border: 1px solid var(--gray-200, #e5e7eb);
+    border-top: 3px solid var(--teal, #0d9488);
+    border-radius: 14px;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .junta-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(10, 22, 40, .08);
+  }
+  .junta-role {
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--teal, #0d9488);
+  }
+  .junta-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--navy, #0a1628);
+    font-family: 'DM Sans Variable', sans-serif;
+  }
+  .junta-note {
+    text-align: center;
+    margin-top: 1.75rem;
+    font-size: .85rem;
+    color: var(--gray-500, #6b7280);
   }
 
   .internal-docs-section { padding-top: 4rem; }
