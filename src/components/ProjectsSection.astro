@@ -111,6 +111,15 @@ if (limit) {
     let activeType   = 'all';
     let activeStatus = 'active';
 
+    // Si se llega con ?estado=todos (p.ej. desde el botón "Ver todos" de la home),
+    // arrancar mostrando todos los proyectos en vez de solo los activos.
+    if (new URLSearchParams(window.location.search).get('estado') === 'todos') {
+      activeStatus = 'all';
+      statusButtons.forEach(b => {
+        b.classList.toggle('is-active', b.dataset.status === 'all');
+      });
+    }
+
     function applyFilters() {
       let visible = 0;
       wrappers.forEach(w => {
