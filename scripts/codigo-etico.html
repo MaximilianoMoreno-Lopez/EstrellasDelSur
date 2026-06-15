@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Código Ético y de Conducta - Asociación Cultural Estrellas del Sur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0a1628;
+    --teal:#0d9488;
+    --teal-dark:#0f766e;
+    --gold:#f59e0b;
+    --ink:#1f2937;
+    --gray:#4b5563;
+    --line:#e5e7eb;
+  }
+  *{box-sizing:border-box;}
+  @page{
+    size:A4;
+    margin:20mm 18mm 22mm 18mm;
+  }
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'DM Sans','Segoe UI',system-ui,Arial,sans-serif;
+    color:var(--ink);
+    font-size:10.8pt;
+    line-height:1.6;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  /* Portada / cabecera */
+  .cover{
+    border-bottom:3px solid var(--teal);
+    padding-bottom:18px;
+    margin-bottom:26px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  .cover img{width:64px;height:64px;flex-shrink:0;}
+  .cover .org{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:15pt;
+    font-weight:700;
+    color:var(--navy);
+    line-height:1.15;
+  }
+  .cover .org small{
+    display:block;
+    font-family:'DM Sans',sans-serif;
+    font-size:8.2pt;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--teal-dark);
+    margin-top:5px;
+  }
+
+  h1.doc-title{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:24pt;
+    font-weight:700;
+    color:var(--navy);
+    margin:0 0 4px;
+    letter-spacing:-.01em;
+  }
+  .doc-sub{
+    font-size:10pt;
+    color:var(--gray);
+    margin:0 0 28px;
+  }
+
+  h2{
+    font-family:'DM Sans',sans-serif;
+    font-size:12pt;
+    font-weight:700;
+    color:var(--teal-dark);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin:26px 0 10px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--line);
+  }
+  h3{
+    font-size:10.5pt;
+    font-weight:700;
+    color:var(--navy);
+    margin:16px 0 6px;
+  }
+  p{margin:0 0 11px;}
+  .lead{color:var(--gray);}
+
+  ul.values{list-style:none;margin:6px 0 11px;padding:0;}
+  ul.values li{
+    position:relative;
+    padding:7px 0 7px 26px;
+    border-bottom:1px solid var(--line);
+  }
+  ul.values li:last-child{border-bottom:none;}
+  ul.values li::before{
+    content:"\2605";
+    position:absolute;
+    left:0;
+    top:7px;
+    color:var(--gold);
+    font-size:11pt;
+  }
+  ul.values strong{color:var(--navy);}
+
+  ol.conduct{margin:6px 0 11px;padding-left:20px;}
+  ol.conduct li{margin-bottom:8px;padding-left:4px;}
+  ol.conduct strong{color:var(--navy);}
+
+  ul.commit{margin:6px 0 11px;padding-left:0;list-style:none;}
+  ul.commit li{
+    position:relative;
+    padding:4px 0 4px 20px;
+    margin-bottom:4px;
+  }
+  ul.commit li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:11px;
+    width:6px;height:6px;border-radius:50%;
+    background:var(--teal);
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:10px 0 14px;
+    font-size:10pt;
+  }
+  table th{
+    text-align:left;
+    background:var(--navy);
+    color:#fff;
+    font-weight:600;
+    padding:9px 12px;
+  }
+  table td{
+    padding:9px 12px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table tr:nth-child(even) td{background:#f8fafa;}
+  table td.principle{font-weight:600;color:var(--teal-dark);width:36%;}
+
+  .callout{
+    background:#f0fdfa;
+    border:1px solid #99f6e4;
+    border-left:4px solid var(--teal);
+    border-radius:8px;
+    padding:14px 16px;
+    margin:14px 0;
+  }
+  .callout p{margin:0;}
+  .callout a{color:var(--teal-dark);font-weight:600;}
+
+  ol.procedure{margin:6px 0 0;padding-left:20px;}
+  ol.procedure li{margin-bottom:7px;padding-left:4px;}
+
+  /* Ficha identificativa */
+  .ident{
+    margin-top:30px;
+    background:var(--navy);
+    color:#fff;
+    border-radius:12px;
+    padding:22px 24px;
+    page-break-inside:avoid;
+  }
+  .ident .ident-label{
+    font-size:8pt;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#5eead4;
+    margin:0 0 12px;
+  }
+  .ident-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px 28px;
+  }
+  .ident-grid dt{
+    font-size:7.6pt;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:rgba(255,255,255,.6);
+    margin-bottom:2px;
+    font-weight:600;
+  }
+  .ident-grid dd{margin:0;font-size:10pt;color:#fff;}
+  .ident-grid .gold{color:var(--gold);}
+
+  footer{
+    margin-top:26px;
+    padding-top:12px;
+    border-top:1px solid var(--line);
+    font-size:8pt;
+    color:#9ca3af;
+    display:flex;
+    justify-content:space-between;
+  }
+</style>
+</head>
+<body>
+
+  <div class="cover">
+    <img src="../public/images/logo.svg" alt="Estrellas del Sur">
+    <div class="org">
+      Asociación Cultural Estrellas del Sur
+      <small>Córdoba · Erasmus+ · Cuerpo Europeo de Solidaridad</small>
+    </div>
+  </div>
+
+  <h1 class="doc-title">Código Ético y de Conducta</h1>
+  <p class="doc-sub">Principios, valores y normas de comportamiento aplicables a personas socias, voluntarias, participantes y colaboradoras.</p>
+
+  <h2>Preámbulo</h2>
+  <p>La Asociación Cultural Estrellas del Sur se compromete a fomentar una cultura de respeto mutuo, dignidad humana, seguridad, inclusión e igualdad, garantizando el pleno acceso y la participación de todas las personas en nuestras actividades juveniles y proyectos europeos.</p>
+  <p>Como organización abierta y respetuosa con la diversidad, rechazamos cualquier forma de discriminación y promovemos activamente los derechos de las personas del colectivo LGTBIQ+ y de cualquier minoría, en sintonía con los valores de la Unión Europea: dignidad humana, libertad, democracia, igualdad y respeto a los derechos humanos.</p>
+  <p>Este Código se aplica a todas las personas socias, participantes y colaboradoras, así como a todas las actividades de la asociación, con tolerancia cero ante cualquier conducta contraria a estos principios.</p>
+
+  <h2>Misión y valores</h2>
+  <p>Nuestra misión es promover la movilidad juvenil, la participación cívica y el aprendizaje no formal a través de Erasmus+ y el Cuerpo Europeo de Solidaridad, contribuyendo a una Europa más unida e inclusiva, y a que la juventud cordobesa y andaluza, especialmente la que parte con menos oportunidades, encuentre espacios donde desarrollar todo su potencial.</p>
+
+  <h3>Valores clave</h3>
+  <ul class="values">
+    <li><strong>Inclusión y diversidad:</strong> respeto absoluto a la diversidad sexual, de género e identitaria, y promoción activa de entornos seguros para todas las personas.</li>
+    <li><strong>Respeto e igualdad:</strong> rechazo a cualquier discriminación por orientación sexual, identidad de género, origen, etnia, religión, discapacidad o cualquier otra condición.</li>
+    <li><strong>Integridad y transparencia:</strong> actuación ética en todas nuestras relaciones, con compromiso ambiental y firme rechazo a la corrupción.</li>
+    <li><strong>Participación juvenil:</strong> empoderamiento de jóvenes de 13 a 30 años en entornos seguros, democráticos y participativos.</li>
+  </ul>
+
+  <h2>Principios de conducta</h2>
+  <p>Todas las personas vinculadas a la asociación debemos actuar con:</p>
+  <ol class="conduct">
+    <li><strong>Respeto:</strong> hacia las opiniones, culturas y la diversidad personal, evitando cualquier discurso de odio o acoso.</li>
+    <li><strong>Inclusión total:</strong> no se toleran comentarios ni actitudes ofensivas relativas a la identidad de género, la orientación sexual o cualquier minoría.</li>
+    <li><strong>Seguridad:</strong> protección especial de las personas menores de edad y en situación de vulnerabilidad, y consentimiento en cualquier interacción física.</li>
+    <li><strong>Sostenibilidad:</strong> desarrollo de actividades respetuosas con el medioambiente, alineadas con las normas de calidad de Erasmus+.</li>
+  </ol>
+
+  <table>
+    <thead>
+      <tr><th>Principio</th><th>Ejemplo de aplicación</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="principle">Inclusión y diversidad</td><td>Actividades con protocolos contra la LGTBIfobia y visibilidad del colectivo.</td></tr>
+      <tr><td class="principle">No discriminación</td><td>Selección de participantes basada en el mérito y la igualdad de oportunidades, nunca en su identidad u origen.</td></tr>
+      <tr><td class="principle">Transparencia</td><td>Gestión abierta y rendición de cuentas de los fondos Erasmus+ y CES.</td></tr>
+      <tr><td class="principle">Seguridad</td><td>Medidas de salvaguarda y consentimiento en todas las actividades con jóvenes.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Compromisos específicos</h2>
+  <ul class="commit">
+    <li><strong>En actividades Erasmus+ y CES:</strong> cumplir las normas de calidad de la juventud Erasmus+, con selección inclusiva, evaluación del aprendizaje y visibilidad de los resultados.</li>
+    <li><strong>Protección y diversidad:</strong> sensibilización en materia de diversidad e inclusión, y comunicación de cualquier incidente a través del canal ético.</li>
+    <li><strong>Voluntariado seguro:</strong> ausencia de represalias por las denuncias presentadas y confidencialidad garantizada.</li>
+    <li><strong>Diligencia:</strong> informar de cualquier irregularidad de forma inmediata a la persona Responsable de Ética.</li>
+  </ul>
+
+  <h2>Canal ético y régimen sancionador</h2>
+  <p>La asociación designa una persona Responsable de Ética encargada de recibir las denuncias, que podrán presentarse de forma anónima a través de un canal seguro. Puedes dirigir cualquier comunicación a <a href="mailto:etica@estrellasdelsur.eu">etica@estrellasdelsur.eu</a>.</p>
+
+  <div class="callout">
+    <p><strong>Procedimiento de actuación:</strong></p>
+  </div>
+  <ol class="procedure">
+    <li>Recepción de la comunicación e investigación confidencial de los hechos.</li>
+    <li>Valoración por un comité que evalúa el caso y propone, en su caso, las medidas correspondientes: amonestación, suspensión o expulsión.</li>
+    <li>En los casos graves (acoso o discriminación), colaboración con las autoridades competentes.</li>
+  </ol>
+
+  <div class="ident">
+    <p class="ident-label">Datos identificativos</p>
+    <dl class="ident-grid">
+      <div><dt>Denominación</dt><dd>Asociación Cultural Estrellas del Sur</dd></div>
+      <div><dt>Sede</dt><dd>Córdoba, España</dd></div>
+      <div><dt>Año de constitución</dt><dd>2020</dd></div>
+      <div><dt>Acreditaciones</dt><dd>Erasmus+ y Cuerpo Europeo de Solidaridad</dd></div>
+      <div><dt>OID (Organisation ID)</dt><dd>E10264295</dd></div>
+      <div><dt>PIC (Participant Identification Code)</dt><dd>892239563</dd></div>
+      <div><dt>Contacto</dt><dd class="gold">paula@estrellasdelsur.eu</dd></div>
+      <div><dt>Web</dt><dd class="gold">estrellasdelsur.eu</dd></div>
+    </dl>
+  </div>
+
+  <footer>
+    <span>Asociación Cultural Estrellas del Sur</span>
+    <span>Código Ético y de Conducta</span>
+  </footer>
+
+</body>
+</html>
