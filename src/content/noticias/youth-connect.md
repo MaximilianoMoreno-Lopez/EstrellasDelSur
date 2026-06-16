@@ -54,3 +54,19 @@ Youth Connect termina su recorrido **a finales de junio con el evento final en F
 Youth Connect deja claro que juntar herramientas digitales, aprendizaje intercultural y participación activa genera oportunidades reales para la juventud europea. Hemos reforzado competencias, empujado la inclusión y ayudado a que más jóvenes sepan lo que Europa pone a su alcance.
 
 Pero, si nos preguntan, lo mejor son las conexiones: vínculos que seguirán dando ideas, colaboraciones y oportunidades mucho después de que el proyecto cierre oficialmente. Esa es la Europa que nos gusta, más inclusiva, más participativa y más conectada.
+
+## Recursos del proyecto
+
+Una parte importante de Youth Connect fue lo que dejamos por escrito, en abierto, para que cualquier persona u organización pueda usarlo. Dos materiales recogen el trabajo del proyecto:
+
+<div class="resource-cards">
+  <a class="resource-card" href="/docs/YouthConnect_Inquiry_ES.pdf" target="_blank" rel="noopener">
+    <span class="resource-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+    <span class="resource-text"><strong>Informe de diagnóstico</strong><small>La situación de la juventud y la inclusión digital en los territorios socios: Fundão, Córdoba y Riga. PDF, 39 páginas.</small></span>
+  </a>
+  <a class="resource-card" href="/docs/YouthConnect_Manual_Educacion_No_Formal_ES.pdf" target="_blank" rel="noopener">
+    <span class="resource-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+    <span class="resource-text"><strong>Manual de Educación No Formal</strong><small>Actividades para la capacitación digital y la integración de jóvenes migrantes. PDF, 77 páginas.</small></span>
+  </a>
+</div>
+
