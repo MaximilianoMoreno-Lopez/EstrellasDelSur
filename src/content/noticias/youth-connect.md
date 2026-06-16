@@ -7,6 +7,7 @@ date: "2026-06"
 dates: "2025 - 2026"
 location: "Córdoba (España) y Fundão (Portugal)"
 description: "Un proyecto europeo de inclusión digital que pasó por Córdoba con un Training Course internacional y que se cierra este junio en Fundão."
+cover: "images/noticias/youth-connect/cover.jpg"
 ---
 
 Durante los últimos meses hemos estado metidos de lleno en **Youth Connect**, un proyecto europeo que ha reunido a jóvenes, trabajadores juveniles y organizaciones de varios países con una misma idea: que nadie se quede fuera del mundo digital ni de las oportunidades que ofrece Europa, y menos quienes parten con más obstáculos sociales, educativos o culturales.
