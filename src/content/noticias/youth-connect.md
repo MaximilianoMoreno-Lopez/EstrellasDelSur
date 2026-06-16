@@ -1,26 +1,26 @@
 ---
 title: "Youth Connect: juventud, inclusión digital y oportunidades europeas"
-type: "Formación"
+type: "Cooperación"
 status: "past"
 order: -2
 date: "2026-06"
 dates: "2025 - 2026"
 location: "Córdoba (España) y Fundão (Portugal)"
-description: "Un proyecto europeo de inclusión digital que pasó por Córdoba con un Training Course internacional y que se cierra este junio en Fundão."
+description: "Una asociación europea de pequeña escala (KA210) sobre inclusión digital que pasó por Córdoba con un encuentro internacional y que se cierra este junio en Fundão."
 cover: "images/noticias/youth-connect/cover.jpg"
 ---
 
 Durante los últimos meses hemos estado metidos de lleno en **Youth Connect**, un proyecto europeo que ha reunido a jóvenes, trabajadores juveniles y organizaciones de varios países con una misma idea: que nadie se quede fuera del mundo digital ni de las oportunidades que ofrece Europa, y menos quienes parten con más obstáculos sociales, educativos o culturales.
 
-El proyecto, una cooperación Erasmus+ (KA210) coordinada junto al Municipio de Fundão, ha mezclado movilidad internacional, actividades en cada territorio y mucho intercambio. Por el camino, los participantes se han llevado competencias nuevas, una red de contactos por media Europa y herramientas concretas para moverse en lo digital con criterio.
+El proyecto es una **asociación de pequeña escala de Erasmus+ (KA210)**, una acción de cooperación coordinada junto al Municipio de Fundão. Ha mezclado movilidad internacional, actividades en cada territorio y mucho intercambio. Por el camino, los participantes se han llevado competencias nuevas, una red de contactos por media Europa y herramientas concretas para moverse en lo digital con criterio.
 
-## El Training Course en Córdoba
+## El encuentro internacional en Córdoba
 
-Uno de los momentos fuertes lo vivimos en casa: el **Training Course internacional celebrado en Córdoba**. Durante varios días, jóvenes y trabajadores juveniles de distintas realidades europeas trabajaron codo con codo sobre temas que importan, y mucho, a las nuevas generaciones.
+Uno de los momentos fuertes lo vivimos en casa: el **encuentro internacional de formación celebrado en Córdoba**. Durante varios días, jóvenes y trabajadores juveniles de distintas realidades europeas trabajaron codo con codo sobre temas que importan, y mucho, a las nuevas generaciones.
 
 Pasamos por la inclusión digital, el uso responsable de la tecnología, la inteligencia artificial aplicada a la educación, la seguridad en internet, las barreras digitales que encuentran los jóvenes migrantes y las oportunidades de movilidad y empleo que abre la Unión Europea con programas como Erasmus+.
 
-Nada de clases magistrales: educación no formal, trabajo en grupos internacionales y mucha práctica. Los participantes trastearon con herramientas, crearon recursos educativos y reforzaron competencias digitales que sirven igual para el currículum que para el día a día. Y, como siempre pasa en estos encuentros, lo intercultural acabó pesando tanto como lo formativo: gente muy distinta hablando, comparándose y sentando las bases de futuras colaboraciones.
+Nada de clases magistrales: educación no formal, trabajo en grupos internacionales y mucha práctica. Los participantes trastearon con herramientas, crearon recursos educativos y reforzaron competencias digitales que sirven igual para el currículum que para el día a día. Y, como siempre pasa en estos encuentros, lo intercultural acabó pesando tanto como lo formativo: gente muy distinta hablando, comparándose y sentando las bases de futuras colaboraciones dentro de la asociación.
 
 ## De la movilidad a cada comunidad
 

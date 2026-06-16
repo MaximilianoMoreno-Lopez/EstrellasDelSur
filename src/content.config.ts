@@ -29,7 +29,7 @@ const noticias = defineCollection({
   loader: glob({ pattern: ['**/*.md', '!**/_*.md'], base: './src/content/noticias' }),
   schema: z.object({
     title: z.string(),
-    type: z.enum(['Intercambio', 'Voluntariado', 'Formación', 'Participación']),
+    type: z.enum(['Intercambio', 'Voluntariado', 'Formación', 'Participación', 'Cooperación']),
     status: z.string().default('past'),
     order: z.number().default(99),
     date: z.string().optional(),
