@@ -5,7 +5,7 @@ status: "past"
 order: -2
 date: "2026-06"
 dates: "2025 - 2026"
-location: "Córdoba (España) y Fundão (Portugal)"
+location: "Riga (Letonia), Córdoba (España) y Fundão (Portugal)"
 description: "Una asociación europea de pequeña escala (KA210) sobre inclusión digital: arrancó en Riga, pasó por Córdoba y se cierra este junio en Fundão."
 cover: "images/noticias/youth-connect/cover.jpg"
 ---
@@ -20,9 +20,9 @@ Todo empezó en **Riga (Letonia)**, en julio de 2025, con la reunión inicial de
 
 ![El equipo y las organizaciones socias en Riga durante la reunión de arranque de Youth Connect](/images/noticias/youth-connect/kom-riga.jpg)
 
-## El encuentro internacional en Córdoba
+## El Training Course Internacional en Córdoba
 
-Uno de los momentos fuertes lo vivimos en casa: el **encuentro internacional de formación celebrado en Córdoba**. Durante varios días, jóvenes y trabajadores juveniles de distintas realidades europeas trabajaron codo con codo sobre temas que importan, y mucho, a las nuevas generaciones.
+Uno de los momentos fuertes lo vivimos en casa: el **Training Course Internacional celebrado en Córdoba**. Durante varios días, jóvenes y trabajadores juveniles de distintas realidades europeas trabajaron codo con codo sobre temas que importan, y mucho, a las nuevas generaciones.
 
 Pasamos por la inclusión digital, el uso responsable de la tecnología, la inteligencia artificial aplicada a la educación, la seguridad en internet, las barreras digitales que encuentran los jóvenes migrantes y las oportunidades de movilidad y empleo que abre la Unión Europea con programas como Erasmus+.
 
