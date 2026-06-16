@@ -261,6 +261,25 @@ const fallbackGradient = {
     border-left: 3px solid var(--teal); padding-left: 1rem;
     color: var(--gray-600); font-style: italic; margin: 1.5rem 0;
   }
+  /* Galería pequeña de fotos dentro del artículo */
+  .prose :global(.tc-gallery) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .6rem;
+    max-width: 440px;
+    margin: 1.75rem auto;
+  }
+  .prose :global(.tc-gallery picture) { margin: 0; display: block; }
+  .prose :global(.tc-gallery img) {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 0;
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s ease;
+  }
+  .prose :global(.tc-gallery img:hover) { transform: scale(1.03); }
 
   /* Sidebar */
   .sidebar-card {

@@ -26,6 +26,13 @@ Uno de los momentos fuertes lo vivimos en casa: el **Training Course Internacion
 
 Pasamos por la inclusión digital, el uso responsable de la tecnología, la inteligencia artificial aplicada a la educación, la seguridad en internet, las barreras digitales que encuentran los jóvenes migrantes y las oportunidades de movilidad y empleo que abre la Unión Europea con programas como Erasmus+.
 
+<div class="tc-gallery">
+  <img src="/images/noticias/youth-connect/tc-1.jpg" alt="Participantes del Training Course de Youth Connect en Córdoba" />
+  <img src="/images/noticias/youth-connect/tc-2.jpg" alt="Trabajo en grupo durante el Training Course en Córdoba" />
+  <img src="/images/noticias/youth-connect/tc-3.jpg" alt="Actividad práctica del Training Course de Youth Connect" />
+  <img src="/images/noticias/youth-connect/tc-4.jpg" alt="Sesión del Training Course Internacional en Córdoba" />
+</div>
+
 Nada de clases magistrales: educación no formal, trabajo en grupos internacionales y mucha práctica. Los participantes trastearon con herramientas, crearon recursos educativos y reforzaron competencias digitales que sirven igual para el currículum que para el día a día. Y, como siempre pasa en estos encuentros, lo intercultural acabó pesando tanto como lo formativo: gente muy distinta hablando, comparándose y sentando las bases de futuras colaboraciones dentro de la asociación.
 
 ## De la movilidad a cada comunidad
