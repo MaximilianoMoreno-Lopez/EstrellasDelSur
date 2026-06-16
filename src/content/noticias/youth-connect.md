@@ -6,13 +6,19 @@ order: -2
 date: "2026-06"
 dates: "2025 - 2026"
 location: "Córdoba (España) y Fundão (Portugal)"
-description: "Una asociación europea de pequeña escala (KA210) sobre inclusión digital que pasó por Córdoba con un encuentro internacional y que se cierra este junio en Fundão."
+description: "Una asociación europea de pequeña escala (KA210) sobre inclusión digital: arrancó en Riga, pasó por Córdoba y se cierra este junio en Fundão."
 cover: "images/noticias/youth-connect/cover.jpg"
 ---
 
 Durante los últimos meses hemos estado metidos de lleno en **Youth Connect**, un proyecto europeo que ha reunido a jóvenes, trabajadores juveniles y organizaciones de varios países con una misma idea: que nadie se quede fuera del mundo digital ni de las oportunidades que ofrece Europa, y menos quienes parten con más obstáculos sociales, educativos o culturales.
 
 El proyecto es una **asociación de pequeña escala de Erasmus+ (KA210)**, una acción de cooperación coordinada junto al Municipio de Fundão. Ha mezclado movilidad internacional, actividades en cada territorio y mucho intercambio. Por el camino, los participantes se han llevado competencias nuevas, una red de contactos por media Europa y herramientas concretas para moverse en lo digital con criterio.
+
+## El arranque: kick-off en Riga
+
+Todo empezó en **Riga (Letonia)**, en julio de 2025, con la reunión inicial del proyecto, la **kick-off meeting**. Allí nos juntamos las organizaciones socias para poner los cimientos de Youth Connect: objetivos, reparto de tareas entre los países, calendario de actividades y los primeros acuerdos sobre cómo íbamos a trabajar. De esa primera puesta en común salió la hoja de ruta que después se desplegó en Córdoba, en cada comunidad local y, ya al final, en Fundão.
+
+![El equipo y las organizaciones socias en Riga durante la reunión de arranque de Youth Connect](/images/noticias/youth-connect/kom-riga.jpg)
 
 ## El encuentro internacional en Córdoba
 
