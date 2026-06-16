@@ -1,6 +1,6 @@
 ---
 title: "ConnectART"
-type: "Formación"
+type: "Cooperación"
 status: "past"
 order: 6
 location: "Romagnese, Italia"

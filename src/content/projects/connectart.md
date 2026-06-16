@@ -1,6 +1,6 @@
 ---
 title: "ConnectART"
-type: "Intercambio"
+type: "Cooperación"
 status: "past"
 flag: "🇪🇺"
 description: "Proyecto Erasmus+ KA2 que combina arte (danza, fotografía y escritura creativa) e inclusión, con talleres en Italia, Lituania y España."
