@@ -41,6 +41,13 @@ La cosa no se acabó cuando cada cual volvió a su país. Una parte importante d
 
 Talleres, sesiones informativas y dinámicas participativas llegaron a un montón de jóvenes, con espacios para hablar de competencias digitales, oportunidades europeas y las habilidades que hoy pide el mercado laboral. Así el proyecto multiplicó su alcance bastante más allá de quienes viajaron, llevando lo trabajado a cada territorio.
 
+<div class="tc-gallery">
+  <img src="/images/noticias/youth-connect/com-1.jpg" alt="Actividad local de Youth Connect con jóvenes de la comunidad" />
+  <img src="/images/noticias/youth-connect/com-2.jpg" alt="Taller comunitario de competencias digitales de Youth Connect" />
+  <img src="/images/noticias/youth-connect/com-3.jpg" alt="Sesión participativa local del proyecto Youth Connect" />
+  <img src="/images/noticias/youth-connect/com-4.jpg" alt="Jóvenes participando en una actividad local de Youth Connect" />
+</div>
+
 ## YouthConnect Day
 
 Otra de las citas señaladas es el **YouthConnect Day**, una jornada para poner en valor los resultados y acercar las oportunidades europeas a más gente joven. Es un espacio de encuentro donde se presentan las actividades, las experiencias de los participantes y el impacto en cada comunidad, y donde se hace lo que mejor funciona: conectar a jóvenes y organizaciones, y animar a más personas a lanzarse a la movilidad internacional.
