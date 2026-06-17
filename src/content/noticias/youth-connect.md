@@ -52,6 +52,13 @@ Talleres, sesiones informativas y dinámicas participativas llegaron a un montó
 
 Otra de las citas señaladas es el **YouthConnect Day**, una jornada para poner en valor los resultados y acercar las oportunidades europeas a más gente joven. Es un espacio de encuentro donde se presentan las actividades, las experiencias de los participantes y el impacto en cada comunidad, y donde se hace lo que mejor funciona: conectar a jóvenes y organizaciones, y animar a más personas a lanzarse a la movilidad internacional.
 
+<div class="tc-gallery">
+  <img src="/images/noticias/youth-connect/ycd-1.jpg" alt="Jornada YouthConnect Day del proyecto Youth Connect" />
+  <img src="/images/noticias/youth-connect/ycd-2.jpg" alt="Presentación de resultados durante el YouthConnect Day" />
+  <img src="/images/noticias/youth-connect/ycd-3.jpg" alt="Jóvenes y organizaciones en el YouthConnect Day" />
+  <img src="/images/noticias/youth-connect/ycd-4.jpg" alt="Encuentro del YouthConnect Day de Youth Connect" />
+</div>
+
 ## El cierre en Fundão
 
 Youth Connect termina su recorrido **a finales de junio con el evento final en Fundão (Portugal)**, donde se juntan todos los socios para compartir resultados y mirar atrás con perspectiva. Allí se presentan las actividades hechas a nivel local e internacional, los recursos educativos creados por los participantes y las buenas prácticas que han ido saliendo, y se aprovecha para afianzar lo construido y poner sobre la mesa nuevas ideas.
