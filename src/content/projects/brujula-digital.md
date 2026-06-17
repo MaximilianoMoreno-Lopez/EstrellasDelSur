@@ -18,6 +18,8 @@ image: "images/projects/brujula-digital/logo.svg"
 
 A través de metodologías de educación no formal y actividades prácticas, los participantes tuvieron la oportunidad de reflexionar sobre sus capacidades, fortalecer su empleabilidad y descubrir cómo la inteligencia artificial puede convertirse en una herramienta útil para el día a día. El recorrido se articuló en tres talleres que, partiendo del autoconocimiento, avanzaron hacia la búsqueda de empleo y el uso responsable de las nuevas tecnologías.
 
+![Grupo de participantes y equipo de Brújula Digital en la Fundación Don Bosco](/images/projects/brujula-digital/grupo.jpg)
+
 ## Taller de storytelling y autorrepresentación
 
 El itinerario comenzó con un taller de storytelling y autorrepresentación, un espacio para que cada participante se detuviera a reflexionar sobre quién es, qué experiencias han marcado su trayectoria y qué competencias posee.
