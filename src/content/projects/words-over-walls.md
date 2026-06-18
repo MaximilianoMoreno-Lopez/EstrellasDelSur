@@ -1,5 +1,5 @@
 ---
-title: "Festival de la Elocuencia"
+title: "Words Over Walls"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
@@ -14,7 +14,7 @@ idioma: "Español, francés e inglés"
 
 ## ¿De qué va el proyecto?
 
-**Festival de la Elocuencia** es un proyecto internacional para adolescentes que une dos cosas que casi nunca se enseñan juntas: aprender a gestionar los conflictos y aprender a expresarse. La idea es que las personas jóvenes descubran que las palabras, bien usadas, son una herramienta para entenderse, para defender lo que piensan y para transformar un desacuerdo en una conversación.
+**Words Over Walls** es un proyecto internacional para adolescentes que une dos cosas que casi nunca se enseñan juntas: aprender a gestionar los conflictos y aprender a expresarse. La idea es que las personas jóvenes descubran que las palabras, bien usadas, son una herramienta para entenderse, para defender lo que piensan y para transformar un desacuerdo en una conversación.
 
 El proyecto se desarrolla en dos fases en dos países, y termina con un festival en el que los participantes muestran en público lo que han creado durante el camino.
 
