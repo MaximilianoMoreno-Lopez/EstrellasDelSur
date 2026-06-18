@@ -1,7 +1,7 @@
 ---
 title: "Words Over Walls"
 type: "Intercambio"
-status: "past"
+status: "active"
 flag: "🇪🇺"
 image: "images/projects/words-over-walls/cover.png"
 description: "Proyecto internacional para adolescentes sobre resolución de conflictos y el poder de la palabra, que culmina en un Festival de la Elocuencia con las creaciones de los participantes. Dos fases: Alicante (España) y Burdeos (Francia)."
