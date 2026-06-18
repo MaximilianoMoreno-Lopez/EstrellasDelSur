@@ -12,7 +12,7 @@ order: -3
 edad: "Menores de edad"
 idioma: "Español, francés e inglés"
 coste: "200 € (cuota de participación)"
-apply: "https://docs.google.com/forms/d/e/1FAIpQLSetecIPWOSWG2kgd4eCA4Miq6cxTiS1jv1XRGi8V1oW6eFdcQ/viewform"
+apply: "https://forms.gle/szYD9hyMAf4f2nyo7"
 ---
 
 ## ¿De qué va el proyecto?
