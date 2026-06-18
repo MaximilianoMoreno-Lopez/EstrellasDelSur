@@ -4,14 +4,15 @@ type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
 image: "images/projects/words-over-walls/cover.png"
-description: "Proyecto internacional para adolescentes sobre resolución de conflictos y el poder de la palabra, que culmina en un Festival de la Elocuencia con las creaciones de los participantes. Dos fases: Alicante (España) y Aquitania (Francia)."
-location: "Alicante (España) y Aquitania, Francia"
+description: "Proyecto internacional para adolescentes sobre resolución de conflictos y el poder de la palabra, que culmina en un Festival de la Elocuencia con las creaciones de los participantes. Dos fases: Alicante (España) y Burdeos (Francia)."
+location: "Alicante (España) y Burdeos (Francia)"
 year: 2026
-dates: "25/10/2026 - 31/10/2026 (Alicante) y 16/02/2027 - 22/02/2027 (Aquitania)"
+dates: "25/10/2026 - 31/10/2026 (Alicante) y 16/02/2027 - 22/02/2027 (Burdeos)"
 order: -3
 edad: "Menores de edad"
 idioma: "Español, francés e inglés"
 coste: "200 € (cuota de participación)"
+apply: "https://docs.google.com/forms/d/e/1FAIpQLSetecIPWOSWG2kgd4eCA4Miq6cxTiS1jv1XRGi8V1oW6eFdcQ/viewform"
 ---
 
 ## ¿De qué va el proyecto?
@@ -32,7 +33,7 @@ A partir de aquí, cada participante empezará a dar forma a sus propias creacio
 
 ## Segunda parte: el Festival de la Elocuencia
 
-La segunda fase nos lleva a la **región de Aquitania (Francia), probablemente a Burdeos, del 16 al 22 de febrero de 2027**. Será el momento del **Festival de la Elocuencia** (*Festival de l'Éloquence*): una exposición pública en la que las personas del proyecto presentan ante el público las creaciones desarrolladas a lo largo de la experiencia.
+La segunda fase nos lleva a **Burdeos (Francia), en la región de Aquitania, del 16 al 22 de febrero de 2027**. Será el momento del **Festival de la Elocuencia** (*Festival de l'Éloquence*): una exposición pública en la que las personas del proyecto presentan ante el público las creaciones desarrolladas a lo largo de la experiencia.
 
 Más que un cierre, el festival es la puesta en escena de todo lo aprendido: una forma de demostrar, en voz alta y en público, que la juventud tiene cosas que decir y maneras propias de decirlas.
 
