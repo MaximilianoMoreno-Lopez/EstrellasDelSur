@@ -8,7 +8,7 @@ description: "Proyecto internacional para adolescentes sobre resolución de conf
 location: "Alicante (España) y Burdeos (Francia)"
 year: 2026
 dates: "25/10/2026 - 31/10/2026 (Alicante) y 16/02/2027 - 22/02/2027 (Burdeos)"
-order: -3
+order: -7
 edad: "Menores de edad"
 idioma: "Español, francés e inglés"
 coste: "200 € (cuota de participación)"
