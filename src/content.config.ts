@@ -12,6 +12,7 @@ const projects = defineCollection({
     image: z.string().optional(),
     location: z.string().optional(),
     year: z.number().optional(),
+    yearLabel: z.string().optional(),
     order: z.number().default(99),
     dates: z.string().optional(),
     poster: z.string().optional(),
