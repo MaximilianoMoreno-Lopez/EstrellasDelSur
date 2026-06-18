@@ -31,6 +31,16 @@ La primera fase tendrá lugar en **Alicante (España), del 25 al 31 de octubre d
 
 A partir de aquí, cada participante empezará a dar forma a sus propias creaciones, que serán el material del festival final.
 
+## Cómo trabajaremos
+
+El programa todavía se está cerrando, pero la idea es clara: aprender haciendo, con educación no formal y mucho trabajo en grupo. Entre las posibles actividades habrá:
+
+- **Teatro** y juego dramático, para ponerse en la piel de otras personas.
+- **Debates**, para defender ideas y aprender a escuchar y rebatir con respeto.
+- **Simulaciones** y juegos de rol, para practicar la resolución de conflictos en situaciones reales.
+- **Expresión corporal y comunicación no verbal**, donde el cuerpo comunica aunque no se diga una sola palabra.
+- Otros **lenguajes creativos** para expresarse más allá del idioma.
+
 ## Segunda parte: el Festival de la Elocuencia
 
 La segunda fase nos lleva a **Burdeos (Francia), en la región de Aquitania, del 16 al 22 de febrero de 2027**. Será el momento del **Festival de la Elocuencia** (*Festival de l'Éloquence*): una exposición pública en la que las personas del proyecto presentan ante el público las creaciones desarrolladas a lo largo de la experiencia.
