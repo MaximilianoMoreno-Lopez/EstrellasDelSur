@@ -3,6 +3,7 @@ title: "Words Over Walls"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
+image: "images/projects/words-over-walls/cover.png"
 description: "Proyecto internacional para adolescentes sobre resolución de conflictos y el poder de la palabra, que culmina en un Festival de la Elocuencia con las creaciones de los participantes. Dos fases: Alicante (España) y Aquitania (Francia)."
 location: "Alicante (España) y Aquitania, Francia"
 year: 2026
@@ -10,6 +11,7 @@ dates: "25/10/2026 - 31/10/2026 (Alicante) y 16/02/2027 - 22/02/2027 (Aquitania)
 order: -3
 edad: "Menores de edad"
 idioma: "Español, francés e inglés"
+coste: "200 € (cuota de participación)"
 ---
 
 ## ¿De qué va el proyecto?
