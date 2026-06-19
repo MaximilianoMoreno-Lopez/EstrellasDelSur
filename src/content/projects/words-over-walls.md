@@ -13,7 +13,7 @@ order: -7
 edad: "13 a 17 años"
 idioma: "Español, francés e inglés"
 coste: "200 € (cuota de socio)"
-apply: "https://forms.gle/szYD9hyMAf4f2nyo7"
+apply: "https://forms.gle/eWms4WWAsapFvJgY7"
 ---
 
 ## Datos del proyecto
