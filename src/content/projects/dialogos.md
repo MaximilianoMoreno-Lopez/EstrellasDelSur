@@ -5,6 +5,8 @@ status: "past"
 flag: "🇪🇺"
 description: "Proyecto coordinado por Estrellas del Sur (Erasmus+ KA154) que promovió el debate, la oratoria y el conocimiento de la UE entre jóvenes de toda España, con torneos presenciales, una simulación de la Unión Europea y formaciones online."
 year: 2026
+yearLabel: "2025-2026"
+dates: "2025-2026"
 order: 5
 location: "España · Toledo"
 coordinated: true

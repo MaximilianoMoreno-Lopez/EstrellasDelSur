@@ -4,7 +4,9 @@ type: "Participación"
 status: "past"
 flag: "🇪🇺"
 description: "Proyecto coordinado por Estrellas del Sur (Erasmus+ KA154) que promueve el debate europeo, la oratoria y la participación cívica de jóvenes españoles."
-year: 2023
+year: 2025
+yearLabel: "2024-2025"
+dates: "2024-2025"
 order: 60
 location: "España"
 coordinated: true
