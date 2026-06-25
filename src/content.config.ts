@@ -10,6 +10,7 @@ const projects = defineCollection({
     flag: z.string(),
     description: z.string(),
     image: z.string().optional(),
+    imageLogo: z.boolean().default(false),
     location: z.string().optional(),
     year: z.number().optional(),
     yearLabel: z.string().optional(),

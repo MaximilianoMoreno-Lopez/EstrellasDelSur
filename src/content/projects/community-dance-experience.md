@@ -9,6 +9,8 @@ order: 60
 location: "Madrid, España"
 dates: "10/04/2023 - 17/04/2023"
 coordinated: true
+image: "images/projects/community-dance-experience/cover.png"
+imageLogo: true
 ---
 
 ## ¿Qué es Community Dance Experience?

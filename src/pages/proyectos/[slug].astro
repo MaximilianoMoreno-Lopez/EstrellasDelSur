@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, type, status, flag, description, location, year, yearLabel, image, poster, infopack, apply, dates, localInitiative, coordinated, edad, idioma, coste } = project.data;
+const { title, type, status, flag, description, location, year, yearLabel, image, imageLogo, poster, infopack, apply, dates, localInitiative, coordinated, edad, idioma, coste } = project.data;
 const yearDisplay = yearLabel || year;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -138,7 +138,7 @@ const breadcrumbs = [
   <!-- Hero del proyecto -->
   <section class="project-hero">
     <div class="hero-image">
-      {image ? (
+      {image && !imageLogo ? (
         <Picture
           src={image}
           alt={`Imagen de ${title}`}

@@ -1,0 +1,51 @@
+<svg width="600" height="600" viewBox="0 0 600 600" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Community Dance Experience</title>
+<desc>Logo del proyecto: corona de estrellas europeas con un grupo de figuras danzando dentro del círculo.</desc>
+
+<rect x="0" y="0" width="600" height="600" fill="#ffffff"/>
+
+<g fill="#f2c413" stroke="none">
+<g transform="translate(300,92)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(404,120)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(480,196)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(508,300)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(480,404)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(404,480)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(300,508)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(196,480)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(120,404)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(92,300)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(120,196)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+<g transform="translate(196,120)"><path d="M 0 -24 L 5.8 -8.1 L 22.5 -7.4 L 9.2 2.8 L 13.8 19.3 L 0 9.5 L -13.8 19.3 L -9.2 2.8 L -22.5 -7.4 L -5.8 -8.1 Z"/></g>
+</g>
+
+<circle cx="300" cy="300" r="122" fill="#2b3a73"/>
+
+<clipPath id="circleClip"><circle cx="300" cy="300" r="122"/></clipPath>
+
+<g clip-path="url(#circleClip)">
+
+<g transform="translate(245,318)" stroke="none">
+<circle cx="0" cy="-44" r="13" fill="#3d8bf2"/>
+<path d="M -14 30 C -16 -8 -10 -26 0 -30 C 10 -26 16 -8 14 30 Z" fill="#3d8bf2"/>
+<path d="M -2 -22 C -20 -30 -30 -18 -34 -2" stroke="#3d8bf2" stroke-width="11" stroke-linecap="round" fill="none"/>
+<path d="M 2 -22 C 18 -16 24 0 22 16" stroke="#3d8bf2" stroke-width="11" stroke-linecap="round" fill="none"/>
+</g>
+
+<g transform="translate(355,318)" stroke="none">
+<circle cx="0" cy="-44" r="13" fill="#f0743f"/>
+<path d="M -14 30 C -16 -8 -10 -26 0 -30 C 10 -26 16 -8 14 30 Z" fill="#f0743f"/>
+<path d="M 2 -22 C 20 -30 30 -18 34 -2" stroke="#f0743f" stroke-width="11" stroke-linecap="round" fill="none"/>
+<path d="M -2 -22 C -18 -16 -24 0 -22 16" stroke="#f0743f" stroke-width="11" stroke-linecap="round" fill="none"/>
+</g>
+
+<g transform="translate(300,302)" stroke="none">
+<circle cx="0" cy="-52" r="15" fill="#f2c413"/>
+<path d="M -16 34 C -18 -10 -11 -32 0 -36 C 11 -32 18 -10 16 34 Z" fill="#f2c413"/>
+<path d="M -3 -26 C -22 -40 -34 -20 -32 4" stroke="#f2c413" stroke-width="12" stroke-linecap="round" fill="none"/>
+<path d="M 3 -26 C 22 -40 34 -20 32 4" stroke="#f2c413" stroke-width="12" stroke-linecap="round" fill="none"/>
+</g>
+
+</g>
+
+</svg>
