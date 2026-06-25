@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Picture from '../../components/Picture.astro';
+import EUBanner from '../../components/EUBanner.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -303,6 +304,8 @@ const breadcrumbs = [
       </aside>
     </div>
   </section>
+
+  <EUBanner />
 </BaseLayout>
 
 <style>

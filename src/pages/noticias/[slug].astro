@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Picture from '../../components/Picture.astro';
+import EUBanner from '../../components/EUBanner.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('noticias');
@@ -168,6 +169,8 @@ const fallbackGradient = {
       </aside>
     </div>
   </section>
+
+  <EUBanner />
 </BaseLayout>
 
 <style>
