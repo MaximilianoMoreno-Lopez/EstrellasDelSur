@@ -6,7 +6,7 @@ order: 1.5
 date: "2026-03-08"
 location: "Toledo, España"
 cover: "images/noticias/dialogos-1.jpg"
-description: "Crónica de la segunda edición del Torneo de Debate DiáLogos Europeos en Toledo: tres días de argumentación, formación y convivencia europea entre jóvenes de toda España."
+description: "Crónica de la segunda edición del Torneo de Debate DiáLogos Europeos en Toledo: tres días de argumentación, simulación de la UE y convivencia europea entre jóvenes de toda España."
 ---
 
 Toledo se convirtió durante un fin de semana en escenario de la **segunda edición del Torneo de Debate DiáLogos Europeos**, una iniciativa de Estrellas del Sur que reunió a jóvenes de toda España en torno a la oratoria, el pensamiento crítico y los grandes temas de la Unión Europea. *Conoce más sobre el [proyecto DiáLogos Europeos →](/proyectos/dialogos/)*.
@@ -35,6 +35,16 @@ La edición incluyó:
 Cada evento presencial reúne a jóvenes de toda España y culmina en un fin de semana intensivo de debate y formación con dimensión europea.
 
 ![Participantes escuchando atentamente durante una sesión del torneo](/images/noticias/dialogos-2.jpg)
+
+## 🏛️ La simulación: un Modelo de la Unión Europea
+
+Si el torneo de debate fue el corazón competitivo del encuentro, la **simulación de la Unión Europea** fue su contrapunto diplomático y, para muchos participantes, una de las experiencias más reveladoras de DiáLogos Europeos.
+
+En esta segunda gran actividad, los jóvenes dejaron a un lado el enfrentamiento dialéctico del formato British Parliament para ponerse en la piel de quienes toman las decisiones en Europa. Asumiendo el papel de representantes de los distintos Estados miembros y de las instituciones de la UE, recrearon el proceso real de negociación: defender la postura asignada a su país, buscar aliados, ceder en unos puntos para ganar en otros y tratar de alcanzar un acuerdo común.
+
+A diferencia del debate, donde el objetivo es convencer y vencer, aquí la meta era **construir consenso**. Los participantes comprobaron de primera mano lo complejo, y a la vez lo fascinante, que resulta conciliar las sensibilidades de veintisiete países en una única decisión, sometida después a votación según las reglas reales de mayorías de la Unión.
+
+La simulación permitió entender desde dentro **cómo funciona de verdad la maquinaria europea**: el peso de la negociación entre países, la importancia de los matices y la diferencia que existe entre tener razón y lograr que una propuesta salga adelante. Una lección de diplomacia, escucha activa y cultura política europea difícil de adquirir en un aula.
 
 ## 🤝 Más allá del debate: el ambiente humano
 
