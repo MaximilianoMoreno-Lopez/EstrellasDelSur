@@ -9,6 +9,7 @@ order: 60
 location: "España"
 coordinated: true
 image: "images/projects/d-eu-bating/cover.png"
+imageLogo: true
 ---
 
 ## ¿Qué es D-EU-BATING?

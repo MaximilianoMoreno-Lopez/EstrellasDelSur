@@ -9,6 +9,7 @@ order: 5
 location: "España · Toledo"
 coordinated: true
 image: "images/projects/dialogos/cover.png"
+imageLogo: true
 ---
 
 ## ¿Qué es DiáLogos Europeos?
