@@ -228,6 +228,35 @@ const milestones = [
     </div>
   </section>
 
+  <!-- Federación Estrellas de Europa -->
+  <section class="section federacion-section">
+    <div class="container">
+      <div class="federacion-card fade-in">
+        <div class="federacion-content">
+          <div class="federacion-dots" aria-hidden="true">
+            <span style="background:#c44e2a"></span>
+            <span style="background:#d9a727"></span>
+            <span style="background:#3d7848"></span>
+            <span style="background:#6b3a8a"></span>
+            <span style="background:#2b52a8"></span>
+          </div>
+          <p class="federacion-label">Parte de algo más grande</p>
+          <h2>Miembro fundador de la Federación Estrellas de Europa</h2>
+          <p class="federacion-text">
+            En 2024 impulsamos la creación de la <strong>Federación Estrellas de Europa</strong>, que reúne
+            a asociaciones juveniles de distintas regiones de España. Junto a Estrella Magec (Canarias) y
+            Murcia Debate (Murcia), unimos fuerzas para acceder de forma conjunta a financiación europea,
+            compartir metodologías y dar más alcance e impacto a nuestros proyectos.
+          </p>
+          <a href="https://estrellaseuropa.eu" target="_blank" rel="noopener" class="federacion-btn">
+            Visitar Estrellas de Europa
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <EUBanner />
 </BaseLayout>
 
@@ -541,9 +570,49 @@ const milestones = [
     hyphens: auto;
   }
 
+  /* Federación */
+  .federacion-section { background: var(--cream); }
+  .federacion-card {
+    background: linear-gradient(135deg, #0a1628 0%, #0f2244 55%, #0a1628 100%);
+    border-radius: var(--radius-lg);
+    padding: 3rem 3.25rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+  .federacion-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(13,148,136,.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .federacion-content { position: relative; z-index: 1; max-width: 680px; }
+  .federacion-dots { display: flex; gap: .45rem; margin-bottom: 1.1rem; }
+  .federacion-dots span { width: 11px; height: 11px; border-radius: 50%; }
+  .federacion-label {
+    font-size: .78rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: #5eead4; margin-bottom: .6rem;
+  }
+  .federacion-card h2 {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem); color: #fff; line-height: 1.2; margin-bottom: 1rem;
+  }
+  .federacion-text { color: rgba(255,255,255,.75); line-height: 1.7; margin-bottom: 1.75rem; }
+  .federacion-text strong { color: #fff; }
+  .federacion-btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .7rem 1.5rem; border-radius: var(--radius-full);
+    background: #f59e0b; color: #0a1628;
+    font-size: .92rem; font-weight: 600; text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .federacion-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,.35); }
+
   @media (max-width: 900px) {
     .mission-grid { grid-template-columns: 1fr; gap: 3rem; }
     .mission-visual { display: none; }
+  }
+  @media (max-width: 640px) {
+    .federacion-card { padding: 2rem 1.5rem; }
   }
 
   @media (max-width: 640px) {
