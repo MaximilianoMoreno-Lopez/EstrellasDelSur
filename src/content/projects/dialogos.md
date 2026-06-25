@@ -8,7 +8,7 @@ year: 2026
 yearLabel: "2025-2026"
 dates: "2025-2026"
 order: 5
-location: "España · Toledo"
+location: "Córdoba y Toledo"
 coordinated: true
 image: "images/projects/dialogos/cover.png"
 imageLogo: true
