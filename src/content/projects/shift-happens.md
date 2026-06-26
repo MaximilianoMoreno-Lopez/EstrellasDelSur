@@ -14,6 +14,8 @@ infopack: "https://drive.google.com/file/d/1FHnP8e3vBL6zY-pb2QqEJbUz5VuP-VTr/vie
 apply: "https://forms.gle/cmf6EEfN9bCuzd6U6"
 ---
 
+> El proyecto ya se ha celebrado. [Lee la crónica de Shift Happens en Chequia →](/noticias/shift-happens/)
+
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Adaptabilidad, gestión del cambio y desarrollo de competencias en el trabajo juvenil
