@@ -14,7 +14,7 @@ infopack: "https://drive.google.com/file/d/1ZUyqnNtRc7ngXwXEpTGJreMEuhsKm9jg/vie
 apply: "https://forms.gle/fYJXBWK9YzFNbktf8"
 edad: "A partir de 18 años"
 idioma: "Inglés"
-coste: "Cuota de socio 70 € + cuota de participación 50 € (solo si te seleccionan)"
+coste: "Cuota de socio 20 € + inscripción del curso 50 € (solo si te seleccionan)"
 ---
 
 ## Datos del proyecto
@@ -83,7 +83,7 @@ Los gastos de transporte serán pagados por el participante y devueltos por Estr
 - Aportar todos los billetes, recibos, facturas y tarjetas de embarque (en PDF y captura de pantalla), con el nombre completo, la fecha y el trayecto visibles. Haz captura de la boarding pass digital el mismo día del vuelo, ya que las apps las eliminan al cabo de un tiempo.
 - Realizar las actividades de difusión de resultados posteriores al proyecto. El reembolso se hace una vez recibida toda la documentación y las pruebas de difusión.
 
-Además del reembolso del transporte, la organización de acogida pide una **cuota de participación de 50 €** (contribución al programa) a las personas seleccionadas. Esta cuota es independiente de la cuota de socio de Estrellas del Sur.
+Además, el curso tiene una **inscripción de 50 €** (contribución al programa) que se paga directamente a la asociación de acogida allí en Hungría. Esta inscripción es independiente de la cuota de socio de Estrellas del Sur.
 
 **Cómo llegar:** el aeropuerto de referencia es **Budapest**, desde donde se continúa hasta Bátonyterenye (unos 100 km al noreste de la capital). La organización ayudará a cada participante a coordinar los traslados. La llegada está prevista para el **03/09/2026** y la salida para el **11/09/2026**; si planeas llegar antes o quedarte más días, deberás reservar y costear tu propio alojamiento esos días.
 
@@ -91,7 +91,7 @@ El participante es responsable del acceso a asistencia sanitaria durante todo el
 
 ## Cuota de Socio
 
-Estrellas del Sur cobra una cuota de socio de **70 €** que solo pagará aquel participante que salga elegido. Esta cuota no será reembolsable en ningún caso.
+Estrellas del Sur cobra una cuota de socio de **20 €** que solo pagará aquel participante que salga elegido. Esta cuota no será reembolsable en ningún caso.
 
 ## Asistencia
 
