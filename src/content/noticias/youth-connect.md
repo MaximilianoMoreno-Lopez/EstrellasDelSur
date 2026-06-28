@@ -59,6 +59,19 @@ Otra de las citas señaladas es el **YouthConnect Day**, una jornada para poner 
   <img src="/images/noticias/youth-connect/ycd-4.jpg" alt="Encuentro del YouthConnect Day de Youth Connect" />
 </div>
 
+## Networking con asociaciones internacionales
+
+Tras el YouthConnect Day organizamos una actividad de networking en la que presentamos los resultados del proyecto a otras asociaciones internacionales: el informe de diagnóstico y la encuesta, las actividades que fuimos realizando a lo largo del proyecto y el manual de educación no formal, entre otros materiales.
+
+Fue una ocasión estupenda para compartir lo aprendido y tejer nuevas alianzas. Por allí pasaron, entre otras, la Agglomération La CALI (Francia), Youth Dynamics (Chipre), Eduart (Macedonia del Norte) e Hiiumaa (Estonia), junto a la Friche la Belle de Mai y otras asociaciones de personas migrantes de Marsella. De esos contactos suelen salir las colaboraciones que dan forma a los próximos proyectos.
+
+<div class="tc-gallery">
+  <img src="/images/noticias/youth-connect/net-1.jpg" alt="Presentación de la experiencia de Córdoba durante la actividad de networking de Youth Connect" />
+  <img src="/images/noticias/youth-connect/net-2.jpg" alt="Presentación del proyecto Youth Connect a asociaciones internacionales" />
+  <img src="/images/noticias/youth-connect/net-3.jpg" alt="Asociaciones internacionales en la actividad de networking de Youth Connect" />
+  <img src="/images/noticias/youth-connect/net-4.jpg" alt="Encuentro de networking con asociaciones europeas en Youth Connect" />
+</div>
+
 ## El cierre en Fundão
 
 Youth Connect termina su recorrido **a finales de junio con el evento final en Fundão (Portugal)**, donde se juntan todos los socios para compartir resultados y mirar atrás con perspectiva. Allí se presentan las actividades hechas a nivel local e internacional, los recursos educativos creados por los participantes y las buenas prácticas que han ido saliendo, y se aprovecha para afianzar lo construido y poner sobre la mesa nuevas ideas.
