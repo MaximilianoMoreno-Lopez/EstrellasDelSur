@@ -68,7 +68,7 @@ Fue una ocasión estupenda para compartir lo aprendido y tejer nuevas alianzas. 
 <div class="tc-gallery">
   <img src="/images/noticias/youth-connect/net-1.jpg" alt="Presentación de la experiencia de Córdoba durante la actividad de networking de Youth Connect" />
   <img src="/images/noticias/youth-connect/net-2.jpg" alt="Presentación del proyecto Youth Connect a asociaciones internacionales" />
-  <img src="/images/noticias/youth-connect/net-3.jpg" alt="Asociaciones internacionales en la actividad de networking de Youth Connect" />
+  <img src="/images/noticias/youth-connect/net-3.jpg" alt="Presentación del impacto de Estrellas del Sur ante las asociaciones internacionales en Youth Connect" />
   <img src="/images/noticias/youth-connect/net-4.jpg" alt="Encuentro de networking con asociaciones europeas en Youth Connect" />
 </div>
 
