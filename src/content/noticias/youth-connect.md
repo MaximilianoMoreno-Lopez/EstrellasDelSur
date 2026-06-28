@@ -61,7 +61,7 @@ Otra de las citas señaladas es el **YouthConnect Day**, una jornada para poner 
 
 ## Networking con asociaciones internacionales
 
-Tras el YouthConnect Day organizamos una actividad de networking en la que presentamos los resultados del proyecto a otras asociaciones internacionales: el informe de diagnóstico y la encuesta, las actividades que fuimos realizando a lo largo del proyecto y el manual de educación no formal, entre otros materiales.
+También organizamos una actividad de networking en la que presentamos los resultados del proyecto a otras asociaciones internacionales: el informe de diagnóstico y la encuesta, las actividades que fuimos realizando a lo largo del proyecto y el manual de educación no formal, entre otros materiales.
 
 Fue una ocasión estupenda para compartir lo aprendido y tejer nuevas alianzas. Por allí pasaron, entre otras, la Agglomération La CALI (Francia), Youth Dynamics (Chipre), Eduart (Macedonia del Norte) e Hiiumaa (Estonia), junto a la Friche la Belle de Mai y otras asociaciones de personas migrantes de Marsella. De esos contactos suelen salir las colaboraciones que dan forma a los próximos proyectos.
 
