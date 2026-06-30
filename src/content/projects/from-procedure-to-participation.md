@@ -1,7 +1,7 @@
 ---
 title: "From Procedure to Participation"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇨🇿"
 description: "Curso de formación en Moravec (Chequia) sobre gamificación aplicada a los procedimientos Erasmus+ (Youthpass, reembolsos, evaluación, difusión), dirigido a youth workers, formadores y coordinadores de proyectos."
 location: "Moravec, Chequia"
