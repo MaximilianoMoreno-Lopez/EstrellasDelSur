@@ -8,6 +8,8 @@ location: "Bátonyterenye (Kisterenye), Hungría"
 year: 2026
 dates: "25/09/2026 - 03/10/2026 (días de programa: 26/09-02/10)"
 order: -9
+image: "images/projects/transform-your-life/cover.png"
+poster: "images/projects/transform-your-life/cover.png"
 infopack: "https://drive.google.com/file/d/1gcU3UGGvp5S_kw2hrCvYhwpWIgR-Nuq4/view?usp=drive_link"
 apply: "https://forms.gle/ZM7mgPEzrDeBRrKq6"
 edad: "16-30 años"
