@@ -12,7 +12,7 @@ image: "images/projects/transform-your-life/cover.png"
 poster: "images/projects/transform-your-life/cover.png"
 infopack: "https://drive.google.com/file/d/1gcU3UGGvp5S_kw2hrCvYhwpWIgR-Nuq4/view?usp=drive_link"
 apply: "https://forms.gle/ZM7mgPEzrDeBRrKq6"
-edad: "16-30 años"
+edad: "18-30 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
 ---
