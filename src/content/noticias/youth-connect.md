@@ -74,7 +74,18 @@ Fue una ocasión estupenda para compartir lo aprendido y tejer nuevas alianzas. 
 
 ## El cierre en Fundão
 
-Youth Connect termina su recorrido **a finales de junio con el evento final en Fundão (Portugal)**, donde se juntan todos los socios para compartir resultados y mirar atrás con perspectiva. Allí se presentan las actividades hechas a nivel local e internacional, los recursos educativos creados por los participantes y las buenas prácticas que han ido saliendo, y se aprovecha para afianzar lo construido y poner sobre la mesa nuevas ideas.
+Y así hemos llegado al final del camino: estos días nos hemos juntado todos los socios en **Fundão (Portugal)** para la reunión final del proyecto. Ha sido el momento de mirar atrás con perspectiva y poner en común todo lo que ha dado de sí Youth Connect.
+
+Repasamos los resultados de cada país, valoramos hasta qué punto hemos cumplido los objetivos que nos marcamos al arrancar en Riga y fuimos sinceros también con lo mejorable: qué cambiaríamos, qué afinar y qué ideas nos llevamos para próximas ediciones. Y, como suele pasar cuando se junta gente con ganas, la conversación derivó enseguida en lo siguiente: empezamos a dar forma a **nuevos proyectos** para seguir trabajando juntos.
+
+Hubo tiempo también para celebrar. Se entregaron los certificados de participación y aprovechamos para disfrutar de Fundão en grupo, con alguna cena y un paseo por la Expo de la ciudad. Cerrar un proyecto así, en persona y con quienes lo han hecho posible, es la mejor manera de ponerle el broche.
+
+<div class="tc-gallery">
+  <img src="/images/noticias/youth-connect/final-1.jpg" alt="Entrega de certificados de participación en la reunión final de Youth Connect en Fundão" />
+  <img src="/images/noticias/youth-connect/final-2.jpg" alt="El equipo de Estrellas del Sur por las calles de Fundão durante el evento final de Youth Connect" />
+  <img src="/images/noticias/youth-connect/final-3.jpg" alt="Cena de grupo de los socios de Youth Connect en Fundão" />
+  <img src="/images/noticias/youth-connect/final-4.jpg" alt="La Expo Fundão durante el cierre del proyecto Youth Connect" />
+</div>
 
 ## Lo que queda
 
