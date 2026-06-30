@@ -74,17 +74,17 @@ Fue una ocasión estupenda para compartir lo aprendido y tejer nuevas alianzas. 
 
 ## El cierre en Fundão
 
-Y así hemos llegado al final del camino: estos días nos hemos juntado todos los socios en **Fundão (Portugal)** para la reunión final del proyecto. Ha sido el momento de mirar atrás con perspectiva y poner en común todo lo que ha dado de sí Youth Connect.
+Y así hemos llegado al final del camino. Estos días nos hemos juntado todos los socios en **Fundão (Portugal)** para la reunión final del proyecto, un momento para mirar atrás con perspectiva y poner en común todo lo que ha dado de sí Youth Connect.
 
-Repasamos los resultados de cada país, valoramos hasta qué punto hemos cumplido los objetivos que nos marcamos al arrancar en Riga y fuimos sinceros también con lo mejorable: qué cambiaríamos, qué afinar y qué ideas nos llevamos para próximas ediciones. Y, como suele pasar cuando se junta gente con ganas, la conversación derivó enseguida en lo siguiente: empezamos a dar forma a **nuevos proyectos** para seguir trabajando juntos.
+Repasamos los resultados de cada país, valoramos hasta qué punto hemos cumplido los objetivos que nos marcamos al arrancar en Riga y fuimos sinceros también con lo mejorable, desde lo que cambiaríamos hasta las ideas que nos llevamos para próximas ediciones. Y, como suele pasar cuando se junta gente con ganas, la conversación derivó enseguida en empezar a dar forma a **nuevos proyectos** con los que seguir trabajando juntos.
 
-Hubo tiempo también para celebrar. Se entregaron los certificados de participación y aprovechamos para disfrutar de Fundão en grupo, con alguna cena y un paseo por la Expo de la ciudad. Cerrar un proyecto así, en persona y con quienes lo han hecho posible, es la mejor manera de ponerle el broche.
+Hubo tiempo también para celebrar. Se entregaron los certificados de participación y aprovechamos para disfrutar de Fundão en grupo, con alguna cena y una vuelta por la feria de la ciudad, donde nos encontramos con asociaciones y entidades locales y música en directo. Cerrar un proyecto así, en persona y con quienes lo han hecho posible, es la mejor manera de ponerle el broche.
 
 <div class="tc-gallery">
   <img src="/images/noticias/youth-connect/final-1.jpg" alt="Entrega de certificados de participación en la reunión final de Youth Connect en Fundão" />
   <img src="/images/noticias/youth-connect/final-2.jpg" alt="El equipo de Estrellas del Sur por las calles de Fundão durante el evento final de Youth Connect" />
   <img src="/images/noticias/youth-connect/final-3.jpg" alt="Cena de grupo de los socios de Youth Connect en Fundão" />
-  <img src="/images/noticias/youth-connect/final-4.jpg" alt="La Expo Fundão durante el cierre del proyecto Youth Connect" />
+  <img src="/images/noticias/youth-connect/final-4.jpg" alt="La feria de Fundão durante el cierre del proyecto Youth Connect" />
 </div>
 
 ## Lo que queda
