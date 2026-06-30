@@ -1,7 +1,7 @@
 ---
 title: "CTRL+ALT+RESET"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇨🇾"
 description: "Curso de formación en Agros (Chipre) sobre la soledad, el bienestar emocional y la inclusión social en el trabajo con jóvenes, dirigido a youth workers y voluntarios que quieran reforzar su alfabetización emocional y sus competencias comunicativas."
 location: "Agros, Chipre"
