@@ -87,8 +87,6 @@ Hubo tiempo también para celebrar. Se entregaron los certificados de participac
   <img src="/images/noticias/youth-connect/final-4.jpg" alt="La feria de Fundão durante el cierre del proyecto Youth Connect" />
 </div>
 
-## Lo que queda
-
 Youth Connect deja claro que juntar herramientas digitales, aprendizaje intercultural y participación activa genera oportunidades reales para la juventud europea. Hemos reforzado competencias, empujado la inclusión y ayudado a que más jóvenes sepan lo que Europa pone a su alcance.
 
 Pero, si nos preguntan, lo mejor son las conexiones: vínculos que seguirán dando ideas, colaboraciones y oportunidades mucho después de que el proyecto cierre oficialmente. Esa es la Europa que nos gusta, más inclusiva, más participativa y más conectada.
