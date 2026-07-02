@@ -48,7 +48,7 @@ Durante el proyecto, los participantes podrán:
 
 ### A quién buscamos
 
-- Personas jóvenes de **16 a 30 años** residentes en España (el líder de grupo puede ser mayor de 30)
+- Personas jóvenes de **18 a 30 años** residentes en España (el líder de grupo puede ser mayor de 30)
 - Personas abiertas a las técnicas y al enfoque taoísta oriental
 - Con ganas de aprender sobre sí mismas y de compartir con las demás
 - Con un nivel de inglés básico, medio o bueno, suficiente para desenvolverse
@@ -75,7 +75,7 @@ Está estrictamente prohibido el consumo de drogas o sustancias ilegales y cualq
 
 ## Perfil del Participante
 
-Buscamos personas jóvenes de entre 16 y 30 años residentes en España, con interés genuino por el bienestar, el autoconocimiento y la temática taoísta del proyecto. Deben tener un nivel de inglés suficiente para comunicarse en un entorno internacional y disposición a participar en sus tres fases (preparación, implementación y difusión).
+Buscamos personas jóvenes de entre 18 y 30 años residentes en España, con interés genuino por el bienestar, el autoconocimiento y la temática taoísta del proyecto. Deben tener un nivel de inglés suficiente para comunicarse en un entorno internacional y disposición a participar en sus tres fases (preparación, implementación y difusión).
 
 No nos interesa tanto tu experiencia previa ni tu formación, sino tu actitud: queremos contar con personas dispuestas a salir de su zona de confort, a escuchar otras realidades y a compartir la suya propia desde el respeto. Se anima especialmente a participar a personas con menos oportunidades.
 
