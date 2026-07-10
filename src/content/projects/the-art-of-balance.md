@@ -1,7 +1,7 @@
 ---
 title: "The Art of Balance"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇭🇺"
 description: "Curso de formación en Bátonyterenye (Hungría) sobre el arte del equilibrio a través de la sabiduría taoísta, dirigido a youth workers y profesionales del ámbito juvenil que quieran reforzar su resiliencia personal y aprender herramientas para cuidar el bienestar mental de los jóvenes."
 location: "Bátonyterenye, Hungría"
