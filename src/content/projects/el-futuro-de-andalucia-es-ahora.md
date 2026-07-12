@@ -6,6 +6,7 @@ flag: "🇪🇸"
 description: "Iniciativa local respaldada por la Junta de Andalucía centrada en analizar el mercado laboral andaluz y empoderar a jóvenes, mujeres, mayores de 45 y personas en riesgo de exclusión."
 year: 2023
 yearLabel: "2022-2024"
+dates: "2022-2024"
 order: 65
 location: "Andalucía"
 localInitiative: true
