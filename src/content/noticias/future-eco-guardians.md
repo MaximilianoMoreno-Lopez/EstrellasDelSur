@@ -44,4 +44,4 @@ Más allá de las actividades, lo que de verdad nos llevamos son las personas. C
 
 Queremos agradecer una vez más a **Estrellas del Sur** por esta experiencia inolvidable, y dar un reconocimiento especial a nuestros seis monitores, **Cristina, David, Ivanna, Jana, Mathilde y Dylan**, por cuidarnos con tanto cariño y hacer que aprendiéramos y nos lo pasáramos genial durante todo el proyecto.
 
-Si te interesa viajar, conocer a personas de otras culturas y vivir una experiencia como la nuestra, no olvides contar con Estrellas del Sur y estar atento a las próximas convocatorias. [Conoce el proyecto Future Eco-Guardians](/proyectos/seeds-of-change/) y anímate a dar el paso.
+Si te interesa viajar, conocer a personas de otras culturas y vivir una experiencia como la nuestra, no olvides contar con Estrellas del Sur y estar atento a las próximas convocatorias.
