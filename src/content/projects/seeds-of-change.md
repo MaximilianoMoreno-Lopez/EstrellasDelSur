@@ -24,6 +24,8 @@ apply: "https://forms.gle/7YW9tkHxXJ7ernyDA"
 
 > Este proyecto forma parte de **Future Eco-Guardians**, un intercambio juvenil internacional en tres fases (España, República Checa y Francia). Estrellas del Sur ha participado en las tres fases: las dos primeras se celebraron el año pasado y esta convocatoria corresponde a la **Fase 3** en Normandía.
 
+> ¿Quieres saber cómo fue? [Lee la crónica del encuentro en Normandía →](/noticias/future-eco-guardians/)
+
 ## Sobre el proyecto
 
 **"Seeds of Change"** es la Fase 3 del proyecto Future Eco-Guardians, un intercambio juvenil internacional cofinanciado por Erasmus+ que reúne a jóvenes de España, Francia y República Checa. Los participantes se convierten en *eco-guardianes* con una misión: combatir el cambio climático y descubrir cómo los retos medioambientales se viven de forma distinta en cada rincón de Europa.
