@@ -1,7 +1,7 @@
 ---
 title: "Brújula Digital"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇪🇸"
 description: "Itinerario formativo de Estrellas del Sur y la Fundación Don Bosco para acompañar a jóvenes en el desarrollo de competencias personales, profesionales y digitales, con la inteligencia artificial como herramienta para la vida cotidiana."
 location: "Córdoba"
