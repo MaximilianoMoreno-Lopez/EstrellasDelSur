@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Picture from '../../components/Picture.astro';
 import EUBanner from '../../components/EUBanner.astro';
+import ALFBanner from '../../components/ALFBanner.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, type, status, flag, description, location, year, yearLabel, image, imageLogo, poster, infopack, apply, dates, localInitiative, coordinated, edad, idioma, coste } = project.data;
+const { title, type, status, flag, description, location, year, yearLabel, image, imageLogo, poster, infopack, apply, dates, localInitiative, coordinated, edad, idioma, coste, funder } = project.data;
 const yearDisplay = yearLabel || year;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -305,7 +306,7 @@ const breadcrumbs = [
     </div>
   </section>
 
-  <EUBanner />
+  {funder === 'alf' ? <ALFBanner /> : <EUBanner />}
 </BaseLayout>
 
 <style>

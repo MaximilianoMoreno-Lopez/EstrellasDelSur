@@ -1,0 +1,62 @@
+---
+// ALFBanner.astro — banda de financiación de la Fundación Anna Lindh (EuroMed)
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<div class="alf-banner">
+  <div class="container alf-banner-inner">
+    <img
+      class="alf-logo"
+      src={`${base}/images/alf-logo.png`}
+      alt="Fundación Anna Lindh"
+      width="1128"
+      height="432"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="alf-text">
+      <p class="alf-heading">Financiado por la Fundación Anna Lindh</p>
+      <p class="alf-disclaimer">
+        Este proyecto cuenta con el apoyo de la Fundación Anna Lindh (EuroMed). Las opiniones y puntos de vista
+        expresados son responsabilidad exclusiva de Estrellas del Sur y no reflejan necesariamente la posición
+        de la Fundación Anna Lindh.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .alf-banner {
+    background: var(--cream);
+    border-top: 1px solid var(--cream-dark);
+    padding: 1.75rem 0;
+  }
+  .alf-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .alf-logo {
+    height: 56px;
+    width: auto;
+    flex-shrink: 0;
+  }
+  .alf-text { flex: 1; min-width: 240px; }
+  .alf-heading {
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: .25rem;
+  }
+  .alf-disclaimer {
+    font-size: .78rem;
+    color: var(--gray-600);
+    line-height: 1.55;
+    max-width: 640px;
+  }
+
+  @media (max-width: 640px) {
+    .alf-banner-inner { gap: 1rem; }
+  }
+</style>

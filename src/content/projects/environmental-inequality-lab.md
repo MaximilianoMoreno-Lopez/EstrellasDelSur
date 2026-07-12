@@ -9,6 +9,7 @@ dates: "Julio - Diciembre 2026"
 order: -11
 location: "Córdoba y Almodóvar del Río"
 localInitiative: true
+funder: "alf"
 image: "images/projects/environmental-inequality-lab/logo.png"
 ---
 
