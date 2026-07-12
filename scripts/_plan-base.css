@@ -102,3 +102,20 @@ blockquote.law{
 .ident-grid .gold{color:var(--gold);}
 footer{margin-top:24px;padding-top:11px;border-top:1px solid var(--line);font-size:8pt;color:#9ca3af;display:flex;justify-content:space-between;}
 .page-break{page-break-before:always;}
+
+/* Formularios (autorizaciones) */
+.form-intro{font-size:9.8pt;color:var(--gray);margin:0 0 16px;}
+.field{margin:0 0 12px;}
+.field label{display:block;font-size:8pt;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:5px;}
+.field .line{display:block;border-bottom:1px solid #9ca3af;height:20px;}
+.field-row{display:flex;gap:16px;}
+.field-row .field{flex:1;}
+.check{position:relative;padding:5px 0 5px 26px;font-size:9.8pt;}
+.check::before{content:"";position:absolute;left:0;top:6px;width:13px;height:13px;border:1.4px solid var(--teal-dark);border-radius:3px;background:#fff;}
+ul.checklist{margin:6px 0 12px;padding:0;list-style:none;}
+ul.checklist li{position:relative;padding:6px 0 6px 26px;font-size:9.8pt;border-bottom:none;}
+ul.checklist li::before{content:"";position:absolute;left:0;top:8px;width:13px;height:13px;border:1.4px solid var(--teal-dark);border-radius:3px;background:#fff;}
+.sign-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;margin-top:22px;page-break-inside:avoid;}
+.sign-box{border-top:1px solid #9ca3af;padding-top:6px;font-size:8.4pt;color:var(--gray);min-height:48px;}
+.sign-box .sign-space{display:block;height:34px;}
+.place-date{margin:18px 0 8px;font-size:9.8pt;color:var(--ink);}

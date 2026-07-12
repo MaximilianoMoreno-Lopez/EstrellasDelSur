@@ -76,14 +76,32 @@ const internalDocs = [
   },
   {
     title: 'Protocolo de prevención del acoso',
-    desc: 'Procedimiento de prevención, detección y actuación ante situaciones de acoso laboral, sexual o por razón de sexo.',
-    file: null,
+    desc: 'Prevención, detección y actuación frente a cualquier forma de acoso, con tolerancia cero y garantías para las personas afectadas.',
+    file: 'Protocolo_Prevencion_Acoso_Estrellas_del_Sur.pdf',
   },
   {
     title: 'Política de Privacidad y Protección de Datos',
     desc: 'Tratamiento de datos personales conforme al RGPD y la LOPDGDD.',
     file: null,
     href: '/privacidad/',
+  },
+];
+
+const imageForms = [
+  {
+    title: 'Mayores de edad',
+    desc: 'Consentimiento para el tratamiento y la difusión de imagen y voz de personas mayores de edad participantes.',
+    file: 'Autorizacion_Imagen_Mayores_Estrellas_del_Sur.pdf',
+  },
+  {
+    title: 'Menores de edad',
+    desc: 'Autorización firmada por madres, padres o tutores para el uso de imágenes de personas menores de edad.',
+    file: 'Autorizacion_Imagen_Menores_Estrellas_del_Sur.pdf',
+  },
+  {
+    title: 'Personas con medidas de apoyo',
+    desc: 'Consentimiento prestado por quien ostenta la representación en casos de tutela o medidas judiciales de apoyo.',
+    file: 'Autorizacion_Imagen_Medidas_Apoyo_Estrellas_del_Sur.pdf',
   },
 ];
 
@@ -210,6 +228,38 @@ const memorias = [
               ) : (
                 <span class="doc-status">En preparación</span>
               )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Autorizaciones de imagen -->
+  <section class="section image-forms-section">
+    <div class="container">
+      <p class="section-label fade-in" style="justify-content:center">Autorizaciones de imagen</p>
+      <h2 class="section-title fade-in" style="text-align:center">Formularios de consentimiento</h2>
+      <div class="divider" style="margin-left:auto; margin-right:auto"></div>
+      <p class="internal-docs-intro fade-in">
+        Formularios para autorizar el uso de imagen y voz en nuestras actividades, conforme al RGPD y a la
+        Ley Orgánica 1/1982. Descárgalos, imprímelos y entrégalos firmados al equipo de la actividad.
+      </p>
+      <ul class="docs-list fade-in">
+        {imageForms.map((doc) => (
+          <li class="doc-item">
+            <div class="doc-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <div class="doc-item-content">
+              <h3>{doc.title}</h3>
+              <p>{doc.desc}</p>
+            </div>
+            <div class="doc-item-action">
+              <a href={`${base}/docs/${doc.file}`} target="_blank" rel="noopener" class="doc-link">
+                <span>Descargar PDF</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
             </div>
           </li>
         ))}
@@ -531,6 +581,7 @@ const memorias = [
   }
 
   .internal-docs-section { padding-top: 4rem; }
+  .image-forms-section { padding-top: 4rem; }
   .internal-docs-intro {
     text-align: center;
     max-width: 640px;
