@@ -139,26 +139,6 @@ const memorias = [
     </div>
   </section>
 
-  <!-- Notice -->
-  <section class="section notice-section">
-    <div class="container">
-      <div class="notice-card fade-in">
-        <div class="notice-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </div>
-        <div>
-          <h2>Portal en construcción</h2>
-          <p>
-            Estamos preparando la publicación progresiva de toda la documentación. Los apartados se
-            irán habilitando a lo largo de las próximas semanas. Si necesitas algún documento concreto
-            antes de su publicación, puedes solicitarlo a
-            <a href="mailto:paula@estrellasdelsur.eu">paula@estrellasdelsur.eu</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Sections -->
   <section class="section sections-section">
     <div class="container">
@@ -380,21 +360,6 @@ const memorias = [
 </BaseLayout>
 
 <style>
-  .notice-section { padding-top: 2rem; padding-bottom: 0; }
-  .notice-card {
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-    background: #fef3c7;
-    border: 1px solid #fbbf24;
-    border-radius: 14px;
-    padding: 1.5rem 1.75rem;
-  }
-  .notice-icon { color: #b45309; flex-shrink: 0; padding-top: .15rem; }
-  .notice-card h2 { font-size: 1.1rem; margin: 0 0 .5rem; color: #78350f; font-family: 'DM Sans Variable', sans-serif; font-weight: 600; }
-  .notice-card p { color: #78350f; line-height: 1.65; margin: 0; font-size: .95rem; }
-  .notice-card a { color: #92400e; text-decoration: underline; font-weight: 500; }
-
   .sections-section { padding-top: 4rem; }
   .sections-grid {
     display: grid;
@@ -716,7 +681,6 @@ const memorias = [
 
   @media (max-width: 640px) {
     .ident-card { padding: 2rem 1.5rem; }
-    .notice-card { flex-direction: column; gap: .75rem; padding: 1.25rem; }
     .doc-item {
       flex-wrap: wrap;
       padding: 1.1rem 1.1rem;
