@@ -81,7 +81,7 @@ Los gastos de transporte serán pagados por el participante y devueltos por Estr
 
 **Cómo llegar:** el aeropuerto recomendado es **Zadar**, el más cercano a Veli Iž, aunque también se puede volar a **Zagreb** o **Split**. Desde el aeropuerto se llega en autobús a la terminal de Zadar y, desde allí, con la línea local 2 o 4 hasta el puerto del casco antiguo. Después se toma un barco (Jadrolinija o G&V) hasta Veli Iž, con un billete de unos 3 € que se paga en efectivo o tarjeta. La organización esperará a cada participante a la llegada del barco para acompañarle al alojamiento. No hacen falta coches en la isla.
 
-El participante es responsable del acceso a asistencia sanitaria durante todo el proyecto. Es **obligatorio** llevar la **tarjeta sanitaria europea (TSE)** y se recomienda un seguro de viaje; la coordinadora contrata además un seguro de viaje para todos los seleccionados. No olvides el pasaporte o DNI en vigor durante toda la estancia. La moneda oficial en Croacia es el euro.
+El participante es responsable del acceso a asistencia sanitaria durante todo el proyecto. Es **obligatorio** llevar la **tarjeta sanitaria europea (TSE)** y se recomienda un seguro de viaje. No olvides el pasaporte o DNI en vigor durante toda la estancia. La moneda oficial en Croacia es el euro.
 
 ## Cuota de Socio
 
