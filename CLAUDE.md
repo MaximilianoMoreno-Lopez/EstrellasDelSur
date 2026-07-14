@@ -28,8 +28,13 @@ Siempre usar `${base}/ruta/` donde `base = import.meta.env.BASE_URL.replace(/\/$
 - **Pablo Sánchez Ruiz** — Cofundador y Vicepresidente · pablo@estrellasdelsur.eu
 - **Paula Arroyo** — International Project Manager · paula@estrellasdelsur.eu
 
+## Documentos legales
+Al actualizar Términos o Privacidad, subir siempre `LEGAL_VERSION` en `src/lib/legal.js`
+en el mismo commit que el cambio de texto. Proceso completo en [`LEGAL.md`](LEGAL.md).
+
 ## Identidad
-- OID: E10264295 · PIC: 892239563
+- CIF: G02811461 · OID: E10264295 · PIC: 892239563
+- Sede social: Avda. Guerrita 14, 1ª pl., local 3A, 14005 Córdoba
 - Colores: navy `#0a1628`, teal `#0d9488`, gold `#f59e0b`
 - Logo: `public/images/logo.svg` (SVG sin fondo)
 - OG image: `public/og-image.png`
