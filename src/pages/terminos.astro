@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { LEGAL_VERSION, LEGAL_VERSION_LABEL } from '../lib/legal.js';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -24,7 +25,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   <section class="section legal-section">
     <div class="container legal-content">
-      <p class="legal-updated">Última actualización: julio de 2026</p>
+      <p class="legal-updated">Versión {LEGAL_VERSION} · Última actualización: {LEGAL_VERSION_LABEL}</p>
 
       <h2>1. Datos identificativos</h2>
       <p>

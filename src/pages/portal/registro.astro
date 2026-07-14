@@ -55,6 +55,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   <script>
     import { supabase } from '../../lib/supabase.js';
+    import { LEGAL_VERSION } from '../../lib/legal.js';
 
     // If already logged in, redirect
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -98,7 +99,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       btnSpinner.style.display = 'inline';
       submitBtn.disabled = true;
 
-      const { error } = await supabase.auth.signUp({ email, password });
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            // Registro de la aceptación legal, sellado con el created_at del usuario en Supabase.
+            // La versión aceptada se corresponde con el commit de git de esa versión (prueba del texto vigente).
+            legal_version: LEGAL_VERSION,
+            terms_accepted: true,
+            privacy_accepted: true,
+            accepted_at: new Date().toISOString(),
+          },
+        },
+      });
 
       if (error) {
         errorMsg.textContent = error.message;
