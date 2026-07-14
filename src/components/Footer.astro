@@ -79,6 +79,11 @@ const navLinks = [
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
       <p>© <span id="mainFooterYear"></span> Estrellas del Sur. Todos los derechos reservados.</p>
+      <nav class="footer-legal-links" aria-label="Enlaces legales">
+        <a href={`${base}/privacidad/`}>Privacidad</a>
+        <span class="footer-legal-sep" aria-hidden="true">·</span>
+        <a href={`${base}/terminos/`}>Términos y condiciones</a>
+      </nav>
       <a href={`${base}/transparencia/`} class="footer-transparency-link">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         Portal de Transparencia
@@ -129,6 +134,10 @@ const navLinks = [
   .footer-bottom-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.7); }
   .footer-bottom-right { color: rgba(255,255,255,.55) !important; }
+  .footer-legal-links { display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; }
+  .footer-legal-links a { color: rgba(255,255,255,.7); text-decoration: none; transition: color .2s; }
+  .footer-legal-links a:hover { color: #f59e0b; }
+  .footer-legal-sep { color: rgba(255,255,255,.3); }
   .footer-transparency-link {
     display: inline-flex;
     align-items: center;

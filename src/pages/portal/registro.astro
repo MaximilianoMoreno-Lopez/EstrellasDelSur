@@ -34,7 +34,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <div class="field-check">
           <input type="checkbox" id="consent" name="consent" required />
           <label for="consent">
-            He leído y acepto la
+            He leído y acepto los
+            <a href={`${base}/terminos/`} target="_blank" rel="noopener">Términos y condiciones</a>
+            y la
             <a href={`${base}/privacidad/`} target="_blank" rel="noopener">Política de Privacidad</a>.
           </label>
         </div>
@@ -77,7 +79,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       const consent = document.getElementById('consent').checked;
 
       if (!consent) {
-        errorMsg.textContent = 'Debes aceptar la Política de Privacidad para crear tu cuenta.';
+        errorMsg.textContent = 'Debes aceptar los Términos y condiciones y la Política de Privacidad para crear tu cuenta.';
         errorMsg.style.display = 'block';
         return;
       }
