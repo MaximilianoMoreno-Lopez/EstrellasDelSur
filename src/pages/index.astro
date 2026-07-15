@@ -103,17 +103,23 @@ const orgJsonLd = {
 
       <div class="about-cards fade-in fade-in-delay-2">
         <div class="about-card card">
-          <div class="about-card-icon">🎓</div>
+          <div class="about-card-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+          </div>
           <h3>Erasmus+</h3>
           <p>Organización activa en Erasmus+ con proyectos de intercambio juvenil y formación en marcha por toda Europa.</p>
         </div>
         <div class="about-card card">
-          <div class="about-card-icon">🤝</div>
+          <div class="about-card-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
+          </div>
           <h3>Cuerpo Europeo de Solidaridad</h3>
           <p>Organización de envío certificada que facilita voluntariados internacionales a jóvenes de 18 a 30 años.</p>
         </div>
         <div class="about-card card">
-          <div class="about-card-icon">🌍</div>
+          <div class="about-card-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
           <h3>Red europea</h3>
           <p>Colaboramos con organizaciones socias en más de 15 países para crear proyectos con impacto real.</p>
         </div>
@@ -198,7 +204,8 @@ const orgJsonLd = {
   }
 
   .about-card-icon {
-    font-size: 1.75rem;
+    color: var(--teal);
+    line-height: 0;
     margin-bottom: .25rem;
   }
 

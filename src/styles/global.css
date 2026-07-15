@@ -67,6 +67,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 a { color: inherit; }
 ul, ol { list-style: none; }
 
+/* ─── Keyboard focus ─────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+/* Gold ring on dark (navy) surfaces, where teal lacks contrast */
+.navbar :focus-visible,
+.footer :focus-visible,
+.hero :focus-visible,
+.page-hero :focus-visible,
+.contact-cta :focus-visible,
+.contact-cta-card :focus-visible,
+.partners-card :focus-visible {
+  outline-color: var(--gold);
+}
+
 /* ─── Base ───────────────────────────────────────────── */
 body {
   font-family: 'DM Sans Variable', 'DM Sans', 'DM Sans Fallback', system-ui, sans-serif;
@@ -232,6 +248,7 @@ h1, h2, h3, h4, h5 {
   to   { opacity: 1; transform: translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .hero .fade-in, .page-hero .fade-in {
     animation: none;
   }

@@ -2,27 +2,29 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EUBanner from '../components/EUBanner.astro';
 
+const svgAttrs = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+
 const team = [
   {
     name: 'Maximiliano Moreno López',
     role: 'Cofundador y Presidente',
     bio: 'Profesor de matemáticas y economía en Sciences Po, investigador en economía ambiental en la Paris School of Economics (PSE) y colaborador del Ministerio de Transición Ecológica de Francia.',
     email: 'maxi@estrellasdelsur.eu',
-    emoji: '🌱',
+    icon: `<svg width="34" height="34" ${svgAttrs}><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>`,
   },
   {
     name: 'Pablo Sánchez Ruiz',
     role: 'Cofundador y Vicepresidente',
     bio: 'Profesor y cofundador de Estrellas del Sur. Responsable de la gestión de proyectos europeos y la coordinación con organizaciones socias en toda Europa.',
     email: 'pablo@estrellasdelsur.eu',
-    emoji: '🚀',
+    icon: `<svg width="34" height="34" ${svgAttrs}><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>`,
   },
   {
     name: 'Paula Arroyo',
     role: 'International Project Manager',
     bio: 'Graduada en protocolo, organización de eventos y comunicación corporativa, con perspectiva europea a través del Máster en Estudios Avanzados de la UE.',
     email: 'paula@estrellasdelsur.eu',
-    emoji: '🎯',
+    icon: `<svg width="34" height="34" ${svgAttrs}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
   },
 ];
 
@@ -122,7 +124,7 @@ const milestones = [
       <div class="team-grid">
         {team.map((member, i) => (
           <div class={`team-card card fade-in fade-in-delay-${i + 1}`}>
-            <div class="team-avatar" aria-hidden="true">{member.emoji}</div>
+            <div class="team-avatar" aria-hidden="true" set:html={member.icon} />
             <div class="team-info">
               <h3 class="team-name">{member.name}</h3>
               <p class="team-role">{member.role}</p>
@@ -168,7 +170,9 @@ const milestones = [
       </div>
       <aside class="partners-card fade-in fade-in-delay-2">
         <div class="partners-card-header">
-          <span class="partners-flag" aria-hidden="true">🇪🇺</span>
+          <span class="partners-flag" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
           <span>Quick info</span>
         </div>
         <dl class="partners-info">
@@ -202,7 +206,9 @@ const milestones = [
       </div>
       <div class="accred-grid">
         <div class="accred-card card fade-in fade-in-delay-1">
-          <div class="accred-logo" aria-hidden="true">🎓</div>
+          <div class="accred-logo" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+          </div>
           <div class="accred-content">
             <h3>Erasmus+</h3>
             <p>
@@ -213,7 +219,9 @@ const milestones = [
           </div>
         </div>
         <div class="accred-card card fade-in fade-in-delay-2">
-          <div class="accred-logo" aria-hidden="true">🤝</div>
+          <div class="accred-logo" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
+          </div>
           <div class="accred-content">
             <h3>Organización de Envío ESC <span lang="en" class="accred-en">· Sending Organisation Spain</span></h3>
             <p>
@@ -344,7 +352,7 @@ const milestones = [
     padding-bottom: .85rem;
     border-bottom: 1px solid rgba(255,255,255,.08);
   }
-  .partners-flag { font-size: 1.2rem; }
+  .partners-flag { color: var(--gold); line-height: 0; }
   .partners-info {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -489,7 +497,8 @@ const milestones = [
   }
 
   .team-avatar {
-    font-size: 3rem;
+    color: var(--teal);
+    line-height: 0;
     flex-shrink: 0;
     width: 72px;
     height: 72px;
@@ -551,7 +560,8 @@ const milestones = [
   }
 
   .accred-logo {
-    font-size: 2.5rem;
+    color: var(--teal);
+    line-height: 0;
     flex-shrink: 0;
   }
 
