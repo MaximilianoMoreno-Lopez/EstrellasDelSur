@@ -14,7 +14,7 @@ infopack: "https://drive.google.com/file/d/1as4wiz3HW-AM5Osfrv4kUPzpFzyq2ezf/vie
 apply: "https://docs.google.com/document/d/1UH8khjO-BhJs6EclqBg57GmDIDEPnd_f/edit?usp=sharing"
 edad: "18-30 años"
 idioma: "Inglés"
-coste: "Sin cuota. 270 €/mes + alojamiento, viajes y seguro cubiertos"
+coste: "Sin coste ni cuota. Recibes 270 €/mes de ayuda, más alojamiento, viajes y seguro"
 ---
 
 ## Datos del proyecto
@@ -23,7 +23,7 @@ coste: "Sin cuota. 270 €/mes + alojamiento, viajes y seguro cubiertos"
 - **Fechas:** Voluntariado de larga duración (unos 5 a 6 meses). El inicio puede ser desde el 25 de julio de 2026, de agosto a diciembre de 2026 según el calendario
 - **Lugar:** Bucarest (Rumanía)
 - **Organización de acogida:** COSI (Civic Orientation and Social Integration)
-- **Perfil:** Personas jóvenes en situación NEET (sin empleo ni estudios ni formación) con nivel conversacional de inglés
+- **Perfil:** Personas jóvenes en situación NEET (que en este momento no estén trabajando, estudiando ni formándose) con nivel conversacional de inglés
 - **Fecha límite de inscripciones:** Evaluación de candidaturas sobre la marcha, no te lo pienses más!
 
 ## Sobre el proyecto
@@ -55,7 +55,7 @@ El trabajo se organiza en dos equipos que se intercambian cada dos meses. El equ
 
 ## Perfil del Participante
 
-Buscamos personas jóvenes en situación **NEET** (sin empleo, estudios ni formación) con al menos un nivel conversacional de inglés, interesadas en aprender a implementar proyectos Erasmus+ y motivadas para promover los derechos humanos, la solidaridad, el diálogo intercultural, el voluntariado y la ciudadanía activa entre la juventud rumana.
+Buscamos personas jóvenes en situación **NEET** (que en este momento no estén trabajando, estudiando ni formándose) con al menos un nivel conversacional de inglés, interesadas en aprender a implementar proyectos Erasmus+ y motivadas para promover los derechos humanos, la solidaridad, el diálogo intercultural, el voluntariado y la ciudadanía activa entre la juventud rumana.
 
 Se valora la curiosidad por la diversidad cultural europea, de la Asociación Oriental (Armenia, Azerbaiyán, Bielorrusia, Georgia, Moldavia, Ucrania) y de los Balcanes Occidentales, así como el interés por desarrollar competencias en creación de contenido, gestión de redes sociales, facilitación de actividades de educación no formal y organización de eventos.
 
