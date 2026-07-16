@@ -147,7 +147,21 @@ const orgJsonLd = {
     </div>
   </section>
 
-  <!-- 6b. EU Co-funding Banner -->
+  <!-- 6b. Partner strip (EN, for European organisations) -->
+  <section class="partner-strip" lang="en">
+    <div class="container partner-strip-inner fade-in">
+      <p class="partner-strip-text">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span><strong>European organisation looking for a Spanish partner?</strong> Erasmus+ and ESC accredited, 50+ partners across Europe.</span>
+      </p>
+      <a href={`${base}/partners/`} class="partner-strip-link">
+        Partner with us
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- 6c. EU Co-funding Banner -->
   <EUBanner />
 </BaseLayout>
 
@@ -265,6 +279,41 @@ const orgJsonLd = {
     flex-shrink: 0;
     flex-wrap: wrap;
   }
+
+  /* Partner strip */
+  .partner-strip {
+    background: var(--cream-dark);
+    border-top: 1px solid var(--gray-200);
+    padding: 1.1rem 0;
+  }
+  .partner-strip-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .partner-strip-text {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .9rem;
+    color: var(--gray-600);
+  }
+  .partner-strip-text svg { color: var(--gold); flex-shrink: 0; }
+  .partner-strip-text strong { color: var(--navy); }
+  .partner-strip-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--teal);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: gap .2s, color .2s;
+  }
+  .partner-strip-link:hover { color: var(--navy); gap: .6rem; }
 
   @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }

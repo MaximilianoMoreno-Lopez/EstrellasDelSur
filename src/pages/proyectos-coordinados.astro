@@ -95,10 +95,16 @@ projects = projects
         Si representas a una asociación juvenil interesada en sumarse a nuestros próximos
         proyectos coordinados, escríbenos.
       </p>
-      <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-primary btn-lg">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Escríbenos
-      </a>
+      <div class="cta-buttons">
+        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-primary btn-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Escríbenos
+        </a>
+        <a href={`${base}/partners/`} class="btn btn-outline btn-lg" lang="en">
+          Partner with us (EN)
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -132,4 +138,5 @@ projects = projects
   .cta-content { text-align: center; max-width: 520px; margin: 0 auto; }
   .cta-content h2 { font-size: 1.75rem; margin-bottom: .75rem; color: var(--navy); }
   .cta-content p { color: var(--gray-600); margin-bottom: 1.75rem; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 </style>
