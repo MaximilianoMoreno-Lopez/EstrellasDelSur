@@ -330,7 +330,7 @@ const orgJsonLd = {
             row.querySelectorAll('.marquee-content').forEach((c) => {
               c.replaceChildren(...slice.map((chip) => chip.cloneNode(true)));
             });
-            row.style.animationDelay = `-${(Math.random() * 45).toFixed(1)}s`;
+            row.style.animationDelay = `-${(Math.random() * 50).toFixed(1)}s`;
           });
         }
       </script>
@@ -472,7 +472,7 @@ const orgJsonLd = {
   .marquee-row {
     display: flex;
     width: max-content;
-    animation: marquee-scroll 45s linear infinite;
+    animation: marquee-scroll 50s linear infinite;
   }
   .marquee-reverse { animation-direction: reverse; }
   .marquee-row:hover { animation-play-state: paused; }
