@@ -1,0 +1,444 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SUBVENCIONES, ULTIMA_REVISION } from '../lib/subvenciones.mjs';
+
+type Estado = 'abierta' | 'prevista' | 'cerrada' | 'anunciar';
+
+const ESTADO_ORDEN: Record<Estado, number> = { abierta: 0, prevista: 1, anunciar: 2, cerrada: 3 };
+const ESTADO_LABEL: Record<Estado, string> = {
+  abierta: 'Abierta',
+  prevista: 'Prevista',
+  anunciar: 'Por anunciar',
+  cerrada: 'Cerrada',
+};
+// Los badges reutilizan el sistema .badge de global.css
+const ESTADO_BADGE: Record<Estado, string> = {
+  abierta: 'badge-andalucia',
+  prevista: 'badge-gold',
+  anunciar: 'badge-sky',
+  cerrada: 'badge-navy',
+};
+const ESTADO_FILTRO: Record<Estado, string> = {
+  abierta: 'Abiertas',
+  prevista: 'Previstas',
+  anunciar: 'Por anunciar',
+  cerrada: 'Cerradas',
+};
+
+const AMBITOS = ['Córdoba', 'Andalucía', 'España', 'Europa'];
+
+// Los typos en los datos rompen el build, no la página en silencio.
+for (const s of SUBVENCIONES) {
+  if (!AMBITOS.includes(s.ambito)) throw new Error(`Ámbito inválido en "${s.nombre}": ${s.ambito}`);
+  if (s.estadoManual && !(s.estadoManual in ESTADO_LABEL)) {
+    throw new Error(`estadoManual inválido en "${s.nombre}": ${s.estadoManual}`);
+  }
+}
+
+// El estado manual prevalece; si no, se deduce de las fechas.
+// OJO: esta lógica está duplicada en el <script> de abajo, que la recalcula
+// en el navegador porque el sitio es estático y el estado caduca entre
+// deploys. Si cambias una, cambia la otra.
+function estadoDe(s: any, hoy: string): Estado {
+  if (s.estadoManual) return s.estadoManual;
+  if (s.plazoFin && s.plazoFin < hoy) return 'cerrada';
+  if (s.plazoInicio && s.plazoInicio > hoy) return 'prevista';
+  if (s.plazoFin) return 'abierta';
+  return 'anunciar';
+}
+
+const hoy = new Date().toISOString().slice(0, 10);
+
+const items = SUBVENCIONES.map((s) => ({ ...s, estado: estadoDe(s, hoy) })).sort((a, b) => {
+  const o = ESTADO_ORDEN[a.estado] - ESTADO_ORDEN[b.estado];
+  if (o !== 0) return o;
+  if (a.estado === 'abierta') return (a.plazoFin ?? '9999').localeCompare(b.plazoFin ?? '9999');
+  if (a.estado === 'prevista') return (a.plazoInicio ?? '9999').localeCompare(b.plazoInicio ?? '9999');
+  if (a.estado === 'cerrada') return (b.plazoFin ?? '').localeCompare(a.plazoFin ?? '');
+  return a.nombre.localeCompare(b.nombre, 'es');
+});
+
+const PUBLICOS = [...new Set(items.flatMap((s) => s.publico ?? []))].sort();
+
+const fmt = (d: string | null) =>
+  d ? new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) : null;
+
+// Texto del sufijo de días para convocatorias abiertas ('último día', '5 días')
+const diasTxt = (fin: string | null) => {
+  if (!fin) return '';
+  const dias = Math.ceil((new Date(fin + 'T23:59:59').getTime() - Date.now()) / 86400000);
+  if (dias <= 0) return '';
+  return dias === 1 ? ' · último día' : ` · ${dias} días`;
+};
+
+const abiertas = items.filter((s) => s.estado === 'abierta').length;
+---
+
+<BaseLayout
+  title="Radar de subvenciones"
+  description="Seguimiento interno de convocatorias de subvenciones relevantes para Estrellas del Sur: juventud, voluntariado, entidades sin ánimo de lucro y emprendimiento."
+  noindex={true}
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        Herramienta interna
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Radar de subvenciones</h1>
+      <p class="fade-in fade-in-delay-2">
+        Convocatorias que nos interesan como asociación, más ayudas de emprendimiento para
+        difundir. Ahora mismo, <strong><span id="abiertasCount">{abiertas}</span> abiertas</strong>.
+        Última revisión de datos: {fmt(ULTIMA_REVISION)}.
+      </p>
+    </div>
+  </section>
+
+  <section class="section radar-section">
+    <div class="container">
+
+      <!-- Filters -->
+      <div class="radar-filters fade-in" id="radarFilters">
+        <div class="filter-group" data-filter="estado">
+          <span class="filter-label">Estado</span>
+          <button class="f-chip is-on" data-value="todos">Todas</button>
+          {(Object.keys(ESTADO_FILTRO) as Estado[]).map((e) => (
+            <button class="f-chip" data-value={e}>{ESTADO_FILTRO[e]}</button>
+          ))}
+        </div>
+        <div class="filter-group" data-filter="ambito">
+          <span class="filter-label">Ámbito</span>
+          <button class="f-chip is-on" data-value="todos">Todos</button>
+          {AMBITOS.map((a) => <button class="f-chip" data-value={a}>{a}</button>)}
+        </div>
+        <div class="filter-group" data-filter="publico">
+          <span class="filter-label">Para</span>
+          <button class="f-chip is-on" data-value="todos">Todos</button>
+          {PUBLICOS.map((p) => <button class="f-chip" data-value={p}>{p}</button>)}
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="radar-grid" id="radarGrid">
+        {items.map((s) => (
+          <article
+            class={`radar-card card estado-${s.estado}`}
+            data-estado={s.estado}
+            data-ambito={s.ambito}
+            data-publico={(s.publico ?? []).join(',')}
+            data-inicio={s.plazoInicio ?? ''}
+            data-fin={s.plazoFin ?? ''}
+            data-manual={s.estadoManual ?? ''}
+            data-nombre={s.nombre}
+          >
+            <div class="rc-top">
+              <span class={`badge ${ESTADO_BADGE[s.estado]} rc-estado`}>
+                {ESTADO_LABEL[s.estado]}{s.estado === 'abierta' ? diasTxt(s.plazoFin) : ''}
+              </span>
+              <span class="rc-ambito">{s.ambito}</span>
+            </div>
+            <h2 class="rc-nombre">{s.nombre}</h2>
+            <p class="rc-organismo">{s.organismo}</p>
+            <p class="rc-tematica">{s.tematica}</p>
+
+            <dl class="rc-datos">
+              {(s.plazoInicio || s.plazoFin) && (
+                <>
+                  <dt>Plazo</dt>
+                  <dd>
+                    {s.plazoInicio && s.plazoFin
+                      ? `${fmt(s.plazoInicio)} a ${fmt(s.plazoFin)}`
+                      : s.plazoFin
+                        ? `hasta el ${fmt(s.plazoFin)}`
+                        : `desde el ${fmt(s.plazoInicio)}`}
+                  </dd>
+                </>
+              )}
+              {s.cuantia && (
+                <>
+                  <dt>Cuantía</dt>
+                  <dd>{s.cuantia}</dd>
+                </>
+              )}
+              <dt>Estado</dt>
+              <dd>{s.estadoNota}</dd>
+            </dl>
+
+            {s.notas && <p class="rc-notas">{s.notas}</p>}
+
+            <div class="rc-footer">
+              <span class="rc-publico">
+                {(s.publico ?? []).map((p: string) => <span class="badge badge-teal">{p}</span>)}
+              </span>
+              <a href={s.url} target="_blank" rel="noopener noreferrer" class="rc-link">
+                Convocatoria
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+            {s.confianza !== 'alta' && (
+              <p class="rc-confianza">Dato por confirmar en fuente oficial</p>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <p id="radarEmpty" class="radar-empty" style="display:none">
+        Ninguna convocatoria coincide con esos filtros.
+      </p>
+
+      <div class="radar-disclaimer fade-in">
+        <p>
+          Radar de uso interno. Los estados se recalculan con la fecha de tu visita, pero los
+          datos se revisan a mano (última revisión el {fmt(ULTIMA_REVISION)}); confirma siempre
+          el plazo en el enlace oficial antes de preparar una solicitud. ¿Falta una convocatoria?
+          Escríbenos a <a href="mailto:maxi@estrellasdelsur.eu">maxi@estrellasdelsur.eu</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // ── Recalcular estados con la fecha real de la visita ─────────
+  // El sitio es estático: lo que renderiza el servidor queda congelado en el
+  // build. Este bloque replica la lógica de estadoDe() del frontmatter (si
+  // cambias una, cambia la otra) y actualiza badge, orden y contador.
+  type Estado = 'abierta' | 'prevista' | 'cerrada' | 'anunciar';
+  const ESTADO_ORDEN: Record<Estado, number> = { abierta: 0, prevista: 1, anunciar: 2, cerrada: 3 };
+  const ESTADO_LABEL: Record<Estado, string> = { abierta: 'Abierta', prevista: 'Prevista', anunciar: 'Por anunciar', cerrada: 'Cerrada' };
+  const ESTADO_BADGE: Record<Estado, string> = { abierta: 'badge-andalucia', prevista: 'badge-gold', anunciar: 'badge-sky', cerrada: 'badge-navy' };
+
+  function estadoDe(manual: string, inicio: string, fin: string, hoy: string): Estado {
+    if (manual) return manual as Estado;
+    if (fin && fin < hoy) return 'cerrada';
+    if (inicio && inicio > hoy) return 'prevista';
+    if (fin) return 'abierta';
+    return 'anunciar';
+  }
+
+  function refrescarEstados() {
+    const d = new Date();
+    const hoy = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const grid = document.getElementById('radarGrid');
+    if (!grid) return;
+    const cards = [...grid.querySelectorAll<HTMLElement>('.radar-card')];
+    let abiertas = 0;
+
+    cards.forEach((card) => {
+      const estado = estadoDe(card.dataset.manual!, card.dataset.inicio!, card.dataset.fin!, hoy);
+      if (estado === 'abierta') abiertas++;
+      card.classList.remove(`estado-${card.dataset.estado}`);
+      card.classList.add(`estado-${estado}`);
+      card.dataset.estado = estado;
+      const badge = card.querySelector('.rc-estado');
+      if (badge) {
+        badge.className = `badge ${ESTADO_BADGE[estado]} rc-estado`;
+        let sufijo = '';
+        if (estado === 'abierta' && card.dataset.fin) {
+          const dias = Math.ceil((new Date(card.dataset.fin + 'T23:59:59').getTime() - Date.now()) / 86400000);
+          if (dias === 1) sufijo = ' · último día';
+          else if (dias > 1) sufijo = ` · ${dias} días`;
+        }
+        badge.textContent = ESTADO_LABEL[estado] + sufijo;
+      }
+    });
+
+    // Reordenar: abiertas por cierre, previstas por apertura, cerradas al final
+    cards
+      .sort((a, b) => {
+        const o = ESTADO_ORDEN[a.dataset.estado as Estado] - ESTADO_ORDEN[b.dataset.estado as Estado];
+        if (o !== 0) return o;
+        const e = a.dataset.estado as Estado;
+        if (e === 'abierta') return (a.dataset.fin || '9999').localeCompare(b.dataset.fin || '9999');
+        if (e === 'prevista') return (a.dataset.inicio || '9999').localeCompare(b.dataset.inicio || '9999');
+        if (e === 'cerrada') return (b.dataset.fin || '').localeCompare(a.dataset.fin || '');
+        return (a.dataset.nombre || '').localeCompare(b.dataset.nombre || '', 'es');
+      })
+      .forEach((card) => grid.appendChild(card));
+
+    const count = document.getElementById('abiertasCount');
+    if (count) count.textContent = String(abiertas);
+  }
+  refrescarEstados();
+
+  // ── Filtros combinables (estado + ámbito + público) ───────────
+  const active: Record<string, string> = { estado: 'todos', ambito: 'todos', publico: 'todos' };
+
+  document.querySelectorAll<HTMLElement>('.filter-group').forEach((group) => {
+    const key = group.dataset.filter!;
+    group.querySelectorAll<HTMLButtonElement>('.f-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        active[key] = chip.dataset.value!;
+        group.querySelectorAll('.f-chip').forEach((c) => c.classList.toggle('is-on', c === chip));
+        applyFilters();
+      });
+    });
+  });
+
+  function applyFilters() {
+    let visible = 0;
+    document.querySelectorAll<HTMLElement>('.radar-card').forEach((card) => {
+      const okEstado = active.estado === 'todos' || card.dataset.estado === active.estado;
+      const okAmbito = active.ambito === 'todos' || card.dataset.ambito === active.ambito;
+      const okPublico =
+        active.publico === 'todos' || (card.dataset.publico ?? '').split(',').includes(active.publico);
+      const show = okEstado && okAmbito && okPublico;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    const empty = document.getElementById('radarEmpty');
+    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+  }
+</script>
+
+<style>
+  .radar-section { background: var(--cream-dark); }
+
+  /* Filters */
+  .radar-filters {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    margin-bottom: 2rem;
+  }
+  .filter-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .45rem;
+  }
+  .filter-label {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--gray-500);
+    min-width: 56px;
+  }
+  .f-chip {
+    font-family: inherit;
+    font-size: .8rem;
+    font-weight: 600;
+    padding: .3rem .85rem;
+    border-radius: 999px;
+    border: 1px solid var(--gray-200);
+    background: #fff;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .f-chip:hover { border-color: var(--teal); color: var(--teal); }
+  .f-chip.is-on {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: #fff;
+  }
+
+  /* Cards */
+  .radar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .radar-card {
+    padding: 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+  }
+  .radar-card.estado-cerrada { opacity: .65; }
+
+  .rc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+    margin-bottom: .25rem;
+  }
+  .rc-ambito {
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+
+  .rc-nombre {
+    font-family: 'Playfair Display Variable', 'Playfair Display', 'Playfair Display Fallback', serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .rc-organismo { font-size: .82rem; color: var(--gray-500); }
+  .rc-tematica { font-size: .88rem; color: var(--gray-700); }
+
+  .rc-datos {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .3rem .9rem;
+    font-size: .84rem;
+    margin: .5rem 0;
+    padding: .75rem .9rem;
+    background: var(--cream);
+    border-radius: 10px;
+  }
+  .rc-datos dt {
+    font-weight: 700;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    font-size: .7rem;
+    letter-spacing: .05em;
+    padding-top: .1rem;
+  }
+  .rc-datos dd { color: var(--gray-700); }
+
+  .rc-notas { font-size: .84rem; color: var(--gray-600); font-style: italic; }
+
+  .rc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-top: .4rem;
+    padding-top: .75rem;
+    border-top: 1px solid var(--gray-200);
+    flex-wrap: wrap;
+  }
+  .rc-publico { display: flex; gap: .35rem; flex-wrap: wrap; }
+  .rc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--teal);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .rc-link:hover { color: var(--navy); }
+
+  .rc-confianza {
+    font-size: .72rem;
+    color: #b45309;
+    margin-top: .25rem;
+  }
+
+  .radar-empty {
+    text-align: center;
+    color: var(--gray-500);
+    padding: 2.5rem 0;
+  }
+
+  .radar-disclaimer {
+    margin-top: 2.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    background: #fff;
+  }
+  .radar-disclaimer p { font-size: .82rem; color: var(--gray-500); line-height: 1.6; }
+  .radar-disclaimer a { color: var(--teal); }
+</style>
