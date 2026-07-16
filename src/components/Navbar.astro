@@ -102,6 +102,10 @@ function isParentActive(link: NavLink): boolean {
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
         Portal
       </a>
+      <a href={`${base}/partners/`} class="nav-partner-btn" lang="en" title="For European organisations">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Partners
+      </a>
     </nav>
 
     <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav">
@@ -138,6 +142,10 @@ function isParentActive(link: NavLink): boolean {
       <a href={`${base}/portal/`} class="mobile-link mobile-portal-link">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
         Portal de participantes
+      </a>
+      <a href={`${base}/partners/`} class="mobile-link mobile-partner-link" lang="en">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Partner with us (EN)
       </a>
     </nav>
   </div>
@@ -331,6 +339,28 @@ function isParentActive(link: NavLink): boolean {
     color: #99f6e4;
   }
 
+  .nav-partner-btn {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .4rem 1rem; margin-left: .35rem;
+    border-radius: 999px;
+    background: rgba(245,158,11,.14);
+    border: 1px solid rgba(245,158,11,.45);
+    color: #fbbf24;
+    text-decoration: none; font-size: .85rem; font-weight: 600;
+    transition: background .2s, border-color .2s, color .2s;
+    white-space: nowrap;
+  }
+  .nav-partner-btn:hover {
+    background: rgba(245,158,11,.25);
+    border-color: rgba(245,158,11,.7);
+    color: #fcd34d;
+  }
+  /* Only on wide screens; smaller viewports keep the footer button,
+     the home strip and the mobile menu entry. */
+  @media (max-width: 1100px) {
+    .nav-partner-btn { display: none; }
+  }
+
   /* Hamburger ------------------------------------------- */
   .hamburger {
     display: none; flex-direction: column; justify-content: center; gap: 5px;
@@ -378,6 +408,12 @@ function isParentActive(link: NavLink): boolean {
     border-top: 1px solid rgba(255,255,255,.08); padding-top: 1rem;
   }
   .mobile-portal-link:hover { background: rgba(13,148,136,.15) !important; color: #99f6e4 !important; }
+
+  .mobile-partner-link {
+    display: flex; align-items: center; gap: .5rem;
+    color: #fbbf24 !important;
+  }
+  .mobile-partner-link:hover { background: rgba(245,158,11,.12) !important; color: #fcd34d !important; }
 
   @media (max-width: 820px) {
     .nav-links  { display: none; }
