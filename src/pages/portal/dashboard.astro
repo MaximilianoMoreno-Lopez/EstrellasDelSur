@@ -49,12 +49,12 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <input type="text" id="siglas_proyecto" name="siglas_proyecto" required placeholder="NEST, FEG…" />
           </div>
           <div class="field">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" />
+            <label for="telefono">Teléfono <span class="req">*</span></label>
+            <input type="tel" id="telefono" name="telefono" required placeholder="+34 600 000 000" />
           </div>
           <div class="field">
-            <label for="contacto_emergencia">Contacto de emergencia (nombre y teléfono)</label>
-            <input type="text" id="contacto_emergencia" name="contacto_emergencia" placeholder="María López · +34 600 000 000" />
+            <label for="contacto_emergencia">Contacto de emergencia (nombre y teléfono) <span class="req">*</span></label>
+            <input type="text" id="contacto_emergencia" name="contacto_emergencia" required placeholder="María López · +34 600 000 000" />
           </div>
         </div>
       </section>
@@ -230,6 +230,9 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
 
     document.getElementById('participantForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+      // El form lleva novalidate; esta llamada activa la validacion nativa
+      // (campos required) y muestra los avisos del navegador.
+      if (!e.target.reportValidity()) return;
       const alertEl = document.getElementById('alertMsg');
       alertEl.style.display = 'none';
       alertEl.className = 'alert';
