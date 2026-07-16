@@ -79,6 +79,13 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
   description="Seguimiento interno de convocatorias de subvenciones relevantes para Estrellas del Sur: juventud, voluntariado, entidades sin ánimo de lucro y emprendimiento."
   noindex={true}
 >
+  <!-- Auth gate: solo el equipo (ADMIN_EMAILS) ve el contenido -->
+  <div id="radarLoading" class="radar-loading">
+    <div class="radar-spinner"></div>
+    <p>Comprobando acceso…</p>
+  </div>
+
+  <div id="radarContent" style="display:none">
   <!-- Hero -->
   <section class="page-hero">
     <div class="container page-hero-content">
@@ -197,7 +204,28 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
       </div>
     </div>
   </section>
+  </div>
 </BaseLayout>
+
+<script>
+  import { supabase, isAdmin } from '../lib/supabase.js';
+
+  // Acceso solo para el equipo (misma lista que el panel de admin).
+  // Nota consciente: es una barrera práctica, no un blindado; los datos
+  // viajan en el HTML de esta página estática.
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    if (!session) {
+      window.location.replace('/portal/login/');
+      return;
+    }
+    if (!isAdmin(session.user.email)) {
+      window.location.replace('/portal/dashboard/');
+      return;
+    }
+    document.getElementById('radarLoading')!.style.display = 'none';
+    document.getElementById('radarContent')!.style.display = '';
+  });
+</script>
 
 <script>
   // ── Recalcular estados con la fecha real de la visita ─────────
@@ -293,6 +321,27 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
 </script>
 
 <style>
+  .radar-loading {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--gray-500);
+    font-size: .95rem;
+    padding-top: 68px;
+  }
+  .radar-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--gray-200);
+    border-top-color: var(--teal);
+    border-radius: 50%;
+    animation: radarSpin .7s linear infinite;
+  }
+  @keyframes radarSpin { to { transform: rotate(360deg); } }
+
   .radar-section { background: var(--cream-dark); }
 
   /* Filters */
