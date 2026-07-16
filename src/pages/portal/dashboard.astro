@@ -74,7 +74,7 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <input type="time" id="hora_salida" name="hora_salida" />
           </div>
           <div class="field">
-            <label for="hora_punto_encuentro">Hora de llegada al punto de encuentro / ciudad de destino</label>
+            <label for="hora_punto_encuentro">Hora de llegada al punto de encuentro</label>
             <input type="time" id="hora_punto_encuentro" name="hora_punto_encuentro" />
           </div>
           <div class="field">
@@ -389,7 +389,10 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
 .field {
   display: flex; flex-direction: column; gap: .4rem;
 }
-.field label { font-size: .84rem; font-weight: 600; color: #374151; }
+.field label { font-size: .84rem; font-weight: 600; color: #374151; line-height: 1.35; }
+/* Con etiquetas de una y dos lineas conviviendo en la misma fila del
+   grid, el input se ancla abajo para que todos queden alineados. */
+.field input { margin-top: auto; }
 .req { color: #ef4444; }
 .field input {
   padding: .65rem .9rem;
