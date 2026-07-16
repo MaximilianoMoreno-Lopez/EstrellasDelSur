@@ -9,4 +9,9 @@
 
 alter table public.participantes
   add column if not exists telefono text,
-  add column if not exists contacto_emergencia text;
+  add column if not exists contacto_emergencia text,
+  -- Horas de llegada y salida del punto de encuentro en la ciudad de
+  -- destino (estas si se muestran en el panel de admin, grupos
+  -- Arrival/Return).
+  add column if not exists hora_punto_encuentro time,
+  add column if not exists hora_salida_punto_encuentro time;

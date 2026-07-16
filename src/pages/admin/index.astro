@@ -44,10 +44,12 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <th data-col="birth">Birth date</th>
             <th data-col="arr_date" class="th-ida">Arrival</th>
             <th data-col="arr_time" class="th-ida">Time</th>
+            <th data-col="arr_mp"   class="th-ida">Meeting point</th>
             <th data-col="arr_city" class="th-ida">City</th>
             <th data-col="arr_air"  class="th-ida">Airport (ES)</th>
             <th data-col="ret_date" class="th-vuelta">Departure</th>
             <th data-col="ret_time" class="th-vuelta">Time</th>
+            <th data-col="ret_mp"   class="th-vuelta">Meeting point</th>
             <th data-col="ret_city" class="th-vuelta">City</th>
             <th data-col="ret_air"  class="th-vuelta">Airport (ES)</th>
             <th data-col="price">Price €</th>
@@ -134,10 +136,12 @@ async function renderTable(data) {
             <td data-col="birth">${fmt(p.fecha_nacimiento)}</td>
             <td data-col="arr_date">${fmt(p.dia_salida)}</td>
             <td data-col="arr_time">${p.hora_salida ? p.hora_salida.slice(0,5) : '—'}</td>
+            <td data-col="arr_mp">${p.hora_punto_encuentro ? p.hora_punto_encuentro.slice(0,5) : '—'}</td>
             <td data-col="arr_city">${p.ciudad_salida || '—'}</td>
             <td data-col="arr_air">${p.aeropuerto_salida_espana || '—'}</td>
             <td data-col="ret_date">${fmt(p.dia_llegada_espana)}</td>
             <td data-col="ret_time">${p.hora_llegada ? p.hora_llegada.slice(0,5) : '—'}</td>
+            <td data-col="ret_mp">${p.hora_salida_punto_encuentro ? p.hora_salida_punto_encuentro.slice(0,5) : '—'}</td>
             <td data-col="ret_city">${p.ciudad_llegada_espana || '—'}</td>
             <td data-col="ret_air">${p.aeropuerto_llegada || '—'}</td>
             <td data-col="price">${p.precio_total != null ? p.precio_total.toFixed(2) + ' €' : '—'}</td>
@@ -157,8 +161,8 @@ async function renderTable(data) {
       { label: 'ID',      cols: ['id'] },
       { label: 'Project', cols: ['project'] },
       { label: 'Birth',   cols: ['birth'] },
-      { label: 'Arrival', cols: ['arr_date', 'arr_time', 'arr_city', 'arr_air'] },
-      { label: 'Return',  cols: ['ret_date', 'ret_time', 'ret_city', 'ret_air'] },
+      { label: 'Arrival', cols: ['arr_date', 'arr_time', 'arr_mp', 'arr_city', 'arr_air'] },
+      { label: 'Return',  cols: ['ret_date', 'ret_time', 'ret_mp', 'ret_city', 'ret_air'] },
       { label: 'Price',   cols: ['price'] },
       { label: 'PDF',     cols: ['pdf'] },
       { label: 'Updated', cols: ['updated'] },

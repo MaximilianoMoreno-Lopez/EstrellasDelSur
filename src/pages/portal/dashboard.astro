@@ -74,6 +74,10 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <input type="time" id="hora_salida" name="hora_salida" />
           </div>
           <div class="field">
+            <label for="hora_punto_encuentro">Hora de llegada al punto de encuentro / ciudad de destino</label>
+            <input type="time" id="hora_punto_encuentro" name="hora_punto_encuentro" />
+          </div>
+          <div class="field">
             <label for="ciudad_salida">Ciudad de destino</label>
             <input type="text" id="ciudad_salida" name="ciudad_salida" placeholder="Varsovia, Roma…" />
           </div>
@@ -92,6 +96,10 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
           <div class="field">
             <label for="hora_llegada">Hora de salida del destino</label>
             <input type="time" id="hora_llegada" name="hora_llegada" />
+          </div>
+          <div class="field">
+            <label for="hora_salida_punto_encuentro">Hora de salida del punto de encuentro</label>
+            <input type="time" id="hora_salida_punto_encuentro" name="hora_salida_punto_encuentro" />
           </div>
           <div class="field">
             <label for="ciudad_llegada">Ciudad desde la que vuelves</label>
@@ -181,6 +189,8 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       set('siglas_proyecto', d.siglas_proyecto);
       set('telefono', d.telefono);
       set('contacto_emergencia', d.contacto_emergencia);
+      set('hora_punto_encuentro', d.hora_punto_encuentro);
+      set('hora_salida_punto_encuentro', d.hora_salida_punto_encuentro);
       set('dia_salida', d.dia_salida);
       set('hora_salida', d.hora_salida);
       set('ciudad_salida', d.ciudad_salida);
@@ -253,8 +263,12 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       // las columnas todavía no existen en Supabase (ver scripts/sql/).
       const telefono = get('telefono');
       const contactoEmergencia = get('contacto_emergencia');
+      const horaPunto = get('hora_punto_encuentro');
+      const horaSalidaPunto = get('hora_salida_punto_encuentro');
       if (telefono) payload.telefono = telefono;
       if (contactoEmergencia) payload.contacto_emergencia = contactoEmergencia;
+      if (horaPunto) payload.hora_punto_encuentro = horaPunto;
+      if (horaSalidaPunto) payload.hora_salida_punto_encuentro = horaSalidaPunto;
 
       // Upload PDF if selected
       const pdfFile = document.getElementById('pdfFile').files[0];
