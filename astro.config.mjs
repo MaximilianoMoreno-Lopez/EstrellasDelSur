@@ -73,9 +73,7 @@ export default defineConfig({
     '/proyectos-erasmus/':            '/proyectos/',
     '/get-involved/':                 '/voluntariado-esc/',
     '/european-solidarity-corps-esc/':'/voluntariado-esc/',
-    '/the-rythm-of-unit/':            '/proyectos/',
-    '/breath-balance-bloom/':         '/proyectos/',
-    '/techwise-youth/':               '/proyectos/',
+    '/the-rythm-of-unit/':            '/proyectos/the-rythm-of-unity/',
     '/login/':                        '/portal/login/',
     '/password-reset/':               '/portal/login/',
 
