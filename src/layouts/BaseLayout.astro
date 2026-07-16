@@ -20,6 +20,7 @@ interface Props {
   jsonLd?: object | object[];
   breadcrumbs?: Breadcrumb[];
   noindex?: boolean;
+  lang?: 'es' | 'en';
 }
 
 const {
@@ -32,6 +33,7 @@ const {
   jsonLd,
   breadcrumbs,
   noindex = false,
+  lang = 'es',
 } = Astro.props;
 
 const pageTitle = title === 'Estrellas del Sur'
@@ -67,7 +69,7 @@ const robotsContent = noindex
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -88,7 +90,7 @@ const robotsContent = noindex
     <meta property="og:image:width"  content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name"   content="Estrellas del Sur" />
-    <meta property="og:locale"      content="es_ES" />
+    <meta property="og:locale"      content={lang === 'en' ? 'en_GB' : 'es_ES'} />
     {ogType === 'article' && publishedTime && (
       <meta property="article:published_time" content={publishedTime} />
     )}

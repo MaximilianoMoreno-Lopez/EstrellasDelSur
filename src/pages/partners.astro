@@ -1,0 +1,450 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EUBanner from '../components/EUBanner.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const PIF_URL = 'https://docs.google.com/document/d/1wCkmLqWXf05GYl8gI5qZkfZIYotKVm3k/edit?usp=sharing&ouid=108748510715926905720&rtpof=true&sd=true';
+
+const svgAttrs = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+
+const offers = [
+  {
+    icon: `<svg width="26" height="26" ${svgAttrs}><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    title: 'Reliable Spanish groups',
+    desc: 'We recruit, select and prepare motivated participants from all over Spain, with special attention to young people with fewer opportunities.',
+  },
+  {
+    icon: `<svg width="26" height="26" ${svgAttrs}><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>`,
+    title: 'Experienced project partner',
+    desc: 'Over 100 projects since 2020 as sending, hosting and coordinating organisation, across youth exchanges, training courses and ESC volunteering.',
+  },
+  {
+    icon: `<svg width="26" height="26" ${svgAttrs}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    title: 'Fast, professional communication',
+    desc: 'A small, hands-on team that answers quickly, delivers documentation on time and stays available before, during and after each activity.',
+  },
+  {
+    icon: `<svg width="26" height="26" ${svgAttrs}><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    title: 'Quality and safeguarding',
+    desc: 'Child protection policy, code of ethics, insurance procedures and a public transparency portal with our statutes and annual reports.',
+  },
+];
+
+const partners = [
+  { name: 'Federación Estrellas de Europa', country: 'European network', url: 'https://estrellaseuropa.eu' },
+  { name: 'DiversaMente APS', country: 'Italy' },
+  { name: 'KLAP APS', country: 'Italy' },
+  { name: 'BG World', country: 'Italy' },
+  { name: 'Tavo Europa', country: 'Lithuania' },
+  { name: 'Eco Challenge', country: 'Romania' },
+  { name: 'APDD Pro Dezvoltare Dâmbovița', country: 'Romania' },
+  { name: 'International EduCenter', country: 'Romania' },
+  { name: 'EDDA Krkonoše', country: 'Czechia' },
+  { name: 'Make It Happen', country: 'Cyprus' },
+  { name: 'Collective Intelligence', country: 'Cyprus' },
+  { name: 'Blue Youth', country: 'France' },
+  { name: 'Município do Fundão', country: 'Portugal' },
+];
+
+const monogram = (name: string) =>
+  name
+    .split(' ')
+    .filter((w) => /^[A-ZÁÉÍÓÚÑ]/.test(w))
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('');
+
+const programmes = [
+  'Youth exchanges (KA152)',
+  'Training courses for youth workers (KA153)',
+  'Youth participation activities (KA154)',
+  'Cooperation partnerships (KA210 / KA220)',
+  'ESC volunteering, short and long term',
+  'Policy and youth dialogue actions (KA3)',
+  'CERV — Citizens, Equality, Rights and Values',
+];
+
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NGO',
+  name: 'Estrellas del Sur',
+  url: 'https://estrellasdelsur.eu/partners/',
+  logo: 'https://estrellasdelsur.eu/images/logo.svg',
+  email: 'paula@estrellasdelsur.eu',
+  foundingDate: '2020',
+  description:
+    'Spanish youth NGO based in Córdoba (Andalusia). Erasmus+ organisation and accredited ESC Sending Organisation working with young people from all over Spain. Open to European partnerships.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Córdoba',
+    addressRegion: 'Andalucía',
+    addressCountry: 'ES',
+  },
+  identifier: [
+    { '@type': 'PropertyValue', propertyID: 'OID', value: 'E10264295' },
+    { '@type': 'PropertyValue', propertyID: 'PIC', value: '892239563' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Partner with us — Spanish Erasmus+ & ESC organisation"
+  description="Estrellas del Sur is a Spanish youth NGO in Córdoba (Andalusia): Erasmus+ organisation and accredited ESC Sending Organisation. Looking for a Spanish partner for KA152, KA153, KA210 or ESC volunteering? Let's work together."
+  lang="en"
+  jsonLd={orgJsonLd}
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        For European organisations
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Partner with us</h1>
+      <p class="fade-in fade-in-delay-2">
+        <strong>Estrellas del Sur</strong> is a youth NGO based in Córdoba (Andalusia, Spain),
+        active in <strong>Erasmus+</strong> and accredited as a <strong>Sending Organisation</strong> under
+        the European Solidarity Corps. If you are looking for a committed Spanish partner,
+        you are in the right place.
+      </p>
+      <div class="hero-actions fade-in fade-in-delay-3">
+        <a href={PIF_URL} target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Open our Partner Information File
+        </a>
+        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-outline-white">
+          paula@estrellasdelsur.eu
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section class="section why-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Why Estrellas del Sur</p>
+        <h2 class="section-title">What you get in a partnership with us</h2>
+      </div>
+      <div class="offer-grid">
+        {offers.map((o, i) => (
+          <div class={`offer-card card fade-in fade-in-delay-${(i % 2) + 1}`}>
+            <div class="offer-icon" aria-hidden="true" set:html={o.icon} />
+            <h3>{o.title}</h3>
+            <p>{o.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Programmes + facts -->
+  <section class="section prog-section">
+    <div class="container prog-grid">
+      <div class="prog-text fade-in">
+        <p class="section-label">Scope</p>
+        <h2 class="section-title">We are open to partnering on</h2>
+        <div class="divider"></div>
+        <ul class="prog-list">
+          {programmes.map((p) => (
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              {p}
+            </li>
+          ))}
+        </ul>
+        <p class="prog-note">
+          Our focus areas include inclusion and diversity, environment and sustainability,
+          digital skills, employability, mental health and rural development. Full methodology,
+          target groups and track record in the
+          <a href={PIF_URL} target="_blank" rel="noopener noreferrer">Partner Information File (PIF)</a>.
+        </p>
+      </div>
+
+      <aside class="facts-card fade-in fade-in-delay-2">
+        <div class="facts-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Quick facts</span>
+        </div>
+        <dl class="facts-list">
+          <dt>Legal name</dt>
+          <dd>Asociación Cultural Estrellas del Sur</dd>
+          <dt>Country</dt>
+          <dd>Spain</dd>
+          <dt>City</dt>
+          <dd>Córdoba (Andalusia)</dd>
+          <dt>Founded</dt>
+          <dd>2020</dd>
+          <dt>OID</dt>
+          <dd>E10264295</dd>
+          <dt>PIC</dt>
+          <dd>892239563</dd>
+          <dt>ESC</dt>
+          <dd>Sending Organisation since 2023</dd>
+          <dt>Experience</dt>
+          <dd>100+ projects · 500+ participants · 15+ countries</dd>
+          <dt>Contact</dt>
+          <dd><a href="mailto:paula@estrellasdelsur.eu">paula@estrellasdelsur.eu</a></dd>
+        </dl>
+        <a href={PIF_URL} target="_blank" rel="noopener noreferrer" class="btn btn-primary facts-btn">
+          Open PIF
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- How we work -->
+  <section class="section how-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">How we work</p>
+        <h2 class="section-title">From first email to final report</h2>
+      </div>
+      <div class="how-grid">
+        <div class="how-step card fade-in fade-in-delay-1">
+          <span class="how-num">01</span>
+          <h3>Scoping</h3>
+          <p>Tell us about your project idea, dates and profile of participants. We answer within a few working days with a clear yes or no.</p>
+        </div>
+        <div class="how-step card fade-in fade-in-delay-2">
+          <span class="how-num">02</span>
+          <h3>Preparation</h3>
+          <p>We handle recruitment, selection, mandates, travel arrangements and pre-departure preparation of the Spanish group or volunteer.</p>
+        </div>
+        <div class="how-step card fade-in fade-in-delay-3">
+          <span class="how-num">03</span>
+          <h3>During the activity</h3>
+          <p>A named contact person stays reachable throughout the mobility, ready to support participants and your team on the ground.</p>
+        </div>
+        <div class="how-step card fade-in fade-in-delay-1">
+          <span class="how-num">04</span>
+          <h3>Follow-up</h3>
+          <p>Dissemination in Spanish, participant reports, Youthpass support and everything you need for your final report, on time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="section partners-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Our network</p>
+        <h2 class="section-title">Organisations we have worked with</h2>
+        <p class="section-subtitle">
+          A snapshot of the partners behind our recent projects, from KA2 cooperations to
+          youth exchanges and training courses across Europe.
+        </p>
+      </div>
+      <div class="partners-grid">
+        {partners.map((p, i) => (
+          <div class={`partner-chip fade-in fade-in-delay-${(i % 3) + 1}`}>
+            <span class="partner-monogram" aria-hidden="true">{monogram(p.name)}</span>
+            <span class="partner-info">
+              {p.url ? (
+                <a href={p.url} target="_blank" rel="noopener noreferrer" class="partner-name">{p.name}</a>
+              ) : (
+                <span class="partner-name">{p.name}</span>
+              )}
+              <span class="partner-country">{p.country}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+      <p class="partners-more fade-in">
+        And many more organisations across a network of 15+ countries. Yours could be next.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section">
+    <div class="container cta-box fade-in">
+      <div>
+        <h2>Let's build something together</h2>
+        <p>Write to us with your idea or your partner search and we will get back to you shortly.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-gold btn-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact us
+        </a>
+        <a href={`${base}/proyectos-coordinados/`} class="btn btn-outline-white btn-lg" lang="es">See our coordinated projects</a>
+      </div>
+    </div>
+  </section>
+
+  <EUBanner />
+</BaseLayout>
+
+<style>
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.75rem;
+  }
+
+  /* Why us */
+  .why-section { background: var(--cream); }
+  .section-header { margin-bottom: 2.5rem; }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .offer-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+  .offer-icon { color: var(--teal); line-height: 0; }
+  .offer-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); }
+  .offer-card p { font-size: .9rem; color: var(--gray-600); line-height: 1.65; }
+
+  /* Programmes */
+  .prog-section { background: var(--cream-dark); }
+  .prog-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .prog-list {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+  .prog-list li {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .98rem;
+    color: var(--gray-700);
+  }
+  .prog-list svg { color: var(--teal); flex-shrink: 0; }
+  .prog-note { font-size: .92rem; color: var(--gray-600); line-height: 1.7; }
+  .prog-note a { color: var(--teal); font-weight: 600; }
+
+  .facts-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    color: #fff;
+  }
+  .facts-header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 700;
+    font-size: .95rem;
+    margin-bottom: 1.25rem;
+    color: var(--gold);
+  }
+  .facts-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .55rem 1rem;
+    font-size: .88rem;
+    margin-bottom: 1.5rem;
+  }
+  .facts-list dt { color: rgba(255,255,255,.65); font-weight: 600; white-space: nowrap; }
+  .facts-list dd { color: #fff; }
+  .facts-list dd a { color: #5eead4; text-decoration: none; }
+  .facts-list dd a:hover { text-decoration: underline; }
+  .facts-btn { width: 100%; justify-content: center; }
+
+  /* How we work */
+  .how-section { background: var(--cream); }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1.25rem;
+  }
+  .how-step { padding: 1.5rem; }
+  .how-num {
+    font-family: 'Playfair Display Variable', 'Playfair Display', 'Playfair Display Fallback', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--teal);
+    display: block;
+    margin-bottom: .5rem;
+  }
+  .how-step h3 { font-size: .98rem; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
+  .how-step p { font-size: .88rem; color: var(--gray-600); line-height: 1.6; }
+
+  /* Partners */
+  .partners-section { background: var(--cream-dark); }
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: .9rem;
+  }
+  .partner-chip {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    padding: .9rem 1.1rem;
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .partner-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .partner-monogram {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(13, 148, 136, .1);
+    color: var(--teal);
+    font-weight: 700;
+    font-size: .95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: .02em;
+  }
+  .partner-info { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
+  .partner-name {
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+  }
+  a.partner-name:hover { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+  .partner-country { font-size: .78rem; color: var(--gray-500); }
+  .partners-more {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: .92rem;
+    color: var(--gray-600);
+  }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
+  .cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .cta-box h2 { font-size: clamp(1.4rem, 2.3vw, 1.85rem); color: #fff; margin-bottom: .6rem; }
+  .cta-box p { color: rgba(255,255,255,.7); font-size: .98rem; max-width: 460px; }
+  .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .prog-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 640px) {
+    .cta-actions { width: 100%; flex-direction: column; }
+    .cta-actions .btn { justify-content: center; }
+  }
+</style>
