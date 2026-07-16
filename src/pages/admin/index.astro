@@ -61,6 +61,19 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       </table>
       <p id="noResults" style="display:none" class="no-results">No se encontraron participantes.</p>
     </div>
+
+    <!-- Participant detail modal -->
+    <div id="detailBackdrop" class="detail-backdrop" style="display:none">
+      <div class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detailName">
+        <div class="detail-header">
+          <h2 id="detailName" class="detail-name"></h2>
+          <button id="detailClose" class="detail-close" aria-label="Cerrar ficha">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div id="detailBody" class="detail-body"></div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -129,7 +142,7 @@ async function renderTable(data) {
 
         return `
           <tr>
-            <td data-col="name">${p.nombre || '—'}</td>
+            <td data-col="name">${p.nombre ? `<button class="name-btn" data-uid="${p.user_id}" title="Ver ficha completa">${p.nombre}</button>` : '—'}</td>
             <td data-col="surname">${p.apellidos || '—'}</td>
             <td data-col="id">${p.dni ? `<code class="dni-cell" data-full="${p.dni}" title="Click para mostrar u ocultar">${maskDni(p.dni)}</code>` : '—'}</td>
             <td data-col="project">${p.siglas_proyecto ? `<span class="badge-proyecto">${p.siglas_proyecto}</span>` : '—'}</td>
@@ -178,6 +191,111 @@ async function renderTable(data) {
         cell.style.display = hiddenCols.has(cell.dataset.col) ? 'none' : '';
       });
     }
+
+    // ── Participant detail modal ──────────────────────────────
+    const backdrop = document.getElementById('detailBackdrop');
+    const detailBody = document.getElementById('detailBody');
+
+    function detailSection(title, rows) {
+      const wrap = document.createElement('div');
+      wrap.className = 'detail-section';
+      const h = document.createElement('p');
+      h.className = 'detail-section-title';
+      h.textContent = title;
+      wrap.appendChild(h);
+      const dl = document.createElement('dl');
+      dl.className = 'detail-rows';
+      rows.forEach(([label, value, node]) => {
+        const dt = document.createElement('dt');
+        dt.textContent = label;
+        const dd = document.createElement('dd');
+        if (node) dd.appendChild(node);
+        else dd.textContent = value || '—';
+        dl.appendChild(dt);
+        dl.appendChild(dd);
+      });
+      wrap.appendChild(dl);
+      return wrap;
+    }
+
+    async function openDetail(p) {
+      document.getElementById('detailName').textContent =
+        `${p.nombre || ''} ${p.apellidos || ''}`.trim() || 'Participante';
+
+      let telNode = null;
+      if (p.telefono) {
+        telNode = document.createElement('a');
+        telNode.href = `tel:${p.telefono.replace(/\s+/g, '')}`;
+        telNode.textContent = p.telefono;
+      }
+
+      const time = (t) => (t ? t.slice(0, 5) : '');
+
+      detailBody.replaceChildren(
+        detailSection('Datos personales', [
+          ['DNI / NIE', p.dni],
+          ['Nacimiento', p.fecha_nacimiento ? fmt(p.fecha_nacimiento) : ''],
+          ['Proyecto', p.siglas_proyecto],
+          ['Teléfono', p.telefono, telNode],
+          ['Contacto de emergencia', p.contacto_emergencia],
+        ]),
+        detailSection('Viaje de ida', [
+          ['Llegada al destino', p.dia_salida ? fmt(p.dia_salida) : ''],
+          ['Hora (avión)', time(p.hora_salida)],
+          ['Hora punto de encuentro', time(p.hora_punto_encuentro)],
+          ['Ciudad de destino', p.ciudad_salida],
+          ['Aeropuerto de salida (ES)', p.aeropuerto_salida_espana],
+        ]),
+        detailSection('Vuelta a España', [
+          ['Salida del destino', p.dia_llegada_espana ? fmt(p.dia_llegada_espana) : ''],
+          ['Hora (avión)', time(p.hora_llegada)],
+          ['Hora salida punto de encuentro', time(p.hora_salida_punto_encuentro)],
+          ['Ciudad de vuelta', p.ciudad_llegada_espana],
+          ['Aeropuerto de llegada (ES)', p.aeropuerto_llegada],
+        ]),
+        detailSection('Otros', [
+          ['Precio del viaje', p.precio_total != null ? p.precio_total.toFixed(2) + ' €' : ''],
+          ['Travel plan (PDF)', p.pdf_url ? 'Cargando enlace…' : 'Sin PDF'],
+          ['Actualizado', p.updated_at ? new Date(p.updated_at).toLocaleString('es-ES') : ''],
+        ]),
+      );
+
+      backdrop.style.display = 'flex';
+      document.getElementById('detailClose').focus();
+
+      // Signed URL for the PDF, filled in once ready
+      if (p.pdf_url) {
+        const { data: signedData } = await supabase.storage
+          .from('travel-plans')
+          .createSignedUrl(p.pdf_url, 3600);
+        const dds = detailBody.querySelectorAll('.detail-section:last-child dd');
+        const pdfDd = dds[1];
+        if (signedData && pdfDd) {
+          const a = document.createElement('a');
+          a.href = signedData.signedUrl;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = p.pdf_nombre || 'Ver PDF';
+          pdfDd.replaceChildren(a);
+        }
+      }
+    }
+
+    function closeDetail() {
+      backdrop.style.display = 'none';
+    }
+
+    document.getElementById('adminTableBody').addEventListener('click', (e) => {
+      const btn = e.target.closest('.name-btn');
+      if (!btn) return;
+      const p = allParticipants.find((x) => x.user_id === btn.dataset.uid);
+      if (p) openDetail(p);
+    });
+    document.getElementById('detailClose').addEventListener('click', closeDetail);
+    backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeDetail(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && backdrop.style.display !== 'none') closeDetail();
+    });
 
     function buildToggles() {
       const wrap = document.getElementById('colToggles');
@@ -393,6 +511,71 @@ td.muted { color: #9ca3af; font-size: .8rem; }
   text-align: center; color: #9ca3af;
   padding: 2rem; font-size: .9rem;
 }
+
+/* Nombre clicable que abre la ficha */
+.name-btn {
+  background: none; border: none; padding: 0;
+  font-family: inherit; font-size: inherit;
+  color: #0a7270; font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(13,148,136,.35);
+  text-underline-offset: 3px;
+}
+.name-btn:hover { color: #0d9488; text-decoration-color: #0d9488; }
+
+/* Ficha de participante (modal) */
+.detail-backdrop {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(10,22,40,.55);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+}
+.detail-card {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%; max-width: 560px;
+  max-height: 85vh; overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(10,22,40,.3);
+  border-top: 3px solid #f59e0b;
+}
+.detail-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: 1px solid #f0eee6;
+  position: sticky; top: 0; background: #fff;
+}
+.detail-name {
+  font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 700; color: #0a1628;
+}
+.detail-close {
+  background: none; border: none; cursor: pointer;
+  color: #6b7280; padding: .35rem;
+  border-radius: 8px;
+  transition: background .15s, color .15s;
+  flex-shrink: 0;
+}
+.detail-close:hover { background: #f3f4f6; color: #0a1628; }
+
+.detail-body { padding: 1rem 1.5rem 1.5rem; }
+.detail-section { margin-top: 1.1rem; }
+.detail-section:first-child { margin-top: 0; }
+.detail-section-title {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: #0d9488;
+  margin-bottom: .5rem;
+}
+.detail-rows {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .35rem 1.25rem;
+  font-size: .88rem;
+}
+.detail-rows dt { color: #6b7280; white-space: nowrap; }
+.detail-rows dd { color: #0a1628; font-weight: 500; }
+.detail-rows dd a { color: #0a7270; }
 
 @media (max-width: 600px) {
   .stats-row { flex-direction: column; }
