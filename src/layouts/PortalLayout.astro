@@ -59,7 +59,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   </body>
 </html>
 
-<style>
+<!-- is:global: el foco de teclado y los estados de carga deben alcanzar el
+     contenido slotted de las páginas y los nodos generados por JS. -->
+<style is:global>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; }
 body {
@@ -137,4 +139,25 @@ body {
 }
 .portal-footer a { color: #5eead4; text-decoration: none; }
 .portal-footer a:hover { text-decoration: underline; }
+
+/* Estado de carga compartido por las páginas del portal */
+.state-center {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1rem;
+  min-height: 40vh; color: #6b7280; font-size: .95rem;
+}
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #e5e7eb; border-top-color: #0d9488;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Texto solo para lectores de pantalla */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 </style>

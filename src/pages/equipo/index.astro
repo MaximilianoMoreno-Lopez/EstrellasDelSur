@@ -1,0 +1,646 @@
+---
+import PortalLayout from '../../layouts/PortalLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<PortalLayout title="Panel de trabajo">
+  <div id="loadingState" class="state-center">
+    <div class="spinner"></div>
+    <p>Cargando…</p>
+  </div>
+
+  <div id="panelContent" style="display:none">
+    <div class="panel-header">
+      <div>
+        <h1 class="panel-title">Panel de trabajo</h1>
+        <p class="panel-sub" id="panelSub"></p>
+      </div>
+      <div class="panel-actions">
+        <a href={`${base}/radar/`} class="btn-ghost">Radar de subvenciones</a>
+        <button id="newTaskBtn" class="btn-new">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nueva tarea
+        </button>
+      </div>
+    </div>
+
+    <!-- Formulario nueva tarea / edición -->
+    <form id="taskForm" class="task-form" style="display:none" novalidate>
+      <h2 id="taskFormTitle" class="task-form-title">Nueva tarea</h2>
+      <div class="tf-grid">
+        <div class="tf-field tf-wide">
+          <label for="tfTitulo">Título <span class="req">*</span></label>
+          <input type="text" id="tfTitulo" required placeholder="Preparar solicitud IMDEEC ESAL" />
+        </div>
+        <div class="tf-field">
+          <label for="tfAsignado">Asignada a</label>
+          <select id="tfAsignado"><option value="">Sin asignar</option></select>
+        </div>
+        <div class="tf-field">
+          <label for="tfPrioridad">Prioridad</label>
+          <select id="tfPrioridad">
+            <option value="alta">Alta</option>
+            <option value="media" selected>Media</option>
+            <option value="baja">Baja</option>
+          </select>
+        </div>
+        <div class="tf-field">
+          <label for="tfFecha">Fecha límite</label>
+          <input type="date" id="tfFecha" />
+        </div>
+        <div class="tf-field">
+          <label for="tfArea">Área</label>
+          <input type="text" id="tfArea" placeholder="Subvenciones, web, proyectos…" list="areasList" />
+          <datalist id="areasList"></datalist>
+        </div>
+        <div class="tf-field tf-wide">
+          <label for="tfDesc">Descripción</label>
+          <textarea id="tfDesc" rows="2" placeholder="Detalles, enlaces, qué se espera…"></textarea>
+        </div>
+      </div>
+      <div class="tf-actions">
+        <button type="button" id="tfCancel" class="btn-ghost">Cancelar</button>
+        <button type="submit" class="btn-new" id="tfSave">
+          <span id="tfSaveText">Guardar tarea</span>
+          <span id="tfSaveSpinner" style="display:none">Guardando…</span>
+        </button>
+      </div>
+    </form>
+
+    <div id="alertMsg" class="panel-alert" role="alert" style="display:none"></div>
+
+    <!-- Filtro por persona -->
+    <div class="person-filters" id="personFilters">
+      <span class="pf-label">Ver:</span>
+      <!-- chips por JS -->
+    </div>
+
+    <!-- Tablero -->
+    <div class="board">
+      <section class="board-col" data-estado="pendiente">
+        <header class="col-head col-pendiente">
+          <h2>Pendiente</h2>
+          <span class="col-count" data-count="pendiente">0</span>
+        </header>
+        <div class="col-body" id="col-pendiente"></div>
+      </section>
+      <section class="board-col" data-estado="en_curso">
+        <header class="col-head col-encurso">
+          <h2>En curso</h2>
+          <span class="col-count" data-count="en_curso">0</span>
+        </header>
+        <div class="col-body" id="col-en_curso"></div>
+      </section>
+      <section class="board-col" data-estado="hecha">
+        <header class="col-head col-hecha">
+          <h2>Hecho</h2>
+          <span class="col-count" data-count="hecha">0</span>
+        </header>
+        <div class="col-body" id="col-hecha"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    import { supabase } from '../../lib/supabase.js';
+
+    let equipo = [];
+    let tareas = [];
+    let miEmail = '';
+    let soyAdmin = false;
+    let filtroPersona = 'todas';
+    let editandoId = null;
+
+    const ESTADOS = ['pendiente', 'en_curso', 'hecha'];
+    const PRIORIDAD_ORDEN = { alta: 0, media: 1, baja: 2 };
+
+    async function init() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.replace('/portal/login/');
+        return;
+      }
+      miEmail = session.user.email.toLowerCase();
+
+      // El RLS solo devuelve filas a miembros del equipo: lista vacía = fuera
+      const { data: equipoData, error } = await supabase
+        .from('equipo')
+        .select('*')
+        .order('nombre');
+
+      if (error) {
+        // Error de red o token caducado: mejor reautenticar que expulsar
+        window.location.replace('/portal/login/');
+        return;
+      }
+      if (!equipoData || !equipoData.some((m) => m.email === miEmail)) {
+        window.location.replace('/portal/dashboard/');
+        return;
+      }
+      equipo = equipoData;
+      soyAdmin = equipo.find((m) => m.email === miEmail)?.rol === 'admin';
+
+      await cargarTareas();
+      montarFormulario();
+      montarFiltros();
+      render();
+
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('panelContent').style.display = 'block';
+    }
+
+    async function cargarTareas() {
+      const { data, error } = await supabase
+        .from('tareas')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) aviso('No se pudieron cargar las tareas: ' + error.message);
+      tareas = data ?? [];
+    }
+
+    // ── Render ────────────────────────────────────────────────
+    function nombreDe(email) {
+      return equipo.find((m) => m.email === email)?.nombre ?? email ?? '';
+    }
+
+    function render() {
+      const visibles = tareas.filter((t) => {
+        if (filtroPersona === 'todas') return true;
+        if (filtroPersona === 'sin') return !t.asignado_a;
+        return t.asignado_a === filtroPersona;
+      });
+
+      // Fecha LOCAL (no UTC): fecha_limite es un día de calendario local
+      const d = new Date();
+      const hoy = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+      ESTADOS.forEach((estado) => {
+        const col = document.getElementById(`col-${estado}`);
+        col.replaceChildren();
+        const deCol = visibles
+          .filter((t) => t.estado === estado)
+          .sort((a, b) =>
+            (PRIORIDAD_ORDEN[a.prioridad] - PRIORIDAD_ORDEN[b.prioridad]) ||
+            (a.fecha_limite ?? '9999').localeCompare(b.fecha_limite ?? '9999'),
+          );
+
+        document.querySelector(`[data-count="${estado}"]`).textContent = String(deCol.length);
+
+        if (deCol.length === 0) {
+          const p = document.createElement('p');
+          p.className = 'col-empty';
+          p.textContent = estado === 'hecha' ? 'Nada terminado todavía' : 'Nada por aquí';
+          col.appendChild(p);
+          return;
+        }
+        deCol.forEach((t) => col.appendChild(tarjeta(t, hoy)));
+      });
+
+      const abiertas = tareas.filter((t) => t.estado !== 'hecha').length;
+      document.getElementById('panelSub').textContent =
+        `${abiertas} tarea${abiertas === 1 ? '' : 's'} abiertas en total · ${equipo.length} personas en el equipo`;
+    }
+
+    function tarjeta(t, hoy) {
+      const card = document.createElement('article');
+      card.className = `task-card prio-${t.prioridad}${t.estado === 'hecha' ? ' is-done' : ''}`;
+
+      const top = document.createElement('div');
+      top.className = 'tc-top';
+      const prio = document.createElement('span');
+      prio.className = `tc-prio tc-prio-${t.prioridad}`;
+      prio.title = `Prioridad ${t.prioridad}`;
+      const prioSr = document.createElement('span');
+      prioSr.className = 'sr-only';
+      prioSr.textContent = `Prioridad ${t.prioridad}`;
+      prio.appendChild(prioSr);
+      top.appendChild(prio);
+      if (t.area) {
+        const area = document.createElement('span');
+        area.className = 'tc-area';
+        area.textContent = t.area;
+        top.appendChild(area);
+      }
+      if (t.fecha_limite) {
+        const fecha = document.createElement('span');
+        const vencida = t.fecha_limite < hoy && t.estado !== 'hecha';
+        fecha.className = `tc-fecha${vencida ? ' is-vencida' : ''}`;
+        const d = new Date(t.fecha_limite + 'T00:00:00');
+        fecha.textContent = (vencida ? 'venció el ' : '') +
+          d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+        top.appendChild(fecha);
+      }
+      card.appendChild(top);
+
+      const h = document.createElement('h3');
+      h.className = 'tc-titulo';
+      h.textContent = t.titulo;
+      card.appendChild(h);
+
+      if (t.descripcion) {
+        const p = document.createElement('p');
+        p.className = 'tc-desc';
+        p.textContent = t.descripcion;
+        card.appendChild(p);
+      }
+
+      const foot = document.createElement('div');
+      foot.className = 'tc-foot';
+
+      const quien = document.createElement('span');
+      quien.className = 'tc-quien';
+      if (t.asignado_a) {
+        const ini = document.createElement('span');
+        ini.className = 'tc-avatar';
+        ini.textContent = nombreDe(t.asignado_a).charAt(0).toUpperCase();
+        quien.appendChild(ini);
+        quien.appendChild(document.createTextNode(nombreDe(t.asignado_a)));
+      } else {
+        quien.classList.add('is-libre');
+        quien.textContent = 'Sin asignar';
+      }
+      foot.appendChild(quien);
+
+      const acciones = document.createElement('span');
+      acciones.className = 'tc-acciones';
+      const idx = ESTADOS.indexOf(t.estado);
+      if (idx > 0) acciones.appendChild(botonMover(t, ESTADOS[idx - 1], '←', 'Retroceder'));
+      if (idx < ESTADOS.length - 1) {
+        const btn = botonMover(t, ESTADOS[idx + 1], idx === 0 ? 'Empezar' : 'Hecha', 'Avanzar');
+        btn.classList.add('is-avanzar');
+        acciones.appendChild(btn);
+      }
+      acciones.appendChild(botonIcono('Editar', editarSvg(), () => abrirFormulario(t)));
+      if (soyAdmin) acciones.appendChild(botonIcono('Borrar', borrarSvg(), () => borrar(t)));
+      foot.appendChild(acciones);
+
+      card.appendChild(foot);
+      return card;
+    }
+
+    function botonMover(t, nuevoEstado, label, title) {
+      const b = document.createElement('button');
+      b.className = 'tc-btn';
+      b.textContent = label;
+      b.title = title;
+      b.setAttribute('aria-label', `${title}: ${t.titulo}`);
+      b.addEventListener('click', () => moverA(t, nuevoEstado));
+      return b;
+    }
+
+    function botonIcono(title, svg, onClick) {
+      const b = document.createElement('button');
+      b.className = 'tc-btn tc-btn-icon';
+      b.title = title;
+      b.setAttribute('aria-label', title);
+      b.innerHTML = svg; // SVG estático propio, sin datos de usuario
+      b.addEventListener('click', onClick);
+      return b;
+    }
+    const editarSvg = () => '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>';
+    const borrarSvg = () => '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+
+    // ── Acciones ──────────────────────────────────────────────
+    async function moverA(t, estado) {
+      const { error } = await supabase
+        .from('tareas')
+        .update({ estado, updated_at: new Date().toISOString() })
+        .eq('id', t.id);
+      if (error) return aviso('No se pudo mover la tarea: ' + error.message);
+      t.estado = estado;
+      render();
+    }
+
+    async function borrar(t) {
+      if (!confirm(`¿Borrar la tarea "${t.titulo}"?`)) return;
+      const { error } = await supabase.from('tareas').delete().eq('id', t.id);
+      if (error) return aviso('No se pudo borrar: ' + error.message);
+      tareas = tareas.filter((x) => x.id !== t.id);
+      render();
+    }
+
+    let avisoTimer = null;
+    function aviso(msg) {
+      const el = document.getElementById('alertMsg');
+      el.textContent = msg;
+      el.style.display = 'block';
+      if (avisoTimer) clearTimeout(avisoTimer);
+      avisoTimer = setTimeout(() => { el.style.display = 'none'; }, 6000);
+    }
+
+    // ── Formulario ────────────────────────────────────────────
+    function montarFormulario() {
+      const sel = document.getElementById('tfAsignado');
+      equipo.forEach((m) => {
+        const o = document.createElement('option');
+        o.value = m.email;
+        o.textContent = m.nombre + (m.rol === 'becario' ? ' (becario)' : '');
+        sel.appendChild(o);
+      });
+
+      document.getElementById('newTaskBtn').addEventListener('click', () => abrirFormulario(null));
+      document.getElementById('tfCancel').addEventListener('click', cerrarFormulario);
+
+      document.getElementById('taskForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const titulo = document.getElementById('tfTitulo').value.trim();
+        if (!titulo) return aviso('La tarea necesita un título.');
+
+        const payload = {
+          titulo,
+          descripcion: document.getElementById('tfDesc').value.trim() || null,
+          asignado_a: document.getElementById('tfAsignado').value || null,
+          prioridad: document.getElementById('tfPrioridad').value,
+          fecha_limite: document.getElementById('tfFecha').value || null,
+          area: document.getElementById('tfArea').value.trim() || null,
+          updated_at: new Date().toISOString(),
+        };
+
+        const saveBtn = document.getElementById('tfSave');
+        if (saveBtn.disabled) return; // guarda anti doble envío
+        saveBtn.disabled = true;
+        document.getElementById('tfSaveText').style.display = 'none';
+        document.getElementById('tfSaveSpinner').style.display = 'inline';
+
+        let error;
+        if (editandoId) {
+          ({ error } = await supabase.from('tareas').update(payload).eq('id', editandoId));
+        } else {
+          payload.creado_por = miEmail;
+          ({ error } = await supabase.from('tareas').insert(payload));
+        }
+
+        document.getElementById('tfSaveText').style.display = 'inline';
+        document.getElementById('tfSaveSpinner').style.display = 'none';
+        saveBtn.disabled = false;
+
+        if (error) return aviso('No se pudo guardar: ' + error.message);
+        cerrarFormulario();
+        await cargarTareas();
+        actualizarAreas();
+        render();
+      });
+    }
+
+    function abrirFormulario(t) {
+      editandoId = t?.id ?? null;
+      document.getElementById('taskFormTitle').textContent = t ? 'Editar tarea' : 'Nueva tarea';
+      document.getElementById('tfTitulo').value = t?.titulo ?? '';
+      document.getElementById('tfDesc').value = t?.descripcion ?? '';
+      document.getElementById('tfAsignado').value = t?.asignado_a ?? '';
+      document.getElementById('tfPrioridad').value = t?.prioridad ?? 'media';
+      document.getElementById('tfFecha').value = t?.fecha_limite ?? '';
+      document.getElementById('tfArea').value = t?.area ?? '';
+      document.getElementById('taskForm').style.display = 'block';
+      document.getElementById('tfTitulo').focus();
+    }
+
+    function cerrarFormulario() {
+      editandoId = null;
+      document.getElementById('taskForm').style.display = 'none';
+    }
+
+    function actualizarAreas() {
+      const dl = document.getElementById('areasList');
+      dl.replaceChildren();
+      [...new Set(tareas.map((t) => t.area).filter(Boolean))].sort().forEach((a) => {
+        const o = document.createElement('option');
+        o.value = a;
+        dl.appendChild(o);
+      });
+    }
+
+    // ── Filtros por persona ───────────────────────────────────
+    function montarFiltros() {
+      const wrap = document.getElementById('personFilters');
+      const chips = [
+        { value: 'todas', label: 'Todas' },
+        ...equipo.map((m) => ({ value: m.email, label: m.nombre })),
+        { value: 'sin', label: 'Sin asignar' },
+      ];
+      chips.forEach((c, i) => {
+        const b = document.createElement('button');
+        b.className = 'pf-chip' + (i === 0 ? ' is-on' : '');
+        b.textContent = c.label;
+        b.setAttribute('aria-pressed', String(i === 0));
+        b.addEventListener('click', () => {
+          filtroPersona = c.value;
+          wrap.querySelectorAll('.pf-chip').forEach((x) => {
+            x.classList.toggle('is-on', x === b);
+            x.setAttribute('aria-pressed', String(x === b));
+          });
+          render();
+        });
+        wrap.appendChild(b);
+      });
+      actualizarAreas();
+    }
+
+    init();
+  </script>
+
+  <!-- is:global: tarjetas y chips se generan por JS y no llevan el atributo
+       de scoping de Astro (misma lección que el panel de admin). -->
+  <style is:global>
+    /* .state-center y .spinner vienen del estilo global de PortalLayout */
+    .panel-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .panel-title {
+      font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; color: #0a1628;
+    }
+    .panel-sub { font-size: .88rem; color: #6b7280; margin-top: .25rem; }
+    .panel-actions { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+
+    .btn-new {
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: #0a7270; color: #fff;
+      border: none; border-radius: 999px;
+      padding: .55rem 1.3rem;
+      font-family: inherit; font-size: .88rem; font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, box-shadow .15s;
+    }
+    .btn-new:hover { background: #0d9488; box-shadow: 0 4px 14px rgba(13,148,136,.3); }
+    .btn-ghost {
+      display: inline-flex; align-items: center;
+      border: 1.5px solid #d1d5db; background: #fff; color: #374151;
+      border-radius: 999px; padding: .5rem 1.1rem;
+      font-family: inherit; font-size: .85rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .btn-ghost:hover { border-color: #0d9488; color: #0d9488; }
+
+    .panel-alert {
+      background: #fef2f2; color: #dc2626; border: 1px solid #fecaca;
+      border-radius: 10px; padding: .75rem 1rem;
+      font-size: .88rem; margin-bottom: 1rem;
+    }
+
+    /* Formulario */
+    .task-form {
+      background: #fff;
+      border: 1px solid #eceae3;
+      border-radius: 16px;
+      border-top: 3px solid #f59e0b;
+      box-shadow: 0 6px 24px rgba(10,22,40,.07);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .task-form-title {
+      font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700; color: #0a1628;
+      margin-bottom: 1rem;
+    }
+    .tf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: .9rem 1.25rem;
+    }
+    .tf-wide { grid-column: 1 / -1; }
+    .tf-field { display: flex; flex-direction: column; gap: .35rem; }
+    .tf-field label { font-size: .8rem; font-weight: 600; color: #374151; }
+    .req { color: #ef4444; }
+    .tf-field input, .tf-field select, .tf-field textarea {
+      padding: .55rem .8rem;
+      border: 1.5px solid #e5e7eb; border-radius: 8px;
+      font-size: .9rem; font-family: inherit; color: #0a1628;
+      background: #fff; outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .tf-field input:focus, .tf-field select:focus, .tf-field textarea:focus {
+      border-color: #0d9488;
+      box-shadow: 0 0 0 3px rgba(13,148,136,.12);
+    }
+    .tf-actions {
+      display: flex; justify-content: flex-end; gap: .6rem;
+      margin-top: 1.1rem;
+    }
+
+    /* Filtros por persona */
+    .person-filters {
+      display: flex; align-items: center; flex-wrap: wrap; gap: .45rem;
+      margin-bottom: 1.5rem;
+    }
+    .pf-label {
+      font-size: .75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: #6b7280; margin-right: .25rem;
+    }
+    .pf-chip {
+      font-family: inherit; font-size: .8rem; font-weight: 600;
+      padding: .3rem .85rem; border-radius: 999px;
+      border: 1px solid #e5e7eb; background: #fff; color: #4b5563;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .pf-chip:hover { border-color: #0d9488; color: #0a7270; }
+    .pf-chip.is-on { background: #0a7270; border-color: #0a7270; color: #fff; }
+
+    /* Tablero */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+      align-items: start;
+    }
+    .board-col {
+      background: #f3f1ea;
+      border-radius: 16px;
+      padding: .75rem;
+      min-height: 240px;
+    }
+    .col-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .5rem .75rem .75rem;
+    }
+    .col-head h2 {
+      font-size: .82rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em;
+    }
+    .col-pendiente h2 { color: #6b7280; }
+    .col-encurso h2 { color: #0a7270; }
+    .col-hecha h2 { color: #15803d; }
+    .col-count {
+      font-size: .75rem; font-weight: 700;
+      background: #fff; color: #6b7280;
+      border-radius: 999px; padding: .1rem .6rem;
+      border: 1px solid #e5e7eb;
+    }
+    .col-body { display: flex; flex-direction: column; gap: .7rem; }
+    .col-empty {
+      text-align: center; font-size: .82rem; color: #6b7280;
+      padding: 1.5rem 0;
+    }
+
+    /* Tarjetas */
+    .task-card {
+      background: #fff;
+      border: 1px solid #eceae3;
+      border-radius: 14px;
+      padding: .9rem 1rem;
+      box-shadow: 0 2px 8px rgba(10,22,40,.05);
+      display: flex; flex-direction: column; gap: .45rem;
+    }
+    .task-card.is-done { opacity: .6; }
+    .task-card.is-done .tc-titulo { text-decoration: line-through; text-decoration-color: #9ca3af; }
+
+    .tc-top { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .tc-prio { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .tc-prio-alta  { background: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.15); }
+    .tc-prio-media { background: #f59e0b; }
+    .tc-prio-baja  { background: #9ca3af; }
+    .tc-area {
+      font-size: .68rem; font-weight: 700;
+      background: rgba(13,148,136,.08); color: #0a7270;
+      border: 1px solid rgba(13,148,136,.2);
+      border-radius: 999px; padding: .12rem .55rem;
+    }
+    .tc-fecha { font-size: .72rem; color: #6b7280; margin-left: auto; }
+    .tc-fecha.is-vencida { color: #dc2626; font-weight: 700; }
+
+    .tc-titulo { font-size: .95rem; font-weight: 600; color: #0a1628; line-height: 1.35; }
+    .tc-desc {
+      font-size: .8rem; color: #6b7280; line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+
+    .tc-foot {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: .5rem; margin-top: .15rem; padding-top: .55rem;
+      border-top: 1px solid #f0eee6;
+    }
+    .tc-quien {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .78rem; font-weight: 600; color: #374151;
+    }
+    .tc-quien.is-libre { color: #6b7280; font-weight: 500; font-style: italic; }
+    .tc-avatar {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(13,148,136,.12); color: #0a7270;
+      font-size: .7rem; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+
+    .tc-acciones { display: inline-flex; gap: .3rem; }
+    .tc-btn {
+      font-family: inherit; font-size: .72rem; font-weight: 600;
+      border: 1px solid #e5e7eb; background: #fff; color: #4b5563;
+      border-radius: 999px; padding: .22rem .6rem;
+      cursor: pointer;
+      transition: border-color .15s, color .15s, background .15s;
+    }
+    .tc-btn:hover { border-color: #0d9488; color: #0a7270; }
+    .tc-btn.is-avanzar { background: rgba(13,148,136,.08); border-color: rgba(13,148,136,.3); color: #0a7270; }
+    .tc-btn.is-avanzar:hover { background: rgba(13,148,136,.16); }
+    .tc-btn-icon { display: inline-flex; align-items: center; padding: .22rem .45rem; }
+
+    @media (max-width: 860px) {
+      .board { grid-template-columns: 1fr; }
+      .board-col { min-height: auto; }
+    }
+  </style>
+</PortalLayout>

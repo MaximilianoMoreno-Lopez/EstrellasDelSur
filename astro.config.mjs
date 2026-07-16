@@ -34,6 +34,7 @@ export default defineConfig({
         !page.includes('/admin') &&
         !page.includes('/portal') &&
         !page.includes('/radar/') &&
+        !page.includes('/equipo/') &&
         !page.endsWith('/404/'),
       changefreq: 'weekly',
       priority: 0.7,
