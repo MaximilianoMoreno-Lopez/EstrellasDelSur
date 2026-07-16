@@ -31,29 +31,69 @@ const offers = [
   },
 ];
 
+// Partner and coordinating organisations from our project record (PIF).
 const partners = [
-  { name: 'Federación Estrellas de Europa', country: 'European network', url: 'https://estrellaseuropa.eu' },
+  { name: 'Federación Estrellas de Europa', country: 'European network' },
+  { name: 'Europe4Youth', country: 'Poland' },
+  { name: 'Innowatorium', country: 'Poland' },
+  { name: 'Európa Ifjúsága Egyesület', country: 'Hungary' },
+  { name: 'Origó Műhely', country: 'Hungary' },
+  { name: 'Pro Dezvoltare DACIA (APDD)', country: 'Romania' },
+  { name: 'Ofensiva Tinerilor', country: 'Romania' },
+  { name: 'Eco Challenge', country: 'Romania' },
+  { name: 'International EduCenter', country: 'Romania' },
+  { name: 'Colour Your Dreams', country: 'Romania' },
+  { name: 'Asociația Dorna Tismana', country: 'Romania' },
+  { name: 'Município do Fundão', country: 'Portugal' },
+  { name: 'Associaçâo Selfmade', country: 'Portugal' },
+  { name: 'Utopía Verde', country: 'Portugal' },
+  { name: "Communauté d'Agglomération du Libournais", country: 'France' },
+  { name: "Ville d'Hérouville Saint-Clair", country: 'France' },
+  { name: 'Blue Youth', country: 'France' },
+  { name: 'La Friche la Belle de Mai', country: 'France' },
+  { name: 'Kindervereinigung Leipzig', country: 'Germany' },
+  { name: 'Einzigartige Projekte', country: 'Germany' },
+  { name: 'Over grenzen vzw', country: 'Belgium' },
   { name: 'DiversaMente APS', country: 'Italy' },
   { name: 'KLAP APS', country: 'Italy' },
   { name: 'BG World', country: 'Italy' },
+  { name: 'Liberi Sogni', country: 'Italy' },
+  { name: 'Associazione InCo', country: 'Italy' },
+  { name: "Insieme per l'autismo", country: 'Italy' },
+  { name: 'Tech Innovators', country: 'Italy' },
+  { name: 'Cilento Youth Union', country: 'Italy' },
+  { name: 'TDM 2000', country: 'Italy' },
+  { name: 'Edda Krkonoše', country: 'Czechia' },
+  { name: 'Brno for You', country: 'Czechia' },
   { name: 'Tavo Europa', country: 'Lithuania' },
-  { name: 'Eco Challenge', country: 'Romania' },
-  { name: 'APDD Pro Dezvoltare Dâmbovița', country: 'Romania' },
-  { name: 'International EduCenter', country: 'Romania' },
-  { name: 'EDDA Krkonoše', country: 'Czechia' },
+  { name: 'Zalianamis', country: 'Lithuania' },
+  { name: 'Vilniaus Antakalnio AJC', country: 'Lithuania' },
+  { name: 'Mano Europa', country: 'Lithuania' },
+  { name: 'YStreet', country: 'Latvia' },
+  { name: 'Kanavere Kolmikvälimtü', country: 'Estonia' },
+  { name: 'Jussikese Seitse Sõpra', country: 'Estonia' },
+  { name: 'Hiiumaa', country: 'Estonia' },
   { name: 'Make It Happen', country: 'Cyprus' },
   { name: 'Collective Intelligence', country: 'Cyprus' },
-  { name: 'Blue Youth', country: 'France' },
-  { name: 'Município do Fundão', country: 'Portugal' },
+  { name: 'Y.E.S. Cyprus', country: 'Cyprus' },
+  { name: 'Youth Dynamics', country: 'Cyprus' },
+  { name: 'DKolektiv', country: 'Croatia' },
+  { name: 'Eduart', country: 'North Macedonia' },
+  { name: 'Young Activists', country: 'Türkiye' },
+  { name: 'Kalitto Youth', country: 'Türkiye' },
+  { name: 'Konya Metropolitan Municipality', country: 'Türkiye' },
+  { name: 'Ankara Governorship EU Office', country: 'Türkiye' },
+  { name: 'Antalya Youth and Sports Directorate', country: 'Türkiye' },
+  { name: 'Civil Society Agency Research Group', country: 'Türkiye' },
 ];
 
-const monogram = (name: string) =>
-  name
-    .split(' ')
-    .filter((w) => /^[A-ZÁÉÍÓÚÑ]/.test(w))
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join('');
+// Three marquee rows of roughly equal length.
+const rowSize = Math.ceil(partners.length / 3);
+const partnerRows = [
+  partners.slice(0, rowSize),
+  partners.slice(rowSize, rowSize * 2),
+  partners.slice(rowSize * 2),
+];
 
 const programmes = [
   'Youth exchanges (KA152)',
@@ -237,23 +277,30 @@ const orgJsonLd = {
           youth exchanges and training courses across Europe.
         </p>
       </div>
-      <div class="partners-grid">
-        {partners.map((p, i) => (
-          <div class={`partner-chip fade-in fade-in-delay-${(i % 3) + 1}`}>
-            <span class="partner-monogram" aria-hidden="true">{monogram(p.name)}</span>
-            <span class="partner-info">
-              {p.url ? (
-                <a href={p.url} target="_blank" rel="noopener noreferrer" class="partner-name">{p.name}</a>
-              ) : (
-                <span class="partner-name">{p.name}</span>
-              )}
-              <span class="partner-country">{p.country}</span>
-            </span>
+      <div class="partners-marquee fade-in" aria-label={`${partners.length} partner organisations across Europe`}>
+        {partnerRows.map((row, r) => (
+          <div class={`marquee-row${r % 2 === 1 ? ' marquee-reverse' : ''}`}>
+            <div class="marquee-content">
+              {row.map((p) => (
+                <span class="partner-chip">
+                  <span class="partner-name">{p.name}</span>
+                  <span class="partner-country">{p.country}</span>
+                </span>
+              ))}
+            </div>
+            <div class="marquee-content marquee-copy" aria-hidden="true">
+              {row.map((p) => (
+                <span class="partner-chip">
+                  <span class="partner-name">{p.name}</span>
+                  <span class="partner-country">{p.country}</span>
+                </span>
+              ))}
+            </div>
           </div>
         ))}
       </div>
       <p class="partners-more fade-in">
-        And many more organisations across a network of 15+ countries. Yours could be next.
+        {partners.length}+ organisations across 20 countries, and counting. Yours could be next.
       </p>
     </div>
   </section>
@@ -378,53 +425,69 @@ const orgJsonLd = {
   .how-step h3 { font-size: .98rem; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
   .how-step p { font-size: .88rem; color: var(--gray-600); line-height: 1.6; }
 
-  /* Partners */
+  /* Partners marquee */
   .partners-section { background: var(--cream-dark); }
-  .partners-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: .9rem;
-  }
-  .partner-chip {
+
+  .partners-marquee {
     display: flex;
-    align-items: center;
-    gap: .85rem;
-    padding: .9rem 1.1rem;
+    flex-direction: column;
+    gap: .9rem;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .marquee-row {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 70s linear infinite;
+  }
+  .marquee-reverse { animation-direction: reverse; }
+  .marquee-row:hover { animation-play-state: paused; }
+
+  .marquee-content {
+    display: flex;
+    gap: .75rem;
+    padding-right: .75rem;
+  }
+
+  @keyframes marquee-scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  .partner-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: .55rem;
+    padding: .65rem 1.1rem;
     background: #fff;
     border: 1px solid var(--gray-200);
-    border-radius: var(--radius-md);
+    border-radius: 999px;
     box-shadow: var(--shadow-sm);
-    transition: transform .2s, box-shadow .2s;
+    white-space: nowrap;
   }
-  .partner-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-  .partner-monogram {
-    flex-shrink: 0;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: rgba(13, 148, 136, .1);
-    color: var(--teal);
-    font-weight: 700;
-    font-size: .95rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: .02em;
-  }
-  .partner-info { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
   .partner-name {
-    font-size: .92rem;
+    font-size: .9rem;
     font-weight: 600;
     color: var(--navy);
-    text-decoration: none;
   }
-  a.partner-name:hover { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
-  .partner-country { font-size: .78rem; color: var(--gray-500); }
+  .partner-country { font-size: .75rem; color: var(--gray-500); }
+
   .partners-more {
-    margin-top: 1.5rem;
+    margin-top: 1.75rem;
     text-align: center;
     font-size: .92rem;
     color: var(--gray-600);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-row { animation: none; width: auto; }
+    .marquee-content { flex-wrap: wrap; justify-content: center; }
+    .marquee-copy { display: none; }
+    .partners-marquee {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
   }
 
   /* CTA */
