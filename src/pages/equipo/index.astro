@@ -32,9 +32,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <label for="tfTitulo">Título <span class="req">*</span></label>
           <input type="text" id="tfTitulo" required placeholder="Preparar solicitud IMDEEC ESAL" />
         </div>
+        <div class="tf-field tf-wide">
+          <span class="tf-label">Asignada a (una o varias)</span>
+          <div id="tfAsignados" class="tf-chips" role="group" aria-label="Personas asignadas"></div>
+        </div>
         <div class="tf-field">
-          <label for="tfAsignado">Asignada a</label>
-          <select id="tfAsignado"><option value="">Sin asignar</option></select>
+          <label for="tfProyecto">Proyecto</label>
+          <select id="tfProyecto"><option value="">Sin proyecto</option></select>
+        </div>
+        <div class="tf-field">
+          <label for="tfNuevoProyecto">o crea un proyecto nuevo</label>
+          <input type="text" id="tfNuevoProyecto" placeholder="NEST, RELIT, Web…" />
         </div>
         <div class="tf-field">
           <label for="tfPrioridad">Prioridad</label>
@@ -47,11 +55,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <div class="tf-field">
           <label for="tfFecha">Fecha límite</label>
           <input type="date" id="tfFecha" />
-        </div>
-        <div class="tf-field">
-          <label for="tfArea">Área</label>
-          <input type="text" id="tfArea" placeholder="Subvenciones, web, proyectos…" list="areasList" />
-          <datalist id="areasList"></datalist>
         </div>
         <div class="tf-field tf-wide">
           <label for="tfDesc">Descripción</label>
@@ -69,10 +72,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <div id="alertMsg" class="panel-alert" role="alert" style="display:none"></div>
 
-    <!-- Filtro por persona -->
-    <div class="person-filters" id="personFilters">
+    <!-- Filtros -->
+    <div class="filter-row" id="personFilters">
       <span class="pf-label">Ver:</span>
-      <!-- chips por JS -->
+    </div>
+    <div class="filter-row" id="projectFilters" style="display:none">
+      <span class="pf-label">Proyecto:</span>
     </div>
 
     <!-- Tablero -->
@@ -106,13 +111,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     let equipo = [];
     let tareas = [];
+    let proyectos = [];
     let miEmail = '';
     let soyAdmin = false;
     let filtroPersona = 'todas';
+    let filtroProyecto = 'todos';
     let editandoId = null;
+    let asignadosSel = new Set();
 
     const ESTADOS = ['pendiente', 'en_curso', 'hecha'];
     const PRIORIDAD_ORDEN = { alta: 0, media: 1, baja: 2 };
+    // Paleta fija para las etiquetas de proyecto (se asigna por orden estable)
+    const PROYECTO_COLORES = ['py-teal', 'py-gold', 'py-sky', 'py-purple', 'py-green', 'py-rose'];
 
     async function init() {
       const { data: { session } } = await supabase.auth.getSession();
@@ -122,14 +132,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       }
       miEmail = session.user.email.toLowerCase();
 
-      // El RLS solo devuelve filas a miembros del equipo: lista vacía = fuera
       const { data: equipoData, error } = await supabase
         .from('equipo')
         .select('*')
         .order('nombre');
 
       if (error) {
-        // Error de red o token caducado: mejor reautenticar que expulsar
         window.location.replace('/portal/login/');
         return;
       }
@@ -140,9 +148,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       equipo = equipoData;
       soyAdmin = equipo.find((m) => m.email === miEmail)?.rol === 'admin';
 
-      await cargarTareas();
+      await Promise.all([cargarTareas(), cargarProyectos()]);
       montarFormulario();
-      montarFiltros();
+      montarFiltroPersonas();
+      montarFiltroProyectos();
       render();
 
       document.getElementById('loadingState').style.display = 'none';
@@ -158,16 +167,43 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       tareas = data ?? [];
     }
 
-    // ── Render ────────────────────────────────────────────────
+    async function cargarProyectos() {
+      const { data, error } = await supabase
+        .from('proyectos_panel')
+        .select('*')
+        .order('created_at');
+      // Si la migración SQL aún no se ha ejecutado, avisamos pero el
+      // tablero sigue funcionando sin proyectos.
+      if (error) aviso('Proyectos no disponibles (¿falta ejecutar la migración SQL?): ' + error.message);
+      proyectos = data ?? [];
+    }
+
+    // ── Helpers ───────────────────────────────────────────────
     function nombreDe(email) {
       return equipo.find((m) => m.email === email)?.nombre ?? email ?? '';
     }
+    function proyectoDe(id) {
+      return proyectos.find((p) => p.id === id) ?? null;
+    }
+    function colorProyecto(id) {
+      const idx = proyectos.findIndex((p) => p.id === id);
+      return PROYECTO_COLORES[idx >= 0 ? idx % PROYECTO_COLORES.length : 0];
+    }
+    function asignadosDe(t) {
+      return Array.isArray(t.asignados) ? t.asignados : [];
+    }
 
+    // ── Render ────────────────────────────────────────────────
     function render() {
       const visibles = tareas.filter((t) => {
-        if (filtroPersona === 'todas') return true;
-        if (filtroPersona === 'sin') return !t.asignado_a;
-        return t.asignado_a === filtroPersona;
+        const lista = asignadosDe(t);
+        const okPersona =
+          filtroPersona === 'todas' ||
+          (filtroPersona === 'sin' ? lista.length === 0 : lista.includes(filtroPersona));
+        const okProyecto =
+          filtroProyecto === 'todos' ||
+          (filtroProyecto === 'ninguno' ? !t.proyecto_id : t.proyecto_id === filtroProyecto);
+        return okPersona && okProyecto;
       });
 
       // Fecha LOCAL (no UTC): fecha_limite es un día de calendario local
@@ -215,19 +251,21 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       prioSr.textContent = `Prioridad ${t.prioridad}`;
       prio.appendChild(prioSr);
       top.appendChild(prio);
-      if (t.area) {
-        const area = document.createElement('span');
-        area.className = 'tc-area';
-        area.textContent = t.area;
-        top.appendChild(area);
+
+      const proy = proyectoDe(t.proyecto_id);
+      if (proy) {
+        const pill = document.createElement('span');
+        pill.className = `tc-proyecto ${colorProyecto(t.proyecto_id)}`;
+        pill.textContent = proy.nombre;
+        top.appendChild(pill);
       }
       if (t.fecha_limite) {
         const fecha = document.createElement('span');
         const vencida = t.fecha_limite < hoy && t.estado !== 'hecha';
         fecha.className = `tc-fecha${vencida ? ' is-vencida' : ''}`;
-        const d = new Date(t.fecha_limite + 'T00:00:00');
+        const fd = new Date(t.fecha_limite + 'T00:00:00');
         fecha.textContent = (vencida ? 'venció el ' : '') +
-          d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+          fd.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
         top.appendChild(fecha);
       }
       card.appendChild(top);
@@ -249,15 +287,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
       const quien = document.createElement('span');
       quien.className = 'tc-quien';
-      if (t.asignado_a) {
-        const ini = document.createElement('span');
-        ini.className = 'tc-avatar';
-        ini.textContent = nombreDe(t.asignado_a).charAt(0).toUpperCase();
-        quien.appendChild(ini);
-        quien.appendChild(document.createTextNode(nombreDe(t.asignado_a)));
-      } else {
+      const lista = asignadosDe(t);
+      if (lista.length === 0) {
         quien.classList.add('is-libre');
         quien.textContent = 'Sin asignar';
+      } else {
+        lista.forEach((email) => {
+          const ini = document.createElement('span');
+          ini.className = 'tc-avatar';
+          ini.title = nombreDe(email);
+          ini.textContent = nombreDe(email).charAt(0).toUpperCase();
+          quien.appendChild(ini);
+        });
+        const nombres = document.createElement('span');
+        nombres.className = 'tc-nombres';
+        nombres.textContent =
+          lista.length <= 2 ? lista.map(nombreDe).join(' y ') : `${lista.length} personas`;
+        if (lista.length > 2) nombres.title = lista.map(nombreDe).join(', ');
+        quien.appendChild(nombres);
       }
       foot.appendChild(quien);
 
@@ -304,7 +351,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     async function moverA(t, estado) {
       const { error } = await supabase
         .from('tareas')
-        .update({ estado, updated_at: new Date().toISOString() })
+        .update({ estado })
         .eq('id', t.id);
       if (error) return aviso('No se pudo mover la tarea: ' + error.message);
       t.estado = estado;
@@ -330,13 +377,25 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     // ── Formulario ────────────────────────────────────────────
     function montarFormulario() {
-      const sel = document.getElementById('tfAsignado');
+      // Chips de personas (asignación múltiple)
+      const wrap = document.getElementById('tfAsignados');
       equipo.forEach((m) => {
-        const o = document.createElement('option');
-        o.value = m.email;
-        o.textContent = m.nombre + (m.rol === 'becario' ? ' (becario)' : '');
-        sel.appendChild(o);
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'persona-chip';
+        b.dataset.email = m.email;
+        b.textContent = m.nombre + (m.rol === 'becario' ? ' (becario)' : '');
+        b.setAttribute('aria-pressed', 'false');
+        b.addEventListener('click', () => {
+          if (asignadosSel.has(m.email)) asignadosSel.delete(m.email);
+          else asignadosSel.add(m.email);
+          b.classList.toggle('is-on', asignadosSel.has(m.email));
+          b.setAttribute('aria-pressed', String(asignadosSel.has(m.email)));
+        });
+        wrap.appendChild(b);
       });
+
+      refrescarSelectProyectos();
 
       document.getElementById('newTaskBtn').addEventListener('click', () => abrirFormulario(null));
       document.getElementById('tfCancel').addEventListener('click', cerrarFormulario);
@@ -346,40 +405,83 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         const titulo = document.getElementById('tfTitulo').value.trim();
         if (!titulo) return aviso('La tarea necesita un título.');
 
-        const payload = {
-          titulo,
-          descripcion: document.getElementById('tfDesc').value.trim() || null,
-          asignado_a: document.getElementById('tfAsignado').value || null,
-          prioridad: document.getElementById('tfPrioridad').value,
-          fecha_limite: document.getElementById('tfFecha').value || null,
-          area: document.getElementById('tfArea').value.trim() || null,
-          updated_at: new Date().toISOString(),
-        };
-
         const saveBtn = document.getElementById('tfSave');
         if (saveBtn.disabled) return; // guarda anti doble envío
         saveBtn.disabled = true;
         document.getElementById('tfSaveText').style.display = 'none';
         document.getElementById('tfSaveSpinner').style.display = 'inline';
 
+        const terminar = () => {
+          document.getElementById('tfSaveText').style.display = 'inline';
+          document.getElementById('tfSaveSpinner').style.display = 'none';
+          saveBtn.disabled = false;
+        };
+
+        // Si se ha escrito un proyecto nuevo, se crea primero
+        let proyectoId = document.getElementById('tfProyecto').value || null;
+        const nuevoNombre = document.getElementById('tfNuevoProyecto').value.trim();
+        if (nuevoNombre) {
+          const existente = proyectos.find(
+            (p) => p.nombre.toLowerCase() === nuevoNombre.toLowerCase(),
+          );
+          if (existente) {
+            proyectoId = existente.id;
+          } else {
+            const { data: nuevo, error: errProy } = await supabase
+              .from('proyectos_panel')
+              .insert({ nombre: nuevoNombre })
+              .select()
+              .single();
+            if (errProy) {
+              terminar();
+              return aviso('No se pudo crear el proyecto: ' + errProy.message);
+            }
+            proyectos.push(nuevo);
+            proyectoId = nuevo.id;
+            refrescarSelectProyectos();
+            montarFiltroProyectos();
+          }
+        }
+
+        const payload = {
+          titulo,
+          descripcion: document.getElementById('tfDesc').value.trim() || null,
+          asignados: [...asignadosSel],
+          proyecto_id: proyectoId,
+          prioridad: document.getElementById('tfPrioridad').value,
+          fecha_limite: document.getElementById('tfFecha').value || null,
+        };
+
         let error;
         if (editandoId) {
           ({ error } = await supabase.from('tareas').update(payload).eq('id', editandoId));
         } else {
-          payload.creado_por = miEmail;
           ({ error } = await supabase.from('tareas').insert(payload));
         }
-
-        document.getElementById('tfSaveText').style.display = 'inline';
-        document.getElementById('tfSaveSpinner').style.display = 'none';
-        saveBtn.disabled = false;
+        terminar();
 
         if (error) return aviso('No se pudo guardar: ' + error.message);
         cerrarFormulario();
         await cargarTareas();
-        actualizarAreas();
         render();
       });
+    }
+
+    function refrescarSelectProyectos() {
+      const sel = document.getElementById('tfProyecto');
+      const actual = sel.value;
+      sel.replaceChildren();
+      const vacio = document.createElement('option');
+      vacio.value = '';
+      vacio.textContent = 'Sin proyecto';
+      sel.appendChild(vacio);
+      proyectos.forEach((p) => {
+        const o = document.createElement('option');
+        o.value = p.id;
+        o.textContent = p.nombre;
+        sel.appendChild(o);
+      });
+      sel.value = actual && proyectos.some((p) => p.id === actual) ? actual : '';
     }
 
     function abrirFormulario(t) {
@@ -387,31 +489,39 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       document.getElementById('taskFormTitle').textContent = t ? 'Editar tarea' : 'Nueva tarea';
       document.getElementById('tfTitulo').value = t?.titulo ?? '';
       document.getElementById('tfDesc').value = t?.descripcion ?? '';
-      document.getElementById('tfAsignado').value = t?.asignado_a ?? '';
       document.getElementById('tfPrioridad').value = t?.prioridad ?? 'media';
       document.getElementById('tfFecha').value = t?.fecha_limite ?? '';
-      document.getElementById('tfArea').value = t?.area ?? '';
+      document.getElementById('tfProyecto').value = t?.proyecto_id ?? '';
+      document.getElementById('tfNuevoProyecto').value = '';
+
+      asignadosSel = new Set(t ? asignadosDe(t) : []);
+      document.querySelectorAll('#tfAsignados .persona-chip').forEach((chip) => {
+        const on = asignadosSel.has(chip.dataset.email);
+        chip.classList.toggle('is-on', on);
+        chip.setAttribute('aria-pressed', String(on));
+      });
+
       document.getElementById('taskForm').style.display = 'block';
       document.getElementById('tfTitulo').focus();
     }
 
     function cerrarFormulario() {
       editandoId = null;
+      asignadosSel = new Set();
       document.getElementById('taskForm').style.display = 'none';
     }
 
-    function actualizarAreas() {
-      const dl = document.getElementById('areasList');
-      dl.replaceChildren();
-      [...new Set(tareas.map((t) => t.area).filter(Boolean))].sort().forEach((a) => {
-        const o = document.createElement('option');
-        o.value = a;
-        dl.appendChild(o);
-      });
+    // ── Filtros ───────────────────────────────────────────────
+    function chipFiltro(label, onClick, activo) {
+      const b = document.createElement('button');
+      b.className = 'pf-chip' + (activo ? ' is-on' : '');
+      b.textContent = label;
+      b.setAttribute('aria-pressed', String(activo));
+      b.addEventListener('click', onClick);
+      return b;
     }
 
-    // ── Filtros por persona ───────────────────────────────────
-    function montarFiltros() {
+    function montarFiltroPersonas() {
       const wrap = document.getElementById('personFilters');
       const chips = [
         { value: 'todas', label: 'Todas' },
@@ -419,21 +529,42 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         { value: 'sin', label: 'Sin asignar' },
       ];
       chips.forEach((c, i) => {
-        const b = document.createElement('button');
-        b.className = 'pf-chip' + (i === 0 ? ' is-on' : '');
-        b.textContent = c.label;
-        b.setAttribute('aria-pressed', String(i === 0));
-        b.addEventListener('click', () => {
+        const b = chipFiltro(c.label, () => {
           filtroPersona = c.value;
           wrap.querySelectorAll('.pf-chip').forEach((x) => {
             x.classList.toggle('is-on', x === b);
             x.setAttribute('aria-pressed', String(x === b));
           });
           render();
-        });
+        }, i === 0);
         wrap.appendChild(b);
       });
-      actualizarAreas();
+    }
+
+    function montarFiltroProyectos() {
+      const wrap = document.getElementById('projectFilters');
+      wrap.querySelectorAll('.pf-chip').forEach((c) => c.remove());
+      if (proyectos.length === 0) {
+        wrap.style.display = 'none';
+        return;
+      }
+      wrap.style.display = '';
+      const chips = [
+        { value: 'todos', label: 'Todos' },
+        ...proyectos.map((p) => ({ value: p.id, label: p.nombre })),
+        { value: 'ninguno', label: 'Sin proyecto' },
+      ];
+      chips.forEach((c) => {
+        const b = chipFiltro(c.label, () => {
+          filtroProyecto = c.value;
+          wrap.querySelectorAll('.pf-chip').forEach((x) => {
+            x.classList.toggle('is-on', x === b);
+            x.setAttribute('aria-pressed', String(x === b));
+          });
+          render();
+        }, c.value === filtroProyecto);
+        wrap.appendChild(b);
+      });
     }
 
     init();
@@ -465,6 +596,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       transition: background .15s, box-shadow .15s;
     }
     .btn-new:hover { background: #0d9488; box-shadow: 0 4px 14px rgba(13,148,136,.3); }
+    .btn-new:disabled { opacity: .7; cursor: not-allowed; }
     .btn-ghost {
       display: inline-flex; align-items: center;
       border: 1.5px solid #d1d5db; background: #fff; color: #374151;
@@ -503,7 +635,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
     .tf-wide { grid-column: 1 / -1; }
     .tf-field { display: flex; flex-direction: column; gap: .35rem; }
-    .tf-field label { font-size: .8rem; font-weight: 600; color: #374151; }
+    .tf-field label, .tf-label { font-size: .8rem; font-weight: 600; color: #374151; }
     .req { color: #ef4444; }
     .tf-field input, .tf-field select, .tf-field textarea {
       padding: .55rem .8rem;
@@ -521,14 +653,30 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       margin-top: 1.1rem;
     }
 
-    /* Filtros por persona */
-    .person-filters {
-      display: flex; align-items: center; flex-wrap: wrap; gap: .45rem;
-      margin-bottom: 1.5rem;
+    /* Chips de personas en el formulario */
+    .tf-chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .persona-chip {
+      font-family: inherit; font-size: .82rem; font-weight: 600;
+      padding: .35rem .95rem; border-radius: 999px;
+      border: 1.5px solid #e5e7eb; background: #fff; color: #4b5563;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
     }
+    .persona-chip:hover { border-color: #0d9488; color: #0a7270; }
+    .persona-chip.is-on {
+      background: #0a7270; border-color: #0a7270; color: #fff;
+    }
+
+    /* Filtros */
+    .filter-row {
+      display: flex; align-items: center; flex-wrap: wrap; gap: .45rem;
+      margin-bottom: .8rem;
+    }
+    .filter-row:last-of-type { margin-bottom: 1.5rem; }
     .pf-label {
       font-size: .75rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: .06em; color: #6b7280; margin-right: .25rem;
+      min-width: 68px;
     }
     .pf-chip {
       font-family: inherit; font-size: .8rem; font-weight: 600;
@@ -593,12 +741,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     .tc-prio-alta  { background: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.15); }
     .tc-prio-media { background: #f59e0b; }
     .tc-prio-baja  { background: #9ca3af; }
-    .tc-area {
+
+    .tc-proyecto {
       font-size: .68rem; font-weight: 700;
-      background: rgba(13,148,136,.08); color: #0a7270;
-      border: 1px solid rgba(13,148,136,.2);
       border-radius: 999px; padding: .12rem .55rem;
+      border: 1px solid transparent;
     }
+    .py-teal   { background: rgba(13,148,136,.09);  color: #0a7270;  border-color: rgba(13,148,136,.25); }
+    .py-gold   { background: rgba(245,158,11,.12);  color: #b45309;  border-color: rgba(245,158,11,.3); }
+    .py-sky    { background: rgba(2,132,199,.1);    color: #0369a1;  border-color: rgba(2,132,199,.25); }
+    .py-purple { background: rgba(124,58,237,.09);  color: #6d28d9;  border-color: rgba(124,58,237,.25); }
+    .py-green  { background: rgba(22,163,74,.1);    color: #15803d;  border-color: rgba(22,163,74,.25); }
+    .py-rose   { background: rgba(225,29,72,.08);   color: #be185d;  border-color: rgba(225,29,72,.2); }
+
     .tc-fecha { font-size: .72rem; color: #6b7280; margin-left: auto; }
     .tc-fecha.is-vencida { color: #dc2626; font-weight: 700; }
 
@@ -614,7 +769,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       border-top: 1px solid #f0eee6;
     }
     .tc-quien {
-      display: inline-flex; align-items: center; gap: .4rem;
+      display: inline-flex; align-items: center;
       font-size: .78rem; font-weight: 600; color: #374151;
     }
     .tc-quien.is-libre { color: #6b7280; font-weight: 500; font-style: italic; }
@@ -623,7 +778,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       background: rgba(13,148,136,.12); color: #0a7270;
       font-size: .7rem; font-weight: 700;
       display: inline-flex; align-items: center; justify-content: center;
+      border: 1.5px solid #fff;
+      margin-right: -6px;
     }
+    .tc-nombres { margin-left: 12px; }
 
     .tc-acciones { display: inline-flex; gap: .3rem; }
     .tc-btn {
