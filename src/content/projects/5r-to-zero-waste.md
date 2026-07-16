@@ -3,7 +3,7 @@ title: "5R to Zero Waste"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio juvenil Erasmus+ sobre medioambiente"
+description: "Intercambio juvenil Erasmus+ en Kaunas (Lituania) sobre las 5R y el estilo de vida residuo cero, con jóvenes de varios países europeos y participantes españoles enviados por Estrellas del Sur."
 year: 2022
 dates: "14/10/2022 - 23/10/2022"
 order: 24

@@ -3,7 +3,7 @@ title: "On the way to myself"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "¡Una aventura inolvidable en la naturaleza!"
+description: "Intercambio juvenil Erasmus+ de aventura y autodescubrimiento en la naturaleza de Vrchlabí (Chequia), organizado por Edda Krkonoše con seis jóvenes españoles de Estrellas del Sur."
 year: 2024
 dates: "25/08/2024 - 01/09/2024"
 location: "Vrchlabí (República Checa)"

@@ -3,7 +3,7 @@ title: "Walk in my Shoes"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio juvenil Erasmus+ sobre comunicación"
+description: "Intercambio juvenil Erasmus+ en Rabka-Zdrój (Polonia) sobre empatía y comunicación, organizado por Europe4Youth con participantes españoles enviados por Estrellas del Sur."
 year: 2025
 dates: "11/07/2025 - 19/07/2025"
 order: 41

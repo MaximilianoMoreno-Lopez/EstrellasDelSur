@@ -3,7 +3,7 @@ title: "101 hacks for your next trip"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio Erasmus+ centrado en descubrimiento cultural y movilidad europea"
+description: "Intercambio juvenil Erasmus+ sobre viajar de forma inteligente y sostenible por Europa, con trucos prácticos de movilidad para jóvenes y convivencia intercultural."
 order: 69
 ---
 

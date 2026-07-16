@@ -3,10 +3,19 @@ title: "STAR Rumania ESC"
 type: "Voluntariado"
 status: "past"
 flag: "🇷🇴"
-description: "Voluntariado Erasmus+ centrado en voluntariado y servicio a la comunidad"
+description: "Voluntariado del Cuerpo Europeo de Solidaridad en Rumanía centrado en el servicio a la comunidad, con jóvenes de España acompañados por Estrellas del Sur como organización de envío."
 year: 2025
+location: "Rumanía"
 order: 53
 ---
-STAR Rumania ESC fue un proyecto Erasmus+ de tipo voluntariado organizado por Estrellas del Sur, centrado en la cooperación juvenil europea.
+## Datos del proyecto
 
-Los participantes tuvieron la oportunidad de desarrollar competencias clave, conocer otras culturas y construir redes de colaboración internacionales en el marco del programa Erasmus+, cofinanciado por la Unión Europea.
+- **Temática del Proyecto:** Voluntariado y servicio a la comunidad
+- **Lugar:** Rumanía
+- **Año:** 2025
+
+## Sobre el proyecto
+
+STAR Rumania ESC fue un voluntariado del Cuerpo Europeo de Solidaridad celebrado en Rumanía y centrado en el servicio a la comunidad local. Los voluntarios convivieron con jóvenes de otros países europeos mientras colaboraban en el día a día de la organización de acogida, con el viaje, el alojamiento, la manutención y el seguro cubiertos por el programa.
+
+Estrellas del Sur participó como organización de envío de los voluntarios españoles, encargándose de su preparación antes de salir y del acompañamiento durante y después de la experiencia.
