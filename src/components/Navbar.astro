@@ -21,10 +21,23 @@ const navLinks: NavLink[] = [
         desc: 'Proyectos Erasmus+ que lideramos desde Estrellas del Sur.' } as any,
       { href: `${base}/iniciativas-locales/`,   label: 'Iniciativas Locales',
         desc: 'Proyectos con apoyo de la Junta de Andalucía y el IAJ.' } as any,
+      { href: `${base}/destinos/`,              label: 'Destinos',
+        desc: 'Mapa de los países donde hemos llevado proyectos.' } as any,
     ],
   },
-  { href: `${base}/sobre-nosotros/`,    label: 'Sobre Nosotros' },
-  { href: `${base}/voluntariado-esc/`,  label: 'Voluntariado ESC' },
+  {
+    href: `${base}/sobre-nosotros/`,
+    label: 'Sobre Nosotros',
+    children: [
+      { href: `${base}/sobre-nosotros/`, label: 'Quiénes somos',
+        desc: 'Historia, misión y el equipo de la asociación.' } as any,
+      { href: `${base}/transparencia/`,  label: 'Transparencia',
+        desc: 'Estatutos, memorias anuales y documentación pública.' } as any,
+      { href: `${base}/partners/`,       label: 'Partner with us (EN)',
+        desc: 'Info for European organisations looking for a Spanish partner.' } as any,
+    ],
+  },
+  { href: `${base}/voluntariado-esc/`,  label: 'Voluntariado Europeo' },
   { href: `${base}/noticias/`,          label: 'Artículos' },
   { href: `${base}/contacto/`,          label: 'Contacto' },
 ];
@@ -338,7 +351,7 @@ function isParentActive(link: NavLink): boolean {
     display: none; background: rgba(10,22,40,.98); backdrop-filter: blur(16px);
     overflow: hidden; max-height: 0; transition: max-height .35s ease;
   }
-  .mobile-nav.is-open { max-height: 600px; }
+  .mobile-nav.is-open { max-height: 900px; }
   .mobile-nav nav { display: flex; flex-direction: column; padding: .75rem 1.5rem 1.5rem; gap: .15rem; }
   .mobile-link {
     display: block; padding: .75rem 1rem; color: rgba(255,255,255,.8);
