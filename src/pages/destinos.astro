@@ -1,0 +1,460 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EUBanner from '../components/EUBanner.astro';
+import europeMap from '../lib/europe-map.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Countries where we can have projects; keywords are matched
+// (accent/case-insensitive) against each project's `location`, and the
+// country name against the title as fallback for entries without location.
+const COUNTRIES: Record<string, { name: string; keywords: string[] }> = {
+  IS: { name: 'Islandia',     keywords: ['islandia'] },
+  NO: { name: 'Noruega',      keywords: ['noruega'] },
+  SE: { name: 'Suecia',       keywords: ['suecia'] },
+  FI: { name: 'Finlandia',    keywords: ['finlandia'] },
+  DK: { name: 'Dinamarca',    keywords: ['dinamarca'] },
+  EE: { name: 'Estonia',      keywords: ['estonia', 'tallin'] },
+  IE: { name: 'Irlanda',      keywords: ['irlanda'] },
+  NL: { name: 'Países Bajos', keywords: ['paises bajos', 'holanda'] },
+  DE: { name: 'Alemania',     keywords: ['alemania'] },
+  PL: { name: 'Polonia',      keywords: ['polonia', 'malopolska', 'rabka', 'cracovia'] },
+  LV: { name: 'Letonia',      keywords: ['letonia', 'riga'] },
+  BE: { name: 'Bélgica',      keywords: ['belgica', 'bruselas'] },
+  CZ: { name: 'Chequia',      keywords: ['chequia', 'republica checa', 'checa', 'moravec', 'vrchlabi', 'praga'] },
+  SK: { name: 'Eslovaquia',   keywords: ['eslovaquia'] },
+  LT: { name: 'Lituania',     keywords: ['lituania', 'kaunas', 'vilna', 'vilnius'] },
+  PT: { name: 'Portugal',     keywords: ['portugal', 'lisboa', 'oporto', 'fundao'] },
+  ES: { name: 'España',       keywords: ['espana', 'cordoba', 'madrid', 'andalucia', 'toledo', 'alicante', 'sevilla', 'granada', 'almodovar'] },
+  FR: { name: 'Francia',      keywords: ['francia', 'normandia', 'marsella', 'herouville', 'caen'] },
+  AT: { name: 'Austria',      keywords: ['austria', 'viena'] },
+  HU: { name: 'Hungría',      keywords: ['hungria', 'pakozd', 'batonyterenye', 'budapest'] },
+  RO: { name: 'Rumanía',      keywords: ['rumania', 'bucarest', 'godinesti', 'arad', 'brasov', 'horezu'] },
+  IT: { name: 'Italia',       keywords: ['italia', 'italy', 'romagnese', 'molfetta', 'perugia', 'alessandria'] },
+  SI: { name: 'Eslovenia',    keywords: ['eslovenia'] },
+  HR: { name: 'Croacia',      keywords: ['croacia', 'croatia', 'osijek'] },
+  RS: { name: 'Serbia',       keywords: ['serbia'] },
+  BG: { name: 'Bulgaria',     keywords: ['bulgaria', 'sofia'] },
+  MT: { name: 'Malta',        keywords: ['malta'] },
+  GR: { name: 'Grecia',       keywords: ['grecia', 'atenas'] },
+  TR: { name: 'Turquía',      keywords: ['turquia', 'turkiye', 'turkia', 'ankara', 'karaman', 'gaziantep'] },
+  CY: { name: 'Chipre',       keywords: ['chipre', 'agros'] },
+};
+
+const normalize = (s: string) =>
+  s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+const projects = await getCollection('projects');
+
+type ProjectRef = { title: string; slug: string; year?: number; type: string; status: string };
+const byCountry: Record<string, ProjectRef[]> = {};
+
+for (const p of projects) {
+  const loc = normalize(p.data.location ?? '');
+  const title = normalize(p.data.title);
+  for (const [iso, c] of Object.entries(COUNTRIES)) {
+    const matchLoc = loc && c.keywords.some((k) => loc.includes(k));
+    const matchTitle = !loc && title.includes(normalize(c.name));
+    if (matchLoc || matchTitle) {
+      (byCountry[iso] ??= []).push({
+        title: p.data.title,
+        slug: p.id,
+        year: p.data.year,
+        type: p.data.type,
+        status: p.data.status,
+      });
+    }
+  }
+}
+
+for (const list of Object.values(byCountry)) {
+  list.sort((a, b) => (b.year ?? 0) - (a.year ?? 0) || a.title.localeCompare(b.title, 'es'));
+}
+
+const activeCountries = Object.entries(byCountry)
+  .map(([iso, list]) => ({ iso, name: COUNTRIES[iso].name, projects: list }))
+  .sort((a, b) => b.projects.length - a.projects.length || a.name.localeCompare(b.name, 'es'));
+
+const totalCountries = activeCountries.length;
+const totalLinked = activeCountries.reduce((n, c) => n + c.projects.length, 0);
+
+// The Anna Lindh Foundation (Euro-Mediterranean network we belong to) is
+// headquartered in Alexandria, so Egypt gets its own highlight on the map.
+const alfProjects = projects
+  .filter((p) => p.data.funder === 'alf')
+  .map((p) => ({ title: p.data.title, slug: p.id, year: p.data.year, type: p.data.type, status: p.data.status }));
+
+// Sequential teal bins; counts are always printed next to the color, so
+// color never carries the value alone.
+const bin = (n: number) => (n >= 10 ? 'high' : n >= 3 ? 'mid' : n >= 1 ? 'low' : 'none');
+
+const countryState = (iso: string) => {
+  if (iso === 'EG') return 'alf';
+  const n = byCountry[iso]?.length ?? 0;
+  return bin(n);
+};
+
+const mapAriaLabel = `Mapa de Europa y el Mediterráneo con el número de proyectos por país. ${activeCountries
+  .map((c) => `${c.name}: ${c.projects.length}`)
+  .join(', ')}. Egipto: sede de la Fundación Anna Lindh.`;
+
+const description = `Mapa de destinos de Estrellas del Sur: ${totalCountries} países europeos donde jóvenes de España han vivido intercambios, voluntariados y formaciones Erasmus+ y del Cuerpo Europeo de Solidaridad, más la red euromediterránea Anna Lindh.`;
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/' },
+  { name: 'Proyectos', url: '/proyectos/' },
+  { name: 'Destinos', url: '/destinos/' },
+];
+---
+
+<BaseLayout
+  title="Destinos en Europa — Mapa de proyectos"
+  description={description}
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Nuestra huella europea
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Destinos</h1>
+      <p class="fade-in fade-in-delay-2">
+        Desde 2020 hemos conectado a jóvenes con proyectos en <strong>{totalCountries} países</strong> de
+        Europa. Toca un país del mapa para ver los proyectos que hemos vivido allí.
+      </p>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="section map-section">
+    <div class="container">
+      <div class="map-wrap fade-in">
+        <svg
+          class="europe-map"
+          viewBox={europeMap.viewBox}
+          role="img"
+          aria-label={mapAriaLabel}
+        >
+          {europeMap.countries.map((c) => {
+            const state = countryState(c.iso);
+            const n = byCountry[c.iso]?.length ?? 0;
+            const tip =
+              state === 'alf'
+                ? 'Egipto · Sede de la Fundación Anna Lindh'
+                : n > 0
+                  ? `${c.name} · ${n} ${n === 1 ? 'proyecto' : 'proyectos'}`
+                  : c.name;
+            return state === 'none' ? (
+              <path class="country country-none" d={c.d}>
+                <title>{tip}</title>
+              </path>
+            ) : (
+              <a href={`#pais-${c.iso.toLowerCase()}`} aria-label={tip} data-country={c.iso.toLowerCase()}>
+                <path class={`country country-${state}`} d={c.d}>
+                  <title>{tip}</title>
+                </path>
+              </a>
+            );
+          })}
+        </svg>
+
+        <div class="map-legend" aria-hidden="true">
+          <span class="legend-item"><span class="legend-swatch swatch-low"></span> 1-2 proyectos</span>
+          <span class="legend-item"><span class="legend-swatch swatch-mid"></span> 3-9</span>
+          <span class="legend-item"><span class="legend-swatch swatch-high"></span> 10 o más</span>
+          <span class="legend-item"><span class="legend-swatch swatch-alf"></span> Red Anna Lindh</span>
+        </div>
+        <p class="map-note">
+          {totalLinked} participaciones en proyectos repartidas entre {totalCountries} países,
+          contando cada país que acogió actividades.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Country list -->
+  <section class="section countries-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">País por país</p>
+        <h2 class="section-title">Todos nuestros destinos</h2>
+        <p class="section-subtitle">
+          Despliega cada país para ver los proyectos realizados allí, del más reciente al más antiguo.
+        </p>
+      </div>
+
+      <div class="countries-grid">
+        {activeCountries.map((c, i) => (
+          <details class={`country-card card fade-in fade-in-delay-${(i % 3) + 1}`} id={`pais-${c.iso.toLowerCase()}`}>
+            <summary class="country-summary">
+              <span class={`country-dot dot-${bin(c.projects.length)}`} aria-hidden="true"></span>
+              <span class="country-name">{c.name}</span>
+              <span class="country-count">{c.projects.length} {c.projects.length === 1 ? 'proyecto' : 'proyectos'}</span>
+              <svg class="country-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <ul class="country-projects">
+              {c.projects.map((p) => (
+                <li>
+                  <a href={`${base}/proyectos/${p.slug}/`} class="country-project-link">
+                    <span class="cp-title">{p.title}</span>
+                    <span class="cp-meta">
+                      {p.year && <span>{p.year}</span>}
+                      <span>{p.type}</span>
+                      {p.status === 'active' && <span class="cp-active">Activo</span>}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ))}
+
+        <details class="country-card card fade-in" id="pais-eg">
+          <summary class="country-summary">
+            <span class="country-dot dot-alf" aria-hidden="true"></span>
+            <span class="country-name">Egipto</span>
+            <span class="country-count">Red Anna Lindh</span>
+            <svg class="country-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="country-projects country-alf-text">
+            <p>
+              Formamos parte de la red española de la <strong>Fundación Anna Lindh</strong>, la
+              institución euromediterránea para el diálogo intercultural, con sede en
+              Alejandría (Egipto). A través de esta red desarrollamos iniciativas locales
+              que conectan Córdoba con las dos orillas del Mediterráneo.
+            </p>
+            {alfProjects.length > 0 && (
+              <ul>
+                {alfProjects.map((p) => (
+                  <li>
+                    <a href={`${base}/proyectos/${p.slug}/`} class="country-project-link">
+                      <span class="cp-title">{p.title}</span>
+                      <span class="cp-meta">
+                        {p.year && <span>{p.year}</span>}
+                        <span>{p.type}</span>
+                        {p.status === 'active' && <span class="cp-active">Activo</span>}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section">
+    <div class="container cta-box fade-in">
+      <div>
+        <h2>¿Quieres que tu próximo destino esté en este mapa?</h2>
+        <p>Consulta los proyectos con plazas abiertas o escríbenos y te orientamos.</p>
+      </div>
+      <div class="cta-actions">
+        <a href={`${base}/proyectos/`} class="btn btn-gold btn-lg">Ver proyectos activos</a>
+        <a href={`${base}/voluntariado-esc/`} class="btn btn-outline-white btn-lg">Voluntariado Europeo</a>
+      </div>
+    </div>
+  </section>
+
+  <EUBanner />
+</BaseLayout>
+
+<script>
+  // Clicking a country on the map opens the matching card before jumping to it.
+  document.querySelectorAll<SVGAElement>('.europe-map a[data-country]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const card = document.getElementById(`pais-${link.dataset.country}`) as HTMLDetailsElement | null;
+      if (card) card.open = true;
+    });
+  });
+</script>
+
+<style>
+  .map-section { background: var(--cream); }
+
+  .map-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .europe-map {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .country {
+    stroke: var(--cream);
+    stroke-width: 1;
+    stroke-linejoin: round;
+    transition: filter .15s ease, opacity .15s ease;
+  }
+  .country-none { fill: #e4e2d9; }
+
+  /* Sequential teal ramp, light to dark; project counts appear in the
+     tooltips and the list below, so color never works alone. */
+  .country-low  { fill: #5eead4; }
+  .country-mid  { fill: var(--teal); }
+  .country-high { fill: #134e4a; }
+  .country-alf  { fill: var(--gold); }
+
+  .europe-map a { cursor: pointer; }
+  .europe-map a:hover .country,
+  .europe-map a:focus-visible .country {
+    filter: brightness(1.12) saturate(1.15);
+  }
+  .europe-map a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+  }
+
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    font-size: .82rem;
+    color: var(--gray-600);
+  }
+  .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .swatch-low  { background: #5eead4; }
+  .swatch-mid  { background: var(--teal); }
+  .swatch-high { background: #134e4a; }
+  .swatch-alf  { background: var(--gold); }
+
+  .map-note {
+    text-align: center;
+    font-size: .8rem;
+    color: var(--gray-500);
+    margin-top: .75rem;
+  }
+
+  /* Country list */
+  .countries-section { background: var(--cream-dark); }
+  .section-header { margin-bottom: 2.5rem; }
+
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .country-card { padding: 0; overflow: hidden; scroll-margin-top: 90px; }
+
+  .country-summary {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: 1.1rem 1.35rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  .country-summary::-webkit-details-marker { display: none; }
+
+  .country-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .dot-low  { background: #5eead4; }
+  .dot-mid  { background: var(--teal); }
+  .dot-high { background: #134e4a; }
+  .dot-alf  { background: var(--gold); }
+
+  .country-name {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 1rem;
+    flex: 1;
+  }
+  .country-count {
+    font-size: .8rem;
+    color: var(--gray-500);
+    white-space: nowrap;
+  }
+  .country-caret {
+    color: var(--gray-500);
+    transition: transform .2s ease;
+    flex-shrink: 0;
+  }
+  details[open] .country-caret { transform: rotate(180deg); }
+
+  .country-projects {
+    border-top: 1px solid var(--gray-200);
+    padding: .5rem .75rem .75rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .country-alf-text p {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+    padding: .6rem .6rem .35rem;
+  }
+  .country-project-link {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    padding: .6rem .6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background .15s;
+  }
+  .country-project-link:hover { background: rgba(13, 148, 136, .07); }
+  .cp-title {
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .country-project-link:hover .cp-title { color: var(--teal); }
+  .cp-meta {
+    display: flex;
+    gap: .6rem;
+    font-size: .76rem;
+    color: var(--gray-500);
+  }
+  .cp-active { color: #047857; font-weight: 700; }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
+  .cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .cta-box h2 {
+    font-size: clamp(1.4rem, 2.3vw, 1.85rem);
+    color: #fff;
+    margin-bottom: .6rem;
+    max-width: 520px;
+  }
+  .cta-box p { color: rgba(255,255,255,.7); font-size: .98rem; }
+  .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 640px) {
+    .cta-actions { width: 100%; flex-direction: column; }
+    .cta-actions .btn { justify-content: center; }
+  }
+</style>
