@@ -41,15 +41,15 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <th data-col="surname">Surname</th>
             <th data-col="id">ID</th>
             <th data-col="project">Project</th>
-            <th data-col="birth">Birth date</th>
+            <th data-col="birth">Birth</th>
             <th data-col="arr_date" class="th-ida">Arrival</th>
             <th data-col="arr_time" class="th-ida">Time</th>
-            <th data-col="arr_mp"   class="th-ida">Meeting point</th>
+            <th data-col="arr_mp"   class="th-ida">Meet. pt</th>
             <th data-col="arr_city" class="th-ida">City</th>
             <th data-col="arr_air"  class="th-ida">Airport (ES)</th>
             <th data-col="ret_date" class="th-vuelta">Departure</th>
             <th data-col="ret_time" class="th-vuelta">Time</th>
-            <th data-col="ret_mp"   class="th-vuelta">Meeting point</th>
+            <th data-col="ret_mp"   class="th-vuelta">Meet. pt</th>
             <th data-col="ret_city" class="th-vuelta">City</th>
             <th data-col="ret_air"  class="th-vuelta">Airport (ES)</th>
             <th data-col="price">Price €</th>
@@ -332,22 +332,30 @@ async function renderTable(data) {
 }
 table {
   width: 100%; border-collapse: collapse;
-  font-size: .85rem;
+  font-size: .82rem;
 }
 th {
   background: #f9fafb;
-  padding: .75rem 1rem;
+  padding: .55rem .6rem;
   text-align: left;
-  font-size: .75rem; font-weight: 600;
-  color: #6b7280; text-transform: uppercase; letter-spacing: .05em;
+  font-size: .72rem; font-weight: 600;
+  color: #6b7280; text-transform: uppercase; letter-spacing: .04em;
   border-bottom: 1px solid #e5e7eb;
   white-space: nowrap;
 }
 td {
-  padding: .85rem 1rem;
+  padding: .55rem .6rem;
   color: #0a1628;
   border-bottom: 1px solid #f3f4f6;
   white-space: nowrap;
+}
+/* Los nombres largos (aeropuertos, ciudades, PDF) pueden partirse en dos
+   lineas para no estirar la tabla. */
+td[data-col="arr_air"], td[data-col="ret_air"],
+td[data-col="arr_city"], td[data-col="ret_city"],
+td[data-col="pdf"] {
+  white-space: normal;
+  max-width: 150px;
 }
 tr:last-child td { border-bottom: none; }
 tr:hover td { background: #f9fafb; }
