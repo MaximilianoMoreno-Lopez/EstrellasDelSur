@@ -23,27 +23,36 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       <input type="text" id="searchInput" placeholder="Buscar por nombre, apellidos, DNI…" />
     </div>
 
+    <!-- Column toggles (e.g. hide personal data before a screenshot) -->
+    <div class="col-toggles" id="colToggles">
+      <span class="col-toggles-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+        Columnas:
+      </span>
+      <!-- chips injected by script -->
+    </div>
+
     <!-- Table -->
     <div class="table-wrap">
       <table id="adminTable">
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>DNI</th>
-            <th>Proyecto</th>
-            <th>Nacimiento</th>
-            <th class="th-ida">Llegada</th>
-            <th class="th-ida">Hora</th>
-            <th class="th-ida">Ciudad</th>
-            <th class="th-ida">Aeropuerto ida</th>
-            <th class="th-vuelta">Salida</th>
-            <th class="th-vuelta">Hora</th>
-            <th class="th-vuelta">Ciudad</th>
-            <th class="th-vuelta">Aeropuerto vuelta</th>
-            <th>Precio €</th>
-            <th>PDF</th>
-            <th>Actualizado</th>
+            <th data-col="name">Name</th>
+            <th data-col="surname">Surname</th>
+            <th data-col="id">ID</th>
+            <th data-col="project">Project</th>
+            <th data-col="birth">Birth date</th>
+            <th data-col="arr_date" class="th-ida">Arrival</th>
+            <th data-col="arr_time" class="th-ida">Time</th>
+            <th data-col="arr_city" class="th-ida">City</th>
+            <th data-col="arr_air"  class="th-ida">Airport (ES)</th>
+            <th data-col="ret_date" class="th-vuelta">Departure</th>
+            <th data-col="ret_time" class="th-vuelta">Time</th>
+            <th data-col="ret_city" class="th-vuelta">City</th>
+            <th data-col="ret_air"  class="th-vuelta">Airport (ES)</th>
+            <th data-col="price">Price €</th>
+            <th data-col="pdf">PDF</th>
+            <th data-col="updated">Updated</th>
           </tr>
         </thead>
         <tbody id="adminTableBody"></tbody>
@@ -118,27 +127,75 @@ async function renderTable(data) {
 
         return `
           <tr>
-            <td>${p.nombre || '—'}</td>
-            <td>${p.apellidos || '—'}</td>
-            <td>${p.dni ? `<code class="dni-cell" data-full="${p.dni}" title="Click para mostrar u ocultar">${maskDni(p.dni)}</code>` : '—'}</td>
-            <td>${p.siglas_proyecto ? `<span class="badge-proyecto">${p.siglas_proyecto}</span>` : '—'}</td>
-            <td>${fmt(p.fecha_nacimiento)}</td>
-            <td>${fmt(p.dia_salida)}</td>
-            <td>${p.hora_salida ? p.hora_salida.slice(0,5) : '—'}</td>
-            <td>${p.ciudad_salida || '—'}</td>
-            <td>${p.aeropuerto_salida_espana || '—'}</td>
-            <td>${fmt(p.dia_llegada_espana)}</td>
-            <td>${p.hora_llegada ? p.hora_llegada.slice(0,5) : '—'}</td>
-            <td>${p.ciudad_llegada_espana || '—'}</td>
-            <td>${p.aeropuerto_llegada || '—'}</td>
-            <td>${p.precio_total != null ? p.precio_total.toFixed(2) + ' €' : '—'}</td>
-            <td>${pdfCell}</td>
-            <td class="muted">${updated}</td>
+            <td data-col="name">${p.nombre || '—'}</td>
+            <td data-col="surname">${p.apellidos || '—'}</td>
+            <td data-col="id">${p.dni ? `<code class="dni-cell" data-full="${p.dni}" title="Click para mostrar u ocultar">${maskDni(p.dni)}</code>` : '—'}</td>
+            <td data-col="project">${p.siglas_proyecto ? `<span class="badge-proyecto">${p.siglas_proyecto}</span>` : '—'}</td>
+            <td data-col="birth">${fmt(p.fecha_nacimiento)}</td>
+            <td data-col="arr_date">${fmt(p.dia_salida)}</td>
+            <td data-col="arr_time">${p.hora_salida ? p.hora_salida.slice(0,5) : '—'}</td>
+            <td data-col="arr_city">${p.ciudad_salida || '—'}</td>
+            <td data-col="arr_air">${p.aeropuerto_salida_espana || '—'}</td>
+            <td data-col="ret_date">${fmt(p.dia_llegada_espana)}</td>
+            <td data-col="ret_time">${p.hora_llegada ? p.hora_llegada.slice(0,5) : '—'}</td>
+            <td data-col="ret_city">${p.ciudad_llegada_espana || '—'}</td>
+            <td data-col="ret_air">${p.aeropuerto_llegada || '—'}</td>
+            <td data-col="price">${p.precio_total != null ? p.precio_total.toFixed(2) + ' €' : '—'}</td>
+            <td data-col="pdf">${pdfCell}</td>
+            <td data-col="updated" class="muted">${updated}</td>
           </tr>
         `;
       }));
       tbody.innerHTML = rows.join('');
+      applyColumnVisibility();
     }
+
+    // ── Column visibility (for screenshots to hosting organisations) ──
+    const TOGGLES = [
+      { label: 'Name',    cols: ['name'] },
+      { label: 'Surname', cols: ['surname'] },
+      { label: 'ID',      cols: ['id'] },
+      { label: 'Project', cols: ['project'] },
+      { label: 'Birth',   cols: ['birth'] },
+      { label: 'Arrival', cols: ['arr_date', 'arr_time', 'arr_city', 'arr_air'] },
+      { label: 'Return',  cols: ['ret_date', 'ret_time', 'ret_city', 'ret_air'] },
+      { label: 'Price',   cols: ['price'] },
+      { label: 'PDF',     cols: ['pdf'] },
+      { label: 'Updated', cols: ['updated'] },
+    ];
+    const HIDDEN_KEY = 'admin-hidden-cols';
+    let hiddenToggles = new Set(JSON.parse(localStorage.getItem(HIDDEN_KEY) || '[]'));
+
+    function applyColumnVisibility() {
+      const hiddenCols = new Set(
+        TOGGLES.filter((t) => hiddenToggles.has(t.label)).flatMap((t) => t.cols)
+      );
+      document.querySelectorAll('#adminTable [data-col]').forEach((cell) => {
+        cell.style.display = hiddenCols.has(cell.dataset.col) ? 'none' : '';
+      });
+    }
+
+    function buildToggles() {
+      const wrap = document.getElementById('colToggles');
+      TOGGLES.forEach((t) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'col-chip';
+        btn.textContent = t.label;
+        btn.setAttribute('aria-pressed', String(!hiddenToggles.has(t.label)));
+        if (hiddenToggles.has(t.label)) btn.classList.add('is-off');
+        btn.addEventListener('click', () => {
+          if (hiddenToggles.has(t.label)) hiddenToggles.delete(t.label);
+          else hiddenToggles.add(t.label);
+          btn.classList.toggle('is-off');
+          btn.setAttribute('aria-pressed', String(!hiddenToggles.has(t.label)));
+          localStorage.setItem(HIDDEN_KEY, JSON.stringify([...hiddenToggles]));
+          applyColumnVisibility();
+        });
+        wrap.appendChild(btn);
+      });
+    }
+    buildToggles();
 
     function fmt(dateStr) {
       if (!dateStr) return '—';
@@ -200,17 +257,51 @@ async function renderTable(data) {
   flex-wrap: wrap; gap: 1rem;
   margin-bottom: 1.75rem;
 }
-.admin-title { font-size: 1.6rem; font-weight: 700; color: #0a1628; }
+.admin-title {
+  font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700; color: #0a1628;
+}
 .admin-sub { font-size: .88rem; color: #6b7280; margin-top: .25rem; }
 .btn-portal {
   display: inline-block;
   border: 1.5px solid #d1d5db;
   color: #374151; background: #fff;
-  padding: .5rem 1rem; border-radius: 8px;
+  padding: .5rem 1.1rem; border-radius: 999px;
   font-size: .82rem; font-weight: 600;
   text-decoration: none; transition: border-color .15s;
 }
 .btn-portal:hover { border-color: #0d9488; color: #0d9488; }
+
+/* Column toggle chips */
+.col-toggles {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1.25rem;
+}
+.col-toggles-label {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .8rem; font-weight: 600; color: #6b7280;
+  margin-right: .25rem;
+}
+.col-chip {
+  font-family: inherit;
+  font-size: .78rem; font-weight: 600;
+  padding: .32rem .8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(13,148,136,.35);
+  background: rgba(13,148,136,.08);
+  color: #0a7270;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s, opacity .15s;
+}
+.col-chip:hover { background: rgba(13,148,136,.16); }
+.col-chip.is-off {
+  background: transparent;
+  border-color: #d1d5db;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+.col-chip.is-off:hover { border-color: #9ca3af; color: #6b7280; }
 
 .search-bar {
   display: flex; align-items: center; gap: .6rem;

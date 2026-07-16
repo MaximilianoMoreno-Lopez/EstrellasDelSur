@@ -48,6 +48,14 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
             <label for="siglas_proyecto">Siglas del proyecto <span class="req">*</span></label>
             <input type="text" id="siglas_proyecto" name="siglas_proyecto" required placeholder="NEST, FEG…" />
           </div>
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" />
+          </div>
+          <div class="field">
+            <label for="contacto_emergencia">Contacto de emergencia (nombre y teléfono)</label>
+            <input type="text" id="contacto_emergencia" name="contacto_emergencia" placeholder="María López · +34 600 000 000" />
+          </div>
         </div>
       </section>
 
@@ -171,6 +179,8 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       set('dni', d.dni);
       set('fecha_nacimiento', d.fecha_nacimiento);
       set('siglas_proyecto', d.siglas_proyecto);
+      set('telefono', d.telefono);
+      set('contacto_emergencia', d.contacto_emergencia);
       set('dia_salida', d.dia_salida);
       set('hora_salida', d.hora_salida);
       set('ciudad_salida', d.ciudad_salida);
@@ -238,6 +248,13 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
         aeropuerto_llegada: get('aeropuerto_llegada'),
         precio_total: get('precio_total') ? parseFloat(get('precio_total')) : null,
       };
+
+      // Solo se envían si tienen valor, para que el guardado no falle si
+      // las columnas todavía no existen en Supabase (ver scripts/sql/).
+      const telefono = get('telefono');
+      const contactoEmergencia = get('contacto_emergencia');
+      if (telefono) payload.telefono = telefono;
+      if (contactoEmergencia) payload.contacto_emergencia = contactoEmergencia;
 
       // Upload PDF if selected
       const pdfFile = document.getElementById('pdfFile').files[0];
