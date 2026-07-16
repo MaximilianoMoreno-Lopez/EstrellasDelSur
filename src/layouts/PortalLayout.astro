@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/dm-sans';
+import '@fontsource-variable/playfair-display';
 
 interface Props {
   title?: string;
@@ -63,16 +64,25 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 html { font-size: 16px; }
 body {
   font-family: 'DM Sans Variable', 'DM Sans', 'DM Sans Fallback', system-ui, sans-serif;
-  background: #f8f9fb;
+  background: #fafaf7;
   color: #0a1628;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+:focus-visible {
+  outline: 2px solid #0d9488;
+  outline-offset: 3px;
+}
+.portal-header :focus-visible,
+.portal-footer :focus-visible {
+  outline-color: #f59e0b;
+}
+
 .portal-header {
-  background: #fff;
-  border-bottom: 1px solid #e5e7eb;
+  background: #0a1628;
+  border-bottom: 1px solid rgba(255,255,255,.08);
   position: sticky; top: 0; z-index: 100;
 }
 .portal-header-inner {
@@ -82,25 +92,34 @@ body {
 }
 .portal-logo {
   display: flex; align-items: center; gap: .6rem;
-  text-decoration: none; color: #0a1628;
-  font-weight: 600; font-size: .95rem;
+  text-decoration: none; color: #fff;
+  font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+  font-weight: 600; font-size: 1.05rem;
 }
 .portal-logo img { height: 32px; width: auto; }
 
 .portal-nav {
-  align-items: center; gap: 1rem;
+  align-items: center; gap: 1.25rem;
 }
 .portal-nav-link {
-  font-size: .88rem; font-weight: 500; color: #4b5563;
+  font-size: .88rem; font-weight: 500; color: rgba(255,255,255,.8);
   text-decoration: none; transition: color .15s;
 }
-.portal-nav-link:hover { color: #0d9488; }
+.portal-nav-link:hover { color: #5eead4; }
 .portal-nav-btn {
-  background: none; border: none; cursor: pointer;
-  font-family: inherit; font-size: .88rem;
-  color: #ef4444; font-weight: 500; padding: 0;
+  background: none; cursor: pointer;
+  font-family: inherit; font-size: .85rem;
+  color: rgba(255,255,255,.75); font-weight: 500;
+  padding: .35rem .9rem;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  transition: color .15s, border-color .15s, background .15s;
 }
-.portal-nav-btn:hover { color: #dc2626; }
+.portal-nav-btn:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,.5);
+  background: rgba(255,255,255,.06);
+}
 
 .portal-main {
   flex: 1;
@@ -113,9 +132,9 @@ body {
   text-align: center;
   padding: 1.5rem;
   font-size: .8rem;
-  color: #9ca3af;
-  border-top: 1px solid #e5e7eb;
-  background: #fff;
+  color: rgba(255,255,255,.55);
+  background: #0a1628;
 }
-.portal-footer a { color: #0d9488; text-decoration: none; }
+.portal-footer a { color: #5eead4; text-decoration: none; }
+.portal-footer a:hover { text-decoration: underline; }
 </style>

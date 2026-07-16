@@ -309,16 +309,20 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
   flex-wrap: wrap; gap: 1rem;
   margin-bottom: 2rem;
 }
-.dash-title { font-size: 1.6rem; font-weight: 700; color: #0a1628; }
+.dash-title {
+  font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700; color: #0a1628;
+}
 .dash-sub { font-size: .88rem; color: #6b7280; margin-top: .25rem; }
 .btn-admin {
   display: inline-block;
-  background: #0a1628; color: #fff;
-  padding: .5rem 1rem; border-radius: 8px;
+  background: rgba(245,158,11,.12); color: #b45309;
+  border: 1px solid rgba(245,158,11,.4);
+  padding: .5rem 1.1rem; border-radius: 999px;
   font-size: .82rem; font-weight: 600;
-  text-decoration: none; transition: background .15s;
+  text-decoration: none; transition: background .15s, border-color .15s;
 }
-.btn-admin:hover { background: #162035; }
+.btn-admin:hover { background: rgba(245,158,11,.22); border-color: rgba(245,158,11,.6); }
 
 .alert {
   padding: .85rem 1rem; border-radius: 8px;
@@ -329,15 +333,17 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
 
 .form-section {
   background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border: 1px solid #eceae3;
+  border-radius: 16px;
   padding: 1.75rem 2rem;
   margin-bottom: 1.5rem;
+  box-shadow: 0 2px 12px rgba(10,22,40,.04);
 }
 .section-title {
-  font-size: 1.05rem; font-weight: 700; color: #0a1628;
+  font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 700; color: #0a1628;
   margin-bottom: 1.25rem; padding-bottom: .75rem;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f0eee6;
 }
 .section-desc { font-size: .88rem; color: #6b7280; margin-bottom: 1.25rem; }
 .subsection-label {
@@ -366,7 +372,10 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
   outline: none;
   width: 100%;
 }
-.field input:focus { border-color: #0d9488; }
+.field input:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13,148,136,.12);
+}
 
 /* PDF upload */
 .current-pdf {
@@ -395,15 +404,16 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
 
 .form-actions { display: flex; justify-content: flex-end; margin-top: .5rem; }
 .btn-save {
-  background: #0d9488; color: #fff;
-  border: none; border-radius: 8px;
-  padding: .8rem 2rem;
+  background: #0a7270; color: #fff;
+  border: none; border-radius: 999px;
+  padding: .85rem 2.25rem;
   font-size: .95rem; font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
-  transition: background .15s;
+  transition: background .15s, box-shadow .15s;
   min-width: 160px;
 }
-.btn-save:hover { background: #0f766e; }
+.btn-save:hover { background: #0d9488; box-shadow: 0 4px 14px rgba(13,148,136,.3); }
 .btn-save:disabled { opacity: .7; cursor: not-allowed; }
 
 @media (max-width: 600px) {

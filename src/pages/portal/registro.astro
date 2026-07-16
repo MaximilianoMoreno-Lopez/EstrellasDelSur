@@ -135,16 +135,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 }
 .auth-card {
   background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 2.5rem 2rem;
+  border: 1px solid #eceae3;
+  border-radius: 20px;
+  padding: 2.5rem 2.25rem;
   width: 100%; max-width: 420px;
-  box-shadow: 0 4px 24px rgba(10,22,40,.07);
+  box-shadow: 0 10px 40px rgba(10,22,40,.08);
+  border-top: 3px solid #f59e0b;
 }
 .auth-logo { text-align: center; margin-bottom: 1.25rem; }
-.auth-logo img { height: 48px; margin: 0 auto; }
+.auth-logo img { height: 52px; margin: 0 auto; }
 .auth-title {
-  font-size: 1.45rem; font-weight: 700; text-align: center;
+  font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700; text-align: center;
   color: #0a1628; margin-bottom: .4rem;
 }
 .auth-sub {
@@ -172,7 +174,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   transition: border-color .15s;
   outline: none;
 }
-.field input:focus { border-color: #0d9488; }
+.field input:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13,148,136,.12);
+}
 .field-check {
   display: flex; align-items: flex-start; gap: .6rem;
   margin-bottom: 1.1rem;
@@ -188,15 +193,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 .field-check a { color: #0d9488; text-decoration: underline; font-weight: 500; }
 .btn-primary {
   width: 100%;
-  background: #0d9488; color: #fff;
-  border: none; border-radius: 8px;
-  padding: .8rem;
+  background: #0a7270; color: #fff;
+  border: none; border-radius: 999px;
+  padding: .85rem;
   font-size: .95rem; font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
-  transition: background .15s;
+  transition: background .15s, box-shadow .15s;
   margin-top: .4rem;
 }
-.btn-primary:hover { background: #0f766e; }
+.btn-primary:hover { background: #0d9488; box-shadow: 0 4px 14px rgba(13,148,136,.3); }
 .btn-primary:disabled { opacity: .7; cursor: not-allowed; }
 .auth-switch {
   text-align: center; font-size: .85rem; color: #6b7280;
