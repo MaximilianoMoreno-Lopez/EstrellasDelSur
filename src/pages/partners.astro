@@ -32,23 +32,26 @@ const offers = [
 ];
 
 // Partner and coordinating organisations from our project record (PIF).
+// `featured` marks the organisations we work with most often; they get a
+// gold accent in the marquee.
 const partners = [
-  { name: 'Federación Estrellas de Europa', country: 'European network' },
-  { name: 'Europe4Youth', country: 'Poland' },
+  { name: 'Federación Estrellas de Europa', country: 'European network', featured: true },
+  { name: 'Europe4Youth', country: 'Poland', featured: true },
   { name: 'Innowatorium', country: 'Poland' },
   { name: 'Európa Ifjúsága Egyesület', country: 'Hungary' },
-  { name: 'Origó Műhely', country: 'Hungary' },
+  { name: 'Origó Műhely', country: 'Hungary', featured: true },
   { name: 'Pro Dezvoltare DACIA (APDD)', country: 'Romania' },
   { name: 'Ofensiva Tinerilor', country: 'Romania' },
   { name: 'Eco Challenge', country: 'Romania' },
   { name: 'International EduCenter', country: 'Romania' },
   { name: 'Colour Your Dreams', country: 'Romania' },
   { name: 'Asociația Dorna Tismana', country: 'Romania' },
-  { name: 'Município do Fundão', country: 'Portugal' },
+  { name: 'Município do Fundão', country: 'Portugal', featured: true },
   { name: 'Associaçâo Selfmade', country: 'Portugal' },
   { name: 'Utopía Verde', country: 'Portugal' },
-  { name: "Communauté d'Agglomération du Libournais", country: 'France' },
-  { name: "Ville d'Hérouville Saint-Clair", country: 'France' },
+  { name: 'La CALI (Agglomération du Libournais)', country: 'France', featured: true },
+  { name: "Ville d'Hérouville Saint-Clair", country: 'France', featured: true },
+  { name: 'Hawkstars', country: 'Europe', featured: true },
   { name: 'Blue Youth', country: 'France' },
   { name: 'La Friche la Belle de Mai', country: 'France' },
   { name: 'Kindervereinigung Leipzig', country: 'Germany' },
@@ -282,7 +285,10 @@ const orgJsonLd = {
           <div class={`marquee-row${r % 2 === 1 ? ' marquee-reverse' : ''}`}>
             <div class="marquee-content">
               {row.map((p) => (
-                <span class="partner-chip">
+                <span class={`partner-chip${p.featured ? ' is-featured' : ''}`}>
+                  {p.featured && (
+                    <svg class="chip-star" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  )}
                   <span class="partner-name">{p.name}</span>
                   <span class="partner-country">{p.country}</span>
                 </span>
@@ -290,7 +296,10 @@ const orgJsonLd = {
             </div>
             <div class="marquee-content marquee-copy" aria-hidden="true">
               {row.map((p) => (
-                <span class="partner-chip">
+                <span class={`partner-chip${p.featured ? ' is-featured' : ''}`}>
+                  {p.featured && (
+                    <svg class="chip-star" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  )}
                   <span class="partner-name">{p.name}</span>
                   <span class="partner-country">{p.country}</span>
                 </span>
@@ -302,6 +311,29 @@ const orgJsonLd = {
       <p class="partners-more fade-in">
         {partners.length}+ organisations across 20 countries, and counting. Yours could be next.
       </p>
+
+      <script>
+        // Shuffle the whole partner pool across the three rows on every
+        // visit and start each row at a random point of its loop, so the
+        // marquee never looks the same twice. Both halves of a row get the
+        // same order to keep the -50% loop seamless.
+        const rows = [...document.querySelectorAll<HTMLElement>('.marquee-row')];
+        if (rows.length) {
+          const pool = rows.flatMap((r) => [...r.querySelector('.marquee-content')!.children]);
+          for (let i = pool.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [pool[i], pool[j]] = [pool[j], pool[i]];
+          }
+          const per = Math.ceil(pool.length / rows.length);
+          rows.forEach((row, i) => {
+            const slice = pool.slice(i * per, (i + 1) * per);
+            row.querySelectorAll('.marquee-content').forEach((c) => {
+              c.replaceChildren(...slice.map((chip) => chip.cloneNode(true)));
+            });
+            row.style.animationDelay = `-${(Math.random() * 45).toFixed(1)}s`;
+          });
+        }
+      </script>
     </div>
   </section>
 
@@ -440,7 +472,7 @@ const orgJsonLd = {
   .marquee-row {
     display: flex;
     width: max-content;
-    animation: marquee-scroll 70s linear infinite;
+    animation: marquee-scroll 45s linear infinite;
   }
   .marquee-reverse { animation-direction: reverse; }
   .marquee-row:hover { animation-play-state: paused; }
@@ -472,6 +504,12 @@ const orgJsonLd = {
     color: var(--navy);
   }
   .partner-country { font-size: .75rem; color: var(--gray-500); }
+
+  .partner-chip.is-featured {
+    border-color: rgba(245, 158, 11, .5);
+    background: #fffdf7;
+  }
+  .chip-star { color: var(--gold); align-self: center; flex-shrink: 0; }
 
   .partners-more {
     margin-top: 1.75rem;
