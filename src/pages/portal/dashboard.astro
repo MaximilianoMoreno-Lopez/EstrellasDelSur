@@ -63,6 +63,17 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       <section class="form-section">
         <h2 class="section-title">Plan de viaje</h2>
 
+        <div class="info-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>
+            <strong>¿Destino o punto de encuentro?</strong> El destino es donde aterriza tu avión.
+            El punto de encuentro es donde arranca el proyecto, que puede ser otra ciudad u otro día.
+            Por ejemplo, si vuelas a Cracovia y llegas el 15/05 pero el proyecto empieza el 16/05 en
+            Gdansk, la hora de llegada al destino es la de tu avión en Cracovia, y la hora de llegada
+            al punto de encuentro es a la que llegarás a Gdansk el día 16.
+          </p>
+        </div>
+
         <p class="subsection-label">Llegada al país de destino</p>
         <div class="form-grid" style="margin-bottom:1.5rem">
           <div class="field">
@@ -380,6 +391,17 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
   border-bottom: 1px solid #f0eee6;
 }
 .section-desc { font-size: .88rem; color: #6b7280; margin-bottom: 1.25rem; }
+.info-note {
+  display: flex; align-items: flex-start; gap: .65rem;
+  background: rgba(13,148,136,.06);
+  border: 1px solid rgba(13,148,136,.2);
+  border-radius: 10px;
+  padding: .85rem 1rem;
+  margin-bottom: 1.5rem;
+}
+.info-note svg { color: #0a7270; flex-shrink: 0; margin-top: .15rem; }
+.info-note p { font-size: .85rem; color: #374151; line-height: 1.6; }
+.info-note strong { color: #0a1628; }
 .subsection-label {
   font-size: .75rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: .08em; color: #0d9488; margin-bottom: .75rem;
