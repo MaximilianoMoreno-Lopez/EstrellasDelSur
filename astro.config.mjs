@@ -72,7 +72,6 @@ export default defineConfig({
     // Old WP pages with no direct equivalent
     '/proyectos-erasmus/':            '/proyectos/',
     '/get-involved/':                 '/voluntariado-esc/',
-    '/intercultural-exchange-3/':     '/proyectos/',
     '/european-solidarity-corps-esc/':'/voluntariado-esc/',
     '/the-rythm-of-unit/':            '/proyectos/',
     '/breath-balance-bloom/':         '/proyectos/',

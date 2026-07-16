@@ -5,6 +5,7 @@ status: "past"
 flag: "🇪🇺"
 description: "Inclusión digital para jóvenes con menos oportunidades"
 order: 11
+location: "Brașov, Rumanía"
 ---
 INCLUDE+ Digital Access es un intercambio juvenil europeo que aborda la brecha digital, proporcionando a jóvenes con menos oportunidades las herramientas, habilidades y confianza necesarias para participar plenamente en la sociedad digital.
 
