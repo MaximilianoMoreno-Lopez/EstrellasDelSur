@@ -292,20 +292,20 @@ async function renderTable(data) {
   font-size: .78rem; font-weight: 600;
   padding: .32rem .8rem;
   border-radius: 999px;
-  border: 1px solid rgba(13,148,136,.35);
-  background: rgba(13,148,136,.08);
-  color: #0a7270;
+  border: 1px solid #bbf7d0;
+  background: #ecfdf5;
+  color: #15803d;
   cursor: pointer;
-  transition: background .15s, color .15s, border-color .15s, opacity .15s;
+  transition: background .15s, color .15s, border-color .15s;
 }
-.col-chip:hover { background: rgba(13,148,136,.16); }
+.col-chip:hover { background: #d1fae5; border-color: #86efac; }
 .col-chip.is-off {
-  background: transparent;
-  border-color: #d1d5db;
-  color: #9ca3af;
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
   text-decoration: line-through;
 }
-.col-chip.is-off:hover { border-color: #9ca3af; color: #6b7280; }
+.col-chip.is-off:hover { background: #fee2e2; border-color: #fca5a5; }
 
 .search-bar {
   display: flex; align-items: center; gap: .6rem;
