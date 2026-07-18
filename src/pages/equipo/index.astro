@@ -112,12 +112,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     let equipo = [];
     let tareas = [];
     let proyectos = [];
+    let subtareas = [];
     let miEmail = '';
     let soyAdmin = false;
     let filtroPersona = 'todas';
     let filtroProyecto = 'todos';
     let editandoId = null;
     let asignadosSel = new Set();
+    let expandidas = new Set(); // tareas con la checklist desplegada
 
     const ESTADOS = ['pendiente', 'en_curso', 'hecha'];
     const PRIORIDAD_ORDEN = { alta: 0, media: 1, baja: 2 };
@@ -148,7 +150,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       equipo = equipoData;
       soyAdmin = equipo.find((m) => m.email === miEmail)?.rol === 'admin';
 
-      await Promise.all([cargarTareas(), cargarProyectos()]);
+      await Promise.all([cargarTareas(), cargarProyectos(), cargarSubtareas()]);
       montarFormulario();
       montarFiltroPersonas();
       montarFiltroProyectos();
@@ -178,6 +180,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       proyectos = data ?? [];
     }
 
+    async function cargarSubtareas() {
+      const { data, error } = await supabase
+        .from('subtareas')
+        .select('*')
+        .order('created_at');
+      if (error) aviso('Subtareas no disponibles (¿falta ejecutar la migración SQL?): ' + error.message);
+      subtareas = data ?? [];
+    }
+
+    function subsDe(tareaId) {
+      return subtareas.filter((s) => s.tarea_id === tareaId);
+    }
+
     // ── Helpers ───────────────────────────────────────────────
     function nombreDe(email) {
       return equipo.find((m) => m.email === email)?.nombre ?? email ?? '';
@@ -197,9 +212,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     function render() {
       const visibles = tareas.filter((t) => {
         const lista = asignadosDe(t);
+        // Una persona "está" en la tarea si figura en ella o en alguna subtarea
+        const enSubtarea = subsDe(t.id).some((s) => (s.asignados ?? []).includes(filtroPersona));
         const okPersona =
           filtroPersona === 'todas' ||
-          (filtroPersona === 'sin' ? lista.length === 0 : lista.includes(filtroPersona));
+          (filtroPersona === 'sin' ? lista.length === 0 : lista.includes(filtroPersona) || enSubtarea);
         const okProyecto =
           filtroProyecto === 'todos' ||
           (filtroProyecto === 'ninguno' ? !t.proyecto_id : t.proyecto_id === filtroProyecto);
@@ -282,6 +299,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         card.appendChild(p);
       }
 
+      // Subtareas: fila de progreso (si hay) + checklist desplegable
+      const subs = subsDe(t.id);
+      if (subs.length > 0) {
+        const hechas = subs.filter((s) => s.hecha).length;
+        const prog = document.createElement('button');
+        prog.type = 'button';
+        prog.className = 'tc-subs-prog';
+        prog.setAttribute('aria-expanded', String(expandidas.has(t.id)));
+        const bar = document.createElement('span');
+        bar.className = 'tc-subs-bar';
+        const fill = document.createElement('span');
+        fill.className = 'tc-subs-fill';
+        fill.style.width = `${Math.round((hechas / subs.length) * 100)}%`;
+        bar.appendChild(fill);
+        const txt = document.createElement('span');
+        txt.textContent = `Subtareas ${hechas}/${subs.length}`;
+        prog.appendChild(txt);
+        prog.appendChild(bar);
+        prog.addEventListener('click', () => {
+          if (expandidas.has(t.id)) expandidas.delete(t.id);
+          else expandidas.add(t.id);
+          render();
+        });
+        card.appendChild(prog);
+      }
+      if (expandidas.has(t.id)) card.appendChild(panelSubtareas(t, subs));
+
       const foot = document.createElement('div');
       foot.className = 'tc-foot';
 
@@ -317,6 +361,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         btn.classList.add('is-avanzar');
         acciones.appendChild(btn);
       }
+      acciones.appendChild(
+        botonIcono('Subtareas', checklistSvg(), () => {
+          if (expandidas.has(t.id)) expandidas.delete(t.id);
+          else expandidas.add(t.id);
+          render();
+        }),
+      );
       acciones.appendChild(botonIcono('Editar', editarSvg(), () => abrirFormulario(t)));
       if (soyAdmin) acciones.appendChild(botonIcono('Borrar', borrarSvg(), () => borrar(t)));
       foot.appendChild(acciones);
@@ -345,7 +396,117 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       return b;
     }
     const editarSvg = () => '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>';
+    const checklistSvg = () => '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>';
     const borrarSvg = () => '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+
+    // ── Subtareas ─────────────────────────────────────────────
+    function panelSubtareas(t, subs) {
+      const panel = document.createElement('div');
+      panel.className = 'tc-subs';
+
+      subs.forEach((s) => {
+        const row = document.createElement('div');
+        row.className = 'sub-row';
+
+        const check = document.createElement('input');
+        check.type = 'checkbox';
+        check.className = 'sub-check';
+        check.checked = s.hecha;
+        check.setAttribute('aria-label', `Marcar "${s.titulo}" como hecha`);
+        check.addEventListener('change', () => marcarSub(s, check.checked));
+        row.appendChild(check);
+
+        const titulo = document.createElement('span');
+        titulo.className = 'sub-titulo' + (s.hecha ? ' is-hecha' : '');
+        titulo.textContent = s.titulo;
+        row.appendChild(titulo);
+
+        // Mini círculos de cada miembro: pulsar asigna o desasigna
+        const gente = document.createElement('span');
+        gente.className = 'sub-gente';
+        equipo.forEach((m) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          const activo = (s.asignados ?? []).includes(m.email);
+          dot.className = 'sub-dot' + (activo ? ' is-on' : '');
+          dot.textContent = m.nombre.charAt(0).toUpperCase();
+          dot.title = (activo ? 'Quitar a ' : 'Asignar a ') + m.nombre;
+          dot.setAttribute('aria-pressed', String(activo));
+          dot.setAttribute('aria-label', `${activo ? 'Quitar a' : 'Asignar a'} ${m.nombre} de "${s.titulo}"`);
+          dot.addEventListener('click', () => alternarAsignadoSub(s, m.email));
+          gente.appendChild(dot);
+        });
+        row.appendChild(gente);
+
+        const del = document.createElement('button');
+        del.type = 'button';
+        del.className = 'sub-del';
+        del.textContent = '×';
+        del.title = 'Borrar subtarea';
+        del.setAttribute('aria-label', `Borrar subtarea "${s.titulo}"`);
+        del.addEventListener('click', () => borrarSub(s));
+        row.appendChild(del);
+
+        panel.appendChild(row);
+      });
+
+      // Añadir subtarea
+      const add = document.createElement('form');
+      add.className = 'sub-add';
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Añadir subtarea…';
+      input.setAttribute('aria-label', 'Título de la nueva subtarea');
+      const btn = document.createElement('button');
+      btn.type = 'submit';
+      btn.className = 'tc-btn is-avanzar';
+      btn.textContent = 'Añadir';
+      add.appendChild(input);
+      add.appendChild(btn);
+      add.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const titulo = input.value.trim();
+        if (!titulo) return;
+        btn.disabled = true;
+        const { data, error } = await supabase
+          .from('subtareas')
+          .insert({ tarea_id: t.id, titulo })
+          .select()
+          .single();
+        btn.disabled = false;
+        if (error) return aviso('No se pudo crear la subtarea: ' + error.message);
+        subtareas.push(data);
+        render();
+      });
+      panel.appendChild(add);
+
+      return panel;
+    }
+
+    async function marcarSub(s, hecha) {
+      const { error } = await supabase.from('subtareas').update({ hecha }).eq('id', s.id);
+      if (error) return aviso('No se pudo actualizar la subtarea: ' + error.message);
+      s.hecha = hecha;
+      render();
+    }
+
+    async function alternarAsignadoSub(s, email) {
+      const lista = s.asignados ?? [];
+      const nuevos = lista.includes(email)
+        ? lista.filter((e) => e !== email)
+        : [...lista, email];
+      const { error } = await supabase.from('subtareas').update({ asignados: nuevos }).eq('id', s.id);
+      if (error) return aviso('No se pudo asignar: ' + error.message);
+      s.asignados = nuevos;
+      render();
+    }
+
+    async function borrarSub(s) {
+      const { error } = await supabase.from('subtareas').delete().eq('id', s.id);
+      if (error) return aviso('No se pudo borrar la subtarea: ' + error.message);
+      subtareas = subtareas.filter((x) => x.id !== s.id);
+      render();
+    }
 
     // ── Acciones ──────────────────────────────────────────────
     async function moverA(t, estado) {
@@ -782,6 +943,70 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       margin-right: -6px;
     }
     .tc-nombres { margin-left: 12px; }
+
+    /* Subtareas */
+    .tc-subs-prog {
+      display: flex; align-items: center; gap: .6rem;
+      font-family: inherit; font-size: .74rem; font-weight: 700;
+      color: #0a7270;
+      background: none; border: none; padding: .1rem 0;
+      cursor: pointer; text-align: left;
+    }
+    .tc-subs-prog:hover { color: #0d9488; }
+    .tc-subs-bar {
+      flex: 1; height: 5px; border-radius: 999px;
+      background: #eceae3; overflow: hidden;
+    }
+    .tc-subs-fill {
+      display: block; height: 100%;
+      background: #0d9488; border-radius: 999px;
+      transition: width .25s ease;
+    }
+    .tc-subs {
+      display: flex; flex-direction: column; gap: .3rem;
+      background: #faf9f5;
+      border: 1px solid #f0eee6;
+      border-radius: 10px;
+      padding: .55rem .65rem;
+    }
+    .sub-row {
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .sub-check {
+      width: .95rem; height: .95rem;
+      accent-color: #0d9488; cursor: pointer; flex-shrink: 0;
+    }
+    .sub-titulo { flex: 1; font-size: .82rem; color: #374151; line-height: 1.35; }
+    .sub-titulo.is-hecha { text-decoration: line-through; color: #9ca3af; }
+    .sub-gente { display: inline-flex; gap: .2rem; flex-shrink: 0; }
+    .sub-dot {
+      width: 20px; height: 20px; border-radius: 50%;
+      font-family: inherit; font-size: .62rem; font-weight: 700;
+      border: 1.5px solid #e5e7eb; background: #fff; color: #9ca3af;
+      cursor: pointer; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .sub-dot:hover { border-color: #0d9488; color: #0a7270; }
+    .sub-dot.is-on { background: #0a7270; border-color: #0a7270; color: #fff; }
+    .sub-del {
+      font-family: inherit; font-size: .95rem; line-height: 1;
+      background: none; border: none; color: #9ca3af;
+      cursor: pointer; padding: 0 .15rem; flex-shrink: 0;
+    }
+    .sub-del:hover { color: #dc2626; }
+    .sub-add { display: flex; gap: .4rem; margin-top: .25rem; }
+    .sub-add input {
+      flex: 1; font-family: inherit; font-size: .8rem;
+      padding: .35rem .6rem;
+      border: 1.5px solid #e5e7eb; border-radius: 8px;
+      outline: none; background: #fff; color: #0a1628;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .sub-add input:focus {
+      border-color: #0d9488;
+      box-shadow: 0 0 0 3px rgba(13,148,136,.12);
+    }
 
     .tc-acciones { display: inline-flex; gap: .3rem; }
     .tc-btn {
