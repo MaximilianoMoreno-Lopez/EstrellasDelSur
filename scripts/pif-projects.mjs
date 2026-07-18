@@ -97,6 +97,9 @@ export const PIF = {
     { name: 'Guardians of Democracy', code: '2022-3-PT02-KA152-YOU-000102969', programa: 'Erasmus+', coord: 'Associaçâo Selfmade' },
     { name: 'YouthConnect', code: '2024-1-PT02-KA210-YOU-000252927', programa: 'Erasmus+ (2025-2026)', coord: 'Municipality of Fundão' },
     { name: 'Re-roots (Future Ecoguardians 2)', code: '2025-1-CZ01-KA151-YOU-000300798', programa: 'Erasmus+', coord: 'Edda Krkonoše' },
+    // OJO: "Impro(ve) Yourself" e "Improve Yourself" son EL MISMO proyecto
+    // (confirmado por Maxi el 2026-07-18) aunque el PIF los liste dos veces
+    // con códigos distintos; en la web hay una única ficha (improve-yourself).
     { name: 'Impro(ve) Yourself', code: '2025-1-LT01-KA153-YOU-DB02AE48', programa: 'Erasmus+', coord: 'Zalianamis' },
     { name: 'DiaLogos Europeos', code: '2025-1-ES02-KA154-YOU-000304747', programa: 'Erasmus+', coord: 'Estrellas del Sur' },
     { name: 'Mental Health Crash Course', code: '2025-1-PL01-KA151-YOU-000298663', programa: 'Erasmus+', coord: 'Europe4Youth' },
