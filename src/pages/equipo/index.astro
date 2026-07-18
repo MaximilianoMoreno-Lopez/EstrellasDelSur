@@ -704,7 +704,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     function montarFiltroProyectos() {
       const wrap = document.getElementById('projectFilters');
-      wrap.querySelectorAll('.pf-chip').forEach((c) => c.remove());
+      wrap.querySelectorAll('.pf-chip, .pf-del').forEach((c) => c.remove());
       if (proyectos.length === 0) {
         wrap.style.display = 'none';
         return;
@@ -722,10 +722,53 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             x.classList.toggle('is-on', x === b);
             x.setAttribute('aria-pressed', String(x === b));
           });
+          actualizarBotonBorrarProyecto();
           render();
         }, c.value === filtroProyecto);
         wrap.appendChild(b);
       });
+
+      // Borrar el proyecto seleccionado (solo admins; las tareas se
+      // conservan y quedan sin proyecto gracias al on delete set null)
+      if (soyAdmin) {
+        const del = document.createElement('button');
+        del.type = 'button';
+        del.id = 'delProyectoBtn';
+        del.className = 'pf-del';
+        del.style.display = 'none';
+        del.innerHTML = borrarSvg(); // SVG estático propio
+        del.appendChild(document.createTextNode(' Borrar proyecto'));
+        del.addEventListener('click', borrarProyecto);
+        wrap.appendChild(del);
+        actualizarBotonBorrarProyecto();
+      }
+    }
+
+    function actualizarBotonBorrarProyecto() {
+      const btn = document.getElementById('delProyectoBtn');
+      if (!btn) return;
+      const esProyectoReal = filtroProyecto !== 'todos' && filtroProyecto !== 'ninguno';
+      btn.style.display = esProyectoReal ? '' : 'none';
+    }
+
+    async function borrarProyecto() {
+      const p = proyectos.find((x) => x.id === filtroProyecto);
+      if (!p) return;
+      const nTareas = tareas.filter((t) => t.proyecto_id === p.id).length;
+      const detalle = nTareas > 0
+        ? ` Sus ${nTareas} tarea${nTareas === 1 ? '' : 's'} no se borran, solo pierden la etiqueta.`
+        : '';
+      if (!confirm(`¿Borrar el proyecto "${p.nombre}"?${detalle}`)) return;
+
+      const { error } = await supabase.from('proyectos_panel').delete().eq('id', p.id);
+      if (error) return aviso('No se pudo borrar el proyecto: ' + error.message);
+
+      proyectos = proyectos.filter((x) => x.id !== p.id);
+      tareas.forEach((t) => { if (t.proyecto_id === p.id) t.proyecto_id = null; });
+      filtroProyecto = 'todos';
+      refrescarSelectProyectos();
+      montarFiltroProyectos();
+      render();
     }
 
     init();
@@ -848,6 +891,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
     .pf-chip:hover { border-color: #0d9488; color: #0a7270; }
     .pf-chip.is-on { background: #0a7270; border-color: #0a7270; color: #fff; }
+    .pf-del {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-family: inherit; font-size: .78rem; font-weight: 600;
+      padding: .3rem .85rem; border-radius: 999px;
+      border: 1px solid #fecaca; background: #fef2f2; color: #b91c1c;
+      cursor: pointer; margin-left: .5rem;
+      transition: background .15s, border-color .15s;
+    }
+    .pf-del:hover { background: #fee2e2; border-color: #fca5a5; }
 
     /* Tablero */
     .board {
