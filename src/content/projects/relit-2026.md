@@ -1,7 +1,7 @@
 ---
 title: "ReLit 2026"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇭🇷"
 description: "Una semana de formación en Veli Iž, un antiguo pueblo pesquero en una isla del Adriático croata, para reforzar la alfabetización religiosa (religious literacy) en el trabajo juvenil. Talleres junto al mar, educación no formal y diálogo intercultural con jóvenes de ocho países."
 location: "Veli Iž, Croacia"
