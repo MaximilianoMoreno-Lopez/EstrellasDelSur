@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SUBVENCIONES, ULTIMA_REVISION } from '../lib/subvenciones.mjs';
+import { SUBVENCIONES, ULTIMA_REVISION, FAVORITAS } from '../lib/subvenciones.mjs';
 import { getCollection } from 'astro:content';
+
+const FAV = new Set(FAVORITAS);
 
 type Estado = 'abierta' | 'prevista' | 'cerrada' | 'anunciar';
 
@@ -215,10 +217,13 @@ const proyectos = proyectosRaw
               data-fin={s.plazoFin ?? ''}
               data-manual={s.estadoManual ?? ''}
               data-nombre={s.nombre}
+              data-fav={FAV.has(s.nombre) ? '1' : '0'}
             >
-              <button class="rc-fav" data-nombre={s.nombre} type="button" aria-label="Marcar como favorita" title="Marcar como favorita">
-                <svg viewBox="0 0 24 24" width="17" height="17" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </button>
+              {FAV.has(s.nombre) && (
+                <span class="rc-fav is-fav" title="Favorita del equipo" aria-label="Favorita">
+                  <svg viewBox="0 0 24 24" width="17" height="17" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </span>
+              )}
               <div class="rc-top">
                 <span class={`badge ${ESTADO_BADGE[s.estado]} rc-estado`}>
                   {ESTADO_LABEL[s.estado]}{s.estado === 'abierta' ? diasTxt(s.plazoFin) : ''}
@@ -530,47 +535,6 @@ const proyectos = proyectosRaw
     if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
   }
 
-  // ── Favoritas (se guardan en este navegador) ─────────────────
-  const FAVS_KEY = 'radarFavoritas';
-  const DEFAULT_FAVS = [
-    'Transforma Córdoba 2027 (Transformación Social)',
-    'Fomento del Voluntariado Social 2027',
-    'Innovactiva 2027 (emprendimiento juvenil)',
-    'IMDEEC ESAL 2027',
-  ];
-  function loadFavs(): string[] {
-    try {
-      const raw = localStorage.getItem(FAVS_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch (e) { /* ignore */ }
-    try { localStorage.setItem(FAVS_KEY, JSON.stringify(DEFAULT_FAVS)); } catch (e) { /* ignore */ }
-    return [...DEFAULT_FAVS];
-  }
-  let favs = loadFavs();
-  function saveFavs() {
-    try { localStorage.setItem(FAVS_KEY, JSON.stringify(favs)); } catch (e) { /* ignore */ }
-  }
-  function paintFavs() {
-    document.querySelectorAll<HTMLElement>('.radar-card').forEach((card) => {
-      const on = favs.includes(card.dataset.nombre || '');
-      card.dataset.fav = on ? '1' : '0';
-      const btn = card.querySelector('.rc-fav');
-      if (btn) btn.classList.toggle('is-fav', on);
-    });
-  }
-  document.querySelectorAll<HTMLButtonElement>('.rc-fav').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const nombre = btn.dataset.nombre || '';
-      const i = favs.indexOf(nombre);
-      if (i >= 0) favs.splice(i, 1);
-      else favs.push(nombre);
-      saveFavs();
-      paintFavs();
-      applyFilters();
-    });
-  });
-  paintFavs();
-
   // ── Filtros de proyectos (tipo + estado) ──────────────────────
   const pActive: Record<string, string> = { tipo: 'todos', estado: 'todos' };
   document.querySelectorAll<HTMLElement>('#panel-proyectos .filter-group[data-pfilter]').forEach((group) => {
@@ -780,17 +744,10 @@ const proyectos = proyectosRaw
     top: .7rem;
     right: .8rem;
     padding: .15rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--gray-300);
+    color: #f59e0b;
     line-height: 0;
-    transition: color .15s, transform .1s;
   }
-  .rc-fav svg { fill: none; stroke: currentColor; stroke-width: 1.7; }
-  .rc-fav:hover { color: #f59e0b; transform: scale(1.12); }
-  .rc-fav.is-fav { color: #f59e0b; }
-  .rc-fav.is-fav svg { fill: #f59e0b; }
+  .rc-fav svg { fill: #f59e0b; stroke: #f59e0b; stroke-width: 1.7; }
   .rc-ambito {
     font-size: .72rem;
     font-weight: 700;

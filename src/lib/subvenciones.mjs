@@ -22,6 +22,18 @@
 
 export const ULTIMA_REVISION = '2026-07-16';
 
+// Favoritas del equipo: compartidas por todos (se guardan aquí, en el código,
+// no en cada navegador). Para cambiarlas, edita esta lista con el `nombre`
+// EXACTO de la convocatoria y sube el cambio; se verá igual en todos los
+// dispositivos del equipo.
+export const FAVORITAS = [
+  'IMDEEC ESAL 2027',
+  'Transforma Córdoba 2027 (Transformación Social)',
+  'Fomento del Voluntariado Social 2027',
+  'Innovactiva 2027 (emprendimiento juvenil)',
+  'Subvenciones IAJ a asociaciones juveniles 2027',
+];
+
 export const SUBVENCIONES = [
   // ── Córdoba ──────────────────────────────────────────────
   {
