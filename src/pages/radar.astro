@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SUBVENCIONES, ULTIMA_REVISION } from '../lib/subvenciones.mjs';
+import { getCollection } from 'astro:content';
 
 type Estado = 'abierta' | 'prevista' | 'cerrada' | 'anunciar';
 
@@ -63,6 +64,14 @@ const PUBLICOS = [...new Set(items.flatMap((s) => s.publico ?? []))].sort();
 const fmt = (d: string | null) =>
   d ? new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) : null;
 
+// Plazo compacto para la vista lista (sin guiones largos, con "a"/"hasta"/"desde")
+const plazoCompact = (s: any): string => {
+  if (s.plazoInicio && s.plazoFin) return `${fmt(s.plazoInicio)} a ${fmt(s.plazoFin)}`;
+  if (s.plazoFin) return `hasta ${fmt(s.plazoFin)}`;
+  if (s.plazoInicio) return `desde ${fmt(s.plazoInicio)}`;
+  return 'Sin fecha';
+};
+
 // Texto del sufijo de días para convocatorias abiertas ('último día', '5 días')
 const diasTxt = (fin: string | null) => {
   if (!fin) return '';
@@ -72,6 +81,37 @@ const diasTxt = (fin: string | null) => {
 };
 
 const abiertas = items.filter((s) => s.estado === 'abierta').length;
+
+// ── Proyectos (colección de contenido) ────────────────────────
+const TIPOS = ['Intercambio', 'Voluntariado', 'Formación', 'Participación', 'Cooperación'];
+const TIPO_BADGE: Record<string, string> = {
+  Intercambio: 'badge-teal',
+  Voluntariado: 'badge-andalucia',
+  Formación: 'badge-gold',
+  Participación: 'badge-sky',
+  Cooperación: 'badge-navy',
+};
+
+// Clave de fecha ordenable a partir del texto libre de `dates`, con fallback al año.
+function projSortKey(p: any): string {
+  const m = p.data.dates?.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+  if (m) return `${m[3]}-${m[2]}-${m[1]}`;
+  if (p.data.year) return `${p.data.year}-12-31`;
+  return '0000-00-00';
+}
+
+const proyectosRaw = await getCollection('projects');
+const proyectos = proyectosRaw
+  .map((p) => ({
+    id: p.id,
+    title: p.data.title,
+    tipo: p.data.type,
+    status: p.data.status,
+    location: p.data.location ?? '',
+    fechaLabel: p.data.dates || p.data.yearLabel || (p.data.year ? String(p.data.year) : '—'),
+    sortKey: projSortKey(p),
+  }))
+  .sort((a, b) => b.sortKey.localeCompare(a.sortKey) || a.title.localeCompare(b.title, 'es'));
 ---
 
 <BaseLayout
@@ -93,10 +133,10 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
         Herramienta interna
       </p>
-      <h1 class="fade-in fade-in-delay-1">Radar de subvenciones</h1>
+      <h1 class="fade-in fade-in-delay-1">Radar interno</h1>
       <p class="fade-in fade-in-delay-2">
-        Convocatorias que nos interesan como asociación, más ayudas de emprendimiento para
-        difundir. Ahora mismo, <strong><span id="abiertasCount">{abiertas}</span> abiertas</strong>.
+        Convocatorias de subvenciones que nos interesan y el catálogo completo de proyectos.
+        Ahora mismo, <strong><span id="abiertasCount">{abiertas}</span> convocatorias abiertas</strong>.
         Última revisión de datos: {fmt(ULTIMA_REVISION)}.
       </p>
     </div>
@@ -105,101 +145,203 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
   <section class="section radar-section">
     <div class="container">
 
-      <!-- Filters -->
-      <div class="radar-filters fade-in" id="radarFilters">
-        <div class="filter-group" data-filter="estado">
-          <span class="filter-label">Estado</span>
-          <button class="f-chip is-on" data-value="todos">Todas</button>
-          {(Object.keys(ESTADO_FILTRO) as Estado[]).map((e) => (
-            <button class="f-chip" data-value={e}>{ESTADO_FILTRO[e]}</button>
+      <!-- Pestañas -->
+      <div class="radar-tabs" role="tablist">
+        <button class="radar-tab is-on" data-tab="subvenciones" role="tab">
+          Subvenciones <span class="rt-count">{items.length}</span>
+        </button>
+        <button class="radar-tab" data-tab="proyectos" role="tab">
+          Proyectos <span class="rt-count">{proyectos.length}</span>
+        </button>
+      </div>
+
+      <!-- ══════════ PANEL SUBVENCIONES ══════════ -->
+      <div class="radar-panel" id="panel-subvenciones">
+
+        <div class="radar-toolbar">
+          <div class="view-toggle" data-grid="radarGrid">
+            <button class="vt-btn is-on" data-view="cards">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Tarjetas
+            </button>
+            <button class="vt-btn" data-view="list">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              Lista
+            </button>
+          </div>
+          <div class="order-select" data-order-for="sub">
+            <span class="filter-label">Orden</span>
+            <button class="o-chip is-on" data-order="estado">Estado</button>
+            <button class="o-chip" data-order="cierre">Fecha de cierre</button>
+            <button class="o-chip" data-order="apertura">Apertura</button>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="radar-filters" id="radarFilters">
+          <div class="filter-group" data-filter="estado">
+            <span class="filter-label">Estado</span>
+            <button class="f-chip is-on" data-value="todos">Todas</button>
+            {(Object.keys(ESTADO_FILTRO) as Estado[]).map((e) => (
+              <button class="f-chip" data-value={e}>{ESTADO_FILTRO[e]}</button>
+            ))}
+          </div>
+          <div class="filter-group" data-filter="ambito">
+            <span class="filter-label">Ámbito</span>
+            <button class="f-chip is-on" data-value="todos">Todos</button>
+            {AMBITOS.map((a) => <button class="f-chip" data-value={a}>{a}</button>)}
+          </div>
+          <div class="filter-group" data-filter="publico">
+            <span class="filter-label">Para</span>
+            <button class="f-chip is-on" data-value="todos">Todos</button>
+            {PUBLICOS.map((p) => <button class="f-chip" data-value={p}>{p}</button>)}
+          </div>
+        </div>
+
+        <!-- Tarjetas / Lista -->
+        <div class="radar-grid" id="radarGrid">
+          {items.map((s) => (
+            <article
+              class={`radar-card card estado-${s.estado}`}
+              data-estado={s.estado}
+              data-ambito={s.ambito}
+              data-publico={(s.publico ?? []).join(',')}
+              data-inicio={s.plazoInicio ?? ''}
+              data-fin={s.plazoFin ?? ''}
+              data-manual={s.estadoManual ?? ''}
+              data-nombre={s.nombre}
+            >
+              <div class="rc-top">
+                <span class={`badge ${ESTADO_BADGE[s.estado]} rc-estado`}>
+                  {ESTADO_LABEL[s.estado]}{s.estado === 'abierta' ? diasTxt(s.plazoFin) : ''}
+                </span>
+                <span class="rc-ambito">{s.ambito}</span>
+              </div>
+              <h2 class="rc-nombre">{s.nombre}</h2>
+              <p class="rc-organismo">{s.organismo}</p>
+              <p class="rc-tematica">{s.tematica}</p>
+
+              <dl class="rc-datos">
+                {(s.plazoInicio || s.plazoFin) && (
+                  <>
+                    <dt>Plazo</dt>
+                    <dd>
+                      {s.plazoInicio && s.plazoFin
+                        ? `${fmt(s.plazoInicio)} a ${fmt(s.plazoFin)}`
+                        : s.plazoFin
+                          ? `hasta el ${fmt(s.plazoFin)}`
+                          : `desde el ${fmt(s.plazoInicio)}`}
+                    </dd>
+                  </>
+                )}
+                {s.cuantia && (
+                  <>
+                    <dt>Cuantía</dt>
+                    <dd>{s.cuantia}</dd>
+                  </>
+                )}
+                <dt>Estado</dt>
+                <dd>{s.estadoNota}</dd>
+              </dl>
+
+              <p class="rc-plazo">{plazoCompact(s)}</p>
+
+              {s.notas && <p class="rc-notas">{s.notas}</p>}
+
+              <div class="rc-footer">
+                <span class="rc-publico">
+                  {(s.publico ?? []).map((p: string) => <span class="badge badge-teal">{p}</span>)}
+                </span>
+                <a href={s.url} target="_blank" rel="noopener noreferrer" class="rc-link">
+                  Convocatoria
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+              {s.confianza !== 'alta' && (
+                <p class="rc-confianza">Dato por confirmar en fuente oficial</p>
+              )}
+            </article>
           ))}
         </div>
-        <div class="filter-group" data-filter="ambito">
-          <span class="filter-label">Ámbito</span>
-          <button class="f-chip is-on" data-value="todos">Todos</button>
-          {AMBITOS.map((a) => <button class="f-chip" data-value={a}>{a}</button>)}
-        </div>
-        <div class="filter-group" data-filter="publico">
-          <span class="filter-label">Para</span>
-          <button class="f-chip is-on" data-value="todos">Todos</button>
-          {PUBLICOS.map((p) => <button class="f-chip" data-value={p}>{p}</button>)}
-        </div>
+
+        <p id="radarEmpty" class="radar-empty" style="display:none">
+          Ninguna convocatoria coincide con esos filtros.
+        </p>
       </div>
 
-      <!-- Cards -->
-      <div class="radar-grid" id="radarGrid">
-        {items.map((s) => (
-          <article
-            class={`radar-card card estado-${s.estado}`}
-            data-estado={s.estado}
-            data-ambito={s.ambito}
-            data-publico={(s.publico ?? []).join(',')}
-            data-inicio={s.plazoInicio ?? ''}
-            data-fin={s.plazoFin ?? ''}
-            data-manual={s.estadoManual ?? ''}
-            data-nombre={s.nombre}
-          >
-            <div class="rc-top">
-              <span class={`badge ${ESTADO_BADGE[s.estado]} rc-estado`}>
-                {ESTADO_LABEL[s.estado]}{s.estado === 'abierta' ? diasTxt(s.plazoFin) : ''}
-              </span>
-              <span class="rc-ambito">{s.ambito}</span>
-            </div>
-            <h2 class="rc-nombre">{s.nombre}</h2>
-            <p class="rc-organismo">{s.organismo}</p>
-            <p class="rc-tematica">{s.tematica}</p>
+      <!-- ══════════ PANEL PROYECTOS ══════════ -->
+      <div class="radar-panel" id="panel-proyectos" hidden>
 
-            <dl class="rc-datos">
-              {(s.plazoInicio || s.plazoFin) && (
-                <>
-                  <dt>Plazo</dt>
-                  <dd>
-                    {s.plazoInicio && s.plazoFin
-                      ? `${fmt(s.plazoInicio)} a ${fmt(s.plazoFin)}`
-                      : s.plazoFin
-                        ? `hasta el ${fmt(s.plazoFin)}`
-                        : `desde el ${fmt(s.plazoInicio)}`}
-                  </dd>
-                </>
-              )}
-              {s.cuantia && (
-                <>
-                  <dt>Cuantía</dt>
-                  <dd>{s.cuantia}</dd>
-                </>
-              )}
-              <dt>Estado</dt>
-              <dd>{s.estadoNota}</dd>
-            </dl>
+        <div class="radar-toolbar">
+          <div class="view-toggle" data-grid="proyGrid">
+            <button class="vt-btn" data-view="cards">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Tarjetas
+            </button>
+            <button class="vt-btn is-on" data-view="list">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              Lista
+            </button>
+          </div>
+          <div class="order-select" data-order-for="proy">
+            <span class="filter-label">Orden</span>
+            <button class="o-chip is-on" data-order="recientes">Más recientes</button>
+            <button class="o-chip" data-order="antiguos">Más antiguos</button>
+          </div>
+        </div>
 
-            {s.notas && <p class="rc-notas">{s.notas}</p>}
+        <!-- Filtros -->
+        <div class="radar-filters">
+          <div class="filter-group" data-pfilter="tipo">
+            <span class="filter-label">Tipo</span>
+            <button class="f-chip is-on" data-value="todos">Todos</button>
+            {TIPOS.map((t) => <button class="f-chip" data-value={t}>{t}</button>)}
+          </div>
+          <div class="filter-group" data-pfilter="estado">
+            <span class="filter-label">Estado</span>
+            <button class="f-chip is-on" data-value="todos">Todos</button>
+            <button class="f-chip" data-value="active">Activos</button>
+            <button class="f-chip" data-value="past">Pasados</button>
+          </div>
+        </div>
 
-            <div class="rc-footer">
-              <span class="rc-publico">
-                {(s.publico ?? []).map((p: string) => <span class="badge badge-teal">{p}</span>)}
-              </span>
-              <a href={s.url} target="_blank" rel="noopener noreferrer" class="rc-link">
-                Convocatoria
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              </a>
-            </div>
-            {s.confianza !== 'alta' && (
-              <p class="rc-confianza">Dato por confirmar en fuente oficial</p>
-            )}
-          </article>
-        ))}
+        <!-- Tarjetas / Lista -->
+        <div class="radar-grid proy-grid view-list" id="proyGrid">
+          {proyectos.map((p) => (
+            <article
+              class={`proy-card card estado-proy-${p.status}`}
+              data-type={p.tipo}
+              data-status={p.status}
+              data-sort={p.sortKey}
+              data-title={p.title}
+            >
+              <div class="pc-top">
+                <span class={`badge ${TIPO_BADGE[p.tipo] ?? 'badge-teal'} pc-tipo`}>{p.tipo}</span>
+                <span class={`pc-estado ${p.status === 'active' ? 'is-active' : ''}`}>
+                  {p.status === 'active' ? 'Activo' : 'Pasado'}
+                </span>
+              </div>
+              <h2 class="pc-nombre">
+                <a href={`/proyectos/${p.id}/`} target="_blank" rel="noopener noreferrer">{p.title}</a>
+              </h2>
+              <p class="pc-loc">{p.location || '—'}</p>
+              <p class="pc-fecha">{p.fechaLabel}</p>
+            </article>
+          ))}
+        </div>
+
+        <p id="proyEmpty" class="radar-empty" style="display:none">
+          Ningún proyecto coincide con esos filtros.
+        </p>
       </div>
-
-      <p id="radarEmpty" class="radar-empty" style="display:none">
-        Ninguna convocatoria coincide con esos filtros.
-      </p>
 
       <div class="radar-disclaimer fade-in">
         <p>
-          Radar de uso interno. Los estados se recalculan con la fecha de tu visita, pero los
-          datos se revisan a mano (última revisión el {fmt(ULTIMA_REVISION)}); confirma siempre
-          el plazo en el enlace oficial antes de preparar una solicitud. ¿Falta una convocatoria?
-          Escríbenos a <a href="mailto:maxi@estrellasdelsur.eu">maxi@estrellasdelsur.eu</a>.
+          Radar de uso interno. Los estados de las convocatorias se recalculan con la fecha de tu
+          visita, pero los datos se revisan a mano (última revisión el {fmt(ULTIMA_REVISION)});
+          confirma siempre el plazo en el enlace oficial antes de preparar una solicitud.
+          ¿Falta una convocatoria? Escríbenos a
+          <a href="mailto:maxi@estrellasdelsur.eu">maxi@estrellasdelsur.eu</a>.
         </p>
       </div>
     </div>
@@ -228,15 +370,14 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
 </script>
 
 <script>
-  // ── Recalcular estados con la fecha real de la visita ─────────
-  // El sitio es estático: lo que renderiza el servidor queda congelado en el
-  // build. Este bloque replica la lógica de estadoDe() del frontmatter (si
-  // cambias una, cambia la otra) y actualiza badge, orden y contador.
   type Estado = 'abierta' | 'prevista' | 'cerrada' | 'anunciar';
   const ESTADO_ORDEN: Record<Estado, number> = { abierta: 0, prevista: 1, anunciar: 2, cerrada: 3 };
   const ESTADO_LABEL: Record<Estado, string> = { abierta: 'Abierta', prevista: 'Prevista', anunciar: 'Por anunciar', cerrada: 'Cerrada' };
   const ESTADO_BADGE: Record<Estado, string> = { abierta: 'badge-andalucia', prevista: 'badge-gold', anunciar: 'badge-sky', cerrada: 'badge-navy' };
 
+  // ── Recalcular estados con la fecha real de la visita ─────────
+  // El sitio es estático: replica la lógica de estadoDe() del frontmatter
+  // (si cambias una, cambia la otra) y actualiza badge, orden y contador.
   function estadoDe(manual: string, inicio: string, fin: string, hoy: string): Estado {
     if (manual) return manual as Estado;
     if (fin && fin < hoy) return 'cerrada';
@@ -244,6 +385,8 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
     if (fin) return 'abierta';
     return 'anunciar';
   }
+
+  let subOrder = 'estado';
 
   function refrescarEstados() {
     const d = new Date();
@@ -272,28 +415,88 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
       }
     });
 
-    // Reordenar: abiertas por cierre, previstas por apertura, cerradas al final
-    cards
-      .sort((a, b) => {
-        const o = ESTADO_ORDEN[a.dataset.estado as Estado] - ESTADO_ORDEN[b.dataset.estado as Estado];
-        if (o !== 0) return o;
-        const e = a.dataset.estado as Estado;
-        if (e === 'abierta') return (a.dataset.fin || '9999').localeCompare(b.dataset.fin || '9999');
-        if (e === 'prevista') return (a.dataset.inicio || '9999').localeCompare(b.dataset.inicio || '9999');
-        if (e === 'cerrada') return (b.dataset.fin || '').localeCompare(a.dataset.fin || '');
-        return (a.dataset.nombre || '').localeCompare(b.dataset.nombre || '', 'es');
-      })
-      .forEach((card) => grid.appendChild(card));
-
     const count = document.getElementById('abiertasCount');
     if (count) count.textContent = String(abiertas);
+    reorderSub();
   }
-  refrescarEstados();
 
-  // ── Filtros combinables (estado + ámbito + público) ───────────
+  // ── Orden de las subvenciones ─────────────────────────────────
+  function reorderSub() {
+    const grid = document.getElementById('radarGrid');
+    if (!grid) return;
+    const cards = [...grid.querySelectorAll<HTMLElement>('.radar-card')];
+    cards.sort((a, b) => {
+      if (subOrder === 'cierre') {
+        return (a.dataset.fin || '9999-99-99').localeCompare(b.dataset.fin || '9999-99-99');
+      }
+      if (subOrder === 'apertura') {
+        return (a.dataset.inicio || '9999-99-99').localeCompare(b.dataset.inicio || '9999-99-99');
+      }
+      const o = ESTADO_ORDEN[a.dataset.estado as Estado] - ESTADO_ORDEN[b.dataset.estado as Estado];
+      if (o !== 0) return o;
+      const e = a.dataset.estado as Estado;
+      if (e === 'abierta') return (a.dataset.fin || '9999').localeCompare(b.dataset.fin || '9999');
+      if (e === 'prevista') return (a.dataset.inicio || '9999').localeCompare(b.dataset.inicio || '9999');
+      if (e === 'cerrada') return (b.dataset.fin || '').localeCompare(a.dataset.fin || '');
+      return (a.dataset.nombre || '').localeCompare(b.dataset.nombre || '', 'es');
+    });
+    cards.forEach((card) => grid.appendChild(card));
+  }
+
+  // ── Orden de los proyectos ────────────────────────────────────
+  let proyOrder = 'recientes';
+  function reorderProy() {
+    const grid = document.getElementById('proyGrid');
+    if (!grid) return;
+    const cards = [...grid.querySelectorAll<HTMLElement>('.proy-card')];
+    cards.sort((a, b) => {
+      const cmp = (a.dataset.sort || '').localeCompare(b.dataset.sort || '')
+        || (a.dataset.title || '').localeCompare(b.dataset.title || '', 'es');
+      return proyOrder === 'antiguos' ? cmp : -cmp;
+    });
+    cards.forEach((card) => grid.appendChild(card));
+  }
+
+  // ── Pestañas ──────────────────────────────────────────────────
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.radar-tab');
+  const panels: Record<string, HTMLElement | null> = {
+    subvenciones: document.getElementById('panel-subvenciones'),
+    proyectos: document.getElementById('panel-proyectos'),
+  };
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.toggle('is-on', t === tab));
+      const key = tab.dataset.tab!;
+      Object.entries(panels).forEach(([k, el]) => { if (el) el.hidden = k !== key; });
+    });
+  });
+
+  // ── Toggle tarjetas / lista ───────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.view-toggle').forEach((vt) => {
+    const grid = document.getElementById(vt.dataset.grid!);
+    vt.querySelectorAll<HTMLButtonElement>('.vt-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        vt.querySelectorAll('.vt-btn').forEach((b) => b.classList.toggle('is-on', b === btn));
+        if (grid) grid.classList.toggle('view-list', btn.dataset.view === 'list');
+      });
+    });
+  });
+
+  // ── Selectores de orden ───────────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.order-select').forEach((grp) => {
+    const scope = grp.dataset.orderFor;
+    grp.querySelectorAll<HTMLButtonElement>('.o-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        grp.querySelectorAll('.o-chip').forEach((c) => c.classList.toggle('is-on', c === chip));
+        if (scope === 'sub') { subOrder = chip.dataset.order!; reorderSub(); }
+        else { proyOrder = chip.dataset.order!; reorderProy(); }
+      });
+    });
+  });
+
+  // ── Filtros de subvenciones (estado + ámbito + público) ───────
   const active: Record<string, string> = { estado: 'todos', ambito: 'todos', publico: 'todos' };
-
-  document.querySelectorAll<HTMLElement>('.filter-group').forEach((group) => {
+  document.querySelectorAll<HTMLElement>('#panel-subvenciones .filter-group[data-filter]').forEach((group) => {
     const key = group.dataset.filter!;
     group.querySelectorAll<HTMLButtonElement>('.f-chip').forEach((chip) => {
       chip.addEventListener('click', () => {
@@ -303,7 +506,6 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
       });
     });
   });
-
   function applyFilters() {
     let visible = 0;
     document.querySelectorAll<HTMLElement>('.radar-card').forEach((card) => {
@@ -318,6 +520,36 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
     const empty = document.getElementById('radarEmpty');
     if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
   }
+
+  // ── Filtros de proyectos (tipo + estado) ──────────────────────
+  const pActive: Record<string, string> = { tipo: 'todos', estado: 'todos' };
+  document.querySelectorAll<HTMLElement>('#panel-proyectos .filter-group[data-pfilter]').forEach((group) => {
+    const key = group.dataset.pfilter!;
+    group.querySelectorAll<HTMLButtonElement>('.f-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        pActive[key] = chip.dataset.value!;
+        group.querySelectorAll('.f-chip').forEach((c) => c.classList.toggle('is-on', c === chip));
+        applyProyFilters();
+      });
+    });
+  });
+  function applyProyFilters() {
+    let visible = 0;
+    document.querySelectorAll<HTMLElement>('.proy-card').forEach((card) => {
+      const okTipo = pActive.tipo === 'todos' || card.dataset.type === pActive.tipo;
+      const okEstado = pActive.estado === 'todos' || card.dataset.status === pActive.estado;
+      const show = okTipo && okEstado;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    const empty = document.getElementById('proyEmpty');
+    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  refrescarEstados();
+  reorderProy();
+  applyFilters();
+  applyProyFilters();
 </script>
 
 <style>
@@ -343,6 +575,89 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
   @keyframes radarSpin { to { transform: rotate(360deg); } }
 
   .radar-section { background: var(--cream-dark); }
+
+  /* Pestañas */
+  .radar-tabs {
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .radar-tab {
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 700;
+    padding: .6rem 1rem;
+    border: none;
+    background: none;
+    color: var(--gray-500);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    transition: color .15s, border-color .15s;
+  }
+  .radar-tab:hover { color: var(--teal); }
+  .radar-tab.is-on { color: var(--navy); border-bottom-color: var(--teal); }
+  .rt-count {
+    font-size: .72rem;
+    font-weight: 700;
+    background: var(--gray-200);
+    color: var(--gray-600);
+    border-radius: 999px;
+    padding: .05rem .5rem;
+    margin-left: .25rem;
+    vertical-align: middle;
+  }
+  .radar-tab.is-on .rt-count { background: var(--teal); color: #fff; }
+
+  /* Barra de herramientas (vista + orden) */
+  .radar-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1.25rem;
+  }
+  .view-toggle {
+    display: inline-flex;
+    border: 1px solid var(--gray-200);
+    border-radius: 999px;
+    background: #fff;
+    overflow: hidden;
+  }
+  .vt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-family: inherit;
+    font-size: .8rem;
+    font-weight: 600;
+    padding: .35rem .8rem;
+    border: none;
+    background: none;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .vt-btn.is-on { background: var(--teal); color: #fff; }
+  .vt-btn:not(.is-on):hover { color: var(--teal); }
+
+  .order-select { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem; }
+  .o-chip {
+    font-family: inherit;
+    font-size: .8rem;
+    font-weight: 600;
+    padding: .3rem .8rem;
+    border-radius: 999px;
+    border: 1px solid var(--gray-200);
+    background: #fff;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .o-chip:hover { border-color: var(--teal); color: var(--teal); }
+  .o-chip.is-on { background: var(--navy); border-color: var(--navy); color: #fff; }
 
   /* Filters */
   .radar-filters {
@@ -444,6 +759,8 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
   }
   .rc-datos dd { color: var(--gray-700); }
 
+  .rc-plazo { display: none; }
+
   .rc-notas { font-size: .84rem; color: var(--gray-600); font-style: italic; }
 
   .rc-footer {
@@ -475,6 +792,110 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
     margin-top: .25rem;
   }
 
+  /* ── Vista lista (subvenciones) ── */
+  .radar-grid.view-list {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+  }
+  .radar-grid.view-list .radar-card {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr) 96px 190px 104px;
+    align-items: center;
+    column-gap: 1rem;
+    padding: .6rem 1rem;
+  }
+  .radar-grid.view-list .rc-top { display: contents; }
+  .radar-grid.view-list .rc-estado { grid-column: 1; justify-self: start; }
+  .radar-grid.view-list .rc-nombre {
+    grid-column: 2;
+    font-size: .92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .radar-grid.view-list .rc-ambito { grid-column: 3; }
+  .radar-grid.view-list .rc-plazo {
+    grid-column: 4;
+    display: block;
+    font-size: .8rem;
+    color: var(--gray-600);
+  }
+  .radar-grid.view-list .rc-footer { display: contents; }
+  .radar-grid.view-list .rc-link { grid-column: 5; justify-self: end; }
+  .radar-grid.view-list .rc-organismo,
+  .radar-grid.view-list .rc-tematica,
+  .radar-grid.view-list .rc-datos,
+  .radar-grid.view-list .rc-notas,
+  .radar-grid.view-list .rc-confianza,
+  .radar-grid.view-list .rc-publico { display: none; }
+
+  /* ── Proyectos ── */
+  .proy-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .proy-card {
+    padding: 1.2rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+  }
+  .proy-card.estado-proy-past { opacity: .72; }
+  .pc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+  }
+  .pc-estado {
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--gray-500);
+  }
+  .pc-estado.is-active { color: var(--teal); }
+  .pc-nombre {
+    font-family: 'Playfair Display Variable', 'Playfair Display', 'Playfair Display Fallback', serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .pc-nombre a { color: inherit; text-decoration: none; }
+  .pc-nombre a:hover { color: var(--teal); }
+  .pc-loc { font-size: .82rem; color: var(--gray-500); }
+  .pc-fecha { font-size: .82rem; color: var(--gray-600); font-weight: 600; }
+
+  /* ── Vista lista (proyectos) ── */
+  .proy-grid.view-list {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+  }
+  .proy-grid.view-list .proy-card {
+    display: grid;
+    grid-template-columns: 118px 82px minmax(0, 1fr) 170px 150px;
+    align-items: center;
+    column-gap: 1rem;
+    padding: .55rem 1rem;
+  }
+  .proy-grid.view-list .pc-top { display: contents; }
+  .proy-grid.view-list .pc-tipo { grid-column: 1; justify-self: start; }
+  .proy-grid.view-list .pc-estado { grid-column: 2; }
+  .proy-grid.view-list .pc-nombre {
+    grid-column: 3;
+    font-size: .92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .proy-grid.view-list .pc-loc {
+    grid-column: 4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .proy-grid.view-list .pc-fecha { grid-column: 5; justify-self: end; }
+
   .radar-empty {
     text-align: center;
     color: var(--gray-500);
@@ -490,4 +911,23 @@ const abiertas = items.filter((s) => s.estado === 'abierta').length;
   }
   .radar-disclaimer p { font-size: .82rem; color: var(--gray-500); line-height: 1.6; }
   .radar-disclaimer a { color: var(--teal); }
+
+  /* ── Responsive: listas en pantallas pequeñas ── */
+  @media (max-width: 760px) {
+    .radar-grid.view-list .radar-card,
+    .proy-grid.view-list .proy-card {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .3rem .7rem;
+    }
+    .radar-grid.view-list .rc-top,
+    .proy-grid.view-list .pc-top { display: flex; gap: .5rem; flex: 0 0 auto; }
+    .radar-grid.view-list .rc-nombre,
+    .proy-grid.view-list .pc-nombre { flex: 1 1 100%; white-space: normal; }
+    .radar-grid.view-list .rc-footer { display: flex; }
+    .radar-grid.view-list .rc-link,
+    .proy-grid.view-list .pc-fecha,
+    .proy-grid.view-list .pc-loc { justify-self: start; }
+  }
 </style>
