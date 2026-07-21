@@ -196,6 +196,11 @@ const proyectos = proyectosRaw
             <button class="f-chip is-on" data-value="todos">Todos</button>
             {PUBLICOS.map((p) => <button class="f-chip" data-value={p}>{p}</button>)}
           </div>
+          <div class="filter-group" data-filter="fav">
+            <span class="filter-label">Favoritas</span>
+            <button class="f-chip is-on" data-value="todos">Todas</button>
+            <button class="f-chip" data-value="si">Solo favoritas</button>
+          </div>
         </div>
 
         <!-- Tarjetas / Lista -->
@@ -211,6 +216,9 @@ const proyectos = proyectosRaw
               data-manual={s.estadoManual ?? ''}
               data-nombre={s.nombre}
             >
+              <button class="rc-fav" data-nombre={s.nombre} type="button" aria-label="Marcar como favorita" title="Marcar como favorita">
+                <svg viewBox="0 0 24 24" width="17" height="17" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </button>
               <div class="rc-top">
                 <span class={`badge ${ESTADO_BADGE[s.estado]} rc-estado`}>
                   {ESTADO_LABEL[s.estado]}{s.estado === 'abierta' ? diasTxt(s.plazoFin) : ''}
@@ -495,7 +503,7 @@ const proyectos = proyectosRaw
   });
 
   // ── Filtros de subvenciones (estado + ámbito + público) ───────
-  const active: Record<string, string> = { estado: 'todos', ambito: 'todos', publico: 'todos' };
+  const active: Record<string, string> = { estado: 'todos', ambito: 'todos', publico: 'todos', fav: 'todos' };
   document.querySelectorAll<HTMLElement>('#panel-subvenciones .filter-group[data-filter]').forEach((group) => {
     const key = group.dataset.filter!;
     group.querySelectorAll<HTMLButtonElement>('.f-chip').forEach((chip) => {
@@ -513,13 +521,55 @@ const proyectos = proyectosRaw
       const okAmbito = active.ambito === 'todos' || card.dataset.ambito === active.ambito;
       const okPublico =
         active.publico === 'todos' || (card.dataset.publico ?? '').split(',').includes(active.publico);
-      const show = okEstado && okAmbito && okPublico;
+      const okFav = active.fav === 'todos' || card.dataset.fav === '1';
+      const show = okEstado && okAmbito && okPublico && okFav;
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     });
     const empty = document.getElementById('radarEmpty');
     if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
   }
+
+  // ── Favoritas (se guardan en este navegador) ─────────────────
+  const FAVS_KEY = 'radarFavoritas';
+  const DEFAULT_FAVS = [
+    'Transforma Córdoba 2027 (Transformación Social)',
+    'Fomento del Voluntariado Social 2027',
+    'Innovactiva 2027 (emprendimiento juvenil)',
+    'IMDEEC ESAL 2027',
+  ];
+  function loadFavs(): string[] {
+    try {
+      const raw = localStorage.getItem(FAVS_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) { /* ignore */ }
+    try { localStorage.setItem(FAVS_KEY, JSON.stringify(DEFAULT_FAVS)); } catch (e) { /* ignore */ }
+    return [...DEFAULT_FAVS];
+  }
+  let favs = loadFavs();
+  function saveFavs() {
+    try { localStorage.setItem(FAVS_KEY, JSON.stringify(favs)); } catch (e) { /* ignore */ }
+  }
+  function paintFavs() {
+    document.querySelectorAll<HTMLElement>('.radar-card').forEach((card) => {
+      const on = favs.includes(card.dataset.nombre || '');
+      card.dataset.fav = on ? '1' : '0';
+      const btn = card.querySelector('.rc-fav');
+      if (btn) btn.classList.toggle('is-fav', on);
+    });
+  }
+  document.querySelectorAll<HTMLButtonElement>('.rc-fav').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const nombre = btn.dataset.nombre || '';
+      const i = favs.indexOf(nombre);
+      if (i >= 0) favs.splice(i, 1);
+      else favs.push(nombre);
+      saveFavs();
+      paintFavs();
+      applyFilters();
+    });
+  });
+  paintFavs();
 
   // ── Filtros de proyectos (tipo + estado) ──────────────────────
   const pActive: Record<string, string> = { tipo: 'todos', estado: 'todos' };
@@ -707,6 +757,7 @@ const proyectos = proyectosRaw
     align-items: start;
   }
   .radar-card {
+    position: relative;
     padding: 1.4rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -720,7 +771,26 @@ const proyectos = proyectosRaw
     justify-content: space-between;
     gap: .5rem;
     margin-bottom: .25rem;
+    padding-right: 1.7rem;
   }
+
+  /* Estrella de favorita */
+  .rc-fav {
+    position: absolute;
+    top: .7rem;
+    right: .8rem;
+    padding: .15rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-300);
+    line-height: 0;
+    transition: color .15s, transform .1s;
+  }
+  .rc-fav svg { fill: none; stroke: currentColor; stroke-width: 1.7; }
+  .rc-fav:hover { color: #f59e0b; transform: scale(1.12); }
+  .rc-fav.is-fav { color: #f59e0b; }
+  .rc-fav.is-fav svg { fill: #f59e0b; }
   .rc-ambito {
     font-size: .72rem;
     font-weight: 700;
@@ -800,29 +870,36 @@ const proyectos = proyectosRaw
   }
   .radar-grid.view-list .radar-card {
     display: grid;
-    grid-template-columns: 118px minmax(0, 1fr) 96px 190px 104px;
+    grid-template-columns: 28px 116px minmax(0, 1fr) 96px 190px 104px;
     align-items: center;
     column-gap: 1rem;
     padding: .6rem 1rem;
   }
   .radar-grid.view-list .rc-top { display: contents; }
-  .radar-grid.view-list .rc-estado { grid-column: 1; justify-self: start; }
+  .radar-grid.view-list .rc-fav {
+    position: static;
+    grid-column: 1;
+    justify-self: center;
+    top: auto;
+    right: auto;
+  }
+  .radar-grid.view-list .rc-estado { grid-column: 2; justify-self: start; }
   .radar-grid.view-list .rc-nombre {
-    grid-column: 2;
+    grid-column: 3;
     font-size: .92rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .radar-grid.view-list .rc-ambito { grid-column: 3; }
+  .radar-grid.view-list .rc-ambito { grid-column: 4; }
   .radar-grid.view-list .rc-plazo {
-    grid-column: 4;
+    grid-column: 5;
     display: block;
     font-size: .8rem;
     color: var(--gray-600);
   }
   .radar-grid.view-list .rc-footer { display: contents; }
-  .radar-grid.view-list .rc-link { grid-column: 5; justify-self: end; }
+  .radar-grid.view-list .rc-link { grid-column: 6; justify-self: end; }
   .radar-grid.view-list .rc-organismo,
   .radar-grid.view-list .rc-tematica,
   .radar-grid.view-list .rc-datos,
