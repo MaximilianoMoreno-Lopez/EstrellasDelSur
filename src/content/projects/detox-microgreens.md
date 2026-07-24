@@ -1,10 +1,10 @@
 ---
-title: "Detox with Microgreens 2"
+title: "Detox with Microgreens 2 (2025)"
 type: "Voluntariado"
 status: "past"
 flag: "🇬🇷"
-description: "Voluntariado del Cuerpo Europeo de Solidaridad en Atenas (Grecia) sobre el cultivo de microgreens y la creación de un portal de aprendizaje abierto, con jóvenes de España acompañados por Estrellas del Sur como organización de envío."
-year: 2026
+description: "Edición 2025 del voluntariado del Cuerpo Europeo de Solidaridad en Atenas (Grecia) sobre el cultivo de microgreens y la creación de un portal de aprendizaje abierto. Estrellas del Sur participó como organización de envío."
+year: 2025
 location: "Atenas, Grecia"
 order: 50
 image: "images/noticias/detox-microgreens/cover.jpg"
@@ -14,7 +14,8 @@ image: "images/noticias/detox-microgreens/cover.jpg"
 - **Temática del Proyecto:** Cultivo de microgreens y creación de recursos de aprendizaje abiertos
 - **Lugar:** Atenas, Grecia
 - **Organización de acogida:** EVEC — European Volunteer and Educational Center
-- **Años:** 2025–2026
+- **Fechas:** 21 de mayo de 2025 – 27 de abril de 2026
+- **Nº de proyecto:** 2024-1-EL02-ESC51-VTJ-000225260
 
 ## Sobre el proyecto
 
@@ -22,10 +23,7 @@ image: "images/noticias/detox-microgreens/cover.jpg"
 
 El resultado es un portal público y gratuito con artículos, guías de cultivo, una biblioteca de divulgación y cursos a tu ritmo: **[www.microgreens.org.gr](https://www.microgreens.org.gr)**. Puedes seguir el proyecto en Facebook, Instagram y TikTok como **[@evec.microgreens](https://www.instagram.com/evec.microgreens)**.
 
-Estrellas del Sur participó como organización de envío de las voluntarias españolas. Lee sus experiencias:
-
-- [Julia en Atenas: 344 días cultivando microgreens y creando un portal europeo](/noticias/detox-microgreens/)
-- [Paula en Atenas: la diseñadora web detrás del portal de microgreens](/noticias/detox-microgreens-paula/)
+En esta edición participó nuestra voluntaria Julia. Lee su experiencia: [Julia en Atenas: 344 días cultivando microgreens y creando un portal europeo](/noticias/detox-microgreens/).
 
 ---
 
