@@ -1,9 +1,11 @@
 User-agent: *
 Allow: /
 
-# Block internal/private pages
-Disallow: /admin/
-Disallow: /portal/
+# NOTE: /portal/ and /admin/ are intentionally NOT blocked here. They emit
+# <meta name="robots" content="noindex, nofollow"> (via PortalLayout). To honor
+# a noindex, Google must be allowed to crawl the page; blocking it in robots.txt
+# prevents Google from ever reading the tag, which is why /portal/login/ ended up
+# indexed as a URL-only entry. Let Google crawl them so the noindex takes effect.
 
 # Block old WordPress infrastructure paths (site migrated to Astro)
 Disallow: /wp-includes/
