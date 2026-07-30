@@ -19,3 +19,9 @@ Thumbs.db
 
 # Google Search Console exports (kept locally)
 GoogleSearch/
+
+# Registro retributivo y auditoria: contienen retribuciones individualizables
+# y este repositorio es publico. Se conservan solo en local.
+scripts/registro-retributivo.html
+borradores/INTERNO_*.pdf
+borradores/fuentes/
