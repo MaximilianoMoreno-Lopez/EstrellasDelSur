@@ -46,8 +46,10 @@ chrome --headless=new --disable-gpu --no-pdf-header-footer \
 1. DNI de María Granados Villar, persona suplente de la referente de igualdad y quien presenta en REGCON.
 2. Convocar a las tres organizaciones sindicales. Plazo de respuesta hasta el 21/08/2026 y sesión
    constitutiva el 31/08/2026, según el modelo 3 del cuaderno.
-3. Solicitar al CMAC un certificado de representatividad referido al convenio 99100055012011. El que
-   consta se pidió sobre otro sector.
+3. No hace falta solicitar un certificado nuevo al CMAC. Ni el Real Decreto 901/2020 ni REGCON lo exigen,
+   y la legitimación de CC.OO., UGT y USO consta por dos vías, el certificado ya obtenido y la parte
+   expositiva de la Resolución de 25 de febrero de 2026 que publica el convenio de ocio educativo, donde
+   figuran como organizaciones firmantes. Basta una nota en el expediente citando ambas fuentes.
 4. Consultar a la Comisión Paritaria del convenio, C/ Albasanz 3, 2ª planta, 28037 Madrid, la adscripción
    al ámbito funcional, el encuadramiento de los tres puestos y si corresponde la tabla A o la tabla B.
 5. Corregir las dos incidencias de la auditoría: el coeficiente de parcialidad calculado sobre 40 h en
