@@ -9,11 +9,25 @@ Ninguno está firmado ni inscrito todavía.
 |---|---|---|
 | `Plan_Igualdad_2026-2030_BORRADOR.pdf` | `scripts/plan-igualdad.html` | El plan, 47 páginas y 35 medidas. Publicable e inscribible en REGCON |
 | `Plan_Igualdad_Cuaderno_BORRADOR.pdf` | `scripts/plan-igualdad-cuaderno.html` | 11 modelos del expediente negociador, instrumentos de diagnóstico y apéndice de inscripción. Interno |
+| `modelos/*.pdf` | `scripts/modelos/*.html` | Los 11 modelos como documentos independientes, uno por fichero, listos para firmar. Fuera del control de versiones |
+
+El cuaderno es el manual y por eso lleva los documentos de identidad enmascarados como `[DNI]`.
+Los documentos independientes de `modelos/` son los que se firman y sí van cumplimentados, así que
+**no se versionan**. Si regeneras `scripts/modelos/` a partir del cuaderno perderás los datos ya
+cumplimentados: las copias locales de `scripts/modelos/` son las buenas.
 
 El registro retributivo y la auditoría retributiva **no están en este repositorio**, porque contienen
 retribuciones individualizables y el repositorio es público. Viven en `scripts/registro-retributivo.html`
 y en `borradores/INTERNO_Registro_Retributivo_Auditoria.pdf`, ambos excluidos por `.gitignore`.
 No los añadas al control de versiones ni los subas al portal.
+
+## Antes de hacer push, decidir
+
+El commit `f699c6c` introdujo el DNI de Maximiliano Moreno López y el de Pablo Sánchez Ruiz en
+`scripts/plan-igualdad-cuaderno.html`. Están enmascarados en el estado actual del fichero, pero
+siguen en ese commit, y el repositorio es público. Ninguno de los commits del Plan de Igualdad se ha
+subido todavía, de modo que la situación es reversible. Antes del primer push hay que reescribir ese
+commit o dejar el cuaderno fuera del historial. Es una decisión de la Presidencia, no automatizable.
 
 ## Cómo regenerar los PDF
 
@@ -45,7 +59,9 @@ chrome --headless=new --disable-gpu --no-pdf-header-footer \
 
 1. DNI de María Granados Villar, persona suplente de la referente de igualdad y quien presenta en REGCON.
 2. Convocar a las tres organizaciones sindicales. Plazo de respuesta hasta el 21/08/2026 y sesión
-   constitutiva el 31/08/2026, según el modelo 3 del cuaderno.
+   constitutiva el 31/08/2026, según el modelo 3 del cuaderno. El modelo 2, declaración responsable de
+   inexistencia de representación legal, queda cumplimentado y con pie de firma electrónica, listo para
+   firmar con certificado digital y adjuntar a las tres convocatorias.
 3. No hace falta solicitar un certificado nuevo al CMAC. Ni el Real Decreto 901/2020 ni REGCON lo exigen,
    y la legitimación de CC.OO., UGT y USO consta por dos vías, el certificado ya obtenido y la parte
    expositiva de la Resolución de 25 de febrero de 2026 que publica el convenio de ocio educativo, donde

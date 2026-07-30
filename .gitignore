@@ -25,3 +25,8 @@ GoogleSearch/
 scripts/registro-retributivo.html
 borradores/INTERNO_*.pdf
 borradores/fuentes/
+
+# Documentos del expediente ya cumplimentados: llevan DNI de personas fisicas
+# y este repositorio es publico. Se conservan solo en local.
+scripts/modelos/
+borradores/modelos/
