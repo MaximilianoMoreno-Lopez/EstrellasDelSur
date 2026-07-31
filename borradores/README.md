@@ -21,13 +21,21 @@ retribuciones individualizables y el repositorio es público. Viven en `scripts/
 y en `borradores/INTERNO_Registro_Retributivo_Auditoria.pdf`, ambos excluidos por `.gitignore`.
 No los añadas al control de versiones ni los subas al portal.
 
-## Antes de hacer push, decidir
+## DNI en el historial: resuelto
 
-El commit `f699c6c` introdujo el DNI de Maximiliano Moreno López y el de Pablo Sánchez Ruiz en
-`scripts/plan-igualdad-cuaderno.html`. Están enmascarados en el estado actual del fichero, pero
-siguen en ese commit, y el repositorio es público. Ninguno de los commits del Plan de Igualdad se ha
-subido todavía, de modo que la situación es reversible. Antes del primer push hay que reescribir ese
-commit o dejar el cuaderno fuera del historial. Es una decisión de la Presidencia, no automatizable.
+El expediente llegó a contener tres documentos de identidad en
+`scripts/plan-igualdad-cuaderno.html` y, por arrastre, en el PDF generado a partir de él. Como el
+repositorio es público y ninguno de los commits se había subido, se reescribieron los diez commits
+locales del Plan de Igualdad para enmascararlos como `[DNI]`, y se purgaron los objetos antiguos.
+
+- El árbol final quedó **idéntico** al de antes de la reescritura, comprobado con `git diff`.
+- El PDF del cuaderno, que es un artefacto generado y no se podía reescribir por commit, se sustituyó
+  en todos ellos por la versión ya enmascarada. Es la única divergencia respecto del historial previo.
+- Comprobación final sobre los 1.081 blobs del repositorio, incluyendo el texto extraído de cada PDF:
+  ninguno contiene un documento de identidad.
+
+Los documentos que sí van cumplimentados viven en `scripts/modelos/` y `borradores/modelos/`, ambos
+excluidos por `.gitignore`. **No los añadas al control de versiones.**
 
 ## Cómo regenerar los PDF
 
@@ -57,7 +65,9 @@ chrome --headless=new --disable-gpu --no-pdf-header-footer \
 
 ## Pendiente antes de firmar
 
-1. DNI de María Granados Villar, persona suplente de la referente de igualdad y quien presenta en REGCON.
+1. Confirmar el DNI de María Granados Villar. En el modelo 1 figuraba `31027729Q`, dato que llegó por
+   otra vía y no está verificado, así que se ha dejado como `[DNI]` en el cuaderno. Hay que
+   confirmarlo antes de firmar el acta, porque es quien presenta en REGCON.
 2. Convocar a las tres organizaciones sindicales. Plazo de respuesta hasta el 21/08/2026 y sesión
    constitutiva el 31/08/2026, según el modelo 3 del cuaderno. El modelo 2, declaración responsable de
    inexistencia de representación legal, queda cumplimentado y con pie de firma electrónica, listo para
