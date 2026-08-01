@@ -30,3 +30,7 @@ borradores/fuentes/
 # y este repositorio es publico. Se conservan solo en local.
 scripts/modelos/
 borradores/modelos/
+
+# Hojas de calculo de trabajo interno (planificacion, seguimiento). Este
+# repositorio es publico, asi que se quedan solo en local.
+*.xlsx
