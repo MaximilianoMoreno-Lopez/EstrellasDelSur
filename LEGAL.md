@@ -69,49 +69,43 @@ Estos son los textos vigentes. Se copian tal cual en cada convocatoria, y esta
 sección es la fuente: si se cambian aquí, se cambian en el formulario, y el commit
 deja constancia de qué texto se estaba usando en cada momento.
 
-Cada casilla va como **pregunta independiente** de tipo casilla de verificación con
-una sola opción y marcada como obligatoria. Una única pregunta con cinco opciones no
-sirve: Google da por válida la respuesta con que se marque una sola.
+Son tres casillas, cada una como **pregunta independiente** de tipo casilla de verificación
+con una sola opción. Una única pregunta con tres opciones no sirve, porque Google da por
+válida la respuesta con que se marque una sola.
 
 **Obligatorias**
 
-1. He leído la Política de Privacidad (estrellasdelsur.eu/privacidad/) y consiento el
-   tratamiento de mis datos personales para gestionar mi solicitud, mi participación en
-   la actividad y las obligaciones de justificación ante el programa financiador y sus
-   agencias nacionales.
-2. He leído y acepto las condiciones de participación de esta convocatoria y el apartado 4
-   de los Términos y condiciones (estrellasdelsur.eu/terminos/#participacion), incluido lo
-   relativo a seguro, salud, documentación de viaje, conducta y exención de responsabilidad.
-3. Me comprometo a respetar el Código Ético y de Conducta y el Protocolo de prevención del
-   acoso de la asociación (estrellasdelsur.eu/transparencia/) durante toda la actividad, y
-   entiendo que un incumplimiento grave puede suponer la expulsión sin derecho a reembolso.
-4. Declaro que los datos facilitados son veraces, que cumplo los requisitos de la
-   convocatoria y que me encuentro en condiciones de salud adecuadas para la actividad. Me
-   comprometo a comunicar antes del inicio cualquier alergia, tratamiento, condición médica
-   o necesidad de apoyo relevante para mi seguridad.
-5. Soy mayor de 18 años. Si eres menor de edad, tu participación necesita la autorización
-   firmada de tu madre, padre o tutor legal: escríbenos antes de enviar la solicitud.
+1. He leído la Política de Privacidad (estrellasdelsur.eu/privacidad/) y acepto las
+   condiciones de participación de esta convocatoria y del apartado 4 de los Términos y
+   condiciones (estrellasdelsur.eu/terminos/#participacion), incluido lo relativo a seguro,
+   salud, documentación de viaje, código ético, conducta y exención de responsabilidad.
+2. Declaro que soy mayor de 18 años, que los datos facilitados son veraces, que cumplo los
+   requisitos de la convocatoria y que me encuentro en condiciones de salud adecuadas para la
+   actividad. Me comprometo a comunicar antes del inicio cualquier alergia, tratamiento o
+   necesidad de apoyo relevante para mi seguridad. Si eres menor de edad, escríbenos antes de
+   enviar la solicitud: necesitas la autorización firmada de tu madre, padre o tutor legal.
 
-**Voluntarias** (van al final, con el encabezado "Estas dos casillas son voluntarias y no
-influyen en la selección")
+**Voluntaria** (va al final, precedida de "Esta casilla es voluntaria y no influye en la
+selección")
 
-6. Autorizo a la Asociación Cultural Estrellas del Sur a captar mi imagen y mi voz en las
-   fotografías y vídeos tomados durante la actividad y a difundirlos en su web
-   estrellasdelsur.eu, en sus redes sociales, en sus memorias anuales y en los materiales de
-   difusión y justificación del programa que financia el proyecto. La autorización es
-   gratuita, sin límite territorial, y se extiende al tiempo de difusión del proyecto y a su
-   conservación en el archivo documental de la asociación. No se cederán las imágenes a
-   terceros con fines comerciales. Esta casilla es voluntaria, no influye en la selección, y
-   puedo revocarla en cualquier momento escribiendo a paula@estrellasdelsur.eu, sin que la
-   revocación afecte a los usos ya realizados ni a los ejemplares ya distribuidos.
-7. Quiero recibir información sobre futuras convocatorias y actividades de la asociación.
-   Puedo darme de baja en cualquier momento.
+3. Autorizo a la Asociación Cultural Estrellas del Sur a difundir las fotografías y vídeos
+   de la actividad en los que aparezca, en su web, sus redes sociales, sus memorias anuales y
+   los materiales de justificación del programa que financia el proyecto. La cesión es
+   gratuita y sin límite territorial, mientras dure la difusión del proyecto y su
+   conservación en el archivo de la asociación, y las imágenes no se ceden a terceros con
+   fines comerciales. Puedo revocarla en cualquier momento escribiendo a
+   paula@estrellasdelsur.eu, sin que ello afecte a los usos ya realizados.
 
-Las casillas 6 y 7 nunca se marcan como obligatorias. Un consentimiento que condiciona la
-participación no es libre y, por tanto, no es válido, y mezclarlo con las obligatorias
-arrastraría al resto.
+Si en algún momento se hacen envíos de novedades por correo, hace falta una cuarta casilla,
+también voluntaria, para eso. No sirve la 1.
 
-La casilla 6 sustituye al PDF de autorización de imagen **solo para personas adultas**. El
+La casilla 3 nunca se marca como obligatoria. Un consentimiento que condiciona la
+participación no es libre y, por tanto, no es válido, y agruparlo con las obligatorias
+arrastraría al resto. Las dos primeras sí pueden agrupar varias declaraciones, porque no son
+consentimientos de tratamiento de datos sino declaraciones contractuales de la persona
+solicitante.
+
+La casilla 3 sustituye al PDF de autorización de imagen **solo para personas adultas**. El
 RGPD no exige firma, sino un acto afirmativo específico, informado y demostrable, y la
 casilla sin premarcar más la marca de tiempo de la respuesta lo cumplen. Se mantienen los
 documentos firmados en dos casos, donde el consentimiento no lo da quien rellena el
