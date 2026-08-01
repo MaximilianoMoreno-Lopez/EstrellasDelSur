@@ -4,14 +4,15 @@ type: "Participación"
 status: "past"
 order: -6
 date: "2026-07"
-location: "Egipto"
+dates: "04/07/2026 - 08/07/2026"
+location: "El Cairo, Egipto"
 description: "Maximiliano Moreno López representó a la juventud española en la ALF Youth Conference de la Fundación Anna Lindh, donde presentó el Environmental Inequality Lab ante jóvenes de las dos orillas del Mediterráneo."
 cover: "images/noticias/alf-youth-conference/cover.jpg"
 ---
 
-Hay proyectos que nacen mirando el termómetro de tu propio barrio y acaban contándose a 3.000 kilómetros de casa. Eso es exactamente lo que le ha pasado al **Environmental Inequality Lab**, nuestra iniciativa sobre desigualdad ante el calor extremo en Córdoba, que ha viajado hasta Egipto para presentarse en la **ALF Youth Conference** de la Fundación Anna Lindh.
+Hay proyectos que nacen mirando el termómetro de tu propio barrio y acaban contándose a más de 3.000 kilómetros de casa. Eso es exactamente lo que le ha pasado al **Environmental Inequality Lab**, nuestra iniciativa sobre desigualdad ante el calor extremo en Córdoba, que ha viajado hasta El Cairo para presentarse en la **ALF Youth Conference** de la Fundación Anna Lindh.
 
-Allí estuvo **Maximiliano Moreno López**, presidente de Estrellas del Sur, representando los intereses de la juventud española entre jóvenes llegados de las dos orillas del Mediterráneo.
+Del **4 al 8 de julio de 2026** estuvo allí **Maximiliano Moreno López**, presidente de Estrellas del Sur, representando los intereses de la juventud española entre jóvenes llegados de las dos orillas del Mediterráneo.
 
 ![Maximiliano Moreno López recibe su certificado de participación en el escenario de la Mediterranean Youth in Action](/images/noticias/alf-youth-conference/cover.jpg)
 
@@ -27,7 +28,7 @@ Lo euromediterráneo parte de una idea sencilla y bastante bonita, que el Medite
 
 El encuentro forma parte del programa **Mediterranean Youth in Action (MYA)**, que es la apuesta de la Fundación por convertir a jóvenes de la región en agentes de cambio reales y no en público de conferencias. Dentro de MYA, la línea **Transformative Youth** trabaja con líderes comunitarios de base a lo largo de un ciclo de doce meses. De las 50 personas preseleccionadas en toda la región euromediterránea, solo 25 pasan a la fase presencial y desarrollan su iniciativa con acompañamiento y microfinanciación.
 
-Maximiliano fue una de esas 25, y el encuentro presencial en Egipto sirvió como pistoletazo de salida del ciclo.
+Maximiliano fue una de esas 25, y el encuentro presencial de El Cairo sirvió como pistoletazo de salida del ciclo.
 
 ![Sesión de trabajo en círculo durante la ALF Youth Conference](/images/noticias/alf-youth-conference/sesion.jpg)
 
@@ -57,7 +58,7 @@ Hubo visita a las **pirámides de Guiza**, que siguen dejando sin palabras por m
 
 De esos ratos salen las cosas que después sostienen un proyecto europeo, los contactos, las ganas de colaborar y la sensación de que la otra orilla del Mediterráneo está bastante más cerca de lo que nos han contado.
 
-![Atardecer en Egipto durante la ALF Youth Conference](/images/noticias/alf-youth-conference/atardecer.jpg)
+![Atardecer en El Cairo durante la ALF Youth Conference](/images/noticias/alf-youth-conference/atardecer.jpg)
 
 ## Lo que viene
 
