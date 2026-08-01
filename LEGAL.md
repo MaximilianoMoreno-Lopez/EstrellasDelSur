@@ -58,15 +58,87 @@ del proyecto (pipeline de documentos).
 
 ## Aceptación fuera del portal (Google Form)
 
-En el Google Form de solicitud de proyectos hay una casilla obligatoria de
+En el Google Form de solicitud de proyectos hay casillas obligatorias de
 aceptación. Google guarda automáticamente la marca de tiempo de cada respuesta,
 así que ahí no hay que hacer nada técnico. Si se cambia el texto legal, conviene
-revisar que el enlace de la casilla siga apuntando a `/terminos/` y `/privacidad/`.
+revisar que los enlaces de las casillas sigan apuntando a `/terminos/` y `/privacidad/`.
+
+### Textos de las casillas del formulario de inscripción
+
+Estos son los textos vigentes. Se copian tal cual en cada convocatoria, y esta
+sección es la fuente: si se cambian aquí, se cambian en el formulario, y el commit
+deja constancia de qué texto se estaba usando en cada momento.
+
+Cada casilla va como **pregunta independiente** de tipo casilla de verificación con
+una sola opción y marcada como obligatoria. Una única pregunta con cinco opciones no
+sirve: Google da por válida la respuesta con que se marque una sola.
+
+**Obligatorias**
+
+1. He leído la Política de Privacidad (estrellasdelsur.eu/privacidad/) y consiento el
+   tratamiento de mis datos personales para gestionar mi solicitud, mi participación en
+   la actividad y las obligaciones de justificación ante el programa financiador y sus
+   agencias nacionales.
+2. He leído y acepto las condiciones de participación de esta convocatoria y el apartado 4
+   de los Términos y condiciones (estrellasdelsur.eu/terminos/#participacion), incluido lo
+   relativo a seguro, salud, documentación de viaje, conducta y exención de responsabilidad.
+3. Me comprometo a respetar el Código Ético y de Conducta y el Protocolo de prevención del
+   acoso de la asociación (estrellasdelsur.eu/transparencia/) durante toda la actividad, y
+   entiendo que un incumplimiento grave puede suponer la expulsión sin derecho a reembolso.
+4. Declaro que los datos facilitados son veraces, que cumplo los requisitos de la
+   convocatoria y que me encuentro en condiciones de salud adecuadas para la actividad. Me
+   comprometo a comunicar antes del inicio cualquier alergia, tratamiento, condición médica
+   o necesidad de apoyo relevante para mi seguridad.
+5. Soy mayor de 18 años. Si eres menor de edad, tu participación necesita la autorización
+   firmada de tu madre, padre o tutor legal: escríbenos antes de enviar la solicitud.
+
+**Voluntarias** (van al final, con el encabezado "Estas dos casillas son voluntarias y no
+influyen en la selección")
+
+6. Autorizo a la Asociación Cultural Estrellas del Sur a captar mi imagen y mi voz en las
+   fotografías y vídeos tomados durante la actividad y a difundirlos en su web
+   estrellasdelsur.eu, en sus redes sociales, en sus memorias anuales y en los materiales de
+   difusión y justificación del programa que financia el proyecto. La autorización es
+   gratuita, sin límite territorial, y se extiende al tiempo de difusión del proyecto y a su
+   conservación en el archivo documental de la asociación. No se cederán las imágenes a
+   terceros con fines comerciales. Esta casilla es voluntaria, no influye en la selección, y
+   puedo revocarla en cualquier momento escribiendo a paula@estrellasdelsur.eu, sin que la
+   revocación afecte a los usos ya realizados ni a los ejemplares ya distribuidos.
+7. Quiero recibir información sobre futuras convocatorias y actividades de la asociación.
+   Puedo darme de baja en cualquier momento.
+
+Las casillas 6 y 7 nunca se marcan como obligatorias. Un consentimiento que condiciona la
+participación no es libre y, por tanto, no es válido, y mezclarlo con las obligatorias
+arrastraría al resto.
+
+La casilla 6 sustituye al PDF de autorización de imagen **solo para personas adultas**. El
+RGPD no exige firma, sino un acto afirmativo específico, informado y demostrable, y la
+casilla sin premarcar más la marca de tiempo de la respuesta lo cumplen. Se mantienen los
+documentos firmados en dos casos, donde el consentimiento no lo da quien rellena el
+formulario o requiere apoyos:
+
+- Personas menores de edad: `Autorizacion_Imagen_Menores_Estrellas_del_Sur.pdf`, firmado por
+  madre, padre o tutor legal.
+- Personas con medidas de apoyo: `Autorizacion_Imagen_Medidas_Apoyo_Estrellas_del_Sur.pdf`.
+
+Si alguien revoca la autorización, hay que retirar las imágenes de los canales propios y
+dejar constancia de la fecha de la retirada junto al expediente del proyecto.
+
+### Ajustes del formulario que conviene mantener
+
+- Recopilar la dirección de correo de quien responde.
+- Cabecera del formulario con la referencia de la versión legal aceptada
+  (la de `src/lib/legal.js`, hoy 2026-08-01).
+- Ninguna casilla premarcada.
+- Al cerrar la convocatoria, descargar las respuestas y guardarlas junto al expediente
+  del proyecto. El histórico de Google no es un archivo permanente.
 
 ## Checklist rápido al actualizar
 
 - [ ] Texto editado en la página que corresponda.
 - [ ] `LEGAL_VERSION` y `LEGAL_VERSION_LABEL` actualizados en `src/lib/legal.js`.
 - [ ] Todo en el mismo commit, con un mensaje que describa el cambio legal.
+- [ ] Si cambian las condiciones de participación, revisar los textos de las casillas
+      del formulario de inscripción y actualizarlos también en el Google Form.
 - [ ] `npm run build` sin errores.
 - [ ] Push a `main` (GitHub Actions despliega en unos 2 minutos).

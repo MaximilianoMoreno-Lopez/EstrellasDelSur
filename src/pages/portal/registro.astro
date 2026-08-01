@@ -31,13 +31,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <label for="password2">Repite la contraseña</label>
           <input type="password" id="password2" name="password2" required placeholder="••••••••" />
         </div>
+        <p class="consent-intro">Para crear la cuenta marca las tres casillas:</p>
+
         <div class="field-check">
-          <input type="checkbox" id="consent" name="consent" required />
-          <label for="consent">
+          <input type="checkbox" id="consentPrivacidad" data-consent="privacidad" required />
+          <label for="consentPrivacidad">
+            He leído la
+            <a href={`${base}/privacidad/`} target="_blank" rel="noopener">Política de Privacidad</a>
+            y consiento el tratamiento de mis datos personales para gestionar mi cuenta, mi
+            participación en las actividades de la asociación y las obligaciones de justificación
+            ante el programa financiador y sus agencias nacionales.
+          </label>
+        </div>
+        <div class="field-check">
+          <input type="checkbox" id="consentTerminos" data-consent="terminos" required />
+          <label for="consentTerminos">
             He leído y acepto los
-            <a href={`${base}/terminos/`} target="_blank" rel="noopener">Términos y condiciones</a>
-            y la
-            <a href={`${base}/privacidad/`} target="_blank" rel="noopener">Política de Privacidad</a>.
+            <a href={`${base}/terminos/`} target="_blank" rel="noopener">Términos y condiciones</a>,
+            incluidas las
+            <a href={`${base}/terminos/#participacion`} target="_blank" rel="noopener">condiciones de participación</a>
+            en materia de seguro, salud, documentación de viaje, conducta y exención de responsabilidad.
+          </label>
+        </div>
+        <div class="field-check">
+          <input type="checkbox" id="consentVeracidad" data-consent="veracidad" required />
+          <label for="consentVeracidad">
+            Declaro que los datos que facilito son veraces y me comprometo a mantenerlos
+            actualizados y a comunicar cualquier cambio que afecte a mi participación.
           </label>
         </div>
         <button type="submit" class="btn-primary" id="submitBtn">
@@ -77,10 +97,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       const password2 = document.getElementById('password2').value;
-      const consent = document.getElementById('consent').checked;
+      const consentBoxes = Array.from(document.querySelectorAll('input[data-consent]'));
 
-      if (!consent) {
-        errorMsg.textContent = 'Debes aceptar los Términos y condiciones y la Política de Privacidad para crear tu cuenta.';
+      if (consentBoxes.some((box) => !box.checked)) {
+        errorMsg.textContent = 'Debes marcar todas las casillas para crear tu cuenta.';
         errorMsg.style.display = 'block';
         return;
       }
@@ -99,6 +119,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       btnSpinner.style.display = 'inline';
       submitBtn.disabled = true;
 
+      // Guardamos el texto literal que la persona vio y marcó, no solo un true,
+      // para que la prueba de la aceptación no dependa de reconstruir la web de ese día.
+      const consents = consentBoxes.map((box) => ({
+        id: box.dataset.consent,
+        text: document.querySelector('label[for="' + box.id + '"]').textContent.replace(/\s+/g, ' ').trim(),
+      }));
+
       const { error } = await supabase.auth.signUp({
         email,
         password,
@@ -110,6 +137,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             terms_accepted: true,
             privacy_accepted: true,
             accepted_at: new Date().toISOString(),
+            consents,
           },
         },
       });
@@ -178,9 +206,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   border-color: #0d9488;
   box-shadow: 0 0 0 3px rgba(13,148,136,.12);
 }
+.consent-intro {
+  font-size: .8rem; font-weight: 600; color: #374151;
+  margin: 1.4rem 0 .7rem;
+}
 .field-check {
   display: flex; align-items: flex-start; gap: .6rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: .85rem;
 }
 .field-check input {
   width: 1.05rem; height: 1.05rem;
