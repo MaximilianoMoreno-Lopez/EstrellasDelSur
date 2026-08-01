@@ -12,6 +12,11 @@ export const LEGAL_VERSION = '2026-07-14';        // AAAA-MM-DD
 export const LEGAL_VERSION_LABEL = '14 de julio de 2026';
 ```
 
+Si se toca el texto legal más de una vez el mismo día, la segunda revisión lleva
+sufijo (`2026-08-01.2`, `2026-08-01.3`). El `LEGAL_VERSION_LABEL` no cambia, porque
+la fecha para la persona que lee sigue siendo la misma. Sin el sufijo habría dos
+textos distintos compartiendo etiqueta y no se podría demostrar cuál regía.
+
 Ese número se propaga solo a dos sitios, sin tocar nada más:
 
 1. La página `/terminos/` muestra "Versión AAAA-MM-DD" (lee la constante).
