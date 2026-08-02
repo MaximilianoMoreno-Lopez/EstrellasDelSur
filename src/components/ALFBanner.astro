@@ -1,25 +1,38 @@
 ---
-// ALFBanner.astro — banda de financiación de la Fundación Anna Lindh (EuroMed)
+// ALFBanner.astro — banda de financiación de la Fundación Anna Lindh (EuroMed),
+// cuyos programas están cofinanciados por la Unión Europea
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <div class="alf-banner">
   <div class="container alf-banner-inner">
-    <img
-      class="alf-logo"
-      src={`${base}/images/alf-logo.png`}
-      alt="Fundación Anna Lindh"
-      width="1128"
-      height="432"
-      loading="lazy"
-      decoding="async"
-    />
+    <div class="alf-logos">
+      <img
+        class="alf-logo"
+        src={`${base}/images/alf-logo.png`}
+        alt="Fundación Anna Lindh"
+        width="1128"
+        height="432"
+        loading="lazy"
+        decoding="async"
+      />
+      <img
+        class="eu-emblem"
+        src={`${base}/images/eu-cofinanciado.png`}
+        alt="Cofinanciado por la Unión Europea"
+        width="1000"
+        height="210"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
     <div class="alf-text">
-      <p class="alf-heading">Financiado por la Fundación Anna Lindh</p>
+      <p class="alf-heading">Financiado por la Fundación Anna Lindh · Cofinanciado por la Unión Europea</p>
       <p class="alf-disclaimer">
-        Este proyecto cuenta con el apoyo de la Fundación Anna Lindh (EuroMed). Las opiniones y puntos de vista
-        expresados son responsabilidad exclusiva de Estrellas del Sur y no reflejan necesariamente la posición
-        de la Fundación Anna Lindh.
+        Este proyecto cuenta con el apoyo de la Fundación Anna Lindh (EuroMed), cuyos programas están
+        cofinanciados por la Unión Europea. Las opiniones y puntos de vista expresados son responsabilidad
+        exclusiva de Estrellas del Sur y no reflejan necesariamente la posición de la Fundación Anna Lindh
+        ni de la Unión Europea.
       </p>
     </div>
   </div>
@@ -37,10 +50,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     gap: 2rem;
     flex-wrap: wrap;
   }
+  .alf-logos {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
   .alf-logo {
     height: 56px;
     width: auto;
-    flex-shrink: 0;
+  }
+  .eu-emblem {
+    height: 46px;
+    width: auto;
   }
   .alf-text { flex: 1; min-width: 240px; }
   .alf-heading {
@@ -58,5 +81,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   @media (max-width: 640px) {
     .alf-banner-inner { gap: 1rem; }
+    .alf-logos { gap: 1.25rem; }
+    .alf-logo { height: 46px; }
+    .eu-emblem { height: 38px; }
   }
 </style>

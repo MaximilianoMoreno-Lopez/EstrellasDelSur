@@ -45,4 +45,4 @@ El EIL une tres elementos poco habituales en las iniciativas climáticas juvenil
 
 ## Impulsa y financia
 
-El Environmental Inequality Lab es una iniciativa local impulsada por **Estrellas del Sur** y promovida por **Maximiliano Moreno López**, presidente de la asociación, con el apoyo de la **Fundación Anna Lindh**. El proyecto cuenta con la colaboración prevista de los ayuntamientos de Córdoba y Almodóvar del Río, la Universidad de Córdoba y el tejido asociativo local.
+El Environmental Inequality Lab es una iniciativa local impulsada por **Estrellas del Sur** y promovida por **Maximiliano Moreno López**, presidente de la asociación, con el apoyo de la **Fundación Anna Lindh** y **cofinanciada por la Unión Europea**. La Fundación Anna Lindh es una organización intergubernamental euromediterránea con sede en Alejandría que reúne a los 42 países de la Unión por el Mediterráneo, y sus programas están cofinanciados por la Unión Europea. El proyecto cuenta con la colaboración prevista de los ayuntamientos de Córdoba y Almodóvar del Río, la Universidad de Córdoba y el tejido asociativo local.

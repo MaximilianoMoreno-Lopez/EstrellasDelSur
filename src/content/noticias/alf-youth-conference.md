@@ -8,6 +8,7 @@ dates: "04/07/2026 - 08/07/2026"
 location: "El Cairo, Egipto"
 description: "Maximiliano Moreno López representó a la juventud española en la ALF Youth Conference de la Fundación Anna Lindh, donde presentó el Environmental Inequality Lab ante jóvenes de las dos orillas del Mediterráneo."
 cover: "images/noticias/alf-youth-conference/cover.jpg"
+funder: "alf"
 ---
 
 Hay proyectos que nacen mirando el termómetro de tu propio barrio y acaban contándose a más de 3.000 kilómetros de casa. Eso es exactamente lo que le ha pasado al **Environmental Inequality Lab**, nuestra iniciativa sobre desigualdad ante el calor extremo en Córdoba, que ha viajado hasta El Cairo para presentarse en la **ALF Youth Conference** de la Fundación Anna Lindh.
@@ -18,7 +19,7 @@ Del **4 al 8 de julio de 2026** estuvo allí **Maximiliano Moreno López**, pres
 
 ## Qué es la Fundación Anna Lindh y por qué importa
 
-Conviene aclararlo, porque casi nadie lo tiene claro a la primera. La **Fundación Anna Lindh** no es la Unión Europea. Es una organización intergubernamental euromediterránea, creada en 2005 y con sede en Alejandría, que reúne a los **42 países de la Unión por el Mediterráneo**, es decir, los 27 estados de la UE más los países del norte de África y de Oriente Medio. La Unión Europea cofinancia buena parte de su actividad, pero la Fundación es una entidad propia con su propia red de sociedad civil.
+Conviene aclararlo, porque casi nadie lo tiene claro a la primera. La **Fundación Anna Lindh** no es la Unión Europea. Es una organización intergubernamental euromediterránea, creada en 2005 y con sede en Alejandría, que reúne a los **42 países de la Unión por el Mediterráneo**, es decir, los 27 estados de la UE más los países del norte de África y de Oriente Medio. La Fundación es una entidad propia, con su propia red de sociedad civil, y sus programas están **cofinanciados por la Unión Europea**, que es quien aporta el grueso de la financiación. De ahí que el emblema europeo apareciera en todos los materiales del encuentro.
 
 Lo euromediterráneo parte de una idea sencilla y bastante bonita, que el Mediterráneo no separa, une. España y Egipto, Francia y Jordania, Italia y Marruecos comparten historia, clima, retos y futuro. La Fundación Anna Lindh es quien teje esa red de diálogo entre culturas, y su **ALF Youth Conference** es el momento del año en el que la juventud de toda la región se sienta en la misma sala.
 
