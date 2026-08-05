@@ -18,6 +18,12 @@ const { Content } = await render(project);
 const { title, type, status, flag, description, location, year, yearLabel, image, imageLogo, poster, infopack, apply, dates, localInitiative, coordinated, edad, idioma, coste, funder } = project.data;
 const yearDisplay = yearLabel || year;
 
+// `status: past` significa que las plazas ya están cubiertas, así que el
+// formulario deja de tener sentido. Antes el enlace de `apply` seguía saliendo
+// al final del artículo y en la barra lateral (solo el del hero miraba el
+// estado), y se recibían solicitudes a proyectos ya completos.
+const canApply = status === 'active' && Boolean(apply);
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const SITE = 'https://estrellasdelsur.eu';
@@ -186,7 +192,7 @@ const breadcrumbs = [
       )}
       {status === 'active' && (apply || infopack) && (
         <div class="hero-ctas fade-in fade-in-delay-3">
-          {apply && (
+          {canApply && (
             <a href={apply} target="_blank" rel="noopener" class="btn btn-primary">
               Preinscribirme
             </a>
@@ -216,9 +222,9 @@ const breadcrumbs = [
         )}
         <Content />
 
-        {(apply || infopack) && (
+        {(canApply || infopack) && (
           <div class="bottom-cta">
-            {apply && (
+            {canApply && (
               <a href={apply} target="_blank" rel="noopener" class="btn btn-primary">
                 Preinscribirme
               </a>
@@ -285,7 +291,7 @@ const breadcrumbs = [
           </dl>
 
           <div class="sidebar-actions">
-            {apply && (
+            {canApply && (
               <a href={apply} target="_blank" rel="noopener" class="btn btn-primary sidebar-cta">
                 Preinscribirme
               </a>
@@ -295,7 +301,7 @@ const breadcrumbs = [
                 Ver Infopack
               </a>
             )}
-            {!apply && (
+            {!canApply && (
               <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-primary sidebar-cta">
                 Quiero participar
               </a>
