@@ -18,5 +18,8 @@
     "@fontsource-variable/playfair-display": "^5.2.8",
     "@supabase/supabase-js": "^2.104.1",
     "astro": "^6.1.9"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }
