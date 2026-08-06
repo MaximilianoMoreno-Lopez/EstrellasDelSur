@@ -13,8 +13,8 @@ image: "images/noticias/detox-microgreens/cover.jpg"
 
 - **Temática del Proyecto:** Cultivo de microgreens y desarrollo de recursos de aprendizaje abiertos
 - **Lugar:** Atenas, Grecia
-- **Organización de acogida:** EVEC — European Volunteer and Educational Center
-- **Fechas:** 10 de enero – 7 de marzo de 2026
+- **Organización de acogida:** EVEC (European Volunteer and Educational Center)
+- **Fechas:** del 10 de enero al 7 de marzo de 2026
 - **Nº de proyecto:** 2025-1-EL02-ESC51-VTJ-000345995
 
 ## Sobre el proyecto

@@ -4,7 +4,7 @@ type: "Voluntariado"
 status: "past"
 order: -5
 date: "2026-07"
-dates: "21 mayo 2025 – 27 abril 2026"
+dates: "21 mayo 2025 a 27 abril 2026"
 location: "Atenas (Grecia)"
 description: "Nuestra voluntaria Julia Aixiu Muñoz Lucena pasó casi un año en Atenas con el Cuerpo Europeo de Solidaridad, aprendiendo a cultivar microgreens y ayudando a construir un portal de aprendizaje gratuito y abierto a toda Europa."
 cover: "images/noticias/detox-microgreens/cover.jpg"
@@ -16,7 +16,7 @@ Durante casi un año, nuestra voluntaria **Julia Aixiu Muñoz Lucena** vivió y 
 
 ## Aprender cultivando, enseñar contando
 
-El grupo aprendió a cultivar *microgreens* —esos pequeños brotes de hortalizas— y convirtió esa experiencia en material de aprendizaje para otras personas. Investigaron, escribieron, fotografiaron, grabaron y enseñaron, transformando lo que descubrían día a día en contenidos útiles para cualquiera que quisiera empezar de cero.
+El grupo aprendió a cultivar *microgreens* (esos pequeños brotes de hortalizas) y convirtió esa experiencia en material de aprendizaje para otras personas. Investigaron, escribieron, fotografiaron, grabaron y enseñaron, transformando lo que descubrían día a día en contenidos útiles para cualquiera que quisiera empezar de cero.
 
 ![El equipo de voluntarios preparando los contenidos del proyecto](/images/noticias/detox-microgreens/equipo.jpg)
 

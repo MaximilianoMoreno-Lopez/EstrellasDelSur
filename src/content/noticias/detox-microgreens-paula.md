@@ -4,7 +4,7 @@ type: "Voluntariado"
 status: "past"
 order: -4.5
 date: "2026-07"
-dates: "10 enero – 7 marzo 2026"
+dates: "10 enero a 7 marzo 2026"
 location: "Atenas (Grecia)"
 description: "Nuestra voluntaria Paula Duran Ferrero pasó 59 días en Atenas con el Cuerpo Europeo de Solidaridad y fue la diseñadora web que construyó la primera versión del portal de aprendizaje sobre microgreens."
 cover: "images/noticias/detox-microgreens/cosecha.jpg"
@@ -16,7 +16,7 @@ Nuestra voluntaria **Paula Duran Ferrero** pasó **59 días en Atenas**, del 10 
 
 ## Aprender cultivando, enseñar contando
 
-El grupo aprendió a cultivar *microgreens* —esos pequeños brotes de hortalizas— y convirtió esa experiencia en material de aprendizaje para otras personas: investigaron, escribieron, fotografiaron, grabaron y enseñaron, dando forma a un recurso pensado para que cualquiera pueda empezar de cero.
+El grupo aprendió a cultivar *microgreens* (esos pequeños brotes de hortalizas) y convirtió esa experiencia en material de aprendizaje para otras personas: investigaron, escribieron, fotografiaron, grabaron y enseñaron, dando forma a un recurso pensado para que cualquiera pueda empezar de cero.
 
 ![El equipo de voluntarios trabajando en los contenidos del proyecto](/images/noticias/detox-microgreens/equipo.jpg)
 

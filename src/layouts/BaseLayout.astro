@@ -36,8 +36,12 @@ const {
   lang = 'es',
 } = Astro.props;
 
+// La barra en vez de la raya larga: son 576 px en Arial 20, la tipografía con
+// la que Google pinta los títulos, frente a los 591 px de la raya. Así entra
+// entero en el resultado de búsqueda sin renunciar a "en Córdoba", que es lo
+// que responde a las búsquedas locales.
 const pageTitle = title === 'Estrellas del Sur'
-  ? 'Estrellas del Sur — Erasmus+ y Voluntariado Europeo en Córdoba'
+  ? 'Estrellas del Sur | Erasmus+ y Voluntariado Europeo en Córdoba'
   : `${title} | Estrellas del Sur`;
 
 const socialTitle = ogTitle ?? (title === 'Estrellas del Sur' ? 'Estrellas del Sur' : pageTitle);

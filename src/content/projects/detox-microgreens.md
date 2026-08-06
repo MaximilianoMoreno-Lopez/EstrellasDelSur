@@ -13,13 +13,13 @@ image: "images/noticias/detox-microgreens/cover.jpg"
 
 - **Temática del Proyecto:** Cultivo de microgreens y creación de recursos de aprendizaje abiertos
 - **Lugar:** Atenas, Grecia
-- **Organización de acogida:** EVEC — European Volunteer and Educational Center
-- **Fechas:** 21 de mayo de 2025 – 27 de abril de 2026
+- **Organización de acogida:** EVEC (European Volunteer and Educational Center)
+- **Fechas:** del 21 de mayo de 2025 al 27 de abril de 2026
 - **Nº de proyecto:** 2024-1-EL02-ESC51-VTJ-000225260
 
 ## Sobre el proyecto
 
-*«Stay Healthy, Beautiful and Young – Detox with Microgreens 2»* fue un voluntariado del Cuerpo Europeo de Solidaridad celebrado en Atenas y acogido por EVEC. Jóvenes de Polonia, Eslovaquia, España e Italia convivieron mientras aprendían a cultivar *microgreens* —pequeños brotes de hortalizas— y transformaban esa experiencia en material de aprendizaje para otras personas: investigaron, escribieron, fotografiaron, filmaron y enseñaron.
+*«Stay Healthy, Beautiful and Young – Detox with Microgreens 2»* fue un voluntariado del Cuerpo Europeo de Solidaridad celebrado en Atenas y acogido por EVEC. Jóvenes de Polonia, Eslovaquia, España e Italia convivieron mientras aprendían a cultivar *microgreens* (pequeños brotes de hortalizas) y transformaban esa experiencia en material de aprendizaje para otras personas: investigaron, escribieron, fotografiaron, filmaron y enseñaron.
 
 El resultado es un portal público y gratuito con artículos, guías de cultivo, una biblioteca de divulgación y cursos a tu ritmo: **[www.microgreens.org.gr](https://www.microgreens.org.gr)**. Puedes seguir el proyecto en Facebook, Instagram y TikTok como **[@evec.microgreens](https://www.instagram.com/evec.microgreens)**.
 
