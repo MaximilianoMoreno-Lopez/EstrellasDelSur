@@ -107,8 +107,11 @@ const robotsContent = noindex
     <!-- RSS feed (noticias) -->
     <link rel="alternate" type="application/rss+xml" title="Estrellas del Sur · Noticias" href={`${base}/rss.xml`} />
 
-    <!-- Without JS the IntersectionObserver never runs, so reveal everything. -->
-    <noscript><style>.fade-in{opacity:1 !important;transform:none !important;}</style></noscript>
+    {/* Without JS the IntersectionObserver never runs, so reveal everything.
+        The CSS goes through set:html on purpose. A style element nested inside a
+        noscript element makes the Astro compiler close the head early and spill
+        the JSON-LD and the favicons out of it. */}
+    <noscript set:html={`<style>.fade-in{opacity:1 !important;transform:none !important;}</style>`}></noscript>
 
     <!-- JSON-LD -->
     {jsonLdEntries.map((entry) => (

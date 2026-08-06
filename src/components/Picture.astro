@@ -1,4 +1,7 @@
 ---
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 interface Props {
   src: string;
   alt: string;
@@ -9,8 +12,9 @@ interface Props {
   width?: number | string;
   height?: number | string;
   ariaHidden?: boolean;
-  /** When set, the browser will pick between the small (-card, ~800w)
-   *  and the full WebP. Pass the layout sizes hint, e.g.
+  /** When set, the browser will pick between the small (-card, ~800w),
+   *  the intermediate (-mid, 1200w) if it exists, and the full WebP.
+   *  Pass the layout sizes hint, e.g.
    *  "(max-width: 768px) 100vw, 380px" for project cards. */
   sizes?: string;
 }
@@ -36,10 +40,23 @@ const isRaster = /\.(jpe?g|png)$/i.test(clean);
 const webpSrc = isRaster ? fullSrc.replace(/\.(jpe?g|png)$/i, '.webp') : null;
 const cardSrc = isRaster ? fullSrc.replace(/\.(jpe?g|png)$/i, '-card.webp') : null;
 
+// scripts/generate-webp.mjs solo crea el escalon de 1200 px donde hace falta
+// (portadas de noticia con original mas ancho). Se anade al srcset si existe.
+// La comprobacion ocurre al generar el sitio, nunca en el navegador.
+// Ojo: aqui hay que resolver desde process.cwd() y no desde import.meta.url. Al
+// construir, Astro emite este componente en dist/.prerender/chunks/, asi que
+// import.meta.url apunta ahi y cualquier ruta relativa al fichero fuente falla
+// (se probo y el escalon de 1200 desaparecia del srcset en todo el sitio).
+const midRel = isRaster ? clean.replace(/\.(jpe?g|png)$/i, '-mid.webp') : null;
+const hasMid = midRel ? existsSync(resolve(process.cwd(), 'public', midRel)) : false;
+const midSrc = hasMid ? `${base}/${midRel}` : null;
+
 // Use the responsive srcset only when the consumer provided a sizes hint;
 // otherwise fall back to a single WebP source.
 const webpSrcset = sizes && cardSrc && webpSrc
-  ? `${cardSrc} 800w, ${webpSrc} 1800w`
+  ? [`${cardSrc} 800w`, midSrc ? `${midSrc} 1200w` : null, `${webpSrc} 1800w`]
+      .filter(Boolean)
+      .join(', ')
   : webpSrc;
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "DiáLogos Europeos"
+title: "DiáLogos Europeos en Toledo: una simulación de la UE"
 type: "Participación"
 status: "past"
 order: 1.5

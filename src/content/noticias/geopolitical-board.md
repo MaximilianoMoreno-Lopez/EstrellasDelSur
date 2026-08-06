@@ -1,9 +1,9 @@
 ---
-title: "Geopolitical Board"
+title: "Geopolitical Board, un intercambio juvenil en Fundão"
 type: "Intercambio"
 status: "past"
 order: 5
-description: "Durante el transcurso de este proyecto, los participantes experimentaron un notable avance en su dominio del idioma inglés, inicialmente ubicado en un nivel int"
+description: "Durante el transcurso de este proyecto, los participantes experimentaron un notable avance en su dominio del idioma inglés, inicialmente ubicado en un nivel intermedio."
 cover: "images/noticias/geopolitical-board/cover.png"
 ---
 

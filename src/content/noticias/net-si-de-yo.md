@@ -1,5 +1,5 @@
 ---
-title: "NeT.-Si.De.Yo!"
+title: "NeT.-Si.De.Yo!, soft skills y networking en Tortorella"
 type: "Formación"
 status: "past"
 order: 1

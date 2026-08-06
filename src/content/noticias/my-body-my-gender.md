@@ -1,5 +1,5 @@
 ---
-title: "My Body, My Gender"
+title: "My Body, My Gender: arte y autoconocimiento en Moravia"
 type: "Formación"
 status: "past"
 order: 13

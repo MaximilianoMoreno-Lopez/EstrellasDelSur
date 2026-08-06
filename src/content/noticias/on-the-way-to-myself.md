@@ -1,10 +1,10 @@
 ---
-title: "On the way to myself"
+title: "On the way to myself, aventura al aire libre en Chequia"
 type: "Intercambio"
 status: "past"
 order: 8
 location: "Vrchlabí, República Checa"
-description: "¡Una aventura inolvidable en la naturaleza! Del 25 de agosto al 1 de septiembre de 2024, seis jóvenes españoles de Estrellas del Sur tuvieron la oportunidad de "
+description: "¡Una aventura inolvidable en la naturaleza! Del 25 de agosto al 1 de septiembre de 2024, seis jóvenes españoles de Estrellas del Sur tuvieron la oportunidad de participar en un intercambio juvenil en Vrchlabí, República Checa."
 cover: "images/noticias/on-the-way-to-myself/cover.jpg"
 ---
 

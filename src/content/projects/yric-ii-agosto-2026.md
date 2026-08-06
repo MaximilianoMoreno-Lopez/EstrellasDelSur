@@ -1,5 +1,5 @@
 ---
-title: "YRIC II"
+title: "YRIC II (agosto 2026)"
 type: "Voluntariado"
 status: "past"
 flag: "🇵🇱"

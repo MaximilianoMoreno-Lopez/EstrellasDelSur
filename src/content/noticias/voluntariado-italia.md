@@ -1,10 +1,10 @@
 ---
-title: "Voluntariado Italia"
+title: "Voluntariado en Molfetta, escuela e intercambio cultural"
 type: "Formación"
 status: "past"
 order: 12
-location: "Molfetta Sergio, Martín tuvo la oportunidad de p"
-description: "Una experiencia educativa en Molfetta Sergio Martín tuvo la oportunidad de participar en un proyecto de voluntariado en el Istituto Comprensivo Battisti-Pascoli"
+location: "Molfetta, Italia"
+description: "Una experiencia educativa en Molfetta. Sergio Martín tuvo la oportunidad de participar en un proyecto de voluntariado en el Istituto Comprensivo Battisti-Pascoli"
 cover: "images/noticias/voluntariado-italia/cover.jpg"
 ---
 

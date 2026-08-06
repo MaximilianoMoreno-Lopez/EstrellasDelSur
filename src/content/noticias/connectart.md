@@ -1,5 +1,5 @@
 ---
-title: "ConnectART"
+title: "ConnectART, un año de danza, fotografía y escritura"
 type: "Cooperación"
 status: "past"
 order: 6

@@ -18,6 +18,7 @@ interface Props {
 
 const { title, type, status, flag, description, image, imageLogo = false, location, dates, slug, localInitiative = false, coordinated = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = `${base}/proyectos/${slug}/`;
 
 // En la card mostramos solo el rango de fechas, sin aclaraciones entre
 // paréntesis (p. ej. "días de programa"): eso se reserva para el detalle.
@@ -53,23 +54,33 @@ const fallbackGradient = localInitiative
 ---
 
 <article class="project-card card" data-type={type} data-status={status}>
-  <!-- Imagen destacada -->
-  <a href={`${base}/proyectos/${slug}/`} class:list={["card-image", { 'card-image-logo': image && (imageLogo || localInitiative) }]} aria-label={`Ver ${title}`}>
-    {image ? (
-      <Picture
-        src={image}
-        alt={`Imagen de ${title}`}
-        loading="lazy"
-        width="640"
-        height="360"
-        sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 380px"
-      />
-    ) : (
-      <div class="card-image-fallback" style={`background: ${fallbackGradient}`}>
-        <span class="fallback-flag" aria-hidden="true">{flag}</span>
-        <span class="fallback-type">{typeLabel}</span>
-      </div>
-    )}
+  {/* Imagen destacada.
+      El enlace de la tarjeta es el título (ver .card-title más abajo). La imagen
+      y el "Saber más" repiten ese mismo destino, así que se dejan clicables con
+      el ratón pero fuera del foco y del árbol de accesibilidad (tabindex="-1" y
+      aria-hidden), para que cada tarjeta ofrezca un solo enlace a teclado y
+      lectores de pantalla. Los distintivos "Activo" y "Coordinado" viven fuera
+      del ancla para que sigan siendo legibles.
+      Comentario de plantilla, no HTML: la tarjeta se repite más de cien veces en
+      /proyectos/ y un comentario HTML se copiaría entero en cada una. */}
+  <div class="card-media">
+    <a href={href} class:list={["card-image", { 'card-image-logo': image && (imageLogo || localInitiative) }]} tabindex="-1" aria-hidden="true">
+      {image ? (
+        <Picture
+          src={image}
+          alt={`Imagen de ${title}`}
+          loading="lazy"
+          width="640"
+          height="360"
+          sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 380px"
+        />
+      ) : (
+        <div class="card-image-fallback" style={`background: ${fallbackGradient}`}>
+          <span class="fallback-flag" aria-hidden="true">{flag}</span>
+          <span class="fallback-type">{typeLabel}</span>
+        </div>
+      )}
+    </a>
     {status === 'active' && (
       <span class="card-status-badge">Activo</span>
     )}
@@ -79,16 +90,16 @@ const fallbackGradient = localInitiative
         Coordinado
       </span>
     )}
-  </a>
+  </div>
 
-  <!-- Contenido -->
+  {/* Contenido */}
   <div class="card-body">
     <div class="card-tags">
       <span class={`badge ${typeClass}`}>{typeLabel}</span>
       <span class="card-flag" aria-label="País">{flag}</span>
     </div>
 
-    <h3 class="card-title">{title}</h3>
+    <h3 class="card-title"><a href={href} class="card-title-link">{title}</a></h3>
     <p class="card-desc">{description}</p>
 
     <div class="card-meta">
@@ -106,7 +117,7 @@ const fallbackGradient = localInitiative
       )}
     </div>
 
-    <a href={`${base}/proyectos/${slug}/`} class="card-link" aria-label={`Ver más sobre ${title}`}>
+    <a href={href} class="card-link" tabindex="-1" aria-hidden="true">
       Saber más
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </a>
@@ -123,6 +134,15 @@ const fallbackGradient = localInitiative
   }
 
   /* ── Imagen ── */
+  /* Contenedor de la imagen. Antes el ancla hacía de caja posicionada para los
+     distintivos; ahora los distintivos son hermanos del ancla y se posicionan
+     contra este envoltorio, que ocupa exactamente la misma caja. */
+  .card-media {
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
   .card-image {
     position: relative;
     display: block;
@@ -238,6 +258,14 @@ const fallbackGradient = localInitiative
     font-weight: 700;
     color: var(--navy);
     line-height: 1.25;
+  }
+
+  /* El título es el enlace de la tarjeta, pero se ve igual que antes: hereda
+     color y tipografía del h3 y no lleva subrayado, ni en reposo ni al pasar
+     el ratón. El anillo de foco lo pone la regla global :focus-visible. */
+  .card-title-link {
+    color: inherit;
+    text-decoration: none;
   }
 
   .card-desc {
