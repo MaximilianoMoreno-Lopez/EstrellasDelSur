@@ -1,7 +1,7 @@
 ---
 title: "Transform Your Life"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇭🇺"
 description: "Intercambio juvenil Erasmus+ en Bátonyterenye (Hungría) sobre transformación personal y bienestar a través de la sabiduría taoísta y el sistema de los Cinco Elementos, partiendo del Fuego, con Qi Gong, movimiento, reflexión, naturaleza y vida intercultural."
 location: "Bátonyterenye (Kisterenye), Hungría"
