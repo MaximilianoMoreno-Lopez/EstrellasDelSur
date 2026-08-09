@@ -1,7 +1,7 @@
 ---
 title: "EPVP 6.2"
 type: "Voluntariado"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Voluntariado de larga duración del Cuerpo Europeo de Solidaridad (ESC) en Bucarest (Rumanía) con la ONG COSI. Cinco meses promoviendo ciudadanía activa, diálogo intercultural y oportunidades europeas entre la juventud rumana, con apoyo en la organización de proyectos Erasmus+."
 location: "Bucarest (Rumanía)"
