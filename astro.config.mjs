@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { readdirSync } from 'node:fs';
 import rehypeContentPictures from './scripts/rehype-content-pictures.mjs';
+import remarkStripClosedFee from './scripts/remark-strip-closed-fee.mjs';
 
 // Old WordPress project URLs lived at /<slug>/. The new site has them
 // under /proyectos/<slug>/. Generate a redirect for every project file
@@ -18,6 +19,9 @@ export default defineConfig({
   site: 'https://estrellasdelsur.eu',
   output: 'static',
   markdown: {
+    // En proyectos con la convocatoria cerrada, no publicar el apartado de la
+    // cuota de socio (ver scripts/remark-strip-closed-fee.mjs).
+    remarkPlugins: [remarkStripClosedFee],
     // Serve WebP + lazy-load + intrinsic dimensions for images written inline
     // in Markdown article bodies (see scripts/rehype-content-pictures.mjs).
     rehypePlugins: [rehypeContentPictures],

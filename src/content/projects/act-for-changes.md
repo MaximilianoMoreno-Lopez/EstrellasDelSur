@@ -59,7 +59,7 @@ Durante el proyecto están cubiertos:
 - Todos los gastos de las actividades realizadas durante la estancia.
 - Transporte internacional (gestionado y pagado directamente por la organización).
 
-El participante es responsable del acceso a asistencia sanitaria durante todo el proyecto, ya sea a través de la tarjeta sanitaria europea o de un seguro privado, **además del seguro que ya está incluido en la cuota de socio** (ver siguiente apartado).
+El participante es responsable del acceso a asistencia sanitaria durante todo el proyecto, ya sea a través de la tarjeta sanitaria europea o de un seguro privado, **además del seguro que ya está incluido en la cuota de socio**.
 
 ## Cuota de Socio
 
