@@ -24,6 +24,11 @@ const yearDisplay = yearLabel || year;
 // estado), y se recibían solicitudes a proyectos ya completos.
 const canApply = status === 'active' && Boolean(apply);
 
+// El botón genérico de contacto solo tiene sentido en proyectos abiertos que
+// todavía no tienen formulario. En los cerrados no se ofrece ninguna vía de
+// solicitud, ni el formulario ni el correo.
+const showContactCta = status === 'active' && !apply;
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const SITE = 'https://estrellasdelsur.eu';
@@ -301,7 +306,7 @@ const breadcrumbs = [
                 Ver Infopack
               </a>
             )}
-            {!canApply && (
+            {showContactCta && (
               <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-primary sidebar-cta">
                 Quiero participar
               </a>
