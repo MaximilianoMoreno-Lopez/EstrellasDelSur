@@ -14,9 +14,10 @@ interface Props {
   slug: string;
   localInitiative?: boolean;
   coordinated?: boolean;
+  federacion?: boolean;
 }
 
-const { title, type, status, flag, description, image, imageLogo = false, location, dates, slug, localInitiative = false, coordinated = false } = Astro.props;
+const { title, type, status, flag, description, image, imageLogo = false, location, dates, slug, localInitiative = false, coordinated = false, federacion = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const href = `${base}/proyectos/${slug}/`;
 
@@ -84,11 +85,21 @@ const fallbackGradient = localInitiative
     {status === 'active' && (
       <span class="card-status-badge">Activo</span>
     )}
-    {coordinated && (
-      <span class="card-coord-badge" title="Proyecto coordinado por Estrellas del Sur">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 14.85 8.62 22 9.27l-5.5 4.73L18.18 21 12 17.27 5.82 21 7.5 14 2 9.27l7.15-.65z"/></svg>
-        Coordinado
-      </span>
+    {(coordinated || federacion) && (
+      <div class="card-media-badges">
+        {coordinated && (
+          <span class="card-coord-badge" title="Proyecto coordinado por Estrellas del Sur">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 14.85 8.62 22 9.27l-5.5 4.73L18.18 21 12 17.27 5.82 21 7.5 14 2 9.27l7.15-.65z"/></svg>
+            Coordinado
+          </span>
+        )}
+        {federacion && (
+          <span class="card-fed-badge" title="Proyecto de la Federación Estrellas de Europa">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M10.6 7.2 6.4 16.5"/><path d="M13.4 7.2l4.2 9.3"/></svg>
+            Federación
+          </span>
+        )}
+      </div>
     )}
   </div>
 
@@ -217,11 +228,20 @@ const fallbackGradient = localInitiative
     letter-spacing: .04em;
   }
 
-  /* Badge "Coordinado" sobre la imagen (esquina superior izquierda) */
-  .card-coord-badge {
+  /* Distintivos sobre la imagen (esquina superior izquierda). Se apilan
+     cuando un proyecto es a la vez coordinado y de la Federación. */
+  .card-media-badges {
     position: absolute;
     top: .75rem;
     left: .75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .35rem;
+  }
+
+  .card-coord-badge,
+  .card-fed-badge {
     display: inline-flex;
     align-items: center;
     gap: .3rem;
@@ -234,6 +254,11 @@ const fallbackGradient = localInitiative
     border-radius: 999px;
     letter-spacing: .03em;
     border: 1px solid rgba(245, 158, 11, .35);
+  }
+
+  .card-fed-badge {
+    color: #5eead4;
+    border-color: rgba(13, 148, 136, .45);
   }
 
   /* ── Cuerpo ── */

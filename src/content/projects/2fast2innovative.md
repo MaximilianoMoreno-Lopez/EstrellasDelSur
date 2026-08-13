@@ -15,6 +15,7 @@ apply: "https://forms.gle/grr5P8bx3DNd44E46"
 edad: "A partir de 18 años, sin límite de edad"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
+federacion: true
 ---
 
 ## Datos del proyecto

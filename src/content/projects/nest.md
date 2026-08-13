@@ -6,6 +6,7 @@ flag: "🇪🇸"
 description: "Curso de formación Erasmus+ sobre educación económica y financiera para el trabajo juvenil, coordinado por la Federación Estrellas de Europa en España."
 year: 2026
 location: "España"
+federacion: true
 ---
 ## Datos del proyecto
 

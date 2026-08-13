@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, type, status, flag, description, location, year, yearLabel, image, imageLogo, poster, infopack, apply, dates, localInitiative, coordinated, edad, idioma, coste, funder } = project.data;
+const { title, type, status, flag, description, location, year, yearLabel, image, imageLogo, poster, infopack, apply, dates, localInitiative, coordinated, federacion, edad, idioma, coste, funder } = project.data;
 const yearDisplay = yearLabel || year;
 
 // `status: past` significa que las plazas ya están cubiertas, así que el
@@ -173,6 +173,12 @@ const breadcrumbs = [
             <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 14.85 8.62 22 9.27l-5.5 4.73L18.18 21 12 17.27 5.82 21 7.5 14 2 9.27l7.15-.65z"/></svg>
             Coordinado
           </span>
+        )}
+        {federacion && (
+          <a href="https://estrellaseuropa.eu" target="_blank" rel="noopener" class="badge-fed">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M10.6 7.2 6.4 16.5"/><path d="M13.4 7.2l4.2 9.3"/></svg>
+            Federación Estrellas de Europa
+          </a>
         )}
         {status === 'active' && <span class="badge-active">Activo</span>}
         <span class="hero-flag-inline" aria-label="País">{flag}</span>
@@ -414,6 +420,30 @@ const breadcrumbs = [
     border-radius: 999px;
     letter-spacing: .03em;
     border: 1px solid rgba(245, 158, 11, .35);
+  }
+
+  /* Distintivo de la Federación Estrellas de Europa, enlazado a su web */
+  .badge-fed {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    background: rgba(10, 22, 40, .85);
+    backdrop-filter: blur(4px);
+    color: #5eead4;
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    letter-spacing: .03em;
+    border: 1px solid rgba(94, 234, 212, .45);
+    text-decoration: none;
+    transition: background .2s ease, border-color .2s ease;
+  }
+
+  .badge-fed:hover,
+  .badge-fed:focus-visible {
+    background: rgba(10, 22, 40, .95);
+    border-color: rgba(94, 234, 212, .75);
   }
 
   .hero-flag-inline { font-size: 1.4rem; }

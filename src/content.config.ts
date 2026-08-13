@@ -24,6 +24,7 @@ const projects = defineCollection({
     coste: z.string().optional(),
     localInitiative: z.boolean().default(false),
     coordinated: z.boolean().default(false),
+    federacion: z.boolean().default(false),
     funder: z.enum(['eu', 'alf']).default('eu'),
   }),
 });
