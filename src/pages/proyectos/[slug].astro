@@ -24,6 +24,16 @@ const yearDisplay = yearLabel || year;
 // estado), y se recibían solicitudes a proyectos ya completos.
 const canApply = status === 'active' && Boolean(apply);
 
+// `apply` admite un ancla de la propia ficha (`#solicitar`) además de una URL.
+// Se usa cuando no hay formulario y la solicitud se explica en el texto: el
+// botón baja a esa sección en vez de abrir el correo a ciegas, que dejaba a la
+// persona delante de un mensaje en blanco sin saber qué adjuntar. Un ancla no
+// se abre en pestaña nueva ni necesita rel.
+const applyIsAnchor = Boolean(apply?.startsWith('#'));
+const applyLabel = applyIsAnchor ? 'Quiero participar' : 'Preinscribirme';
+const applyTarget = applyIsAnchor ? undefined : '_blank';
+const applyRel = applyIsAnchor ? undefined : 'noopener';
+
 // El botón genérico de contacto solo tiene sentido en proyectos abiertos que
 // todavía no tienen formulario. En los cerrados no se ofrece ninguna vía de
 // solicitud, ni el formulario ni el correo.
@@ -207,8 +217,8 @@ const breadcrumbs = [
       {status === 'active' && (apply || infopack) && (
         <div class="hero-ctas fade-in fade-in-delay-3">
           {canApply && (
-            <a href={apply} target="_blank" rel="noopener" class="btn btn-primary">
-              Preinscribirme
+            <a href={apply} target={applyTarget} rel={applyRel} class="btn btn-primary">
+              {applyLabel}
             </a>
           )}
           {infopack && (
@@ -239,8 +249,8 @@ const breadcrumbs = [
         {(canApply || infopack) && (
           <div class="bottom-cta">
             {canApply && (
-              <a href={apply} target="_blank" rel="noopener" class="btn btn-primary">
-                Preinscribirme
+              <a href={apply} target={applyTarget} rel={applyRel} class="btn btn-primary">
+                {applyLabel}
               </a>
             )}
             {infopack && (
@@ -306,8 +316,8 @@ const breadcrumbs = [
 
           <div class="sidebar-actions">
             {canApply && (
-              <a href={apply} target="_blank" rel="noopener" class="btn btn-primary sidebar-cta">
-                Preinscribirme
+              <a href={apply} target={applyTarget} rel={applyRel} class="btn btn-primary sidebar-cta">
+                {applyLabel}
               </a>
             )}
             {infopack && (

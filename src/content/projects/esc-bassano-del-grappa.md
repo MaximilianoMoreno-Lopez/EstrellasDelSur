@@ -11,6 +11,9 @@ order: -19
 image: "images/projects/esc-bassano-del-grappa/cover.png"
 poster: "images/projects/esc-bassano-del-grappa/cover.png"
 infopack: "https://drive.google.com/drive/folders/1Ip9Be4FhAmmHKzI_jtiA7_x9IU58rcOE?usp=sharing"
+# No hay formulario: la solicitud va por correo, asi que el boton baja al
+# apartado que lo explica. El ancla vive en el cuerpo del articulo.
+apply: "#solicitar"
 edad: "18-30 años"
 idioma: "Italiano (curso incluido) · inglés para empezar"
 coste: "Sin cuota · 6 €/día + 140 €/mes de comida"
@@ -152,17 +155,27 @@ Si quisieras aprovechar el viaje a Italia y pasar más días de los que dura el 
 
 No se puede llegar más tarde del día de inicio ni salir antes del día de cierre del proyecto.
 
+<span id="solicitar"></span>
+
 ## Presentación de Solicitudes
 
-Para solicitar la plaza hay que enviar tres cosas:
+Aquí no hay formulario que rellenar: **la solicitud se manda por correo electrónico** directamente a la asociación italiana.
+
+**1. Prepara tres documentos:**
 
 - **CV**
 - **Carta de motivación**
-- **Formulario de solicitud** (hay uno por proyecto: indica cuál te interesa)
+- **Formulario de solicitud**, que descargas del botón **Ver Infopack** de esta página. Hay uno por proyecto, así que coge el de la plaza que te interese
 
-Todo eso va al correo de la asociación italiana, **esc@associazionecasaacolori.org**, poniéndonos en copia en **paula@estrellasdelsur.eu** para que podamos acompañarte como organización de envío. También puedes escribirles directamente a ese correo para preguntar cualquier duda sobre el proyecto antes de decidirte: responden rápido y en español.
+**2. Envíalo todo a: esc@associazionecasaacolori.org**
 
-En el botón **Ver Infopack** de esta página tienes los dos infokits completos y los dos formularios de solicitud, uno por proyecto. Si prefieres, escríbenos primero a nosotros y te los pasamos.
+Es el correo de Casa a Colori, la asociación que acoge las dos plazas. Indica en el asunto a cuál te presentas (Casa a Colori o Cooperativa Color). Puedes escribirles también antes de decidirte, solo para preguntar dudas: responden rápido y en español.
+
+**3. Ponnos en copia si quieres (opcional): maxi@estrellasdelsur.eu**
+
+No es obligatorio, pero es lo recomendable. Estrellas del Sur es tu organización de envío, y si sabemos que has aplicado podemos acompañarte durante la selección, resolverte las dudas del programa y ayudarte con el papeleo, el viaje y los reembolsos. Si prefieres escribirnos primero a nosotros y que te pasemos los infokits y los formularios, también vale.
+
+En la carpeta del **Ver Infopack** tienes los dos infokits completos y los dos formularios, uno por proyecto.
 
 La carta de motivación es la que nos sirve para elegir a las personas que más se ajustan a las necesidades del proyecto. Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.
 
