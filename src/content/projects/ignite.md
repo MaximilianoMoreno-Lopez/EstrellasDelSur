@@ -6,14 +6,9 @@ flag: "🇭🇷"
 description: "Curso de formación Erasmus+ en la isla de Iž, en el Adriático croata, sobre cómo acompañar a jóvenes que quieren emprender con impacto social y ambiental. Cinco días de educación no formal, herramientas de coaching y cocina 100 % vegetariana junto al mar."
 location: "Isla de Iž, Croacia"
 order: 99
-# Convocatoria en espera, la ficha existe pero queda al final de los listados
-# y fuera del filtro "Activos". Para abrirla hay que dejar el frontmatter así:
-#   status: "active"
-#   order: -19
-#   year: 2026
-#   dates: "18/10/2026 - 24/10/2026 (días de programa: 19-23/10)"
-# Sin `dates` ni `year` el orden de los proyectos cerrados manda la ficha al
-# final; con ellos subiría a la cabeza del bloque de cerrados.
+# Programada para abrirse el lunes 17/08/2026 a las 07:00; el cambio de
+# status, order, year y dates esta en scripts/programados.json y lo aplica
+# solo el workflow "Cambios programados". Esta linea se borra al aplicarse.
 image: "images/projects/ignite/cover.png"
 poster: "images/projects/ignite/cover.png"
 infopack: "https://drive.google.com/file/d/1PplCIgxDctaZ4XNkDCmr7W8VupSVfS-p/view?usp=drive_link"

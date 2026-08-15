@@ -1,0 +1,86 @@
+name: Cambios programados
+
+# Abre (o cierra) convocatorias en la fecha que se haya dejado apuntada en
+# scripts/programados.json. Corre en los servidores de GitHub, así que no hace
+# falta tener el ordenador encendido ni conexión.
+#
+# La hora del cron es UTC: 05:05 UTC son las 07:05 en España en horario de
+# verano y las 06:05 en invierno. GitHub puede retrasar los cron unos minutos
+# cuando hay cola, así que la publicación es "a partir de", no al segundo.
+#
+# Este workflow construye y despliega por su cuenta en vez de encadenar el de
+# deploy: un push hecho con GITHUB_TOKEN no dispara otros workflows, así que
+# el sitio se quedaría sin actualizar. Si cambian los pasos de construcción en
+# deploy.yml, hay que replicarlos aquí.
+
+on:
+  schedule:
+    - cron: "5 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  aplicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Aplicar los cambios que tocan hoy
+        id: programados
+        run: node scripts/aplicar-programados.mjs
+
+      - name: Guardar los cambios en el repositorio
+        if: steps.programados.outputs.cambios == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/projects scripts/programados.json
+          git commit -m "Cambio programado: ${{ steps.programados.outputs.resumen }}"
+          git push
+
+      - name: Install dependencies
+        if: steps.programados.outputs.cambios == 'true'
+        run: npm ci
+
+      - name: Build
+        if: steps.programados.outputs.cambios == 'true'
+        run: npm run build
+        env:
+          PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
+          PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
+
+      - name: Upload artifact
+        if: steps.programados.outputs.cambios == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+    outputs:
+      cambios: ${{ steps.programados.outputs.cambios }}
+
+  desplegar:
+    needs: aplicar
+    if: needs.aplicar.outputs.cambios == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

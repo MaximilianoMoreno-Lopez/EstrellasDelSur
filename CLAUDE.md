@@ -41,3 +41,11 @@ en el mismo commit que el cambio de texto. Proceso completo en [`LEGAL.md`](LEGA
 
 ## Deploy
 Push a `main` → GitHub Actions construye y despliega automáticamente (~2 min).
+
+## Cambios programados
+Para abrir o cerrar una convocatoria en una fecha futura sin estar delante:
+añadir una entrada en `scripts/programados.json` (slug, `cuando` en ISO con
+zona horaria, y los `campos` del frontmatter a cambiar). El workflow
+`programados.yml` corre a diario a las 05:05 UTC, aplica lo que toque,
+commitea y despliega. Probar en local con
+`node scripts/aplicar-programados.mjs --simulacro`.
