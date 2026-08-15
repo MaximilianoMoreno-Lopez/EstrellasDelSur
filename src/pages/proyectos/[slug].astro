@@ -180,7 +180,10 @@ const breadcrumbs = [
             Federación Estrellas de Europa
           </a>
         )}
-        {status === 'active' && <span class="badge-active">Activo</span>}
+        {status === 'active'
+          ? <span class="badge-active">Activo</span>
+          : <span class="badge-closed">Plazo cerrado</span>
+        }
         <span class="hero-flag-inline" aria-label="País">{flag}</span>
       </div>
       <h1 class="hero-title fade-in fade-in-delay-1">{title}</h1>
@@ -401,6 +404,19 @@ const breadcrumbs = [
   .badge-active {
     background: #059669;
     color: #fff;
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    letter-spacing: .04em;
+  }
+
+  /* Contrapunto del anterior en los proyectos ya cerrados: mismo tamaño y
+     posición, pero apagado, para que se lea sin competir con el título. */
+  .badge-closed {
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .3);
+    color: rgba(255, 255, 255, .85);
     font-size: .72rem;
     font-weight: 600;
     padding: .25rem .65rem;

@@ -61,7 +61,8 @@ const fallbackGradient = localInitiative
       el ratón pero fuera del foco y del árbol de accesibilidad (tabindex="-1" y
       aria-hidden), para que cada tarjeta ofrezca un solo enlace a teclado y
       lectores de pantalla. Los distintivos "Activo" y "Coordinado" viven fuera
-      del ancla para que sigan siendo legibles.
+      del ancla para que sigan siendo legibles (el de estado sale siempre:
+      "Activo" en verde o "Plazo cerrado" apagado).
       Comentario de plantilla, no HTML: la tarjeta se repite más de cien veces en
       /proyectos/ y un comentario HTML se copiaría entero en cada una. */}
   <div class="card-media">
@@ -82,9 +83,9 @@ const fallbackGradient = localInitiative
         </div>
       )}
     </a>
-    {status === 'active' && (
-      <span class="card-status-badge">Activo</span>
-    )}
+    <span class:list={["card-status-badge", status === 'active' ? 'is-open' : 'is-closed']}>
+      {status === 'active' ? 'Activo' : 'Plazo cerrado'}
+    </span>
     {(coordinated || federacion) && (
       <div class="card-media-badges">
         {coordinated && (
@@ -214,18 +215,31 @@ const fallbackGradient = localInitiative
     color: rgba(255,255,255,.6);
   }
 
-  /* Badge "Activo" sobre la imagen */
+  /* Estado de las inscripciones, sobre la imagen. Los proyectos cerrados
+     también lo llevan: sin distintivo, una tarjeta antigua se lee igual que
+     una abierta y se recibían solicitudes a proyectos ya completos. El verde
+     llama la atención; el cerrado se apaga sobre la propia foto. */
   .card-status-badge {
     position: absolute;
     top: .75rem;
     right: .75rem;
-    background: #059669;
-    color: #fff;
     font-size: .72rem;
     font-weight: 600;
     padding: .25rem .65rem;
     border-radius: 999px;
     letter-spacing: .04em;
+  }
+
+  .card-status-badge.is-open {
+    background: #059669;
+    color: #fff;
+  }
+
+  .card-status-badge.is-closed {
+    background: rgba(10, 22, 40, .75);
+    backdrop-filter: blur(4px);
+    color: rgba(255, 255, 255, .88);
+    border: 1px solid rgba(255, 255, 255, .25);
   }
 
   /* Distintivos sobre la imagen (esquina superior izquierda). Se apilan
