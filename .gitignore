@@ -34,3 +34,7 @@ borradores/modelos/
 # Hojas de calculo de trabajo interno (planificacion, seguimiento). Este
 # repositorio es publico, asi que se quedan solo en local.
 *.xlsx
+
+# Traduccion de los estatutos al ingles: borrador, se queda en local hasta
+# que este lista. Quitar esta linea cuando se quiera versionar.
+scripts/estatutos-en.html
