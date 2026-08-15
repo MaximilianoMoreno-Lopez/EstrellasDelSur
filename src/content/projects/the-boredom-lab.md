@@ -1,7 +1,7 @@
 ---
 title: "The Boredom Lab"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇨🇿"
 description: "Intercambio juvenil Erasmus+ en Moravec (República Checa) sobre el aburrimiento y el silencio como herramientas para decidir hacia dónde vas, lejos de las pantallas y de la sobreestimulación."
 location: "Moravec, República Checa"
