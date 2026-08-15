@@ -87,6 +87,12 @@ export default defineConfig({
     '/against-food-waste/':           '/proyectos/embrace-the-fight-against-food-waste-challenge/',
     '/referee-for-life-2/':           '/proyectos/referee-for-life/',
     '/upscale-your-skills-2/':        '/proyectos/upscale-your-skills/',
+    '/one-train-ticket-to-the-greenest-sustainability-2/':
+      '/proyectos/one-train-ticket-to-the-greenest-sustainability/',
+
+    // Archivos de categoria del WordPress antiguo. Search Console las sigue
+    // viendo citadas, asi que van al listado en vez de dar 404.
+    '/category/proyectos-para-menores/': '/proyectos/',
 
     // Removed noticias → corresponding project page (preserve indexed links)
     '/noticias/referee-for-life/':                  '/proyectos/referee-for-life/',
