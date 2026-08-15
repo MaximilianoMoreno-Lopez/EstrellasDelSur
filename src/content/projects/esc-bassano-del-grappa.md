@@ -8,8 +8,8 @@ location: "Bassano del Grappa (Italia)"
 year: 2026
 dates: "Desde septiembre de 2026 · 6 a 12 meses"
 order: -19
-# image: "images/projects/esc-bassano-del-grappa/cover.png"   ← pendiente de subir
-# poster: "images/projects/esc-bassano-del-grappa/cover.png"  ← pendiente de subir
+image: "images/projects/esc-bassano-del-grappa/cover.png"
+poster: "images/projects/esc-bassano-del-grappa/cover.png"
 # infopack: pendiente (subir los dos infokits a Drive)
 edad: "18-30 años"
 idioma: "Italiano (curso incluido) · inglés para empezar"
