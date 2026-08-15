@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EUBanner from '../components/EUBanner.astro';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const svgAttrs = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
 
 const team = [
@@ -38,11 +40,23 @@ const milestones = [
   { year: '2024', text: 'Incorporación al programa Erasmus+ y 7 proyectos simultáneos en marcha.' },
   { year: '2025', text: 'Más de 500 participantes y 15 países conectados.' },
 ];
+
+// Nodo AboutPage que apunta al nodo canónico de la organización (BaseLayout).
+const aboutJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  '@id': 'https://estrellasdelsur.eu/sobre-nosotros/',
+  url: 'https://estrellasdelsur.eu/sobre-nosotros/',
+  name: 'Sobre Estrellas del Sur',
+  inLanguage: 'es',
+  mainEntity: { '@id': 'https://estrellasdelsur.eu/#org' },
+};
 ---
 
 <BaseLayout
   title="Quiénes Somos · Equipo y Misión"
   description="Conoce la historia, el equipo y la misión de Estrellas del Sur, asociación juvenil de Córdoba fundada en 2020. Acreditados en Erasmus+ y el Cuerpo Europeo de Solidaridad."
+  jsonLd={aboutJsonLd}
 >
   <!-- Hero -->
   <section class="page-hero">
@@ -230,6 +244,10 @@ const milestones = [
               acreditada por el Cuerpo Europeo de Solidaridad desde 2023. Esto nos permite preparar,
               seleccionar y acompañar a jóvenes de toda España en sus voluntariados europeos,
               garantizando el apoyo antes, durante y después de la experiencia.
+              Te contamos <a href={`${base}/organizacion-de-envio/`} class="accred-link">qué hacemos como
+              organización de envío</a> y, si eres una organización de acogida europea, tienes
+              <a href={`${base}/esc-sending-organisation-spain/`} class="accred-link" hreflang="en">toda la
+              información en inglés</a>.
             </p>
           </div>
         </div>
@@ -580,6 +598,14 @@ const milestones = [
     text-align: justify;
     hyphens: auto;
   }
+
+  .accred-link {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .accred-link:hover { color: var(--navy); }
 
   /* Federación */
   .federacion-section { background: var(--cream); }

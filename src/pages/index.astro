@@ -6,39 +6,11 @@ import Stats from '../components/Stats.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
-const orgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "NGO",
-  "name": "Estrellas del Sur",
-  "alternateName": "Estrellas del Sur Córdoba",
-  "url": "https://estrellasdelsur.eu",
-  "logo": "https://estrellasdelsur.eu/images/logo.svg",
-  "image": "https://estrellasdelsur.eu/og-image.png",
-  "email": "maxi@estrellasdelsur.eu",
-  "foundingDate": "2020",
-  "description": "Asociación juvenil de Córdoba acreditada en Erasmus+ y el Cuerpo Europeo de Solidaridad. Gestionamos intercambios juveniles, voluntariados y formaciones internacionales.",
-  "slogan": "Working for a better world",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Córdoba",
-    "addressRegion": "Andalucía",
-    "addressCountry": "ES"
-  },
-  "areaServed": ["España", "Europa"],
-  "knowsAbout": ["Erasmus+", "Cuerpo Europeo de Solidaridad", "movilidad juvenil", "voluntariado europeo", "intercambio cultural"],
-  "sameAs": [
-    "https://instagram.com/estrellasdelsur.eu",
-    "https://facebook.com/estrellasdelsur.eu",
-    "https://tiktok.com/@estrellasdelsur.eu"
-  ]
-};
 ---
 
 <BaseLayout
   title="Estrellas del Sur"
   description="Voluntariado europeo gratis y proyectos Erasmus+ para jóvenes de 18 a 30 años. Estrellas del Sur, asociación juvenil de Córdoba (Andalucía), organización de envío acreditada del Cuerpo Europeo de Solidaridad (ESC) que acompaña a jóvenes de toda España."
-  jsonLd={orgJsonLd}
 >
   <!-- 1. Hero -->
   <Hero />
@@ -115,6 +87,7 @@ const orgJsonLd = {
           </div>
           <h3>Cuerpo Europeo de Solidaridad</h3>
           <p>Organización de envío certificada que facilita voluntariados internacionales a jóvenes de 18 a 30 años.</p>
+          <a href={`${base}/organizacion-de-envio/`} class="about-card-link">Qué es una organización de envío →</a>
         </div>
         <div class="about-card card">
           <div class="about-card-icon" aria-hidden="true">
@@ -234,6 +207,14 @@ const orgJsonLd = {
     color: var(--gray-600);
     line-height: 1.6;
   }
+
+  .about-card-link {
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+  }
+  .about-card-link:hover { text-decoration: underline; }
 
   /* Contact CTA */
   .contact-cta {

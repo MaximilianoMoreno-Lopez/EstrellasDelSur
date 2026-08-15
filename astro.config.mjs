@@ -60,7 +60,9 @@ export default defineConfig({
           url === 'https://estrellasdelsur.eu/iniciativas-locales/' ||
           url === 'https://estrellasdelsur.eu/proyectos-coordinados/' ||
           url === 'https://estrellasdelsur.eu/destinos/' ||
-          url === 'https://estrellasdelsur.eu/partners/'
+          url === 'https://estrellasdelsur.eu/partners/' ||
+          url === 'https://estrellasdelsur.eu/organizacion-de-envio/' ||
+          url === 'https://estrellasdelsur.eu/esc-sending-organisation-spain/'
         ) {
           return { ...item, priority: 0.8, changefreq: 'monthly' };
         }

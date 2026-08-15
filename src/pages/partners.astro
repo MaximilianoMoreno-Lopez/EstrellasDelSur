@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EUBanner from '../components/EUBanner.astro';
+import { partners } from '../data/partners';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -31,65 +32,6 @@ const offers = [
   },
 ];
 
-// Partner and coordinating organisations from our project record (PIF).
-// `featured` marks the organisations we work with most often; they get a
-// gold accent in the marquee.
-const partners = [
-  { name: 'Federación Estrellas de Europa', country: 'European network', featured: true },
-  { name: 'Europe4Youth', country: 'Poland', featured: true },
-  { name: 'Innowatorium', country: 'Poland' },
-  { name: 'Európa Ifjúsága Egyesület', country: 'Hungary' },
-  { name: 'Origó Műhely', country: 'Hungary', featured: true },
-  { name: 'Pro Dezvoltare DACIA (APDD)', country: 'Romania' },
-  { name: 'Ofensiva Tinerilor', country: 'Romania' },
-  { name: 'Eco Challenge', country: 'Romania' },
-  { name: 'International EduCenter', country: 'Romania' },
-  { name: 'Colour Your Dreams', country: 'Romania' },
-  { name: 'Asociația Dorna Tismana', country: 'Romania' },
-  { name: 'Município do Fundão', country: 'Portugal', featured: true },
-  { name: 'Associaçâo Selfmade', country: 'Portugal' },
-  { name: 'Utopía Verde', country: 'Portugal' },
-  { name: 'La CALI (Agglomération du Libournais)', country: 'France', featured: true },
-  { name: "Ville d'Hérouville Saint-Clair", country: 'France', featured: true },
-  { name: 'Hawk Stars', country: 'Portugal', featured: true },
-  { name: 'Blue Youth', country: 'France' },
-  { name: 'La Friche la Belle de Mai', country: 'France' },
-  { name: 'Kindervereinigung Leipzig', country: 'Germany' },
-  { name: 'Einzigartige Projekte', country: 'Germany' },
-  { name: 'Over grenzen vzw', country: 'Belgium' },
-  { name: 'DiversaMente APS', country: 'Italy' },
-  { name: 'KLAP APS', country: 'Italy' },
-  { name: 'BG World', country: 'Italy' },
-  { name: 'Liberi Sogni', country: 'Italy' },
-  { name: 'Associazione InCo', country: 'Italy' },
-  { name: "Insieme per l'autismo", country: 'Italy' },
-  { name: 'Tech Innovators', country: 'Italy' },
-  { name: 'Cilento Youth Union', country: 'Italy' },
-  { name: 'TDM 2000', country: 'Italy' },
-  { name: 'Edda Krkonoše', country: 'Czechia' },
-  { name: 'Brno for You', country: 'Czechia' },
-  { name: 'Tavo Europa', country: 'Lithuania' },
-  { name: 'Zalianamis', country: 'Lithuania' },
-  { name: 'Vilniaus Antakalnio AJC', country: 'Lithuania' },
-  { name: 'Mano Europa', country: 'Lithuania' },
-  { name: 'YStreet', country: 'Latvia' },
-  { name: 'Kanavere Kolmikvälimtü', country: 'Estonia' },
-  { name: 'Jussikese Seitse Sõpra', country: 'Estonia' },
-  { name: 'Hiiumaa', country: 'Estonia' },
-  { name: 'Make It Happen', country: 'Cyprus' },
-  { name: 'Collective Intelligence', country: 'Cyprus' },
-  { name: 'Y.E.S. Cyprus', country: 'Cyprus' },
-  { name: 'Youth Dynamics', country: 'Cyprus' },
-  { name: 'DKolektiv', country: 'Croatia' },
-  { name: 'Eduart', country: 'North Macedonia' },
-  { name: 'Young Activists', country: 'Türkiye' },
-  { name: 'Kalitto Youth', country: 'Türkiye' },
-  { name: 'Konya Metropolitan Municipality', country: 'Türkiye' },
-  { name: 'Ankara Governorship EU Office', country: 'Türkiye' },
-  { name: 'Antalya Youth and Sports Directorate', country: 'Türkiye' },
-  { name: 'Civil Society Agency Research Group', country: 'Türkiye' },
-];
-
 // Three marquee rows of roughly equal length.
 const rowSize = Math.ceil(partners.length / 3);
 const partnerRows = [
@@ -108,26 +50,48 @@ const programmes = [
   'CERV (Citizens, Equality, Rights and Values)',
 ];
 
-const orgJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'NGO',
-  name: 'Estrellas del Sur',
-  url: 'https://estrellasdelsur.eu/partners/',
-  logo: 'https://estrellasdelsur.eu/images/logo.svg',
-  email: 'paula@estrellasdelsur.eu',
-  foundingDate: '2020',
-  description:
-    'Spanish youth NGO based in Córdoba (Andalusia). Erasmus+ organisation and accredited ESC Sending Organisation working with young people from all over Spain. Open to European partnerships.',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Córdoba',
-    addressRegion: 'Andalucía',
-    addressCountry: 'ES',
+// Preguntas frecuentes de organizaciones europeas que buscan socio español.
+// Mismo mecanismo que en voluntariado-esc.astro: array + nodo FAQPage.
+const faqsEn = [
+  {
+    q: 'What kind of partner is Estrellas del Sur?',
+    a: 'We act as sending organisation and project partner in Erasmus+ youth exchanges (KA152), training courses (KA153), youth participation activities (KA154) and cooperation partnerships (KA210), as well as in European Solidarity Corps volunteering. We have been active since 2020 and have taken part in more than 100 projects as sending, hosting and coordinating organisation — all of them published on our projects page.',
   },
-  identifier: [
-    { '@type': 'PropertyValue', propertyID: 'OID', value: 'E10264295' },
-    { '@type': 'PropertyValue', propertyID: 'PIC', value: '892239563' },
-  ],
+  {
+    q: 'Do you hold a European Solidarity Corps Quality Label?',
+    a: 'Yes. We have held the ESC Quality Label since 2023, under OID E10264295, covering the preparation and sending of volunteers from anywhere in Spain. Full details for hosting organisations are on our ESC sending organisation page.',
+    link: { label: 'Read more about our sending role', href: `${base}/esc-sending-organisation-spain/` },
+  },
+  {
+    q: 'How can we verify your identifiers?',
+    a: 'Our OID is E10264295 and our PIC is 892239563; both can be checked in the European Commission organisation registers. You can also verify our accreditation directly on our public profile at the European Youth Portal: https://youth.europa.eu/volunteering/organisation/83072.',
+  },
+  {
+    q: 'How fast do you reply?',
+    a: 'We usually answer partner enquiries within two working days, with a clear yes or no. Project management is professional end to end: mandates, participant selection, travel documentation and reporting delivered on time.',
+  },
+  {
+    q: 'What do you need from us to sign a mandate?',
+    a: 'Four things: the project dates, your OID, the infopack or infosheet of the activity, and a short description of the tasks or programme. With that on the table we can confirm participation and return the signed mandate quickly.',
+  },
+  {
+    q: 'What topics and target groups do you work with?',
+    a: 'Our main topics are inclusion and diversity, environment and sustainability, employability, mental health and digital skills. We work with young people aged 13 to 30 from all over Spain, including participants with fewer opportunities.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqsEn.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      // En el schema la URL relativa no sirve: se usa la absoluta.
+      text: f.link ? `${f.a} https://estrellasdelsur.eu/esc-sending-organisation-spain/` : f.a,
+    },
+  })),
 };
 ---
 
@@ -135,7 +99,7 @@ const orgJsonLd = {
   title="Partner with us · Spanish Erasmus+ and ESC organisation"
   description="Estrellas del Sur is a Spanish youth NGO in Córdoba (Andalusia): Erasmus+ organisation and accredited ESC Sending Organisation. Looking for a Spanish partner for KA152, KA153, KA210 or ESC volunteering? Let's work together."
   lang="en"
-  jsonLd={orgJsonLd}
+  jsonLd={faqJsonLd}
 >
   <!-- Hero -->
   <section class="page-hero">
@@ -232,6 +196,9 @@ const orgJsonLd = {
         </dl>
         <a href={PIF_URL} target="_blank" rel="noopener noreferrer" class="btn btn-primary facts-btn">
           Open PIF
+        </a>
+        <a href={`${base}/esc-sending-organisation-spain/`} class="facts-esc-link">
+          ESC sending organisation in Spain →
         </a>
       </aside>
     </div>
@@ -337,6 +304,34 @@ const orgJsonLd = {
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title">Questions partners usually ask</h2>
+      </div>
+      <div class="faq-grid">
+        {faqsEn.map((faq, i) => (
+          <div class={`faq-item card fade-in fade-in-delay-${(i % 2) + 1}`}>
+            <h3 class="faq-q">{faq.q}</h3>
+            <p class="faq-a">
+              {faq.a}
+              {faq.link && (
+                <>
+                  {' '}
+                  <a href={faq.link.href} class="faq-link">
+                    {faq.link.label}
+                  </a>
+                </>
+              )}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="section cta-section">
     <div class="container cta-box fade-in">
@@ -437,6 +432,16 @@ const orgJsonLd = {
   .facts-list dd a { color: #5eead4; text-decoration: none; }
   .facts-list dd a:hover { text-decoration: underline; }
   .facts-btn { width: 100%; justify-content: center; }
+  .facts-esc-link {
+    display: block;
+    margin-top: .9rem;
+    text-align: center;
+    font-size: .88rem;
+    font-weight: 600;
+    color: #5eead4;
+    text-decoration: none;
+  }
+  .facts-esc-link:hover { text-decoration: underline; }
 
   /* How we work */
   .how-section { background: var(--cream); }
@@ -527,6 +532,42 @@ const orgJsonLd = {
       mask-image: none;
     }
   }
+
+  /* FAQ (mismo mecanismo que voluntariado-esc.astro) */
+  /* La sección anterior (marquee) ya es cream-dark: aquí cream para alternar. */
+  .faq-section { background: var(--cream); }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 0;
+  }
+
+  .faq-item { padding: 1.75rem; }
+
+  .faq-q {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .75rem;
+  }
+
+  .faq-a {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .faq-link {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .faq-link:hover { color: var(--navy); }
 
   /* CTA */
   .cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }

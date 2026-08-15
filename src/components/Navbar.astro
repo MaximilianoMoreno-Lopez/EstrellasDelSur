@@ -37,7 +37,16 @@ const navLinks: NavLink[] = [
         desc: 'Info for European organisations looking for a Spanish partner.' } as any,
     ],
   },
-  { href: `${base}/voluntariado-esc/`,  label: 'Voluntariado Europeo' },
+  {
+    href: `${base}/voluntariado-esc/`,
+    label: 'Voluntariado Europeo',
+    children: [
+      { href: `${base}/voluntariado-esc/`,      label: 'Voluntariado ESC',
+        desc: 'Qué es el Cuerpo Europeo de Solidaridad y cómo participar.' } as any,
+      { href: `${base}/organizacion-de-envio/`, label: 'Organización de envío',
+        desc: 'Qué hacemos por ti antes, durante y después.' } as any,
+    ],
+  },
   { href: `${base}/noticias/`,          label: 'Artículos' },
   { href: `${base}/contacto/`,          label: 'Contacto' },
 ];

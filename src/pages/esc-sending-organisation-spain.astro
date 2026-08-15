@@ -1,0 +1,530 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EUBanner from '../components/EUBanner.astro';
+import { partners } from '../data/partners';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const PIF_URL = 'https://docs.google.com/document/d/1wCkmLqWXf05GYl8gI5qZkfZIYotKVm3k/edit?usp=sharing&ouid=108748510715926905720&rtpof=true&sd=true';
+const YOUTH_PORTAL_URL = 'https://youth.europa.eu/volunteering/organisation/83072';
+
+// Cifras dinámicas desde el registro de socios compartido
+const partnerCount = partners.length;
+const countryCount = new Set(partners.map((p) => p.country)).size;
+
+const svgAttrs = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+
+// Qué hacemos como organización de envío: las cuatro fases del servicio
+const services = [
+  {
+    icon: `<svg width="26" height="26" ${svgAttrs}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>`,
+    title: 'Recruitment & selection across Spain',
+    desc: 'We publish your vacancy through our national channels, screen motivation letters and pre-select candidates who genuinely fit your project, including participants with fewer opportunities.',
+  },
+  {
+    icon: `<svg width="26" height="26" ${svgAttrs}><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>`,
+    title: 'Pre-departure preparation & paperwork',
+    desc: 'Mandates and agreements signed on time, insurance enrolment, travel arrangements and a structured pre-departure training so the volunteer arrives informed and motivated.',
+  },
+  {
+    icon: `<svg width="26" height="26" ${svgAttrs}><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg>`,
+    title: 'Support during the mobility',
+    desc: 'A named contact person on our side, regular check-ins with the volunteer, and mediation with your team if any issue comes up, in Spanish and in English.',
+  },
+  {
+    icon: `<svg width="26" height="26" ${svgAttrs}><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>`,
+    title: 'Follow-up',
+    desc: 'Youthpass support, participant reports for your final documentation, and dissemination of the project results in Spanish through our own channels.',
+  },
+];
+
+// Qué debe incluir el primer email de una organización de acogida
+const firstEmail = [
+  'Project dates and duration (short or long term)',
+  'Main tasks the volunteer will carry out',
+  'The volunteer profile you are looking for',
+  'Your infopack or project description',
+  'Your OID and, if available, the project reference',
+];
+
+// FAQ en inglés: respuestas autocontenidas para el schema FAQPage.
+// `link.abs` guarda la URL absoluta para el schema cuando el href visible es relativo.
+const faqs = [
+  {
+    q: 'Are you an accredited ESC sending organisation?',
+    a: 'Yes. Estrellas del Sur has held a European Solidarity Corps Quality Label as a supporting (sending) organisation since 2023, with OID E10264295. You can verify our accreditation directly on the European Youth Portal.',
+    link: { label: 'Official profile on the European Youth Portal', href: YOUTH_PORTAL_URL },
+  },
+  {
+    q: 'Which regions of Spain do you recruit from?',
+    a: 'All of Spain. Our office is in Córdoba (Andalusia), but our calls for volunteers are national and open to young people from every Spanish region, and the whole process can run remotely.',
+  },
+  {
+    q: 'How quickly can you present candidates?',
+    a: 'Typically within 2 to 8 weeks from your first email, depending on how specific the profile is and how far away the start date is. Clear tasks and a good infopack always speed up the search.',
+  },
+  {
+    q: 'Do you charge any fees?',
+    a: 'No. Our work as a sending organisation is funded by the European Solidarity Corps programme. Neither the volunteer nor your organisation pays us anything for recruitment, preparation or support.',
+  },
+  {
+    q: 'What support do volunteers get from you?',
+    a: 'Before departure: selection, pre-departure training, paperwork, insurance and travel support. During the project: a named contact person, regular check-ins and mediation if needed. Afterwards: Youthpass guidance, reporting and dissemination in Spanish.',
+  },
+  {
+    q: 'What do you need from us to start?',
+    a: 'A short email with your project dates, the main tasks, the volunteer profile you are looking for, your infopack and your OID. With that we can confirm within a few working days whether we can start the search.',
+  },
+  {
+    q: 'Do you also partner on Erasmus+ projects?',
+    a: 'Yes. Beyond ESC volunteering we take part in Erasmus+ youth exchanges (KA152), training courses (KA153), youth participation activities (KA154) and small-scale partnerships (KA210), as sending, hosting or coordinating organisation.',
+    link: { label: 'Full partnership information', href: `${base}/partners/`, abs: 'https://estrellasdelsur.eu/partners/' },
+  },
+];
+
+const faqJsonLdEn = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.link ? `${f.a} ${f.link.abs ?? f.link.href}` : f.a,
+    },
+  })),
+};
+
+const serviceNode = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'ESC sending organisation (supporting organisation) services in Spain',
+  serviceType: 'European Solidarity Corps sending organisation',
+  provider: { '@id': 'https://estrellasdelsur.eu/#org' },
+  areaServed: 'Spain',
+  availableLanguage: ['es', 'en'],
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+};
+---
+
+<BaseLayout
+  title="ESC Sending Organisation in Spain"
+  description="Accredited European Solidarity Corps sending organisation in Spain since 2023 (Quality Label, OID E10264295). We recruit and prepare ESC volunteers nationwide."
+  lang="en"
+  jsonLd={[serviceNode, faqJsonLdEn]}
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        European Solidarity Corps
+      </p>
+      <h1 class="fade-in fade-in-delay-1">ESC sending organisation in Spain</h1>
+      <p class="fade-in fade-in-delay-2">
+        <strong>Estrellas del Sur</strong> has been an accredited <strong>supporting (sending) organisation</strong>
+        of the European Solidarity Corps since 2023, holding a Quality Label with
+        <strong>OID E10264295</strong>. Based in Córdoba, we recruit and prepare volunteers
+        from <strong>all over Spain</strong> for hosting organisations across Europe.
+      </p>
+      <div class="hero-actions fade-in fade-in-delay-3">
+        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-gold">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Write to us
+        </a>
+        <a href={`${base}/partners/`} class="btn btn-outline-white">Full partnership info</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Acreditación verificable -->
+  <section class="section accreditation-section">
+    <div class="container accreditation-grid">
+      <div class="accreditation-text fade-in">
+        <p class="section-label">Accreditation</p>
+        <h2 class="section-title">Accreditation you can verify</h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          Estrellas del Sur is <strong>one of the accredited sending organisations in Spain</strong>
+          under the European Solidarity Corps. In the 2021-2027 programme the formal term is
+          <strong>"supporting organisation"</strong>; "sending organisation" is the historical name,
+          and the one everyone still uses. Either way, it means the same thing: we hold a
+          Quality Label that lets us select, prepare and support Spanish volunteers for your project.
+        </p>
+        <p class="body-text">
+          Don't take our word for it. Our accreditation is public and you can check it
+          in under a minute on the official European Youth Portal.
+        </p>
+        <a href={YOUTH_PORTAL_URL} target="_blank" rel="noopener noreferrer" class="verify-link">
+          See our official profile on the European Youth Portal
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+
+      <aside class="facts-card fade-in fade-in-delay-2">
+        <div class="facts-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Accreditation facts</span>
+        </div>
+        <dl class="facts-list">
+          <dt>Accreditation</dt>
+          <dd>Quality Label (European Solidarity Corps)</dd>
+          <dt>Role</dt>
+          <dd>Supporting (sending) organisation</dd>
+          <dt>Accredited since</dt>
+          <dd>2023</dd>
+          <dt>OID</dt>
+          <dd>E10264295</dd>
+          <dt>PIC</dt>
+          <dd>892239563</dd>
+          <dt>Legal name</dt>
+          <dd lang="es">Asociación Cultural Estrellas del Sur</dd>
+          <dt>Based in</dt>
+          <dd>Córdoba, Spain</dd>
+        </dl>
+        <a href={YOUTH_PORTAL_URL} target="_blank" rel="noopener noreferrer" class="btn btn-primary facts-btn">
+          Verify on the European Youth Portal
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Qué hacemos como organización de envío -->
+  <section class="section services-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Our role</p>
+        <h2 class="section-title">What we do as your sending organisation</h2>
+        <p class="section-subtitle">
+          From the first call for candidates to the final report, we cover the whole
+          sending side of the project so your team can focus on hosting.
+        </p>
+      </div>
+      <div class="grid-2 services-grid">
+        {services.map((s, i) => (
+          <div class={`service-card card fade-in fade-in-delay-${(i % 2) + 1}`}>
+            <div class="service-icon" aria-hidden="true" set:html={s.icon} />
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Plazos honestos -->
+  <section class="section timing-section">
+    <div class="container timing-grid">
+      <div class="timing-text fade-in">
+        <p class="section-label">Timing</p>
+        <h2 class="section-title">How fast can we find you a volunteer?</h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          Honestly: it depends on the profile and the dates, so we will not promise you a
+          volunteer "next week". In practice we typically need <strong>2 to 8 weeks</strong>
+          to present suitable candidates. Broad profiles with flexible start dates sit at the
+          fast end; very specific profiles (a particular language, a niche skill, tight dates)
+          take longer.
+        </p>
+        <p class="body-text">
+          What we do promise is a clear answer within a few working days on whether we can
+          take on the search, and honest updates while it runs.
+        </p>
+      </div>
+      <div class="timing-checklist card fade-in fade-in-delay-2">
+        <h3>Speed things up: include this in your first email</h3>
+        <ul>
+          {firstEmail.map((item) => (
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-primary timing-btn">Email paula@estrellasdelsur.eu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- De dónde vienen nuestros voluntarios -->
+  <section class="section origin-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Reach</p>
+        <h2 class="section-title">Where our volunteers come from</h2>
+        <p class="section-subtitle">
+          Our base is Andalusian; our reach is national.
+        </p>
+      </div>
+      <div class="origin-body fade-in fade-in-delay-1">
+        <p class="body-text">
+          We work from Córdoba, in the south of Spain, and our strongest local roots are in
+          Andalusia. But our calls for volunteers run through <strong>national outreach
+          channels</strong>: social media, university and youth-information networks, and
+          partner entities across the country. Our calls reach young people
+          <strong>all over Spain</strong>, in big cities and rural areas alike.
+        </p>
+        <p class="body-text">
+          All of them are young people aged <strong>18 to 30</strong>, the age range of the
+          European Solidarity Corps, and we pay special attention to reaching participants
+          with fewer opportunities, so that ESC volunteering is not only for those who
+          already had everything within reach.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Red europea con cifras dinámicas -->
+  <section class="section network-section">
+    <div class="container network-box fade-in">
+      <p class="section-label">Track record</p>
+      <h2 class="section-title">Already working across Europe</h2>
+      <p class="network-figures">
+        <strong>{partnerCount} partner organisations</strong> in <strong>{countryCount} countries</strong>
+        have already worked with us on ESC volunteering, youth exchanges and training courses.
+      </p>
+      <p class="body-text network-note">
+        You can browse the full picture of who we are, how we work and who we have worked
+        with on our partnership page, or go straight to our Partner Information File (PIF)
+        with methodology, target groups and track record.
+      </p>
+      <div class="network-actions">
+        <a href={`${base}/partners/`} class="btn btn-primary">See our partner network</a>
+        <a href={PIF_URL} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Open our Partner Information File
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title">Frequently asked questions</h2>
+      </div>
+      <div class="faq-grid">
+        {faqs.map((faq, i) => (
+          <div class={`faq-item card fade-in fade-in-delay-${(i % 2) + 1}`}>
+            <h3 class="faq-q">{faq.q}</h3>
+            <p class="faq-a">
+              {faq.a}
+              {faq.link && (
+                <>
+                  {' '}
+                  <a
+                    href={faq.link.href}
+                    class="faq-link"
+                    {...(faq.link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {faq.link.label}
+                  </a>
+                </>
+              )}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="section cta-section">
+    <div class="container cta-box fade-in">
+      <div>
+        <h2>Looking for a Spanish partner for your ESC project?</h2>
+        <p>Tell us your dates, tasks and volunteer profile, and we will get back to you within a few working days.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          paula@estrellasdelsur.eu
+        </a>
+        <a href={`${base}/partners/`} class="btn btn-outline-white">Full partnership info</a>
+      </div>
+    </div>
+  </section>
+
+  <EUBanner />
+</BaseLayout>
+
+<style>
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.75rem;
+  }
+
+  .body-text {
+    font-size: 1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .section-header { margin-bottom: 2.5rem; }
+
+  /* Acreditación */
+  .accreditation-section { background: var(--cream); }
+  .accreditation-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .verify-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .verify-link:hover { color: var(--navy); }
+
+  /* Tarjeta de datos (mismo patrón que /partners/) */
+  .facts-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    color: #fff;
+  }
+  .facts-header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 700;
+    font-size: .95rem;
+    margin-bottom: 1.25rem;
+    color: var(--gold);
+  }
+  .facts-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .55rem 1rem;
+    font-size: .88rem;
+    margin-bottom: 1.5rem;
+  }
+  .facts-list dt { color: rgba(255,255,255,.65); font-weight: 600; white-space: nowrap; }
+  .facts-list dd { color: #fff; }
+  .facts-btn { width: 100%; justify-content: center; text-align: center; }
+
+  /* Servicios */
+  .services-section { background: var(--cream-dark); }
+  .services-grid { gap: 1.5rem; }
+  .service-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+  .service-icon { color: var(--teal); line-height: 0; }
+  .service-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); }
+  .service-card p { font-size: .9rem; color: var(--gray-600); line-height: 1.65; text-align: justify; hyphens: auto; }
+
+  /* Plazos */
+  .timing-section { background: var(--cream); }
+  .timing-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .timing-checklist { padding: 1.75rem; }
+  .timing-checklist h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+  .timing-checklist ul {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    margin-bottom: 1.5rem;
+    list-style: none;
+  }
+  .timing-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: .6rem;
+    font-size: .92rem;
+    color: var(--gray-700);
+    line-height: 1.5;
+  }
+  .timing-checklist svg { color: var(--teal); flex-shrink: 0; margin-top: .2rem; }
+  .timing-btn { width: 100%; justify-content: center; text-align: center; }
+
+  /* Origen de los voluntarios */
+  .origin-section { background: var(--cream-dark); }
+  .origin-body { max-width: 780px; }
+
+  /* Red europea */
+  .network-section { background: var(--cream); }
+  .network-box { max-width: 780px; }
+  .network-figures {
+    font-size: 1.15rem;
+    color: var(--navy);
+    line-height: 1.6;
+    margin: 1rem 0 1.25rem;
+  }
+  .network-note { margin-bottom: 1.5rem; }
+  .network-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* FAQ (mecanismo de referencia) */
+  .faq-section { background: var(--cream-dark); }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .faq-item { padding: 1.75rem; }
+  .faq-q {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .6rem;
+  }
+  .faq-a {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .faq-link {
+    color: var(--teal);
+    text-decoration: underline;
+  }
+
+  /* CTA final */
+  .cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
+  .cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .cta-box h2 { font-size: clamp(1.4rem, 2.3vw, 1.85rem); color: #fff; margin-bottom: .6rem; }
+  .cta-box p { color: rgba(255,255,255,.7); font-size: .98rem; max-width: 460px; }
+  .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .accreditation-grid,
+    .timing-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 640px) {
+    .cta-actions,
+    .network-actions { width: 100%; flex-direction: column; }
+    .cta-actions .btn,
+    .network-actions .btn { justify-content: center; }
+  }
+</style>

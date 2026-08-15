@@ -1,0 +1,663 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EUBanner from '../components/EUBanner.astro';
+import { partners, type Partner } from '../data/partners';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const PORTAL_PROFILE = 'https://youth.europa.eu/volunteering/organisation/83072';
+
+const svgAttrs = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+
+// Qué hacemos por ti: antes, durante y después del voluntariado.
+const fases = [
+  {
+    title: 'Antes de salir',
+    icon: `<svg width="28" height="28" ${svgAttrs}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>`,
+    items: [
+      'Orientación personal: escuchamos qué buscas y te ayudamos a aterrizar la idea.',
+      'Búsqueda de proyecto en el portal europeo o entre nuestras organizaciones socias.',
+      'Papeleo completo: acuerdo de voluntariado, seguro y registro en el programa.',
+      'Preparación práctica, cultural y lingüística antes de la salida.',
+    ],
+  },
+  {
+    title: 'Durante el voluntariado',
+    icon: `<svg width="28" height="28" ${svgAttrs}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    items: [
+      'Una persona de contacto de referencia en España, localizable durante toda la estancia.',
+      'Seguimiento periódico para saber cómo te va de verdad, no solo sobre el papel.',
+      'Mediación con la organización de acogida si surge cualquier conflicto o imprevisto.',
+    ],
+  },
+  {
+    title: 'Al volver',
+    icon: `<svg width="28" height="28" ${svgAttrs}><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>`,
+    items: [
+      'Apoyo con tu certificado Youthpass, el reconocimiento europeo de lo aprendido.',
+      'Gestión de los reembolsos de viaje que te correspondan.',
+      'Difusión de tu experiencia y orientación sobre tus siguientes pasos en Europa.',
+    ],
+  },
+];
+
+// Cómo empezar: tres pasos concretos.
+const pasos = [
+  {
+    num: '01',
+    title: 'Regístrate en el portal europeo',
+    desc: 'Crea tu cuenta gratuita en el Portal del Cuerpo Europeo de Solidaridad (youth.europa.eu) y consigue tu ESC ID. Solo necesitas un correo electrónico.',
+  },
+  {
+    num: '02',
+    title: 'Escríbenos',
+    desc: 'Mándanos un correo a paula@estrellasdelsur.eu contándonos quién eres, cuándo te gustaría irte y qué tipo de proyecto te tira: social, ambiental, cultural…',
+  },
+  {
+    num: '03',
+    title: 'Buscamos proyecto y firmamos',
+    desc: 'Buscamos contigo un proyecto (o valoramos el que ya tengas visto), te preparamos para la salida y firmamos los papeles con la organización de acogida.',
+  },
+];
+
+// Agrupamos las organizaciones socias por país conservando el orden de aparición.
+const partnersPorPais = partners.reduce<Record<string, Partner[]>>((acc, p) => {
+  (acc[p.country] ??= []).push(p);
+  return acc;
+}, {});
+// Los nombres de país de src/data/partners.ts están en inglés (los comparte la
+// página inglesa); aquí se muestran traducidos. El JSON-LD conserva el original.
+const PAIS_ES: Record<string, string> = {
+  'Belgium': 'Bélgica',
+  'Croatia': 'Croacia',
+  'Cyprus': 'Chipre',
+  'Czechia': 'Chequia',
+  'Estonia': 'Estonia',
+  'European network': 'Red europea',
+  'France': 'Francia',
+  'Germany': 'Alemania',
+  'Hungary': 'Hungría',
+  'Italy': 'Italia',
+  'Latvia': 'Letonia',
+  'Lithuania': 'Lituania',
+  'North Macedonia': 'Macedonia del Norte',
+  'Poland': 'Polonia',
+  'Portugal': 'Portugal',
+  'Romania': 'Rumanía',
+  'Türkiye': 'Turquía',
+};
+const listaPaises = Object.entries(partnersPorPais)
+  .map(([pais, orgs]) => [PAIS_ES[pais] ?? pais, orgs] as [string, Partner[]]);
+
+const faqs = [
+  {
+    q: '¿Es obligatoria una organización de envío para hacer un voluntariado ESC?',
+    a: 'En la práctica, sí. En los voluntariados individuales la figura de apoyo en tu país es prácticamente siempre necesaria y la gran mayoría de organizaciones de acogida la exigen para aceptar tu candidatura. Más allá del requisito, te da respaldo legal y práctico: alguien en España que responde por ti, revisa las condiciones del proyecto y te acompaña si algo se tuerce.',
+  },
+  {
+    q: '¿Cuánto cuesta que Estrellas del Sur sea tu organización de envío?',
+    a: 'Nada: 0 €. Nuestro trabajo de apoyo lo financia el propio Cuerpo Europeo de Solidaridad, así que ni te cobramos cuotas ni comisiones por ningún trámite. Si alguien te pide dinero por "gestionarte" un voluntariado ESC, desconfía.',
+  },
+  {
+    q: '¿Trabajáis solo con jóvenes de Córdoba o Andalucía?',
+    a: 'No. Nuestra sede está en Córdoba, pero acompañamos a jóvenes de cualquier punto de España. Todo el acompañamiento funciona perfectamente a distancia: videollamadas, correo y teléfono, desde el primer contacto hasta tu vuelta.',
+  },
+  {
+    q: '¿Qué diferencia hay entre organización de envío y organización de acogida?',
+    a: 'La organización de envío está en tu país: te orienta, te prepara y te respalda durante todo el proceso. La organización de acogida está en el país de destino: es donde vives y haces tu voluntariado día a día, y quien gestiona tu alojamiento, manutención y tareas. Ambas firman contigo el acuerdo de voluntariado.',
+  },
+  {
+    q: '¿Cómo compruebo que una organización de envío está acreditada?',
+    a: 'Toda organización acreditada tiene un Sello de Calidad (Quality Label) y aparece en el buscador de organizaciones del Portal Europeo de la Juventud con su número OID. Búscala allí antes de comprometerte con nadie.',
+    link: { label: 'Perfil oficial de Estrellas del Sur en el Portal Europeo de la Juventud', href: PORTAL_PROFILE },
+  },
+  {
+    q: '¿Puedo elegir cualquier proyecto del portal europeo con vosotros?',
+    a: 'Sí. Puedes venir con un proyecto que ya tengas visto en el portal y lo valoramos contigo antes de presentar tu candidatura, o podemos buscarlo juntos desde cero según tus fechas, intereses y destino preferido.',
+  },
+  {
+    q: '¿"Organización de envío" y "supporting organisation" son lo mismo?',
+    a: 'Sí. En el programa 2021-2027 el término formal es "organización de apoyo" (supporting organisation), pero "organización de envío" o "sending organisation" es el nombre histórico y el que casi todo el mundo sigue usando. Se refieren a la misma figura: la entidad acreditada que te respalda desde tu país.',
+  },
+  {
+    q: '¿Cuánto tarda el proceso completo?',
+    a: 'Depende de tu punto de partida. Si ya traes un proyecto concreto visto en el portal europeo, la selección, el papeleo y la preparación pueden cerrarse en unas 3-6 semanas. Si lo buscamos juntos desde cero, el proceso completo suele llevar de 1 a 4 meses, porque depende de las convocatorias que abran las organizaciones de acogida.',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.link ? `${f.a} ${f.link.href}` : f.a,
+    },
+  })),
+};
+
+const partnersItemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Organizaciones europeas con las que ha trabajado Estrellas del Sur',
+  itemListElement: partners.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Organization',
+      name: p.name,
+      address: { '@type': 'PostalAddress', addressCountry: p.country },
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Organización de envío ESC en España"
+  description="Estrellas del Sur es organización de envío acreditada del Cuerpo Europeo de Solidaridad desde 2023. Te acompañamos gratis en tu voluntariado ESC desde España."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Voluntariado Europeo', url: '/voluntariado-esc/' },
+    { name: 'Organización de envío', url: '/organizacion-de-envio/' },
+  ]}
+  jsonLd={[faqJsonLd, partnersItemList]}
+>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Cuerpo Europeo de Solidaridad
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Organización de envío del Cuerpo Europeo de Solidaridad</h1>
+      <p class="fade-in fade-in-delay-2">
+        Estrellas del Sur es <strong>organización de envío acreditada desde 2023</strong> (OID E10264295).
+        Desde Córdoba acompañamos a jóvenes de <strong>toda España</strong> en su voluntariado europeo,
+        y para ti es <strong>totalmente gratis</strong>: lo financia el programa.
+      </p>
+      <div class="hero-actions fade-in fade-in-delay-3">
+        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-gold">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Escríbenos
+        </a>
+        <a href={`${base}/voluntariado-esc/`} class="btn btn-outline-white">Cómo funciona el ESC</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué es una organización de envío -->
+  <section class="section que-es-section">
+    <div class="container que-es-inner">
+      <div class="fade-in">
+        <p class="section-label">La figura clave</p>
+        <h2 class="section-title">¿Qué es una organización de envío?</h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          Una <strong>organización de envío</strong> es la entidad acreditada por la Comisión Europea
+          que te respalda desde tu país cuando haces un voluntariado del Cuerpo Europeo de Solidaridad
+          en el extranjero. Su trabajo es seleccionarte, prepararte y acompañarte:
+          <strong>antes</strong> de salir (orientación, búsqueda de proyecto y trámites),
+          <strong>durante</strong> la estancia (seguimiento y apoyo si algo no va bien) y
+          <strong>después</strong> (certificación y cierre del proyecto).
+        </p>
+        <p class="body-text">
+          Un apunte de vocabulario: en el programa 2021-2027 el término formal es
+          <strong>«organización de apoyo»</strong> (<em>supporting organisation</em>), aunque en la práctica
+          casi todo el mundo —jóvenes, entidades y hasta muchas webs oficiales— sigue diciendo
+          «organización de envío» o <em>sending organisation</em>, el nombre heredado de etapas anteriores
+          del programa. Son la misma figura.
+        </p>
+        <p class="body-text">
+          Y lo más importante: <strong>este servicio es gratuito para el participante</strong>.
+          El Cuerpo Europeo de Solidaridad financia el trabajo de las organizaciones de envío,
+          así que ninguna entidad acreditada debería cobrarte por acompañarte en tu voluntariado.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué hacemos por ti -->
+  <section class="section fases-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Nuestro papel</p>
+        <h2 class="section-title">Qué hacemos por ti</h2>
+        <p class="section-subtitle">
+          El acompañamiento no acaba cuando subes al avión. Esto es lo que cubrimos en cada fase.
+        </p>
+      </div>
+      <div class="grid-3">
+        {fases.map((f, i) => (
+          <div class={`fase-card card fade-in fade-in-delay-${i + 1}`}>
+            <div class="fase-icon" aria-hidden="true" set:html={f.icon} />
+            <h3 class="fase-title">{f.title}</h3>
+            <ul class="fase-list">
+              {f.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo verificar la acreditación -->
+  <section class="section verificar-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Antes de fiarte de nadie</p>
+        <h2 class="section-title">Cómo verificar que una organización está acreditada</h2>
+        <p class="section-subtitle">
+          Cualquier organización de envío legítima puede demostrar su acreditación en un minuto. Así se comprueba.
+        </p>
+      </div>
+      <ol class="verificar-list fade-in fade-in-delay-1">
+        <li>
+          <strong>Pide el Sello de Calidad (Quality Label).</strong> Es la acreditación que la Comisión Europea
+          concede a las entidades que cumplen los estándares del Cuerpo Europeo de Solidaridad. Sin sello, no hay acreditación.
+        </li>
+        <li>
+          <strong>Busca la organización en el Portal Europeo de la Juventud.</strong> El buscador de organizaciones
+          de youth.europa.eu lista todas las entidades acreditadas del programa, con su rol y su país.
+        </li>
+        <li>
+          <strong>Comprueba el OID.</strong> Cada entidad acreditada tiene un identificador de organización (OID) único.
+          Verifica que el que te dan coincide con el que aparece en el portal.
+        </li>
+      </ol>
+      <p class="verificar-note fade-in fade-in-delay-2">
+        Puedes aplicar estos tres pasos con nosotros ahora mismo: nuestro perfil oficial es
+        <a href={PORTAL_PROFILE} target="_blank" rel="noopener noreferrer">youth.europa.eu/volunteering/organisation/83072</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Estrellas del Sur como organización de envío -->
+  <section class="section datos-section">
+    <div class="container datos-grid">
+      <div class="fade-in">
+        <p class="section-label">Quiénes somos</p>
+        <h2 class="section-title">Estrellas del Sur como organización de envío</h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          Somos <strong>una de las organizaciones de envío acreditadas en España</strong>. No te vendemos
+          humo: aquí hay una persona de contacto real, respuestas rápidas y un acompañamiento honesto
+          desde el primer correo hasta después de tu vuelta. Trabajamos desde Córdoba con jóvenes de todo
+          el país, y todo el proceso puede hacerse a distancia.
+        </p>
+      </div>
+      <aside class="facts-card fade-in fade-in-delay-2">
+        <div class="facts-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Datos verificables</span>
+        </div>
+        <dl class="facts-list">
+          <dt>Acreditación</dt>
+          <dd>Sello de Calidad ESC, desde 2023</dd>
+          <dt>OID</dt>
+          <dd>E10264295</dd>
+          <dt>PIC</dt>
+          <dd>892239563</dd>
+          <dt>Coste para ti</dt>
+          <dd>0 €</dd>
+          <dt>Ámbito</dt>
+          <dd>Toda España</dd>
+          <dt>Sede</dt>
+          <dd>Córdoba (Andalucía)</dd>
+          <dt>Contacto</dt>
+          <dd><a href="mailto:paula@estrellasdelsur.eu">paula@estrellasdelsur.eu</a></dd>
+        </dl>
+        <a href={PORTAL_PROFILE} target="_blank" rel="noopener noreferrer" class="btn btn-primary facts-btn">
+          Ver perfil oficial
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Cómo empezar -->
+  <section class="section empezar-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Manos a la obra</p>
+        <h2 class="section-title">Cómo empezar</h2>
+        <p class="section-subtitle">Tres pasos. El primero lo das tú; el resto los damos juntos.</p>
+      </div>
+      <div class="grid-3">
+        {pasos.map((p, i) => (
+          <div class={`paso-card card fade-in fade-in-delay-${i + 1}`}>
+            <span class="paso-num" aria-hidden="true">{p.num}</span>
+            <h3 class="paso-title">{p.title}</h3>
+            <p class="paso-desc">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="empezar-cta fade-in">
+        <a href={`${base}/voluntariado-esc/`} class="btn btn-primary">Todo sobre el voluntariado ESC</a>
+        <a href={`${base}/contacto/`} class="btn btn-outline">Página de contacto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Red de organizaciones socias -->
+  <section class="section red-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Nuestra red</p>
+        <h2 class="section-title">Con quién trabajamos en Europa</h2>
+        <p class="section-subtitle">
+          Estas son organizaciones europeas con las que hemos trabajado en proyectos Erasmus+
+          y del Cuerpo Europeo de Solidaridad: acogidas de voluntariado, socias de intercambios
+          juveniles, cursos de formación y asociaciones de cooperación.
+        </p>
+      </div>
+      <div class="paises-grid fade-in fade-in-delay-1">
+        {listaPaises.map(([pais, orgs]) => (
+          <div class="pais-group">
+            <h3 class="pais-nombre">{pais}</h3>
+            <ul class="pais-lista">
+              {orgs.map((o) => (
+                <li>{o.name}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="red-cierre fade-in">
+        ¿Eres una organización de acogida buscando socio español?
+        <a href={`${base}/esc-sending-organisation-spain/`}>Tenemos una página para ti (en inglés)</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Preguntas frecuentes</p>
+        <h2 class="section-title">Dudas habituales sobre la organización de envío</h2>
+      </div>
+      <div class="faq-grid">
+        {faqs.map((faq, i) => (
+          <div class={`faq-item card fade-in fade-in-delay-${(i % 2) + 1}`}>
+            <h3 class="faq-q">{faq.q}</h3>
+            <p class="faq-a">
+              {faq.a}
+              {faq.link && (
+                <>
+                  {' '}
+                  <a href={faq.link.href} target="_blank" rel="noopener noreferrer" class="faq-link">
+                    {faq.link.label}
+                  </a>
+                </>
+              )}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="section cta-section">
+    <div class="container cta-box fade-in">
+      <div>
+        <h2>¿Hablamos de tu voluntariado?</h2>
+        <p>Cuéntanos quién eres y qué buscas. Sin compromiso y sin coste: para eso estamos.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Escríbenos
+        </a>
+        <a href={`${base}/proyectos/`} class="btn btn-outline-white">Ver proyectos</a>
+      </div>
+    </div>
+  </section>
+
+  <EUBanner />
+</BaseLayout>
+
+<style>
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.75rem;
+  }
+
+  .section-header { margin-bottom: 2.5rem; }
+
+  .body-text {
+    font-size: 1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* Qué es una organización de envío */
+  .que-es-section { background: var(--cream); }
+  .que-es-inner { max-width: 840px; }
+
+  /* Qué hacemos por ti */
+  .fases-section { background: var(--cream-dark); }
+
+  .fase-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .fase-icon { color: var(--teal); line-height: 0; }
+  .fase-title { font-size: 1rem; font-weight: 700; color: var(--navy); }
+  .fase-list {
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    padding-left: 1.1rem;
+    list-style: disc;
+  }
+  .fase-list li {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+
+  /* Verificar acreditación */
+  .verificar-section { background: var(--cream); }
+
+  .verificar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 780px;
+    padding-left: 1.35rem;
+    list-style: decimal;
+  }
+  .verificar-list li {
+    font-size: .95rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+  .verificar-list strong { color: var(--navy); }
+
+  .verificar-note {
+    margin-top: 1.75rem;
+    max-width: 780px;
+    font-size: .95rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .verificar-note a { color: var(--teal); font-weight: 600; }
+
+  /* Datos de la organización (tarjeta navy, patrón facts-card) */
+  .datos-section { background: var(--cream-dark); }
+  .datos-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .facts-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    color: #fff;
+  }
+  .facts-header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 700;
+    font-size: .95rem;
+    margin-bottom: 1.25rem;
+    color: var(--gold);
+  }
+  .facts-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .55rem 1rem;
+    font-size: .88rem;
+    margin-bottom: 1.5rem;
+  }
+  .facts-list dt { color: rgba(255,255,255,.65); font-weight: 600; white-space: nowrap; }
+  .facts-list dd { color: #fff; }
+  .facts-list dd a { color: #5eead4; text-decoration: none; }
+  .facts-list dd a:hover { text-decoration: underline; }
+  .facts-btn { width: 100%; justify-content: center; }
+
+  /* Cómo empezar */
+  .empezar-section { background: var(--cream); }
+
+  .paso-card { padding: 1.75rem; }
+  .paso-num {
+    font-family: 'Playfair Display Variable', 'Playfair Display', 'Playfair Display Fallback', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--teal);
+    display: block;
+    margin-bottom: .6rem;
+  }
+  .paso-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .5rem; }
+  .paso-desc {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .empezar-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+
+  /* Red de organizaciones por país (lista estática rastreable) */
+  .red-section { background: #fff; }
+
+  .paises-grid {
+    columns: 3;
+    column-gap: 2.5rem;
+  }
+  .pais-group {
+    break-inside: avoid;
+    margin-bottom: 1.75rem;
+  }
+  .pais-nombre {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .5rem;
+    padding-bottom: .35rem;
+    border-bottom: 2px solid var(--teal);
+    display: inline-block;
+  }
+  .pais-lista {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    list-style: none;
+    padding: 0;
+  }
+  .pais-lista li {
+    font-size: .88rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .red-cierre {
+    margin-top: 1.5rem;
+    font-size: .95rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .red-cierre a { color: var(--teal); font-weight: 600; }
+
+  /* FAQ (mecanismo de referencia) */
+  .faq-section { background: var(--cream-dark); }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .faq-item { padding: 1.75rem; }
+
+  .faq-q {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: .6rem;
+  }
+
+  .faq-a {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .faq-link {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .faq-link:hover { color: var(--navy); }
+
+  /* CTA final */
+  .cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
+  .cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .cta-box h2 { font-size: clamp(1.4rem, 2.3vw, 1.85rem); color: #fff; margin-bottom: .6rem; }
+  .cta-box p { color: rgba(255,255,255,.7); font-size: .98rem; max-width: 460px; }
+  .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .datos-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .paises-grid { columns: 2; }
+  }
+
+  @media (max-width: 640px) {
+    .paises-grid { columns: 1; }
+    .empezar-cta { flex-direction: column; }
+    .cta-actions { width: 100%; flex-direction: column; }
+    .cta-actions .btn { justify-content: center; }
+  }
+</style>

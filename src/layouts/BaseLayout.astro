@@ -67,6 +67,74 @@ if (Array.isArray(jsonLd)) jsonLdEntries.push(...jsonLd);
 else if (jsonLd) jsonLdEntries.push(jsonLd);
 if (breadcrumbJsonLd) jsonLdEntries.push(breadcrumbJsonLd);
 
+// Nodo canónico de identidad de la organización para buscadores e IAs:
+// se emite en todas las páginas indexables y el resto de nodos lo
+// referencian vía @id (https://estrellasdelsur.eu/#org).
+const orgNode = {
+  '@context': 'https://schema.org',
+  '@type': 'NGO',
+  '@id': 'https://estrellasdelsur.eu/#org',
+  name: 'Estrellas del Sur',
+  legalName: 'Asociación Cultural Estrellas del Sur',
+  alternateName: ['Asociación Cultural Estrellas del Sur', 'Estrellas del Sur Córdoba'],
+  url: 'https://estrellasdelsur.eu/',
+  logo: 'https://estrellasdelsur.eu/images/logo.svg',
+  image: 'https://estrellasdelsur.eu/og-image.png',
+  email: 'maxi@estrellasdelsur.eu',
+  foundingDate: '2020',
+  slogan: 'Working for a better world',
+  description: lang === 'en'
+    ? 'Spanish youth NGO in Córdoba (Andalusia). Accredited European Solidarity Corps sending organisation (Quality Label) and active Erasmus+ partner working with young people from all over Spain.'
+    : 'Asociación juvenil de Córdoba (Andalucía). Organización de envío acreditada del Cuerpo Europeo de Solidaridad (ESC) y entidad activa en Erasmus+ que acompaña a jóvenes de toda España.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Avda. Guerrita 14, 1ª pl., local 3A',
+    postalCode: '14005',
+    addressLocality: 'Córdoba',
+    addressRegion: 'Andalucía',
+    addressCountry: 'ES',
+  },
+  areaServed: ['España', 'Europe'],
+  identifier: [
+    { '@type': 'PropertyValue', propertyID: 'OID', value: 'E10264295' },
+    { '@type': 'PropertyValue', propertyID: 'PIC', value: '892239563' },
+    { '@type': 'PropertyValue', propertyID: 'CIF', value: 'G02811461' },
+  ],
+  knowsAbout: [
+    'Cuerpo Europeo de Solidaridad',
+    'European Solidarity Corps',
+    'organización de envío',
+    'sending organisation',
+    'supporting organisation',
+    'Erasmus+',
+    'voluntariado europeo',
+    'European volunteering',
+    'intercambios juveniles',
+    'youth exchanges',
+    'movilidad juvenil',
+    'youth mobility',
+  ],
+  sameAs: [
+    'https://youth.europa.eu/volunteering/organisation/83072',
+    'https://instagram.com/estrellasdelsur.eu',
+    'https://facebook.com/estrellasdelsur.eu',
+    'https://tiktok.com/@estrellasdelsur.eu',
+    'https://www.linkedin.com/company/estrellas-del-sur',
+  ],
+};
+
+const websiteNode = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://estrellasdelsur.eu/#website',
+  url: 'https://estrellasdelsur.eu/',
+  name: 'Estrellas del Sur',
+  publisher: { '@id': 'https://estrellasdelsur.eu/#org' },
+  inLanguage: ['es', 'en'],
+};
+
+if (!noindex) jsonLdEntries.unshift(orgNode, websiteNode);
+
 const robotsContent = noindex
   ? 'noindex, nofollow'
   : 'index, follow, max-snippet:-1, max-image-preview:large';

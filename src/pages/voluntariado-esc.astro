@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EUBanner from '../components/EUBanner.astro';
 
+// Quitamos la barra final de BASE_URL para controlar nosotros los separadores
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const svgAttrs = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
 
 const steps = [
@@ -50,6 +53,7 @@ const faqs = [
   {
     q: '¿Qué es una organización de envío y qué hace Estrellas del Sur?',
     a: 'Una organización de envío es una entidad acreditada por la Comisión Europea que selecciona, prepara y acompaña a jóvenes para que realicen su voluntariado ESC en otro país. Estrellas del Sur, basada en Córdoba (Andalucía), es organización de envío acreditada y trabaja con jóvenes de toda España.',
+    link: { label: 'Guía completa: la organización de envío', href: 'https://estrellasdelsur.eu/organizacion-de-envio/' },
   },
   {
     q: '¿Quién puede participar?',
@@ -143,7 +147,8 @@ const faqJsonLd = {
         <p class="body-text">
           <strong>Estrellas del Sur</strong> es una organización de envío acreditada, lo que significa
           que nos encargamos de todo el proceso: desde la selección del proyecto ideal hasta el apoyo
-          antes, durante y después de tu voluntariado.
+          antes, durante y después de tu voluntariado. Si quieres saber en detalle qué hace por ti
+          una organización de envío, te lo contamos en <a href={`${base}/organizacion-de-envio/`}>nuestra guía completa</a>.
         </p>
       </div>
       <div class="what-highlights fade-in fade-in-delay-2">
@@ -276,6 +281,15 @@ const faqJsonLd = {
     text-align: justify;
     hyphens: auto;
   }
+
+  /* Enlaces dentro de la prosa (mismo estilo que .faq-link) */
+  .body-text a {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .body-text a:hover { color: var(--navy); }
 
   .what-highlights {
     display: grid;

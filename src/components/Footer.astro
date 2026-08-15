@@ -14,6 +14,7 @@ const navLinks = [
   { href: `${base}/destinos/`,           label: 'Destinos' },
   { href: `${base}/sobre-nosotros/`,     label: 'Sobre Nosotros' },
   { href: `${base}/voluntariado-esc/`,   label: 'Voluntariado Europeo' },
+  { href: `${base}/organizacion-de-envio/`, label: 'Organización de envío' },
   { href: `${base}/contacto/`,           label: 'Contacto' },
 ];
 ---
@@ -64,6 +65,9 @@ const navLinks = [
         <a href={`${base}/partners/`} class="footer-partner-btn" lang="en">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           Partner with us (EN)
+        </a>
+        <a href={`${base}/esc-sending-organisation-spain/`} class="footer-sending-link" lang="en">
+          ESC sending organisation (EN)
         </a>
       </div>
     </div>
@@ -139,6 +143,16 @@ const navLinks = [
     border-color: rgba(245,158,11,.7);
     color: #fcd34d;
   }
+  /* Enlace discreto a la página EN de organización de envío */
+  .footer-sending-link {
+    display: block;
+    margin-top: .6rem;
+    font-size: .8rem;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .footer-sending-link:hover { color: #fbbf24; }
   .footer-credentials {
     margin-top: 2.5rem;
     padding-top: 1.5rem;
