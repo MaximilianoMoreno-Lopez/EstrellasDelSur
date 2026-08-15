@@ -41,17 +41,20 @@ const fases = [
   },
 ];
 
-// Cómo empezar: tres pasos concretos.
+// Cómo empezar: tres pasos concretos. `link` es opcional y se añade al final
+// de la descripción, como en las FAQs.
 const pasos = [
   {
     num: '01',
     title: 'Regístrate en el portal europeo',
-    desc: 'Crea tu cuenta gratuita en el Portal del Cuerpo Europeo de Solidaridad (youth.europa.eu) y consigue tu ESC ID. Solo necesitas un correo electrónico.',
+    desc: 'Crea tu cuenta gratuita en el Portal del Cuerpo Europeo de Solidaridad y consigue tu ESC ID. Solo necesitas un correo electrónico.',
+    link: { label: 'Registrarme en youth.europa.eu', href: 'https://youth.europa.eu/solidarity_es' },
   },
   {
     num: '02',
     title: 'Escríbenos',
-    desc: 'Mándanos un correo a paula@estrellasdelsur.eu contándonos quién eres, cuándo te gustaría irte y qué tipo de proyecto te tira: social, ambiental, cultural…',
+    desc: 'Mándanos un correo contándonos quién eres, cuándo te gustaría irte y qué tipo de proyecto te tira: social, ambiental, cultural…',
+    link: { label: 'paula@estrellasdelsur.eu', href: 'mailto:paula@estrellasdelsur.eu' },
   },
   {
     num: '03',
@@ -331,7 +334,11 @@ const partnersItemList = {
           <div class={`paso-card card fade-in fade-in-delay-${i + 1}`}>
             <span class="paso-num" aria-hidden="true">{p.num}</span>
             <h3 class="paso-title">{p.title}</h3>
-            <p class="paso-desc">{p.desc}</p>
+            <p class="paso-desc">{p.desc}
+              {p.link && (
+                <>{' '}<a href={p.link.href} class="paso-link" target={p.link.href.startsWith('mailto:') ? undefined : '_blank'} rel={p.link.href.startsWith('mailto:') ? undefined : 'noopener'}>{p.link.label}</a></>
+              )}
+            </p>
           </div>
         ))}
       </div>
@@ -546,6 +553,12 @@ const partnersItemList = {
     margin-bottom: .6rem;
   }
   .paso-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .5rem; }
+  .paso-link {
+    color: var(--teal);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
   .paso-desc {
     font-size: .9rem;
     color: var(--gray-600);
