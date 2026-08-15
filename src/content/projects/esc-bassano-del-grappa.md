@@ -22,6 +22,7 @@ coste: "Sin cuota · 6 €/día + 140 €/mes de comida"
 - **Fechas:** Desde el 07/09/2026 (Casa a Colori) y el 15/09/2026 (Cooperativa Color). Duración de 6 a 12 meses según la plaza
 - **Lugar:** Bassano del Grappa, provincia de Vicenza (Véneto, Italia)
 - **Plazas:** 2 proyectos distintos con 1 plaza cada uno (la de Casa a Colori puede desdoblarse en dos periodos de 6 meses)
+- **Otra convocatoria:** si no te encajan estas fechas, también hay plazas para empezar en **enero de 2027**
 - **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha y las entrevistas se hacen en plazo corto, ¡no te lo pienses más!
 
 ## Sobre el proyecto
@@ -153,10 +154,22 @@ No se puede llegar más tarde del día de inicio ni salir antes del día de cier
 
 ## Presentación de Solicitudes
 
-Para solicitar la plaza hay que enviar **CV**, **carta de motivación** y el **formulario de solicitud** (hay uno por proyecto: indica cuál te interesa) al correo **esc@associazionecasaacolori.org**, poniéndonos en copia en **paula@estrellasdelsur.eu** para que podamos acompañarte como organización de envío. Tienes los dos infokits completos y los dos formularios de solicitud en el botón **Ver Infopack** de esta página; si prefieres, escríbenos primero a nosotros y te los pasamos.
+Para solicitar la plaza hay que enviar tres cosas:
+
+- **CV**
+- **Carta de motivación**
+- **Formulario de solicitud** (hay uno por proyecto: indica cuál te interesa)
+
+Todo eso va al correo de la asociación italiana, **esc@associazionecasaacolori.org**, poniéndonos en copia en **paula@estrellasdelsur.eu** para que podamos acompañarte como organización de envío. También puedes escribirles directamente a ese correo para preguntar cualquier duda sobre el proyecto antes de decidirte: responden rápido y en español.
+
+En el botón **Ver Infopack** de esta página tienes los dos infokits completos y los dos formularios de solicitud, uno por proyecto. Si prefieres, escríbenos primero a nosotros y te los pasamos.
 
 La carta de motivación es la que nos sirve para elegir a las personas que más se ajustan a las necesidades del proyecto. Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.
 
-Las entrevistas se organizan rápido y la selección se cierra en plazo corto, así que recomendamos inscribirse con la mayor brevedad posible.
+Las entrevistas se organizan con rapidez y la selección se cierra en plazo corto, así que recomendamos inscribirse cuanto antes.
 
-**¿No te encajan las fechas?** Casa a Colori también tiene plazas para empezar en **enero de 2027**. Escríbenos y te avisamos cuando se abran.
+## ¿Y si no te encajan las fechas?
+
+La asociación también tiene **plazas para empezar en enero de 2027**, en los mismos proyectos y con las mismas condiciones. Si te interesa esa convocatoria, escríbenos igualmente o manda tu candidatura a **esc@associazionecasaacolori.org** indicando que quieres empezar en enero: así te tienen en cuenta cuando abran la selección.
+
+La duración también tiene cierto margen: la plaza de Casa a Colori se adapta a la disponibilidad de la persona seleccionada (6 o 12 meses, o dos periodos de 6 meses con dos personas distintas). Si te encaja todo menos la duración, pregunta antes de descartarlo.
