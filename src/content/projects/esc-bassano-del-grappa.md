@@ -10,7 +10,7 @@ dates: "Desde septiembre de 2026 · 6 a 12 meses"
 order: -19
 image: "images/projects/esc-bassano-del-grappa/cover.png"
 poster: "images/projects/esc-bassano-del-grappa/cover.png"
-# infopack: pendiente (subir los dos infokits a Drive)
+infopack: "https://drive.google.com/drive/folders/1Ip9Be4FhAmmHKzI_jtiA7_x9IU58rcOE?usp=sharing"
 edad: "18-30 años"
 idioma: "Italiano (curso incluido) · inglés para empezar"
 coste: "Sin cuota · 6 €/día + 140 €/mes de comida"
@@ -153,7 +153,7 @@ No se puede llegar más tarde del día de inicio ni salir antes del día de cier
 
 ## Presentación de Solicitudes
 
-Para solicitar la plaza hay que enviar **CV**, **carta de motivación** y el **formulario de solicitud** (hay uno por proyecto: indica cuál te interesa) al correo **esc@associazionecasaacolori.org**, poniéndonos en copia en **paula@estrellasdelsur.eu** para que podamos acompañarte como organización de envío. Si prefieres, escríbenos primero a nosotros y te pasamos los formularios y los infokits completos de cada plaza.
+Para solicitar la plaza hay que enviar **CV**, **carta de motivación** y el **formulario de solicitud** (hay uno por proyecto: indica cuál te interesa) al correo **esc@associazionecasaacolori.org**, poniéndonos en copia en **paula@estrellasdelsur.eu** para que podamos acompañarte como organización de envío. Tienes los dos infokits completos y los dos formularios de solicitud en el botón **Ver Infopack** de esta página; si prefieres, escríbenos primero a nosotros y te los pasamos.
 
 La carta de motivación es la que nos sirve para elegir a las personas que más se ajustan a las necesidades del proyecto. Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.
 
