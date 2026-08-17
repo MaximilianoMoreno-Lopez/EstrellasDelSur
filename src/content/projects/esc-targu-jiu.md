@@ -1,5 +1,5 @@
 ---
-title: "Voluntariado ESC en Târgu Jiu"
+title: "Green Fest"
 type: "Voluntariado"
 status: "past"
 flag: "🇷🇴"
