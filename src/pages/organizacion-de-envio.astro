@@ -181,7 +181,7 @@ const partnersItemList = {
         y para ti es <strong>totalmente gratis</strong>: lo financia el programa.
       </p>
       <div class="hero-actions fade-in fade-in-delay-3">
-        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-gold">
+        <a href="#escribenos" class="btn btn-gold">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Escríbenos
         </a>
@@ -320,8 +320,10 @@ const partnersItemList = {
     </div>
   </section>
 
-  <!-- Cómo empezar -->
-  <section class="section empezar-section">
+  <!-- Cómo empezar. Los botones "Escríbenos" del hero y del cierre bajan aquí
+       en vez de abrir un mailto: en muchos equipos no hay cliente de correo
+       configurado y el clic no hace nada. Aquí el correo se ve y se puede copiar. -->
+  <section class="section empezar-section" id="escribenos">
     <div class="container">
       <div class="section-header fade-in">
         <p class="section-label">Manos a la obra</p>
@@ -415,7 +417,7 @@ const partnersItemList = {
         <p>Cuéntanos quién eres y qué buscas. Sin compromiso y sin coste: para eso estamos.</p>
       </div>
       <div class="cta-actions">
-        <a href="mailto:paula@estrellasdelsur.eu" class="btn btn-gold">
+        <a href="#escribenos" class="btn btn-gold">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Escríbenos
         </a>
