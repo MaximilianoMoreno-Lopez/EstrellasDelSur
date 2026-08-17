@@ -1,13 +1,1 @@
-[
-  {
-    "slug": "ignite",
-    "cuando": "2026-08-17T07:00:00+02:00",
-    "motivo": "Apertura de la convocatoria de IGNITE",
-    "campos": {
-      "status": "active",
-      "order": -19,
-      "year": 2026,
-      "dates": "18/10/2026 - 24/10/2026 (días de programa: 19-23/10)"
-    }
-  }
-]
+[]

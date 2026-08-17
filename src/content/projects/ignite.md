@@ -1,14 +1,11 @@
 ---
 title: "IGNITE"
 type: "Formación"
-status: "past"
+status: "active"
 flag: "🇭🇷"
 description: "Curso de formación Erasmus+ en la isla de Iž, en el Adriático croata, sobre cómo acompañar a jóvenes que quieren emprender con impacto social y ambiental. Cinco días de educación no formal, herramientas de coaching y cocina 100 % vegetariana junto al mar."
 location: "Isla de Iž, Croacia"
-order: 99
-# Programada para abrirse el lunes 17/08/2026 a las 07:00; el cambio de
-# status, order, year y dates esta en scripts/programados.json y lo aplica
-# solo el workflow "Cambios programados". Esta linea se borra al aplicarse.
+order: -19
 image: "images/projects/ignite/cover.png"
 poster: "images/projects/ignite/cover.png"
 infopack: "https://drive.google.com/file/d/1PplCIgxDctaZ4XNkDCmr7W8VupSVfS-p/view?usp=drive_link"
@@ -16,6 +13,8 @@ apply: "https://forms.gle/gXinYi2pyZsRzH1C6"
 edad: "A partir de 18 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
+year: 2026
+dates: "18/10/2026 - 24/10/2026 (días de programa: 19-23/10)"
 ---
 
 ## Datos del proyecto
