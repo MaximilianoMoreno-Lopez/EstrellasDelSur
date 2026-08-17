@@ -6,7 +6,7 @@ flag: "🇵🇹"
 description: "Curso de formación Erasmus+ en Trancoso, en el interior de Portugal, sobre emprendimiento social e innovación rural para quienes trabajan con jóvenes. Educación no formal, visita de estudio al ecosistema de innovación portugués y co-creación de un toolkit junto a estudiantes de Pinhel."
 location: "Trancoso, Portugal"
 year: 2026
-dates: "26/10/2026 - 04/11/2026"
+dates: "26/10/2026 - 03/11/2026"
 order: -18
 image: "images/projects/2fast2innovative/cover.png"
 poster: "images/projects/2fast2innovative/cover.png"
@@ -21,7 +21,7 @@ federacion: true
 ## Datos del proyecto
 
 - **Temática del Proyecto:** Emprendimiento social, innovación rural, educación no formal, facilitación y trabajo juvenil digital
-- **Fechas:** Del 26/10/2026 al 04/11/2026. El 26 de octubre es día de llegada y el 4 de noviembre de salida, con 7 días de programa y más de 42 horas de educación no formal
+- **Fechas:** Del 26/10/2026 al 03/11/2026. El 26 de octubre es día de llegada y el 3 de noviembre de salida, con 7 días de programa y más de 42 horas de educación no formal
 - **Lugar:** Trancoso, distrito de Guarda (Portugal)
 - **Participantes:** 3 personas de España mayores de 18 años. En total, 21 trabajadores juveniles de 7 países
 - **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
@@ -104,7 +104,7 @@ Los gastos de transporte serán pagados por el participante y devueltos una vez 
 
 **No se reembolsarán** los transportes privados como taxi, Uber, Bolt o coche particular, ni el alojamiento durante el trayecto. Los suplementos de equipaje grande solo se pueden cubrir si el plan de viaje no agota el presupuesto de transporte.
 
-**Cómo llegar:** Trancoso se conecta por autobús con **Porto** (estación de Campanhã) y con **Lisboa** a través de la compañía [Rede Expressos](https://rede-expressos.pt/en). Hay que llegar a Trancoso antes de las **20:00 del 26 de octubre**. Para la vuelta, el primer autobús desde Trancoso hacia Lisboa o Porto se toma después de las 9:00 del 4 de noviembre, y cualquier enlace posterior debe salir después de las **17:30** de ese mismo día. Conviene revisar los horarios actualizados antes de cerrar el itinerario.
+**Cómo llegar:** Trancoso se conecta por autobús con **Porto** (estación de Campanhã) y con **Lisboa** a través de la compañía [Rede Expressos](https://rede-expressos.pt/en). Hay que llegar a Trancoso antes de las **20:00 del 26 de octubre**. Para la vuelta, el primer autobús desde Trancoso hacia Lisboa o Porto se toma después de las 9:00 del 3 de noviembre, y cualquier enlace posterior debe salir después de las **17:30** de ese mismo día. Conviene revisar los horarios actualizados antes de cerrar el itinerario.
 
 El participante es responsable del acceso a asistencia sanitaria durante todo el proyecto. Es **obligatorio** llevar la **Tarjeta Sanitaria Europea** y se recomienda un seguro de viaje. La moneda oficial en Portugal es el euro.
 
