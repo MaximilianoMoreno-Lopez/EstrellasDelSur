@@ -1,13 +1,15 @@
 ---
 title: "Voluntariado ESC en Târgu Jiu"
 type: "Voluntariado"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Voluntariado del Cuerpo Europeo de Solidaridad de dos meses en Târgu Jiu (Rumanía) con la asociación Colour Your Dreams: organizar el Green Fest 3 o el Inclusive Education Fest 3. Dos plazas con inicio en agosto y en septiembre de 2026."
 location: "Târgu Jiu, Gorj (Rumanía)"
 year: 2026
 dates: "Agosto a octubre de 2026 · 2 meses"
 order: -20
+image: "images/projects/esc-targu-jiu/cover.png"
+poster: "images/projects/esc-targu-jiu/cover.png"
 # No hay formulario: la solicitud va por correo, asi que el boton baja al
 # apartado que lo explica. El ancla vive en el cuerpo del articulo.
 apply: "#solicitar"
