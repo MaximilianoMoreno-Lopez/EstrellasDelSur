@@ -9,7 +9,7 @@ order: -19
 image: "images/projects/ignite/cover.png"
 poster: "images/projects/ignite/cover.png"
 infopack: "https://drive.google.com/file/d/1PplCIgxDctaZ4XNkDCmr7W8VupSVfS-p/view?usp=drive_link"
-apply: "https://forms.gle/gXinYi2pyZsRzH1C6"
+apply: "https://forms.gle/SXPhX43G4r2m1Ps69"
 edad: "A partir de 18 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"

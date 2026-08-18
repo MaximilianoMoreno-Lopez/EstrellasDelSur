@@ -11,7 +11,7 @@ order: -18
 image: "images/projects/2fast2innovative/cover.png"
 poster: "images/projects/2fast2innovative/cover.png"
 infopack: "https://drive.google.com/file/d/18He5XQg-pE4EJkyIVcHAbyJGDnepD28F/view?usp=drive_link"
-apply: "https://forms.gle/grr5P8bx3DNd44E46"
+apply: "https://docs.google.com/forms/d/e/1FAIpQLSdp-ydcT71mn8t2m4p0NFJhQ4YrqxQZOCmLY-jhHSrPybv91A/viewform?usp=dialog"
 edad: "A partir de 18 años, sin límite de edad"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
