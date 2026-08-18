@@ -1,7 +1,7 @@
 ---
 title: "Green Fest"
 type: "Voluntariado"
-status: "past"
+status: "active"
 flag: "🇷🇴"
 description: "Voluntariado del Cuerpo Europeo de Solidaridad de dos meses en Târgu Jiu (Rumanía) con la asociación Colour Your Dreams: organizar el Green Fest 3 o el Inclusive Education Fest 3. Dos plazas con inicio en agosto y en septiembre de 2026."
 location: "Târgu Jiu, Gorj (Rumanía)"
