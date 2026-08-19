@@ -7,7 +7,7 @@ description: "Curso de formación Erasmus+ en Trancoso, en el interior de Portug
 location: "Trancoso, Portugal"
 year: 2026
 dates: "26/10/2026 - 03/11/2026"
-order: -18
+order: -19
 # Programada para cerrarse el jueves 20/08/2026 a las 13:00; el cambio de
 # status esta en scripts/programados.json y lo aplica solo el workflow
 # "Cambios programados". Estas lineas se borran al aplicarse.

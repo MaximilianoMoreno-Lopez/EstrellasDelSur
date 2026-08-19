@@ -5,7 +5,7 @@ status: "active"
 flag: "🇭🇷"
 description: "Curso de formación Erasmus+ en la isla de Iž, en el Adriático croata, sobre cómo acompañar a jóvenes que quieren emprender con impacto social y ambiental. Cinco días de educación no formal, herramientas de coaching y cocina 100 % vegetariana junto al mar."
 location: "Isla de Iž, Croacia"
-order: -19
+order: -20
 image: "images/projects/ignite/cover.png"
 poster: "images/projects/ignite/cover.png"
 infopack: "https://drive.google.com/file/d/1PplCIgxDctaZ4XNkDCmr7W8VupSVfS-p/view?usp=drive_link"

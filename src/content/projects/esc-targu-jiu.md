@@ -7,7 +7,7 @@ description: "Voluntariado del Cuerpo Europeo de Solidaridad de dos meses en Tâ
 location: "Târgu Jiu, Gorj (Rumanía)"
 year: 2026
 dates: "Agosto a octubre de 2026 · 2 meses"
-order: -20
+order: -18
 image: "images/projects/esc-targu-jiu/cover.png"
 poster: "images/projects/esc-targu-jiu/cover.png"
 # No hay formulario: la solicitud va por correo, asi que el boton baja al

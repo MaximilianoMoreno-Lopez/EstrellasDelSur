@@ -7,7 +7,7 @@ description: "Voluntariado de larga duración (6 a 12 meses) en Bassano del Grap
 location: "Bassano del Grappa (Italia)"
 year: 2026
 dates: "Desde septiembre de 2026 · 6 a 12 meses"
-order: -19
+order: -17
 image: "images/projects/esc-bassano-del-grappa/cover.png"
 poster: "images/projects/esc-bassano-del-grappa/cover.png"
 infopack: "https://drive.google.com/drive/folders/1Ip9Be4FhAmmHKzI_jtiA7_x9IU58rcOE?usp=sharing"
