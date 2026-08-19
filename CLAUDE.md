@@ -46,6 +46,7 @@ Push a `main` → GitHub Actions construye y despliega automáticamente (~2 min)
 Para abrir o cerrar una convocatoria en una fecha futura sin estar delante:
 añadir una entrada en `scripts/programados.json` (slug, `cuando` en ISO con
 zona horaria, y los `campos` del frontmatter a cambiar). El workflow
-`programados.yml` corre a diario a las 05:05 UTC, aplica lo que toque,
+`programados.yml` corre dos veces al día, a las 05:05 y a las 11:05 UTC
+(07:05 y 13:05 en España en verano), aplica lo que toque,
 commitea y despliega. Probar en local con
 `node scripts/aplicar-programados.mjs --simulacro`.
