@@ -293,7 +293,12 @@ const memorias = [
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           <span>Certificado de inscripción en el Registro de Asociaciones de Andalucía</span>
         </a>
-        <p class="gobierno-doc-note">Inscripción nº 14-1-10481 · Certificación oficial de la Junta de Andalucía.</p>
+        <p class="gobierno-doc-note">
+          Inscripción nº 14-1-10481 · Certificado oficial emitido por la Junta de Andalucía que acredita
+          la inscripción de la entidad como asociación sin ánimo de lucro en el Registro de Asociaciones de Andalucía.
+          <span lang="en">Official certificate issued by the Regional Government of Andalusia confirming the
+          registration of Estrellas del Sur as a non-profit organisation (NGO) in the Andalusian Registry of Associations.</span>
+        </p>
       </div>
     </div>
   </section>
@@ -545,6 +550,14 @@ const memorias = [
     margin-top: .85rem;
     font-size: .8rem;
     color: var(--gray-500, #6b7280);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .gobierno-doc-note span[lang='en'] {
+    display: block;
+    margin-top: .4rem;
   }
 
   /* Memorias anuales */
