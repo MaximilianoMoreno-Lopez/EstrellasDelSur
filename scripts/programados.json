@@ -9,5 +9,13 @@
       "year": 2026,
       "dates": "22/10/2026 - 01/11/2026"
     }
+  },
+  {
+    "slug": "2fast2innovative",
+    "cuando": "2026-08-20T13:00:00+02:00",
+    "motivo": "Cierre de la convocatoria de 2Fast2Innovative",
+    "campos": {
+      "status": "past"
+    }
   }
 ]
