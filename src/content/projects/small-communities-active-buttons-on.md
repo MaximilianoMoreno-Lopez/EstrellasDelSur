@@ -1,14 +1,11 @@
 ---
 title: "Small Communities, Active Buttons On"
 type: "Intercambio"
-status: "past"
+status: "active"
 flag: "🇷🇴"
 description: "Intercambio juvenil Erasmus+ en Sărata Monteoru (Rumanía) sobre cómo los pueblos y las comunidades pequeñas pueden ser el mejor sitio para moverse, cuidarse y organizarse. Vida activa, sostenibilidad y participación local con 44 personas de ocho países."
 location: "Sărata Monteoru, Buzău (Rumanía)"
-order: 99
-# Programada para abrirse el jueves 20/08/2026 a las 13:00; el cambio de
-# status, order, year y dates esta en scripts/programados.json y lo aplica
-# solo el workflow "Cambios programados". Estas lineas se borran al aplicarse.
+order: -21
 image: "images/projects/small-communities-active-buttons-on/cover.png"
 poster: "images/projects/small-communities-active-buttons-on/cover.png"
 infopack: "https://drive.google.com/file/d/1mgOKSutfGjZZgUpV9PFLl4LOStHlk1Mu/view?usp=drive_link"
@@ -16,6 +13,8 @@ apply: "https://forms.gle/RezkKbBzweYuY5kH9"
 edad: "18-25 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
+year: 2026
+dates: "22/10/2026 - 01/11/2026"
 ---
 
 ## Datos del proyecto

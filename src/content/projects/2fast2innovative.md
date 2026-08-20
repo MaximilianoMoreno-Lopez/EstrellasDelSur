@@ -1,16 +1,13 @@
 ---
 title: "2Fast2Innovative"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇵🇹"
 description: "Curso de formación Erasmus+ en Trancoso, en el interior de Portugal, sobre emprendimiento social e innovación rural para quienes trabajan con jóvenes. Educación no formal, visita de estudio al ecosistema de innovación portugués y co-creación de un toolkit junto a estudiantes de Pinhel."
 location: "Trancoso, Portugal"
 year: 2026
 dates: "26/10/2026 - 03/11/2026"
 order: -19
-# Programada para cerrarse el jueves 20/08/2026 a las 13:00; el cambio de
-# status esta en scripts/programados.json y lo aplica solo el workflow
-# "Cambios programados". Estas lineas se borran al aplicarse.
 image: "images/projects/2fast2innovative/cover.png"
 poster: "images/projects/2fast2innovative/cover.png"
 infopack: "https://drive.google.com/file/d/18He5XQg-pE4EJkyIVcHAbyJGDnepD28F/view?usp=drive_link"
