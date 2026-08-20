@@ -49,7 +49,11 @@ EL PROYECTO: ${PROYECTO.sinopsis}
 
 FORMATO DE SALIDA: tu respuesta final es SOLO el texto markdown de tu bloque, sin comentarios meta. Usa "## " para el título del bloque y "### " para cada pregunta del formulario, con la pregunta literal en ${PROYECTO.idiomaFormulario} tal como aparece en el formulario oficial, para que quien rellena localice el campo. Debajo, la respuesta en ${PROYECTO.idiomaRedaccion}, en párrafos hilados. Donde el formulario pida traducción, añade "**Please provide a translation in English.**" y la traducción. Placeholders siempre entre corchetes descriptivos con guion corto. Longitud de cada respuesta entre 1.500 y 4.000 caracteres salvo indicación contraria.
 
-REGLAS DURAS: nada de guiones largos ni semilargos, nada de emojis, no abusar de dos puntos, como máximo un "no X, sino Y" en todo el bloque, sin andamiaje enumerativo de apertura, sin anglicismos evitables. No inventes ningún dato que no esté en la biblia o en el PIF.
+REGLAS DURAS: nada de guiones largos ni semilargos, nada de emojis, no abusar de dos puntos, como máximo un "no X, sino Y" en todo el bloque, sin andamiaje enumerativo de apertura, sin anglicismos evitables. No inventes ningún dato que no esté en la biblia o en el PIF. Y nunca cites de dónde sale un dato: prohibido escribir "(information provided by the partner organisation, September 2026)", "(según el PIF)" o similares, y prohibido fechar cuándo nos lo contaron. Se asume que la información de cada socia viene de ella.
+
+NO GASTES CARACTERES en lo que la aplicación ya rellena sola desde el registro de la organización: OID, PIC y números de registro, dirección exacta con calle y número, naturaleza jurídica, si es o no un organismo público, forma legal y datos fiscales. Eso ya lo ve quien evalúa. Los caracteres van a lo que el formulario no sabe: qué hace la organización cada semana, con cuánta gente, con quién y qué sabe hacer el equipo.
+
+TAMPOCO ESCRIBAS el nivel de idioma de los participantes: ni niveles del marco europeo (A2, B1, B2), ni "buen nivel de inglés", ni "English level required". Si la lengua es un obstáculo real, describe el apoyo que se da, no el nivel que se exige.
 
 GUARDA tu bloque completo con Write en el fichero que te indico, y además devuélvelo como respuesta final.`
 

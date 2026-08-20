@@ -15,7 +15,7 @@ Copiar al scratchpad como `biblia_<proyecto>.md`. No editar la plantilla origina
 
 ## 2. Consorcio o equipo
 - Coordinadora: [perfil y qué aporta]
-- [SOCIO 1 - nombre legal, ciudad, OID]: [qué aporta]
+- [SOCIO 1 - nombre legal, ciudad]: [qué aporta]
 - [SOCIO n ...]
 - Relato del consorcio en una frase: [qué combina la red y por qué esa mezcla]
 - Cuáles estrenan la acción: [lista. Es prioridad del programa y hay que decirlo]
@@ -65,6 +65,6 @@ Recorrer la rúbrica destilada del perfil elemento a elemento y anotar aquí en 
 
 ## 13. Reglas de estilo
 Aplican las de `comun/reglas_estilo.md` sin excepciones. Anotar aquí solo lo específico del proyecto:
-- Tokens de placeholder acordados: [CIUDAD SEDE ACTIVIDAD 2], [SOCIA ANFITRIONA ACTIVIDAD 2 - nombre legal, ciudad, OID]
+- Tokens de placeholder acordados: [CIUDAD SEDE ACTIVIDAD 2], [SOCIA ANFITRIONA ACTIVIDAD 2 - nombre legal, ciudad]
 - Redacción única de conceptos recurrentes: [ ]
 - Si hay solicitud de referencia: [cuál, y recordatorio de que solo sirve como guía de registro]

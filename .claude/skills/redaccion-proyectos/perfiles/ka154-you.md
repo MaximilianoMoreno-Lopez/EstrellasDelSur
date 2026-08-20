@@ -20,7 +20,7 @@ Siete bloques, un redactor por bloque.
    - "What do you want to achieve by implementing the project? What are the objectives of your project?"
    - "What activities do you plan to implement? What is the number and profile of the participants involved?"
    - "What results and impact do you expect your project to have?"
-2. **solicitante** - Applicant background.
+2. **solicitante** - Applicant background. Nada de OID, dirección exacta ni aclarar que no es un organismo público: la aplicación ya lo muestra. El campo se gasta en actividad real, volumen de gente y expertise del equipo.
    - "Background and experience. Please briefly present your organisation (e.g. its type, scope of work, areas of activity and if applicable, approximate number of paid/unpaid staff, learners and members of the group)."
    - "What are the activities and experience of the organisation in the areas relevant for this project? What are the skills and/or expertise of key persons involved in this project?"
    - Más una plantilla breve de background por socia, con placeholders.

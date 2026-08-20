@@ -1,5 +1,5 @@
 // Workflow genérico de corrección: un corrector por bloque, con las correcciones
-// globales G1-G9 fijas y las específicas que salen de los verificadores.
+// globales G1-G12 fijas y las específicas que salen de los verificadores.
 //
 // PARA ADAPTARLO: editar DIR, PROYECTO y el array TAREAS (una entrada por bloque,
 // con las correcciones concretas asignadas a ese bloque).
@@ -38,6 +38,9 @@ G6. Redacción única de los conceptos recurrentes. Cada temática, objetivo y n
 G7. Los códigos internos de necesidades y objetivos (N1, O1...) solo pueden existir en la sección donde se enumeran y etiquetan. En cualquier otro sitio, referencias descriptivas.
 G8. No inventar datos nuevos de la solicitante ni de las socias. Lo que no esté en el PIF va entre corchetes.
 G9. No alterar ninguna cifra de la biblia. Si crees que una cifra está mal, la mencionas en tu respuesta final, no la cambias.
+G10. Eliminar toda atribución de fuente dentro del texto: paréntesis del tipo "(information provided by the partner organisation, September 2026)", "(según el PIF)", "(dato facilitado por la coordinadora)" y cualquier fecha de cuándo se obtuvo el dato. Se asume que la información de cada socia viene de ella. El dato se queda, la coletilla se va.
+G11. Eliminar los datos administrativos que la aplicación ya trae del registro de la organización: OID, PIC y números de registro, dirección exacta con calle y número, naturaleza jurídica, condición de organismo público, forma legal y datos fiscales. Los caracteres liberados se usan para reforzar la actividad real y la experiencia del equipo, no se dejan en blanco.
+G12. Eliminar toda mención al nivel de idioma de los participantes: niveles del marco europeo (A2, B1, B2, C1), "buen nivel de inglés", "English level required" o descripciones del nivel del grupo. Si el argumento hacía falta, se sustituye por el apoyo lingüístico que se ofrece.
 
 DECISIONES TRANSVERSALES YA TOMADAS (respétalas literalmente):
 [Escribir aquí las decisiones que afectan a más de un bloque, para que todos los correctores apliquen lo mismo.]`

@@ -37,6 +37,36 @@ DUROS = [
     ("doble espacio", re.compile(r"\S  +\S")),
 ]
 
+# Solo dentro de los bloques del formulario: la portada interna del borrador sí
+# lleva el OID y la agencia, porque no se copia a la solicitud.
+DUROS_BLOQUE = [
+    ("dato administrativo que el formulario ya trae", re.compile(
+        r"\bE1\d{7}\b"                                        # OID
+        r"|\b(?:OID|PIC)\b\s*[:nº#]?\s*\d"                    # OID o PIC con su número
+        r"|\bno\s+(?:somos|es|son)\s+(?:un\s+)?organismo\s+p[uú]blico\b"
+        r"|\bnot\s+a\s+public\s+body\b"
+        r"|\b(?:c/|avda\.?|avenida|calle|plaza|pl\.|paseo|carretera|ctra\.?)\s+[^,.;]{2,40}?\s+\d{1,4}\b"
+        r"|\b\d{5}\s+[A-ZÁÉÍÓÚÑ][a-zá-úñ]+",                  # código postal y ciudad
+        re.I)),
+    # El nivel de idioma de los participantes no se escribe: se escribe el apoyo.
+    ("nivel de idioma de los participantes", re.compile(
+        r"\bnivel(?:es)?\s+(?:de\s+)?(?:idioma|ingl[eé]s|lengua)\b"
+        r"|\b(?:english|language)\s+(?:level|proficiency|requirement)\b"
+        r"|\blevel\s+of\s+english\b"
+        r"|\b(?:buen|alto|b[aá]sico|suficiente|intermedio)\s+nivel\s+de\s+ingl[eé]s\b"
+        r"|\b(?:good|basic|working|fluent|intermediate)\s+(?:command\s+of\s+|knowledge\s+of\s+)?english\b"
+        r"|\b[ABC][12]\b(?=[^\n]{0,60}\b(?:ingl[eé]s|english|idioma|language|lengua|MCER|CEFR)\b)"
+        r"|\b(?:ingl[eé]s|english|idioma|language|lengua|MCER|CEFR)\b(?=[^\n]{0,60}\b[ABC][12]\b)",
+        re.I)),
+    # El dato se afirma como propio del proyecto: nunca se cita de dónde salió.
+    ("atribucion de fuente", re.compile(
+        r"\([^)]{0,120}?\b("
+        r"provided by|according to|as reported by|source:|"
+        r"facilitad[oa]s? por|proporcionad[oa]s? por|aportad[oa]s? por|comunicad[oa]s? por|"
+        r"seg[uú]n (?:el|la|los|las)\s+(?:PIF|socia|socias|coordinadora|organizaci[oó]n)"
+        r")\b[^)]{0,120}?\)", re.I)),
+]
+
 # Solo en prosa española: ni encabezados con la pregunta oficial ni traducciones.
 DUROS_ES = [
     ("anglicismo evitable", re.compile(r"\b(feedback|newcomers?|networking|know-how|deadline)\b", re.I)),
@@ -78,6 +108,7 @@ def revisar(path, seccion_codigos, limite_blandos):
     nombre = os.path.basename(path).lower()
     clave = (seccion_codigos or "").lower()
     codigos_permitidos_por_fichero = bool(clave) and clave in nombre
+    tiene_h2 = any(l.startswith("## ") for l in lineas)
     seccion_actual = ""
     blandos = Counter()
     encabezados = 0
@@ -91,10 +122,13 @@ def revisar(path, seccion_codigos, limite_blandos):
         es_encabezado = linea.startswith("#")
         vistos = set()
 
-        for etiqueta, rx in DUROS:
-            if rx.search(linea) and etiqueta not in vistos:
+        # Las comprobaciones de DUROS_BLOQUE no se aplican a la portada del
+        # borrador, que va antes del primer "## " y no se copia a la solicitud.
+        aplicables = DUROS + (DUROS_BLOQUE if (seccion_actual or not tiene_h2) else [])
+        for etiqueta, rx in aplicables:
+            m = rx.search(linea)
+            if m and etiqueta not in vistos:
                 vistos.add(etiqueta)
-                m = rx.search(linea)
                 hallazgos.append(("DURO", n, etiqueta, linea[max(0, m.start() - 30):m.end() + 30].strip()))
 
         if not es_encabezado and not es_ingles(linea):

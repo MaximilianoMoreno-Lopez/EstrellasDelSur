@@ -6,6 +6,7 @@ Regla general de umbral en Erasmus+: 60 sobre 100 en total y al menos la mitad d
 
 ## 1. Quién eres y por qué eres relevante
 - Perfil de la organización en la práctica, no nominal. Actividad cotidiana real, expertise del equipo, también lo hecho fuera del programa al que se solicita.
+- Nada de datos administrativos que la aplicación ya muestra: OID, PIC, dirección exacta, naturaleza jurídica o condición de organismo público. Ese campo se gasta en lo que el sistema no sabe.
 - Capacidad operativa y financiera para lo que se propone.
 - Si estrenas la acción, decirlo como fortaleza. Casi todos los programas priorizan a quien nunca o rara vez se ha beneficiado.
 
@@ -24,7 +25,7 @@ En Erasmus+ y CES son cuatro y hay que nombrarlas de forma explícita con su med
 ## 5. Inclusión y accesibilidad
 - Participantes en situaciones que dificultan su participación: identificarlas por tipo de obstáculo (geográfico, económico, educativo, discapacidad, salud, cultural) y decir la medida de apoyo para cada una.
 - Mencionar la discapacidad de forma expresa. Formulario previo de necesidades, verificación de accesibilidad de espacios, ajustes razonables.
-- Selección con criterios comunes escritos y equilibrio de género revisado antes de cerrar listas.
+- Selección con criterios comunes escritos y equilibrio de género revisado antes de cerrar listas. Sin listón de idioma entre los criterios: no se pide nivel de inglés ni se describe el que tiene el grupo.
 - Los campos numéricos de participantes con menos oportunidades nunca se dejan en blanco. Siempre una cifra, con "por confirmar" si hace falta.
 
 ## 6. Participación real de la gente joven

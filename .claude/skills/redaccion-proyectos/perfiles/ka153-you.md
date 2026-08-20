@@ -21,7 +21,7 @@ Siete bloques, un redactor por bloque. Las preguntas van en inglés como encabez
    - "What do you want to achieve by implementing the project? What are the objectives of your project? Please specify from the perspective of youth work practice."
    - "What activities do you plan to implement? What is the number and profile of the participants involved?"
    - "What results and impact do you expect your project to have?"
-2. **organizaciones** - Participating Organisations.
+2. **organizaciones** - Participating Organisations. Nada de OID, dirección exacta ni aclarar que no es un organismo público: la aplicación ya lo muestra. El campo se gasta en actividad real, volumen de gente y expertise del equipo.
    - "Background and experience" de la solicitante: organización, actividad cotidiana, personal, grupos destinatarios, experiencia relevante.
    - "Would you like to make any comments or add any information to the summary of your organisation's past participation?"
    - Ficha por socia: perfil, qué aporta y qué gana.

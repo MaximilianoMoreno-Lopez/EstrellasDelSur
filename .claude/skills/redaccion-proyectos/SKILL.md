@@ -50,7 +50,7 @@ Después, 3 verificadores adversariales con schema de issues sobre el borrador e
 No saltarse esta fase. Es la que sube la nota.
 
 ### 4. Workflow de corrección
-Adapta `assets/workflow_correccion.js`. Asigna cada issue a su bloque, deja las correcciones globales G1-G9 tal cual, y decide TÚ las cuestiones transversales antes de lanzar (redacción única de cada temática, secuencias temporales, alcance de invitados) para que todos los correctores apliquen lo mismo. Cada corrector lee su `draft_<bloque>.md` y escribe `final_<bloque>.md`.
+Adapta `assets/workflow_correccion.js`. Asigna cada issue a su bloque, deja las correcciones globales G1-G12 tal cual, y decide TÚ las cuestiones transversales antes de lanzar (redacción única de cada temática, secuencias temporales, alcance de invitados) para que todos los correctores apliquen lo mismo. Cada corrector lee su `draft_<bloque>.md` y escribe `final_<bloque>.md`.
 
 ### 5. Comprobación mecánica y ensamblado
 `python assets/comprobacion_mecanica.py <dir> --patron "final_*.md" --seccion-codigos <bloque>` busca guiones largos, emojis, anglicismos, códigos internos fuera de su sección, marcas de edición, dobles espacios y tics de redacción, cuenta encabezados y lista los placeholders para ver si un mismo concepto usa dos tokens. Acepta también un fichero ensamblado; en ese caso el tope de `no X, sino Y` es uno por bloque, así que se pasa `--tope-no-sino <nº de bloques>`. Arregla a mano lo poco que salga.
