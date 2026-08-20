@@ -8,7 +8,7 @@ location: "Isla de Iž, Croacia"
 order: -20
 image: "images/projects/ignite/cover.png"
 poster: "images/projects/ignite/cover.png"
-infopack: "https://drive.google.com/file/d/1PplCIgxDctaZ4XNkDCmr7W8VupSVfS-p/view?usp=drive_link"
+infopack: "https://drive.google.com/file/d/1eVd5P453C9hOLKu1aY5-xYl9I8Geg6T_/view?usp=drive_link"
 apply: "https://forms.gle/SXPhX43G4r2m1Ps69"
 edad: "A partir de 18 años"
 idioma: "Inglés"
