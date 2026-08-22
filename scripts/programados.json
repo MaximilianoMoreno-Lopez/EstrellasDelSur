@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "slug": "equal-europe",
+    "cuando": "2026-08-24T07:50:00+02:00",
+    "motivo": "Apertura de la convocatoria de Equal Europe",
+    "campos": {
+      "status": "active"
+    }
+  }
+]
