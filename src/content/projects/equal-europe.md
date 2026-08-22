@@ -10,7 +10,7 @@ dates: "20/09/2026 - 29/09/2026 (días de programa: 21-28/09)"
 order: -19
 image: "images/projects/equal-europe/cover.png"
 poster: "images/projects/equal-europe/cover.png"
-infopack: "https://drive.google.com/file/d/1Vp5R6Q7_6xZwr6xj3dKwdcT8lBrEWaEr/view?usp=drive_link"
+infopack: "https://drive.google.com/file/d/1QM5JbTgjsox8EMOMN6MUudr5C73b40BP/view?usp=drive_link"
 apply: "https://forms.gle/d1gHUibHHE6GNn1c8"
 edad: "A partir de 18 años, sin límite de edad"
 idioma: "Inglés"
