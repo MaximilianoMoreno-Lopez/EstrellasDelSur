@@ -14,7 +14,7 @@ infopack: "https://drive.google.com/file/d/1QM5JbTgjsox8EMOMN6MUudr5C73b40BP/vie
 apply: "https://forms.gle/d1gHUibHHE6GNn1c8"
 edad: "A partir de 18 años, sin límite de edad"
 idioma: "Inglés"
-coste: "Alojamiento y comidas cubiertos · viaje reembolsado según los tramos de distancia de Erasmus+"
+coste: "Cuota de socio 50 € (solo si te seleccionan)"
 ---
 
 ## Datos del proyecto
@@ -24,6 +24,7 @@ coste: "Alojamiento y comidas cubiertos · viaje reembolsado según los tramos d
 - **Lugar:** Arad, Rumanía
 - **Participantes:** Trabajadores y trabajadoras juveniles de varios países europeos, personal o voluntariado de una organización de envío
 - **Coordina:** Ofensiva Tinerilor Association (Rumanía)
+- **Coste:** Cuota de socio de 50 €, solo si te seleccionan. El alojamiento y las tres comidas diarias están cubiertos y el viaje se reembolsa según los tramos de distancia de Erasmus+
 
 ## Sobre el proyecto
 
