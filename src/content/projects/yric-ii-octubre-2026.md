@@ -1,13 +1,13 @@
 ---
 title: "YRIC II (octubre 2026)"
 type: "Voluntariado"
-status: "past"
+status: "active"
 flag: "🇵🇱"
 description: "Voluntariado de larga duración (1 mes) en Rabka-Zdrój (Polonia) apoyando el centro juvenil polaco-ucraniano Kefirek: integración, apoyo emocional y dinamización de jóvenes locales y refugiados ucranianos."
 location: "Rabka-Zdrój (Polonia)"
 year: 2026
 dates: "12/10/2026 - 12/11/2026"
-order: -17
+order: -16
 image: "images/projects/yric-ii-octubre-2026/cover.png"
 poster: "images/projects/yric-ii-octubre-2026/cover.png"
 infopack: "https://drive.google.com/file/d/123tF9vUD0E5W0pxA8_wZ8OAEglDM3wg9/view?usp=drive_link"

@@ -1,7 +1,7 @@
 ---
 title: "Voluntariado ESC en Bassano del Grappa"
 type: "Voluntariado"
-status: "active"
+status: "past"
 flag: "🇮🇹"
 description: "Voluntariado de larga duración (6 a 12 meses) en Bassano del Grappa (Italia) con Casa a Colori y Cooperativa Color: acogida de personas solicitantes de asilo, infancia, familias y proyectos socioculturales. Dos plazas con inicio en septiembre de 2026."
 location: "Bassano del Grappa (Italia)"
