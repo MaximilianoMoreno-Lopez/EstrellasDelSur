@@ -1,7 +1,7 @@
 ---
 title: "IGNITE"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇭🇷"
 description: "Curso de formación Erasmus+ en la isla de Iž, en el Adriático croata, sobre cómo acompañar a jóvenes que quieren emprender con impacto social y ambiental. Cinco días de educación no formal, herramientas de coaching y cocina 100 % vegetariana junto al mar."
 location: "Isla de Iž, Croacia"
