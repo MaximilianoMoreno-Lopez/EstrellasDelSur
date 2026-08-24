@@ -1,10 +1,7 @@
 ---
 title: "Equal Europe"
 type: "Formación"
-# Programada para abrirse el lunes 24/08/2026 a las 08:00; el cambio de
-# status está en scripts/programados.json y lo aplica solo el workflow
-# "Cambios programados". Estas líneas se borran al aplicarse.
-status: "past"
+status: "active"
 flag: "🇷🇴"
 description: "Curso de formación Erasmus+ en Arad (Rumanía) sobre educación en derechos humanos, antidiscriminación e igualdad de género para quienes trabajan con jóvenes. Métodos de Compass y Compasito, Living Library y un formato de ficha de método para llevarse todo lo aprendido a la propia organización."
 location: "Arad (Rumanía)"
