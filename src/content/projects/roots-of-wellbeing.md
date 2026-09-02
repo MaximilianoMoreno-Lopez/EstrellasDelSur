@@ -22,6 +22,7 @@ coste: "Cuota de socio 50 € (solo si te seleccionan)"
 - **Fechas:** Del 20/11/2026 al 28/11/2026. Los días de programa son del 21 al 27 de noviembre; el 20 es día de llegada y el 28 de salida
 - **Lugar:** Gästehaus Maria Rast, en Suderburg-Holxen, cerca de Uelzen (Baja Sajonia, Alemania)
 - **Participantes:** 36 jóvenes de 18 a 25 años y 6 responsables de grupo, de seis países
+- **Plazas para España:** 5 participantes y 1 responsable de grupo (team leader)
 - **Coordina:** Green Youth Mobility (Alemania)
 - **Código del proyecto:** 2026-1-DE04-KA152-YOU-000393823
 
