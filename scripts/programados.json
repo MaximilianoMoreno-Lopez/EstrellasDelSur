@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "slug": "roots-of-wellbeing",
+    "cuando": "2026-09-04T08:00:00+02:00",
+    "motivo": "Apertura de la convocatoria de Roots of Wellbeing",
+    "campos": {
+      "status": "active"
+    }
+  }
+]
