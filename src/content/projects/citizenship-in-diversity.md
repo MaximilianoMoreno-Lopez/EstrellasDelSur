@@ -10,7 +10,7 @@ dates: "11/11/2026 - 18/11/2026 (días de viaje: 10 y 19/11)"
 order: -17
 infopack: "https://drive.google.com/file/d/1zGj-qC-i6u-0_ABIzR6AGUdlQB30LMFt/view?usp=drive_link"
 apply: "https://forms.gle/fQH4FytVTguZ4v4E9"
-edad: "16-24 años"
+edad: "18-24 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
 ---
@@ -20,7 +20,7 @@ coste: "Cuota de socio 50 € (solo si te seleccionan)"
 - **Temática del Proyecto:** Cultura romaní y de minorías étnicas, identidad europea y ciudadanía, expresión artística, lucha contra el antigitanismo, inclusión social
 - **Fechas:** Del 11/11/2026 al 18/11/2026, con el 10 y el 19 de noviembre como días de viaje
 - **Lugar:** La Padure Pension, en Brebu, provincia de Caraș-Severin (Rumanía)
-- **Perfil:** Jóvenes de 16 a 24 años. El responsable de grupo debe tener 18 años o más, sin límite superior de edad
+- **Perfil:** Jóvenes de 18 a 24 años. El responsable de grupo debe tener 18 años o más, sin límite superior de edad
 - **Coordina:** Asociaţia Nevo Parudimos (Rumanía)
 - **Código del proyecto:** 2026-1-RO01-KA151-YOU-000394690
 
