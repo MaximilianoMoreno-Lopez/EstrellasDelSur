@@ -1,7 +1,7 @@
 ---
 title: "Roots of Wellbeing"
 type: "Intercambio"
-# Programada para abrirse el viernes 04/09/2026 a las 08:00; el cambio de
+# Programada para abrirse el jueves 03/09/2026 a las 13:00; el cambio de
 # status está en scripts/programados.json y lo aplica solo el workflow
 # "Cambios programados". Estas líneas se borran al aplicarse.
 status: "past"
@@ -14,6 +14,7 @@ order: -22
 image: "images/projects/roots-of-wellbeing/cover.png"
 poster: "images/projects/roots-of-wellbeing/cover.png"
 infopack: "https://drive.google.com/file/d/1KRfbZ6Jebp7Mx-eVU3FVSC7iE8fCUjAS/view?usp=drive_link"
+apply: "https://forms.gle/74s5Ef4eYki7gBn46"
 edad: "18-25 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
