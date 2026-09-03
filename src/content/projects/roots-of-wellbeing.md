@@ -1,10 +1,7 @@
 ---
 title: "Roots of Wellbeing"
 type: "Intercambio"
-# Programada para abrirse el jueves 03/09/2026 a las 13:00; el cambio de
-# status está en scripts/programados.json y lo aplica solo el workflow
-# "Cambios programados". Estas líneas se borran al aplicarse.
-status: "past"
+status: "active"
 flag: "🇩🇪"
 description: "Intercambio juvenil Erasmus+ en el campo de Baja Sajonia sobre bienestar mental y conexión con la naturaleza. Nueve días de caminatas conscientes, eco-arte, relatos personales y trabajo en grupo con jóvenes de seis países, con alojamiento y comidas cubiertos."
 location: "Uelzen (Alemania)"
