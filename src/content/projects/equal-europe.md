@@ -1,7 +1,7 @@
 ---
 title: "Equal Europe"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Curso de formación Erasmus+ en Arad (Rumanía) sobre educación en derechos humanos, antidiscriminación e igualdad de género para quienes trabajan con jóvenes. Métodos de Compass y Compasito, Living Library y un formato de ficha de método para llevarse todo lo aprendido a la propia organización."
 location: "Arad (Rumanía)"
