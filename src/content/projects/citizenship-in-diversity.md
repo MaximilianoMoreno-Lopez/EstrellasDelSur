@@ -8,8 +8,8 @@ location: "Brebu, Caraș-Severin (Rumanía)"
 year: 2026
 dates: "11/11/2026 - 18/11/2026 (días de viaje: 10 y 19/11)"
 order: -17
-image: "images/projects/citizenship-in-diversity/cover.jpg"
-poster: "images/projects/citizenship-in-diversity/cover.jpg"
+image: "images/projects/citizenship-in-diversity/cover.png"
+poster: "images/projects/citizenship-in-diversity/cover.png"
 infopack: "https://drive.google.com/file/d/1zGj-qC-i6u-0_ABIzR6AGUdlQB30LMFt/view?usp=drive_link"
 apply: "https://forms.gle/kp1ZsbYjjudjErXa8"
 edad: "18-24 años"
