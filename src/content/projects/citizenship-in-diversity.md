@@ -1,15 +1,17 @@
 ---
 title: "Citizenship in Diversity"
 type: "Intercambio"
-status: "past"
+status: "active"
 flag: "🇷🇴"
 description: "Intercambio juvenil Erasmus+ en Brebu, en el suroeste de Rumanía, sobre cultura romaní y de minorías étnicas, identidad europea y expresión artística. Ocho días de talleres creativos, juegos de rol y debate intercultural, con prioridad para jóvenes con menos oportunidades y juventud romaní."
 location: "Brebu, Caraș-Severin (Rumanía)"
 year: 2026
 dates: "11/11/2026 - 18/11/2026 (días de viaje: 10 y 19/11)"
 order: -17
+image: "images/projects/citizenship-in-diversity/cover.jpg"
+poster: "images/projects/citizenship-in-diversity/cover.jpg"
 infopack: "https://drive.google.com/file/d/1zGj-qC-i6u-0_ABIzR6AGUdlQB30LMFt/view?usp=drive_link"
-apply: "https://forms.gle/fQH4FytVTguZ4v4E9"
+apply: "https://forms.gle/kp1ZsbYjjudjErXa8"
 edad: "18-24 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
