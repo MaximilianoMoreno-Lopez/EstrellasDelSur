@@ -29,7 +29,7 @@ coste: "Cuota de socio 50 € (solo si te seleccionan)"
 - **Participantes:** 3 personas de España de 18 a 30 años. En total, 21 trabajadores y trabajadoras juveniles de 7 países
 - **Coordina:** International Center for Education (ICE), Brașov
 - **Código del proyecto:** 2026-1-RO01-KA151-YOU-000393448
-- **Fecha límite de inscripciones:** La selección tiene que estar cerrada 40 días antes de la movilidad, así que evaluaremos las cartas sobre la marcha y en pocos días
+- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
 ## Sobre el proyecto
 
@@ -131,4 +131,4 @@ El botón de preinscripciones te llevará a un formulario donde deberás rellena
 
 Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. **Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.**
 
-Solo hay **3 plazas** para España y la selección tiene que cerrarse 40 días antes de la movilidad, así que iremos revisando las inscripciones según lleguen. Cuanto antes te apuntes, mejor.
+Solo hay **3 plazas** para España y aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.

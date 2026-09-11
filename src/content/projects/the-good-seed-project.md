@@ -25,6 +25,7 @@ coste: "Cuota de socio 50 € (solo si te seleccionan)"
 - **Participantes:** 42 personas en total, 6 equipos nacionales de 6 jóvenes de 18 a 27 años más un responsable de grupo mayor de 18
 - **Plazas para España:** 6 participantes y 1 responsable de grupo
 - **Coordina:** Stowarzyszenie HELIOS (Cracovia, Polonia)
+- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
 ## Sobre el proyecto
 
