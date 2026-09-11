@@ -1,6 +1,10 @@
 ---
 title: "Grow and Connect"
 type: "Formación"
+# Programada para abrirse el lunes 14/09/2026 en el primer pase del día,
+# sobre las 07:05; el cambio de status está en scripts/programados.json y lo
+# aplica solo el workflow "Cambios programados". Estas líneas se borran al
+# aplicarse.
 status: "past"
 flag: "🇷🇴"
 description: "Curso de formación Erasmus+ en Brașov, a los pies de los Cárpatos, sobre crecimiento personal y bienestar emocional en el trabajo con jóvenes. Ocho días de educación no formal para llevarse herramientas de autoconocimiento, escucha activa y acompañamiento emocional a la propia entidad."
