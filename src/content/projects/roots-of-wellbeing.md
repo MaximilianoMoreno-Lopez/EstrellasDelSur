@@ -26,6 +26,7 @@ coste: "Cuota de socio 50 € (solo si te seleccionan)"
 - **Plazas para España:** 5 participantes y 1 responsable de grupo (team leader)
 - **Coordina:** Green Youth Mobility (Alemania)
 - **Código del proyecto:** 2026-1-DE04-KA152-YOU-000393823
+- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
 ## Sobre el proyecto
 
@@ -71,14 +72,6 @@ El grupo se aloja en el **Gästehaus Maria Rast**, en Suderburg-Holxen, en habit
 
 El equipo de cocina de la organización anfitriona prepara las tres comidas diarias en la propia casa, con opciones halal, vegetarianas y veganas, y con las alergias, intolerancias y necesidades alimentarias que se comuniquen por adelantado. Los horarios son fijos: desayuno de 08:00 a 09:30, comida de 14:00 a 15:00 y cena de 20:00 a 21:00. Cada día, el grupo de un país se encarga de echar una mano con la cocina y con los espacios comunes.
 
-### Viaje y reembolso
-
-El alojamiento, las comidas y todas las actividades están cubiertos por el presupuesto del proyecto. El viaje se reembolsa contra gastos reales, hasta el máximo asignado a cada país, que en el caso de España es de **309 euros**.
-
-Antes de comprar cualquier billete hay que tener la aprobación de la organización anfitriona, porque un billete comprado sin ese visto bueno puede quedarse sin reembolsar. Hay que conservar y entregar toda la documentación del viaje, incluidas facturas, billetes y tarjetas de embarque.
-
-Se llega en transporte público desde dos aeropuertos. Desde **Hannover** (HAJ), tren S5 hasta la estación central, tren regional a Suderburg y autobús 7040 hasta Holxen Ortsmitte. Desde **Hamburgo** (HAM), tren S1 hasta la estación central, tren regional a Uelzen y el mismo autobús 7040 hasta Holxen. Desde la parada, la casa queda a un paseo corto.
-
 ### Qué llevar
 
 Es un entorno rural, en noviembre y con actividades al aire libre, incluidas caminatas, así que conviene contar con frío, lluvia y cambios de tiempo.
@@ -91,3 +84,57 @@ Es un entorno rural, en noviembre y con actividades al aire libre, incluidas cam
 - Botella de agua reutilizable y mochila pequeña para las salidas
 - Móvil, cargador y batería externa
 - Para la noche cultural, algo de comida, bebida, ropa, música u objetos con los que presentar tu país
+
+## Condiciones de Participación
+
+El participante que pase el proceso de selección y vaya al proyecto en representación de Estrellas del Sur, se compromete a realizar todas las actividades y cumplir todas las normas que se soliciten desde la organización de acogida, así como la normativa que exija el país del proyecto. Será responsabilidad del participante guardar todos los resguardos, billetes, facturas y tarjetas de embarque originales relacionados con el viaje. Además, el participante, al aceptar estas condiciones, acepta el uso de su imagen por parte de Estrellas del Sur en cualquier formato.
+
+El grupo convive en una casa rural y se organiza por equipos diarios de cocina y espacios comunes, así que participar incluye echar una mano en esas tareas cuando toque.
+
+Si la compañía de transporte cancelase el viaje, sería el participante el total responsable para solicitar la devolución del billete y buscar la alternativa oportuna para llegar al lugar de realización del proyecto en fecha y hora.
+
+No se solicitará ningún certificado de idiomas al participante, pero sí que hacemos saber que todas las actividades serán en inglés y asistirán participantes de otros países, por lo que será requisito que el participante tenga cierto nivel de inglés para poder desenvolverse a lo largo de toda la estancia.
+
+Está estrictamente prohibido el consumo de drogas o sustancias ilegales y cualquier comportamiento agresivo o discriminatorio. El incumplimiento de estas normas puede conllevar la expulsión del proyecto.
+
+No se permitirá llegar más tarde de la fecha de inicio ni salir antes de la fecha de finalización del proyecto.
+
+## Perfil del Participante
+
+Buscamos a 5 jóvenes de 18 a 25 años residentes en España, más un responsable de grupo que debe ser mayor de 18 años y para el que no hay límite superior de edad.
+
+El proyecto se dirige de forma expresa a quienes lo tienen más difícil, así que se anima especialmente a participar a juventud rural, a personas que no estudian ni trabajan, a quienes tienen origen migrante y a quienes viven situaciones de desempleo o exclusión.
+
+Encaja quien tenga interés por el bienestar mental y emocional, por la naturaleza y por la sostenibilidad, y esté dispuesto a trabajar la parte personal en grupo, con atención plena, relatos propios y escucha activa. No hace falta experiencia previa en ninguna de esas cosas.
+
+No nos interesa tanto tu formación previa como tu actitud. Buscamos a gente dispuesta a salir de su zona de confort, a escuchar otras realidades y a compartir la suya desde el respeto.
+
+## Gastos
+
+El alojamiento, las tres comidas diarias y todas las actividades están cubiertos por el presupuesto del proyecto.
+
+Los gastos de transporte los adelanta el participante y se devuelven contra gastos reales, hasta el máximo asignado a cada país, que en el caso de España es de **309 €**. Para que el reembolso llegue, el participante debe:
+
+- Obtener la aprobación de la organización anfitriona antes de comprar cualquier billete. Un billete comprado sin ese visto bueno puede quedarse sin reembolsar.
+- Respetar los días oficiales de viaje, el 20 de noviembre para la llegada y el 28 para la salida.
+- Conservar y entregar toda la documentación del viaje, incluidas facturas, billetes y tarjetas de embarque, y guardar también copia digital.
+
+**Cómo llegar:** se llega en transporte público desde dos aeropuertos. Desde **Hannover** (HAJ), tren S5 hasta la estación central, tren regional a Suderburg y autobús 7040 hasta Holxen Ortsmitte. Desde **Hamburgo** (HAM), tren S1 hasta la estación central, tren regional a Uelzen y el mismo autobús 7040 hasta Holxen. Desde la parada, la casa queda a un paseo corto.
+
+El participante es responsable del acceso a asistencia sanitaria durante todo el proyecto. Es **obligatorio** llevar la **Tarjeta Sanitaria Europea** y se recomienda un seguro de viaje. La moneda de Alemania es el euro.
+
+## Cuota de Socio
+
+Estrellas del Sur cobra una cuota de socio de **50 €** que solo pagará aquel participante que salga elegido. Esta cuota no será reembolsable en ningún caso.
+
+## Asistencia
+
+Si quisieras aprovechar el viaje a Alemania y pasar más días de los que dura el proyecto, puedes quedarte hasta 2 días extra antes o después de las actividades por tu cuenta. Consúltanoslo antes de organizar nada. Ningún gasto externo al proyecto será subvencionado.
+
+## Presentación de Solicitudes
+
+El botón de preinscripciones te llevará a un formulario donde deberás rellenar tus datos y adjuntar una carta de motivación al final. Esta carta es la que nos sirve para elegir a los participantes que más se ajusten a las necesidades del proyecto.
+
+Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. **Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.**
+
+Hay **6 plazas** para España, 5 de participante y 1 de responsable de grupo, y aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.
