@@ -23,6 +23,7 @@ coste: "Cuota de socio 50 € (solo si te seleccionan)"
 - **Fechas:** Del 11/11/2026 al 18/11/2026, con el 10 y el 19 de noviembre como días de viaje
 - **Lugar:** La Padure Pension, en Brebu, provincia de Caraș-Severin (Rumanía)
 - **Perfil:** Jóvenes de 18 a 24 años. El responsable de grupo debe tener 18 años o más, sin límite superior de edad
+- **Plazas para España:** 5 participantes y 1 responsable de grupo (team leader)
 - **Coordina:** Asociaţia Nevo Parudimos (Rumanía)
 - **Código del proyecto:** 2026-1-RO01-KA151-YOU-000394690
 - **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
@@ -82,7 +83,7 @@ No se permitirá llegar más tarde de la fecha de inicio ni salir antes de la fe
 
 ## Perfil del Participante
 
-Buscamos a jóvenes de 18 a 24 años residentes en España, más un responsable de grupo que debe ser mayor de 18 años y para el que no hay límite superior de edad.
+Buscamos a 5 jóvenes de 18 a 24 años residentes en España, más un responsable de grupo que debe ser mayor de 18 años y para el que no hay límite superior de edad.
 
 El proyecto da prioridad a **jóvenes con menos oportunidades y a juventud romaní**, y se pide motivación real para participar, con ganas de acercarse a las culturas minoritarias, a las herramientas artísticas y al diálogo intercultural.
 
@@ -118,4 +119,4 @@ El botón de preinscripciones te llevará a un formulario donde deberás rellena
 
 Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. **Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.**
 
-Las plazas para España son limitadas y aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.
+Hay **6 plazas** para España, 5 de participante y 1 de responsable de grupo, y aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.
