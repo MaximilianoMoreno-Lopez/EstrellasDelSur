@@ -1,7 +1,7 @@
 ---
 title: "Small Communities, Active Buttons On"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Intercambio juvenil Erasmus+ en Sărata Monteoru (Rumanía) sobre cómo los pueblos y las comunidades pequeñas pueden ser el mejor sitio para moverse, cuidarse y organizarse. Vida activa, sostenibilidad y participación local con 44 personas de ocho países."
 location: "Sărata Monteoru, Buzău (Rumanía)"
