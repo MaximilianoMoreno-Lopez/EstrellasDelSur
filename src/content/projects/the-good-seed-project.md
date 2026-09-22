@@ -1,7 +1,7 @@
 ---
 title: "The Good Seed Project"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇵🇱"
 description: "Intercambio juvenil Erasmus+ en Wierzchosławice, cerca de Tarnów, sobre pérdida de biodiversidad contada a través de cuentos. Nueve días para escribir e ilustrar cinco cuentos originales que se publicarán en siete idiomas, con alojamiento y comidas cubiertos y 7 plazas para España."
 location: "Wierzchosławice, Tarnów (Polonia)"
