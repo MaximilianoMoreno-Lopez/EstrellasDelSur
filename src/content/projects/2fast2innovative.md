@@ -120,6 +120,6 @@ Si quisieras aprovechar el viaje a Portugal y pasar más días de los que dura e
 
 El botón de preinscripciones te llevará a un formulario donde deberás rellenar tus datos y adjuntar una carta de motivación al final. Esta carta es la que nos sirve para elegir a los participantes que más se ajusten a las necesidades del proyecto.
 
-Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. **Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.**
+Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido.
 
 Solo hay **3 plazas** para España y aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.
