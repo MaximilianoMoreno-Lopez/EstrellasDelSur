@@ -1,7 +1,7 @@
 ---
 title: "2Fast2Innovative"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇵🇹"
 description: "Curso de formación Erasmus+ en Trancoso, en el interior de Portugal, sobre emprendimiento social e innovación rural para quienes trabajan con jóvenes. Educación no formal, visita de estudio al ecosistema de innovación portugués y co-creación de un toolkit junto a estudiantes de Pinhel."
 location: "Trancoso, Portugal"
