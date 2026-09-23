@@ -22,7 +22,7 @@ coste: "Cuota de socio 50 € (solo si te seleccionan)"
 - **Temática del Proyecto:** Inclusión social, diversidad, discriminación y estereotipos, empatía, accesibilidad, participación juvenil, educación no formal
 - **Fechas:** Del 18/10/2026 al 24/10/2026. El 18 de octubre es el día de llegada y el 24 el de salida, con actividades del 19 al 23
 - **Lugar:** Karaman, en el centro de Anatolia (Türkiye), en el Grand Hotel & Convention Center Karaman
-- **Participantes:** Personas de 18 años en adelante, residentes en España, que trabajen o hagan voluntariado con jóvenes
+- **Participantes:** 5 personas de España, de 18 años en adelante, que trabajen o hagan voluntariado con jóvenes
 - **Coordina:** Colour Your Dreams Association
 - **Código del proyecto:** 2026-1-RO01-KA151-YOU-000394146
 - **Fecha límite de inscripciones:** Cuanto antes. La lista de participantes se cierra el 1 de octubre y los billetes tienen que estar comprados el 5 de octubre, así que evaluaremos las cartas según vayan llegando
@@ -86,7 +86,7 @@ No se permitirá llegar más tarde de la fecha de inicio ni salir antes de la fe
 
 ## Perfil del Participante
 
-Buscamos a personas de 18 años en adelante, residentes en España, que trabajen o hagan voluntariado en el ámbito juvenil, ya sea en asociaciones, casas de juventud, ayuntamientos, centros educativos o proyectos de voluntariado.
+Buscamos a 5 personas de 18 años en adelante, residentes en España, que trabajen o hagan voluntariado en el ámbito juvenil, ya sea en asociaciones, casas de juventud, ayuntamientos, centros educativos o proyectos de voluntariado.
 
 El perfil que encaja es el de alguien comprometido con asistir a los cinco días completos de formación, con motivación real para aplicar lo aprendido en su entidad o su contexto profesional al volver, y con interés por la inclusión, la diversidad y el trabajo con jóvenes que encuentran más barreras.
 
@@ -123,4 +123,4 @@ El botón de preinscripciones te llevará a un formulario donde deberás rellena
 
 Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. **Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.**
 
-Las plazas para España son limitadas y el plazo es muy corto, así que aceptaremos inscripciones de manera continua y recomendamos hacerla cuanto antes.
+Solo hay **5 plazas** para España y el plazo es muy corto, así que aceptaremos inscripciones de manera continua y recomendamos hacerla cuanto antes.
