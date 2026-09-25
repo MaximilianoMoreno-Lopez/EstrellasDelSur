@@ -10,7 +10,7 @@ dates: "01/11/2026 - 09/11/2026 (días de viaje: 1 y 9 de noviembre)"
 order: -26
 image: "images/projects/sustain-you/cover.png"
 poster: "images/projects/sustain-you/cover.png"
-infopack: "https://drive.google.com/file/d/17yEcsIKLJ961PS4wL-cVM_4S_KGCF6Lc/view?usp=sharing"
+infopack: "https://drive.google.com/file/d/1VgIYCxsAt2sUvy3inPSjOtZpkp_-tH7J/view?usp=sharing"
 apply: "https://forms.gle/T6uatQajyyAAuujv9"
 edad: "20-35 años"
 idioma: "Inglés"
@@ -99,7 +99,7 @@ Es imprescindible traer una actividad propia para trabajarla durante el curso y 
 
 El alojamiento, las comidas y todas las actividades educativas están cubiertos por la organización coordinadora.
 
-Los gastos de transporte los adelanta el participante y se devuelven una vez terminado el proyecto, hasta el límite asignado a España según el tramo de distancia de Erasmus+, calculado con la calculadora oficial de la Comisión Europea entre la ciudad de la entidad de envío y el lugar del proyecto. Si los billetes entran dentro del límite se reembolsan íntegros, y si lo superan, la diferencia corre a cargo del participante. Para que el reembolso llegue, el participante debe:
+Los gastos de transporte los adelanta el participante y se devuelven una vez terminado el proyecto, hasta un máximo de **395 € por persona** para España, según el tramo de distancia de Erasmus+ calculado con la calculadora oficial de la Comisión Europea entre Córdoba y el lugar del proyecto. Si los billetes entran dentro del límite se reembolsan íntegros, y si lo superan, la diferencia corre a cargo del participante. Para que el reembolso llegue, el participante debe:
 
 - Obtener el visto bueno de Estrellas del Sur antes de comprar cualquier billete. No compres nada hasta que el plan de viaje esté aprobado.
 - Rellenar el formulario de plan de viaje de la organización, con fechas, rutas y medios de transporte, y ceñirse a él una vez aprobado.
@@ -108,7 +108,7 @@ Los gastos de transporte los adelanta el participante y se devuelven una vez ter
 
 El reembolso puede tardar **hasta 4 meses**, y en el peor de los casos hasta 6, desde que termina la actividad.
 
-**Cómo llegar:** el aeropuerto de referencia es **Roma Fiumicino (FCO)**. La organización monta un **autobús de grupo** desde Fiumicino hasta Terracina el día de llegada, que sale cuando ha llegado todo el mundo, y otro de vuelta al aeropuerto el día de salida, así que hay que planificar los vuelos con margen respecto a los horarios que indique la coordinadora. Ese traslado cuesta unos **45 € por persona** y se descuenta del presupuesto de viaje de cada participante.
+**Cómo llegar:** el aeropuerto de referencia es **Roma Fiumicino (FCO)**. La organización monta un **autobús de grupo** desde Fiumicino hasta Terracina el día de llegada, que sale cuando ha llegado todo el mundo, y otro de vuelta al aeropuerto el día de salida. Conviene estar en Fiumicino **el 1 de noviembre a las 16:00** como muy tarde, y el vuelo de vuelta del **9 de noviembre** debe salir **después de las 11:00**. Ese traslado cuesta unos **45 € por persona** y se descuenta del presupuesto de viaje de cada participante.
 
 El participante es responsable del acceso a asistencia sanitaria durante todo el proyecto. Es **obligatorio** llevar la **Tarjeta Sanitaria Europea** y se recomienda un seguro de viaje.
 
