@@ -1,7 +1,7 @@
 ---
 title: "Bridges of Inclusion"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇹🇷"
 description: "Curso de formación Erasmus+ en Karaman, en el centro de Anatolia, sobre inclusión y diversidad en el trabajo con jóvenes. Cinco días de educación no formal para aprender a diseñar, aplicar y evaluar actividades juveniles inclusivas, con foco en jóvenes con menos oportunidades, discapacidad y neurodiversidad."
 location: "Karaman (Türkiye)"
