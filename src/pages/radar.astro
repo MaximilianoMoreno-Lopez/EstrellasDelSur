@@ -421,6 +421,25 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
           </div>
         </div>
 
+        <div class="radar-toolbar">
+          <div class="view-toggle" data-grid="candGrid">
+            <button class="vt-btn" data-view="cards">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Tarjetas
+            </button>
+            <button class="vt-btn is-on" data-view="list">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              Lista
+            </button>
+          </div>
+          <div class="order-select" data-order-for="cand">
+            <span class="filter-label">Orden</span>
+            <button class="o-chip is-on" data-order="estado">Estado</button>
+            <button class="o-chip" data-order="recientes">Más recientes</button>
+            <button class="o-chip" data-order="nota">Nota</button>
+          </div>
+        </div>
+
         <!-- Filtros -->
         <div class="radar-filters">
           <div class="filter-group" data-cfilter="estado">
@@ -442,13 +461,17 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
           </div>
         </div>
 
-        <div class="radar-grid cand-grid" id="candGrid">
+        <div class="radar-grid cand-grid view-list" id="candGrid">
           {candidaturas.map((c) => (
             <article
               class={`cand-card card cand-${c.estado}`}
               data-estado={c.estado}
               data-org={c.organizacion}
               data-prog={c.programa}
+              data-orden={CAND_ORDEN[c.estado as EstadoCand]}
+              data-fecha={c.fechaPresentacion ?? ''}
+              data-nota={c.nota ? c.nota.total : (c.notaEstimada ?? -1)}
+              data-nombre={c.nombre}
             >
               <div class="rc-top">
                 <span class={`badge ${CAND_BADGE[c.estado as EstadoCand]}`}>{CAND_LABEL[c.estado as EstadoCand]}</span>
@@ -456,6 +479,12 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
               </div>
               <h2 class="rc-nombre">{c.nombre}</h2>
               <p class="rc-organismo">{c.organizacion} · {c.ronda}</p>
+              <span class="cl-org">{c.organizacion}</span>
+              <span class="cl-ronda">{c.ronda}</span>
+              <span class={`cl-nota ${c.nota ? (c.estado === 'rechazada' || c.nota.criterios.some((k: any) => k.puntos * 2 < k.max) || c.nota.total < 60 ? 'is-bajo' : 'is-real') : ''}`}>
+                {c.nota ? `${c.nota.total}/100` : c.notaEstimada != null ? `${c.notaEstimada} est.` : '—'}
+              </span>
+              <span class="cl-pedido">{eur(c.importeConcedido ?? c.importePedido) ?? '—'}</span>
 
               {c.nota ? (
                 <div class="cand-nota">
@@ -626,6 +655,22 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
     cards.forEach((card) => grid.appendChild(card));
   }
 
+  // ── Orden de las candidaturas ─────────────────────────────────
+  let candOrder = 'estado';
+  function reorderCand() {
+    const grid = document.getElementById('candGrid');
+    if (!grid) return;
+    const cards = [...grid.querySelectorAll<HTMLElement>('.cand-card')];
+    const nombre = (a: HTMLElement, b: HTMLElement) => (a.dataset.nombre || '').localeCompare(b.dataset.nombre || '', 'es');
+    const fecha = (a: HTMLElement, b: HTMLElement) => (b.dataset.fecha || '').localeCompare(a.dataset.fecha || '');
+    cards.sort((a, b) => {
+      if (candOrder === 'recientes') return fecha(a, b) || nombre(a, b);
+      if (candOrder === 'nota') return Number(b.dataset.nota) - Number(a.dataset.nota) || nombre(a, b);
+      return Number(a.dataset.orden) - Number(b.dataset.orden) || fecha(a, b) || nombre(a, b);
+    });
+    cards.forEach((card) => grid.appendChild(card));
+  }
+
   // ── Pestañas ──────────────────────────────────────────────────
   const tabs = document.querySelectorAll<HTMLButtonElement>('.radar-tab');
   const panels: Record<string, HTMLElement | null> = {
@@ -659,6 +704,7 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
       chip.addEventListener('click', () => {
         grp.querySelectorAll('.o-chip').forEach((c) => c.classList.toggle('is-on', c === chip));
         if (scope === 'sub') { subOrder = chip.dataset.order!; reorderSub(); }
+        else if (scope === 'cand') { candOrder = chip.dataset.order!; reorderCand(); }
         else { proyOrder = chip.dataset.order!; reorderProy(); }
       });
     });
@@ -745,6 +791,7 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
 
   refrescarEstados();
   reorderProy();
+  reorderCand();
   applyFilters();
   applyProyFilters();
 </script>
@@ -779,7 +826,11 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
     gap: .5rem;
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--gray-200);
+    /* Con tres pestañas no caben en un móvil: se desplazan sin ensanchar la página */
+    overflow-x: auto;
+    scrollbar-width: none;
   }
+  .radar-tabs::-webkit-scrollbar { display: none; }
   .radar-tab {
     font-family: inherit;
     font-size: .95rem;
@@ -793,7 +844,11 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
     margin-bottom: -1px;
     transition: color .15s, border-color .15s;
   }
+  .radar-tab { white-space: nowrap; flex: 0 0 auto; }
   .radar-tab:hover { color: var(--teal); }
+  @media (max-width: 480px) {
+    .radar-tab { padding: .6rem .6rem; font-size: .88rem; }
+  }
   .radar-tab.is-on { color: var(--navy); border-bottom-color: var(--teal); }
   .rt-count {
     font-size: .72rem;
@@ -1178,6 +1233,85 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
   .cn-row.is-bajo .cn-bar span { background: #dc2626; }
   .cn-val { text-align: right; font-weight: 700; }
   .cand-nota-pie { font-size: .78rem; color: var(--gray-500); margin-top: 1rem; }
+
+  /* Columnas compactas: solo en la vista lista */
+  .cl-org, .cl-ronda, .cl-nota, .cl-pedido { display: none; }
+  .cand-grid.view-list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .cand-grid.view-list .cand-card {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 124px minmax(0, 1fr) 200px 150px 110px 72px 86px;
+    align-items: center;
+    gap: .9rem;
+    padding: .7rem 1.1rem;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid var(--gray-200);
+    transform: none;
+  }
+  .cand-grid.view-list .cand-card:last-child { border-bottom: none; }
+  .cand-grid.view-list .rc-top { display: contents; }
+  .cand-grid.view-list .rc-top .badge { grid-column: 1; justify-self: start; }
+  .cand-grid.view-list .rc-nombre {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: .95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cand-grid.view-list .cl-org { display: block; grid-column: 3; grid-row: 1; font-size: .82rem; color: var(--gray-600); }
+  .cand-grid.view-list .rc-ambito { grid-column: 4; grid-row: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cand-grid.view-list .cl-org { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cand-grid.view-list .cl-ronda { display: block; grid-column: 5; grid-row: 1; font-size: .82rem; color: var(--gray-600); }
+  .cand-grid.view-list .cl-nota {
+    display: block;
+    grid-column: 6;
+    grid-row: 1;
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--gray-500);
+    text-align: right;
+  }
+  .cand-grid.view-list .cl-nota.is-real { color: var(--teal); }
+  .cand-grid.view-list .cl-nota.is-bajo { color: #b91c1c; }
+  .cand-grid.view-list .cl-pedido {
+    display: block;
+    grid-column: 7;
+    grid-row: 1;
+    font-size: .82rem;
+    color: var(--gray-700);
+    text-align: right;
+  }
+  .cand-grid.view-list .rc-organismo,
+  .cand-grid.view-list .cand-nota,
+  .cand-grid.view-list .rc-datos,
+  .cand-grid.view-list .rc-notas,
+  .cand-grid.view-list .rc-confianza { display: none; }
+
+  @media (max-width: 860px) {
+    .cand-grid.view-list .cand-card {
+      grid-template-columns: auto 1fr auto;
+      gap: .35rem .75rem;
+    }
+    .cand-grid.view-list .rc-nombre { grid-column: 1 / -1; grid-row: 2; white-space: normal; }
+    .cand-grid.view-list .rc-top .badge { grid-row: 1; }
+    .cand-grid.view-list .rc-ambito { grid-column: 2; grid-row: 1; }
+    .cand-grid.view-list .cl-nota { grid-column: 3; grid-row: 1; }
+    .cand-grid.view-list .cl-org { grid-column: 1 / 3; grid-row: 3; }
+    .cand-grid.view-list .cl-ronda { display: none; }
+    .cand-grid.view-list .cl-pedido { grid-column: 3; grid-row: 3; }
+  }
 
   .radar-empty {
     text-align: center;
