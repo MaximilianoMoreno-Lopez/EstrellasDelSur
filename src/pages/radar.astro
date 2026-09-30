@@ -166,6 +166,28 @@ const pendientes = candidaturas.filter((c) => c.estado === 'presentada');
 const conNota = candidaturas.filter((c) => c.nota);
 const mediaReal = conNota.length ? Math.round(conNota.reduce((s, c) => s + c.nota.total, 0) / conNota.length) : null;
 const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => c.organizacion === o));
+
+// Grupos por ronda: en preparación arriba, luego del mes más reciente al más
+// antiguo (por fecha de presentación) y al final lo que no tiene fecha.
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+function grupoDe(c: any): { key: string; label: string } {
+  if (c.estado === 'preparacion') return { key: '9999-99', label: 'En preparación' };
+  if (c.fechaPresentacion) {
+    const [y, m] = c.fechaPresentacion.split('-');
+    const mes = MESES[Number(m) - 1];
+    return { key: `${y}-${m}`, label: `${mes.charAt(0).toUpperCase()}${mes.slice(1)} de ${y}` };
+  }
+  const anio = String(c.ronda).match(/\b(20\d\d)\b/);
+  if (anio) return { key: `${anio[1]}-00`, label: anio[1] };
+  return { key: '0000-00', label: 'Sin fecha de presentación' };
+}
+const gruposMap = new Map<string, { key: string; label: string; items: any[] }>();
+for (const c of candidaturas) {
+  const g = grupoDe(c);
+  if (!gruposMap.has(g.key)) gruposMap.set(g.key, { ...g, items: [] });
+  gruposMap.get(g.key)!.items.push(c);
+}
+const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.key));
 ---
 
 <BaseLayout
@@ -434,8 +456,8 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
           </div>
           <div class="order-select" data-order-for="cand">
             <span class="filter-label">Orden</span>
-            <button class="o-chip is-on" data-order="estado">Estado</button>
-            <button class="o-chip" data-order="recientes">Más recientes</button>
+            <button class="o-chip is-on" data-order="ronda">Ronda</button>
+            <button class="o-chip" data-order="estado">Estado</button>
             <button class="o-chip" data-order="nota">Nota</button>
           </div>
         </div>
@@ -462,9 +484,17 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
         </div>
 
         <div class="radar-grid cand-grid view-list" id="candGrid">
-          {candidaturas.map((c) => (
+          {gruposCand.map((g, gi) => (
+            <>
+            <div class="cand-grupo" data-grupo={g.key} data-gorden={gi}>
+              <span class="cg-label">{g.label}</span>
+              <span class="cg-count">{g.items.length}</span>
+            </div>
+            {g.items.map((c) => (
             <article
               class={`cand-card card cand-${c.estado}`}
+              data-grupo={g.key}
+              data-gorden={gi}
               data-estado={c.estado}
               data-org={c.organizacion}
               data-prog={c.programa}
@@ -521,6 +551,8 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
               {c.leccion && <p class="rc-notas">{c.leccion}</p>}
               {c.porConfirmar && <p class="rc-confianza">Algún dato por confirmar</p>}
             </article>
+            ))}
+            </>
           ))}
         </div>
 
@@ -656,19 +688,42 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
   }
 
   // ── Orden de las candidaturas ─────────────────────────────────
-  let candOrder = 'estado';
+  let candOrder = 'ronda';
   function reorderCand() {
     const grid = document.getElementById('candGrid');
     if (!grid) return;
     const cards = [...grid.querySelectorAll<HTMLElement>('.cand-card')];
+    const headers = new Map(
+      [...grid.querySelectorAll<HTMLElement>('.cand-grupo')].map((h) => [h.dataset.grupo!, h]),
+    );
     const nombre = (a: HTMLElement, b: HTMLElement) => (a.dataset.nombre || '').localeCompare(b.dataset.nombre || '', 'es');
     const fecha = (a: HTMLElement, b: HTMLElement) => (b.dataset.fecha || '').localeCompare(a.dataset.fecha || '');
+    const estado = (a: HTMLElement, b: HTMLElement) => Number(a.dataset.orden) - Number(b.dataset.orden);
     cards.sort((a, b) => {
-      if (candOrder === 'recientes') return fecha(a, b) || nombre(a, b);
       if (candOrder === 'nota') return Number(b.dataset.nota) - Number(a.dataset.nota) || nombre(a, b);
-      return Number(a.dataset.orden) - Number(b.dataset.orden) || fecha(a, b) || nombre(a, b);
+      if (candOrder === 'estado') return estado(a, b) || fecha(a, b) || nombre(a, b);
+      return Number(a.dataset.gorden) - Number(b.dataset.gorden) || estado(a, b) || nombre(a, b);
     });
-    cards.forEach((card) => grid.appendChild(card));
+    let grupoActual = '';
+    cards.forEach((card) => {
+      if (candOrder === 'ronda' && card.dataset.grupo !== grupoActual) {
+        grupoActual = card.dataset.grupo!;
+        const h = headers.get(grupoActual);
+        if (h) grid.appendChild(h);
+      }
+      grid.appendChild(card);
+    });
+    syncCandHeaders();
+  }
+  // Una cabecera de ronda solo se ve en el orden por ronda y si le queda alguna fila visible
+  function syncCandHeaders() {
+    document.querySelectorAll<HTMLElement>('.cand-grupo').forEach((h) => {
+      const visibles = [...document.querySelectorAll<HTMLElement>(`.cand-card[data-grupo="${h.dataset.grupo}"]`)]
+        .filter((c) => c.style.display !== 'none').length;
+      h.style.display = candOrder === 'ronda' && visibles > 0 ? '' : 'none';
+      const count = h.querySelector('.cg-count');
+      if (count) count.textContent = String(visibles);
+    });
   }
 
   // ── Pestañas ──────────────────────────────────────────────────
@@ -787,6 +842,7 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
     });
     const empty = document.getElementById('candEmpty');
     if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+    syncCandHeaders();
   }
 
   refrescarEstados();
@@ -1233,6 +1289,35 @@ const CAND_ORGS = ORGANIZACIONES.filter((o: string) => candidaturas.some((c) => 
   .cn-row.is-bajo .cn-bar span { background: #dc2626; }
   .cn-val { text-align: right; font-weight: 700; }
   .cand-nota-pie { font-size: .78rem; color: var(--gray-500); margin-top: 1rem; }
+
+  /* Cabeceras de ronda */
+  .cand-grupo {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-top: .5rem;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .cand-grupo:first-child { margin-top: 0; }
+  .cg-count {
+    font-size: .7rem;
+    background: var(--gray-200);
+    color: var(--gray-600);
+    border-radius: 999px;
+    padding: .05rem .5rem;
+    letter-spacing: 0;
+  }
+  .cand-grid.view-list .cand-grupo {
+    margin: 0;
+    padding: .55rem 1.1rem;
+    background: var(--cream);
+    border-bottom: 1px solid var(--gray-200);
+  }
 
   /* Columnas compactas: solo en la vista lista */
   .cl-org, .cl-ronda, .cl-nota, .cl-pedido { display: none; }
