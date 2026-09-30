@@ -1,73 +1,96 @@
 ---
 name: redaccion-proyectos
-description: Redactar, revisar o mejorar solicitudes de subvención de proyectos europeos (Erasmus+ KA152, KA153, KA154, KA210, KA220; Cuerpo Europeo de Solidaridad ESC30 y ESC51; Fundación Europea de la Juventud del Consejo de Europa; Anna Lindh y otras convocatorias) de forma completa, verificada y con disciplina de tokens. Usar cuando el usuario pida escribir un formulario, un borrador de solicitud, una memoria de proyecto o auditar una solicitud ya escrita.
+description: Redactar, revisar, adaptar, ampliar o rehacer tras un rechazo solicitudes de subvención de proyectos europeos (Erasmus+ KA152, KA153, KA154, KA155, KA210, KA220; Cuerpo Europeo de Solidaridad ESC30 y ESC51; Fundación Europea de la Juventud del Consejo de Europa y otras convocatorias) buscando la máxima puntuación, con horarios, presupuesto y Word listos para pegar. Usar cuando el usuario pida escribir un formulario, un borrador de solicitud, adaptar una solicitud aprobada, añadir una socia, mejorar una solicitud rechazada o registrar el resultado de una candidatura.
 ---
 
 # Redacción de solicitudes de proyectos europeos
 
-Proceso común a todas las convocatorias, con un perfil por acción que aporta lo específico (bloques del formulario, criterios y trampas). Nació del KA154 EuroÁgora (agosto 2026): 7 redactores en paralelo, 3 verificadores adversariales, 7 correctores y ensamblado a .docx, con 43 problemas reales cazados antes de entregar.
+El objetivo es que cada solicitud saque la nota más alta posible, no solo que pase el umbral. El proceso es común a todas las convocatorias; cada acción tiene un perfil con lo específico y cada tipo de encargo una receta. La skill aprende de las notas reales: cada carta de resultados que llega se convierte en palancas nuevas.
 
-## Lo primero: elegir perfil
+Nació del KA154 EuroÁgora (agosto de 2026) y se afinó con las diez solicitudes presentadas el 1 de octubre de 2026. Estimaciones del evaluador simulado entre 81 y 88; los dos rechazos registrados (57 y 60) son la base de las palancas de relevancia y gestión.
 
-1. Identifica la acción exacta y lee `perfiles/<accion>.md`. Perfiles disponibles: `ka152-you`, `ka153-you`, `ka154-you`, `ka210-you`, `ka220-yth`, `esc30-sol`, `esc51-vtj`, `coe-eyf`.
-2. Cada perfil lleva un campo **Estado**. `VERIFICADO` = contrastado contra formulario y guía oficiales, fiable. `BORRADOR` = estructura correcta pero criterios o pesos por confirmar. `ESQUELETO` = solo el andamiaje, hay que cerrarlo antes de redactar.
-3. Si el perfil no está `VERIFICADO`, ciérralo ANTES de redactar siguiendo su sección "Cómo cerrar este perfil", y guarda ahí lo que averigües. Cada solicitud deja el perfil mejor que lo encontró.
-4. Si la convocatoria no tiene perfil, copia `perfiles/_plantilla.md`, rellénalo y déjalo en el repo con el commit del proyecto.
+## Mapa
 
-Lo transversal a todas las acciones está en `comun/`: no lo repitas en los perfiles.
+| Qué | Dónde | Público o privado |
+|---|---|---|
+| Palancas para puntuar alto | `comun/maximizar_puntuacion.md` | skill |
+| Receta según el encargo | `recetas/` | skill |
+| Perfil y rúbrica de cada acción | `perfiles/<accion>.md`, `perfiles/rubricas/<accion>.md` | skill |
+| Estilo, biblia, criterios comunes | `comun/` | skill |
+| Herramientas (Word, horario, contador, fechas, presupuesto, workflows) | `assets/` y su `README.md` | skill |
+| Lecciones por proyecto | `historial/` | skill |
+| Resultados y notas de todas las candidaturas | `src/lib/candidaturas.mjs` (tablero en `/radar/`) | repo público, sin datos personales |
+| Fichas de organizaciones y socias | `proyectos/referencias/organizaciones/` | repo privado |
+| Solicitudes, PIF, guías, aprobadas de referencia, plantillas | `proyectos/` | repo privado |
 
-## Disciplina de tokens (la razón de ser del skill)
+`proyectos/` es un repositorio privado aparte, excluido del público con `/proyectos/` en `.gitignore` (anclado, para no excluir `src/pages/proyectos/`). Lleva PIF con teléfonos, PRN y fechas de nacimiento: nada de ahí se copia a la skill, a `candidaturas.mjs` ni a ningún fichero del repo público. La skill tiene que poder compartirse tal cual.
 
-- No releer guías completas de 80 o 200 páginas. Cada perfil tiene su rúbrica destilada; si falta, destílala UNA vez con pypdf y guárdala en `perfiles/rubricas/`.
-- PDFs de materiales (PIF, solicitudes de referencia, guía del programa): extraer a .txt en el scratchpad y localizar secciones con Grep. En el contexto principal leer solo lo imprescindible.
-- Los subagentes leen FICHEROS y rangos de líneas que tú les indicas, nunca material largo pegado en el prompt. Excepción: los verificadores reciben el borrador ensamblado inline.
+## Lo primero
+
+1. **Receta.** Identificar el encargo y leer la receta de `recetas/` (desde cero, adaptar aprobada, ampliar, tras rechazo, añadir socia).
+2. **Perfil.** Leer `perfiles/<accion>.md` y su rúbrica. `VERIFICADO` es fiable; `BORRADOR` o `ESQUELETO` hay que cerrarlo antes de redactar siguiendo su sección "Cómo cerrar este perfil". Si la acción no tiene perfil, copiar `perfiles/_plantilla.md`.
+3. **Historial de resultados.** Mirar en `src/lib/candidaturas.mjs` qué ha presentado ya la solicitante (con qué nota y lección) y qué hermanas van en la misma ronda.
+4. **Fichas.** Leer la ficha de la solicitante y de cada socia en `proyectos/referencias/organizaciones/`. Son la única fuente de datos permitidos de cada entidad y llevan sus reglas duras (quién figura dónde, qué no se puede afirmar).
+5. **Palancas.** `comun/maximizar_puntuacion.md` es la lista de comprobación del verificador de rúbrica.
+
+## Disciplina de tokens
+
+- No releer guías completas. La rúbrica destilada está en `perfiles/rubricas/`; si falta, destilarla una vez y guardarla.
+- PDF y Word se extraen a .txt en el scratchpad y se buscan con Grep.
+- Los subagentes leen ficheros y rangos de líneas indicados, no material pegado en el prompt. Excepción: los verificadores reciben el borrador ensamblado.
 - Reutilizar `assets/workflow_redaccion.js` y `assets/workflow_correccion.js` editando solo el bloque de datos.
-- Una biblia bien cerrada = menos ciclos de corrección. Invertir ahí, no en iterar borradores.
+- Invertir en la biblia, no en iterar borradores.
 
 ## Proceso
 
-### 1. Recopilar y extraer
-Localiza o pide: PIF de la organización coordinadora, formulario oficial de la acción (vacío o de referencia aprobada), datos del proyecto (título, socias, duración, actividades, temáticas, topics) y la guía del programa del año en curso. Extrae los PDFs a texto. De un formulario de referencia anota solo: estructura de preguntas, cifras clave, registro y longitud típica de respuesta.
+### 1. Recopilar
+PIF, formulario oficial (vacío o de referencia), datos del proyecto y guía del año. Si el usuario no da formulario, el perfil manda: no inventar preguntas ni campos. Si el usuario pide trabajar sin preguntas, fijar supuestos razonables y listarlos al final del Word.
 
-Si el usuario no aporta formulario oficial, el perfil manda: no inventes preguntas ni campos.
+### 2. Datos con fuente
+Un agente de investigación por frente y un verificador que relee cada URL. Solo lo confirmado entra en la biblia. Es la palanca que más sube relevancia.
 
-### 2. Cerrar la biblia
-Copia `comun/biblia_template.md` al scratchpad y rellena TODOS los huecos con números coherentes entre sí (participantes + facilitadores = personas; plazas por socia vs total; ponencias vs temáticas). Escribe además un `pif_<coordinadora>.md` con los únicos datos reales permitidos de la organización. Si el usuario no ha dado un dato, fija un placeholder descriptivo y sigue, no esperes.
+### 3. Biblia
+`comun/biblia_template.md` en la carpeta `trabajo/` del proyecto, con:
+- cifras que cuadran entre sí;
+- calendario comprobado con `assets/fechas.py`;
+- presupuesto con `assets/presupuesto_ka1.py`;
+- voz fijada (en ESC30, los jóvenes en primera persona);
+- un mecanismo propio por bloque;
+- lista de lo que no se puede reutilizar de la referencia aprobada ni de las hermanas de la ronda.
 
 Advertencias que ya costaron caras:
-- Si la coordinadora estrena la acción, redactar como estreno (ser recién llegada puntúa), jamás "continuación de" un proyecto ajeno.
-- Si hay una solicitud de referencia, la originalidad es requisito duro: sirve como guía de registro y detalle, nunca de contenido.
-- No inventar datos de la coordinadora fuera de su PIF.
+- Estreno se cuenta como estreno, nunca como continuación de un proyecto ajeno.
+- "Primer proyecto" sí; "primera candidatura" nunca si la agencia tiene otra registrada.
+- Ningún dato de una entidad fuera de su ficha.
 
-### 3. Workflow de redacción
-Adapta `assets/workflow_redaccion.js`: un redactor por bloque del formulario (los bloques los define el perfil), en paralelo. Cada prompt lleva los ficheros a leer, las preguntas exactas del formulario en su idioma oficial como encabezados `###`, y las respuestas en el idioma de redacción que fije el perfil.
+### 4. Redacción
+Formularios largos, redactores en paralelo con `assets/workflow_redaccion.js`, uno por bloque, con las preguntas literales como encabezados `###`. Formularios cortos, una sola mano de un tirón. Cada argumento se cuenta entero en un bloque y en el resto se remite. Longitud objetivo 4.000 a 4.900 caracteres sobre 5.000.
 
-Después, 3 verificadores adversariales con schema de issues sobre el borrador ensamblado:
-- **Coherencia**: contar números, fechas, ciudades, placeholders, cronología repetida entre secciones.
-- **Rúbrica**: elemento a elemento contra la rúbrica destilada del perfil.
-- **Originalidad y estilo**: calcos de la referencia, reglas de `comun/reglas_estilo.md`, tono de IA.
+### 5. Verificación adversarial
+Sobre el borrador ensamblado, como mínimo:
+- **Coherencia**: cifras, fechas, ciudades, placeholders, repeticiones entre bloques.
+- **Rúbrica y palancas**: elemento a elemento, más la carta de la agencia si es una reescritura.
+- **Originalidad**: contra la referencia aprobada, las hermanas de la misma ronda y los proyectos anteriores de la solicitante.
+- **Estilo e idioma**: `comun/reglas_estilo.md`, tono de IA y longitudes.
+- **Protección** si el tema es sensible.
 
-No saltarse esta fase. Es la que sube la nota.
+Un último agente hace de evaluador simulado y puntúa por criterio; esa cifra va a `notaEstimada`.
 
-### 4. Workflow de corrección
-Adapta `assets/workflow_correccion.js`. Asigna cada issue a su bloque, deja las correcciones globales G1-G12 tal cual, y decide TÚ las cuestiones transversales antes de lanzar (redacción única de cada temática, secuencias temporales, alcance de invitados) para que todos los correctores apliquen lo mismo. Cada corrector lee su `draft_<bloque>.md` y escribe `final_<bloque>.md`.
+### 6. Corrección
+`assets/workflow_correccion.js`. Asignar cada issue a su bloque, pasar G1-G12 tal cual y decidir TÚ las cuestiones transversales antes de lanzar. Después, segunda ronda de coherencia sobre la versión final: las correcciones por bloque abren incoherencias nuevas.
 
-### 5. Comprobación mecánica y ensamblado
-`python assets/comprobacion_mecanica.py <dir> --patron "final_*.md" --seccion-codigos <bloque>` busca guiones largos, emojis, anglicismos, códigos internos fuera de su sección, marcas de edición, dobles espacios y tics de redacción, cuenta encabezados y lista los placeholders para ver si un mismo concepto usa dos tokens. Acepta también un fichero ensamblado; en ese caso el tope de `no X, sino Y` es uno por bloque, así que se pasa `--tope-no-sino <nº de bloques>`. Arregla a mano lo poco que salga.
+### 7. Comprobación mecánica y entregables
+- `assets/comprobacion_mecanica.py` (tics, guiones, placeholders, códigos internos).
+- `assets/contar.py` (topes por respuesta y por celda).
+- `assets/fechas.py --anio <año>` (sin `--anio` puede suponer mal el año).
+- Word con `assets/md2docx.py`.
+- En KA1, horario con `assets/horario_xlsx.py` sobre la plantilla oficial (`proyectos/referencias/plantillas/`) y `assets/horario_pdf.py` para el anexo.
 
-Ensambla: portada + bloques en orden + sección final "Datos pendientes / placeholders" inventariada con la regex `\[([^\]]+)\]`.
+Uso de cada herramienta en `assets/README.md`.
 
-### 6. Generar el Word
-`python assets/md2docx.py <ensamblado.md> "<destino>.docx" --titulo "..." --subtitulo "..." --extra "..."` (requiere python-docx). Guarda .docx y .md junto a los materiales del usuario y verifica el .docx reabriéndolo.
-
-### 7. Cierre
-Resumen con: decisiones estratégicas tomadas, qué encontraron los verificadores, lista de datos pendientes, y el recordatorio de que la checklist de originalidad la firma el usuario y merece su lectura final. Actualiza el perfil de la acción con lo aprendido y añade una entrada en `historial/`.
-
-## Estructura del skill
-- `comun/biblia_template.md` - fuente única de verdad del proyecto, agnóstica de acción.
-- `comun/reglas_estilo.md` - reglas de redacción obligatorias y correcciones globales G1-G9.
-- `comun/criterios_comunes.md` - lo que piden casi todas las convocatorias, con el porqué. Base de la verificación.
-- `perfiles/<accion>.md` - bloques del formulario, criterios, pesos, límites y trampas de cada acción.
-- `perfiles/_plantilla.md` - para acciones sin perfil.
-- `assets/` - workflows de redacción y corrección, comprobación mecánica, conversor a Word.
-- `historial/` - lecciones por proyecto ya presentado.
+### 8. Cierre y aprendizaje
+- **Resumen al usuario**: decisiones, lo que cazaron los verificadores, supuestos y datos pendientes, nota estimada por criterio. Recordar que la checklist de originalidad la firma el usuario.
+- **Registrar la candidatura** en `src/lib/candidaturas.mjs`, sin nombres de participantes, PRN ni teléfonos.
+- **Actualizar** el perfil de la acción, las fichas de las entidades implicadas y una entrada de `historial/`.
+- **Cuando llegue la carta de resultados**, seguir "Cuando llega una carta" en `comun/maximizar_puntuacion.md`. Es lo que hace que la skill mejore.
+- **Commits**: la skill y `candidaturas.mjs` van al repo público y las solicitudes y fichas al privado `proyectos/`. Push solo con permiso del usuario.

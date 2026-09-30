@@ -5,7 +5,7 @@ Aplican a toda solicitud, en cualquier acción, y a los textos que se derivan de
 ## Registro
 - Español natural, profesional sin engolamiento, primera persona del plural.
 - Párrafos de 3 a 6 frases, hilados. Nada de listas de una línea salvo campos de formulario y objetivos.
-- Respuestas de 1.500 a 4.000 caracteres cuando el campo admite 5.000. Ni tres líneas ni el campo desbordado.
+- Respuestas de 4.000 a 4.900 caracteres cuando el campo admite 5.000 (las KA155 de 1.300 a 2.000 se quedaron cortas frente a la aprobada de referencia). Ni tres líneas ni el campo desbordado, porque el portal corta. Medir con `assets/contar.py`.
 - El texto lo lee una persona que evalúa decenas de solicitudes seguidas. Concreto gana a grandilocuente.
 
 ## Prohibiciones duras

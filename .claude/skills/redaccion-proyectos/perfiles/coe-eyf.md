@@ -2,7 +2,7 @@
 
 **Estado**: VERIFICADO para iniciativas ad hoc (convocatoria 2026.C3.C). BORRADOR para planes de trabajo anuales y actividades internacionales.
 **Última revisión**: 2026-08 contra las plantillas oficiales Template 1 narrative y Template 2 budget, el texto de la convocatoria y el Q&A de la secretaría del EYF
-**Proyectos nuestros**: SORTEO (Estrellas del Sur, Córdoba) y la solicitud de la Federación desde Madrid, ambas en `borradores/EYF 2026.C3.C/`. Ocho conceptos evaluados en tres rondas, con puntuaciones simuladas por criterio.
+**Proyectos nuestros**: SORTEO (Estrellas del Sur, Córdoba) y la solicitud de la Federación desde Madrid, ambas en `proyectos/consejo_de_europa/EYF_2026_C3C_Federacion/`. Ocho conceptos evaluados en tres rondas, con puntuaciones simuladas por criterio.
 
 ## Qué es
 Subvenciones del Consejo de Europa, no de la Unión Europea. Aquí no existen Erasmus+, Youthpass, OID ni prioridades del Programa: el marco es el acervo del Consejo de Europa (Compass, Carta Europea sobre la Participación de los Jóvenes, convenios) y las prioridades del sector juventud del bienio. Confundir los dos marcos es el error que más delata una solicitud reciclada.
@@ -35,7 +35,7 @@ Campos de texto con límite:
 
 Template 2 budget (.xlsx): categorías 1 Travel, 2 Accommodation and meals, 3 Human Resources, 4 Equipment and supplies, 5 Supplementary expenditure and services, 6 Indirect eligible costs (exactamente el 7% de los directos, calculado automáticamente). Al final, autodeclaración de cofinanciación y Equal access fund de hasta un 10% adicional sobre la subvención solicitada, discrecional y posterior a la concesión, así que ninguna promesa de accesibilidad del formulario debe depender solo de ese fondo.
 
-Detalle de líneas y mecánica de relleno por script en `borradores/EYF 2026.C3.C/plantillas/estructura_plantillas.md`.
+Detalle de líneas y mecánica de relleno por script en `proyectos/consejo_de_europa/EYF_2026_C3C_Federacion/plantillas/estructura_plantillas.md`.
 
 ## Criterios de adjudicación
 | Criterio | Peso |

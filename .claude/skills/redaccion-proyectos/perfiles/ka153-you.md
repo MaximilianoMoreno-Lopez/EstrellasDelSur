@@ -1,8 +1,8 @@
 # Perfil: KA153-YOU - Movilidad de personas trabajadoras en el ámbito de la juventud
 
-**Estado**: VERIFICADO
-**Última revisión**: 2026-08 contra el formulario de referencia KA153-YOU-8FC5C383 (93 páginas) y la Guide for Experts on Quality Assessment 2026, págs. 26-31
-**Proyectos nuestros en esta acción**: EMBER (cierre 1 de octubre de 2026, borrador vigente y cifras en `borradores/redaccion proyecto erasmus/EMBER KA153/biblia_ember.md`). Estrellas del Sur ya ha coordinado un KA153, así que aquí está prohibido el relato de estreno.
+**Estado**: VERIFICADO. Rúbrica destilada elemento a elemento, con la sección "Cómo sacar el máximo en cada elemento" sacada de la revisión de EMBER, en `rubricas/ka153-you.md`.
+**Última revisión**: 2026-10-01 la rúbrica y sus palancas; en 2026-08 las preguntas, contra el formulario de referencia KA153-YOU-8FC5C383 (93 páginas) y la Guide for Experts on Quality Assessment 2026, págs. 26-31
+**Proyectos nuestros en esta acción**: EMBER (cierre 1 de octubre de 2026, borrador vigente y cifras en `proyectos/erasmus/KA153_EMBER_EstrellasDelSur/biblia_ember.md`). Estrellas del Sur ya ha coordinado un KA153, así que aquí está prohibido el relato de estreno.
 
 ## Qué es
 Financia actividades de desarrollo profesional para personas que trabajan en el ámbito de la juventud: cursos de formación, seminarios, visitas de estudio, job shadowing. El sujeto que aprende es la persona trabajadora y su organización, no la persona joven. Todo el formulario se lee con esa lente y confundirla con KA154 es el error más caro.
@@ -79,38 +79,7 @@ Secciones sin redacción libre: Erasmus+ Youth Quality Standards (tres casillas)
 Umbral: 60 sobre 100 y al menos la mitad de cada criterio.
 
 ## Rúbrica destilada
-
-### Relevancia, justificación e impacto (30)
-1. Perfil del solicitante relevante para el ámbito de juventud en la práctica. No basta la relevancia nominal: expertise del equipo, actividad cotidiana real y experiencia previa, especialmente fuera de Erasmus+.
-2. Prioridades del EU Youth Dialogue o de las 11 EU Youth Goals, citadas con contenido.
-3. Las cuatro dimensiones del Programa (inclusión y diversidad, verde, digital, participación), nombradas y demostradas.
-4. Relevancia para los objetivos de la Acción: desarrollo profesional de la persona trabajadora, calidad del trabajo juvenil, capacidad organizativa y cooperación europea.
-5. Valores de la UE integrados en objetivos, metodologías, actividades y resultados; diseño no discriminatorio con mención expresa de la discapacidad; componentes educativos sobre los valores.
-6. Necesidades de desarrollo de las personas trabajadoras participantes Y de sus organizaciones. Cómo se identificó la demanda y relevancia para individuos, comunidad y grupo destinatario.
-7. Idoneidad del proyecto para cinco cosas a la vez, y hay que responder a las cinco: transformar la práctica de las organizaciones en calidad, innovación y reconocimiento y su alcance de lo local a lo global; producir learning outcomes de alta calidad definidos en línea con las necesidades; implicar a participantes realmente activos en trabajo juvenil y a organizaciones con trabajo regular con jóvenes a nivel local; producir impacto durante y después del proyecto con perspectiva de largo plazo; producir impacto fuera de las organizaciones y sobre quienes no participan directamente.
-8. Competencias y métodos para el desarrollo profesional, incluido el trabajo juvenil digital, con impacto claro en el trabajo regular con jóvenes y en la organización, contribuyendo a la European Youth Work Agenda. Citarla por su nombre.
-9. Actividades de desarrollo del sistema y de alcance (system development and outreach), si aplica: impacto esperado sobre el entorno del trabajo juvenil. Casi nadie lo rellena y rellenarlo suma.
-10. Organizaciones recién llegadas y menos experimentadas: plan para alcanzar a quienes nunca o rara vez se han beneficiado de esta Acción.
-
-### Calidad del diseño y la implementación (40)
-1. Consistencia entre necesidades, objetivos, perfiles de participantes y actividades. Los objetivos se explican en relación con las necesidades y retos de la organización, y alcanzarlos produce cambios organizativos. Clave: deben beneficiar al personal a mayor escala, no solo a quien viaja.
-2. Todas las fases descritas de forma clara y convincente, con implicación activa de los participantes en todas ellas.
-3. Representación equilibrada por países y por género, declarada con cifras.
-4. Medidas de selección apropiadas y acordes a la definición de youth worker: conexión real entre participante y trabajo juvenil local.
-5. Accesibilidad e inclusión: apertura a orígenes y capacidades diversas, aprendizaje no formal e informal que estimule creatividad, participación activa e iniciativa, métodos adaptados al grupo, aprendizaje planificado de forma participativa y analizado a lo largo del proyecto.
-6. Prácticas sostenibles y ecológicas en el contenido y en lo práctico, maximizando el apoyo del Programa al viaje sostenible, que se declara por flujo.
-7. Métodos de aprendizaje, herramientas digitales y componentes virtuales apropiados, que complementan lo presencial.
-8. Reflexión, identificación y documentación de learning outcomes y Youthpass como proceso. Los métodos de reflexión deben aparecer en el horario diario de cada actividad.
-9. Desarrollo del sistema y alcance: herramientas y prácticas replicables, capaces de inspirar a otras organizaciones, con plan para darlas a conocer al sector.
-
-### Calidad de la gestión (30)
-1. Arreglos prácticos, gestión y modalidades de apoyo satisfactorios en todas las fases.
-2. Seguridad y protección: prevención y reducción de riesgos con estándar alto.
-3. Tareas y responsabilidades conforme a los Erasmus+ Youth Quality Standards.
-4. Cooperación y comunicación: consorcio cohesionado con implicación activa de todas las socias, nivel de networking y compromiso de cada una, medios digitales incluidos, perfil y trayectoria de cada socia cuando la actividad exige cualificación, roles pactados, capacidad de seguimiento y difusión y, en proyectos de inclusión, expertise para apoyar a personas con necesidades especiales.
-5. Evaluación: medidas para evaluar resultados, evaluación final y además monitorización continua con capacidad de ajuste. Indicadores con metas numéricas.
-6. Difusión: visibilidad del proyecto y del Programa dentro y fuera de las organizaciones, con medidas de cada socia y explotación de resultados incluidos los learning outcomes.
-7. Sostenibilidad: mecanismos y prácticas con potencial de sobrevivir al fin de la financiación.
+Elemento a elemento, con puntos, umbral, bandas y palancas para sacar el máximo, en `rubricas/ka153-you.md`. Los verificadores de rúbrica trabajan con ese fichero. Lo propio de la acción que más pesa: el sujeto es la persona trabajadora y su organización, los objetivos tienen que beneficiar al personal a mayor escala y no solo a quien viaja, la European Youth Work Agenda se cita por su nombre y la línea de system development and outreach suma en relevancia y en diseño.
 
 ## Trampas propias de esta acción
 - El sujeto es la persona trabajadora, no la joven. Cada respuesta debe cerrar el círculo en el trabajo con jóvenes que esa persona hace en su organización.
@@ -120,3 +89,10 @@ Umbral: 60 sobre 100 y al menos la mitad de cada criterio.
 - Los códigos internos N1 y O1 solo se etiquetan donde se enumeran necesidades y objetivos.
 - Ningún campo numérico en blanco.
 - Estrellas del Sur ya ha coordinado un KA153: nada de relato de estreno. El elemento de organizaciones recién llegadas se cubre con las socias que nunca han participado en la Acción.
+
+## Cómo cerrar este perfil
+- [x] Preguntas literales del formulario (KA153-YOU-8FC5C383, 2026-08).
+- [x] Criterios, pesos y umbral (Guide for Experts 2026, pp. 26-31).
+- [x] Rúbrica destilada elemento a elemento con palancas (2026-10-01).
+- [x] Límite de 5.000 caracteres por respuesta, con margen de 60 a 100 por si los saltos de párrafo cuentan doble.
+- [ ] Calibrar las palancas con la nota real de EMBER cuando llegue la carta (ver "Cuando llega una carta" en `comun/maximizar_puntuacion.md`).

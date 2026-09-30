@@ -1,7 +1,7 @@
 # EuroÁgora (KA154-YOU, agosto de 2026)
 
 Primer proyecto redactado con este método. Coordina Horizonte Rioja, no Estrellas del Sur.
-Material: `borradores/redaccion proyecto erasmus/`.
+Material: `proyectos/erasmus/`.
 
 ## Qué se hizo
 7 redactores en paralelo, uno por bloque del formulario. 3 verificadores adversariales sobre el borrador ensamblado (coherencia, rúbrica, originalidad). 7 correctores, uno por bloque, con reglas globales comunes. Comprobación mecánica y ensamblado a .docx.

@@ -1,8 +1,8 @@
 # Perfil: KA154-YOU - Actividades de Participación Juvenil
 
-**Estado**: VERIFICADO
-**Última revisión**: 2026-08 contra el formulario oficial, la Guía del Programa 2026 y la guía de expertos de evaluación de calidad (ed. 2026)
-**Proyectos nuestros en esta acción**: EuroÁgora (Horizonte Rioja, borrador completo en `borradores/redaccion proyecto erasmus/`), DiáLogos (referencia aprobada)
+**Estado**: VERIFICADO. Rúbrica destilada elemento a elemento, con la sección "Cómo sacar el máximo en cada elemento", en `rubricas/ka154-you.md`.
+**Última revisión**: 2026-10-01 la rúbrica y sus palancas; en 2026-08 las preguntas, contra el formulario oficial, la Guía del Programa 2026 y la guía de expertos de evaluación de calidad (ed. 2026)
+**Proyectos nuestros en esta acción**: EuroÁgora (Horizonte Rioja, borrador completo en `proyectos/erasmus/`), DiáLogos (referencia aprobada)
 
 ## Qué es
 Financia actividades diseñadas y ejecutadas por gente joven para participar en la vida democrática, fuera de los cauces formales. Puede solicitarla un grupo informal de jóvenes o una organización. Admite proyectos nacionales o transnacionales, con actividades presenciales, online o mixtas. Es la acción donde más pesa que los jóvenes decidan, no solo asistan.
@@ -72,36 +72,7 @@ Siete bloques, un redactor por bloque.
 Umbral: 60 sobre 100 en total y al menos la mitad de cada criterio.
 
 ## Rúbrica destilada
-Cada elemento es algo que el experto busca de forma explícita y localizable. Toda solicitud debe responder a todos.
-
-### Relevancia, justificación e impacto (30)
-1. Perfil del solicitante relevante para el ámbito de juventud EN LA PRÁCTICA (actividad cotidiana real y expertise del equipo, no relevancia nominal; también fuera de Erasmus+).
-2. Prioridades del EU Youth Dialogue o de las 11 Youth Goals (Estrategia de Juventud UE 2019-2027), citadas con contenido.
-3. Contribución a las cuatro dimensiones del Programa (inclusión y diversidad, verde, digital, participación), nombradas explícitamente en el bloque de relevancia con su medida concreta.
-4. Relevancia para los objetivos de la Acción: fomentar el engagement de los jóvenes y empoderarlos como ciudadanía activa.
-5. Valores UE integrados en objetivos, metodología, actividades y resultados, mejor transversal que como elemento aislado; diseño no discriminatorio; componentes educativos sobre los valores.
-6. Necesidades: por qué hace falta el proyecto, cómo se identificó la demanda, necesidades de los jóvenes y también de las organizaciones participantes.
-7. Valor añadido europeo: resultados no alcanzables en clave puramente local o nacional.
-8. Learning outcomes de calidad, en línea con las necesidades y alcanzables con las actividades.
-9. Impacto con perspectiva de largo plazo: participantes, organizaciones y también jóvenes y organizaciones no participantes, en los niveles local, regional, nacional y europeo.
-10. Organizaciones recién llegadas: plan para incorporar entidades y grupos que nunca o rara vez se han beneficiado de la Acción.
-
-### Calidad del diseño y la implementación (40)
-1. Consistencia necesidades, objetivos, perfil de participantes y actividades, con la cadena lógica trazable y mapeada explícitamente.
-2. Fases de preparación, implementación y seguimiento claras y completas, con reparto de tareas y, clave en KA154, jóvenes con papel significativo en TODAS las fases, concepción incluida.
-3. Accesibilidad e inclusión: actividades abiertas a diversidad de orígenes y de capacidades (mencionar discapacidad expresamente), participantes con menos oportunidades, método de selección inclusivo.
-4. Prácticas sostenibles y ecológicas en el contenido y en lo práctico, con el viaje sostenible y su apoyo presupuestario.
-5. Formas alternativas, innovadoras e inteligentes de participación juvenil. La Acción existe para ensayar métodos nuevos: hay que enmarcar qué pilota el proyecto, no basta con tener los ingredientes.
-6. Métodos de educación no formal apropiados al grupo (creatividad, participación activa, iniciativa), componentes virtuales o digitales concretos, proceso de reflexión para identificar y documentar los learning outcomes y Youthpass como proceso, no solo como certificado final.
-
-### Calidad de la gestión (30)
-1. Arreglos prácticos, gestión y modalidades de apoyo satisfactorios en todas las fases.
-2. Seguridad y protección de participantes: prevención y reducción de riesgos, acompañamiento suficiente, estándares altos.
-3. Tareas y responsabilidades definidas conforme a los Erasmus Youth Quality Standards, citándolos.
-4. Cooperación y comunicación del consorcio: consorcio cohesionado, implicación activa de cada socia, medios de comunicación incluidos los digitales, roles pactados, capacidad de seguimiento y difusión, perfil adecuado cuando la actividad exige cualificación en trabajo juvenil.
-5. Evaluación: medidas para evaluar resultados contra objetivos, evaluación final y monitoreo continuo con capacidad de ajuste (la evaluación intermedia puntúa). Indicadores con metas numéricas.
-6. Difusión: visibilidad del proyecto y del Programa, dentro y fuera de las organizaciones, con medidas por socia y explotación de resultados.
-7. Sostenibilidad: mecanismos y prácticas que sobreviven al fin de la financiación.
+Elemento a elemento, con puntos, umbral, bandas y palancas para sacar el máximo, en `rubricas/ka154-you.md`. Los verificadores de rúbrica trabajan con ese fichero. Lo propio de la acción que más pesa: jóvenes con papel significativo en todas las fases desde la concepción, qué forma de participación nueva o alternativa pilota el proyecto, valor añadido europeo también en proyectos nacionales y, sin socias, cómo se reparten las tareas dentro de la organización y qué papel tiene el coach si lo hay.
 
 ## Trampas propias de esta acción
 - Los campos numéricos (participantes con menos oportunidades, participantes solo online) nunca se dejan sin cifra sugerida.
@@ -110,3 +81,10 @@ Cada elemento es algo que el experto busca de forma explícita y localizable. To
 - Los códigos internos N1 y O1 solo valen donde se enumeran y etiquetan las necesidades y los objetivos.
 - Aritmética interna: número de ponencias contra número de temáticas, plazas por socia contra total, personas igual a participantes más facilitadores. El evaluador cuenta.
 - El papel de la gente joven en la concepción es el corazón de la acción. Un comité organizador joven con funciones y calendario, no una frase.
+
+## Cómo cerrar este perfil
+- [x] Preguntas literales del formulario oficial (2026-08).
+- [x] Criterios, pesos y umbral (Guide for Experts 2026, pp. 32-37).
+- [x] Rúbrica destilada elemento a elemento con palancas (2026-10-01).
+- [ ] Límites de caracteres por campo del formulario vigente. Fuente: formulario del portal; por ahora se trabaja con los rangos de la sección de bloques.
+- [ ] Calibrar las palancas con la primera nota real de un KA154 redactado con la skill (ver "Cuando llega una carta" en `comun/maximizar_puntuacion.md`).
