@@ -38,3 +38,9 @@ borradores/modelos/
 # Traduccion de los estatutos al ingles: borrador, se queda en local hasta
 # que este lista. Quitar esta linea cuando se quiera versionar.
 scripts/estatutos-en.html
+
+# Solicitudes de subvencion europeas (Erasmus+, Cuerpo Europeo de Solidaridad,
+# Consejo de Europa). Contienen PIF con telefonos, PRN y fechas de nacimiento,
+# y este repositorio es publico. Se quedan solo en local; la skill
+# .claude/skills/redaccion-proyectos las usa como material de aprendizaje.
+/proyectos/
