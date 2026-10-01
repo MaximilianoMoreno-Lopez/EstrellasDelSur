@@ -7,6 +7,7 @@ Palancas aprendidas con notas reales. Cada una lleva la solicitud que la enseñ�
 - El umbral no basta. Haro Queer ronda 1 sacó 60 (25/40, 25/40, 10/20), superó el corte y no se financió porque el INJUVE priorizó otros proyectos de La Rioja. Con cupos autonómicos o agencias con poco dinero, se compite contra el resto de la región: hay que apuntar a 80 o más.
 - El criterio que más cae es relevancia. ChemSafe ronda 1 sacó 18/40 en relevancia con 26/40 en diseño. Un buen programa no compensa unas necesidades sin datos ni un público sin cara.
 - La gestión se pierde por genérica, no por mala. Los dos rechazos se dejaron la mitad de los puntos de gestión con textos que servían para cualquier proyecto.
+- Aprobar no es cobrar lo pedido. Democracia sin barreras (KA154 de Estrella del Rif) pasó los umbrales y se aprobó con 26.706 € de 49.416 €. La agencia valoró la accesibilidad (Lectura Fácil, Diseño Universal para el Aprendizaje) y el consorcio, pero vio "ambición operativa" con demasiados frentes. Recortó dos meses, quitó una de las dos actividades con movilidad y bajó participantes. Hay que pedir lo que el consorcio puede ejecutar y justificar cada actividad por su papel en la incidencia.
 - El evaluador simulado de la skill ha dado entre 81 y 88 a las solicitudes de octubre de 2026. Cuando lleguen las notas reales, comparar criterio a criterio y recalibrar este documento.
 
 ## Relevancia (30 o 40 puntos)
@@ -37,7 +38,8 @@ Palancas aprendidas con notas reales. Cada una lleva la solicitud que la enseñ�
 3. **Capacidad documentada.** Experiencia previa real, personas clave con cargo y horas, cuentas y procedimientos. De la ficha de la organización.
 4. **Presupuesto coherente con la agencia.** Calcular con `presupuesto_ka1.py`; en rondas y agencias con poco dinero, pedir ajustado (Haro Queer se recortó a cuatro meses para caber en el cupo; CHEMSAFE sin costes excepcionales).
 5. **Difusión con destinatarios concretos** y los jóvenes como difusores, no solo como público. Resultados tangibles que alguien pueda reutilizar.
-6. **Sostenibilidad posterior** con lo que sigue cuando acaba la financiación, quién lo sostiene y con qué recursos.
+6. **Alcance ejecutable.** Pocas actividades bien atadas antes que muchos frentes. Cada actividad con movilidad tiene que justificar por qué no puede hacerse en otra (en Democracia sin barreras sobrevivió Getafe por su vínculo con el Ayuntamiento y cayó Valencia). Y la gestión, dimensionada a la duración.
+7. **Sostenibilidad posterior** con lo que sigue cuando acaba la financiación, quién lo sostiene y con qué recursos.
 
 ## Forma (no puntúa sola, pero resta)
 
