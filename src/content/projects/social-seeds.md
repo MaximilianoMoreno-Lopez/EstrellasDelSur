@@ -63,7 +63,7 @@ Social Seeds se basa en una metodología participativa, inclusiva y orientada a 
 
 ## Taller de emprendimiento rural con África Villén
 
-¿Se puede levantar una marca propia desde un pueblo? Para responder a esa pregunta invitamos a **África Villén**, fotógrafa y creadora de contenido para empresas, que ha construido su proyecto profesional desde la comarca de **Los Pedroches**, en el norte de la provincia de Córdoba.
+¿Se puede levantar una marca propia desde un pueblo? Para responder a esa pregunta, el 30 de septiembre de 2026 invitamos a **África Villén**, fotógrafa y creadora de contenido para empresas, que ha construido su proyecto profesional desde la comarca de **Los Pedroches**, en el norte de la provincia de Córdoba.
 
 ![Participantes de Social Seeds durante el taller de emprendimiento rural](/images/projects/social-seeds/taller-emprendimiento-rural.jpg)
 
