@@ -51,6 +51,8 @@ El programa se desarrolla durante seis meses, de julio a diciembre de 2026, prin
 3. **Mentorías y acción.** Acompañamiento personalizado con profesionales del tercer sector y del emprendimiento social para prototipar las microiniciativas, junto a acciones de voluntariado y al menos una actividad ambiental, en colaboración con entidades locales como GEA y Don Bosco.
 4. **Demo Day.** Evento público de cierre donde los participantes presentan sus iniciativas ante entidades, agentes sociales y público general, con evaluación participativa y recogida de resultados.
 
+![Carteles del curso de emprendimiento social de Social Seeds en una facultad](/images/projects/social-seeds/carteles-facultad.jpg)
+
 ## Metodología
 
 Social Seeds se basa en una metodología participativa, inclusiva y orientada a resultados, que combina educación no formal, aprendizaje basado en proyectos y aprendizaje-servicio:
