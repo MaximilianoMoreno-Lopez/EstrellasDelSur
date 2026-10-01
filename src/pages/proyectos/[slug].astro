@@ -192,7 +192,7 @@ const breadcrumbs = [
         )}
         {status === 'active'
           ? <span class="badge-active">Activo</span>
-          : <span class="badge-closed">Plazo cerrado</span>
+          : !localInitiative && <span class="badge-closed">Plazo cerrado</span>
         }
         <span class="hero-flag-inline" aria-label="País">{flag}</span>
       </div>

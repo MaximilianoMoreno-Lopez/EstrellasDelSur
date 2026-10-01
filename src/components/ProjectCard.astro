@@ -62,7 +62,8 @@ const fallbackGradient = localInitiative
       aria-hidden), para que cada tarjeta ofrezca un solo enlace a teclado y
       lectores de pantalla. Los distintivos "Activo" y "Coordinado" viven fuera
       del ancla para que sigan siendo legibles (el de estado sale siempre:
-      "Activo" en verde o "Plazo cerrado" apagado).
+      "Activo" en verde o "Plazo cerrado" apagado, salvo en las iniciativas
+      locales, que no tienen plazo).
       Comentario de plantilla, no HTML: la tarjeta se repite más de cien veces en
       /proyectos/ y un comentario HTML se copiaría entero en cada una. */}
   <div class="card-media">
@@ -83,9 +84,12 @@ const fallbackGradient = localInitiative
         </div>
       )}
     </a>
-    <span class:list={["card-status-badge", status === 'active' ? 'is-open' : 'is-closed']}>
-      {status === 'active' ? 'Activo' : 'Plazo cerrado'}
-    </span>
+    {/* Las iniciativas locales no tienen convocatoria con plazo: sin "Plazo cerrado". */}
+    {(status === 'active' || !localInitiative) && (
+      <span class:list={["card-status-badge", status === 'active' ? 'is-open' : 'is-closed']}>
+        {status === 'active' ? 'Activo' : 'Plazo cerrado'}
+      </span>
+    )}
     {(coordinated || federacion) && (
       <div class="card-media-badges">
         {coordinated && (
