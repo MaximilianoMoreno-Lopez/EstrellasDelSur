@@ -61,6 +61,22 @@ Social Seeds se basa en una metodología participativa, inclusiva y orientada a 
 - **Aprendizaje-servicio y voluntariado:** la acción en el territorio sirve como diagnóstico de necesidades y validación de soluciones en contexto real.
 - **Enfoque inclusivo e intercultural:** espacios seguros, participación equitativa y adaptaciones razonables para jóvenes con menos oportunidades.
 
+## Taller de emprendimiento rural con África Villén
+
+¿Se puede levantar una marca propia desde un pueblo? Para responder a esa pregunta invitamos a **África Villén**, fotógrafa y creadora de contenido para empresas, que ha construido su proyecto profesional desde la comarca de **Los Pedroches**, en el norte de la provincia de Córdoba.
+
+![Participantes de Social Seeds durante el taller de emprendimiento rural](/images/projects/social-seeds/taller-emprendimiento-rural.jpg)
+
+África nos contó cómo empezó, los primeros pasos que fue dando y cómo ha llegado a forjarse una marca reconocida en su comarca y también fuera de ella. Su caso demuestra que emprender en el medio rural no obliga a quedarse pequeño. Conocer bien el territorio, apoyarse en las redes digitales para llegar a clientes de otras zonas y encontrar un enfoque propio que te distinga puede convertir el pueblo en un punto de partida y no en un límite.
+
+Ese enfoque propio, en su caso, es la sostenibilidad. Hoy destaca sobre todo por su fotografía de bodas, con un servicio que se diferencia en el sector por su mirada medioambiental y por la guía que ha creado para organizar una boda sostenible. Una idea que conecta de lleno con lo que buscamos en Social Seeds, proyectos que generan empleo y que cuidan a la vez de su entorno.
+
+![África Villén al terminar el taller](/images/projects/social-seeds/africa-villen.jpg)
+
+Los participantes pudieron preguntarle por las dudas reales de quien empieza, y África les dejó un consejo claro, confiar en sí mismos y avanzar aunque no lo tengan todo resuelto. Fue una sesión cercana y muy inspiradora para quienes están dando forma a sus propias ideas dentro del itinerario.
+
+![Grupo de Social Seeds con África Villén tras el taller](/images/projects/social-seeds/grupo-emprendimiento-rural.jpg)
+
 ## Igualdad, inclusión y accesibilidad
 
 La igualdad de género y la diversidad son ejes transversales del proyecto. Se reserva un mínimo del 50% de participación a mujeres jóvenes y se garantiza su presencia en roles visibles, además de talleres de igualdad y liderazgo y un módulo de diversidad y derechos LGTBI.
