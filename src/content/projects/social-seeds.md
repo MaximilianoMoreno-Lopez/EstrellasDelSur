@@ -93,4 +93,4 @@ Aunque el proyecto se centra en el emprendimiento social, integra la sostenibili
 
 Este proyecto está subvencionado por el **Instituto Andaluz de la Juventud (IAJ)**, Consejería de Inclusión Social, Juventud, Familias e Igualdad de la Junta de Andalucía.
 
-![Junta de Andalucía · Consejería de Inclusión Social, Juventud, Familias e Igualdad · Instituto Andaluz de la Juventud](/images/projects/social-seeds/junta-andalucia-iaj.png)
+![Junta de Andalucía · Consejería de Inclusión Social, Juventud, Familias e Igualdad · Instituto Andaluz de la Juventud · Patio Joven · Juventud Andaluza](/images/projects/social-seeds/logos-iaj-patio-joven.png)
