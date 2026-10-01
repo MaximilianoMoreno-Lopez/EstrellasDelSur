@@ -25,6 +25,8 @@ export default function remarkStripClosedFee() {
   return (tree, file) => {
     const frontmatter = file?.data?.astro?.frontmatter;
     if (frontmatter?.status !== 'past') return;
+    // `infoCompleta: true` pide conservar la ficha entera aunque esté cerrada.
+    if (frontmatter?.infoCompleta === true) return;
 
     const path = (file?.path || file?.history?.[0] || '').replace(/\\/g, '/');
     if (!path.includes('/src/content/projects/')) return;

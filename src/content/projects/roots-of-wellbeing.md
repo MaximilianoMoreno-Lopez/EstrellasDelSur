@@ -2,6 +2,7 @@
 title: "Roots of Wellbeing"
 type: "Intercambio"
 status: "past"
+infoCompleta: true
 flag: "🇩🇪"
 description: "Intercambio juvenil Erasmus+ en el campo de Baja Sajonia sobre bienestar mental y conexión con la naturaleza. Nueve días de caminatas conscientes, eco-arte, relatos personales y trabajo en grupo con jóvenes de seis países, con alojamiento y comidas cubiertos."
 location: "Uelzen (Alemania)"

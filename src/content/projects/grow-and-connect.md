@@ -1,7 +1,8 @@
 ---
 title: "Grow and Connect"
 type: "Formación"
-status: "active"
+status: "past"
+infoCompleta: true
 flag: "🇷🇴"
 description: "Curso de formación Erasmus+ en Brașov, a los pies de los Cárpatos, sobre crecimiento personal y bienestar emocional en el trabajo con jóvenes. Ocho días de educación no formal para llevarse herramientas de autoconocimiento, escucha activa y acompañamiento emocional a la propia entidad."
 location: "Brașov (Rumanía)"

@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, type, status, flag, description, location, year, yearLabel, image, imageLogo, poster, infopack, apply, dates, localInitiative, coordinated, federacion, edad, idioma, coste, funder } = project.data;
+const { title, type, status, flag, description, location, year, yearLabel, image, imageLogo, poster, infopack, apply, dates, infoCompleta, localInitiative, coordinated, federacion, edad, idioma, coste, funder } = project.data;
 const yearDisplay = yearLabel || year;
 
 // `status: past` significa que las plazas ya están cubiertas, así que el
@@ -23,6 +23,10 @@ const yearDisplay = yearLabel || year;
 // al final del artículo y en la barra lateral (solo el del hero miraba el
 // estado), y se recibían solicitudes a proyectos ya completos.
 const canApply = status === 'active' && Boolean(apply);
+
+// `infoCompleta` deja una ficha cerrada con toda la información de la abierta
+// (cuota, coste e infopack), pero `canApply` sigue en falso: sin enlace.
+const muestraTodo = status === 'active' || infoCompleta;
 
 // `apply` admite un ancla de la propia ficha (`#solicitar`) además de una URL.
 // Se usa cuando no hay formulario y la solicitud se explica en el texto: el
@@ -214,7 +218,7 @@ const breadcrumbs = [
           )}
         </div>
       )}
-      {status === 'active' && (apply || infopack) && (
+      {muestraTodo && (canApply || infopack) && (
         <div class="hero-ctas fade-in fade-in-delay-3">
           {canApply && (
             <a href={apply} target={applyTarget} rel={applyRel} class="btn btn-primary">
@@ -306,7 +310,7 @@ const breadcrumbs = [
               </>
             )}
 
-            {coste && status === 'active' && (
+            {coste && muestraTodo && (
               <>
                 <dt>Coste</dt>
                 <dd>{coste}</dd>

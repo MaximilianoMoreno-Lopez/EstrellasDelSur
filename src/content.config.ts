@@ -22,6 +22,9 @@ const projects = defineCollection({
     edad: z.string().optional(),
     idioma: z.string().optional(),
     coste: z.string().optional(),
+    // Con `status: "past"`, mantiene la ficha como si estuviera abierta (cuota,
+    // coste e infopack) pero sin ningún enlace para solicitar.
+    infoCompleta: z.boolean().default(false),
     localInitiative: z.boolean().default(false),
     coordinated: z.boolean().default(false),
     federacion: z.boolean().default(false),
