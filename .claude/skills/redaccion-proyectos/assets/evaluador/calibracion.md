@@ -196,9 +196,33 @@ Para medir el sobreajuste se escribió una versión de prueba (v1b) con la misma
 
 Error medio fuera de muestra 2,8 y el lado del umbral de 60 se acierta en 3 de 4 (Haro Queer queda en 58 frente a 60 real). La v1 no es solo memoria de los 13 casos: separa aprobadas y rechazadas que no ha visto. Dos cautelas. Son 4 casos, y el error más grande vuelve a estar en la aprobada mejor puntuada (-7), igual que en la v1, así que el evaluador tiende a quedarse corto con los proyectos excelentes. Se mantiene el margen de más o menos 6, que cubre todos los casos de prueba salvo el de 80.
 
+## Segunda prueba fuera de muestra: 7 solicitudes de octubre de 2025 (2026-10-03)
+
+Siete solicitudes de la ronda de octubre de 2025 con nota real, que no estaban en la calibración ni las había visto ningún agente. Se puntuaron con la v1 vigente, dos evaluadoras y mediana.
+
+| Caso | Real | v1 | Error |
+|---|---|---|---|
+| EcoVibe 2025 (KA152) | 58 (19/21/18) | 58 (19/22/17) | 0 |
+| Mind the Gap 2025 (KA152) | 51 (17/18/16) | 52 (17/20/15) | +1 |
+| Re-Think, Re-Dress 2025 (KA152) | 59 (20/20/19) | 57 (19/22/16) | -2 |
+| Green Tracks 2025 (KA155) | 61 (23/21/17) | 58 (23/23/12) | -3 |
+| Igualdad y Deporte 2025 (KA153) | 59 (15/25/19) | 55 (16/23/16) | -4 |
+| Verde y Claro 2025 (KA154) | 59 (20/24/15) | 53 (16/21/16) | -6 |
+| DebatIA 2025 (KA154) | 60 (20/20/20) | 51 (16/20/15) | -9 |
+
+Error medio 3,6, sesgo -3,3 (se queda corto) y el umbral se acierta en 5 de 7: falla justo en las dos que la agencia dejó en 60 y 61 sin fondos. Lectura: con solicitudes que no ha visto, la v1 no infla; si acaso, castiga de más los KA154 de debate (el mismo tope académico que ya se vio en DebatIA 2026) y la gestión. Las siete están entre 51 y 61, así que esta prueba no dice nada de la parte alta.
+
+### La comparación con anclas no sirvió
+
+Se probó a situar solicitudes comparándolas con ocho casos de nota conocida en lugar de puntuarlas. Con cuatro controles de nota conocida, el error fue de -13 (Frames of Us, 72, situada en 59), +15 (Green Tracks 2026, 58, situada en 73), -3 y +4. Error medio 8,8, peor que puntuar. Las situaciones que dio para octubre (entre 74 y 83) no se usan como estimación. Sí aportaron riesgos concretos que la puntuación no había visto (ver `octubre_riesgos` en la carpeta de resultados del repo privado).
+
+### Lo que queda sin poder medir
+
+Las solicitudes de octubre de 2026 están escritas con la propia skill, que aprendió de las cartas las mismas señales que mira el evaluador. Ningún caso de la muestra es de ese tipo, así que el riesgo de que el evaluador premie su propio estilo sigue abierto hasta que lleguen las notas. Mientras tanto, junto a la cifra del evaluador se da una lectura prudente unos 5 puntos por debajo.
+
 ## Historial de versiones
 
 | Versión | Fecha | Ajustada con | MAE en la muestra de ajuste | MAE fuera de muestra | Margen comunicado |
 |---|---|---|---|---|---|
 | v0 | 2026-10-03 | sin calibrar | 10,0 (13 casos) | no aplica | no se usó |
-| v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | 2,8 en 4 casos con la v1b (validación interna); octubre de 2026 pendiente | 6 |
+| v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | 2,8 en 4 casos con la v1b; 3,6 en 7 casos de octubre de 2025 (sesgo -3,3); octubre de 2026 pendiente | 6 |
