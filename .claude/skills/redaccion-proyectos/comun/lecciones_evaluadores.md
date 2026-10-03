@@ -297,3 +297,12 @@ Cómo pedir para que no recorten.
 13. **Reenvío con tabla de reproches.** Cambio localizable por cada frase de la carta y recortar antes que añadir (DiáLogos 2025, aprobado; Green Tracks 2026, 58; Mind the Gap 2026, 54).
 14. **No repetir lo ya financiado ni parecerse a otro proyecto propio** (Verde y Claro 2025, 59; DiáLogos 2025, aprobado).
 15. **Pedir lo que se ejecuta.** Proyecto que acaba poco después de la última actividad, días de viaje según banda y una función propia para cada movilidad (Democracia sin barreras 2026, 80; Frames of Us 2026, 72; Melilla is Europe 2026, 79).
+
+## Añadido el 2026-10-03, cartas de DebatIA 2026 y DigiTE 2026
+
+- Reenviar con cambios menores se nota y se castiga. La agencia escribe que el proyecto "presenta escasas novedades respecto a la ronda anterior, repitiéndose el mismo consorcio, fin, plan de acción y duración" y aun así reconoce lo que sí se corrigió (DebatIA 2026, 60, 24/21/15). Responder a la carta anterior sube relevancia, pero no basta si el diseño es el mismo.
+- La difusión también tiene que ser de trabajo juvenil. Plantearla como "atracción de talento y consolidación de prestigio académico" contradice el carácter abierto de la acción (DebatIA 2026, 60).
+- Las incoherencias entre apartados hunden la gestión aunque la relevancia sea buena: 3 o 5 fases, actividades de 2 o 3 días, una tercera movilidad en el calendario que no está registrada ni presupuestada, textos repetidos o que no responden a la pregunta (DebatIA 2026, gestión 15 de 30).
+- Los jóvenes como receptores. Si la implicación en la planificación no se acredita, la agencia lo dice aunque el resto esté bien (DebatIA 2026, 60).
+- En KA153, la capacidad de la entidad cuenta en relevancia: actividades habituales con jóvenes, trabajadores del ámbito de la juventud del equipo, proyectos previos y resultados (DigiTE 2026, 57, 17/20/20; ya pasó en Igualdad y Deporte 2025, 59, 15/25/19).
+

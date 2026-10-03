@@ -170,6 +170,19 @@ Casos pendientes de la ronda de octubre de 2026, que serán la primera muestra f
 - Las 8 cartas que no tienen solicitud conservada pasan a la muestra si aparecen sus textos, como casos fuera de muestra para la v1.
 - Antes de la ronda de febrero de 2027 se repite el paso 1 con la versión que quede vigente.
 
+## Desglose por criterio de DebatIA y DigiTE (cartas recibidas el 2026-10-03)
+
+Las dos cartas que faltaban llegaron después de calibrar. Dan el desglose que la tabla de arriba no tenía, y lo confirman como diagnóstico, no como reajuste (la v1 no se toca hasta octubre, ver "Recalibrar").
+
+| Caso | Real | v1 | Error por criterio |
+|---|---|---|---|
+| DebatIA 2026 (KA154) | 60 (24/21/15) | 50 (15/20/15) | relevancia -9, diseño -1, gestión 0 |
+| DigiTE 2026 (KA153) | 57 (17/20/20) | 51 (16/20/15) | relevancia -1, diseño 0, gestión -5 |
+
+- El fallo de DebatIA está entero en la relevancia. El tope de la lógica académica se aplicó a una solicitud que en esta ronda ya había quitado el criterio de selección universitario; la agencia le dio 24 de 30 y la castigó en gestión por incoherencias y por reenviar casi lo mismo. Confirma el aviso de arriba: el tope académico debe saltar cuando la selección, la actividad o la difusión siguen siendo académicas, no por el tema del debate.
+- En DigiTE la v1 acertó relevancia y diseño y se quedó corta en gestión. La carta no reprocha la gestión, sino la capacidad de la entidad, que la v1 cargó en gestión y la agencia en relevancia.
+- Con este desglose, el error por criterio de la v1 en los 11 casos que ya lo tienen está en relevancia más que en diseño o gestión. Es el criterio que hay que mirar primero al recalibrar.
+
 ## Validación fuera de muestra (2026-10-03)
 
 Para medir el sobreajuste se escribió una versión de prueba (v1b) con la misma estructura que la v1, pero reconstruida solo con 9 de los 13 casos. Quien la escribió no pudo abrir nada de los otros 4 (ni análisis, ni cartas, ni corpus, ni las anclas que venían de ellos). Después dos evaluadoras ciegas puntuaron esos 4 con la v1b.
