@@ -11,4 +11,4 @@ Participantes por país y total, group leaders, participantes con menos oportuni
 3. Buscar en el texto todas las menciones de cifras, países y número de socias ("cinco socias", "cinco países") y cambiarlas. Grep por el número en letra y en cifra, en todos los idiomas del documento.
 4. Escribir el bloque de la socia y darle un papel propio en el programa y en la gestión, no solo plazas.
 5. Actualizar horario y calendario.
-6. Verificador de coherencia sobre el documento entero.
+6. `assets/workflow_verificacion.js` con `VERIFICADORES = ['coherencia']` sobre el documento entero, con la biblia ya actualizada y la ficha de la socia nueva en `FICHEROS.fichas`.

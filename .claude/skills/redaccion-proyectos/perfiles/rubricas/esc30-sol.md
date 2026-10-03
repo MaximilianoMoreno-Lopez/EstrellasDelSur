@@ -66,12 +66,39 @@ Sale de dos notas reales y sus reescrituras: ChemSafe ronda 1 (57, carta de FR02
 
 ### Gestión
 1. Presupuesto por partidas que cuadre con la tabla, un solo circuito de pago en todo el formulario (ningún joven firma en la cuenta de la entidad) y una tabla de riesgos con respuesta a cada uno.
-2. Metas con hito, umbral y decisión (plan B) integradas en el pilotaje, también en el hito final. Para contar personas distintas sin datos sensibles, código seudónimo; conservar las pruebas de asistencia para posibles controles.
-3. Canales con nombre, frecuencia y cifras, emblema de la UE y Portal Europeo de la Juventud. Con públicos vulnerables, sin directos ni caras sin consentimiento.
+2. Cuatro o cinco metas con hito, umbral y decisión (plan B) integradas en el pilotaje, también en el hito final. Corregido tras las cartas porque la versión anterior no ponía techo, y 16 indicadores sin meta dieron una evaluación "peu intégrée au pilotage continu" (ChemSafe 2026, 57) y 10 sin umbral dejaron la gestión en 10/20 (Haro Queer 2026, 60). Para contar personas distintas sin datos sensibles, código seudónimo; conservar las pruebas de asistencia para posibles controles.
+3. Tres o cuatro canales con nombre, frecuencia y cifras, emblema de la UE y Portal Europeo de la Juventud. Corregido porque ocho canales sin audiencia en cada uno de los dos rechazos se leyeron como lista y no como plan (ChemSafe 2026, 57; Haro Queer 2026, 60). Con públicos vulnerables, sin directos ni caras sin consentimiento.
 4. Destinatarios con nombre y, para cada uno, qué recibe, cuándo y para qué. Resultados en la Plataforma de Resultados, los jóvenes como difusores y un acto final abierto.
 
 ### Transversal en ESC30
 - El umbral no basta. Con cupos autonómicos o agencias con poco dinero se compite con la región entera: apuntar a 80 o más y ajustar duración y días de coach al cupo del BOE.
 - El coach trabaja solo con el grupo. Un ponente para el público se paga con los costes del proyecto.
 - "Primer proyecto" sí, "primera candidatura" nunca si hay una ronda anterior registrada, y la ronda anterior se menciona una sola vez sin citar la carta.
+- Productos. Dos o tres productos que el grupo pueda hacer con su tiempo y su presupuesto, cada uno con su partida. Doce productos para cinco voluntarios en seis meses (ChemSafe 2026, 57) y siete sin coste asignado (Haro Queer 2026, 60) restaron realismo; la aprobada de la red fue la que la agencia describió como "sin grandes propósitos, pero con una presentación coherente, con objetivos reales y bien planteado" (Decide con Información 2026, aprobada).
 - Cada argumento entero en un solo bloque y los demás remiten a él. Cada campo largo entre 3.000 y 4.900 caracteres, sin cortes, respondiendo a su pregunta.
+
+## Lo que dicen las cartas reales
+Cartas de la ronda de febrero de 2026, con la nota en relevancia, diseño y gestión. ChemSafe Jeunes 2026, 57 (18/26/13), FR02, rechazada por no llegar a la mitad en relevancia. Haro Queer 2026, 60 (25/25/10), ES02, calidad suficiente sin fondos por el cupo de La Rioja. Decide con Información 2026, ES02, aprobada por 4.461 EUR, sin nota comunicada. Lo que ya recoge "Cómo sacar el máximo" no se repite aquí; esta sección cita la carta literal y la sitúa en su elemento. El análisis por caso está en `historial/2026-10-resultados-ronda-febrero-2026.md`.
+
+### Relevancia
+- **Elemento 1, encaje y objetivos.** Elogio a "une thématique sensible et relativement peu traitée" con enfoque de reducción de riesgos y a que "les objectifs sont clairement formulés" (ChemSafe 2026, 57). "La iniciativa se considera relevante en cuanto a su contenido" (Haro Queer 2026, 60). "El proyecto es pertinente como proyecto solidario [...] su necesidad está bien justificada" (Decide con Información 2026, aprobada).
+- **Elemento 5, necesidades de la comunidad y cómo se detectaron.** "L'analyse des besoins repose principalement sur l'expérience des porteurs du projet [...] n'est pas étayée par des données chiffrées ni par une méthodologie d'identification des besoins clairement explicitée" (ChemSafe 2026, 57). La carta de Haro no detalla debilidades, pero el 25/40 encaja con una justificación solo vivencial, sin consulta ni datos (Haro Queer 2026, 60).
+- **Elemento 7, impacto local y alianzas.** "Les liens directs entre la structure porteuse et le public cible ne sont pas précisés" y "les partenaires locaux [...] ne sont pas nommément identifiés, ce qui limite la visibilité de l'ancrage territorial" (ChemSafe 2026, 57). La recomendación pide "identifier et impliquer des partenaires locaux actifs dans la prévention, la santé ou l'accompagnement des jeunes" (ChemSafe 2026, 57).
+- **Elemento 8, experiencia con el público.** "La candidature fournit peu d'éléments démontrant l'expérience de la structure dans l'accompagnement de ces publics" (ChemSafe 2026, 57).
+
+### Diseño
+- **Elementos 2 y 4, iniciativa de los jóvenes.** "Le projet s'apparentant davantage à une initiative portée par la structure qu'à un projet émergent d'un groupe de jeunes", con el público "surtout comme bénéficiaires, sans participation significative à la conception" y la recomendación de "une phase de co-construction plus structurée" (ChemSafe 2026, 57).
+- **Elemento 3, composición del grupo.** "Plusieurs éléments essentiels ne sont pas précisés, notamment les profils des jeunes constituant le groupe cœur" (ChemSafe 2026, 57). Elogio a que "la composición del grupo es diversa y su experiencia se considera que puede ser adecuada" (Decide con Información 2026, aprobada).
+- **Elementos 1 y 5, fases y realismo.** "Le dossier est structuré et clairement rédigé, mais il apparaît relativement générique et peu ancré dans des réalités concrètes", con "le déroulé opérationnel des six mois [...] peu développé" (ChemSafe 2026, 57). "Adecuada en su diseño" (Haro Queer 2026, 60). "Su diseño presenta calidad, con objetivos claros y coherentes con las actividades propuestas" (Decide con Información 2026, aprobada).
+- **Elemento 6, aprendizaje.** Elogio a "la réflexion sur les apprentissages [...] décrite de manière structurée" con Youthpass previsto (ChemSafe 2026, 57).
+- **Elemento 7, accesibilidad, digital y sostenibilidad.** "Le choix d'un projet entièrement digital soulève certaines interrogations" sin decir cómo se acompaña a quien encuentra obstáculos en línea (ChemSafe 2026, 57). "Aucun dispositif de coaching externe n'est toutefois envisagé, malgré la sensibilité du sujet et la création récente de la structure" (ChemSafe 2026, 57). Elogio a que "se incluyen prácticas sostenibles y de accesibilidad" (Decide con Información 2026, aprobada).
+
+### Gestión
+- **Elemento 1, coordinación y capacidad.** "Les modalités de gestion apparaissent globalement conformes" (reunión semanal, doble control del gasto), pero "la capacité réelle de la structure porteuse à assurer cette gestion reste difficile à apprécier" en una asociación recién creada sin experiencia documentada (ChemSafe 2026, 57). "Correcta en su propuesta de gestión" con 10/20, justo la mitad (Haro Queer 2026, 60). "Todos los aspectos que implicaría su gestión están explicados" (Decide con Información 2026, aprobada).
+- **Elemento 2, evaluación.** "La démarche d'évaluation reste relativement simple et apparaît peu intégrée au pilotage continu du projet" (ChemSafe 2026, 57). "Se recogen convenientemente aspectos clave como la evaluación, la visibilidad y los resultados" (Decide con Información 2026, aprobada).
+- **Elementos 3 y 4, visibilidad y difusión.** "Les acteurs locaux susceptibles d'être mobilisés ne sont pas nommément identifiés" y "les modalités d'implication des jeunes participants dans les activités de diffusion restent limitées" (ChemSafe 2026, 57).
+
+### Lectura para ESC30
+- La aprobada se describe como "un proyecto sin grandes propósitos, pero con una presentación coherente, con objetivos reales y bien planteado" (Decide con Información 2026, aprobada). En ESC30 la modestia coherente gana a la ambición.
+- En cupos pequeños el 60 no financia y la carta ni siquiera explica las debilidades (Haro Queer 2026, 60).
+- FR02 detalla cada reproche con página del formulario y cierra con recomendaciones que funcionan como lista de verificación para la ronda siguiente (ChemSafe 2026, 57).

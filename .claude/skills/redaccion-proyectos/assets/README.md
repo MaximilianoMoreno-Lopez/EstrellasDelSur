@@ -13,7 +13,11 @@ El repositorio es público. Los JSON de configuración y los markdown de cada pr
 | `horario_xlsx.py` | Horario a la plantilla oficial KA152 Annex Timetable |
 | `horario_pdf.py` | Horario y calendario a PDF A4 apaisado |
 | `comprobacion_mecanica.py` | Guiones largos, emojis, tics, placeholders, códigos internos |
+| `workflow_datos.js` | Datos con fuente por frente, cada URL releída por un verificador |
+| `workflow_conceptos.js` | De 2 a 4 conceptos puntuados por tres jueces antes de la biblia |
 | `workflow_redaccion.js`, `workflow_correccion.js` | Redacción y corrección en paralelo por bloques |
+| `workflow_verificacion.js` | Batería de verificadores adversariales con `issues.md` deduplicado |
+| `workflow_evaluacion.js` | Nota estimada con dos evaluadores ciegos calibrados, mediana y margen de error |
 
 ## md2docx.py
 
@@ -153,14 +157,66 @@ py comprobacion_mecanica.py borrador.md
 py comprobacion_mecanica.py carpeta --patron "final_*.md"
 ```
 
-## workflow_redaccion.js y workflow_correccion.js
+## Workflows
 
-Plantillas de workflow para redactar por bloques en paralelo y aplicar después las correcciones de los verificadores. Solo se editan el bloque de datos y la lista de bloques o tareas; las preguntas literales salen del perfil de la acción en `perfiles/`.
+Seis plantillas para la herramienta Workflow, una por paso del proceso que se beneficia de agentes en paralelo. Todas siguen la misma forma: un bloque `DATOS` arriba que es lo único que se edita, `export const meta` literal, prompts que mandan a los agentes leer ficheros por ruta en lugar de pegarles material, y salidas estructuradas con schema donde el resultado se procesa en código. Como el script no puede escribir ficheros, el último agente de cada uno recibe el contenido ya montado y lo guarda con Write en la carpeta `trabajo/` del proyecto.
+
+Para lanzar cualquiera, copiar la plantilla al scratchpad o a `trabajo/`, rellenar el bloque de datos (rutas absolutas, nada de `[corchetes]` sin sustituir) y llamar a la herramienta Workflow con `scriptPath` apuntando a la copia. Si un agente falla a medias, relanzar con el mismo `scriptPath` y el `resumeFromRunId` del resultado: lo ya hecho vuelve de caché. Dos trampas de la ruta de Windows, aprendidas en CHEMSAFE: las cadenas con apóstrofos van entre backticks y, si se reescribe el fichero con Python, con `newline='\n'`.
+
+| Workflow | Cuándo | Escribe |
+|---|---|---|
+| `workflow_datos.js` | Paso 2, antes de la biblia | `trabajo/datos_verificados.md` |
+| `workflow_conceptos.js` | Paso 3, antes de la biblia, si hay más de una idea | `trabajo/conceptos_evaluados.md` y una ficha por concepto |
+| `workflow_redaccion.js` | Paso 4, formularios de más de seis bloques | `draft_<clave>.md` por bloque |
+| `workflow_verificacion.js` | Paso 5 y segunda ronda tras corregir | `trabajo/issues.md` |
+| `workflow_correccion.js` | Paso 6 | `final_<clave>.md` por bloque |
+| `workflow_evaluacion.js` | Paso 5 sobre el ensamblado final y paso 8, nota estimada | `trabajo/evaluacion_simulada.md` |
+
+### workflow_datos.js
+
+Investigación de datos con fuente para la biblia. Un investigador por frente busca con WebSearch, abre cada página y devuelve datos con enunciado listo para la biblia, cifra, fuente, URL exacta, año y cita literal. Después, un verificador por dato relee esa URL con la consigna de tumbar el dato y devuelve confirmado, corregido (la página respalda el dato pero la cifra, el año o el ámbito estaban mal, y trae el enunciado bueno), refutado o no accesible. No hay barrera entre fases: cada frente pasa a verificación en cuanto termina.
+
+`datos_verificados.md` lleva solo lo confirmado y lo corregido, agrupado por frente, y aparte las listas de refutados (con lo que la fuente sí dice), no comprobables (la URL no abrió) y huecos (lo que se buscó sin encontrar fuente), para que el usuario decida si busca otra fuente o lo deja fuera.
+
+Qué editar: `TRABAJO`, `PROYECTO` (título, acción, territorio, público, tema, año mínimo y datos por frente), `CONTEXTO` (ficheros que orientan al investigador, como la biblia a medias o el perfil) y `FRENTES`. Los cuatro frentes de serie son situación de los jóvenes del territorio, actores y servicios locales, marco normativo y prioridades de la agencia; se añaden o quitan según el proyecto, y las pistas de cada uno se afinan al tema.
+
+### workflow_conceptos.js
+
+Jueces de conceptos antes de la biblia. Un redactor por concepto desarrolla una ficha de una página con nueve apartados fijos (necesidad y público, eje diferencial, actividades, papel de los jóvenes, indicadores, consorcio, riesgos, qué puntúa y dónde) y la guarda en `trabajo/concepto_<clave>.md`. Tres jueces con lentes distintas (evaluador de la agencia, experto en relevancia y datos, gestor que mira la ejecutabilidad) leen todas las fichas a la vez para puntuar con la misma vara, contra `perfiles/rubricas/<accion>.md` y `comun/maximizar_puntuacion.md`, y devuelven puntos por criterio, riesgos, lo mejor y lo peor de cada concepto. El código calcula la media, elige el ganador y avisa si el margen con el segundo es menor de tres puntos. Un agente de síntesis escribe `conceptos_evaluados.md` con la decisión, las tablas de puntuación, los injertos de los otros conceptos (de dónde vienen y dónde encajan), los riesgos a cubrir en la biblia, el concepto final en una página y los descartados con su razón.
+
+Qué editar: `TRABAJO`, `SKILL` (ruta absoluta de la skill), `PROYECTO` (clave de la rúbrica, nombre de la acción, idioma y el marco con todo lo que un redactor necesita para no inventar), `FICHEROS.datos` (la salida de `workflow_datos.js`, o null) y `FICHEROS.contexto`, y `CONCEPTOS` con entre dos y cuatro entradas de clave, título e idea en diez líneas. El script se niega a arrancar con menos de dos o más de cuatro.
+
+### workflow_verificacion.js
+
+La batería del paso 5 generalizada. Lanza en paralelo los verificadores de coherencia, rúbrica y palancas, originalidad, estilo e idioma, y opcionalmente protección (si `temaSensible`) y carta de la agencia (si `reescrituraTrasRechazo`), más un evaluador simulado rápido y sin calibrar (la nota de `notaEstimada` sale de `workflow_evaluacion.js`). Cada verificador lee el borrador ensamblado, la biblia y las fichas por ruta y devuelve issues con bloque, gravedad, cita literal, problema y propuesta. El de originalidad recibe la referencia aprobada, las hermanas de la misma ronda y los proyectos anteriores de la solicitante, y se omite solo si no hay nada con qué comparar. El de la carta recorre `trabajo/feedback_agencia.md` reproche a reproche y dice si cada uno está resuelto, parcial o sin resolver y dónde; los no resueltos pasan a issues de gravedad alta.
+
+El código deduplica por bloque y cita (se queda con la gravedad mayor y acumula los orígenes y las propuestas distintas), ordena por gravedad y por el orden del formulario, y escribe `issues.md` con la nota del evaluador simulado, la tabla de reproches de la carta si la hay, un resumen por bloque, los issues transversales primero (son las decisiones que hay que tomar antes de corregir) y después los de gravedad alta, media y baja. De ahí salen directamente `GLOBAL` y `TAREAS` de `workflow_correccion.js`.
+
+Qué editar: `TRABAJO`, `SKILL`, `PROYECTO` (título, clave de la rúbrica, idiomas, `temaSensible`, `reescrituraTrasRechazo`, `evaluadorSimulado`, `contextoReferencia` si la aprobada pasa en otra ciudad, y los tokens de placeholder acordados), `VERIFICADORES` (la lista completa, o solo `['coherencia']` para la segunda ronda sobre la versión final), `FICHEROS` (borrador ensamblado, biblia, fichas, referencia, hermanas, anteriores, feedback) y `ORDEN_BLOQUES` con las claves de los bloques en el orden del formulario.
+
+### workflow_evaluacion.js
+
+La nota estimada que se comunica al usuario y que va a `notaEstimada`. Dos evaluadoras ciegas leen el prompt calibrado (`evaluador/evaluador.md`), las anclas (`evaluador/anclas.md`, si existe), la rúbrica de la acción solo hasta "Cómo sacar el máximo" y la solicitud completa. Tienen personas distintas, A veterana de agencia que desconfía de la ambición y B especialista externa en trabajo juvenil e inclusión, pero las mismas reglas. Cada una devuelve perfil A, B o C con los cinco núcleos y su pasaje, puntos enteros por criterio, topes y suelos aplicados, debilidades decisivas, incoherencias, recorte probable y frase de carta.
+
+El código saca la mediana por criterio (el medio punto sube, como en la calibración), suma el total, pone la banda de cada criterio con la tabla oficial, comprueba el umbral (60 y la mitad de cada criterio) y da la banda global (por debajo del umbral, por encima sin fondos probables, o financiable si hay cupo a partir de 72). Añade el margen de `evaluador/calibracion.md` y avisa si el intervalo cruza 60 o 72, si las evaluadoras asignan perfiles distintos o si se separan más que el margen. Escribe `trabajo/evaluacion_simulada.md` con la tabla, los núcleos de cada evaluadora, las debilidades, el recorte y las frases de carta.
+
+La nota se comunica siempre con el margen, "75 más o menos 6". KA210 y KA220 tienen criterios cargados pero no están calibradas; el script lo avisa y sube el margen a 10.
+
+Qué editar: `SKILL`, `TRABAJO` (o null para no guardar), `SOLICITUD` (título, ruta del ensamblado, clave de la rúbrica, nombre de la acción, agencia y territorio del cupo) y, solo si `calibracion.md` cambia, `VERSION` y `MARGEN`. Para congelar predicciones antes de conocer las notas, una ejecución por solicitud y el resultado a la tabla de `calibracion.md`. No sirve para medir el acierto sobre las 13 solicitudes de calibración, porque las anclas citan sus pasajes.
+
+El evaluador simulado de `workflow_verificacion.js` es un control rápido sin calibrar; su cifra no se comunica.
+
+### workflow_redaccion.js y workflow_correccion.js
+
+Plantillas para redactar por bloques en paralelo y aplicar después las correcciones de los verificadores. Solo se editan el bloque de datos y la lista de bloques o tareas; las preguntas literales salen del perfil de la acción en `perfiles/`. En la corrección, las cuestiones transversales se deciden antes de lanzar y se escriben en `GLOBAL`; los issues por bloque de `issues.md` se reparten en `TAREAS`.
 
 ## Orden de uso recomendado
 
-1. Redactar y ensamblar el markdown para pegar.
-2. `comprobacion_mecanica.py`, `contar.py` y `fechas.py --anio` sobre el ensamblado y el horario.
-3. `presupuesto_ka1.py` y pegar sus tablas en Flow budget y Budget summary.
-4. `horario_xlsx.py` y `horario_pdf.py` para los anexos KA1.
-5. `md2docx.py` para el Word final.
+1. `workflow_datos.js` y, si hay varias ideas, `workflow_conceptos.js`; con eso se cierra la biblia.
+2. Redactar (`workflow_redaccion.js` si el formulario es largo) y ensamblar el markdown para pegar.
+3. `workflow_verificacion.js` sobre el ensamblado, repartir `issues.md` en `workflow_correccion.js` y volver a lanzar la verificación solo con coherencia sobre la versión final.
+4. `workflow_evaluacion.js` sobre el ensamblado final para la nota estimada, que se comunica con su margen.
+5. `comprobacion_mecanica.py`, `contar.py` y `fechas.py --anio` sobre el ensamblado y el horario.
+6. `presupuesto_ka1.py` y pegar sus tablas en Flow budget y Budget summary.
+7. `horario_xlsx.py` y `horario_pdf.py` para los anexos KA1.
+8. `md2docx.py` para el Word final.

@@ -13,4 +13,5 @@ El proceso general está en `SKILL.md`. Cada receta dice qué cambia según lo q
 En todas:
 - La biblia se escribe antes que cualquier texto y los datos de las entidades salen de `proyectos/referencias/organizaciones/`.
 - Las palancas de `comun/maximizar_puntuacion.md` son la lista de comprobación del verificador de rúbrica.
+- Los pasos con agentes en paralelo tienen plantilla en `assets/`: `workflow_datos.js` (datos con fuente), `workflow_conceptos.js` (jueces de conceptos), `workflow_redaccion.js`, `workflow_verificacion.js` (issues en `trabajo/issues.md`) y `workflow_correccion.js`. Cómo lanzarlas, en `assets/README.md`.
 - Al terminar, se registra la candidatura en `src/lib/candidaturas.mjs` con `estado: 'preparacion'` o `'presentada'` y `notaEstimada`.

@@ -7,7 +7,7 @@ description: Redactar, revisar, adaptar, ampliar o rehacer tras un rechazo solic
 
 El objetivo es que cada solicitud saque la nota más alta posible, no solo que pase el umbral. El proceso es común a todas las convocatorias; cada acción tiene un perfil con lo específico y cada tipo de encargo una receta. La skill aprende de las notas reales: cada carta de resultados que llega se convierte en palancas nuevas.
 
-Nació del KA154 EuroÁgora (agosto de 2026) y se afinó con las diez solicitudes presentadas el 1 de octubre de 2026. Estimaciones del evaluador simulado entre 81 y 88; los dos rechazos registrados (57 y 60) son la base de las palancas de relevancia y gestión.
+Nació del KA154 EuroÁgora (agosto de 2026) y se afinó con las diez solicitudes presentadas el 1 de octubre de 2026. Estimaciones del evaluador simulado entre 81 y 88, hechas antes de calibrarlo (con la versión calibrada hay que rehacerlas); los dos rechazos registrados (57 y 60) son la base de las palancas de relevancia y gestión.
 
 ## Mapa
 
@@ -19,9 +19,13 @@ Nació del KA154 EuroÁgora (agosto de 2026) y se afinó con las diez solicitude
 | Estilo, biblia, criterios comunes | `comun/` | skill |
 | Herramientas (Word, horario, contador, fechas, presupuesto, workflows) | `assets/` y su `README.md` | skill |
 | Lecciones por proyecto | `historial/` | skill |
+| Lo que hicieron los evaluadores con nuestros textos (26 resultados, reproches, recortes) | `comun/lecciones_evaluadores.md` | skill |
+| Lo que dicen las guías y las agencias que valoran y penalizan | `comun/buenas_practicas_evaluadores.md` | skill |
+| Evaluador simulado calibrado (prompt, anclas, calibración y margen) | `assets/evaluador/` (`evaluador.md`, `anclas.md`, `calibracion.md`) | skill |
 | Resultados y notas de todas las candidaturas | `src/lib/candidaturas.mjs` (tablero en `/radar/`) | repo público, sin datos personales |
 | Fichas de organizaciones y socias | `proyectos/referencias/organizaciones/` | repo privado |
 | Solicitudes, PIF, guías, aprobadas de referencia, plantillas | `proyectos/` | repo privado |
+| Cartas de las agencias y solicitudes presentadas con su nota (verdad terreno de la calibración) | `proyectos/referencias/resultados/` | repo privado |
 
 `proyectos/` es un repositorio privado aparte, excluido del público con `/proyectos/` en `.gitignore` (anclado, para no excluir `src/pages/proyectos/`). Lleva PIF con teléfonos, PRN y fechas de nacimiento: nada de ahí se copia a la skill, a `candidaturas.mjs` ni a ningún fichero del repo público. La skill tiene que poder compartirse tal cual.
 
@@ -74,7 +78,7 @@ Sobre el borrador ensamblado, como mínimo:
 - **Estilo e idioma**: `comun/reglas_estilo.md`, tono de IA y longitudes.
 - **Protección** si el tema es sensible.
 
-Un último agente hace de evaluador simulado y puntúa por criterio; esa cifra va a `notaEstimada`.
+La nota estimada sale de `assets/workflow_evaluacion.js` sobre el ensamblado final (dos evaluadoras ciegas con el prompt calibrado de `assets/evaluador/`, mediana por criterio) y va a `notaEstimada`. Se comunica siempre con su margen de `assets/evaluador/calibracion.md`, por ejemplo "82 más o menos 6" con el margen vigente, nunca la cifra sola. El evaluador rápido de `workflow_verificacion.js` es solo un control.
 
 ### 6. Corrección
 `assets/workflow_correccion.js`. Asignar cada issue a su bloque, pasar G1-G12 tal cual y decidir TÚ las cuestiones transversales antes de lanzar. Después, segunda ronda de coherencia sobre la versión final: las correcciones por bloque abren incoherencias nuevas.
@@ -89,8 +93,8 @@ Un último agente hace de evaluador simulado y puntúa por criterio; esa cifra v
 Uso de cada herramienta en `assets/README.md`.
 
 ### 8. Cierre y aprendizaje
-- **Resumen al usuario**: decisiones, lo que cazaron los verificadores, supuestos y datos pendientes, nota estimada por criterio. Recordar que la checklist de originalidad la firma el usuario.
+- **Resumen al usuario**: decisiones, lo que cazaron los verificadores, supuestos y datos pendientes, y la nota estimada de `assets/workflow_evaluacion.js` por criterio y con su margen ("82 más o menos 6"), con el aviso si el intervalo cruza 60 o 72. Recordar que la checklist de originalidad la firma el usuario.
 - **Registrar la candidatura** en `src/lib/candidaturas.mjs`, sin nombres de participantes, PRN ni teléfonos.
 - **Actualizar** el perfil de la acción, las fichas de las entidades implicadas y una entrada de `historial/`.
-- **Cuando llegue la carta de resultados**, seguir "Cuando llega una carta" en `comun/maximizar_puntuacion.md`. Es lo que hace que la skill mejore.
+- **Cuando llegue la carta de resultados**, seguir "Cuando llega una carta" en `comun/maximizar_puntuacion.md` y anotar la nota real junto a la predicción congelada en `assets/evaluador/calibracion.md`, que explica cuándo recalibrar. Es lo que hace que la skill mejore.
 - **Commits**: la skill y `candidaturas.mjs` van al repo público y las solicitudes y fichas al privado `proyectos/`. Push solo con permiso del usuario.

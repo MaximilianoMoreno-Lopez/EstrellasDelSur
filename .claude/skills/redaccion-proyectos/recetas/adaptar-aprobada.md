@@ -11,7 +11,7 @@ Ejemplo: Cadres Communs (KA152 de Étoiles de France en París, en francés) a p
 ## Pasos
 1. Extraer la aprobada a texto y anotar por bloque qué la hace puntuar (mecanismo, cifra, estructura) en una tabla "se conserva la idea / se cambia la forma".
 2. Fichas de la nueva solicitante y de las socias nuevas. Si cambia el consorcio, el reparto de tareas se rehace desde cero.
-3. Biblia nueva con el contexto local. Fechas comprobadas con `fechas.py` y presupuesto con los importes del país de la actividad (`presupuesto_ka1.py`).
-4. Redacción en el idioma del formulario de la agencia.
-5. Verificador de originalidad con la aprobada al lado, que busca calcos de frase y de estructura, y verificador de contexto que comprueba que ningún dato de la ciudad original se ha colado.
+3. Biblia nueva con el contexto local. Los datos de la nueva ciudad salen de `assets/workflow_datos.js` con el territorio cambiado, nunca de la aprobada. Fechas comprobadas con `fechas.py` y presupuesto con los importes del país de la actividad (`presupuesto_ka1.py`).
+4. Redacción en el idioma del formulario de la agencia (`assets/workflow_redaccion.js` si el formulario es largo).
+5. `assets/workflow_verificacion.js` con la aprobada en `FICHEROS.referencia` y la ciudad original en `PROYECTO.contextoReferencia`: el verificador de originalidad busca calcos de frase y de estructura y marca con gravedad alta cualquier dato de la ciudad original que se haya colado.
 6. Horario en la plantilla oficial con el idioma de la solicitud.
