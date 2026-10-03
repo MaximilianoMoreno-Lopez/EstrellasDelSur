@@ -535,7 +535,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
                 </div>
               ) : c.notaEstimada != null ? (
                 <div class="cand-nota is-est">
-                  <p class="cn-total"><strong>{c.notaEstimada}</strong>/100 <span class="cn-est">estimada por nuestro evaluador</span></p>
+                  <p class="cn-total"><strong>{c.notaEstimada}</strong>/100 <span class="cn-est">estimada por nuestro evaluador calibrado, más o menos 6</span></p>
                   {(CRITERIOS as any)[c.accion] && (
                     <p class="cn-pesos">
                       Criterios {(CRITERIOS as any)[c.accion].map(([n, m]: [string, number]) => `${n} ${m}`).join(' · ')}

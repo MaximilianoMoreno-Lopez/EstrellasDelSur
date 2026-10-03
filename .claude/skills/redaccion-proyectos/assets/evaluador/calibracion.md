@@ -138,15 +138,15 @@ Casos pendientes de la ronda de octubre de 2026, que serán la primera muestra f
 
 | Caso | Acción | Agencia | Estimación interna previa (sin calibrar) | v1 congelada | Real |
 |---|---|---|---|---|---|
-| REAL (Real or Rendered?) | KA152 | ES02 | 87 | pendiente | pendiente |
-| Cadres Communs | KA152 | FR02 | 86 | 75 (24/29/22), 2026-10-03 | pendiente |
-| EMBER | KA153 | ES02 | sin estimación | pendiente | pendiente |
-| Rutas de Barrio | KA155 | ES02 | sin estimación | pendiente | pendiente |
-| Billets d'Europe | KA155 | FR02 | sin estimación | pendiente | pendiente |
-| Orgullo de Pueblo | KA155 | ES02 | 88 | pendiente | pendiente |
-| Conecta Sur | ESC30 | ES02 | sin estimación | pendiente | pendiente |
-| CHEMSAFE r3 | ESC30 | FR02 | sin estimación | pendiente | pendiente |
-| Haro Queer v2 | ESC30 | ES02 | 81 | pendiente | pendiente |
+| REAL (Real or Rendered?) | KA152 | ES02 | 87 | 76 (24/30/22), 2026-10-03 | pendiente |
+| Cadres Communs | KA152 | FR02 | 86 | 75 (24/29/22), 2026-10-03; segunda pasada 76 | pendiente |
+| EMBER | KA153 | ES02 | sin estimación | 60 (23/22/15), 2026-10-03, sobre la exportación del portal del 15 de septiembre, que tenía la gestión vacía; no vale como predicción de la versión enviada | pendiente |
+| Rutas de Barrio | KA155 | ES02 | sin estimación | 78 (33/30/15), 2026-10-03 | pendiente |
+| Billets d'Europe | KA155 | FR02 | sin estimación | 66 (27/27/12), 2026-10-03, sobre el texto con unos quince huecos sin rellenar | pendiente |
+| Orgullo de Pueblo | KA155 | ES02 | 88 | 80 (33/31/16), 2026-10-03 | pendiente |
+| Conecta Sur | ESC30 | ES02 | sin estimación | 81 (34/31/16), 2026-10-03 | pendiente |
+| CHEMSAFE r3 | ESC30 | FR02 | sin estimación | 78 (32/30/16), 2026-10-03 | pendiente |
+| Haro Queer v2 | ESC30 | ES02 | 81 | 80 (34/30/16), 2026-10-03 | pendiente |
 
 ### 1. Antes de conocer ninguna nota
 
@@ -170,9 +170,22 @@ Casos pendientes de la ronda de octubre de 2026, que serán la primera muestra f
 - Las 8 cartas que no tienen solicitud conservada pasan a la muestra si aparecen sus textos, como casos fuera de muestra para la v1.
 - Antes de la ronda de febrero de 2027 se repite el paso 1 con la versión que quede vigente.
 
+## Validación fuera de muestra (2026-10-03)
+
+Para medir el sobreajuste se escribió una versión de prueba (v1b) con la misma estructura que la v1, pero reconstruida solo con 9 de los 13 casos. Quien la escribió no pudo abrir nada de los otros 4 (ni análisis, ni cartas, ni corpus, ni las anclas que venían de ellos). Después dos evaluadoras ciegas puntuaron esos 4 con la v1b.
+
+| Caso de prueba | Real | v1b | Error |
+|---|---|---|---|
+| KA154 aprobado con recorte (Democracia sin barreras 2026) | 80 | 73 (23/28/22) | -7 |
+| KA155 rechazado (Green Tracks 2026) | 58 | 59 (23/24/12) | +1 |
+| KA154 rechazado (Conexión Atlántica 2026) | 52 | 51 (16/20/15) | -1 |
+| ESC30 sin fondos (Haro Queer 2026 r1) | 60 | 58 (22/24/12) | -2 |
+
+Error medio fuera de muestra 2,8 y el lado del umbral de 60 se acierta en 3 de 4 (Haro Queer queda en 58 frente a 60 real). La v1 no es solo memoria de los 13 casos: separa aprobadas y rechazadas que no ha visto. Dos cautelas. Son 4 casos, y el error más grande vuelve a estar en la aprobada mejor puntuada (-7), igual que en la v1, así que el evaluador tiende a quedarse corto con los proyectos excelentes. Se mantiene el margen de más o menos 6, que cubre todos los casos de prueba salvo el de 80.
+
 ## Historial de versiones
 
 | Versión | Fecha | Ajustada con | MAE en la muestra de ajuste | MAE fuera de muestra | Margen comunicado |
 |---|---|---|---|---|---|
 | v0 | 2026-10-03 | sin calibrar | 10,0 (13 casos) | no aplica | no se usó |
-| v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | pendiente (octubre de 2026) | 6 |
+| v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | 2,8 en 4 casos con la v1b (validación interna); octubre de 2026 pendiente | 6 |
