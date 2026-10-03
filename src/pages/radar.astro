@@ -122,7 +122,7 @@ const CAND_LABEL: Record<EstadoCand, string> = {
   preparacion: 'En preparación',
   presentada: 'Presentada',
   aprobada: 'Aprobada',
-  reserva: 'Lista de reserva',
+  reserva: 'Calidad suficiente, sin fondos',
   rechazada: 'No financiada',
 };
 const CAND_BADGE: Record<EstadoCand, string> = {
@@ -142,7 +142,7 @@ for (const c of CANDIDATURAS as any[]) {
   if (!ORGANIZACIONES.includes(c.organizacion)) throw new Error(`Organización inválida en "${c.nombre}": ${c.organizacion}`);
   if (!PROGRAMAS.includes(c.programa)) throw new Error(`Programa inválido en "${c.nombre}": ${c.programa}`);
   if (!ESTADOS.includes(c.estado)) throw new Error(`Estado inválido en "${c.nombre}": ${c.estado}`);
-  if (c.nota) {
+  if (c.nota && c.nota.criterios.length) {
     const suma = c.nota.criterios.reduce((s: number, k: any) => s + k.puntos, 0);
     if (suma !== c.nota.total) throw new Error(`La nota de "${c.nombre}" no suma: ${suma} frente a ${c.nota.total}`);
   }
@@ -522,6 +522,9 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
                     <strong>{c.nota.total}</strong>/100
                     {c.notaEstimada != null && <span class="cn-est">estimábamos {c.notaEstimada}</span>}
                   </p>
+                  {c.nota.criterios.length === 0 && (CRITERIOS as any)[c.accion] && (
+                    <p class="cn-pesos">Sin desglose por criterios en la carta. Pesos {(CRITERIOS as any)[c.accion].map(([n, m]: [string, number]) => `${n} ${m}`).join(' · ')}</p>
+                  )}
                   {c.nota.criterios.map((k: any) => (
                     <div class={`cn-row ${k.puntos * 2 < k.max ? 'is-bajo' : ''}`}>
                       <span class="cn-lbl">{k.nombre}</span>
@@ -549,6 +552,16 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
               </dl>
 
               {c.leccion && <p class="rc-notas">{c.leccion}</p>}
+              {(c.comentarios || c.recorte) && (
+                <details class="cand-coment">
+                  <summary>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Comentarios de la agencia
+                  </summary>
+                  {c.recorte && <p class="cc-recorte"><strong>Ajuste al conceder.</strong> {c.recorte}</p>}
+                  {c.comentarios && <p class="cc-texto">{c.comentarios}</p>}
+                </details>
+              )}
               {c.porConfirmar && <p class="rc-confianza">Algún dato por confirmar</p>}
             </article>
             ))}
@@ -1290,6 +1303,31 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
   .cn-val { text-align: right; font-weight: 700; }
   .cand-nota-pie { font-size: .78rem; color: var(--gray-500); margin-top: 1rem; }
 
+  /* Desplegable con los comentarios literales de la agencia */
+  .cand-coment {
+    font-size: .82rem;
+    color: var(--gray-700);
+    border-top: 1px dashed var(--gray-200);
+    padding-top: .45rem;
+    margin-top: .2rem;
+  }
+  .cand-coment summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-weight: 600;
+    color: var(--teal-text, #0f766e);
+    user-select: none;
+  }
+  .cand-coment summary::-webkit-details-marker { display: none; }
+  .cand-coment summary::after { content: '+'; font-weight: 700; margin-left: .15rem; }
+  .cand-coment[open] summary::after { content: '2'; }
+  .cand-coment p { margin-top: .5rem; line-height: 1.55; }
+  .cc-recorte { color: #92400e; background: var(--gold-dim); padding: .45rem .6rem; border-radius: 8px; }
+  .cc-texto { white-space: pre-line; }
+
   /* Cabeceras de ronda */
   .cand-grupo {
     grid-column: 1 / -1;
@@ -1383,6 +1421,16 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
   .cand-grid.view-list .rc-datos,
   .cand-grid.view-list .rc-notas,
   .cand-grid.view-list .rc-confianza { display: none; }
+  /* En la lista, el desplegable ocupa una segunda fila a lo ancho */
+  .cand-grid.view-list .cand-coment {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    border-top: none;
+    padding-top: 0;
+    margin-top: -.2rem;
+  }
+  .cand-grid.view-list .cand-coment summary { font-size: .76rem; font-weight: 500; }
+  .cand-grid.view-list .cand-coment p { max-width: 70ch; }
 
   @media (max-width: 860px) {
     .cand-grid.view-list .cand-card {
@@ -1396,6 +1444,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     .cand-grid.view-list .cl-org { grid-column: 1 / 3; grid-row: 3; }
     .cand-grid.view-list .cl-ronda { display: none; }
     .cand-grid.view-list .cl-pedido { grid-column: 3; grid-row: 3; }
+    .cand-grid.view-list .cand-coment { grid-row: 4; }
   }
 
   .radar-empty {
