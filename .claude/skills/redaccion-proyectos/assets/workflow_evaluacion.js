@@ -8,7 +8,7 @@
 // margen de error de assets/evaluador/calibracion.md.
 //
 // Es la fuente de la nota estimada de los pasos 5 y 8 de SKILL.md. La nota se
-// comunica siempre con su margen ("75 más o menos 6"), nunca la cifra sola.
+// comunica siempre con su margen ("75 más o menos 8"), nunca la cifra sola.
 //
 // PARA ADAPTARLO solo hay que editar el bloque DATOS. Si calibracion.md cambia
 // el margen o la versión del prompt, hay que cambiar aquí MARGEN y VERSION.
@@ -48,7 +48,7 @@ const SOLICITUD = {
 
 // Versión del prompt y margen vigentes, copiados de assets/evaluador/calibracion.md.
 const VERSION = 'v1, calibrada el 2026-10-03'
-const MARGEN = 6
+const MARGEN = 8
 // Margen para las acciones sin ningún caso en la calibración (MAE de la v0).
 const MARGEN_SIN_CALIBRAR = 10
 

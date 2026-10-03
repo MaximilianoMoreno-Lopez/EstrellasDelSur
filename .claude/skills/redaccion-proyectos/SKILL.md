@@ -78,7 +78,7 @@ Sobre el borrador ensamblado, como mínimo:
 - **Estilo e idioma**: `comun/reglas_estilo.md`, tono de IA y longitudes.
 - **Protección** si el tema es sensible.
 
-La nota estimada sale de `assets/workflow_evaluacion.js` sobre el ensamblado final (dos evaluadoras ciegas con el prompt calibrado de `assets/evaluador/`, mediana por criterio) y va a `notaEstimada`. Se comunica siempre con su margen de `assets/evaluador/calibracion.md`, por ejemplo "82 más o menos 6" con el margen vigente, nunca la cifra sola. El evaluador rápido de `workflow_verificacion.js` es solo un control.
+La nota estimada sale de `assets/workflow_evaluacion.js` sobre el ensamblado final (dos evaluadoras ciegas con el prompt calibrado de `assets/evaluador/`, mediana por criterio) y va a `notaEstimada`. Se comunica siempre con su margen de `assets/evaluador/calibracion.md`, por ejemplo "82 más o menos 8" con el margen vigente, nunca la cifra sola. El evaluador rápido de `workflow_verificacion.js` es solo un control.
 
 ### 6. Corrección
 `assets/workflow_correccion.js`. Asignar cada issue a su bloque, pasar G1-G12 tal cual y decidir TÚ las cuestiones transversales antes de lanzar. Después, segunda ronda de coherencia sobre la versión final: las correcciones por bloque abren incoherencias nuevas.
@@ -93,7 +93,7 @@ La nota estimada sale de `assets/workflow_evaluacion.js` sobre el ensamblado fin
 Uso de cada herramienta en `assets/README.md`.
 
 ### 8. Cierre y aprendizaje
-- **Resumen al usuario**: decisiones, lo que cazaron los verificadores, supuestos y datos pendientes, y la nota estimada de `assets/workflow_evaluacion.js` por criterio y con su margen ("82 más o menos 6"), con el aviso si el intervalo cruza 60 o 72. Recordar que la checklist de originalidad la firma el usuario.
+- **Resumen al usuario**: decisiones, lo que cazaron los verificadores, supuestos y datos pendientes, y la nota estimada de `assets/workflow_evaluacion.js` por criterio y con su margen ("82 más o menos 8"), con el aviso si el intervalo cruza 60 o 72. Recordar que la checklist de originalidad la firma el usuario.
 - **Registrar la candidatura** en `src/lib/candidaturas.mjs`, sin nombres de participantes, PRN ni teléfonos.
 - **Actualizar** el perfil de la acción, las fichas de las entidades implicadas y una entrada de `historial/`.
 - **Cuando llegue la carta de resultados**, seguir "Cuando llega una carta" en `comun/maximizar_puntuacion.md` y anotar la nota real junto a la predicción congelada en `assets/evaluador/calibracion.md`, que explica cuándo recalibrar. Es lo que hace que la skill mejore.

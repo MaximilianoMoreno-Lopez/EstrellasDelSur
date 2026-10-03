@@ -200,7 +200,7 @@ La nota estimada que se comunica al usuario y que va a `notaEstimada`. Dos evalu
 
 El código saca la mediana por criterio (el medio punto sube, como en la calibración), suma el total, pone la banda de cada criterio con la tabla oficial, comprueba el umbral (60 y la mitad de cada criterio) y da la banda global (por debajo del umbral, por encima sin fondos probables, o financiable si hay cupo a partir de 72). Añade el margen de `evaluador/calibracion.md` y avisa si el intervalo cruza 60 o 72, si las evaluadoras asignan perfiles distintos o si se separan más que el margen. Escribe `trabajo/evaluacion_simulada.md` con la tabla, los núcleos de cada evaluadora, las debilidades, el recorte y las frases de carta.
 
-La nota se comunica siempre con el margen, "75 más o menos 6". KA210 y KA220 tienen criterios cargados pero no están calibradas; el script lo avisa y sube el margen a 10.
+La nota se comunica siempre con el margen, "75 más o menos 8". KA210 y KA220 tienen criterios cargados pero no están calibradas; el script lo avisa y sube el margen a 10.
 
 Qué editar: `SKILL`, `TRABAJO` (o null para no guardar), `SOLICITUD` (título, ruta del ensamblado, clave de la rúbrica, nombre de la acción, agencia y territorio del cupo) y, solo si `calibracion.md` cambia, `VERSION` y `MARGEN`. Para congelar predicciones antes de conocer las notas, una ejecución por solicitud y el resultado a la tabla de `calibracion.md`. No sirve para medir el acierto sobre las 13 solicitudes de calibración, porque las anclas citan sus pasajes.
 

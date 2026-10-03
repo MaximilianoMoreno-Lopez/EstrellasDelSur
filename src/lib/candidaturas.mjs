@@ -78,7 +78,7 @@ export const CANDIDATURAS = [
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'Intercambio en Madrid con Ucrania y Siria. Con la misma solicitante que un KA152 aprobado, el verificador de originalidad cazó calcos: pasarlo siempre. Evaluador calibrado: 76 más o menos 6 (antes estimábamos 87). Pesa la sobrecarga de productos para seis días.',
+    leccion: 'Intercambio en Madrid con Ucrania y Siria. Con la misma solicitante que un KA152 aprobado, el verificador de originalidad cazó calcos: pasarlo siempre. Evaluador calibrado: 76 más o menos 8 (antes estimábamos 87). Pesa la sobrecarga de productos para seis días. El texto da por enviada la carta de apoyo de Maldita.es, que no se adjuntó: si la agencia lo comprueba, resta credibilidad.',
     carpeta: 'erasmus/KA152_REAL_Federacion',
   },
   {
@@ -97,7 +97,7 @@ export const CANDIDATURAS = [
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'Adaptación en francés de un KA152 aprobado a París y seis socias nuevas. Reescribir desde el contexto local, nunca traducir. Evaluador calibrado: 76 más o menos 6 (antes 86). Socios locales sin acuerdo firmado y días de viaje para un grupo que vive en París.',
+    leccion: 'Adaptación en francés de un KA152 aprobado a París y seis socias nuevas. Reescribir desde el contexto local, nunca traducir. Evaluador calibrado: 76 más o menos 8 (antes 86). Socios locales sin acuerdo firmado y días de viaje para un grupo que vive en París.',
     carpeta: 'erasmus/KA152_Cadres_Communs_Etoiles',
   },
   {
@@ -110,13 +110,13 @@ export const CANDIDATURAS = [
     ronda: '2026 R2',
     fechaPresentacion: '2026-10-01',
     estado: 'presentada',
-    notaEstimada: null,
+    notaEstimada: 60,
     nota: null,
     importePedido: null,
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'Consorcio de ocho socias. Varias versiones de borrador hicieron perder horas: el PDF del portal manda siempre sobre los borradores. Sin estimación calibrada: la única exportación del portal que tenemos (15 de septiembre) tenía la gestión vacía.',
+    leccion: 'Consorcio de ocho socias. Varias versiones de borrador hicieron perder horas: el PDF del portal manda siempre sobre los borradores. Evaluador calibrado sobre el PDF enviado: 60 más o menos 8. Lo hunden las incoherencias: una socia (Hawk Stars) que no está en el consorcio aparece con tareas que en otras secciones son de Guarda a Terra, y quedó en el formulario una nota interna sin borrar.',
     carpeta: 'erasmus/KA153_EMBER_EstrellasDelSur',
   },
   {
@@ -135,7 +135,7 @@ export const CANDIDATURAS = [
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'DiscoverEU con jóvenes de Usera y Villaverde. La primera versión se quedó corta (respuestas de 1.300 a 2.000 caracteres); se amplió a 4.000-4.900. Evaluador calibrado: 78 más o menos 6; riesgo de que financien un solo viaje, como a Melilla.',
+    leccion: 'DiscoverEU con jóvenes de Usera y Villaverde. La primera versión se quedó corta (respuestas de 1.300 a 2.000 caracteres); se amplió a 4.000-4.900. Evaluador calibrado: 78 más o menos 8; riesgo de que financien un solo viaje, como a Melilla.',
     carpeta: 'erasmus/KA155_Rutas_de_Barrio_Federacion',
   },
   {
@@ -154,7 +154,7 @@ export const CANDIDATURAS = [
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'DiscoverEU en francés hacia España y Portugal. También se amplió: el KA155 aprobado de referencia tiene 4.000-5.000 caracteres por respuesta. Evaluador calibrado: 66 más o menos 6 sobre el texto con huecos sin rellenar; si se completaron en el portal, la nota real debería ser mayor.',
+    leccion: 'DiscoverEU en francés hacia España y Portugal. También se amplió: el KA155 aprobado de referencia tiene 4.000-5.000 caracteres por respuesta. Evaluador calibrado: 66 más o menos 8 sobre el borrador con huecos; los huecos sí se rellenaron en el portal, así que la nota de lo enviado debería ser mayor (sin PDF del portal para comprobarlo).',
     carpeta: 'erasmus/KA155_Billets_d_Europe_Etoiles',
     porConfirmar: true,
   },
@@ -174,7 +174,7 @@ export const CANDIDATURAS = [
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'Jóvenes LGTBIQ+ rurales con viajes al Coming Out Day y al IDAHOBIT. Un verificador específico de protección evitó riesgos de exposición. Evaluador calibrado: 80 más o menos 6 (antes 88); riesgo de un solo viaje por ser entidad nueva.',
+    leccion: 'Jóvenes LGTBIQ+ rurales con viajes al Coming Out Day y al IDAHOBIT. Un verificador específico de protección evitó riesgos de exposición. Evaluador calibrado: 80 más o menos 8 (antes 88); riesgo de un solo viaje por ser entidad nueva.',
     carpeta: 'erasmus/KA155_Orgullo_de_Pueblo_Horizonte',
   },
   {
@@ -193,7 +193,7 @@ export const CANDIDATURAS = [
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'Doce meses con doce días de coach y costes excepcionales. Ojo al cupo autonómico de Andalucía en la ronda de octubre. Evaluador calibrado: 81 más o menos 6. Revisar que no se pegaran en el portal notas de edición (SUSTITUCION 1).',
+    leccion: 'Doce meses con doce días de coach y costes excepcionales. Ojo al cupo autonómico de Andalucía en la ronda de octubre. Evaluador calibrado: 81 más o menos 8. Revisar que no se pegaran en el portal notas de edición (SUSTITUCION 1).',
     carpeta: 'cuerpo_europeo_solidaridad/ESC30_Conecta_Sur_EstrellasDelSur',
   },
   {
@@ -212,7 +212,7 @@ export const CANDIDATURAS = [
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'Reescritura presencial y con coach tras la ronda 1. Presupuesto pequeño y sin costes excepcionales porque en octubre la agencia francesa tiene poco dinero. Evaluador calibrado: 78 más o menos 6 (la ronda 1 sacó 57).',
+    leccion: 'Reescritura presencial y con coach tras la ronda 1. Presupuesto pequeño y sin costes excepcionales porque en octubre la agencia francesa tiene poco dinero. Evaluador calibrado: 78 más o menos 8 (la ronda 1 sacó 57).',
     carpeta: 'cuerpo_europeo_solidaridad/ESC30_ChemSafe_Etoiles',
   },
   {
@@ -231,7 +231,7 @@ export const CANDIDATURAS = [
     importeConcedido: null,
     recorte: null,
     comentarios: null,
-    leccion: 'Reescrita tras la ronda 1. Cuatro meses y tres días de coach para caber en el cupo de La Rioja (3.316,90 EUR). La coach ya no trabaja con el público. Evaluador calibrado: 80 más o menos 6 (la ronda 1 sacó 60).',
+    leccion: 'Reescrita tras la ronda 1. Cuatro meses y tres días de coach para caber en el cupo de La Rioja (3.316,90 EUR). La coach ya no trabaja con el público. Evaluador calibrado: 80 más o menos 8 (la ronda 1 sacó 60).',
     carpeta: 'cuerpo_europeo_solidaridad/ESC30_Haro_Queer_Horizonte',
   },
 

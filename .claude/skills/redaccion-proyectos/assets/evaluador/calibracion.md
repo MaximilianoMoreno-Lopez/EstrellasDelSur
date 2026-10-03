@@ -2,7 +2,7 @@
 
 Documento para quien mantiene el prompt del evaluador y para quien comunica sus notas. El agente evaluador no lo lee nunca, porque contiene las notas reales de las solicitudes con las que se calibró y rompería la evaluación ciega.
 
-Versión vigente `evaluador.md` versión 1, calibrada el 2026-10-03. Margen que se comunica con cada estimación, **más o menos 6 puntos**. La nota se da siempre así, "75 más o menos 6", nunca la cifra sola.
+Versión vigente `evaluador.md` versión 1, calibrada el 2026-10-03. Margen que se comunica con cada estimación, **más o menos 8 puntos** (ampliado el mismo día tras la prueba con tres aprobadas fuera de muestra; ver abajo). La nota se da siempre así, "75 más o menos 8", nunca la cifra sola.
 
 ## Resumen
 
@@ -126,8 +126,8 @@ Decisión. La v1 mejora el MAE y el acierto del umbral respecto a la v0, así qu
 
 ## Margen de error que se comunica
 
-- **Regla.** El margen es el MAE de la versión vigente redondeado hacia arriba, y nunca menos de 6 puntos mientras ese MAE se haya medido sobre los mismos casos con los que se ajustó. Hoy el MAE de la v1 es 2,6, que redondeado da 3, y por el sobreajuste se comunica **más o menos 6**. El error máximo observado de la v1 fue 10 (DebatIA 2026, 60) y la v0 erraba de media 10, así que 6 no es un margen holgado.
-- **Cómo se dice.** "75 más o menos 6", con el desglose por criterio al lado. Nunca decimales ni la cifra sola.
+- **Regla.** El margen es el error medio fuera de muestra redondeado hacia arriba, y nunca menos de 6. Hoy es 5,1 en 9 casos reales no vistos, con errores de hasta 17 en aprobadas, así que se comunica **más o menos 8**. Historia: empezó en 6 por el sobreajuste a los 13 casos de calibración y se amplió a 8 el 2026-10-03 tras probar con tres aprobadas fuera de muestra.
+- **Cómo se dice.** "75 más o menos 8", con el desglose por criterio al lado. Nunca decimales ni la cifra sola.
 - **Cuándo avisar.** Si el intervalo cruza 60, puede quedar por debajo del umbral. Si cruza 72, la financiación no está asegurada aunque el centro esté por encima, y depende del cupo de la comunidad o región (Haro Queer 2026, 60, en La Rioja, donde se financió con 73 y 74).
 - **Acciones sin calibrar.** KA210, KA220, ESC51 y la Fundación Europea de la Juventud no tienen ningún caso en la muestra. La nota se comunica como orientativa y con más o menos 10, que es el error medio de un prompt sin calibrar (MAE de la v0).
 - `assets/workflow_evaluacion.js` lleva el margen en su bloque de datos. Si este documento cambia el margen, hay que cambiarlo también allí.
@@ -140,7 +140,7 @@ Casos pendientes de la ronda de octubre de 2026, que serán la primera muestra f
 |---|---|---|---|---|---|
 | REAL (Real or Rendered?) | KA152 | ES02 | 87 | 76 (24/30/22), 2026-10-03 | pendiente |
 | Cadres Communs | KA152 | FR02 | 86 | 75 (24/29/22), 2026-10-03; segunda pasada 76 | pendiente |
-| EMBER | KA153 | ES02 | sin estimación | 60 (23/22/15), 2026-10-03, sobre la exportación del portal del 15 de septiembre, que tenía la gestión vacía; no vale como predicción de la versión enviada | pendiente |
+| EMBER | KA153 | ES02 | sin estimación | 60 (23/22/15), 2026-10-03, sobre el PDF enviado el 1 de octubre (la exportación del 15 de septiembre también dio 60) | pendiente |
 | Rutas de Barrio | KA155 | ES02 | sin estimación | 78 (33/30/15), 2026-10-03 | pendiente |
 | Billets d'Europe | KA155 | FR02 | sin estimación | 66 (27/27/12), 2026-10-03, sobre el texto con unos quince huecos sin rellenar | pendiente |
 | Orgullo de Pueblo | KA155 | ES02 | 88 | 80 (33/31/16), 2026-10-03 | pendiente |
@@ -212,6 +212,23 @@ Siete solicitudes de la ronda de octubre de 2025 con nota real, que no estaban e
 
 Error medio 3,6, sesgo -3,3 (se queda corto) y el umbral se acierta en 5 de 7: falla justo en las dos que la agencia dejó en 60 y 61 sin fondos. Lectura: con solicitudes que no ha visto, la v1 no infla; si acaso, castiga de más los KA154 de debate (el mismo tope académico que ya se vio en DebatIA 2026) y la gestión. Las siete están entre 51 y 61, así que esta prueba no dice nada de la parte alta.
 
+### Tercera prueba: tres aprobadas que el evaluador no había visto (2026-10-03)
+
+| Caso | Real | v1 | Error |
+|---|---|---|---|
+| NEST (KA153, Federación, octubre de 2025) | 70, aprobada | 53 (16/22/15) | -17 |
+| Decide con Información (ESC30, Federación, febrero de 2026) | 68, aprobada | 64 (25/26/13) | -4 |
+| DiáLogos Europa (KA154, Estrellas del Sur, febrero de 2025) | aprobada sin recorte, nota no publicada | 51 (16/20/15) | por debajo del umbral |
+
+La v1 se queda muy corta con dos de las tres aprobadas. En las dos encontró defectos que la agencia de 2026 sí castigó (texto arrastrado de otra solicitud, cifras que cambian entre apartados, socias con fichas cruzadas, torneos de debate universitarios con decisores genéricos) y les aplicó los topes. La agencia de 2025 los aprobó igualmente. DiáLogos 2025 tiene casi el mismo perfil que Conexión Atlántica 2026 (52) y D-iberia-ting 2026 (45), que se rechazaron por esos mismos motivos.
+
+Lectura: el ruido de la propia agencia es grande. Dos evaluadores distintos, o el mismo en rondas distintas, juzgan igual de forma muy diferente, y la v1 está ajustada a la severidad de la ronda de febrero de 2026. Ningún evaluador simulado puede bajar de un error de 5 a 8 puntos por caso con ese ruido.
+
+Resumen fuera de muestra con nota numérica (9 casos: los 7 de 2025, NEST y Decide con Información): error medio 5,1, sesgo -4,9 (siempre por debajo o en el sitio, nunca infla más de 1 punto) y umbral acertado en 6 de 9 (7 de 10 contando DiáLogos como fallo). Consecuencias:
+- El margen que se comunica pasa a **más o menos 8**.
+- La v1 sirve para detectar debilidades y para comparar versiones de una misma solicitud. Como predicción absoluta es conservadora: si da 76, la nota real es más probable por encima que por debajo, salvo con agencias o rondas especialmente estrictas.
+- Los topes T2 (lógica académica) y T13 (texto de otra solicitud) son demasiado duros para algunas rondas. No se tocan hasta tener las notas de octubre de 2026, para no invalidar las predicciones congeladas, pero son lo primero que hay que revisar en la v2.
+
 ### La comparación con anclas no sirvió
 
 Se probó a situar solicitudes comparándolas con ocho casos de nota conocida en lugar de puntuarlas. Con cuatro controles de nota conocida, el error fue de -13 (Frames of Us, 72, situada en 59), +15 (Green Tracks 2026, 58, situada en 73), -3 y +4. Error medio 8,8, peor que puntuar. Las situaciones que dio para octubre (entre 74 y 83) no se usan como estimación. Sí aportaron riesgos concretos que la puntuación no había visto (ver `octubre_riesgos` en la carpeta de resultados del repo privado).
@@ -225,4 +242,4 @@ Las solicitudes de octubre de 2026 están escritas con la propia skill, que apre
 | Versión | Fecha | Ajustada con | MAE en la muestra de ajuste | MAE fuera de muestra | Margen comunicado |
 |---|---|---|---|---|---|
 | v0 | 2026-10-03 | sin calibrar | 10,0 (13 casos) | no aplica | no se usó |
-| v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | 2,8 en 4 casos con la v1b; 3,6 en 7 casos de octubre de 2025 (sesgo -3,3); octubre de 2026 pendiente | 6 |
+| v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | 2,8 en 4 casos con la v1b; 5,1 en 9 casos reales no vistos (sesgo -4,9); octubre de 2026 pendiente | 8 |
