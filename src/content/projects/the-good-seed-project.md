@@ -1,13 +1,13 @@
 ---
 title: "The Good Seed Project"
 type: "Intercambio"
-status: "past"
+status: "active"
 flag: "🇵🇱"
 description: "Intercambio juvenil Erasmus+ en Wierzchosławice, cerca de Tarnów, sobre pérdida de biodiversidad contada a través de cuentos. Nueve días para escribir e ilustrar cinco cuentos originales que se publicarán en siete idiomas, con alojamiento y comidas cubiertos y 7 plazas para España."
 location: "Wierzchosławice, Tarnów (Polonia)"
 year: 2026
 dates: "16/10/2026 - 24/10/2026 (días de programa: 17-23/10)"
-order: -24
+order: -29
 image: "images/projects/the-good-seed-project/cover.png"
 poster: "images/projects/the-good-seed-project/cover.png"
 infopack: "https://drive.google.com/file/d/1uwea00ux_pTtNQt_KosGUwEFV6aERXq9/view?usp=sharing"
@@ -25,7 +25,7 @@ coste: "Cuota de socio 50 € (solo si te seleccionan)"
 - **Participantes:** 42 personas en total, 6 equipos nacionales de 6 jóvenes de 18 a 27 años más un responsable de grupo mayor de 18
 - **Plazas para España:** 6 participantes y 1 responsable de grupo
 - **Coordina:** Stowarzyszenie HELIOS (Cracovia, Polonia)
-- **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
+- **Fecha límite de inscripciones:** Queda **1 plaza libre** por una baja y el intercambio empieza el 16 de octubre, así que la cubriremos en cuanto llegue una carta que encaje
 
 ## Sobre el proyecto
 
@@ -138,6 +138,6 @@ Si quisieras aprovechar el viaje a Polonia y pasar más días de los que dura el
 
 El botón de preinscripciones te llevará a un formulario donde deberás rellenar tus datos y adjuntar una carta de motivación al final. Esta carta es la que nos sirve para elegir a los participantes que más se ajusten a las necesidades del proyecto.
 
-Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido. **Las cartas redactadas con Inteligencia Artificial serán motivo de anulación de la inscripción.**
+Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido.
 
-Hay **7 plazas** para España y aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.
+De las 7 plazas para España queda **1 libre** tras una baja. Como el intercambio empieza el 16 de octubre, la asignaremos en cuanto recibamos una candidatura que encaje, así que inscríbete cuanto antes.
