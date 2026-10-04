@@ -1,7 +1,8 @@
 ---
 title: "Sustain You"
 type: "Formación"
-status: "active"
+status: "past"
+infoCompleta: true
 flag: "🇮🇹"
 description: "Curso de formación Erasmus+ en Terracina, junto al mar, a una hora de Roma, sobre sostenibilidad y bienestar en el trabajo con jóvenes. Una semana para aprender a bajar el ritmo, diseñar espacios de baja estimulación y facilitar grupos sin quemarse, con herramientas para llevar a la propia entidad."
 location: "Terracina, Latina (Italia)"
