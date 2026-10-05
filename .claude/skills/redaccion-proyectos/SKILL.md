@@ -92,6 +92,8 @@ La nota estimada sale de `assets/workflow_evaluacion.js` sobre el ensamblado fin
 
 Uso de cada herramienta en `assets/README.md`.
 
+**Antes de enviar, revisar el PDF exportado del portal, no el Word.** En octubre de 2026 tres solicitudes salieron con restos de trabajo pegados en el portal: un hueco `[CONSULTATION DES JEUNES - date, nombre...]` en Billets d'Europe, la nota "HAY QUE PONER ESTO QUE PAULA TIENE DISCAPACIDAD" en EMBER, y "FALTA LA PARTE DE MELILLA" y "(no sé si ponerlos como parte del grupo motor)" en EU Voices. Pídele al usuario el PDF del portal, extráelo a texto y pásale `assets/comprobacion_mecanica.py`, más una búsqueda de corchetes, "FALTA", "HAY QUE", "no sé", "CONFIRMAR", "TODO" y nombres de personas junto a datos de salud o discapacidad. Comprueba también que las socias citadas en el texto son las del consorcio.
+
 ### 8. Cierre y aprendizaje
 - **Resumen al usuario**: decisiones, lo que cazaron los verificadores, supuestos y datos pendientes, y la nota estimada de `assets/workflow_evaluacion.js` por criterio y con su margen ("82 más o menos 8"), con el aviso si el intervalo cruza 60 o 72. Recordar que la checklist de originalidad la firma el usuario.
 - **Registrar la candidatura** en `src/lib/candidaturas.mjs`, sin nombres de participantes, PRN ni teléfonos.
