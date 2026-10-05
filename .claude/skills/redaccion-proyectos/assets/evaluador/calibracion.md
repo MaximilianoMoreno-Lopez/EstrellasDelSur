@@ -371,3 +371,8 @@ En los ocho casos con las dos versiones, la v2 baja entre 3 y 5 puntos las seis 
 | v0 | 2026-10-03 | sin calibrar | 10,0 (13 casos) | no aplica | no se usó |
 | v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | 2,8 en 4 casos con la v1b; 5,1 en 9 casos reales no vistos (sesgo -4,9); octubre de 2026 pendiente | 8 (vigente) |
 | v2 (descartada) | 2026-10-06 | 22 casos (13 de 2026 R1, 7 de octubre de 2025, NEST y Decide con Información) y sus cartas | no medido (solo notas a mano del calibrador) | 4,8 en 22 casos con validación cruzada en 3 pliegues; 5,8 en los 9 comparables con la v1 (sesgo -3,6); 6 de 8 en la prueba binaria | no se comunica (le habría tocado 6) |
+
+## Predicciones v1 de las cinco solicitudes de octubre que faltaban (2026-10-06)
+
+Sobre la versión del portal: Bridges Beyond the Mediterranean (KA152) 53, ACCESS-YW (KA153) 58, EU Voices (KA154) 51, Green Tracks octubre (KA155) 57, Melilla is Europe octubre (KA155) 74, y Billets d'Europe en su versión del portal 66 (igual que sobre el borrador: el portal conserva el hueco de la consulta a los jóvenes). Congeladas en `proyectos/referencias/resultados/2026-2_predicciones_v1_nuevas.json`.
+
