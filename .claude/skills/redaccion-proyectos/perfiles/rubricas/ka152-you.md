@@ -1,22 +1,24 @@
-# Rúbrica KA152-YOU (Guide for Experts on Quality Assessment 2026, capítulo Youth Exchanges)
-Umbral: 60/100 y al menos la mitad de cada criterio.
+# Rúbrica KA152-YOU (Guide for Experts on Quality Assessment 2026, capítulo "Mobility projects for young people: Youth Exchanges", pp. 21-25)
+Umbral: 60/100 y al menos la mitad de cada criterio (15, 20 y 15).
+Bandas por criterio: de 30 puntos, muy bueno 26-30, bueno 21-25, suficiente 15-20, débil 0-14; de 40 puntos, 34-40, 28-33, 20-27, 0-19.
+Reglas del experto que afectan a todo: no puede suponer nada que no esté escrito; lo que sirve para un criterio cuenta aunque esté en otro bloque; los elementos no se puntúan por separado, el experto coloca el criterio entero en una banda pero el comentario debe citarlos uno a uno; varios elementos tratados con frases genéricas llevan a suficiente y un elemento central ausente lleva a débil (inferencia a partir de las definiciones de banda); se aplica proporcionalidad según tamaño y experiencia; si la relevancia no llega al umbral la agencia puede cortar ahí la evaluación; si ve texto igual o parecido en dos solicitudes de la ronda, o dudas de contenido original y autoría, avisa a la agencia.
 
 ## Relevancia, justificación e impacto (30)
-1. Perfil, experiencia, actividades y grupo destinatario de la solicitante relevantes para juventud: práctica real, experiencia del equipo, actividad cotidiana, experiencia previa sobre todo FUERA de Erasmus+.
+1. Perfil, experiencia, actividades y grupo destinatario de la solicitante relevantes para juventud EN LA PRÁCTICA: pericia del equipo, actividad cotidiana y experiencia previa, sobre todo FUERA de Erasmus+. No basta la relevancia formal o nominal.
 2. Contribución a prioridades del EU Youth Dialogue o a los 11 Youth Goals (Estrategia de Juventud 2019-2027).
 3. Contribución a las dimensiones de inclusión y diversidad, verde, digital y participativa del Programa (capítulo Prioridades de la Guía y estrategias).
 4. Relevancia para los objetivos de la acción (intercambios juveniles: aprendizaje no formal, intercultural, participación, competencias).
-5. Valores de la UE (dignidad, libertad, democracia, igualdad, Estado de Derecho, derechos humanos, no discriminación): integrados en objetivos, métodos, actividades y resultados, no como elemento aislado; medidas contra toda discriminación (género, etnia, discapacidad...).
+5. Valores de la UE (dignidad, libertad, democracia, igualdad, Estado de Derecho, derechos humanos, no discriminación). El experto mira cuatro puntos de control: integrados en objetivos, metodologías, actividades y resultados, y explicar con claridad cómo el proyecto los apoya y los hace avanzar es una fortaleza adicional; enfoque no discriminatorio que beneficie a participantes diversos, con medidas contra toda discriminación por género, etnia, discapacidad u otras; componente educativo que mejore la comprensión y el aprecio de los valores; oportunidades de aprender y vivir los valores repartidas por varios componentes del proyecto, no como pieza aislada. Desde 2025 la guía no habla de "promover" los valores sino de aprenderlos y vivirlos.
 6. Necesidades de las organizaciones y de los participantes: justificación clara, cómo se identificó la demanda, relevancia para participantes, comunidad y grupo destinatario.
 7. Resultados de aprendizaje de calidad: claramente definidos, alineados con las necesidades y alcanzables con las actividades.
 8. Impacto durante y después, dentro y fuera del consorcio, local, regional, nacional, europeo; perspectiva de largo plazo.
-9. Introduce organizaciones recién llegadas y menos experimentadas y grupos de jóvenes que no suelen beneficiarse.
+9. Recién llegadas y menos experimentadas: plan o intención de llegar a organizaciones y grupos de jóvenes que nunca o rara vez se han beneficiado de la acción (definiciones del glosario de la Guía del Programa).
 
 ## Calidad del diseño y la ejecución (40)
 1. Preparación, ejecución y seguimiento descritos de forma clara y convincente: reparto de tareas, programa, métodos, logística, implicación de participantes, seguimiento; jóvenes implicados en la concepción, preparación, ejecución y seguimiento.
-2. Representación equilibrada por países y género; actividades accesibles e inclusivas, abiertas a participantes de perfiles y capacidades diversas; participantes con menos oportunidades (cómo se seleccionan).
-3. Prácticas sostenibles y respetuosas con el medio ambiente; uso de la financiación de viaje sostenible.
-4. Métodos de aprendizaje (incluidos los digitales) adecuados, que estimulen creatividad, participación e iniciativa, adaptados al grupo; proceso de reflexión para identificar y documentar resultados; Youthpass usado como PROCESO de reflexión, no solo como certificado; objetivos de aprendizaje de los participantes.
+2. Representación equilibrada por países y género: el Programa busca equilibrio geográfico y de género y el experto lo mira en la composición de los grupos. Actividades accesibles e inclusivas, abiertas a participantes de perfiles y capacidades diversas, con participantes con menos oportunidades y uso de las ocasiones de diversificar, empezando por cómo se define la selección.
+3. Prácticas sostenibles y respetuosas con el medio ambiente en el contenido de las actividades y los objetivos y en lo práctico, aprovechando al máximo la financiación de viaje sostenible.
+4. Métodos de aprendizaje no formal e informal (incluidos los digitales) que estimulen creatividad, participación activa e iniciativa, adaptados al grupo y que lleven al desarrollo personal, socioeducativo y profesional de todos los participantes; procesos de aprendizaje planificados de forma participativa y analizados a lo largo del proyecto; formas concretas en que lo digital y lo virtual apoyan el aprendizaje y complementan lo presencial; cómo se abordan los objetivos de aprendizaje de cada participante, se apoya la reflexión y se identifican y reconocen los resultados; Youthpass usado como PROCESO de reflexión, no solo como certificado.
 
 ## Calidad de la gestión (30)
 1. Organización práctica, gestión y apoyo satisfactorios en todas las fases.
@@ -24,7 +26,8 @@ Umbral: 60/100 y al menos la mitad de cada criterio.
 3. Tareas y responsabilidades claramente definidas y asignadas, conforme a los estándares de calidad Erasmus.
 4. Cooperación y comunicación entre organizaciones y con otros actores: consorcio cohesionado, implicación activa de todas, medios de comunicación (herramientas digitales), perfil adecuado de las socias, roles acordados, capacidad de seguimiento y difusión, capacidad de apoyo a menos oportunidades.
 5. Evaluación de las diferentes fases y de los resultados: seguimiento durante la ejecución para ajustar, y evaluación final que compruebe objetivos y expectativas.
-6. (Guía del Programa) Medidas de difusión de los resultados dentro y fuera de las organizaciones.
+6. Difusión dentro y fuera de las organizaciones: medidas pensadas en común, si procede, para la visibilidad del proyecto y de Erasmus+, y medidas de cada organización para difundir y explotar los resultados, incluidos los learning outcomes, en beneficio de todos los actores (p. 25).
+7. Sostenibilidad: mecanismos, actividades o prácticas con potencial de seguir funcionando cuando acabe la financiación (p. 25).
 
 ## Cómo sacar el máximo en cada elemento
 Sale de Frames of Us (aprobado), Real or Rendered? (evaluador simulado 85 y 87 tras dos rondas de verificación, `historial/2026-09-real-or-rendered-ka152.md`), Cadres Communs (estimación 86) y de lo aprendido en KA153, que comparte casi todos los elementos. Las palancas comunes están en `comun/maximizar_puntuacion.md`.

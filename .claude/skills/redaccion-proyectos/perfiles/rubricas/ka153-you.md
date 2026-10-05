@@ -1,7 +1,7 @@
 # Rúbrica KA153-YOU (Guide for Experts on Quality Assessment 2026, capítulo "Mobility projects for youth workers", pp. 26-31)
 Umbral: 60/100 y al menos la mitad de cada criterio (15, 20 y 15).
 Bandas por criterio: de 30 puntos, muy bueno 26-30, bueno 21-25, suficiente 15-20, débil 0-14; de 40 puntos, 34-40, 28-33, 20-27, 0-19.
-Reglas del experto que afectan a todo: no puede suponer nada que no esté escrito; lo que sirve para un criterio cuenta aunque esté en otro bloque; los elementos no se puntúan por separado pero el comentario debe citarlos uno a uno; se aplica proporcionalidad según tamaño y experiencia; si la relevancia no llega al umbral la agencia puede cortar ahí la evaluación.
+Reglas del experto que afectan a todo: no puede suponer nada que no esté escrito; lo que sirve para un criterio cuenta aunque esté en otro bloque; los elementos no se puntúan por separado, el experto coloca el criterio entero en una banda pero el comentario debe citarlos uno a uno; varios elementos tratados con frases genéricas llevan a suficiente y un elemento central ausente lleva a débil (inferencia a partir de las definiciones de banda); se aplica proporcionalidad según tamaño y experiencia; si la relevancia no llega al umbral la agencia puede cortar ahí la evaluación; si ve texto igual o parecido en dos solicitudes de la ronda, o dudas de contenido original y autoría, avisa a la agencia.
 
 ## Relevancia, justificación e impacto (30)
 1. Perfil, experiencia y actividades de la solicitante relevantes para el trabajo juvenil EN LA PRÁCTICA: pericia del equipo, actividad cotidiana y experiencia previa, sobre todo fuera de Erasmus+. No basta la relevancia nominal.

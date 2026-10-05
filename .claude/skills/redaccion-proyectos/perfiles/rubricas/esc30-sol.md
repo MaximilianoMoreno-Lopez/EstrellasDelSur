@@ -1,6 +1,8 @@
 # Rúbrica destilada ESC30-SOL (Proyectos de Solidaridad), convocatoria 2026
 
-Fuente: European Solidarity Corps Guide 2026, parte B "Solidarity Projects" (pp. 60-66) y Guide for Experts on Quality Assessment 2026, sección 5.2 (pp. 22-25). Umbral: 60 puntos sobre 100 y al menos la mitad de cada criterio. Empates: primero Relevancia, después Gestión, después Diseño.
+Fuente: European Solidarity Corps Guide 2026, parte B "Solidarity Projects" (pp. 60-66) y Guide for Experts on Quality Assessment 2026, sección 5.2 (pp. 22-25). Umbral: 60 puntos sobre 100 y al menos la mitad de cada criterio (20, 20 y 10). Empates: primero Relevancia, después Gestión, después Diseño y, en ES02, por último el orden de presentación.
+Bandas por criterio: de 40 puntos, muy bueno 34-40, bueno 28-33, suficiente 20-27, débil 0-19; de 20 puntos, 17-20, 14-16, 10-13, 0-9.
+Reglas del experto (Guía de expertos CES 2026, idénticas a las de Erasmus+): no puede suponer nada que no esté escrito; lo que sirve para un criterio cuenta aunque esté en otro bloque; los elementos no se puntúan por separado, el experto coloca el criterio entero en una banda pero el comentario debe citarlos; varios elementos tratados con frases genéricas llevan a suficiente y un elemento central ausente lleva a débil (inferencia a partir de las definiciones de banda); si la relevancia no llega al umbral la agencia puede cortar ahí la evaluación; con una subvención de 60.000 EUR o menos basta un experto, así que casi todas las ESC30 las lee una sola persona, y con dos la nota final es un consenso que puede no coincidir con ninguna de las dos; las solicitudes se ordenan por calidad; si ve texto igual o parecido en dos solicitudes de la ronda, o dudas de contenido original y autoría, avisa a la agencia.
 
 ## Relevancia, justificación e impacto (40 puntos)
 1. Encaje con los objetivos y prioridades del Cuerpo y con el formato de la acción. Meta y objetivos identificados, resultados clave resumidos.
@@ -9,8 +11,8 @@ Fuente: European Solidarity Corps Guide 2026, parte B "Solidarity Projects" (pp.
 4. Relevancia para las necesidades de los propios miembros del grupo.
 5. Relevancia para las necesidades del grupo destinatario y de la comunidad local. Justificación clara: por qué hace falta y cómo se identificó la demanda.
 6. Impacto en los miembros del grupo durante y después: contribución con sentido, iniciativa, creatividad, ciudadanía europea activa, espíritu emprendedor.
-7. Impacto en el grupo destinatario y la comunidad local, estimado de forma realista. Cuenta también implicar a distintos actores y crear alianzas nuevas.
-8. Valores de la UE: dignidad, libertad, democracia, igualdad, Estado de derecho, derechos humanos, lucha contra toda discriminación. Puntúa que estén integrados en objetivos, métodos y resultados, que las actividades beneficien a perfiles diversos sin discriminación y que haya un componente educativo sobre esos valores.
+7. Impacto en el grupo destinatario y la comunidad local, estimado y explicado de forma realista, sobre todo en zonas rurales, aisladas o marginadas. Cuenta también el impacto de fijar metas comunes y cooperar para alcanzarlas (Guía de expertos CES 2026, p. 23). Implicar a distintos actores y crear alianzas nuevas no figura en la guía de expertos; viene de la descripción de la acción en la Guía CES 2026 (p. 60, "involving different actors and developing new partnerships"), así que suma como contexto pero el experto no lo tiene como elemento.
+8. Valores de la UE: dignidad, libertad, democracia, igualdad, Estado de derecho, derechos humanos, lucha contra toda discriminación. Tres puntos de control: que estén integrados en objetivos, métodos y resultados, que las actividades beneficien a perfiles diversos sin discriminación y que haya un componente educativo sobre esos valores. No tiene el cuarto de Erasmus+ (valores repartidos por varios componentes). Este elemento y la implicación de cada miembro en todas las fases (Diseño 4) son nuevos respecto a la guía de expertos CES anterior que publicaba el INJUVE (fichero de 2023, título interno "ESC Guide for Experts 2022").
 
 ## Calidad del diseño (40 puntos)
 1. Coherencia entre objetivos y actividades. Cómo se preparan y se ejecutan. Actividades realistas para la capacidad del grupo.
@@ -26,6 +28,8 @@ Fuente: European Solidarity Corps Guide 2026, parte B "Solidarity Projects" (pp.
 2. Medidas para evaluar los resultados y el éxito global.
 3. Medidas de visibilidad hacia quien no participa.
 4. Plan de difusión de los resultados con actividades y públicos destinatarios identificados.
+
+Coach. La guía de expertos CES 2026 no dice cómo valorar al coach y no es elemento de ningún criterio. La Guía CES 2026 lo describe como persona externa al grupo que trabaja con el grupo y no con el público (p. 61) y pide motivar su coste en el formulario (p. 64). La exigencia de que su apoyo "doit être clairement détaillé" viene de la ficha ESC30 de FR02. En la práctica se lee dentro de Diseño 1 (capacidad del grupo) y Diseño 6 (aprendizaje), y su ausencia en un tema sensible se reprochó (ChemSafe 2026, 57); esto último es inferencia nuestra, no regla de la guía.
 
 ## Prioridades del programa que hay que nombrar con medida concreta
 - Transversales: inclusión y diversidad; protección del medio ambiente, desarrollo sostenible y acción climática; transformación digital; participación en la vida democrática.

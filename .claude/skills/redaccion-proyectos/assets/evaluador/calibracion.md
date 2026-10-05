@@ -2,7 +2,7 @@
 
 Documento para quien mantiene el prompt del evaluador y para quien comunica sus notas. El agente evaluador no lo lee nunca, porque contiene las notas reales de las solicitudes con las que se calibró y rompería la evaluación ciega.
 
-Versión vigente `evaluador.md` versión 1, calibrada el 2026-10-03. Margen que se comunica con cada estimación, **más o menos 8 puntos** (ampliado el mismo día tras la prueba con tres aprobadas fuera de muestra; ver abajo). La nota se da siempre así, "75 más o menos 8", nunca la cifra sola.
+Versión vigente `evaluador.md` versión 1, calibrada el 2026-10-03. Margen que se comunica con cada estimación, **más o menos 8 puntos** (ampliado el mismo día tras la prueba con tres aprobadas fuera de muestra; ver abajo). La v2 del 2026-10-06 se probó con validación cruzada y se descartó porque empeoraba el error fuera de muestra (ver "Versión 2 (2026-10-06)"); la v1 y su margen siguen vigentes. La nota se da siempre así, "75 más o menos 8", nunca la cifra sola.
 
 ## Resumen
 
@@ -237,9 +237,137 @@ Se probó a situar solicitudes comparándolas con ocho casos de nota conocida en
 
 Las solicitudes de octubre de 2026 están escritas con la propia skill, que aprendió de las cartas las mismas señales que mira el evaluador. Ningún caso de la muestra es de ese tipo, así que el riesgo de que el evaluador premie su propio estilo sigue abierto hasta que lleguen las notas. Mientras tanto, junto a la cifra del evaluador se da una lectura prudente unos 5 puntos por debajo.
 
+## Versión 2 (2026-10-06)
+
+### Qué cambiaba
+
+La v2 se escribió con los 22 casos que tienen nota real (los 13 de la ronda 1 de 2026, los 7 de octubre de 2025, NEST y Decide con Información) para corregir lo que la v1 hacía peor fuera de muestra, quedarse corta con las aprobadas y con la ronda de 2025. Sus cambios principales:
+
+1. Puntúa por banda del criterio entero (Very good, Good, Fair, Weak de la guía 2026), con subbandas para cada máximo (40, 30, 25 y 20). Un elemento ausente es una debilidad del criterio, no una resta fija.
+2. Cada criterio tiene un elemento central que decide la banda. La higiene (Youthpass, seguridad, medidas verdes) no la sube.
+3. Mapa de grupos con las notas reales, G1 77-82, G2 68-73, G3 57-61, G4 51-56 y G5 45-50. Sustituye la regla de la zona 61 a 71 por un hueco de 62 a 67: si la nota cae ahí y falta alguna señal de G2, se baja.
+4. La lógica académica deja de tener tope duro si va sola, con formato modesto, presupuesto limpio y decisores con función (relevancia 17 a 21 de 30). Solo baja a 16 o menos si se acumulan otros defectos.
+5. El tope de texto copiado (máximo 60) queda para copias sustanciales. Un nombre suelto de otra entidad resta 1 o 2 puntos en gestión.
+6. El tope por frase de carta cuenta núcleos. Con uno, máximo 60; con dos, 57; con los tres, 52.
+7. Reglas propias de KA153. Las necesidades de competencia socia por socia y el trabajo juvenil regular de la solicitante cuentan como necesidad situada; la relevancia queda en 17 de 30 como mucho si no se explican ni ese trabajo ni el vínculo de los participantes con las entidades; siete países con 4 plazas por socia en 7 días es proporcionado.
+8. Topes de ESC30, KA155 y diseño ajustados (diseño de las rechazadas hasta 25 o 26 de 40; viajes idénticos en KA155, 13 de 20) y un suelo nuevo de 57 para lo proporcionado y sin copia.
+9. Señales visibles para separar grupos, cuatro obligatorias para G1 y cinco para G2. En G1 y G2 la sobrecarga resta como mucho 1 o 2 puntos por criterio y va al recorte.
+10. Autocomprobación de 12 preguntas con control de inflado (techos en 67, 76 y 82) y de hundimiento (nada bajo 57 sin varios defectos, nada bajo 51 sin acumulación de G5). Anclas por contenido y en rangos. `comun/criterios_detallados_agencias.md` pasa a la lista de ficheros que el evaluador no abre, porque trae notas reales de la red.
+
+El texto completo está en `evaluador_v2_descartada.md` de esta carpeta.
+
+### Método
+
+- **Validación cruzada en 3 pliegues.** Los 22 casos se repartieron en tres grupos. Para cada grupo se escribió una v2 parcial sin ver ninguno de sus casos (ni la carta, ni el texto, ni anclas que vinieran de ellos) y con ella se puntuaron esos casos. Así cada uno de los 22 se puntúa con una versión que no lo había visto.
+- **Dos evaluadoras ciegas por caso,** las mismas personas A y B que en la v1, y mediana por criterio (el medio punto sube).
+- **Comparación justa con la v1.** En los 13 casos de 2026 R1 la cifra de la v1 es dentro de muestra y no sirve para comparar. La comparación se hace en los 9 casos que la v1 tampoco había visto (los 7 de 2025, NEST y Decide con Información).
+- **Prueba binaria.** Ocho solicitudes antiguas con resultado conocido (aprobada o rechazada) pero sin nota publicada, puntuadas con la v2 final. Ninguna se usó para escribirla. Acierta si la aprobada queda en 60 o más y la rechazada por debajo.
+- **Regla de adopción, fijada antes de ver los resultados.** La v2 sustituye a la v1 si en los 9 comparables baja el error medio, no infla de media más de 1 punto y en la prueba binaria acierta al menos lo que acierta la v1.
+- Las notas a mano del calibrador sobre los 22 casos, casi todas a 3 puntos o menos de la real, no cuentan como validación, porque los conocía.
+
+### Validación cruzada (22 casos)
+
+| Caso | Acción | Real | Desglose v2 | v1 | v2 | Error v1 | Error v2 |
+|---|---|---|---|---|---|---|---|
+| Democracia sin barreras 2026 | KA154 | 80 | 23/29/22 | 76 | 74 | -4 | -6 |
+| Melilla is Europe 2026 | KA155 | 79 | 28/26/13 | 76 | 67 | -3 | -12 |
+| Frames of Us 2026 | KA152 | 72 | 20/26/19 | 72 | 65 | 0 | -7 |
+| NEST (2025) * | KA153 | 70 | 16/22/15 | 53 | 53 | -17 | -17 |
+| Decide con Información (2026) * | ESC30 | 68 | 24/27/14 | 64 | 65 | -4 | -3 |
+| Green Tracks 2025 * | KA155 | 61 | 23/23/12 | 58 | 58 | -3 | -3 |
+| DebatIA 2026 | KA154 | 60 | 16/22/16 | 50 | 54 | -10 | -6 |
+| DebatIA 2025 * | KA154 | 60 | 16/20/14 | 51 | 50 | -9 | -10 |
+| Haro Queer 2026 r1 | ESC30 | 60 | 25/26/11 | 60 | 62 | 0 | +2 |
+| Re-Think, Re-Dress 2025 * | KA152 | 59 | 19/22/16 | 57 | 57 | -2 | -2 |
+| Verde y Claro 2025 * | KA154 | 59 | 16/21/15 | 53 | 52 | -6 | -7 |
+| Igualdad y Deporte 2025 * | KA153 | 59 | 18/24/18 | 55 | 60 | -4 | +1 |
+| EcoVibe 2025 * | KA152 | 58 | 19/23/17 | 58 | 59 | 0 | +1 |
+| Green Tracks 2026 | KA155 | 58 | 23/23/12 | 58 | 58 | 0 | 0 |
+| DigiTE 2026 | KA153 | 57 | 17/22/15 | 51 | 54 | -6 | -3 |
+| ChemSafe 2026 r1 | ESC30 | 57 | 20/23/11 | 51 | 54 | -6 | -3 |
+| Mind the Gap 2026 | KA152 | 54 | 18/23/15 | 53 | 56 | -1 | +2 |
+| Conexión Atlántica 2026 | KA154 | 52 | 16/20/16 | 50 | 52 | -2 | 0 |
+| Debate2Participate 2026 | KA153 | 52 | 17/24/15 | 52 | 56 | 0 | +4 |
+| Semillas de Cambio 2026 | KA152 | 51 | 16/22/15 | 50 | 53 | -1 | +2 |
+| Mind the Gap 2025 * | KA152 | 51 | 18/22/19 | 52 | 59 | +1 | +8 |
+| D-iberia-ting 2026 | KA154 | 45 | 16/21/15 | 46 | 52 | +1 | +7 |
+
+Con asterisco, los 9 casos comparables (fuera de muestra para las dos versiones). En los otros 13 la columna v1 es dentro de muestra.
+
+| Medida | v1 | v2 |
+|---|---|---|
+| **9 comparables, error medio** | **5,1** | **5,8** |
+| 9 comparables, sesgo (estimada menos real) | -4,9 | -3,6 |
+| 9 comparables, lado del umbral de 60 acertado | 6 de 9 | 5 de 9 |
+| 9 comparables, casos a 3 puntos o menos | 4 | 5 |
+| 22 casos, error medio | 3,6 (13 dentro de muestra) | 4,8 |
+| 22 casos, sesgo | -3,5 | -2,4 |
+| 22 casos, umbral acertado | 18 de 22 | 17 de 22 |
+| 22 casos, error máximo | 17 | 17 |
+| 13 de 2026 R1, error medio | 2,6 (dentro de muestra) | 4,2 |
+| 5 aprobadas con 68 o más, sesgo | -5,6 | -9,0 |
+| 13 rechazadas (menos de 60), sesgo | -2,0 | +0,8 |
+
+### Prueba binaria (8 casos sin nota publicada)
+
+| Caso | Resultado real | v2 | Desglose v2 | Acierta | v1 |
+|---|---|---|---|---|---|
+| Deubating 2023 | aprobada | 52 | 15/21/16 | no | no se pasó |
+| Community Dance 2022 | aprobada | 60 | 16/25/19 | sí, justo en el umbral | no se pasó |
+| DiáLogos Europa 2025 | aprobada | 54 | 16/20/18 | no | 51, falla |
+| DiáLogos 2024 r1 | rechazada | 51 | 15/20/16 | sí | no se pasó |
+| BEC 2023 | rechazada | 56 | 18/21/17 | sí | no se pasó |
+| EUmigrating 2023 | rechazada | 48 | 15/20/13 | sí | no se pasó |
+| No Planet B 2022 | rechazada | 50 | 15/21/14 | sí | no se pasó |
+| Critical Thinking 2022 | rechazada | 48 | 15/19/14 | sí | no se pasó |
+
+La v2 acierta 6 de 8, las cinco rechazadas y una de las tres aprobadas, y esa por los pelos. Falla DiáLogos 2025, igual que la v1, y además Deubating 2023. Con un solo caso en común, la prueba binaria no separa las dos versiones. Lo que sí muestra es que la v2 sigue sin reconocer las aprobadas de rondas anteriores, que era lo que se quería arreglar.
+
+### Lectura
+
+- **Lo que mejora.** El sesgo se acerca a cero (de -4,9 a -3,6 en los comparables) y suben los casos que la v1 hundía por topes duros, como DebatIA 2026 (de -10 a -6), Igualdad y Deporte 2025 (de -4 a +1), DigiTE 2026 y ChemSafe 2026 r1 (de -6 a -3). El tope académico condicionado y las reglas de KA153 van en la buena dirección.
+- **Lo que empeora.** La v2 comprime hacia el centro, el defecto de la v0 que la v1 había corregido. Infla las rechazadas (sesgo +0,8, con Mind the Gap 2025 a +8 y D-iberia-ting 2026 a +7) y hunde más las aprobadas (sesgo -9,0 en las cinco de 68 o más, con Melilla is Europe 2026 a -12 y Frames of Us 2026 a -7).
+- **El hueco de 62 a 67 no funcionó.** Cuatro casos caen justo ahí (Melilla is Europe 2026, 67; Decide con Información, 65; Frames of Us 2026, 65; Haro Queer 2026 r1, 62). Las evaluadoras no aplican la regla de mover la nota fuera del hueco, y las señales obligatorias de G1 y G2 dejan fuera a aprobadas reales.
+- **NEST sigue igual** (-17 con las dos versiones). Ninguna regla escrita con la ronda de 2026 reconoce esa aprobada de 2025. Es el ruido entre rondas que ya se describió en la tercera prueba de la v1.
+- **Cautela.** La validación cruzada mide el procedimiento de escribir la v2, no el fichero final exacto, que se escribió con los 22 casos. Es lo mejor que se puede medir antes de octubre.
+
+### Decisión
+
+La v2 **no sustituye** a la v1. En los 9 comparables el error medio sube de 5,1 a 5,8, así que falla la primera condición de la regla. No infla (su sesgo sigue siendo negativo, -3,6) y en la prueba binaria empata con la v1 en el único caso común, pero eso no basta. `evaluador.md` sigue en la versión 1 y la v2 se guarda como `evaluador_v2_descartada.md`.
+
+Esto respeta además el paso 3 de "Recalibrar", y las predicciones congeladas de la v1 siguen siendo la referencia de octubre. Para la v3 conviene conservar de la v2 el tope académico condicionado, las reglas de KA153 y la puntuación por banda, y quitar el mapa de grupos con hueco y las señales obligatorias, que empujan las aprobadas hacia abajo y las rechazadas hacia arriba. La v3 se escribe cuando lleguen las notas de octubre, con los 22 casos más los de octubre, y se valida igual, por pliegues.
+
+### Margen
+
+Con la regla de esta sección (error medio de la validación cruzada redondeado hacia arriba, mínimo 6), a la v2 le habría tocado **más o menos 6** (4,8 se redondea a 5 y sube al mínimo). No se aplica, porque la v2 no es la vigente. La v1 conserva **más o menos 8**. Su error medio fuera de muestra es 5,1, pero con errores de hasta 17 en aprobadas, y la validación de la v2, con errores de -17 y -12, confirma que 6 se quedaría corto. `SKILL.md`, `workflow_evaluacion.js` y `README.md` ya dicen 8 y no cambian.
+
+### Predicciones de octubre de 2026 con la v1 y con la v2
+
+La predicción congelada oficial sigue siendo la de la v1 (tabla de "Recalibrar"). La de la v2 se congela también, con fecha 2026-10-06, como prueba fuera de muestra adicional. Si con las notas reales la v2 acertara claramente mejor que la v1, se reconsideraría. Las dos versiones no puntuaron exactamente el mismo texto, porque la v1 puntuó el ensamblado final de cada carpeta (en Billets d'Europe, con unos quince huecos sin rellenar) y la v2 la versión exportada del portal. Los datos completos, con las debilidades de cada caso, están en `proyectos/referencias/resultados/2026-2_predicciones_congeladas_v2.json`.
+
+| Caso | Acción | Agencia | v1 (2026-10-03) | v2 (2026-10-06) | Individuales v2 | Diferencia |
+|---|---|---|---|---|---|---|
+| REAL (Real or Rendered?) | KA152 | ES02 | 76 (24/30/22) | 72 (23/28/21) | 72 y 72 | -4 |
+| Bridges Beyond the Mediterranean | KA152 | ES02 | no se pasó | 57 (19/21/17) | 56 y 56 | |
+| Cadres Communs | KA152 | FR02 | 76 (24/30/22) | no se pasó | | |
+| EMBER | KA153 | ES02 | 60 (23/22/15) | 73 (24/29/20) | 70 y 75 | +13 |
+| ACCESS-YW | KA153 | ES02 | no se pasó | 68 (20/28/20) | 68 y 68 | |
+| EU Voices | KA154 | ES02 | no se pasó | 60 (18/22/20) | 59 y 59 | |
+| Rutas de Barrio | KA155 | ES02 | 78 (33/30/15) | 75 (31/30/14) | 73 y 75 | -3 |
+| Orgullo de Pueblo | KA155 | ES02 | 80 (33/31/16) | 77 (31/31/15) | 77 y 76 | -3 |
+| Green Tracks 2026 r2 | KA155 | ES02 | no se pasó | 60 (23/25/12) | 59 y 60 | |
+| Melilla 2026 r2 | KA155 | ES02 | no se pasó | 73 (30/29/14) | 72 y 73 | |
+| Billets d'Europe | KA155 | FR02 | 66 (27/27/12) | 76 (31/30/15) | 73 y 78 | +10 |
+| Conecta Sur | ESC30 | ES02 | 81 (34/31/16) | 76 (31/30/15) | 73 y 78 | -5 |
+| Haro Queer v2 | ESC30 | ES02 | 80 (34/30/16) | 75 (31/29/15) | 72 y 78 | -5 |
+| CHEMSAFE r3 | ESC30 | FR02 | 78 (32/30/16) | 74 (30/29/15) | 73 y 73 | -4 |
+
+En los ocho casos con las dos versiones, la v2 baja entre 3 y 5 puntos las seis que la v1 ya veía como aprobadas y sube mucho las dos que la v1 dejaba bajas (EMBER, +13; Billets d'Europe, +10). La subida de Billets puede deberse en parte al texto, porque la v1 puntuó una versión con unos quince huecos y la del portal conserva al menos uno (la consulta de Necesidades). La de EMBER encaja con las reglas nuevas de KA153. Son las dos predicciones en las que las versiones discrepan de verdad y las primeras que hay que mirar cuando lleguen las cartas.
+
 ## Historial de versiones
 
 | Versión | Fecha | Ajustada con | MAE en la muestra de ajuste | MAE fuera de muestra | Margen comunicado |
 |---|---|---|---|---|---|
 | v0 | 2026-10-03 | sin calibrar | 10,0 (13 casos) | no aplica | no se usó |
-| v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | 2,8 en 4 casos con la v1b; 5,1 en 9 casos reales no vistos (sesgo -4,9); octubre de 2026 pendiente | 8 |
+| v1 | 2026-10-03 | 13 casos de la ronda 1 de 2026 y 21 cartas | 2,6 (13 casos) | 2,8 en 4 casos con la v1b; 5,1 en 9 casos reales no vistos (sesgo -4,9); octubre de 2026 pendiente | 8 (vigente) |
+| v2 (descartada) | 2026-10-06 | 22 casos (13 de 2026 R1, 7 de octubre de 2025, NEST y Decide con Información) y sus cartas | no medido (solo notas a mano del calibrador) | 4,8 en 22 casos con validación cruzada en 3 pliegues; 5,8 en los 9 comparables con la v1 (sesgo -3,6); 6 de 8 en la prueba binaria | no se comunica (le habría tocado 6) |
