@@ -1,7 +1,7 @@
 ---
 title: "IDEAS · Inclusive Dialogue, Experiences and AI Solutions"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Seminario Erasmus+ para trabajadores juveniles en Horezu (Rumanía) sobre el uso inclusivo, ético y responsable de la inteligencia artificial en el trabajo con jóvenes con menos oportunidades. Diez días de intercambio de prácticas y creación de herramientas digitales, con alojamiento y comidas cubiertos."
 location: "Horezu, Vâlcea (Rumanía)"
