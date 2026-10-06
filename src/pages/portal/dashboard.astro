@@ -257,6 +257,9 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
 
       const payload = {
         user_id: userId,
+        // Marca de la última modificación: el panel de admin ordena por ella.
+        // Sin esto la columna se quedaba con la fecha de creación.
+        updated_at: new Date().toISOString(),
         nombre: get('nombre'),
         apellidos: get('apellidos'),
         dni: get('dni'),
