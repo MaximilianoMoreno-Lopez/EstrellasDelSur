@@ -13,7 +13,7 @@ poster: "images/projects/ideas/cover.png"
 edad: "Mayores de 18 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
-apply: "https://forms.gle/x3pQDB79nsY9vfgt6"
+apply: "https://forms.gle/wqQs7ebfjevTRwPF6"
 ---
 
 ## Datos del proyecto
