@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "slug": "ideas",
+    "cuando": "2026-10-07T11:20:00+02:00",
+    "motivo": "Abre la convocatoria del seminario IDEAS en Horezu",
+    "campos": { "status": "active" }
+  },
+  {
+    "slug": "shoot-cut-share",
+    "cuando": "2026-10-07T11:20:00+02:00",
+    "motivo": "Cierra la convocatoria de Shoot, Cut, Share en Tosya",
+    "campos": { "status": "past" }
+  }
+]
