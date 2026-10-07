@@ -44,3 +44,7 @@ scripts/estatutos-en.html
 # y este repositorio es publico. Se quedan solo en local; la skill
 # .claude/skills/redaccion-proyectos las usa como material de aprendizaje.
 /proyectos/
+
+# Documentos finales para REGCON: llevan DNI y firmas, nunca al repo público
+borradores/REGCON/
+scripts/regcon/
