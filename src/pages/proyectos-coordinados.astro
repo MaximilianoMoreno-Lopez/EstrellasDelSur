@@ -3,17 +3,14 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import EUBanner from '../components/EUBanner.astro';
+import { fechaInicio } from '../lib/fecha-inicio.mjs';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 let projects = await getCollection('projects');
 
-function projectStartTime(p: typeof projects[number]): number {
-  const m = p.data.dates?.match(/(\d{2})\/(\d{2})\/(\d{4})/);
-  if (m) return new Date(+m[3], +m[2] - 1, +m[1]).getTime();
-  if (p.data.year) return new Date(p.data.year, 11, 31).getTime();
-  return 0;
-}
+// Fecha de inicio, entendiendo también "08/2026" o "agosto a octubre de 2026".
+const projectStartTime = (p: typeof projects[number]): number => fechaInicio(p.data);
 
 projects = projects
   .filter((p) => p.data.coordinated)

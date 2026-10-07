@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
+import { fechaInicio } from '../lib/fecha-inicio.mjs';
 
 interface Props {
   activeOnly?: boolean;
@@ -13,12 +14,8 @@ const { activeOnly = false, limit, includeLocal = false, includeCoordinated = fa
 
 let projects = await getCollection('projects');
 
-function projectStartTime(p: typeof projects[number]): number {
-  const m = p.data.dates?.match(/(\d{2})\/(\d{2})\/(\d{4})/);
-  if (m) return new Date(+m[3], +m[2] - 1, +m[1]).getTime();
-  if (p.data.year) return new Date(p.data.year, 11, 31).getTime();
-  return 0;
-}
+// Fecha de inicio, entendiendo también "08/2026" o "agosto a octubre de 2026".
+const projectStartTime = (p: typeof projects[number]): number => fechaInicio(p.data);
 
 // Active first (by order ASC), then past (with explicit dates first by start date DESC, then dateless)
 projects.sort((a, b) => {

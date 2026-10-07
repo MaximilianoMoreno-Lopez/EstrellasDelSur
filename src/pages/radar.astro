@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SUBVENCIONES, ULTIMA_REVISION, FAVORITAS } from '../lib/subvenciones.mjs';
 import { CANDIDATURAS, ORGANIZACIONES, PROGRAMAS, ESTADOS, CRITERIOS, ULTIMA_ACTUALIZACION } from '../lib/candidaturas.mjs';
 import { getCollection } from 'astro:content';
+import { fechaInicio } from '../lib/fecha-inicio.mjs';
 
 const FAV = new Set(FAVORITAS);
 
@@ -97,10 +98,8 @@ const TIPO_BADGE: Record<string, string> = {
 
 // Clave de fecha ordenable a partir del texto libre de `dates`, con fallback al año.
 function projSortKey(p: any): string {
-  const m = p.data.dates?.match(/(\d{2})\/(\d{2})\/(\d{4})/);
-  if (m) return `${m[3]}-${m[2]}-${m[1]}`;
-  if (p.data.year) return `${p.data.year}-12-31`;
-  return '0000-00-00';
+  const ms = fechaInicio(p.data);
+  return ms ? new Date(ms).toISOString().slice(0, 10) : '0000-00-00';
 }
 
 const proyectosRaw = await getCollection('projects');
