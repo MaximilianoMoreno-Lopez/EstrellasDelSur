@@ -87,6 +87,9 @@ jobs:
     needs: aplicar
     if: needs.aplicar.outputs.cambios == 'true'
     runs-on: ubuntu-latest
+    # Si GitHub Pages se cuelga al publicar, se corta a los 10 minutos para no
+    # bloquear la cola del grupo "pages" (pasó el 6 y el 7 de octubre de 2026).
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
