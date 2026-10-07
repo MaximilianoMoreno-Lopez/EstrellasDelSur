@@ -1,7 +1,7 @@
 ---
 title: "Shoot, Cut, Share · The Tosya Trail"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇹🇷"
 description: "Intercambio juvenil Erasmus+ en Tosya (Turquía) sobre fotografía, vídeo y redes sociales. Nueve días de safari fotográfico por un pueblo de Anatolia para convertir lo que grabas con el móvil en una campaña de promoción turística, con alojamiento y comidas cubiertos."
 location: "Tosya, Kastamonu (Turquía)"
@@ -15,6 +15,7 @@ idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
 infopack: "https://drive.google.com/file/d/1CV18B63VJZRLuVvjYR0AAU_RSpaa0JTJ/view?usp=drive_link"
 apply: "https://forms.gle/165kDBZED5PRdxpL7"
+infoCompleta: true
 ---
 
 ## Datos del proyecto

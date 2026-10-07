@@ -1,7 +1,7 @@
 ---
 title: "Included Voices"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇷🇴"
 description: "Curso de formación Erasmus+ en Băile Govora, un pueblo balneario del sur de Rumanía, sobre educación entre iguales para la participación democrática. Una semana para aprender a formar a jóvenes de comunidades marginadas como educadores de sus propios pares, con teatro foro, presupuestos participativos y biblioteca humana."
 location: "Băile Govora, Vâlcea (Rumanía)"
@@ -15,6 +15,7 @@ apply: "https://forms.gle/M6HceN9bG84Rec829"
 edad: "+18 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
+infoCompleta: true
 ---
 
 ## Datos del proyecto
