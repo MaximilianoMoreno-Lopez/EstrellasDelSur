@@ -33,7 +33,7 @@ en el mismo commit que el cambio de texto. Proceso completo en [`LEGAL.md`](LEGA
 ## Identidad
 - CIF: G02811461 · OID: E10264295 · PIC: 892239563
 - Sede social: Avda. Guerrita 14, 1ª pl., local 3A, 14005 Córdoba
-- Colores: navy `#0a1628`, teal `#0d9488`, gold `#f59e0b`
+- Colores: navy `#0a1628`, teal `#0d9488`, gold `#f59e0b`. Para **texto** turquesa sobre fondo claro usar `var(--teal-text)` (`#0f766e`, 5,5:1); `--teal` solo para fondos, bordes e iconos
 - Logo: `public/images/logo.svg` (SVG sin fondo)
 - OG image: `public/og-image.png`
 

@@ -913,7 +913,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     transition: color .15s, border-color .15s;
   }
   .radar-tab { white-space: nowrap; flex: 0 0 auto; }
-  .radar-tab:hover { color: var(--teal); }
+  .radar-tab:hover { color: var(--teal-text); }
   @media (max-width: 480px) {
     .radar-tab { padding: .6rem .6rem; font-size: .88rem; }
   }
@@ -961,7 +961,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     transition: background .15s, color .15s;
   }
   .vt-btn.is-on { background: var(--teal); color: #fff; }
-  .vt-btn:not(.is-on):hover { color: var(--teal); }
+  .vt-btn:not(.is-on):hover { color: var(--teal-text); }
 
   .order-select { display: flex; align-items: center; flex-wrap: wrap; gap: .45rem; }
   .o-chip {
@@ -976,7 +976,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     cursor: pointer;
     transition: background .15s, color .15s, border-color .15s;
   }
-  .o-chip:hover { border-color: var(--teal); color: var(--teal); }
+  .o-chip:hover { border-color: var(--teal); color: var(--teal-text); }
   .o-chip.is-on { background: var(--navy); border-color: var(--navy); color: #fff; }
 
   /* Filters */
@@ -1012,7 +1012,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     cursor: pointer;
     transition: background .15s, color .15s, border-color .15s;
   }
-  .f-chip:hover { border-color: var(--teal); color: var(--teal); }
+  .f-chip:hover { border-color: var(--teal); color: var(--teal-text); }
   .f-chip.is-on {
     background: var(--teal);
     border-color: var(--teal);
@@ -1113,7 +1113,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     gap: .35rem;
     font-size: .82rem;
     font-weight: 700;
-    color: var(--teal);
+    color: var(--teal-text);
     text-decoration: none;
     white-space: nowrap;
   }
@@ -1192,7 +1192,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     letter-spacing: .05em;
     color: var(--gray-500);
   }
-  .pc-estado.is-active { color: var(--teal); }
+  .pc-estado.is-active { color: var(--teal-text); }
   .pc-nombre {
     font-family: 'Playfair Display Variable', 'Playfair Display', 'Playfair Display Fallback', serif;
     font-size: 1.02rem;
@@ -1201,7 +1201,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     line-height: 1.3;
   }
   .pc-nombre a { color: inherit; text-decoration: none; }
-  .pc-nombre a:hover { color: var(--teal); }
+  .pc-nombre a:hover { color: var(--teal-text); }
   .pc-loc { font-size: .82rem; color: var(--gray-500); }
   .pc-fecha { font-size: .82rem; color: var(--gray-600); font-weight: 600; }
 
@@ -1405,7 +1405,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     color: var(--gray-500);
     text-align: right;
   }
-  .cand-grid.view-list .cl-nota.is-real { color: var(--teal); }
+  .cand-grid.view-list .cl-nota.is-real { color: var(--teal-text); }
   .cand-grid.view-list .cl-nota.is-bajo { color: #b91c1c; }
   .cand-grid.view-list .cl-pedido {
     display: block;
@@ -1460,7 +1460,7 @@ const gruposCand = [...gruposMap.values()].sort((a, b) => b.key.localeCompare(a.
     background: #fff;
   }
   .radar-disclaimer p { font-size: .82rem; color: var(--gray-500); line-height: 1.6; }
-  .radar-disclaimer a { color: var(--teal); }
+  .radar-disclaimer a { color: var(--teal-text); }
 
   /* ── Responsive: listas en pantallas pequeñas ── */
   @media (max-width: 760px) {
