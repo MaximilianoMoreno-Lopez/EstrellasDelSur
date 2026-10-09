@@ -32,7 +32,7 @@ dates: "22/10/2026 - 01/11/2026"
 
 **Small Communities, Active Buttons On** es un intercambio juvenil internacional Erasmus+ organizado por **Asociația ODEN** en Sărata Monteoru, un pueblo de la zona de colinas del condado de Buzău, en el sureste de Rumanía. La idea de fondo es sencilla y bastante poco habitual. Casi siempre se habla de los pueblos y de las comarcas pequeñas por lo que les falta, y aquí se plantea justo lo contrario, mirar lo que ya tienen.
 
-Durante diez días, 44 personas de ocho países van a analizar qué se puede hacer con lo que hay al lado de casa. Un camino, un río, una plaza, un polideportivo cerrado media semana, una asociación de vecinos, un grupo de gente con ganas. Todo eso son recursos para moverse más, cuidar la salud, reducir el impacto ambiental y organizar cosas en común, y casi nunca se cuentan como tales.
+Durante nueve días, 44 personas de ocho países van a analizar qué se puede hacer con lo que hay al lado de casa. Un camino, un río, una plaza, un polideportivo cerrado media semana, una asociación de vecinos, un grupo de gente con ganas. Todo eso son recursos para moverse más, cuidar la salud, reducir el impacto ambiental y organizar cosas en común, y casi nunca se cuentan como tales.
 
 El objetivo del proyecto es dar herramientas a jóvenes de comunidades pequeñas para convertirse en personas activas, sanas, ambientalmente responsables y comprometidas, capaces de aportar algo al desarrollo sostenible y a la revitalización de su entorno.
 

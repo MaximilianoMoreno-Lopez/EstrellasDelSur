@@ -3,7 +3,7 @@ title: "Active for nature - United in diversity"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio juvenil Erasmus+ sobre autodescubrimiento, aventura y conexión con la naturaleza"
+description: "Intercambio juvenil Erasmus+ en Airuno (Italia) de crecimiento personal e intercultural: caminatas, excursiones, juegos al aire libre y veladas alrededor del fuego, lejos del ritmo de la vida cotidiana"
 year: 2025
 dates: "23/08/2025 - 03/09/2025"
 order: 39

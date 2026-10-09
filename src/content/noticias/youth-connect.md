@@ -27,10 +27,10 @@ Uno de los momentos fuertes lo vivimos en casa: el **Training Course Internacion
 Pasamos por la inclusión digital, el uso responsable de la tecnología, la inteligencia artificial aplicada a la educación, la seguridad en internet, las barreras digitales que encuentran los jóvenes migrantes y las oportunidades de movilidad y empleo que abre la Unión Europea con programas como Erasmus+.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/youth-connect/tc-1.jpg" alt="Participantes del Training Course de Youth Connect en Córdoba" />
-  <img src="/images/noticias/youth-connect/tc-2.jpg" alt="Trabajo en grupo durante el Training Course en Córdoba" />
-  <img src="/images/noticias/youth-connect/tc-3.jpg" alt="Actividad práctica del Training Course de Youth Connect" />
-  <img src="/images/noticias/youth-connect/tc-4.jpg" alt="Sesión del Training Course Internacional en Córdoba" />
+  <img src="/images/noticias/youth-connect/tc-1-card.webp" alt="Participantes del Training Course de Youth Connect en Córdoba" width="800" height="600" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/tc-2-card.webp" alt="Trabajo en grupo durante el Training Course en Córdoba" width="800" height="600" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/tc-3-card.webp" alt="Actividad práctica del Training Course de Youth Connect" width="800" height="1067" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/tc-4-card.webp" alt="Sesión del Training Course Internacional en Córdoba" width="800" height="600" loading="lazy" decoding="async" />
 </div>
 
 Nada de clases magistrales: educación no formal, trabajo en grupos internacionales y mucha práctica. Los participantes trastearon con herramientas, crearon recursos educativos y reforzaron competencias digitales que sirven igual para el currículum que para el día a día. Y, como siempre pasa en estos encuentros, lo intercultural acabó pesando tanto como lo formativo: gente muy distinta hablando, comparándose y sentando las bases de futuras colaboraciones dentro de la asociación.
@@ -42,10 +42,10 @@ La cosa no se acabó cuando cada cual volvió a su país. Una parte importante d
 Talleres, sesiones informativas y dinámicas participativas llegaron a un montón de jóvenes, con espacios para hablar de competencias digitales, oportunidades europeas y las habilidades que hoy pide el mercado laboral. Así el proyecto multiplicó su alcance bastante más allá de quienes viajaron, llevando lo trabajado a cada territorio.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/youth-connect/com-1.jpg" alt="Actividad local de Youth Connect con jóvenes de la comunidad" />
-  <img src="/images/noticias/youth-connect/com-2.jpg" alt="Taller comunitario de competencias digitales de Youth Connect" />
-  <img src="/images/noticias/youth-connect/com-3.jpg" alt="Sesión participativa local del proyecto Youth Connect" />
-  <img src="/images/noticias/youth-connect/com-4.jpg" alt="Jóvenes participando en una actividad local de Youth Connect" />
+  <img src="/images/noticias/youth-connect/com-1-card.webp" alt="Actividad local de Youth Connect con jóvenes de la comunidad" width="800" height="1067" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/com-2-card.webp" alt="Taller comunitario de competencias digitales de Youth Connect" width="800" height="600" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/com-3-card.webp" alt="Sesión participativa local del proyecto Youth Connect" width="800" height="1422" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/com-4-card.webp" alt="Jóvenes participando en una actividad local de Youth Connect" width="800" height="1067" loading="lazy" decoding="async" />
 </div>
 
 ## YouthConnect Day
@@ -53,10 +53,10 @@ Talleres, sesiones informativas y dinámicas participativas llegaron a un montó
 Otra de las citas señaladas es el **YouthConnect Day**, una jornada para poner en valor los resultados y acercar las oportunidades europeas a más gente joven. Es un espacio de encuentro donde se presentan las actividades, las experiencias de los participantes y el impacto en cada comunidad, y donde se hace lo que mejor funciona: conectar a jóvenes y organizaciones, y animar a más personas a lanzarse a la movilidad internacional.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/youth-connect/ycd-1.jpg" alt="Jornada YouthConnect Day del proyecto Youth Connect" />
-  <img src="/images/noticias/youth-connect/ycd-2.jpg" alt="Presentación de resultados durante el YouthConnect Day" />
-  <img src="/images/noticias/youth-connect/ycd-3.jpg" alt="Jóvenes y organizaciones en el YouthConnect Day" />
-  <img src="/images/noticias/youth-connect/ycd-4.jpg" alt="Encuentro del YouthConnect Day de Youth Connect" />
+  <img src="/images/noticias/youth-connect/ycd-1-card.webp" alt="Jornada YouthConnect Day del proyecto Youth Connect" width="800" height="1067" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/ycd-2-card.webp" alt="Presentación de resultados durante el YouthConnect Day" width="800" height="600" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/ycd-3-card.webp" alt="Jóvenes y organizaciones en el YouthConnect Day" width="800" height="600" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/ycd-4-card.webp" alt="Encuentro del YouthConnect Day de Youth Connect" width="800" height="1067" loading="lazy" decoding="async" />
 </div>
 
 ## Networking con asociaciones internacionales
@@ -66,10 +66,10 @@ También organizamos una actividad de networking en la que presentamos los resul
 Fue una ocasión estupenda para compartir lo aprendido y tejer nuevas alianzas. Por allí pasaron, entre otras, la Agglomération La CALI (Francia), Youth Dynamics (Chipre), Eduart (Macedonia del Norte) e Hiiumaa (Estonia), junto a la Friche la Belle de Mai y otras asociaciones de personas migrantes de Marsella. De esos contactos suelen salir las colaboraciones que dan forma a los próximos proyectos.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/youth-connect/net-1.jpg" alt="Presentación de la experiencia de Córdoba durante la actividad de networking de Youth Connect" />
-  <img src="/images/noticias/youth-connect/net-2.jpg" alt="Presentación del proyecto Youth Connect a asociaciones internacionales" />
-  <img src="/images/noticias/youth-connect/net-3.jpg" alt="Presentación del impacto de Estrellas del Sur ante las asociaciones internacionales en Youth Connect" />
-  <img src="/images/noticias/youth-connect/net-4.jpg" alt="Encuentro de networking con asociaciones europeas en Youth Connect" />
+  <img src="/images/noticias/youth-connect/net-1-card.webp" alt="Presentación de la experiencia de Córdoba durante la actividad de networking de Youth Connect" width="800" height="1067" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/net-2-card.webp" alt="Presentación del proyecto Youth Connect a asociaciones internacionales" width="800" height="1067" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/net-3-card.webp" alt="Presentación del impacto de Estrellas del Sur ante las asociaciones internacionales en Youth Connect" width="800" height="1067" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/net-4-card.webp" alt="Encuentro de networking con asociaciones europeas en Youth Connect" width="800" height="1067" loading="lazy" decoding="async" />
 </div>
 
 ## El cierre en Fundão
@@ -81,10 +81,10 @@ Repasamos los resultados de cada país, valoramos hasta qué punto hemos cumplid
 Hubo tiempo también para celebrar. Se entregaron los certificados de participación y aprovechamos para disfrutar de Fundão en grupo, con alguna cena y una vuelta por la feria de la ciudad, donde nos encontramos con asociaciones y entidades locales y música en directo. Cerrar un proyecto así, en persona y con quienes lo han hecho posible, es la mejor manera de ponerle el broche.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/youth-connect/final-1.jpg" alt="Entrega de certificados de participación en la reunión final de Youth Connect en Fundão" />
-  <img src="/images/noticias/youth-connect/final-2.jpg" alt="El equipo de Estrellas del Sur por las calles de Fundão durante el evento final de Youth Connect" />
-  <img src="/images/noticias/youth-connect/final-3.jpg" alt="Cena de grupo de los socios de Youth Connect en Fundão" />
-  <img src="/images/noticias/youth-connect/final-4.jpg" alt="La feria de Fundão durante el cierre del proyecto Youth Connect" />
+  <img src="/images/noticias/youth-connect/final-1-card.webp" alt="Entrega de certificados de participación en la reunión final de Youth Connect en Fundão" width="800" height="1067" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/final-2-card.webp" alt="El equipo de Estrellas del Sur por las calles de Fundão durante el evento final de Youth Connect" width="800" height="600" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/final-3-card.webp" alt="Cena de grupo de los socios de Youth Connect en Fundão" width="800" height="600" loading="lazy" decoding="async" />
+  <img src="/images/noticias/youth-connect/final-4-card.webp" alt="La feria de Fundão durante el cierre del proyecto Youth Connect" width="800" height="1067" loading="lazy" decoding="async" />
 </div>
 
 Youth Connect deja claro que juntar herramientas digitales, aprendizaje intercultural y participación activa genera oportunidades reales para la juventud europea. Hemos reforzado competencias, empujado la inclusión y ayudado a que más jóvenes sepan lo que Europa pone a su alcance.

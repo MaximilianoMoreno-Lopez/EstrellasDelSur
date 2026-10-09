@@ -1,5 +1,5 @@
 ---
-title: "The Rythm of Unity"
+title: "The Rhythm of Unity"
 type: "Intercambio"
 status: "past"
 flag: "🇵🇱"
@@ -15,7 +15,7 @@ location: "Polonia"
 
 ## Sobre el proyecto
 
-The Rythm of Unity fue un intercambio juvenil Erasmus+ celebrado en Polonia y organizado por Europe4Youth. A través del ritmo, la percusión y la música colectiva, el proyecto trabajó la cohesión de grupo, la comunicación no verbal y la idea de que la diversidad puede sonar al unísono.
+The Rhythm of Unity fue un intercambio juvenil Erasmus+ celebrado en Polonia y organizado por Europe4Youth. A través del ritmo, la percusión y la música colectiva, el proyecto trabajó la cohesión de grupo, la comunicación no verbal y la idea de que la diversidad puede sonar al unísono.
 
 Estrellas del Sur participó como organización de envío del grupo español.
 

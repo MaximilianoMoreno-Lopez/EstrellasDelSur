@@ -107,6 +107,6 @@ Además, el proyecto refuerza los valores que inspiran a nuestra asociación **E
 
 El ConnectART Toolkit está disponible de forma gratuita y queremos invitarte a explorarlo, difundirlo y aplicarlo en tu trabajo con jóvenes:
 
-**[Descargar ConnectART Toolkit (PDF)](https://drive.google.com/file/d/1iIEO6MujcyWXSUCm4RjdauOuBu5bthVI/view?usp=drive_link)**
+**<a href="https://drive.google.com/file/d/1iIEO6MujcyWXSUCm4RjdauOuBu5bthVI/view?usp=drive_link" target="_blank" rel="noopener">Descargar ConnectART Toolkit (PDF)</a>**
 
 No compartimos solo un recurso práctico, sino también una invitación a reflexionar sobre cómo construir entornos más accesibles, respetuosos y diversos. Porque la inclusión no es un añadido, sino la base para que cada joven pueda participar plenamente y aportar su voz en la sociedad.

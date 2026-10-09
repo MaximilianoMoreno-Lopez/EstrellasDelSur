@@ -98,7 +98,8 @@ if (aplicadas.length && !simulacro) {
   writeFileSync(LISTA, `${JSON.stringify(quedan, null, 2)}\n`);
 }
 
-const resumen = aplicadas.map((e) => e.motivo || e.slug).join('; ');
+// Una sola línea: un salto de línea en un `motivo` corrompería GITHUB_OUTPUT.
+const resumen = aplicadas.map((e) => e.motivo || e.slug).join('; ').replace(/\s+/g, ' ').trim();
 console.log(aplicadas.length ? `Cambios aplicados: ${resumen}` : 'Nada que aplicar hoy.');
 
 if (process.env.GITHUB_OUTPUT) {

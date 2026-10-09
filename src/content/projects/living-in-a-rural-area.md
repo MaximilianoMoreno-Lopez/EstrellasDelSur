@@ -3,7 +3,7 @@ title: "Living in a rural area"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio Erasmus+ centrado en medioambiente y sostenibilidad"
+description: "Intercambio Erasmus+ sobre la vida en el medio rural, el medioambiente y la sostenibilidad"
 year: 2024
 order: 68
 ---

@@ -3,7 +3,7 @@ title: "Bodies, Minds, and Souls in the Nature"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio juvenil Erasmus+ sobre autodescubrimiento, aventura y conexión con la naturaleza"
+description: "Intercambio juvenil Erasmus+ en Airuno (Italia) para que los jóvenes recuperen la percepción de sí mismos y de su lugar en el ecosistema tras la pandemia, aprendiendo en la naturaleza y lejos de la tecnología"
 year: 2024
 dates: "24/08/2024 - 04/09/2024"
 order: 35

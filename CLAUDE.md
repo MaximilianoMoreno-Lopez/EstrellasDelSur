@@ -4,18 +4,12 @@
 Sitio web estático de Estrellas del Sur, asociación juvenil de Córdoba (Erasmus+ / Cuerpo Europeo de Solidaridad).
 - **Stack**: Astro 6, contenido en Markdown, deploy en GitHub Pages
 - **Repo**: https://github.com/MaximilianoMoreno-Lopez/EstrellasDelSur
-- **Web actual**: https://maximilianomoreno-lopez.github.io/EstrellasDelSur/
-- **Dominio futuro**: https://estrellasdelsur.eu (CNAME ya configurado)
-
-## Cuando el dominio esté activo
-En `astro.config.mjs` cambiar:
-```js
-site: 'https://estrellasdelsur.eu'  // cambiar
-// base: '/EstrellasDelSur'         // eliminar esta línea
-```
+- **Web**: https://estrellasdelsur.eu (dominio propio activo; la antigua URL de github.io redirige con 301)
+- `astro.config.mjs` tiene `site: 'https://estrellasdelsur.eu'` y ya no lleva `base`.
 
 ## URLs internas
 Siempre usar `${base}/ruta/` donde `base = import.meta.env.BASE_URL.replace(/\/$/, '')`.
+Aunque hoy `base` está vacío, así las rutas no se rompen si algún día vuelve a hacer falta.
 
 ## Colecciones de contenido
 - `src/content/projects/*.md` — proyectos Erasmus+
@@ -25,8 +19,12 @@ Siempre usar `${base}/ruta/` donde `base = import.meta.env.BASE_URL.replace(/\/$
 
 ## Equipo
 - **Maximiliano Moreno López** — Cofundador y Presidente · maxi@estrellasdelsur.eu
-- **Pablo Sánchez Ruiz** — Cofundador y Vicepresidente · pablo@estrellasdelsur.eu
+- **Pablo Sánchez Ruiz** — Cofundador · pablo@estrellasdelsur.eu (fue Secretario hasta el 16/08/2026; sigue como administrador del portal)
 - **Paula Arroyo** — International Project Manager · paula@estrellasdelsur.eu
+
+Junta Directiva desde la Asamblea del 16/08/2026: Maximiliano Moreno López (Presidencia),
+Ángel González Ruiz (Vicepresidencia), Ane Bados Gil (Secretaría) y Cristina Peralbo
+Villamandos (Tesorería). La web (transparencia) aún muestra la composición anterior.
 
 ## Documentos legales
 Al actualizar Términos o Privacidad, subir siempre `LEGAL_VERSION` en `src/lib/legal.js`
@@ -38,6 +36,13 @@ en el mismo commit que el cambio de texto. Proceso completo en [`LEGAL.md`](LEGA
 - Colores: navy `#0a1628`, teal `#0d9488`, gold `#f59e0b`
 - Logo: `public/images/logo.svg` (SVG sin fondo)
 - OG image: `public/og-image.png`
+
+## Imágenes
+`npm run build` ejecuta antes `scripts/generate-webp.mjs`, que crea junto a cada JPG/PNG de
+`public/images` su `.webp` y su `-card.webp`, y un `-og.jpg` de 1200x630 para cada portada de
+proyecto (`image`) y de noticia (`cover`), que es la imagen de la vista previa al compartir.
+Las imágenes metidas como HTML en el Markdown (`<img>` en galerías) no pasan por el plugin
+de WebP: hay que apuntarlas a mano al `-card.webp`.
 
 ## Deploy
 Push a `main` → GitHub Actions construye y despliega automáticamente (~2 min).

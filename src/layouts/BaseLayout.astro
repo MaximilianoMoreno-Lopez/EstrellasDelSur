@@ -160,8 +160,8 @@ const robotsContent = noindex
     <meta property="og:title"       content={socialTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image"       content={ogImageURL} />
-    <meta property="og:image:width"  content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width"  content={ogImage === '/og-image.png' ? '1280' : '1200'} />
+    <meta property="og:image:height" content={ogImage === '/og-image.png' ? '720' : '630'} />
     <meta property="og:site_name"   content="Estrellas del Sur" />
     <meta property="og:locale"      content={lang === 'en' ? 'en_GB' : 'es_ES'} />
     {ogType === 'article' && publishedTime && (

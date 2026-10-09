@@ -18,4 +18,4 @@ image: "images/projects/counter-hate-is-possible/cover.png"
 
 ## Sobre el proyecto
 
-El objetivo principal de la Counter hate is possible es dotar a los jóvenes de conocimientos y herramientas que les ayuden a resolver los problemas de los jóvenes de 15 a 30 años, (voluntarios, estudiantes de organizaciones organizaciones asociadas) el odio y la desinformación, cómo hacer frente a estos fenómenos. En el proyecto participarán 30 jóvenes de 6 países diferentes (Portugal, Grecia, Italia, Hungría, Rumanía y España) durante 7 días de formación.
+El objetivo principal de la Counter hate is possible es dotar a los jóvenes de conocimientos y herramientas que les ayuden a resolver los problemas de los jóvenes de 15 a 30 años, (voluntarios, estudiantes de organizaciones asociadas) el odio y la desinformación, cómo hacer frente a estos fenómenos. En el proyecto participarán 30 jóvenes de 6 países diferentes (Portugal, Grecia, Italia, Hungría, Rumanía y España) durante 7 días de formación.

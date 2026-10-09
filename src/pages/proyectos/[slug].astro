@@ -43,6 +43,19 @@ const applyRel = applyIsAnchor ? undefined : 'noopener';
 // solicitud, ni el formulario ni el correo.
 const showContactCta = status === 'active' && !apply;
 
+// Un proyecto cerrado (`past`) puede no haberse celebrado todavía: se cierra la
+// convocatoria semanas antes del viaje. En ese caso no se le llama "Finalizado"
+// y se avisa encima del texto, porque el cuerpo de la ficha conserva frases de
+// cuando estaba abierta ("aceptaremos inscripciones de manera continua").
+// Se toma la última fecha dd/mm/aaaa de `dates`, que es la de fin.
+const fechaFin = (() => {
+  const todas = [...String(dates ?? '').matchAll(/(\d{1,2})\/(\d{1,2})\/(\d{4})/g)];
+  if (!todas.length) return null;
+  const [, d, m, a] = todas[todas.length - 1];
+  return new Date(Number(a), Number(m) - 1, Number(d), 23, 59);
+})();
+const cerradaSinCelebrar = status === 'past' && !localInitiative && fechaFin !== null && fechaFin >= new Date();
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const SITE = 'https://estrellasdelsur.eu';
@@ -141,7 +154,7 @@ const breadcrumbs = [
   title={title}
   description={description}
   ogType="article"
-  ogImage={image ? `/${image}` : '/og-image.png'}
+  ogImage={image && /\.(jpe?g|png)$/i.test(image) ? `/${image.replace(/\.(jpe?g|png)$/i, '-og.jpg')}` : '/og-image.png'}
   jsonLd={courseJsonLd}
   breadcrumbs={breadcrumbs}
 >
@@ -248,6 +261,11 @@ const breadcrumbs = [
             />
           </figure>
         )}
+        {cerradaSinCelebrar && (
+          <p class="aviso-cerrada" role="note">
+            <strong>Convocatoria cerrada.</strong> Ya no se aceptan inscripciones. Mantenemos toda la información para las personas seleccionadas.
+          </p>
+        )}
         <Content />
 
         {(canApply || infopack) && (
@@ -278,7 +296,7 @@ const breadcrumbs = [
             <dd>
               {status === 'active'
                 ? <span class="status-dot active">Activo</span>
-                : <span class="status-dot past">Finalizado</span>
+                : <span class="status-dot past">{cerradaSinCelebrar ? 'Convocatoria cerrada' : 'Finalizado'}</span>
               }
             </dd>
 
@@ -427,6 +445,15 @@ const breadcrumbs = [
 
   /* Contrapunto del anterior en los proyectos ya cerrados: mismo tamaño y
      posición, pero apagado, para que se lea sin competir con el título. */
+  .aviso-cerrada {
+    background: var(--cream, #fdf8ef);
+    border-left: 4px solid var(--gold, #f59e0b);
+    border-radius: 8px;
+    padding: .85rem 1.1rem;
+    margin: 0 0 1.75rem;
+    font-size: .95rem;
+    color: var(--navy, #0a1628);
+  }
   .badge-closed {
     background: rgba(255, 255, 255, .12);
     border: 1px solid rgba(255, 255, 255, .3);

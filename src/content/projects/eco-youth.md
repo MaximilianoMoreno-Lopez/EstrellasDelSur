@@ -3,7 +3,7 @@ title: "Eco-YOUth"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio juvenil Erasmus+ sobre voluntariado y programas de reconocimiento"
+description: "Intercambio juvenil Erasmus+ en Kakopetria (Chipre) sobre competencias verdes y conciencia ambiental: recogida de aceitunas, plantación de árboles, extracción de aceite y senderismo"
 dates: "24/10/2025 - 02/11/2025"
 order: 10
 location: "Kakopetria, Chipre"
@@ -12,7 +12,7 @@ image: "images/projects/eco-youth/cover.png"
 ---
 ## Datos del proyecto
 
-- **Temática del Proyecto:** Voluntariado y programas de reconocimiento
+- **Temática del Proyecto:** Competencias verdes, conciencia ambiental y sostenibilidad
 - **Fechas:** Del 24/10/2025 al 02/11/2025
 - **Lugar:** Kakopetria, Chipre
 

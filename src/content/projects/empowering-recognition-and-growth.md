@@ -3,7 +3,7 @@ title: "Empowering Recognition and Growth"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio juvenil Erasmus+ sobre voluntariado y programas de reconocimiento"
+description: "Intercambio juvenil Erasmus+ en Gaziantep (Turquía) sobre el reconocimiento del aprendizaje no formal, con talleres, proyectos colaborativos y espacios de reflexión"
 year: 2025
 dates: "01/11/2025 - 09/11/2025"
 order: 50

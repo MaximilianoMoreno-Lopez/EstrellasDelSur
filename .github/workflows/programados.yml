@@ -33,8 +33,12 @@ permissions:
   pages: write
   id-token: write
 
+# El grupo "pages" (compartido con deploy.yml) solo lo toma el job de
+# despliegue, y solo cuando hay cambios. Si lo tomara todo el workflow, un pase
+# sin nada que aplicar podría cancelar un despliegue de un push que estuviera
+# esperando turno, porque GitHub solo deja uno pendiente por grupo.
 concurrency:
-  group: "pages"
+  group: "programados"
   cancel-in-progress: false
 
 jobs:
@@ -60,8 +64,18 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/content/projects scripts/programados.json
-          git commit -m "Cambio programado: ${{ steps.programados.outputs.resumen }}"
-          git push
+          # El resumen va por variable de entorno y no pegado en el comando:
+          # unas comillas o un $ en el "motivo" romperían el paso.
+          git commit -m "Cambio programado: $RESUMEN"
+          # Si alguien ha empujado a main durante el pase, se rebasa y se
+          # reintenta en vez de fallar sin desplegar.
+          for intento in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 5
+          done
+          exit 1
+        env:
+          RESUMEN: ${{ steps.programados.outputs.resumen }}
 
       - name: Install dependencies
         if: steps.programados.outputs.cambios == 'true'
@@ -90,6 +104,9 @@ jobs:
     # Si GitHub Pages se cuelga al publicar, se corta a los 10 minutos para no
     # bloquear la cola del grupo "pages" (pasó el 6 y el 7 de octubre de 2026).
     timeout-minutes: 10
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

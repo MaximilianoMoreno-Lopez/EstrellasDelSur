@@ -23,10 +23,10 @@ Luego llegó el retrato. Cada uno dibujó el suyo y lo paseó por la sala con m�
 La tarde fue para el trabajo en equipo, con LEGO. Primero cada persona construyó su propia pieza, a su manera. Después vino la parte incómoda y la más interesante: combinar todas las creaciones en una sola sin modificar ninguna. Suena a juego de niños hasta que te toca defender tu torre.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/digital-competences/contrato-social.jpg" alt="Papelógrafo con el contrato social del grupo firmado por todos los participantes" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/lego-1.jpg" alt="Participantes construyendo con LEGO alrededor de una mesa llena de piezas" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/lego-2.jpg" alt="El grupo en círculo presentando sus construcciones de LEGO" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/lego-3.jpg" alt="Dos participantes explicando su creación de LEGO al resto del grupo" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/contrato-social-card.webp" alt="Papelógrafo con el contrato social del grupo firmado por todos los participantes" width="800" height="1421" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/lego-1-card.webp" alt="Participantes construyendo con LEGO alrededor de una mesa llena de piezas" width="800" height="603" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/lego-2-card.webp" alt="El grupo en círculo presentando sus construcciones de LEGO" width="800" height="603" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/lego-3-card.webp" alt="Dos participantes explicando su creación de LEGO al resto del grupo" width="800" height="603" loading="lazy" decoding="async" />
 </div>
 
 ## La rueda de competencias digitales
@@ -40,10 +40,10 @@ Después vino un ejercicio de posicionamiento con preguntas incómodas sobre el 
 Por la tarde tocó mirarse las manos. Cada uno puso sobre un papelógrafo lo que sabe hacer, lo que ha aprendido por su cuenta, aquello en lo que podría enseñar a otro. Salió el **Pool of Talent**, un mapa de habilidades del grupo que luego organizamos por afinidades. Y de ahí salió el programa de la semana, porque el siguiente paso fue repartirse los talleres: quién diseña qué, con quién y para qué día.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/digital-competences/rueda-1.jpg" alt="Presentación de uno de los papelógrafos de la rueda de competencias digitales" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/rueda-2.jpg" alt="El grupo reunido en círculo durante el World Café sobre competencias digitales" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/talento.jpg" alt="Papelógrafo Pool of Talent con post-its de las habilidades del grupo" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/plan-talleres.jpg" alt="Papelógrafo con la planificación de los talleres de la semana y los nombres de los responsables" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/rueda-1-card.webp" alt="Presentación de uno de los papelógrafos de la rueda de competencias digitales" width="800" height="603" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/rueda-2-card.webp" alt="El grupo reunido en círculo durante el World Café sobre competencias digitales" width="800" height="603" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/talento-card.webp" alt="Papelógrafo Pool of Talent con post-its de las habilidades del grupo" width="800" height="1063" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/plan-talleres-card.webp" alt="Papelógrafo con la planificación de los talleres de la semana y los nombres de los responsables" width="800" height="1421" loading="lazy" decoding="async" />
 </div>
 
 ## Los talleres los daban los participantes
@@ -53,10 +53,10 @@ Aquí está el giro del proyecto. A partir del tercer día, el programa lo lleva
 Pasaron muchas cosas por esa sala. Un taller de **producción musical** con software de edición de audio. Uno de **colaboración digital** convertido en búsqueda del tesoro, con pistas repartidas entre varias herramientas online. **The Art of Search Fu**, sobre cómo buscar de verdad en internet, que arrancó con el test de Turing gamificado y acabó en debate. Y **Digitals in Education**, con Minecraft Education y programación en Scratch, defendiendo que un videojuego también enseña.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/digital-competences/taller-musica.jpg" alt="Taller de producción musical impartido por participantes con un portátil" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/colaboracion.jpg" alt="Grupo trabajando con tablets y móviles en el taller de colaboración digital" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/search-fu.jpg" alt="Taller sobre búsqueda en internet con una imagen de Alan Turing proyectada" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/educacion-digital.jpg" alt="Presentación del taller Digitals in Education con herramientas educativas proyectadas" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/taller-musica-card.webp" alt="Taller de producción musical impartido por participantes con un portátil" width="800" height="450" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/colaboracion-card.webp" alt="Grupo trabajando con tablets y móviles en el taller de colaboración digital" width="800" height="450" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/search-fu-card.webp" alt="Taller sobre búsqueda en internet con una imagen de Alan Turing proyectada" width="800" height="450" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/educacion-digital-card.webp" alt="Presentación del taller Digitals in Education con herramientas educativas proyectadas" width="800" height="1063" loading="lazy" decoding="async" />
 </div>
 
 ## Ciberseguridad, pero jugando
@@ -66,10 +66,10 @@ El quinto día fue el más intenso, y probablemente el que más se recuerda. El 
 Por la tarde, **datos personales y robo de identidad**. La actividad consistió en rastrear el perfil ficticio de una persona en redes sociales, recopilar todo lo que se pudiera averiguar sobre ella y redactar un informe. El resultado dio bastante miedo, y la reflexión posterior fue directa al grano: con eso que acabas de encontrar en diez minutos, qué se podría hacer, y cómo se evita.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/digital-competences/ciberseguridad-1.jpg" alt="Participantes presentando el taller de ciberseguridad ante el grupo" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/ciberseguridad-2.jpg" alt="Simulación de un ataque de denegación de servicio proyectada en la pantalla" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/identidad-1.jpg" alt="Participantes repartidos por la sala redactando el informe sobre el perfil investigado" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/identidad-2.jpg" alt="Lluvia de ideas en papelógrafo sobre los usos del robo de identidad y cómo prevenirlo" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/ciberseguridad-1-card.webp" alt="Participantes presentando el taller de ciberseguridad ante el grupo" width="800" height="450" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/ciberseguridad-2-card.webp" alt="Simulación de un ataque de denegación de servicio proyectada en la pantalla" width="800" height="450" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/identidad-1-card.webp" alt="Participantes repartidos por la sala redactando el informe sobre el perfil investigado" width="800" height="450" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/identidad-2-card.webp" alt="Lluvia de ideas en papelógrafo sobre los usos del robo de identidad y cómo prevenirlo" width="800" height="1063" loading="lazy" decoding="async" />
 </div>
 
 ## Videoclips en el pueblo y mercado de habilidades
@@ -81,10 +81,10 @@ El cuarto día hizo buen tiempo y el grupo se echó a la calle. En equipos, y gu
 En paralelo funcionaron los dos **Skill Market**, sesiones de minitalleres cortos elegidos por el propio grupo. En el primero hubo analítica de datos, mecanografía rápida, modelado 3D y programación. En el segundo, creación de videojuegos, funcionamiento de una CPU, Canva y arte digital. Media hora por tema, quien sabía enseñaba, y el resto elegía dónde meterse. Con buen tiempo, además, media de esas sesiones acabó en el jardín con los portátiles al sol.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/digital-competences/skill-market-1.jpg" alt="Minitaller del Skill Market con portátiles en el jardín del centro" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/skill-market-2.jpg" alt="Participantes explicando una herramienta digital durante el Skill Market" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/videoclip-edicion.jpg" alt="Edición del videoclip con portátiles al aire libre" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/workshop-jam.jpg" alt="Sesión de Workshop Jam preparando los talleres del día en la pizarra" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/skill-market-1-card.webp" alt="Minitaller del Skill Market con portátiles en el jardín del centro" width="800" height="603" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/skill-market-2-card.webp" alt="Participantes explicando una herramienta digital durante el Skill Market" width="800" height="1063" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/videoclip-edicion-card.webp" alt="Edición del videoclip con portátiles al aire libre" width="800" height="450" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/workshop-jam-card.webp" alt="Sesión de Workshop Jam preparando los talleres del día en la pizarra" width="800" height="450" loading="lazy" decoding="async" />
 </div>
 
 ## Las noches también contaban
@@ -102,10 +102,10 @@ Hubo también una sesión de **Open Space** para aprender a montar en Canva el c
 La evaluación fue larga y sincera, con un viaje en el tiempo hasta el primer día, la recuperación de aquellas expectativas y miedos del papelógrafo inicial y la actividad del papel en la espalda, en la que cada uno escribe sobre los demás. Y para terminar, el círculo de agradecimientos y la ceremonia de entrega del **Youthpass**, que reconoce oficialmente las competencias adquiridas.
 
 <div class="tc-gallery">
-  <img src="/images/noticias/digital-competences/rueda-final-1.jpg" alt="Comparación de los papelógrafos de la rueda de competencias digitales del segundo y del último día" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/rueda-final-2.jpg" alt="Dos participantes sosteniendo los papelógrafos finales de la rueda de competencias" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/evaluacion.jpg" alt="Actividad de evaluación en la que los participantes escriben en el papel colgado en la espalda de sus compañeros" loading="lazy" decoding="async" />
-  <img src="/images/noticias/digital-competences/youthpass.jpg" alt="Entrega del Youthpass al final del intercambio juvenil" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/rueda-final-1-card.webp" alt="Comparación de los papelógrafos de la rueda de competencias digitales del segundo y del último día" width="800" height="1063" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/rueda-final-2-card.webp" alt="Dos participantes sosteniendo los papelógrafos finales de la rueda de competencias" width="800" height="603" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/evaluacion-card.webp" alt="Actividad de evaluación en la que los participantes escriben en el papel colgado en la espalda de sus compañeros" width="800" height="1063" loading="lazy" decoding="async" />
+  <img src="/images/noticias/digital-competences/youthpass-card.webp" alt="Entrega del Youthpass al final del intercambio juvenil" width="800" height="450" loading="lazy" decoding="async" />
 </div>
 
 ## Lo que nos traemos

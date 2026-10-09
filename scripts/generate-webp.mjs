@@ -67,6 +67,8 @@ let removed = 0;
 for (const file of walk(root)) {
   const ext = extname(file).toLowerCase();
   if (!RASTER_EXT.has(ext)) continue;
+  // Las vistas previas -og.jpg las genera el bloque final; no son originales.
+  if (/-og\.jpe?g$/i.test(file)) continue;
 
   const webpPath = file.replace(/\.(jpe?g|png)$/i, '.webp');
   const cardPath = file.replace(/\.(jpe?g|png)$/i, '-card.webp');
@@ -144,6 +146,52 @@ for (const file of walk(root)) {
     generated++;
   }
 }
+
+// Vistas previas para redes sociales (og:image). WhatsApp, LinkedIn y Facebook
+// esperan un JPG o PNG ligero de 1200x630; con los originales de las portadas
+// (hasta 3 MB) la vista previa a veces no aparece. Se genera un -og.jpg por
+// cada portada de proyecto (image) y de noticia (cover). Si la portada es un
+// cartel vertical o cuadrado, se encaja entera sobre fondo navy en vez de
+// recortarla, para no cortar el texto del cartel.
+const OG_W = 1200;
+const OG_H = 630;
+function ogSources() {
+  const out = new Set();
+  for (const [folder, field] of [['projects', 'image'], ['noticias', 'cover']]) {
+    const dir = resolve(projectRoot, 'src', 'content', folder);
+    if (!existsSync(dir)) continue;
+    for (const entry of readdirSync(dir)) {
+      if (!entry.endsWith('.md')) continue;
+      const fm = readFileSync(resolve(dir, entry), 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
+      if (!fm) continue;
+      const m = fm[1].match(new RegExp(`^${field}:\\s*["']?([^"'\\r\\n]+?)["']?\\s*$`, 'm'));
+      if (m && /\.(jpe?g|png)$/i.test(m[1])) out.add(resolve(projectRoot, 'public', m[1].trim()));
+    }
+  }
+  return out;
+}
+
+let ogGenerated = 0;
+for (const file of ogSources()) {
+  if (!existsSync(file)) continue;
+  const ogPath = file.replace(/\.(jpe?g|png)$/i, '-og.jpg');
+  if (existsSync(ogPath) && statSync(ogPath).mtimeMs >= statSync(file).mtimeMs) continue;
+  const meta = await sharp(file).rotate().metadata();
+  const swap = meta.orientation >= 5 && meta.orientation <= 8;
+  const ratio = (swap ? meta.height / meta.width : meta.width / meta.height) || 1;
+  const apaisada = ratio >= 1.5 && ratio <= 2.4;
+  const out = await sharp(file)
+    .rotate()
+    .resize(OG_W, OG_H, apaisada
+      ? { fit: 'cover', position: 'attention' }
+      : { fit: 'contain', background: '#0a1628' })
+    .flatten({ background: '#0a1628' })
+    .jpeg({ quality: 80, mozjpeg: true })
+    .toBuffer();
+  writeFileSync(ogPath, out);
+  ogGenerated++;
+}
+console.log(`Generated: ${ogGenerated} social preview (-og.jpg) files`);
 
 console.log(`Generated: ${generated} webp files (skipped ${skipped} that already exist, removed ${removed} stale)`);
 console.log(`Original total: ${(totalIn / 1024 / 1024).toFixed(2)} MB`);

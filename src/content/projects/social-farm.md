@@ -3,7 +3,7 @@ title: "Social Farm"
 type: "Intercambio"
 status: "past"
 flag: "🇪🇺"
-description: "Intercambio Erasmus+ centrado en medioambiente y sostenibilidad"
+description: "Intercambio Erasmus+ sobre agricultura social, medioambiente y sostenibilidad"
 year: 2024
 order: 67
 ---
