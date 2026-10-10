@@ -8,8 +8,8 @@ location: "Rabka-Zdrój (Polonia)"
 year: 2026
 dates: "20/11/2026 - 28/11/2026 (días de programa: 21-27/11)"
 order: -27
-image: "images/projects/winter-youth-work-academy-2/cover.png"
-poster: "images/projects/winter-youth-work-academy-2/cover.png"
+image: "images/projects/winter-youth-work-academy-2/cover.jpg"
+poster: "images/projects/winter-youth-work-academy-2/cover.jpg"
 edad: "18-30 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
