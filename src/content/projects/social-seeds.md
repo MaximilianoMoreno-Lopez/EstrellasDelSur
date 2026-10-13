@@ -63,6 +63,16 @@ Social Seeds se basa en una metodología participativa, inclusiva y orientada a 
 - **Aprendizaje-servicio y voluntariado:** la acción en el territorio sirve como diagnóstico de necesidades y validación de soluciones en contexto real.
 - **Enfoque inclusivo e intercultural:** espacios seguros, participación equitativa y adaptaciones razonables para jóvenes con menos oportunidades.
 
+## Emprendimiento social: de la necesidad al microproyecto
+
+¿Por dónde se empieza un proyecto social? En Social Seeds lo tenemos claro, por la necesidad y no por la idea. Con esa premisa, **Paula Arroyo**, International Project Manager de Estrellas del Sur, impartió la sesión **«De la necesidad al microproyecto»**, el taller con el que el grupo pasó de observar su entorno a diseñar sus propias iniciativas.
+
+El punto de partida fueron las necesidades que los participantes habían detectado en sus barrios y pueblos durante la sesión de arranque. A partir de ellas, Paula guio una fase de ideación para buscar respuestas posibles, sin descartar nada al principio y eligiendo después las que el grupo podía poner en marcha con sus propios recursos. Así se separa lo que se quiere cambiar de lo que se puede hacer a corto plazo, que es justo la escala de un microproyecto.
+
+La segunda parte se dedicó a la **teoría del cambio**, la herramienta que ordena un proyecto social de principio a fin. Qué problema se quiere resolver, a quién afecta, qué actividades se van a hacer, qué resultados concretos se esperan y qué cambio deberían producir en la comunidad. Construirla obliga a explicar por qué una acción debería funcionar, y no solo qué se va a hacer, y sirve después para medir si el proyecto ha logrado lo que se proponía.
+
+Es la base sobre la que cada participante trabaja ahora su microproyecto en las mentorías individuales, hasta presentarlo en el Demo Day.
+
 ## Taller de emprendimiento rural con África Villén
 
 ¿Se puede levantar una marca propia desde un pueblo? Para responder a esa pregunta, el 30 de septiembre de 2026 invitamos a **África Villén**, fotógrafa y creadora de contenido para empresas, que ha construido su proyecto profesional desde la comarca de **Los Pedroches**, en el norte de la provincia de Córdoba.
