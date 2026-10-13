@@ -111,5 +111,3 @@ Los participantes montaron un vídeo con lo mejor de la semana en Moravec y Brno
 ## Lo que viene
 
 La segunda fase se celebra en **Alicante del 17 al 24 de octubre**, con los mismos cinco grupos. Esta vez los talleres los preparan y los dinamizan los propios participantes, que ya conocen bien lo que es estar al otro lado del papelógrafo.
-
-Act For Changes es un proyecto **cofinanciado por la Unión Europea** a través del programa Erasmus+.
