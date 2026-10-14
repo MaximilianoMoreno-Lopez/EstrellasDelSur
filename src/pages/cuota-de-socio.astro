@@ -1,0 +1,310 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const svgAttrs = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+
+// Las tres ideas que tienen que quedar claras antes de hablar de dinero.
+const claves = [
+  {
+    title: 'Nuestras actividades son gratis',
+    desc: 'Los Erasmus+, los voluntariados del Cuerpo Europeo de Solidaridad, los debates, los encuentros juveniles, los talleres y los workshops. No cobramos por una plaza ni por gestionártela.',
+    icon: `<svg width="24" height="24" ${svgAttrs}><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
+  },
+  {
+    title: 'El dinero europeo es para el proyecto',
+    desc: 'Las ayudas de la Unión Europea se destinan a cada actividad, al viaje, el alojamiento, la comida y el programa. Nunca te las cobramos a ti.',
+    icon: `<svg width="24" height="24" ${svgAttrs}><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  },
+  {
+    title: 'No nos quedamos con nada',
+    desc: 'Somos una asociación sin ánimo de lucro. No hay beneficios que repartir, y cada euro que entra se queda en la asociación y vuelve a su actividad.',
+    icon: `<svg width="24" height="24" ${svgAttrs}><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  },
+];
+
+// Lo que sostiene la cuota de socio: el trabajo que ninguna subvención paga del todo.
+const destinos = [
+  'Buscar organizaciones socias por Europa y preparar candidaturas, también las muchas que no salen.',
+  'Las convocatorias, la selección y la atención a cada persona que nos escribe con dudas.',
+  'La preparación antes de salir y el acompañamiento durante el proyecto y a la vuelta.',
+  'Las actividades en Córdoba, como debates, talleres y encuentros, que no tienen subvención detrás.',
+  'La contabilidad, el banco, la web y el resto de gastos del día a día de la asociación.',
+];
+
+const funcionamiento = [
+  {
+    title: 'Te hace parte de la asociación',
+    desc: 'La cuota de socio no es el precio de una plaza. Te convierte en persona socia de Estrellas del Sur, con todo lo que eso supone.',
+  },
+  {
+    title: 'Vale hasta el 30 de mayo',
+    desc: 'Desde que la pagas hasta el 30 de mayo siguiente. Mientras esté vigente, el resto de nuestras actividades no te cuestan nada.',
+  },
+  {
+    title: 'Su importe va en cada convocatoria',
+    desc: 'Lo verás en la ficha del proyecto, junto a las fechas, la edad y el idioma, antes de presentar tu solicitud.',
+  },
+  {
+    title: 'El voluntariado europeo va sin cuota',
+    desc: 'Los voluntariados del Cuerpo Europeo de Solidaridad no llevan cuota de socio. Nuestro acompañamiento lo financia el propio programa.',
+  },
+];
+---
+
+<BaseLayout
+  title="Qué es la cuota de socio"
+  description="Las actividades de Estrellas del Sur son gratuitas para sus socios, incluidos los Erasmus+. Te contamos qué es la cuota de socio y a qué se destina."
+  breadcrumbs={[
+    { name: 'Inicio', url: '/' },
+    { name: 'Cuota de socio', url: '/cuota-de-socio/' },
+  ]}
+>
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <p class="section-label fade-in">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Cuota de socio
+      </p>
+      <h1 class="fade-in fade-in-delay-1">Qué es la cuota de socio</h1>
+      <p class="fade-in fade-in-delay-2">
+        Participar en nuestras actividades es <strong>gratis</strong>, también en los Erasmus+.
+        La cuota de socio no paga tu plaza. Te hace parte de la asociación y ayuda a que todo
+        esto siga siendo posible.
+      </p>
+    </div>
+  </section>
+
+  <section class="section claves-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Lo primero</p>
+        <h2 class="section-title">Que quede muy claro</h2>
+        <p class="section-subtitle">
+          Si alguien te dice que cobramos por ir de Erasmus, no es verdad. Así funciona.
+        </p>
+      </div>
+      <div class="grid-3">
+        {claves.map((c, i) => (
+          <div class={`clave-card card fade-in fade-in-delay-${i + 1}`}>
+            <div class="clave-icon" aria-hidden="true" set:html={c.icon} />
+            <h3 class="clave-title">{c.title}</h3>
+            <p class="clave-desc">{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section destino-section">
+    <div class="container destino-grid">
+      <div class="fade-in">
+        <p class="section-label">A qué se destina</p>
+        <h2 class="section-title">Entonces, ¿para qué es la cuota de socio?</h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          Somos una asociación pequeña, nacida en Córdoba en 2020, y no te vamos a engañar, vamos
+          justos. Hacemos mucho con muy poco, y buena parte del trabajo lo sacan adelante
+          <strong>personas voluntarias</strong> que dedican su tiempo libre a que otros jóvenes puedan
+          vivir Europa.
+        </p>
+        <p class="body-text">
+          Las ayudas europeas van atadas a cada proyecto y no llegan a todo lo que pasa antes y
+          después. Ahí entra la cuota de socio. Es lo que nos permite seguir abriendo convocatorias,
+          acompañarte bien y mantener viva la asociación de un año para otro.
+        </p>
+      </div>
+      <aside class="destino-card fade-in fade-in-delay-2">
+        <div class="destino-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Lo que sostiene tu cuota de socio</span>
+        </div>
+        <ul class="destino-list">
+          {destinos.map((d) => (
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{d}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section funciona-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label">Cómo funciona</p>
+        <h2 class="section-title">Lo práctico</h2>
+      </div>
+      <div class="funciona-grid">
+        {funcionamiento.map((f, i) => (
+          <div class={`funciona-item card fade-in fade-in-delay-${(i % 2) + 1}`}>
+            <span class="funciona-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="funciona-title">{f.title}</h3>
+            <p class="funciona-desc">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+      <p class="funciona-note fade-in">
+        Tienes todas las condiciones de la cuota de socio en los
+        <a href={`${base}/terminos/#cuota`}>Términos y condiciones</a>, y las cuentas de la
+        asociación, sus memorias y su Junta Directiva en el
+        <a href={`${base}/transparencia/`}>Portal de Transparencia</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container cta-box fade-in">
+      <div>
+        <h2>Gracias por hacerlo posible</h2>
+        <p>Cada persona socia es parte de lo que hacemos. Si te queda cualquier duda, pregúntanos.</p>
+      </div>
+      <div class="cta-actions">
+        <a href={`${base}/contacto/`} class="btn btn-gold">Escríbenos</a>
+        <a href={`${base}/proyectos/`} class="btn btn-outline-white">Ver proyectos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-header { margin-bottom: 2.5rem; }
+
+  .body-text {
+    font-size: 1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* Las tres claves */
+  .claves-section { background: var(--cream); }
+
+  .clave-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .clave-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(13, 148, 136, .12);
+    color: var(--teal-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .clave-title { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+  .clave-desc {
+    font-size: .92rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  /* A qué se destina */
+  .destino-section { background: var(--cream-dark); }
+  .destino-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .destino-card {
+    background: var(--navy);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    color: #fff;
+  }
+  .destino-header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-weight: 700;
+    font-size: .95rem;
+    margin-bottom: 1.25rem;
+    color: var(--gold);
+  }
+  .destino-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+  }
+  .destino-list li {
+    display: flex;
+    gap: .65rem;
+    align-items: flex-start;
+    font-size: .9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, .88);
+  }
+  .destino-list svg {
+    flex-shrink: 0;
+    margin-top: .2rem;
+    color: #5eead4;
+  }
+
+  /* Cómo funciona */
+  .funciona-section { background: var(--cream); }
+
+  .funciona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .funciona-item { padding: 1.75rem; }
+  .funciona-num {
+    font-family: 'Playfair Display Variable', 'Playfair Display', 'Playfair Display Fallback', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--teal-text);
+    display: block;
+    margin-bottom: .6rem;
+  }
+  .funciona-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .5rem; }
+  .funciona-desc {
+    font-size: .9rem;
+    color: var(--gray-600);
+    line-height: 1.65;
+  }
+
+  .funciona-note {
+    margin-top: 2rem;
+    max-width: 780px;
+    font-size: .95rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+  .funciona-note a { color: var(--teal-text); font-weight: 600; }
+
+  /* CTA final */
+  .cta-section { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
+  .cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .cta-box h2 { font-size: clamp(1.4rem, 2.3vw, 1.85rem); color: #fff; margin-bottom: .6rem; }
+  .cta-box p { color: rgba(255,255,255,.7); font-size: .98rem; max-width: 460px; }
+  .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .destino-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    .cta-actions { width: 100%; flex-direction: column; }
+    .cta-actions .btn { justify-content: center; }
+  }
+</style>

@@ -97,7 +97,7 @@ El participante es responsable del acceso a asistencia sanitaria durante todo el
 
 ## Cuota de Socio
 
-La participación en el proyecto es gratuita, como todas las actividades de Estrellas del Sur para sus socios. Lo único que se paga es la cuota de socio, de **50 €**, que te hace socio de la asociación hasta el 30 de mayo siguiente. Tienes todas las condiciones de la cuota de socio en los [Términos y condiciones](/terminos/#cuota).
+La participación en el proyecto es gratuita, como todas las actividades de Estrellas del Sur para sus socios. Lo único que se paga es la cuota de socio, de **50 €**, que te hace socio de la asociación hasta el 30 de mayo siguiente. Te contamos qué es y a qué se destina en [qué es la cuota de socio](/cuota-de-socio/), y tienes todas sus condiciones en los [Términos y condiciones](/terminos/#cuota).
 
 ## Asistencia
 
