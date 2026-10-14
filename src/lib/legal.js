@@ -4,7 +4,7 @@
 // de modo que el commit de git de esta versión sirve como prueba de qué texto estaba vigente.
 // Si hay más de un cambio legal el mismo día, se añade un sufijo .2, .3, etc.
 // Dos textos distintos no pueden compartir etiqueta, o se pierde la prueba de cuál regía.
-export const LEGAL_VERSION = '2026-08-01.2';
+export const LEGAL_VERSION = '2026-10-14';
 
 // Etiqueta legible para mostrar en las páginas legales.
-export const LEGAL_VERSION_LABEL = '1 de agosto de 2026';
+export const LEGAL_VERSION_LABEL = '14 de octubre de 2026';

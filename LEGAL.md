@@ -127,7 +127,7 @@ dejar constancia de la fecha de la retirada junto al expediente del proyecto.
 
 - Recopilar la dirección de correo de quien responde.
 - Cabecera del formulario con la referencia de la versión legal aceptada
-  (la de `src/lib/legal.js`, hoy 2026-08-01).
+  (la de `src/lib/legal.js`, hoy 2026-10-14).
 - Ninguna casilla premarcada.
 - Al cerrar la convocatoria, descargar las respuestas y guardarlas junto al expediente
   del proyecto. El histórico de Google no es un archivo permanente.
