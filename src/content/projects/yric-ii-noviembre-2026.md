@@ -1,7 +1,7 @@
 ---
 title: "YRIC II (noviembre 2026)"
 type: "Voluntariado"
-status: "active"
+status: "past"
 flag: "🇵🇱"
 description: "Voluntariado de un mes en Rabka-Zdrój y Cracovia (Polonia) con jóvenes polacos y ucranianos: talleres en la naturaleza y en centros juveniles de Cracovia, apoyo emocional y trabajo juvenil abierto y de calle."
 location: "Rabka-Zdrój y Cracovia (Polonia)"
