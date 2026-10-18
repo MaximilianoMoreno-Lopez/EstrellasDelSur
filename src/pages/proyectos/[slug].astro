@@ -331,12 +331,7 @@ const breadcrumbs = [
             {coste && muestraTodo && (
               <>
                 <dt>Coste</dt>
-                <dd>
-                  {coste}
-                  {/cuota/i.test(coste) && !/sin cuota/i.test(coste) && (
-                    <> · <a href={`${base}/cuota-de-socio/`}>qué es la cuota de socio</a></>
-                  )}
-                </dd>
+                <dd>{coste}</dd>
               </>
             )}
           </dl>
