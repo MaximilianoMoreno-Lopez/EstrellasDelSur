@@ -23,6 +23,7 @@ apply: "https://forms.gle/fyFznbtd6m9p2R1P8"
 - **Fechas:** Del 21 al 27 de noviembre de 2026 (7 días de programa). La llegada es el 20 de noviembre y la salida el 28
 - **Lugar:** Tosya, provincia de Kastamonu (Turquía)
 - **Participantes:** 36 trabajadores juveniles, líderes juveniles, voluntarios y jóvenes activos en proyectos juveniles de países del programa Erasmus+
+- **Plazas para España:** 3 participantes
 - **Coordina:** Ayuntamiento de Tosya (Turquía)
 - **Código del proyecto:** 2025-1-TR01-KA151-YOU-000305068
 - **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
@@ -105,7 +106,7 @@ No compres billetes ni hagas planes de viaje hasta recibir la confirmación de l
 
 ## Perfil del Participante
 
-Buscamos trabajadores juveniles, líderes juveniles, voluntarios y jóvenes activos en proyectos juveniles, mayores de 18 años y residentes en España. Hace falta algo de experiencia en trabajo con jóvenes o en proyectos juveniles, pero no hace falta ser experto.
+Buscamos a 3 trabajadores juveniles, líderes juveniles, voluntarios o jóvenes activos en proyectos juveniles, mayores de 18 años y residentes en España. Hace falta algo de experiencia en trabajo con jóvenes o en proyectos juveniles, pero no hace falta ser experto.
 
 Encaja quien tenga interés por los juegos, la gamificación y el trabajo juvenil, y un nivel de inglés suficiente para seguir las sesiones y participar en los talleres. Para los equipos digitales se busca a gente con interés real por las herramientas digitales y la IA, aunque no sepa programar.
 
@@ -141,4 +142,4 @@ El botón de preinscripciones te llevará a un formulario donde deberás rellena
 
 Se valorará positivamente a quienes anteriormente hayan solicitado participar en un proyecto con Estrellas del Sur sin haber sido elegidos. Se valorará negativamente a quienes hayan sido seleccionados y no hayan asistido.
 
-Aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.
+Hay **3 plazas** para España y aceptaremos inscripciones de manera continua, por lo que recomendamos realizarlas con la mayor brevedad posible.
