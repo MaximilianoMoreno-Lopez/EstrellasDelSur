@@ -1,7 +1,7 @@
 ---
 title: "Citizenship in Diversity"
 type: "Intercambio"
-status: "past"
+status: "active"
 flag: "🇷🇴"
 description: "Intercambio juvenil Erasmus+ en Brebu, en el suroeste de Rumanía, sobre cultura romaní y de minorías étnicas, identidad europea y expresión artística. Ocho días de talleres creativos, juegos de rol y debate intercultural, con prioridad para jóvenes con menos oportunidades y juventud romaní."
 location: "Brebu, Caraș-Severin (Rumanía)"
@@ -15,7 +15,6 @@ apply: "https://forms.gle/kp1ZsbYjjudjErXa8"
 edad: "18-24 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
-infoCompleta: true
 ---
 
 ## Datos del proyecto
@@ -108,7 +107,7 @@ El participante es responsable del acceso a asistencia sanitaria durante todo el
 
 ## Cuota de Socio
 
-Estrellas del Sur cobra una cuota de socio de **50 €** que solo pagará aquel participante que salga elegido. Esta cuota no será reembolsable en ningún caso.
+La participación en el proyecto es gratuita, como todas las actividades de Estrellas del Sur para sus socios. Lo único que se paga es la cuota de socio, de **50 €**, que te hace socio de la asociación hasta el 30 de mayo siguiente. Te contamos qué es y a qué se destina en [qué es la cuota de socio](/cuota-de-socio/), y tienes todas sus condiciones en los [Términos y condiciones](/terminos/#cuota).
 
 ## Asistencia
 
