@@ -34,5 +34,13 @@
       "status": "active",
       "infoCompleta": false
     }
+  },
+  {
+    "slug": "youth-empower",
+    "cuando": "2026-10-25T23:59:00+01:00",
+    "motivo": "Abre la convocatoria de Youth Empower+ en Ankara",
+    "campos": {
+      "status": "active"
+    }
   }
 ]
