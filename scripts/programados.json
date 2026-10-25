@@ -25,5 +25,14 @@
       "status": "past",
       "infoCompleta": true
     }
+  },
+  {
+    "slug": "sustain-you",
+    "cuando": "2026-10-25T23:59:00+01:00",
+    "motivo": "Reabre la convocatoria de Sustain You",
+    "campos": {
+      "status": "active",
+      "infoCompleta": false
+    }
   }
 ]
