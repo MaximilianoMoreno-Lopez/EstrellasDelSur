@@ -4,12 +4,15 @@ name: Cambios programados
 # scripts/programados.json. Corre en los servidores de GitHub, así que no hace
 # falta tener el ordenador encendido ni conexión.
 #
-# La hora del cron es UTC y hay cuatro pases al día. En horario de verano son
-# las 07:05, las 08:00, las 11:25 y las 13:05 en España; en invierno, una hora
-# antes de cada una. El de las 08:00 existe porque abrir "a las ocho" es lo
+# La hora del cron es UTC y hay seis pases al día. En horario de verano son
+# las 07:05, las 08:00, las 11:25, las 13:05, las 00:59 y la 01:30 en España;
+# en invierno, una hora antes de cada una. El de las 08:00 existe porque abrir "a las ocho" es lo
 # natural cuando la convocatoria se anuncia en redes por la mañana, el de las
 # 11:25 para abrir a media mañana, y el de mediodía permite abrir por la tarde
-# sin esperar al pase del día siguiente. GitHub
+# sin esperar al pase del día siguiente. Los dos de la noche sirven para cerrar
+# un plazo "hasta las 23:59": en invierno el primero cae justo a esa hora, y el
+# segundo es de reserva por si GitHub se salta el primero. En verano caen una
+# hora después, así que el cierre llega a la 01:00 en vez de a medianoche. GitHub
 # puede retrasar los cron unos minutos cuando hay cola, así que la publicación
 # es "a partir de", no al segundo: conviene dejar la hora de `cuando` un poco
 # antes de la hora a la que se quiere abrir, y siempre después del pase
@@ -26,6 +29,8 @@ on:
     - cron: "0 6 * * *"
     - cron: "25 9 * * *"
     - cron: "5 11 * * *"
+    - cron: "59 22 * * *"
+    - cron: "30 23 * * *"
   workflow_dispatch:
 
 permissions:
