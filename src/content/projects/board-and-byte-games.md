@@ -1,7 +1,7 @@
 ---
 title: "Board and Byte Games"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇹🇷"
 description: "Curso de formación Erasmus+ en Tosya (Turquía) sobre gamificación y creación de juegos para el trabajo con jóvenes. Por equipos se diseñan juegos de mesa y juegos digitales con herramientas sin código y apoyadas en IA, que se prueban con estudiantes de instituto. Alojamiento y comidas cubiertos."
 location: "Tosya, Kastamonu (Turquía)"
@@ -15,6 +15,7 @@ idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
 infopack: "https://drive.google.com/file/d/1mDyk68TQ34-h2inWgkvpsmKmhKI4V71c/view?usp=sharing"
 apply: "https://forms.gle/fyFznbtd6m9p2R1P8"
+infoCompleta: true
 ---
 
 ## Datos del proyecto
