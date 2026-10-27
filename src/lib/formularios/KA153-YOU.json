@@ -1,0 +1,917 @@
+{
+  "accion": "KA153-YOU",
+  "nombre": "Movilidad de personas trabajadoras en el ámbito de la juventud",
+  "limiteDefecto": 5000,
+  "bloques": [
+    {
+      "id": "contexto",
+      "titulo": "Context",
+      "tituloEs": "Contexto",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "ctx-titulo",
+          "texto": "Project Title",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Título completo del proyecto. El acrónimo va en el campo siguiente."
+        },
+        {
+          "id": "ctx-acronimo",
+          "texto": "Project Acronym",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Nombre corto que se repetirá en todo el formulario."
+        },
+        {
+          "id": "ctx-inicio",
+          "texto": "Project Start Date (dd/mm/yyyy)",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Fecha de inicio del proyecto, no de la actividad. Debe caer en la ventana que marca la convocatoria."
+        },
+        {
+          "id": "ctx-duracion",
+          "texto": "Project Duration",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Duración en meses, entre 3 y 24. El portal calcula la fecha de fin a partir de este dato."
+        }
+      ]
+    },
+    {
+      "id": "resumen",
+      "titulo": "Project Summary",
+      "tituloEs": "Resumen del proyecto",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "res-objetivos",
+          "texto": "What do you want to achieve by implementing the project? What are the objectives of your project? Please specify from the perspective of youth work practice.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Se publica si se aprueba. Frases completas y autocontenidas, con el sujeto en la persona trabajadora y su organización."
+        },
+        {
+          "id": "res-actividades",
+          "texto": "What activities do you plan to implement? What is the number and profile of the participants involved?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Tipo de actividad, días, lugar, número de participantes por socia y perfil. Las cifras deben cuadrar con la ficha de actividad."
+        },
+        {
+          "id": "res-impacto",
+          "texto": "What results and impact do you expect your project to have?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Productos concretos y efectos en personas trabajadoras, organizaciones y jóvenes, por niveles local, nacional y europeo."
+        }
+      ]
+    },
+    {
+      "id": "solicitante",
+      "titulo": "Participating Organisations - Applicant",
+      "tituloEs": "Organización solicitante",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "sol-presentacion",
+          "texto": "Please briefly present your organisation/the group.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Qué es la organización, desde cuándo, con quién trabaja y cuánta gente mueve. Sin OID ni dirección, el portal ya los muestra."
+        },
+        {
+          "id": "sol-actividad",
+          "texto": "What are the activities and experience of the organisation in youth work? Please provide information on your organisation’s / group’s regular youth work activities.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Actividad cotidiana con jóvenes y experiencia relevante para el tema del proyecto."
+        },
+        {
+          "id": "sol-equipo",
+          "texto": "Please give information on the key staff/persons involved in this application and on the competences and previous experience that they will bring to the project.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Personas clave con su rol en el proyecto y la experiencia que aportan."
+        },
+        {
+          "id": "sol-participacion-previa",
+          "texto": "Would you like to make any comments or add any information to the summary of your organisation’s past participation?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Opcional. Aparece bajo la tabla automática de participación previa. Sirve para contextualizar proyectos anteriores."
+        }
+      ]
+    },
+    {
+      "id": "socia",
+      "titulo": "Partner Organisations",
+      "tituloEs": "Organizaciones socias",
+      "repetible": true,
+      "etiquetaRepetible": "Socia",
+      "preguntas": [
+        {
+          "id": "soc-nombre",
+          "texto": "Legal name",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "El portal lo rellena desde el OID. Aquí sirve para identificar la ficha."
+        },
+        {
+          "id": "soc-pais",
+          "texto": "Country",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "País de la socia. Lo rellena el portal desde el OID."
+        },
+        {
+          "id": "soc-presentacion",
+          "texto": "Please briefly present the organisation / the group.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Presentación de la socia. Normalmente la envía ella misma, conviene revisarla para que hable de trabajo juvenil y no de turismo."
+        },
+        {
+          "id": "soc-actividad",
+          "texto": "What are the activities and experience of the partner organisation in youth work? Please provide information on your organisation’s / group’s regular youth work activities at local level.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Trabajo juvenil regular a nivel local y experiencia en el tema del proyecto."
+        },
+        {
+          "id": "soc-equipo",
+          "texto": "Please give information on the key staff/persons involved in this application and on the competences and previous experience that they will bring to the project.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Personas de la socia implicadas en el proyecto y qué aportan."
+        },
+        {
+          "id": "soc-participacion-previa",
+          "texto": "Would you like to make any comments or add any information to the summary of your organisation’s past participation?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Opcional. Aparece solo si la socia tiene participación previa registrada."
+        }
+      ]
+    },
+    {
+      "id": "relevancia",
+      "titulo": "Project Rationale - Aims",
+      "tituloEs": "Justificación y objetivos",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "rel-idea",
+          "texto": "Why do you want to carry out this project? Please describe the idea of your project, including the needs and objectives.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Idea, necesidades con datos y objetivos numerados. Aquí se etiquetan N1 y O1."
+        },
+        {
+          "id": "rel-necesidades-socias",
+          "texto": "Please also mention how the project fits the needs of the participating organisations.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Una entrada por socia con lo que le falta y lo que gana. Incluye a la solicitante."
+        },
+        {
+          "id": "rel-necesidades",
+          "texto": "How have the needs been identified and how does your project tackle them?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Método de detección (experiencia de campo, datos, reuniones con socias) y qué actividad responde a cada necesidad."
+        },
+        {
+          "id": "rel-objetivos-programa",
+          "texto": "How does your project link to the objectives of the Erasmus+ programme and those of Youth Workers Mobility?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Objetivos de la acción, prioridades horizontales, Estrategia de la UE para la Juventud, European Youth Work Agenda citada por su nombre."
+        }
+      ]
+    },
+    {
+      "id": "impacto",
+      "titulo": "Target Group - Impact - Topic",
+      "tituloEs": "Grupo destinatario, impacto y temas",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "imp-destinatarios",
+          "texto": "What are the main target groups of your project?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Grupo principal (personas trabajadoras), secundario y actores institucionales. Cifras coherentes con la actividad."
+        },
+        {
+          "id": "imp-beneficio",
+          "texto": "How will your project benefit the youth workers and their organisations in their daily work with young people, during and after the project lifetime?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Beneficio para quien viaja y para su organización, durante y después. Cerrar el círculo en el trabajo diario con jóvenes."
+        },
+        {
+          "id": "imp-trabajo-juvenil",
+          "texto": "How do you expect to contribute with your project to the development of youth work in general? How will you ensure the impact of the project beyond the participants and participating organisations, at local, regional, national, if any European level ?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Aportación al sector y mecanismos de impacto por niveles, local, regional, nacional y europeo."
+        },
+        {
+          "id": "imp-topics",
+          "texto": "Please select up to three topics addressed by your project",
+          "tipo": "opciones",
+          "limite": null,
+          "opciones": [
+            "Aprendizaje empresarial - educación en el emprendimiento",
+            "Nuevos métodos y enfoques de aprendizaje y enseñanza",
+            "Calidad e innovación del trabajo en el ámbito de la juventud"
+          ],
+          "ayuda": "Máximo tres temas del catálogo del portal (varias decenas). Las tres opciones listadas son solo las elegidas en el ejemplo; hasta cargar el catálogo se admite texto libre con la redacción del portal.",
+          "opcionesAbiertas": true,
+          "maximo": 3
+        }
+      ]
+    },
+    {
+      "id": "detalles",
+      "titulo": "Project Details - Participant contribution and fees",
+      "tituloEs": "Detalles del proyecto y cuotas",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "det-cuotas",
+          "texto": "Are you planning to charge participation fees ?",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Si se cobra cuota debe ser proporcional, justificada, sin ánimo de lucro y sin barrera para quien tiene menos oportunidades."
+        }
+      ]
+    },
+    {
+      "id": "actividad",
+      "titulo": "Activity - Description of the activity",
+      "tituloEs": "Actividad",
+      "repetible": true,
+      "etiquetaRepetible": "Actividad",
+      "preguntas": [
+        {
+          "id": "act-tipo",
+          "texto": "Activity Type",
+          "tipo": "opcion",
+          "limite": null,
+          "opciones": [
+            "Actividades de desarrollo profesional - Estados miembros y países asociados",
+            "Actividades de desarrollo profesional - Terceros países no asociados al Programa",
+            "Actividades de desarrollo del sistema y divulgación - Estados miembros y países asociados",
+            "Actividades de desarrollo del sistema y divulgación - Terceros países no asociados al Programa"
+          ],
+          "ayuda": "Tipo de actividad del portal. Solo la primera opción se ha visto en la fuente (id PDAMS01); las otras tres se deducen de la Guía del Programa y su etiqueta exacta no está confirmada. Si el portal muestra otra redacción, escribirla tal cual.",
+          "opcionesAbiertas": true
+        },
+        {
+          "id": "act-titulo",
+          "texto": "Activity Title",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Nombre de la actividad, por ejemplo el acrónimo seguido de Training Course."
+        },
+        {
+          "id": "act-itinerante",
+          "texto": "Is this activity itinerant?",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Sí solo si la actividad cambia de ciudad durante su desarrollo."
+        },
+        {
+          "id": "act-pais-destino",
+          "texto": "Country of destination",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "País donde se celebra la actividad. En el portal es un selector; escribir el nombre tal como lo da el portal en español (en el ejemplo, España)."
+        },
+        {
+          "id": "act-inicio",
+          "texto": "Start date",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Primer día de actividad, sin contar viaje."
+        },
+        {
+          "id": "act-fin",
+          "texto": "End date",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Último día de actividad, sin contar viaje."
+        },
+        {
+          "id": "act-duracion",
+          "texto": "Duration Excluding Travel (days)",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Entre 2 y 60 días. Debe coincidir con las fechas y con el horario anexo."
+        },
+        {
+          "id": "act-participantes",
+          "texto": "Total No. of participants",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Personas trabajadoras participantes, sin contar formadores ni acompañantes. Debe ser plazas por socia por número de socias."
+        },
+        {
+          "id": "act-menos-oportunidades",
+          "texto": "Out of which No. of Participants with Fewer Opportunities",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Cuántas de las personas participantes tienen menos oportunidades. Condiciona el bloque de inclusión."
+        },
+        {
+          "id": "act-acompanantes",
+          "texto": "No. of Accompanying Persons",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Personas acompañantes, normalmente cero en un KA153."
+        },
+        {
+          "id": "act-formadores",
+          "texto": "No. of trainers/facilitators",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Formadores y facilitadores. El total de personas lo calcula el portal sumando participantes, formadores y acompañantes."
+        },
+        {
+          "id": "act-perfil",
+          "texto": "Please describe the profile of the youth workers involved. Please also provide information on the age of the participants and how country balance is ensured. If necessary, explain how the gender balance is respected.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Perfil, edad, equilibrio por país y por género. Cifras por socia coherentes con los flujos."
+        },
+        {
+          "id": "act-seleccion",
+          "texto": "How will the participants be selected? How will you ensure that the profile of participants matches to the activities? How will the needs of the specific participants be taken into account?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Tres subapartados en la respuesta, proceso de selección, criterios de selección y necesidades."
+        },
+        {
+          "id": "act-formador",
+          "texto": "If a trainer/facilitator is involved, please describe his/her profile and his/her role in the activity.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Perfil y papel de cada formador en las fases de diseño, actividad y seguimiento."
+        },
+        {
+          "id": "act-fases",
+          "texto": "Please describe the role and involvement of the youth workers in all phases (planning before submitting application, preparation, implementation of activities and follow-up).",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Cuatro fases numeradas, planificación, preparación, implementación y seguimiento."
+        },
+        {
+          "id": "act-cooperacion",
+          "texto": "How will the youth workers cooperate and communicate between them to prepare and follow-up on the activity?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Canales y momentos de comunicación entre participantes antes, durante y después."
+        },
+        {
+          "id": "act-aprendizajes",
+          "texto": "Which learning outcomes or competences (i.e. knowledge, skills and attitudes/behaviours) are to be acquired/improved by youth workers in the activity? Please particularly describe the skills and competence applicable to youth work practice.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Conocimientos, habilidades y actitudes en tres listas, aplicables al trabajo con jóvenes."
+        },
+        {
+          "id": "act-transformacion",
+          "texto": "How would you ensure that learning outcomes and competences acquired do transform the participating organisations’ youth work, in relation to quality, innovation and recognition?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Mecanismos de transferencia a la organización, en calidad, innovación y reconocimiento."
+        },
+        {
+          "id": "act-programa",
+          "texto": "What are the basic elements of the activity? Please describe at the very least the venue(s), working methods used, aims of each session etc.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Programa día a día con lugar, métodos y objetivo de cada sesión. Debe coincidir con el horario que se anexa."
+        }
+      ]
+    },
+    {
+      "id": "flujo",
+      "titulo": "Flow - Summary and Budget",
+      "tituloEs": "Flujo de movilidad",
+      "repetible": true,
+      "etiquetaRepetible": "Flujo",
+      "preguntas": [
+        {
+          "id": "flu-solo-formadores",
+          "texto": "Flow with trainers/facilitators only",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Marcar solo si en este flujo viajan únicamente formadores."
+        },
+        {
+          "id": "flu-ciudad",
+          "texto": "City of Venue",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Ciudad y país del lugar de la actividad."
+        },
+        {
+          "id": "flu-participantes",
+          "texto": "Total No. of participants",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Participantes de esta socia. La suma de todos los flujos debe dar el total de la actividad."
+        },
+        {
+          "id": "flu-menos-oportunidades",
+          "texto": "Out of which No. of Participants with Fewer Opportunities",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Participantes con menos oportunidades en este flujo."
+        },
+        {
+          "id": "flu-formadores",
+          "texto": "No. of Trainers/facilitators",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Formadores que viajan en este flujo, normalmente en el de la organización de acogida."
+        },
+        {
+          "id": "flu-acompanantes",
+          "texto": "No. of Accompanying Persons",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Acompañantes en este flujo."
+        },
+        {
+          "id": "flu-pais-origen",
+          "texto": "Country of Origin",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "País de la socia que envía. Selector del portal; usar el nombre oficial en español que muestra el portal (España, Grecia, La República de Macedonia del Norte...)."
+        },
+        {
+          "id": "flu-pais-destino",
+          "texto": "Country of Destination",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "País de la actividad. Selector del portal; usar el nombre que muestra el portal en español."
+        },
+        {
+          "id": "flu-inicio",
+          "texto": "Start Date",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Igual que la actividad salvo flujos con llegada distinta."
+        },
+        {
+          "id": "flu-fin",
+          "texto": "End Date",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Igual que la actividad salvo flujos con salida distinta."
+        },
+        {
+          "id": "flu-viaje-verde",
+          "texto": "Green travel",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "El viaje sostenible se declara por flujo, no por actividad. Activa la banda de viaje verde y los días de viaje extra."
+        },
+        {
+          "id": "flu-dias-viaje",
+          "texto": "Travel Days",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Días de viaje financiados, hasta 2 en viaje normal y hasta 6 en viaje verde."
+        },
+        {
+          "id": "flu-banda-distancia",
+          "texto": "Distance Band",
+          "tipo": "opcion",
+          "limite": null,
+          "opciones": [
+            "0 - 9 km",
+            "10 - 99 km",
+            "100 - 499 km",
+            "500 - 1999 km",
+            "2000 - 2999 km",
+            "3000 - 3999 km",
+            "4000 - 7999 km",
+            "8000 km or more"
+          ],
+          "ayuda": "Banda de distancia según la calculadora de la Comisión, entre la ciudad de la socia y el lugar de la actividad. Formato N - M km confirmado; la etiqueta de la última banda no está confirmada."
+        },
+        {
+          "id": "flu-viaje-caro",
+          "texto": "Exceptional costs for expensive travel",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Solo si el viaje real cuesta mucho más que la banda de distancia. Exige justificación en costes excepcionales."
+        },
+        {
+          "id": "flu-inclusion-participantes",
+          "texto": "Number of persons for inclusion support",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Sección Inclusion support for participants. Personas con costes reales de inclusión (acompañante, adaptación). Distinto del apoyo a organizaciones, que el portal calcula solo. El campo Number of persons in the mobility flow lo rellena el portal.",
+          "seccion": "Inclusion support for participants"
+        },
+        {
+          "id": "flu-inclusion-importe",
+          "texto": "Inclusion support for participants (EUR)",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Importe real solicitado para el apoyo a la inclusión de participantes, 100 % de los costes elegibles. Lo introduce la solicitante, no lo calcula el portal.",
+          "seccion": "Inclusion support for participants"
+        },
+        {
+          "id": "flu-inclusion-justificacion",
+          "texto": "Description and justification of expenses",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Justificación de los costes de inclusión de participantes. Solo si el número de personas es mayor que cero.",
+          "seccion": "Inclusion support for participants"
+        }
+      ]
+    },
+    {
+      "id": "excepcional",
+      "titulo": "Flow - Budget - Exceptional costs",
+      "tituloEs": "Costes excepcionales del flujo",
+      "repetible": true,
+      "etiquetaRepetible": "Coste excepcional",
+      "padre": "flujo",
+      "preguntas": [
+        {
+          "id": "exc-tipo",
+          "texto": "Exceptional cost type",
+          "tipo": "opcion",
+          "limite": null,
+          "opciones": [
+            "Visados y costes relacionados con visados",
+            "Viaje caro",
+            "Garantía financiera"
+          ],
+          "opcionesAbiertas": true,
+          "ayuda": "Selector del portal. El catálogo no aparece en la fuente; las tres opciones son las categorías de la Guía del Programa y su etiqueta exacta no está confirmada."
+        },
+        {
+          "id": "exc-descripcion",
+          "texto": "Description and Justification",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Qué coste es, por qué no lo cubre la banda de distancia o el apoyo individual, y cómo se ha calculado."
+        },
+        {
+          "id": "exc-participantes",
+          "texto": "Number of participants supported with this cost item",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Personas de este flujo a las que se aplica el coste."
+        },
+        {
+          "id": "exc-elegibles",
+          "texto": "Eligible costs (EUR)",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Coste real total de la partida."
+        },
+        {
+          "id": "exc-solicitado",
+          "texto": "Requested grant (EUR)",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Subvención pedida, 80 % de los costes elegibles en viaje caro y 100 % en visados y garantía financiera. El total lo suma el portal."
+        }
+      ]
+    },
+    {
+      "id": "diseno",
+      "titulo": "Project Design",
+      "tituloEs": "Diseño del proyecto",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "dis-metodos",
+          "texto": "What non-formal learning methods will you use in your project? What will you do to be sure that the methods allowing them to learn are of high quality?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Lista de métodos de educación no formal y mecanismos de calidad (marcos de referencia, feedback diario, formadores)."
+        },
+        {
+          "id": "dis-preparacion",
+          "texto": "How will you prepare the participants before the start of the activity (e.g. intercultural, linguistic, risk-prevention etc.) and how will you support them during and after the activities?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Tres apartados, antes, durante y después. Aquí entra la Tarjeta Sanitaria Europea porque es movilidad internacional."
+        },
+        {
+          "id": "dis-seguridad",
+          "texto": "What measures will you put in place to ensure the safety and protection of participants?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Plan de riesgos, seguros, responsable de seguridad, protocolo de incidentes y código de conducta."
+        },
+        {
+          "id": "dis-seguimiento",
+          "texto": "What activities are foreseen after the end of the Professional Development Activity? How will the participants follow-up on the activity?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Actividades de seguimiento con fechas, responsables e indicadores."
+        },
+        {
+          "id": "dis-reconocimiento",
+          "texto": "How will you support participants to be aware of what they have learned and which competences they have developed or improved? Please remember to include the methods that support reflection and documentation of the learning outcomes in the daily timetable of each activity.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Reflexión y documentación del aprendizaje antes, durante y después. Los momentos de reflexión deben verse en el horario anexo."
+        },
+        {
+          "id": "dis-instrumentos-europeos",
+          "texto": "The Erasmus Programme promotes the use of instruments/certificates like Youthpass or Europass , to validate the competences acquired by the participants during their experiences abroad. Will your project make use of such European instruments/certificates?",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "En un KA153 la respuesta es sí, con Youthpass."
+        },
+        {
+          "id": "dis-instrumentos-cuales",
+          "texto": "Which one(s)?",
+          "tipo": "opciones",
+          "limite": null,
+          "opciones": [
+            "Youthpass",
+            "Europass"
+          ],
+          "ayuda": "Instrumentos europeos elegidos. En el ejemplo solo se marcó Youthpass."
+        },
+        {
+          "id": "dis-instrumento-nacional",
+          "texto": "Are you planning to use any national instrument/certificate? If so, please describe which one.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Certificado nacional, en España Reconoce, y cómo se combina con Youthpass."
+        },
+        {
+          "id": "dis-menos-oportunidades",
+          "texto": "Are there participants involved in the activities who face situations that make their participation in the activities more difficult?",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Sí si hay participantes con menos oportunidades. Debe cuadrar con la cifra de la ficha de actividad."
+        },
+        {
+          "id": "dis-barreras",
+          "texto": "Which types of situations are these participants facing?",
+          "tipo": "opciones",
+          "limite": null,
+          "opciones": [
+            "Barreras geográficas",
+            "Barreras económicas",
+            "Barreras sociales",
+            "Diferencias culturales",
+            "Barreras vinculadas a la discriminación",
+            "Barreras vinculadas a los sistemas de educación y formación",
+            "Discapacidad",
+            "Problemas de salud"
+          ],
+          "ayuda": "Tipos de barrera del portal. Cada barrera marcada debe explicarse en la pregunta siguiente."
+        },
+        {
+          "id": "dis-medidas-inclusion",
+          "texto": "If any, please explain the particular measures (accompanying person, reinforced preparation etc.) you will put in place to cater for the specific needs of these participants and/or to support their participation.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Medidas concretas por barrera y por fase, antes, durante y después."
+        },
+        {
+          "id": "dis-alcance",
+          "texto": "How will you reach out to those participants?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Canales de difusión de la convocatoria y plazas reservadas para personas con menos oportunidades."
+        },
+        {
+          "id": "dis-virtual",
+          "texto": "Do you foresee Virtual/Blended activities and/or the use of any virtual component, before, during or after the activity?",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Si se responde sí se abren la descripción y el porcentaje de participantes."
+        },
+        {
+          "id": "dis-virtual-descripcion",
+          "texto": "If yes, please describe them.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Componentes virtuales antes, durante y después, con las herramientas concretas."
+        },
+        {
+          "id": "dis-virtual-porcentaje",
+          "texto": "Please provide an estimated share of participants (excluding accompanying persons, group leaders, trainers and facilitators) that will use Virtual components in their activities.",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Porcentaje de 0 a 100."
+        },
+        {
+          "id": "dis-verde",
+          "texto": "Will you include sustainable and environmental-friendly practices in your activities?",
+          "tipo": "si_no",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Sí abre la descripción de prácticas sostenibles."
+        },
+        {
+          "id": "dis-verde-descripcion",
+          "texto": "Please describe them and mention how will you raise the awareness of participants on these sustainable practices?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Prácticas sostenibles en viaje, sede, materiales y sesiones, y cómo se sensibiliza a los participantes."
+        }
+      ]
+    },
+    {
+      "id": "gestion",
+      "titulo": "Project Management",
+      "tituloEs": "Gestión del proyecto",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "ges-gestion",
+          "texto": "How will you manage the project (agreements with partners etc.) and make sure that it is done in line with the Erasmus Youth Quality Standards? You will find the quality standards further down in the application form.",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Acuerdo entre socias, fases del proyecto con tareas y evidencias, y cómo se cumplen los Youth Quality Standards."
+        },
+        {
+          "id": "ges-logistica",
+          "texto": "How will you organise the practical and logistical part of the project (e.g. travel, accommodation, insurance, visa, social security, mentoring and support, preparatory meetings with partners etc.)?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Viajes, alojamiento, seguros, visados, reembolsos, reuniones preparatorias y apoyo."
+        },
+        {
+          "id": "ges-socias",
+          "texto": "How and why did you choose your project partners? What experiences and competences will they bring to the project?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Una entrada por socia con el motivo de su elección y lo que aporta."
+        },
+        {
+          "id": "ges-comunicacion",
+          "texto": "How will you communicate with them?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Canales formales e informales y calendario de reuniones con las socias."
+        },
+        {
+          "id": "ges-seguimiento",
+          "texto": "How will you monitor and coordinate their contribution?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Responsabilidades por socia, herramientas de seguimiento, indicadores y medidas correctoras."
+        },
+        {
+          "id": "ges-otros-actores",
+          "texto": "Which other actors (organisations or individuals) will be involved and how?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Entidades externas, visitas de estudio, personas expertas, personal clave y voluntariado, con su papel."
+        },
+        {
+          "id": "ges-evaluacion",
+          "texto": "How will you evaluate your project’s success? Which activities will you carry out in order to assess whether, and to what extent, your project has reached its objectives and results?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Indicadores por tipo y herramientas de evaluación en cada fase, con quién las aplica y cuándo."
+        },
+        {
+          "id": "ges-sostenibilidad",
+          "texto": "What will you do to make sure that your project continues to have effects also after it ends?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Integración de resultados en las organizaciones, productos duraderos y continuidad de la cooperación."
+        },
+        {
+          "id": "ges-resultados-terceros",
+          "texto": "Are you planning measures to make sure that the results produced are used and beneficial to others beyond the project’s lifetime? If yes, which ones?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Acceso abierto, plataformas donde se publican los productos y cómo los usarán terceros."
+        },
+        {
+          "id": "ges-difusion",
+          "texto": "How will you make your project visible outside your organisation and partner organisations? How will you share its results and success? With whom will you share the results?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Plan de difusión con productos, canales, cifras objetivo y públicos destinatarios."
+        },
+        {
+          "id": "ges-difusion-participantes",
+          "texto": "How will you involve participants in such activities?",
+          "tipo": "texto",
+          "limite": 5000,
+          "opciones": null,
+          "ayuda": "Papel de los participantes en la difusión antes, durante y después, con apoyo y reconocimiento."
+        }
+      ]
+    }
+  ]
+}

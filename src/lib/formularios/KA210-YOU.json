@@ -1,0 +1,541 @@
+{
+  "accion": "KA210-YOU",
+  "nombre": "Asociaciones a pequeña escala en el ámbito de la juventud",
+  "limiteDefecto": 3000,
+  "bloques": [
+    {
+      "id": "contexto",
+      "titulo": "Context",
+      "tituloEs": "Contexto",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "ctx-titulo",
+          "texto": "Project Title",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Título claro y no muy largo. Si el formulario no va en inglés, el portal pide además la traducción del título al inglés."
+        },
+        {
+          "id": "ctx-inicio",
+          "texto": "Project Start Date (dd/mm/yyyy)",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "El portal propone la fecha más temprana posible (01/09 del año de la convocatoria en la ronda 1) y se puede retrasar hasta el 31/12."
+        },
+        {
+          "id": "ctx-duracion",
+          "texto": "Project Duration",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Meses, entre 6 y 24. La fecha de fin se calcula sola."
+        },
+        {
+          "id": "ctx-fin",
+          "texto": "Project End Date (dd/mm/yyyy)",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Campo automático a partir de inicio y duración. No se edita."
+        },
+        {
+          "id": "ctx-agencia",
+          "texto": "National agency of the applicant organisation",
+          "tipo": "opcion",
+          "limite": null,
+          "opciones": [
+            "Instituto de la Juventud (ES02)"
+          ],
+          "ayuda": "Desplegable con todas las agencias nacionales. Para nosotros, la española del sector juventud, ES02 (INJUVE). El texto exacto de la opción se copia del portal."
+        },
+        {
+          "id": "ctx-idioma",
+          "texto": "Language used to fill in the form",
+          "tipo": "opcion",
+          "limite": null,
+          "opciones": [
+            "English",
+            "Español"
+          ],
+          "ayuda": "Desplegable con todas las lenguas oficiales; para nosotros, inglés o español. Si se elige un idioma distinto del inglés, el resumen final se pide también traducido al inglés."
+        },
+        {
+          "id": "ctx-tanto-alzado",
+          "texto": "Project lump sum",
+          "tipo": "opcion",
+          "limite": null,
+          "opciones": [
+            "30 000 EUR",
+            "60 000 EUR"
+          ],
+          "ayuda": "Dos tramos fijos. La suma de los importes de todas las actividades tiene que coincidir exactamente con el tramo elegido."
+        }
+      ]
+    },
+    {
+      "id": "prioridades",
+      "titulo": "Priorities and topics",
+      "tituloEs": "Prioridades y temas",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "pri-principal",
+          "texto": "Please select the most relevant priority according to the objectives of your project.",
+          "tipo": "opcion",
+          "limite": null,
+          "opciones": [
+            "Inclusion and diversity in all fields of education, training, youth and sport",
+            "Environment and fight against climate change",
+            "Addressing digital transformation through development of digital skills and digital readiness, resilience and capacity",
+            "Common values, civic engagement, preparedness and participation",
+            "Strengthening basic skills, employability and young people's sense of initiative and entrepreneurship",
+            "Increasing quality, innovation and recognition of youth work",
+            "Supporting response of the Youth field in Europe to war in Ukraine"
+          ],
+          "ayuda": "Una sola prioridad principal. Las cuatro primeras son horizontales (todos los sectores) y las tres últimas son las específicas de juventud en 2026. Hay que demostrar al menos una de forma convincente o la relevancia se califica como débil."
+        },
+        {
+          "id": "pri-adicionales",
+          "texto": "If relevant, please select up to two additional priorities according to the objectives of your project.",
+          "tipo": "opciones",
+          "limite": null,
+          "opciones": [
+            "Inclusion and diversity in all fields of education, training, youth and sport",
+            "Environment and fight against climate change",
+            "Addressing digital transformation through development of digital skills and digital readiness, resilience and capacity",
+            "Common values, civic engagement, preparedness and participation",
+            "Strengthening basic skills, employability and young people's sense of initiative and entrepreneurship",
+            "Increasing quality, innovation and recognition of youth work",
+            "Supporting response of the Youth field in Europe to war in Ukraine"
+          ],
+          "ayuda": "Opcional, máximo dos más. Cada prioridad marcada tiene que verse luego en objetivos, actividades y resultados; no marcar de adorno."
+        },
+        {
+          "id": "pri-topics",
+          "texto": "Please select up to three topics addressed by your project.",
+          "tipo": "opciones",
+          "limite": null,
+          "opciones": [
+            "Democracy and inclusive democratic participation",
+            "European identity, citizenship and values",
+            "Reaching the policy level/dialogue with decision makers",
+            "Disabilities",
+            "Physical and mental health, wellbeing",
+            "Promoting alternative forms of participation",
+            "Creativity, arts and culture",
+            "Awareness about the European Union",
+            "Quality and innovation of youth work"
+          ],
+          "ayuda": "Entre uno y tres temas del desplegable del portal, coherentes con necesidades, objetivos y resultados. La lista recogida aquí es parcial (el catálogo completo tiene varias decenas de temas y solo se ve en el portal); si el tema buscado no está, escribirlo con la redacción exacta del portal.",
+          "opcionesAbiertas": true,
+          "maximo": 3
+        }
+      ]
+    },
+    {
+      "id": "descripcion",
+      "titulo": "Project description",
+      "tituloEs": "Descripción del proyecto",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "des-objetivos",
+          "texto": "What are the concrete objectives you would like to achieve and 'outcomes or results you would like to realise'? How are these objectives linked to the priorities you have selected?",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Pocos objetivos, concretos y medibles, formulados como situación futura mejorada y no como lista de actividades. Enlazar cada uno con la prioridad marcada."
+        },
+        {
+          "id": "des-destinatarios",
+          "texto": "Please outline the target groups of your project and describe their identified needs",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Quiénes son, cuántos, dónde y qué necesidad concreta tienen, con algún dato que sirva de línea de base."
+        },
+        {
+          "id": "des-motivacion",
+          "texto": "Please describe the motivation for your project and explain why it should be funded",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Por qué hace falta este proyecto desde la óptica de todas las socias y por qué merece el tanto alzado pedido."
+        },
+        {
+          "id": "des-necesidades",
+          "texto": "How does the project address the needs and goals of the participating organisations and the target groups?",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Necesidades propias de cada organización (qué no sabe hacer hoy) y de los destinatarios, y cómo el proyecto las cubre. Problemas locales y comunes, no sistémicos."
+        },
+        {
+          "id": "des-transnacional",
+          "texto": "What will be the benefits of cooperating with transnational partners to achieve the project objectives?",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Por qué no se puede hacer solo a nivel local y qué aporta cada socia extranjera en concreto."
+        },
+        {
+          "id": "des-horizontales",
+          "texto": "How does the project address the horizontal priorities?",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Pregunta nueva desde 2025. Cómo se hace el proyecto inclusivo, sostenible, digital y participativo en su ejecución, aunque el tema sea otro. Si ya se marcó una horizontal como prioridad, basta remitir a ese apartado."
+        }
+      ]
+    },
+    {
+      "id": "solicitante",
+      "titulo": "Participating organisations: applicant organisation (Background and experience)",
+      "tituloEs": "Organización solicitante (trayectoria y experiencia)",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "org-presentacion",
+          "texto": "Please briefly present your organisation.",
+          "tipo": "texto",
+          "limite": 1000,
+          "opciones": null,
+          "ayuda": "Presentación adaptada a este proyecto, no el texto genérico de la entidad. Tope no confirmado: los demás campos de este bloque admiten 1000 caracteres, así que conviene no pasar de ahí. Tope asumido de 1.000 como el resto del bloque, sin confirmar en el portal."
+        },
+        {
+          "id": "org-actividades",
+          "texto": "What are the organisation's main activities?",
+          "tipo": "texto",
+          "limite": 1000,
+          "opciones": null,
+          "ayuda": "Qué hace la entidad en general. Campo corto."
+        },
+        {
+          "id": "org-ambito",
+          "texto": "What are the organisation's activities in the field of this application?",
+          "tipo": "texto",
+          "limite": 1000,
+          "opciones": null,
+          "ayuda": "Qué hace en el ámbito juvenil y en el tema concreto del proyecto. Campo corto."
+        },
+        {
+          "id": "org-perfiles",
+          "texto": "What profiles and age groups of learners are concerned by the organisation's work?",
+          "tipo": "texto",
+          "limite": 1000,
+          "opciones": null,
+          "ayuda": "Perfil y edades de las personas jóvenes con las que trabaja la entidad. Campo corto."
+        },
+        {
+          "id": "org-experiencia",
+          "texto": "How many years of experience does the organisation have working in the field of this application?",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Años, solo el número. El portal puede mostrar la coletilla \"Please reply with a number of years of experience, for example '10'\" (aparece en los exports KA210-SCH 2024, no en el KA210-YOU 2024). El historial Erasmus+ (solicitudes y proyectos concedidos como solicitante y como socia) lo rellena el portal a partir del OID."
+        }
+      ]
+    },
+    {
+      "id": "socias",
+      "titulo": "Partner organisations (Background and experience)",
+      "tituloEs": "Organizaciones socias (trayectoria y experiencia)",
+      "repetible": true,
+      "etiquetaRepetible": "Socia",
+      "preguntas": [
+        {
+          "id": "soc-presentacion",
+          "texto": "Please briefly present your organisation.",
+          "tipo": "texto",
+          "limite": 1000,
+          "opciones": null,
+          "ayuda": "Una ficha por socia. Mínimo dos organizaciones de dos países del Programa distintos, sin máximo. Tope no confirmado; los demás campos del bloque admiten 1000 caracteres. Tope asumido de 1.000 como el resto del bloque, sin confirmar en el portal."
+        },
+        {
+          "id": "soc-actividades",
+          "texto": "What are the organisation's main activities?",
+          "tipo": "texto",
+          "limite": 1000,
+          "opciones": null,
+          "ayuda": "Qué hace la socia en general. Campo corto."
+        },
+        {
+          "id": "soc-ambito",
+          "texto": "What are the organisation's activities in the field of this application?",
+          "tipo": "texto",
+          "limite": 1000,
+          "opciones": null,
+          "ayuda": "Qué hace la socia en juventud y en el tema del proyecto. Campo corto."
+        },
+        {
+          "id": "soc-perfiles",
+          "texto": "What profiles and age groups of learners are concerned by the organisation's work?",
+          "tipo": "texto",
+          "limite": 1000,
+          "opciones": null,
+          "ayuda": "Perfil y edades de las personas jóvenes con las que trabaja la socia. Campo corto."
+        },
+        {
+          "id": "soc-experiencia",
+          "texto": "How many years of experience does the organisation have working in the field of this application?",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Años, solo el número; el portal puede añadir la coletilla de ejemplo '10'. Ser recién llegada al Programa es una fortaleza en esta acción, conviene decirlo en la presentación."
+        }
+      ]
+    },
+    {
+      "id": "cooperacion",
+      "titulo": "Cooperation arrangements",
+      "tituloEs": "Acuerdos de cooperación",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "coop-formacion",
+          "texto": "How was the partnership formed? What are the strengths that each partner will bring to the project?",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Cómo se conocieron las socias y qué aporta cada una, con complementariedad real y nadie de adorno."
+        },
+        {
+          "id": "coop-gestion",
+          "texto": "How will you ensure sound management of the project and good cooperation and communication between partners during project implementation?",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Mecanismos de coordinación, reuniones, canales, toma de decisiones, seguimiento del presupuesto y gestión de riesgos."
+        },
+        {
+          "id": "coop-plataformas",
+          "texto": "Please describe how you will use Erasmus+ platforms for preparation, implementation or follow-up of your project?",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Plataformas del Programa (European Youth Portal, SALTO, Erasmus+ Project Results Platform, EPALE). Su uso no es obligatorio pero hay que responder. En 2024 esta pregunta era un sí/no con texto condicional; en 2026 es texto directo."
+        },
+        {
+          "id": "coop-tareas",
+          "texto": "Please describe the tasks and responsibilities of each partner organisation in the project.",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Reparto de tareas equilibrado, socia por socia, con las recién llegadas en un papel sustancial."
+        }
+      ]
+    },
+    {
+      "id": "actividades",
+      "titulo": "Activities: Activity details",
+      "tituloEs": "Actividades (detalle de cada actividad)",
+      "repetible": true,
+      "etiquetaRepetible": "Actividad",
+      "preguntas": [
+        {
+          "id": "act-titulo",
+          "texto": "Activity title",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Nombre corto. Mejor pocas actividades bien agrupadas que muchas pequeñas."
+        },
+        {
+          "id": "act-lugar",
+          "texto": "Venue",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Debe ser un país de las socias (o sede de una institución de la UE si se justifica). Si ocurre en varios países, poner uno y explicar el resto en el contenido."
+        },
+        {
+          "id": "act-inicio",
+          "texto": "Estimated start date",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Fecha estimada. Se puede cambiar durante la ejecución."
+        },
+        {
+          "id": "act-fin",
+          "texto": "Estimated end date",
+          "tipo": "fecha",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Fecha estimada de fin. La duración en días se calcula sola en la tabla resumen."
+        },
+        {
+          "id": "act-lider",
+          "texto": "Leading Organisation",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Nombre de la organización que lidera la actividad. En el portal es un desplegable con las organizaciones del proyecto, normalmente la que organiza la actividad."
+        },
+        {
+          "id": "act-participantes",
+          "texto": "Participating Organisations",
+          "tipo": "corto",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Opcional. Las demás socias que toman parte en la actividad, separadas por comas. En el portal es un selector múltiple con las socias del proyecto. No está en la lista de campos de la plantilla 2026, comprobar si sigue existiendo."
+        },
+        {
+          "id": "act-importe",
+          "texto": "Grant amount allocated to the activity",
+          "tipo": "numero",
+          "limite": null,
+          "opciones": null,
+          "ayuda": "Euros. La suma de todas las actividades tiene que ser igual al tanto alzado. La gestión se reparte entre actividades y no debería pasar del 20 %."
+        },
+        {
+          "id": "act-contenido",
+          "texto": "Describe the content of the proposed activity.",
+          "tipo": "texto",
+          "limite": 2000,
+          "opciones": null,
+          "ayuda": "Qué se hace, con qué metodología, cuántas personas y durante cuánto tiempo."
+        },
+        {
+          "id": "act-destinatarios",
+          "texto": "Describe the target group for this activity. Who is going to take part and who is going to benefit from the results?",
+          "tipo": "texto",
+          "limite": 2000,
+          "opciones": null,
+          "ayuda": "Quién participa directamente y quién se beneficia después. Mencionar aquí el apoyo a jóvenes con menos oportunidades."
+        },
+        {
+          "id": "act-objetivos",
+          "texto": "Explain how is this activity going to help to reach the project objectives.",
+          "tipo": "texto",
+          "limite": 2000,
+          "opciones": null,
+          "ayuda": "Enlace explícito con los objetivos numerados de la descripción."
+        },
+        {
+          "id": "act-resultados",
+          "texto": "Describe the expected results of the activity.",
+          "tipo": "texto",
+          "limite": 2000,
+          "opciones": null,
+          "ayuda": "Productos tangibles e intangibles, con cantidades y licencia o canal de acceso cuando sean reutilizables."
+        },
+        {
+          "id": "act-importe-justificacion",
+          "texto": "Please describe how you determined the grant amount attributed to this activity.",
+          "tipo": "texto",
+          "limite": 4000,
+          "opciones": null,
+          "ayuda": "Desglose comprensible (personas, días, viajes, materiales, horas de trabajo), sin llegar al céntimo. Es el campo más largo del bloque. El experto no puede rebajar el importe, así que si no cuadra se rechaza."
+        }
+      ]
+    },
+    {
+      "id": "impacto",
+      "titulo": "Impact and follow-up",
+      "tituloEs": "Impacto y seguimiento",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "imp-evaluacion",
+          "texto": "How will you know if the project has achieved its objectives? Please explain how you will measure it.",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Indicadores con meta para cada objetivo, herramientas (cuestionarios, registros, entrevistas) y quién recoge los datos y cuándo."
+        },
+        {
+          "id": "imp-largo-plazo",
+          "texto": "How will the participation in this project contribute to the development of the involved organisations in the long-term? Do you have plans to continue using the results of the project or continue to implement some of the activities after the project's end?",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Qué queda instalado en cada organización (capacidades, procedimientos, relaciones) y qué sigue vivo sin subvención."
+        },
+        {
+          "id": "imp-difusion",
+          "texto": "Please describe your plans for sharing and use of project results.\n- How will you make the results of your project known within your partnership, in your local communities and in the wider public? Who are the main target groups you would like to share your results with?\n- Are there other groups or organisations that will benefit from your project? Please explain how.",
+          "tipo": "texto",
+          "limite": 3000,
+          "opciones": null,
+          "ayuda": "Una sola respuesta que cubra las dos viñetas: plan de difusión con públicos, canales, responsables y momentos, y quién más se beneficia. Difundir resultados no es promocionar el proyecto."
+        }
+      ]
+    },
+    {
+      "id": "resumen",
+      "titulo": "Project summary",
+      "tituloEs": "Resumen del proyecto",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "res-objetivos",
+          "texto": "Objectives: What do you want to achieve by implementing the project?",
+          "tipo": "texto",
+          "limite": 500,
+          "opciones": null,
+          "ayuda": "Texto público si se aprueba (Erasmus+ Project Results Platform). Muy corto: 500 caracteres según el export anotado de 2024. Claro y conciso, sin jerga interna."
+        },
+        {
+          "id": "res-implementacion",
+          "texto": "Implementation: What activities are you going to implement?",
+          "tipo": "texto",
+          "limite": 500,
+          "opciones": null,
+          "ayuda": "Las actividades en pocas líneas, en el orden en que ocurren."
+        },
+        {
+          "id": "res-resultados",
+          "texto": "Results: What results do you expect your project to have?",
+          "tipo": "texto",
+          "limite": 500,
+          "opciones": null,
+          "ayuda": "Resultados concretos y para quién."
+        }
+      ]
+    },
+    {
+      "id": "resumen-ingles",
+      "titulo": "Translation in English",
+      "tituloEs": "Resumen del proyecto: traducción al inglés",
+      "repetible": false,
+      "etiquetaRepetible": null,
+      "preguntas": [
+        {
+          "id": "res-en-objetivos",
+          "texto": "Objectives: What do you want to achieve by implementing the project?",
+          "tipo": "texto",
+          "limite": 500,
+          "opciones": null,
+          "ayuda": "Solo si el formulario se rellena en un idioma distinto del inglés. El portal encabeza este sub-bloque con la frase 'Please provide a translation in English. This summary will be publicly available in case your project is awarded.'"
+        },
+        {
+          "id": "res-en-implementacion",
+          "texto": "Implementation: What activities are you going to implement?",
+          "tipo": "texto",
+          "limite": 500,
+          "opciones": null,
+          "ayuda": "Versión en inglés del resumen de actividades. Solo si el formulario no va en inglés."
+        },
+        {
+          "id": "res-en-resultados",
+          "texto": "Results: What results do you expect your project to have?",
+          "tipo": "texto",
+          "limite": 500,
+          "opciones": null,
+          "ayuda": "Versión en inglés del resumen de resultados. Solo si el formulario no va en inglés."
+        }
+      ]
+    }
+  ]
+}

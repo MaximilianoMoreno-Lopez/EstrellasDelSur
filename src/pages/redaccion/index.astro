@@ -1,0 +1,1328 @@
+---
+import PortalLayout from '../../layouts/PortalLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<PortalLayout title="Redacción de proyectos">
+  <div id="loadingState" class="state-center">
+    <div class="spinner"></div>
+    <p>Cargando…</p>
+  </div>
+
+  <!-- Lista de borradores -->
+  <div id="listaView" style="display:none">
+    <div class="rd-header">
+      <div>
+        <h1 class="rd-title">Redacción de proyectos</h1>
+        <p class="rd-sub" id="listaSub"></p>
+      </div>
+      <div class="rd-actions">
+        <a href={`${base}/equipo/`} class="btn-ghost">Panel de trabajo</a>
+        <button id="nuevoBtn" class="btn-new">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nuevo borrador
+        </button>
+      </div>
+    </div>
+
+    <form id="nuevoForm" class="rd-form" style="display:none" novalidate>
+      <h2 class="rd-form-title">Nuevo borrador</h2>
+      <div class="rd-form-grid">
+        <div class="rd-field rd-wide">
+          <label for="nfTitulo">Título de trabajo <span class="req">*</span></label>
+          <input type="text" id="nfTitulo" required placeholder="EMBER, Rutas de Barrio, Haro Queer…" />
+        </div>
+        <div class="rd-field rd-wide">
+          <label for="nfAccion">Acción</label>
+          <select id="nfAccion"></select>
+          <p class="rd-hint" id="nfAccionHint"></p>
+        </div>
+      </div>
+      <div class="rd-form-actions">
+        <button type="button" id="nfCancel" class="btn-ghost">Cancelar</button>
+        <button type="submit" class="btn-new" id="nfCrear">Crear y abrir</button>
+      </div>
+    </form>
+
+    <div id="alertMsg" class="rd-alert" role="alert" style="display:none"></div>
+
+    <div id="lista" class="rd-lista"></div>
+  </div>
+
+  <!-- Editor -->
+  <div id="editorView" style="display:none">
+    <h1 class="sr-only" id="edH1" tabindex="-1"></h1>
+
+    <!-- Barra fija: estado de guardado, acciones y avisos viajan con el scroll -->
+    <div class="ed-top">
+      <button type="button" id="edVolver" class="btn-ghost">← Borradores</button>
+      <div class="ed-estado-wrap">
+        <span id="edGuardado" class="ed-guardado"></span>
+        <label class="sr-only" for="edIdioma">Idioma de redacción</label>
+        <select id="edIdioma" class="ed-estado" title="Idioma de redacción (para el corrector ortográfico)">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+        <label class="sr-only" for="edEstado">Estado del borrador</label>
+        <select id="edEstado" class="ed-estado">
+          <option value="borrador">Borrador</option>
+          <option value="para_revisar">Para revisar</option>
+          <option value="revisado">Revisado</option>
+          <option value="presentado">Presentado</option>
+        </select>
+        <button type="button" id="edDescargar" class="btn-ghost">Descargar .md</button>
+        <button type="button" id="edGuardar" class="btn-new">Guardar</button>
+      </div>
+      <div id="edAlert" class="rd-alert ed-alert" role="alert" style="display:none"></div>
+    </div>
+
+    <div class="ed-cabecera">
+      <label class="sr-only" for="edTitulo">Título del borrador</label>
+      <input type="text" id="edTitulo" class="ed-titulo" placeholder="Título de trabajo" />
+      <p class="ed-accion" id="edAccion"></p>
+    </div>
+
+    <div class="ed-layout">
+      <nav class="ed-nav" id="edNav" aria-label="Bloques del formulario"></nav>
+      <div class="ed-bloques" id="edBloques"></div>
+    </div>
+
+    <section class="ed-notas">
+      <h2 class="ed-bloque-titulo">Notas de revisión</h2>
+      <p class="ed-bloque-sub">Para quien revise el borrador: dudas, datos que faltan, qué hay que confirmar. No forman parte del formulario.</p>
+      <label class="sr-only" for="edNotas">Notas de revisión</label>
+      <textarea id="edNotas" rows="4" placeholder="Falta confirmar el tope de viaje de Lisboa…"></textarea>
+    </section>
+  </div>
+
+  <script>
+    import { supabase } from '../../lib/supabase.js';
+    import {
+      FORMULARIOS, formularioDe, limiteDe, contar, contarPesimista,
+      estadoContador, preguntasTexto, aMarkdown,
+    } from '../../lib/formularios.mjs';
+
+    let equipo = [];
+    let miEmail = '';
+    let soyAdmin = false;
+    let borradores = [];
+
+    // Editor
+    let actual = null;          // borrador abierto (copia de trabajo)
+    let formulario = null;
+    let sucio = false;
+    let guardando = false;
+    let guardadoEnCurso = null; // promesa del guardado en vuelo, para poder esperarla
+    let version = 0;            // sube con cada cambio: detecta escritura durante un guardado
+    let timerAutosave = null;   // se reprograma con cada tecla
+    let timerTope = null;       // no se reprograma: garantiza un guardado cada AUTOSAVE_TOPE_MS
+    let ultimoUpdatedAt = null;
+    let enConflicto = false;    // otra persona guardó después de nuestra lectura
+    let conflictoUpdatedAt = null;
+    // Identifica esta pestaña: otra pestaña o el móvil con la misma cuenta
+    // cuentan como otra persona a efectos de conflicto.
+    const miSesion = crypto.randomUUID();
+
+    const ESTADOS = {
+      borrador: 'Borrador',
+      para_revisar: 'Para revisar',
+      revisado: 'Revisado',
+      presentado: 'Presentado',
+    };
+    const IDIOMAS = ['es', 'en', 'fr'];
+    const AUTOSAVE_MS = 2500;
+    const AUTOSAVE_TOPE_MS = 20000;
+
+    async function init() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.replace('/portal/login/');
+        return;
+      }
+      miEmail = session.user.email.toLowerCase();
+
+      const { data: equipoData, error } = await supabase.from('equipo').select('*').order('nombre');
+      if (error) {
+        window.location.replace('/portal/login/');
+        return;
+      }
+      if (!equipoData || !equipoData.some((m) => m.email === miEmail)) {
+        window.location.replace('/portal/dashboard/');
+        return;
+      }
+      equipo = equipoData;
+      soyAdmin = equipo.find((m) => m.email === miEmail)?.rol === 'admin';
+
+      montarNuevo();
+      montarEditor();
+      await cargarBorradores();
+
+      document.getElementById('loadingState').style.display = 'none';
+
+      // Un enlace con #id abre ese borrador directamente
+      const id = window.location.hash.replace('#', '');
+      const b = id && borradores.find((x) => x.id === id);
+      if (b) abrirEditor(b);
+      else mostrarLista();
+    }
+
+    async function cargarBorradores() {
+      const { data, error } = await supabase
+        .from('borradores')
+        .select('*')
+        .order('updated_at', { ascending: false });
+      if (error) {
+        // Se conserva la lista que ya había en memoria
+        aviso('No se pudieron cargar los borradores: ' + error.message);
+        return;
+      }
+      borradores = data ?? [];
+    }
+
+    // ── Helpers ───────────────────────────────────────────────
+    const esObj = (x) => !!x && typeof x === 'object' && !Array.isArray(x);
+
+    function nombreDe(email) {
+      return equipo.find((m) => m.email === email)?.nombre ?? email ?? '';
+    }
+    function hace(iso) {
+      if (!iso) return '';
+      const ms = Date.now() - new Date(iso).getTime();
+      const min = Math.round(ms / 60000);
+      if (min < 1) return 'ahora mismo';
+      if (min < 60) return `hace ${min} min`;
+      const h = Math.round(min / 60);
+      if (h < 24) return `hace ${h} h`;
+      const d = Math.round(h / 24);
+      if (d < 30) return `hace ${d} día${d === 1 ? '' : 's'}`;
+      return new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+    }
+    // Normaliza lo que venga de la base de datos: una fila editada a mano o
+    // de una versión anterior no debe romper el editor.
+    function respuestasDe(b) {
+      const r = esObj(b.respuestas) ? b.respuestas : {};
+      const rep = esObj(r.repetidos) ? r.repetidos : {};
+      return {
+        idioma: IDIOMAS.includes(r.idioma) ? r.idioma : 'es',
+        campos: esObj(r.campos) ? r.campos : {},
+        repetidos: Object.fromEntries(
+          Object.entries(rep).map(([k, v]) => [k, Array.isArray(v) ? v.filter(esObj) : []]),
+        ),
+      };
+    }
+    // Progreso: respuestas largas con algo escrito sobre el total que pide el
+    // formulario (las fichas repetidas cuentan una a una).
+    function progreso(b) {
+      const f = formularioDe(b.accion);
+      if (!f) return { hechas: 0, total: 0, caracteres: 0 };
+      const r = respuestasDe(b);
+      let hechas = 0, total = 0, caracteres = 0;
+      f.bloques.forEach((bl) => {
+        const textos = bl.preguntas.filter((p) => p.tipo === 'texto');
+        const fichas = bl.repetible ? (r.repetidos[bl.id]?.length ? r.repetidos[bl.id] : [{}]) : [r.campos];
+        fichas.forEach((valores) => {
+          textos.forEach((p) => {
+            total += 1;
+            const v = valores?.[p.id];
+            if (typeof v === 'string' && v.trim()) {
+              hechas += 1;
+              caracteres += contar(v);
+            }
+          });
+        });
+      });
+      return { hechas, total, caracteres };
+    }
+    function slug(s) {
+      return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'borrador';
+    }
+
+    const avisoTimers = {};
+    function aviso(msg, donde = 'alertMsg', fijo = false) {
+      const el = document.getElementById(donde);
+      el.textContent = msg;
+      el.style.display = 'block';
+      if (avisoTimers[donde]) clearTimeout(avisoTimers[donde]);
+      if (!fijo) avisoTimers[donde] = setTimeout(() => { el.style.display = 'none'; }, 8000);
+    }
+    function quitarAviso(donde) {
+      const el = document.getElementById(donde);
+      el.style.display = 'none';
+      if (avisoTimers[donde]) clearTimeout(avisoTimers[donde]);
+    }
+
+    // ── Lista ─────────────────────────────────────────────────
+    function mostrarLista() {
+      document.getElementById('editorView').style.display = 'none';
+      document.getElementById('listaView').style.display = 'block';
+      if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+      renderLista();
+    }
+
+    function renderLista() {
+      const wrap = document.getElementById('lista');
+      wrap.replaceChildren();
+
+      document.getElementById('listaSub').textContent =
+        `${borradores.length} borrador${borradores.length === 1 ? '' : 'es'} · ${FORMULARIOS.length} formularios disponibles`;
+
+      if (borradores.length === 0) {
+        const p = document.createElement('p');
+        p.className = 'rd-vacio';
+        p.textContent = 'Todavía no hay borradores. Crea el primero con el botón de arriba.';
+        wrap.appendChild(p);
+        return;
+      }
+
+      borradores.forEach((b) => {
+        const card = document.createElement('article');
+        card.className = 'bo-card';
+
+        const top = document.createElement('div');
+        top.className = 'bo-top';
+        const accion = document.createElement('span');
+        accion.className = 'bo-accion';
+        accion.textContent = b.accion;
+        top.appendChild(accion);
+        const estado = document.createElement('span');
+        estado.className = `bo-estado es-${b.estado}`;
+        estado.textContent = ESTADOS[b.estado] ?? b.estado;
+        top.appendChild(estado);
+        card.appendChild(top);
+
+        const h = document.createElement('h2');
+        h.className = 'bo-titulo';
+        const link = document.createElement('a');
+        link.href = `#${b.id}`;
+        link.textContent = b.titulo;
+        link.addEventListener('click', (e) => { e.preventDefault(); abrirEditor(b); });
+        h.appendChild(link);
+        card.appendChild(h);
+
+        const f = formularioDe(b.accion);
+        const sub = document.createElement('p');
+        sub.className = 'bo-sub';
+        sub.textContent = f ? f.nombre : 'Formulario no disponible';
+        card.appendChild(sub);
+
+        const pr = progreso(b);
+        const prog = document.createElement('div');
+        prog.className = 'bo-prog';
+        const bar = document.createElement('span');
+        bar.className = 'bo-bar';
+        const fill = document.createElement('span');
+        fill.className = 'bo-fill';
+        fill.style.width = pr.total ? `${Math.round((pr.hechas / pr.total) * 100)}%` : '0%';
+        bar.appendChild(fill);
+        const txt = document.createElement('span');
+        txt.textContent = `${pr.hechas}/${pr.total} respuestas · ${pr.caracteres.toLocaleString('es-ES')} caracteres`;
+        prog.appendChild(bar);
+        prog.appendChild(txt);
+        card.appendChild(prog);
+
+        const foot = document.createElement('div');
+        foot.className = 'bo-foot';
+        const quien = document.createElement('span');
+        quien.className = 'bo-quien';
+        quien.textContent = `${nombreDe(b.editado_por ?? b.creado_por)} · ${hace(b.updated_at)}`;
+        foot.appendChild(quien);
+        const acciones = document.createElement('span');
+        acciones.className = 'bo-acciones';
+        const abrir = document.createElement('button');
+        abrir.type = 'button';
+        abrir.className = 'tc-btn is-avanzar';
+        abrir.textContent = 'Abrir';
+        abrir.setAttribute('aria-label', `Abrir ${b.titulo}`);
+        abrir.addEventListener('click', () => abrirEditor(b));
+        acciones.appendChild(abrir);
+        if (soyAdmin) {
+          const del = document.createElement('button');
+          del.type = 'button';
+          del.className = 'tc-btn';
+          del.textContent = 'Borrar';
+          del.setAttribute('aria-label', `Borrar ${b.titulo}`);
+          del.addEventListener('click', () => borrar(b));
+          acciones.appendChild(del);
+        }
+        foot.appendChild(acciones);
+        card.appendChild(foot);
+
+        wrap.appendChild(card);
+      });
+    }
+
+    async function borrar(b) {
+      if (!confirm(`¿Borrar el borrador "${b.titulo}"? No se puede deshacer.`)) return;
+      const { error } = await supabase.from('borradores').delete().eq('id', b.id);
+      if (error) return aviso('No se pudo borrar: ' + error.message);
+      borradores = borradores.filter((x) => x.id !== b.id);
+      renderLista();
+    }
+
+    // ── Nuevo borrador ────────────────────────────────────────
+    function montarNuevo() {
+      const sel = document.getElementById('nfAccion');
+      FORMULARIOS.forEach((f) => {
+        const o = document.createElement('option');
+        o.value = f.accion;
+        o.textContent = `${f.accion} · ${f.nombre}`;
+        sel.appendChild(o);
+      });
+      const pintarHint = () => {
+        const f = formularioDe(sel.value);
+        const n = f ? preguntasTexto(f).length : 0;
+        document.getElementById('nfAccionHint').textContent = f
+          ? `${f.bloques.length} bloques, ${n} respuestas largas, tope habitual de ${(f.limiteDefecto ?? 0).toLocaleString('es-ES')} caracteres.`
+          : '';
+      };
+      sel.addEventListener('change', pintarHint);
+      pintarHint();
+
+      const form = document.getElementById('nuevoForm');
+      const titulo = document.getElementById('nfTitulo');
+      document.getElementById('nuevoBtn').addEventListener('click', () => {
+        form.style.display = 'block';
+        titulo.focus();
+      });
+      document.getElementById('nfCancel').addEventListener('click', () => {
+        form.style.display = 'none';
+        document.getElementById('nuevoBtn').focus();
+      });
+      titulo.addEventListener('input', () => titulo.removeAttribute('aria-invalid'));
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!titulo.value.trim()) {
+          titulo.setAttribute('aria-invalid', 'true');
+          titulo.focus();
+          return aviso('El borrador necesita un título.');
+        }
+        const btn = document.getElementById('nfCrear');
+        if (btn.disabled) return;
+        btn.disabled = true;
+        const { data, error } = await supabase
+          .from('borradores')
+          .insert({ titulo: titulo.value.trim(), accion: sel.value })
+          .select()
+          .single();
+        btn.disabled = false;
+        if (error) return aviso('No se pudo crear el borrador: ' + error.message);
+        borradores.unshift(data);
+        form.style.display = 'none';
+        titulo.value = '';
+        abrirEditor(data);
+      });
+    }
+
+    // ── Editor ────────────────────────────────────────────────
+    function montarEditor() {
+      document.getElementById('edVolver').addEventListener('click', volver);
+      document.getElementById('edGuardar').addEventListener('click', () => {
+        if (enConflicto) return sobrescribir();
+        guardar();
+      });
+      document.getElementById('edDescargar').addEventListener('click', descargar);
+      document.getElementById('edTitulo').addEventListener('input', (e) => {
+        actual.titulo = e.target.value;
+        document.getElementById('edH1').textContent = actual.titulo || 'Sin título';
+        marcarSucio();
+      });
+      document.getElementById('edEstado').addEventListener('change', (e) => {
+        actual.estado = e.target.value;
+        marcarSucio();
+        guardar();
+      });
+      document.getElementById('edIdioma').addEventListener('change', (e) => {
+        actual.respuestas.idioma = e.target.value;
+        document.getElementById('edBloques').lang = e.target.value;
+        marcarSucio();
+      });
+      document.getElementById('edNotas').addEventListener('input', (e) => {
+        actual.notas = e.target.value;
+        marcarSucio();
+      });
+      window.addEventListener('beforeunload', (e) => {
+        if (!sucio) return;
+        e.preventDefault();
+        e.returnValue = '';
+      });
+      // Guarda al cambiar de pestaña o bloquear el móvil. Al cerrar la
+      // pestaña no da tiempo: ahí la protección es el aviso de beforeunload.
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden' && sucio) guardar();
+      });
+      // Los elementos fijos (cabecera del portal y barra del editor) cambian
+      // de alto según el ancho y según haya aviso: se miden y el CSS los usa.
+      const raiz = document.documentElement.style;
+      const cab = document.querySelector('.portal-header');
+      const top = document.querySelector('.ed-top');
+      if (cab) new ResizeObserver(() => raiz.setProperty('--portal-h', `${cab.offsetHeight}px`)).observe(cab);
+      if (top) new ResizeObserver(() => raiz.setProperty('--ed-top-h', `${top.offsetHeight}px`)).observe(top);
+    }
+
+    function abrirEditor(b) {
+      formulario = formularioDe(b.accion);
+      if (!formulario) {
+        mostrarLista();
+        return aviso(`No hay formulario para ${b.accion}.`);
+      }
+      actual = {
+        id: b.id,
+        titulo: b.titulo,
+        estado: b.estado,
+        notas: b.notas ?? '',
+        respuestas: structuredClone(respuestasDe(b)),
+      };
+      ultimoUpdatedAt = b.updated_at;
+      sucio = false;
+      version = 0;
+      enConflicto = false;
+      conflictoUpdatedAt = null;
+      quitarAviso('edAlert');
+
+      document.getElementById('edH1').textContent = actual.titulo || 'Sin título';
+      document.getElementById('edTitulo').value = actual.titulo;
+      document.getElementById('edEstado').value = actual.estado;
+      document.getElementById('edIdioma').value = actual.respuestas.idioma;
+      document.getElementById('edBloques').lang = actual.respuestas.idioma;
+      document.getElementById('edNotas').value = actual.notas;
+      document.getElementById('edAccion').textContent = `${formulario.accion} · ${formulario.nombre}`;
+      document.getElementById('edGuardar').textContent = 'Guardar';
+      pintarGuardado('Guardado');
+
+      renderNav();
+      renderBloques();
+
+      document.getElementById('listaView').style.display = 'none';
+      document.getElementById('editorView').style.display = 'block';
+      history.replaceState(null, '', `#${b.id}`);
+      window.scrollTo(0, 0);
+      document.getElementById('edH1').focus({ preventScroll: true });
+    }
+
+    async function volver() {
+      // Dos pasadas: la primera puede estar esperando a un guardado en vuelo
+      if (sucio) await guardar();
+      if (sucio) await guardar();
+      if (sucio) {
+        if (!confirm('Hay cambios sin guardar. ¿Salir igualmente?')) return;
+        sucio = false;
+      }
+      actual = null;
+      await cargarBorradores();
+      mostrarLista();
+      document.getElementById('nuevoBtn').focus();
+    }
+
+    function renderNav() {
+      const nav = document.getElementById('edNav');
+      nav.replaceChildren();
+      formulario.bloques.forEach((bl) => {
+        const a = document.createElement('a');
+        a.href = `#bq-${bl.id}`;
+        a.className = 'ed-nav-link';
+        a.dataset.bloque = bl.id;
+        const t = document.createElement('span');
+        t.textContent = bl.tituloEs ?? bl.titulo;
+        const c = document.createElement('span');
+        c.className = 'ed-nav-count';
+        a.appendChild(t);
+        a.appendChild(c);
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const sec = document.getElementById(`bq-${bl.id}`);
+          sec?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          sec?.focus({ preventScroll: true });
+        });
+        nav.appendChild(a);
+      });
+      actualizarNav();
+    }
+
+    function actualizarNav() {
+      formulario.bloques.forEach((bl) => {
+        const el = document.querySelector(`.ed-nav-link[data-bloque="${bl.id}"] .ed-nav-count`);
+        if (!el) return;
+        const textos = bl.preguntas.filter((p) => p.tipo === 'texto');
+        if (textos.length === 0) { el.textContent = ''; return; }
+        const fichas = bl.repetible ? fichasDe(bl) : [actual.respuestas.campos];
+        let hechas = 0;
+        fichas.forEach((v) => textos.forEach((p) => { if (typeof v[p.id] === 'string' && v[p.id].trim()) hechas += 1; }));
+        el.textContent = `${hechas}/${textos.length * fichas.length}`;
+        el.classList.toggle('is-completo', hechas === textos.length * fichas.length);
+      });
+    }
+
+    function fichasDe(bl) {
+      const rep = actual.respuestas.repetidos;
+      if (!Array.isArray(rep[bl.id]) || rep[bl.id].length === 0) rep[bl.id] = [{}];
+      return rep[bl.id];
+    }
+
+    // Etiqueta con la que una ficha repetida se reconoce en los desplegables
+    // (p. ej. "Flujo 2: Córdoba"): el número y el primer campo corto escrito.
+    function etiquetaFicha(bl, valores, i) {
+      const corto = bl.preguntas.find((p) => p.tipo === 'corto' && typeof valores[p.id] === 'string' && valores[p.id].trim());
+      return `${bl.etiquetaRepetible ?? 'Ficha'} ${i + 1}${corto ? `: ${valores[corto.id].trim()}` : ''}`;
+    }
+
+    function renderBloques() {
+      const wrap = document.getElementById('edBloques');
+      wrap.replaceChildren();
+      formulario.bloques.forEach((bl) => wrap.appendChild(renderBloque(bl)));
+    }
+
+    function renderBloque(bl) {
+      const sec = document.createElement('section');
+      sec.className = 'ed-bloque';
+      sec.id = `bq-${bl.id}`;
+      sec.tabIndex = -1;
+
+      const h = document.createElement('h2');
+      h.className = 'ed-bloque-titulo';
+      h.textContent = bl.titulo;
+      sec.appendChild(h);
+      if (bl.tituloEs && bl.tituloEs !== bl.titulo) {
+        const p = document.createElement('p');
+        p.className = 'ed-bloque-sub';
+        p.textContent = bl.tituloEs;
+        sec.appendChild(p);
+      }
+      if (bl.subtitulo) {
+        const p = document.createElement('p');
+        p.className = 'ed-bloque-sub ed-bloque-intro';
+        p.textContent = bl.subtitulo;
+        sec.appendChild(p);
+      }
+
+      if (!bl.repetible) {
+        bl.preguntas.forEach((p) => sec.appendChild(renderPregunta(p, actual.respuestas.campos)));
+        return sec;
+      }
+
+      const etiqueta = bl.etiquetaRepetible ?? 'Ficha';
+      const padre = bl.padre ? formulario.bloques.find((x) => x.id === bl.padre && x.repetible) : null;
+      const cont = document.createElement('div');
+      cont.className = 'ed-fichas';
+      const enfocar = (sel) => cont.querySelector(sel)?.focus();
+      const pintarFichas = () => {
+        cont.replaceChildren();
+        const fichas = fichasDe(bl);
+        fichas.forEach((valores, i) => {
+          const fs = document.createElement('fieldset');
+          fs.className = 'ed-ficha';
+          const lg = document.createElement('legend');
+          lg.textContent = `${etiqueta} ${i + 1}`;
+          fs.appendChild(lg);
+          if (fichas.length > 1) {
+            const quitar = document.createElement('button');
+            quitar.type = 'button';
+            quitar.className = 'ed-ficha-quitar';
+            quitar.textContent = `Quitar ${etiqueta.toLowerCase()} ${i + 1}`;
+            quitar.addEventListener('click', () => {
+              const conTexto = bl.preguntas.some((p) => typeof valores[p.id] === 'string' && valores[p.id].trim());
+              if (conTexto && !confirm(`¿Quitar ${etiqueta.toLowerCase()} ${i + 1}? Se pierde lo escrito en esa ficha.`)) return;
+              fichas.splice(i, 1);
+              marcarSucio();
+              pintarFichas();
+              actualizarNav();
+              enfocar('.ed-ficha-add');
+            });
+            fs.appendChild(quitar);
+          }
+          // Fichas que cuelgan de otras (costes excepcionales de un flujo):
+          // un desplegable dice a cuál pertenece y se exporta con la ficha.
+          if (padre) {
+            const wrapP = document.createElement('div');
+            wrapP.className = 'ed-pregunta tipo-opcion';
+            const idP = `q-${bl.id}-padre-${i}`;
+            const lp = document.createElement('label');
+            lp.className = 'ed-label';
+            lp.htmlFor = idP;
+            lp.textContent = `Pertenece a (${padre.etiquetaRepetible ?? 'ficha'})`;
+            const sp = document.createElement('select');
+            sp.id = idP;
+            // El valor guardado es el número estable ("Flujo 2"); la ciudad
+            // solo se enseña. Se rellena al enfocar porque las fichas madre
+            // cambian sin que este bloque se repinte.
+            const numero = (j) => `${padre.etiquetaRepetible ?? 'Ficha'} ${j + 1}`;
+            const rellenar = () => {
+              sp.replaceChildren();
+              const vacio = document.createElement('option');
+              vacio.value = '';
+              vacio.textContent = 'Sin asignar';
+              sp.appendChild(vacio);
+              fichasDe(padre).forEach((vp, j) => {
+                const o = document.createElement('option');
+                o.value = numero(j);
+                o.textContent = etiquetaFicha(padre, vp, j);
+                sp.appendChild(o);
+              });
+              const guardado = typeof valores._padre === 'string' ? valores._padre : '';
+              if (guardado && ![...sp.options].some((o) => o.value === guardado)) {
+                const o = document.createElement('option');
+                o.value = guardado;
+                o.textContent = `${guardado} (ya no existe)`;
+                sp.appendChild(o);
+              }
+              sp.value = guardado;
+            };
+            rellenar();
+            sp.addEventListener('focus', rellenar);
+            sp.addEventListener('change', () => {
+              if (sp.value) valores._padre = sp.value; else delete valores._padre;
+              marcarSucio();
+            });
+            wrapP.appendChild(lp);
+            wrapP.appendChild(sp);
+            fs.appendChild(wrapP);
+          }
+          bl.preguntas.forEach((p) => fs.appendChild(renderPregunta(p, valores)));
+          cont.appendChild(fs);
+        });
+        const add = document.createElement('button');
+        add.type = 'button';
+        add.className = 'btn-ghost ed-ficha-add';
+        add.textContent = `Añadir ${etiqueta.toLowerCase()}`;
+        add.addEventListener('click', () => {
+          fichasDe(bl).push({});
+          marcarSucio();
+          pintarFichas();
+          actualizarNav();
+          enfocar('.ed-ficha:last-of-type textarea, .ed-ficha:last-of-type input, .ed-ficha:last-of-type select');
+        });
+        cont.appendChild(add);
+      };
+      pintarFichas();
+      sec.appendChild(cont);
+      return sec;
+    }
+
+    let seq = 0;
+    function renderPregunta(p, valores) {
+      const wrap = document.createElement('div');
+      wrap.className = `ed-pregunta tipo-${p.tipo}`;
+      const idDom = `q-${p.id}-${++seq}`;
+      const describe = [];
+
+      const label = document.createElement('label');
+      label.className = 'ed-label';
+      label.htmlFor = idDom;
+      label.textContent = p.texto;
+      wrap.appendChild(label);
+      if (p.ayuda) {
+        const ayuda = document.createElement('p');
+        ayuda.className = 'ed-ayuda';
+        ayuda.id = `${idDom}-ayuda`;
+        ayuda.textContent = p.ayuda;
+        wrap.appendChild(ayuda);
+        describe.push(ayuda.id);
+      }
+
+      const setValor = (v) => {
+        if (v === '' || v === null || (Array.isArray(v) && v.length === 0)) delete valores[p.id];
+        else valores[p.id] = v;
+        marcarSucio();
+      };
+      const limite = limiteDe(p, formulario);
+
+      if (p.tipo === 'texto') {
+        const ta = document.createElement('textarea');
+        ta.id = idDom;
+        ta.rows = 6;
+        ta.value = typeof valores[p.id] === 'string' ? valores[p.id] : '';
+        ta.spellcheck = true;
+        wrap.appendChild(ta);
+
+        const fila = document.createElement('div');
+        fila.className = 'ed-contador';
+        fila.id = `${idDom}-ct`;
+        const num = document.createElement('span');
+        num.className = 'ct-num';
+        const pes = document.createElement('span');
+        pes.className = 'ct-pes';
+        const copiar = document.createElement('button');
+        copiar.type = 'button';
+        copiar.className = 'tc-btn ct-copiar';
+        copiar.textContent = 'Copiar';
+        copiar.setAttribute('aria-label', `Copiar la respuesta a: ${p.texto.slice(0, 80)}`);
+        copiar.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(ta.value);
+            copiar.textContent = 'Copiado';
+            setTimeout(() => { copiar.textContent = 'Copiar'; }, 1500);
+          } catch {
+            aviso('No se pudo copiar al portapapeles.', 'edAlert');
+          }
+        });
+        fila.appendChild(num);
+        fila.appendChild(pes);
+        fila.appendChild(copiar);
+        wrap.appendChild(fila);
+        describe.push(fila.id);
+        ta.setAttribute('aria-describedby', describe.join(' '));
+
+        const pintar = () => {
+          const n = contar(ta.value);
+          const np = contarPesimista(ta.value);
+          const est = estadoContador(limite ? Math.max(n, np) : n, limite);
+          num.textContent = (est === 'sobre' ? 'Supera el tope: ' : '') + (limite
+            ? `${n.toLocaleString('es-ES')} / ${limite.toLocaleString('es-ES')}`
+            : `${n.toLocaleString('es-ES')} caracteres`);
+          // Si hay saltos de línea, el recuento pesimista avisa de lo que
+          // pasaría si el portal los contara doble.
+          pes.textContent = np !== n && limite ? `(${np.toLocaleString('es-ES')} si los saltos cuentan doble)` : '';
+          fila.classList.toggle('is-cerca', est === 'cerca');
+          fila.classList.toggle('is-sobre', est === 'sobre');
+          ta.classList.toggle('is-sobre', est === 'sobre');
+          if (est === 'sobre') ta.setAttribute('aria-invalid', 'true'); else ta.removeAttribute('aria-invalid');
+          // Solo crece: así no salta el scroll al teclear ni se pisa un
+          // redimensionado hecho a mano con el tirador.
+          const borde = ta.offsetHeight - ta.clientHeight;
+          if (ta.scrollHeight + borde > ta.offsetHeight) ta.style.height = `${Math.max(ta.scrollHeight + borde, 120)}px`;
+        };
+        ta.addEventListener('input', () => { setValor(ta.value); pintar(); actualizarNav(); });
+        // La altura solo se puede medir cuando está en el DOM
+        requestAnimationFrame(pintar);
+        return wrap;
+      }
+
+      if (p.tipo === 'opciones') {
+        const grupo = document.createElement('div');
+        grupo.className = 'ed-opciones';
+        grupo.setAttribute('role', 'group');
+        grupo.setAttribute('aria-labelledby', idDom);
+        if (describe.length) grupo.setAttribute('aria-describedby', describe.join(' '));
+        label.id = idDom;
+        label.removeAttribute('for');
+        const max = typeof p.maximo === 'number' ? p.maximo : null;
+        const marcadas = () => new Set(Array.isArray(valores[p.id]) ? valores[p.id] : []);
+        const checks = [];
+        let otraInp = null, otraBtn = null;
+        const fila = document.createElement('div');
+        fila.className = 'ed-contador';
+        const num = document.createElement('span');
+        num.className = 'ct-num';
+        fila.appendChild(num);
+        const refrescar = () => {
+          const set = marcadas();
+          if (max) {
+            num.textContent = `${set.size} / ${max}` + (set.size >= max ? ' (máximo alcanzado)' : '');
+            fila.classList.toggle('is-sobre', set.size > max);
+            checks.forEach((c) => { c.disabled = set.size >= max && !c.checked; });
+            if (otraInp) otraInp.disabled = otraBtn.disabled = set.size >= max;
+          }
+        };
+        const anadirCheck = (op) => {
+          const l = document.createElement('label');
+          l.className = 'ed-check';
+          const c = document.createElement('input');
+          c.type = 'checkbox';
+          c.checked = marcadas().has(op);
+          c.addEventListener('change', () => {
+            const set = marcadas();
+            if (c.checked) set.add(op); else set.delete(op);
+            setValor([...set]);
+            refrescar();
+          });
+          checks.push(c);
+          l.appendChild(c);
+          l.appendChild(document.createTextNode(' ' + op));
+          grupo.appendChild(l);
+        };
+        const opciones = [...(p.opciones ?? [])];
+        // Lo marcado que no esté en la lista (añadido a mano) también se muestra
+        marcadas().forEach((v) => { if (!opciones.includes(v)) opciones.push(v); });
+        opciones.forEach(anadirCheck);
+        wrap.appendChild(grupo);
+        if (p.opcionesAbiertas) {
+          const otra = document.createElement('div');
+          otra.className = 'ed-otra';
+          const inp = document.createElement('input');
+          inp.type = 'text';
+          inp.placeholder = 'Otra opción, tal cual aparece en el portal';
+          inp.setAttribute('aria-label', `Otra opción para: ${p.texto.slice(0, 80)}`);
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'tc-btn';
+          btn.textContent = 'Añadir';
+          const anadir = () => {
+            const v = inp.value.trim();
+            if (!v) return;
+            const set = marcadas();
+            if (max && set.size >= max) return;
+            if (!opciones.includes(v)) { opciones.push(v); anadirCheck(v); }
+            set.add(v);
+            setValor([...set]);
+            checks.forEach((c) => { c.checked = marcadas().has(c.parentElement.textContent.trim()); });
+            inp.value = '';
+            refrescar();
+          };
+          btn.addEventListener('click', anadir);
+          inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); anadir(); } });
+          otra.appendChild(inp);
+          otra.appendChild(btn);
+          wrap.appendChild(otra);
+          otraInp = inp;
+          otraBtn = btn;
+        }
+        if (max) wrap.appendChild(fila);
+        refrescar();
+        return wrap;
+      }
+
+      if (p.tipo === 'si_no' || (p.tipo === 'opcion' && !p.opcionesAbiertas)) {
+        const sel = document.createElement('select');
+        sel.id = idDom;
+        if (describe.length) sel.setAttribute('aria-describedby', describe.join(' '));
+        const vacio = document.createElement('option');
+        vacio.value = '';
+        vacio.textContent = 'Sin responder';
+        sel.appendChild(vacio);
+        const opciones = p.tipo === 'si_no' ? ['Yes', 'No'] : [...(p.opciones ?? [])];
+        // Un valor guardado que ya no esté en la lista se conserva visible
+        if (typeof valores[p.id] === 'string' && valores[p.id] && !opciones.includes(valores[p.id])) opciones.push(valores[p.id]);
+        opciones.forEach((op) => {
+          const o = document.createElement('option');
+          o.value = op;
+          o.textContent = op;
+          sel.appendChild(o);
+        });
+        sel.value = typeof valores[p.id] === 'string' ? valores[p.id] : '';
+        sel.addEventListener('change', () => setValor(sel.value));
+        wrap.appendChild(sel);
+        return wrap;
+      }
+
+      // corto, numero, fecha y opcion abierta (texto libre con sugerencias)
+      const input = document.createElement('input');
+      input.id = idDom;
+      input.type = p.tipo === 'numero' ? 'number' : p.tipo === 'fecha' ? 'date' : 'text';
+      if (p.tipo === 'numero') input.min = '0';
+      input.value = valores[p.id] ?? '';
+      if (p.tipo === 'opcion' && p.opcionesAbiertas && p.opciones?.length) {
+        const dl = document.createElement('datalist');
+        dl.id = `${idDom}-dl`;
+        p.opciones.forEach((op) => {
+          const o = document.createElement('option');
+          o.value = op;
+          dl.appendChild(o);
+        });
+        input.setAttribute('list', dl.id);
+        wrap.appendChild(dl);
+      }
+      wrap.appendChild(input);
+      if (p.tipo === 'corto' && limite) {
+        const fila = document.createElement('div');
+        fila.className = 'ed-contador';
+        fila.id = `${idDom}-ct`;
+        const num = document.createElement('span');
+        num.className = 'ct-num';
+        fila.appendChild(num);
+        wrap.appendChild(fila);
+        describe.push(fila.id);
+        const pintar = () => {
+          const n = contar(input.value);
+          const sobre = n > limite;
+          num.textContent = (sobre ? 'Supera el tope: ' : '') + `${n.toLocaleString('es-ES')} / ${limite.toLocaleString('es-ES')}`;
+          fila.classList.toggle('is-sobre', sobre);
+          input.classList.toggle('is-sobre', sobre);
+          if (sobre) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+        };
+        input.addEventListener('input', pintar);
+        pintar();
+      }
+      if (describe.length) input.setAttribute('aria-describedby', describe.join(' '));
+      input.addEventListener('input', () => setValor(input.value));
+      return wrap;
+    }
+
+    // ── Guardado ──────────────────────────────────────────────
+    function marcarSucio() {
+      sucio = true;
+      version += 1;
+      pintarGuardado(enConflicto ? 'Sin guardar (conflicto)' : 'Sin guardar', enConflicto ? 'is-error' : '');
+      if (enConflicto) return;
+      if (timerAutosave) clearTimeout(timerAutosave);
+      timerAutosave = setTimeout(() => guardar(), AUTOSAVE_MS);
+      if (!timerTope) timerTope = setTimeout(() => { timerTope = null; guardar(); }, AUTOSAVE_TOPE_MS);
+    }
+
+    function pintarGuardado(texto, clase = '') {
+      const el = document.getElementById('edGuardado');
+      el.textContent = texto;
+      el.className = `ed-guardado ${clase}`.trim();
+    }
+
+    function limpiarTimers() {
+      if (timerAutosave) { clearTimeout(timerAutosave); timerAutosave = null; }
+      if (timerTope) { clearTimeout(timerTope); timerTope = null; }
+    }
+
+    // Devuelve la promesa del guardado, también si ya había uno en vuelo,
+    // para que volver() y visibilitychange puedan esperarlo de verdad.
+    function guardar(opts = {}) {
+      if (!actual || !sucio) return Promise.resolve();
+      if (guardando) return guardadoEnCurso;
+      if (enConflicto && !opts.forzar) return Promise.resolve();
+      guardadoEnCurso = ejecutarGuardado(opts).finally(() => { guardando = false; });
+      return guardadoEnCurso;
+    }
+
+    async function ejecutarGuardado(opts) {
+      limpiarTimers();
+      guardando = true;
+      const id = actual.id;
+      const versionAlEmpezar = version;
+      pintarGuardado('Guardando…');
+
+      const payload = {
+        titulo: actual.titulo.trim() || 'Sin título',
+        estado: actual.estado,
+        notas: actual.notas.trim() || null,
+        respuestas: actual.respuestas,
+        sesion: miSesion,
+      };
+      // Solo guarda si nadie ha guardado después de nuestra última lectura:
+      // si otra persona lo hizo, el filtro por updated_at no encuentra la fila.
+      const { data, error } = await supabase
+        .from('borradores')
+        .update(payload)
+        .eq('id', id)
+        .eq('updated_at', ultimoUpdatedAt)
+        .select('updated_at, editado_por, sesion');
+
+      // Mientras tanto se ha cerrado o cambiado de borrador: no tocar nada
+      if (!actual || actual.id !== id) return;
+
+      if (error) {
+        pintarGuardado('Error al guardar', 'is-error');
+        aviso('No se pudo guardar: ' + error.message, 'edAlert');
+        // Sin tecla nueva no habría reintento: se rearma el tope
+        if (!timerTope) timerTope = setTimeout(() => { timerTope = null; guardar(); }, AUTOSAVE_TOPE_MS);
+        return;
+      }
+      if (!data || data.length === 0) {
+        const { data: fila, error: errorFila } = await supabase
+          .from('borradores')
+          .select('updated_at, editado_por, sesion')
+          .eq('id', id)
+          .maybeSingle();
+        if (!actual || actual.id !== id) return;
+        if (errorFila) {
+          pintarGuardado('Error al guardar', 'is-error');
+          aviso('No se pudo guardar: ' + errorFila.message, 'edAlert');
+          if (!timerTope) timerTope = setTimeout(() => { timerTope = null; guardar(); }, AUTOSAVE_TOPE_MS);
+          return;
+        }
+        if (!fila) {
+          pintarGuardado('Borrador eliminado', 'is-error');
+          aviso('Este borrador ya no existe en el servidor. Descarga tus cambios con "Descargar .md".', 'edAlert', true);
+          enConflicto = true;
+          return;
+        }
+        if (fila.sesion === miSesion && !opts.reintento) {
+          // El último guardado fue de esta misma pestaña y su respuesta se
+          // perdió por el camino (red): se toma su fecha y se reintenta una vez.
+          ultimoUpdatedAt = fila.updated_at;
+          guardando = false;
+          return ejecutarGuardado({ ...opts, reintento: true });
+        }
+        enConflicto = true;
+        conflictoUpdatedAt = fila.updated_at;
+        pintarGuardado('Conflicto', 'is-error');
+        document.getElementById('edGuardar').textContent = 'Sobrescribir';
+        const quien = fila.editado_por === miEmail
+          ? `Has guardado este borrador desde otra pestaña o dispositivo ${hace(fila.updated_at)}`
+          : `${nombreDe(fila.editado_por)} ha guardado este borrador ${hace(fila.updated_at)}`;
+        aviso(`${quien}, después de abrirlo aquí. Descarga tus cambios con "Descargar .md" y recarga para ver esa versión, o pulsa "Sobrescribir" para imponer la de esta pestaña.`, 'edAlert', true);
+        return;
+      }
+      ultimoUpdatedAt = data[0].updated_at;
+      if (version === versionAlEmpezar) {
+        sucio = false;
+        pintarGuardado(`Guardado ${new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}`);
+      } else {
+        // Se escribió durante el guardado: queda pendiente otra pasada
+        marcarSucio();
+      }
+    }
+
+    async function sobrescribir() {
+      if (!conflictoUpdatedAt) {
+        aviso('Este borrador ya no existe en el servidor. Descarga tus cambios con "Descargar .md".', 'edAlert', true);
+        return;
+      }
+      if (!confirm('Vas a sustituir la versión guardada por otra persona con la tuya. ¿Seguro?')) return;
+      ultimoUpdatedAt = conflictoUpdatedAt;
+      enConflicto = false;
+      conflictoUpdatedAt = null;
+      quitarAviso('edAlert');
+      document.getElementById('edGuardar').textContent = 'Guardar';
+      sucio = true;
+      await guardar({ forzar: true });
+    }
+
+    function descargar() {
+      const md = aMarkdown(actual, formulario);
+      const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${slug(actual.titulo)}-${formulario.accion.toLowerCase()}.md`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+    }
+
+    init();
+  </script>
+
+  <!-- is:global: las tarjetas, los bloques y las preguntas se generan por JS
+       y no llevan el atributo de scoping de Astro (como en /equipo/). -->
+  <style is:global>
+    .rd-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .rd-title {
+      font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; color: #0a1628;
+    }
+    .rd-sub { font-size: .88rem; color: #6b7280; margin-top: .25rem; }
+    .rd-actions { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+
+    .btn-new {
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: #0a7270; color: #fff;
+      border: none; border-radius: 999px;
+      padding: .55rem 1.3rem;
+      font-family: inherit; font-size: .88rem; font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, box-shadow .15s;
+    }
+    /* #0f766e mantiene 5,5:1 con el texto blanco también en hover */
+    .btn-new:hover { background: #0f766e; box-shadow: 0 4px 14px rgba(13,148,136,.3); }
+    .btn-new:disabled { opacity: .7; cursor: not-allowed; }
+    .btn-ghost {
+      display: inline-flex; align-items: center;
+      border: 1.5px solid #d1d5db; background: #fff; color: #374151;
+      border-radius: 999px; padding: .5rem 1.1rem;
+      font-family: inherit; font-size: .85rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .btn-ghost:hover { border-color: #0d9488; color: #0f766e; }
+    .tc-btn {
+      font-family: inherit; font-size: .72rem; font-weight: 600;
+      border: 1px solid #e5e7eb; background: #fff; color: #4b5563;
+      border-radius: 999px; padding: .22rem .6rem;
+      cursor: pointer;
+      transition: border-color .15s, color .15s, background .15s;
+    }
+    .tc-btn:hover { border-color: #0d9488; color: #0f766e; }
+    .tc-btn.is-avanzar { background: rgba(13,148,136,.08); border-color: rgba(13,148,136,.3); color: #0f766e; }
+    .tc-btn.is-avanzar:hover { background: rgba(13,148,136,.16); }
+
+    .rd-alert {
+      background: #fef2f2; color: #dc2626; border: 1px solid #fecaca;
+      border-radius: 10px; padding: .75rem 1rem;
+      font-size: .88rem; margin-bottom: 1rem;
+    }
+    .rd-vacio { color: #6b7280; font-size: .92rem; padding: 2rem 0; text-align: center; }
+
+    /* Formulario de alta */
+    .rd-form {
+      background: #fff; border: 1px solid #eceae3; border-radius: 16px;
+      border-top: 3px solid #f59e0b;
+      box-shadow: 0 6px 24px rgba(10,22,40,.07);
+      padding: 1.5rem 1.75rem; margin-bottom: 1.5rem;
+    }
+    .rd-form-title {
+      font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700; color: #0a1628; margin-bottom: 1rem;
+    }
+    .rd-form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .9rem 1.25rem; }
+    .rd-wide { grid-column: 1 / -1; }
+    .rd-field { display: flex; flex-direction: column; gap: .35rem; }
+    .rd-field label { font-size: .8rem; font-weight: 600; color: #374151; }
+    .req { color: #ef4444; }
+    .rd-hint { font-size: .78rem; color: #6b7280; }
+    .rd-field input, .rd-field select {
+      padding: .55rem .8rem; border: 1.5px solid #e5e7eb; border-radius: 8px;
+      font-size: .9rem; font-family: inherit; color: #0a1628; background: #fff; outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .rd-field input:focus, .rd-field select:focus { border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,.12); }
+    .rd-field input[aria-invalid="true"] { border-color: #dc2626; }
+    .rd-form-actions { display: flex; justify-content: flex-end; gap: .6rem; margin-top: 1.1rem; }
+
+    /* Lista */
+    .rd-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
+    .bo-card {
+      background: #fff; border: 1px solid #eceae3; border-radius: 14px;
+      padding: 1rem 1.1rem; box-shadow: 0 2px 8px rgba(10,22,40,.05);
+      display: flex; flex-direction: column; gap: .5rem;
+    }
+    .bo-top { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+    .bo-accion {
+      font-size: .68rem; font-weight: 700; border-radius: 999px; padding: .12rem .55rem;
+      background: rgba(13,148,136,.09); color: #0f766e; border: 1px solid rgba(13,148,136,.25);
+    }
+    .bo-estado {
+      font-size: .68rem; font-weight: 700; border-radius: 999px; padding: .12rem .55rem;
+      background: #f3f4f6; color: #4b5563; border: 1px solid #e5e7eb; margin-left: auto;
+    }
+    .bo-estado.es-para_revisar { background: rgba(245,158,11,.12); color: #b45309; border-color: rgba(245,158,11,.3); }
+    .bo-estado.es-revisado { background: rgba(2,132,199,.1); color: #0369a1; border-color: rgba(2,132,199,.25); }
+    .bo-estado.es-presentado { background: rgba(22,163,74,.1); color: #15803d; border-color: rgba(22,163,74,.25); }
+    .bo-titulo { font-size: 1.02rem; font-weight: 600; line-height: 1.3; }
+    .bo-titulo a { color: #0a1628; text-decoration: none; }
+    .bo-titulo a:hover { color: #0f766e; }
+    .bo-sub { font-size: .8rem; color: #6b7280; }
+    .bo-prog { display: flex; flex-direction: column; gap: .3rem; font-size: .74rem; font-weight: 600; color: #0f766e; }
+    .bo-bar { height: 5px; border-radius: 999px; background: #eceae3; overflow: hidden; }
+    .bo-fill { display: block; height: 100%; background: #0d9488; border-radius: 999px; transition: width .25s; }
+    .bo-foot {
+      display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+      padding-top: .55rem; border-top: 1px solid #f0eee6; margin-top: .15rem;
+    }
+    .bo-quien { font-size: .76rem; color: #6b7280; }
+    .bo-acciones { display: inline-flex; gap: .3rem; }
+
+    /* Editor */
+    /* La cabecera del portal es sticky: la barra se pega debajo. Las alturas
+       reales las mide el script (--portal-h y --ed-top-h); los px son el
+       valor de respaldo medido en escritorio. */
+    .ed-top {
+      position: sticky; top: var(--portal-h, 61px); z-index: 5;
+      background: #fafaf7; padding: .5rem 0;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: .75rem; margin-bottom: .75rem;
+    }
+    .ed-top .ed-alert { flex-basis: 100%; margin: 0; }
+    .ed-estado-wrap { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+    .ed-guardado { font-size: .78rem; color: #6b7280; font-weight: 600; }
+    .ed-guardado.is-error { color: #dc2626; }
+    .ed-estado {
+      padding: .45rem .8rem; border: 1.5px solid #e5e7eb; border-radius: 999px;
+      font-family: inherit; font-size: .82rem; font-weight: 600; color: #374151; background: #fff;
+    }
+    .ed-cabecera { margin-bottom: 1.25rem; }
+    .ed-titulo {
+      width: 100%; border: none; border-bottom: 2px solid transparent; background: transparent;
+      font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+      font-size: 1.7rem; font-weight: 700; color: #0a1628; padding: .2rem 0; outline: none;
+      transition: border-color .15s;
+    }
+    .ed-titulo:hover, .ed-titulo:focus { border-bottom-color: #0d9488; }
+    .ed-accion { font-size: .85rem; color: #6b7280; margin-top: .2rem; }
+
+    .ed-layout { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; align-items: start; }
+    .ed-nav {
+      position: sticky; top: calc(var(--portal-h, 61px) + var(--ed-top-h, 53px) + 11px);
+      max-height: calc(100vh - var(--portal-h, 61px) - var(--ed-top-h, 53px) - 26px); overflow-y: auto;
+      display: flex; flex-direction: column; gap: .2rem;
+      background: #f3f1ea; border-radius: 14px; padding: .6rem;
+    }
+    .ed-nav-link {
+      display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+      font-size: .8rem; font-weight: 600; color: #374151; text-decoration: none;
+      padding: .45rem .65rem; border-radius: 8px;
+      transition: background .15s, color .15s;
+    }
+    .ed-nav-link:hover { background: #fff; color: #0f766e; }
+    .ed-nav-count { font-size: .68rem; color: #6b7280; background: #fff; border-radius: 999px; padding: .05rem .45rem; }
+    .ed-nav-count.is-completo { color: #15803d; background: rgba(22,163,74,.12); }
+
+    .ed-bloques { display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; }
+    .ed-bloque {
+      background: #fff; border: 1px solid #eceae3; border-radius: 16px;
+      padding: 1.4rem 1.6rem; box-shadow: 0 2px 8px rgba(10,22,40,.05);
+      scroll-margin-top: calc(var(--portal-h, 61px) + var(--ed-top-h, 53px) + 16px);
+    }
+    .ed-bloque-titulo {
+      font-family: 'Playfair Display Variable', 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700; color: #0a1628;
+    }
+    .ed-bloque-sub { font-size: .82rem; color: #6b7280; margin-top: .2rem; }
+    .ed-bloque-intro { color: #374151; margin-top: .5rem; line-height: 1.5; }
+    .ed-bloque-titulo + .ed-pregunta, .ed-bloque-sub + .ed-pregunta, .ed-bloque-sub + .ed-fichas { margin-top: 1rem; }
+
+    .ed-pregunta { display: flex; flex-direction: column; gap: .35rem; margin-top: 1.1rem; }
+    .ed-label { font-size: .88rem; font-weight: 600; color: #0a1628; line-height: 1.4; white-space: pre-line; }
+    .ed-ayuda { font-size: .78rem; color: #6b7280; line-height: 1.45; }
+    .ed-pregunta textarea, .ed-pregunta input, .ed-pregunta select, .ed-otra input {
+      padding: .6rem .8rem; border: 1.5px solid #e5e7eb; border-radius: 8px;
+      font-size: .92rem; font-family: inherit; color: #0a1628; background: #fff; outline: none;
+      line-height: 1.5; transition: border-color .15s, box-shadow .15s;
+    }
+    .ed-pregunta textarea { resize: vertical; min-height: 120px; }
+    .ed-pregunta input, .ed-pregunta select { max-width: 360px; }
+    .ed-pregunta textarea:focus, .ed-pregunta input:focus, .ed-pregunta select:focus, .ed-otra input:focus {
+      border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,.12);
+    }
+    .ed-pregunta textarea.is-sobre, .ed-pregunta input.is-sobre { border-color: #dc2626; }
+    .ed-contador {
+      display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+      font-size: .76rem; font-weight: 600; color: #6b7280;
+    }
+    .ed-contador .ct-pes { font-weight: 500; }
+    .ed-contador .ct-copiar { margin-left: auto; }
+    .ed-contador.is-cerca .ct-num { color: #b45309; }
+    .ed-contador.is-sobre .ct-num { color: #dc2626; }
+    .ed-contador.is-sobre .ct-pes { color: #dc2626; }
+    .ed-opciones { display: flex; flex-direction: column; gap: .3rem; }
+    .ed-check { font-size: .86rem; color: #374151; display: flex; align-items: flex-start; gap: .4rem; }
+    .ed-check input { accent-color: #0d9488; margin-top: .2rem; }
+    .ed-check:has(input:disabled) { color: #9ca3af; }
+    .ed-otra { display: flex; gap: .4rem; align-items: center; margin-top: .2rem; }
+    .ed-otra input { flex: 1; max-width: 360px; font-size: .86rem; padding: .4rem .7rem; }
+
+    .ed-fichas { display: flex; flex-direction: column; gap: 1rem; }
+    .ed-ficha {
+      border: 1.5px solid #e5e7eb; border-radius: 12px; padding: .75rem 1.1rem 1.1rem;
+      position: relative;
+      min-inline-size: 0; /* los fieldset no encogen por defecto y desbordan en móvil */
+    }
+    .ed-ficha legend {
+      font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: #0f766e; padding: 0 .4rem;
+    }
+    .ed-ficha-quitar {
+      position: absolute; top: -.7rem; right: .9rem;
+      font-family: inherit; font-size: .7rem; font-weight: 600;
+      background: #fff; color: #b91c1c; border: 1px solid #fecaca; border-radius: 999px;
+      padding: .15rem .6rem; cursor: pointer;
+    }
+    .ed-ficha-quitar:hover { background: #fef2f2; }
+    .ed-ficha-add { align-self: flex-start; }
+
+    .ed-notas { margin-top: 1.5rem; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 16px; padding: 1.2rem 1.5rem; }
+    .ed-notas textarea {
+      width: 100%; margin-top: .75rem; padding: .6rem .8rem;
+      border: 1.5px solid #fed7aa; border-radius: 8px; background: #fff;
+      font-family: inherit; font-size: .9rem; color: #0a1628; outline: none; resize: vertical;
+    }
+    .ed-notas textarea:focus { border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245,158,11,.15); }
+
+    @media (max-width: 860px) {
+      .ed-layout { grid-template-columns: 1fr; }
+      .ed-top { position: static; padding: 0; }
+      /* En móvil el nav se pega bajo la cabecera del portal como tira horizontal */
+      .ed-nav {
+        position: sticky; top: var(--portal-h, 61px); z-index: 5; max-height: none;
+        flex-direction: row; overflow-x: auto; overflow-y: hidden; gap: .35rem;
+        box-shadow: 0 4px 12px rgba(10,22,40,.08);
+      }
+      .ed-nav-link { white-space: nowrap; }
+      .ed-bloque { padding: 1.1rem 1rem; scroll-margin-top: calc(var(--portal-h, 61px) + 60px); }
+      .ed-titulo { font-size: 1.35rem; }
+      /* A 16 px iOS no hace zoom al enfocar los campos */
+      .ed-pregunta textarea, .ed-pregunta input, .ed-pregunta select, .ed-otra input,
+      .ed-notas textarea, .rd-field input, .rd-field select, .ed-estado { font-size: 1rem; }
+      .ed-ficha-quitar { position: static; display: inline-block; margin: .35rem 0 0; }
+    }
+  </style>
+</PortalLayout>

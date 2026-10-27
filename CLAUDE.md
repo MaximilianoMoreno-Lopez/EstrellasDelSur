@@ -47,6 +47,18 @@ de WebP: hay que apuntarlas a mano al `-card.webp`.
 ## Deploy
 Push a `main` → GitHub Actions construye y despliega automáticamente (~2 min).
 
+## Redacción de solicitudes (/redaccion/)
+Página interna del portal (solo miembros de la tabla `equipo`, admins y becarios)
+para redactar solicitudes Erasmus+ con las preguntas literales del portal oficial y
+un contador por respuesta. Las preguntas, tipos y topes de KA152, KA153, KA154,
+KA210 y KA220 están en `src/lib/formularios/<accion>.json` y el editor es genérico
+sobre esa estructura (`src/lib/formularios.mjs` documenta la forma). Si el portal
+cambia una pregunta, se edita el JSON. Las fuentes de cada pregunta y las dudas
+pendientes están fuera del repo, en `borradores/fuentes/formularios/`, porque citan
+expedientes de otras entidades. Los borradores se guardan en la tabla `borradores`
+de Supabase (`scripts/sql/2026-10-27-redaccion.sql`) y se exportan al markdown
+que leen las herramientas de la skill `redaccion-proyectos` (`###` por pregunta).
+
 ## Cambios programados
 Para abrir o cerrar una convocatoria en una fecha futura sin estar delante:
 añadir una entrada en `scripts/programados.json` (slug, `cuando` en ISO con
