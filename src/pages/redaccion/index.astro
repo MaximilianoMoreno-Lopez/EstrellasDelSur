@@ -499,6 +499,50 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       history.replaceState(null, '', `#${b.id}`);
       window.scrollTo(0, 0);
       document.getElementById('edH1').focus({ preventScroll: true });
+      montarSeguimiento();
+    }
+
+    // Resalta en el índice el bloque que ocupa la zona de lectura: el último
+    // cuyo inicio ha pasado por debajo de las barras fijas.
+    let seguimientoActivo = false;
+    let bloqueActivo = null;
+    function montarSeguimiento() {
+      if (seguimientoActivo) { seguirScroll(); return; }
+      seguimientoActivo = true;
+      let pendiente = false;
+      window.addEventListener('scroll', () => {
+        if (pendiente) return;
+        pendiente = true;
+        requestAnimationFrame(() => { pendiente = false; seguirScroll(); });
+      }, { passive: true });
+      window.addEventListener('resize', seguirScroll);
+      seguirScroll();
+    }
+    function seguirScroll() {
+      if (!actual || !formulario) return;
+      const raiz = getComputedStyle(document.documentElement);
+      const fijo = (parseFloat(raiz.getPropertyValue('--portal-h')) || 61) + (parseFloat(raiz.getPropertyValue('--ed-top-h')) || 53) + 24;
+      let activo = formulario.bloques[0]?.id ?? null;
+      for (const bl of formulario.bloques) {
+        const sec = document.getElementById(`bq-${bl.id}`);
+        if (sec && sec.getBoundingClientRect().top <= fijo) activo = bl.id;
+      }
+      // Al final de la página, el último bloque aunque no llegue arriba
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+        activo = formulario.bloques[formulario.bloques.length - 1]?.id ?? activo;
+      }
+      if (activo === bloqueActivo) return;
+      bloqueActivo = activo;
+      document.querySelectorAll('.ed-nav-link').forEach((a) => {
+        const es = a.dataset.bloque === activo;
+        a.classList.toggle('is-activo', es);
+        if (es) {
+          a.setAttribute('aria-current', 'true');
+          a.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      });
     }
 
     async function volver() {
@@ -518,15 +562,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     function renderNav() {
       const nav = document.getElementById('edNav');
       nav.replaceChildren();
-      formulario.bloques.forEach((bl) => {
+      formulario.bloques.forEach((bl, i) => {
         const a = document.createElement('a');
         a.href = `#bq-${bl.id}`;
         a.className = 'ed-nav-link';
         a.dataset.bloque = bl.id;
+        const n = document.createElement('span');
+        n.className = 'ed-nav-num';
+        n.textContent = String(i + 1);
         const t = document.createElement('span');
+        t.className = 'ed-nav-texto';
         t.textContent = bl.tituloEs ?? bl.titulo;
         const c = document.createElement('span');
         c.className = 'ed-nav-count';
+        a.appendChild(n);
         a.appendChild(t);
         a.appendChild(c);
         a.addEventListener('click', (e) => {
@@ -570,34 +619,48 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     function renderBloques() {
       const wrap = document.getElementById('edBloques');
       wrap.replaceChildren();
-      formulario.bloques.forEach((bl) => wrap.appendChild(renderBloque(bl)));
+      formulario.bloques.forEach((bl, i) => wrap.appendChild(renderBloque(bl, i)));
     }
 
-    function renderBloque(bl) {
+    function renderBloque(bl, indice) {
       const sec = document.createElement('section');
       sec.className = 'ed-bloque';
       sec.id = `bq-${bl.id}`;
       sec.tabIndex = -1;
 
+      const head = document.createElement('div');
+      head.className = 'ed-bloque-head';
+      const num = document.createElement('span');
+      num.className = 'ed-bloque-num';
+      num.textContent = String(indice + 1);
+      num.setAttribute('aria-hidden', 'true');
+      head.appendChild(num);
+      const textos = document.createElement('div');
+      textos.className = 'ed-bloque-textos';
       const h = document.createElement('h2');
       h.className = 'ed-bloque-titulo';
       h.textContent = bl.titulo;
-      sec.appendChild(h);
+      textos.appendChild(h);
       if (bl.tituloEs && bl.tituloEs !== bl.titulo) {
         const p = document.createElement('p');
         p.className = 'ed-bloque-sub';
         p.textContent = bl.tituloEs;
-        sec.appendChild(p);
+        textos.appendChild(p);
       }
+      head.appendChild(textos);
+      sec.appendChild(head);
       if (bl.subtitulo) {
         const p = document.createElement('p');
-        p.className = 'ed-bloque-sub ed-bloque-intro';
+        p.className = 'ed-bloque-intro';
         p.textContent = bl.subtitulo;
         sec.appendChild(p);
       }
 
       if (!bl.repetible) {
-        bl.preguntas.forEach((p) => sec.appendChild(renderPregunta(p, actual.respuestas.campos)));
+        const cuerpo = document.createElement('div');
+        cuerpo.className = 'ed-preguntas';
+        bl.preguntas.forEach((p, i) => cuerpo.appendChild(renderPregunta(p, actual.respuestas.campos, i + 1)));
+        sec.appendChild(cuerpo);
         return sec;
       }
 
@@ -615,6 +678,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           const lg = document.createElement('legend');
           lg.textContent = `${etiqueta} ${i + 1}`;
           fs.appendChild(lg);
+          const cuerpo = document.createElement('div');
+          cuerpo.className = 'ed-preguntas';
           if (fichas.length > 1) {
             const quitar = document.createElement('button');
             quitar.type = 'button';
@@ -676,9 +741,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             });
             wrapP.appendChild(lp);
             wrapP.appendChild(sp);
-            fs.appendChild(wrapP);
+            cuerpo.appendChild(wrapP);
           }
-          bl.preguntas.forEach((p) => fs.appendChild(renderPregunta(p, valores)));
+          bl.preguntas.forEach((p, k) => cuerpo.appendChild(renderPregunta(p, valores, k + 1)));
+          fs.appendChild(cuerpo);
           cont.appendChild(fs);
         });
         const add = document.createElement('button');
@@ -700,7 +766,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
 
     let seq = 0;
-    function renderPregunta(p, valores) {
+    function renderPregunta(p, valores, numero) {
       const wrap = document.createElement('div');
       wrap.className = `ed-pregunta tipo-${p.tipo}`;
       const idDom = `q-${p.id}-${++seq}`;
@@ -709,7 +775,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       const label = document.createElement('label');
       label.className = 'ed-label';
       label.htmlFor = idDom;
-      label.textContent = p.texto;
+      if (numero) {
+        const n = document.createElement('span');
+        n.className = 'ed-label-num';
+        n.textContent = `${numero}.`;
+        n.setAttribute('aria-hidden', 'true');
+        label.appendChild(n);
+      }
+      label.appendChild(document.createTextNode(p.texto));
       wrap.appendChild(label);
       if (p.ayuda) {
         const ayuda = document.createElement('p');
@@ -738,6 +811,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         const fila = document.createElement('div');
         fila.className = 'ed-contador';
         fila.id = `${idDom}-ct`;
+        // Barra fina que se llena con lo escrito respecto al tope
+        const barra = document.createElement('span');
+        barra.className = 'ct-bar';
+        barra.setAttribute('aria-hidden', 'true');
+        const relleno = document.createElement('span');
+        relleno.className = 'ct-fill';
+        barra.appendChild(relleno);
         const num = document.createElement('span');
         num.className = 'ct-num';
         const pes = document.createElement('span');
@@ -756,6 +836,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             aviso('No se pudo copiar al portapapeles.', 'edAlert');
           }
         });
+        if (limite) fila.appendChild(barra);
         fila.appendChild(num);
         fila.appendChild(pes);
         fila.appendChild(copiar);
@@ -767,6 +848,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           const n = contar(ta.value);
           const np = contarPesimista(ta.value);
           const est = estadoContador(limite ? Math.max(n, np) : n, limite);
+          if (limite) relleno.style.width = `${Math.min(100, (n / limite) * 100)}%`;
           num.textContent = (est === 'sobre' ? 'Supera el tope: ' : '') + (limite
             ? `${n.toLocaleString('es-ES')} / ${limite.toLocaleString('es-ES')}`
             : `${n.toLocaleString('es-ES')} caracteres`);
@@ -1219,7 +1301,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     .ed-titulo:hover, .ed-titulo:focus { border-bottom-color: #0d9488; }
     .ed-accion { font-size: .85rem; color: #6b7280; margin-top: .2rem; }
 
-    .ed-layout { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; align-items: start; }
+    .ed-layout { display: grid; grid-template-columns: 250px 1fr; gap: 1.5rem; align-items: start; }
     .ed-nav {
       position: sticky; top: calc(var(--portal-h, 61px) + var(--ed-top-h, 53px) + 11px);
       max-height: calc(100vh - var(--portal-h, 61px) - var(--ed-top-h, 53px) - 26px); overflow-y: auto;
@@ -1227,32 +1309,62 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       background: #f3f1ea; border-radius: 14px; padding: .6rem;
     }
     .ed-nav-link {
-      display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+      display: flex; align-items: center; gap: .5rem;
       font-size: .8rem; font-weight: 600; color: #374151; text-decoration: none;
-      padding: .45rem .65rem; border-radius: 8px;
-      transition: background .15s, color .15s;
+      padding: .45rem .6rem .45rem .5rem; border-radius: 8px;
+      border-left: 3px solid transparent;
+      transition: background .15s, color .15s, border-color .15s;
     }
     .ed-nav-link:hover { background: #fff; color: #0f766e; }
-    .ed-nav-count { font-size: .68rem; color: #6b7280; background: #fff; border-radius: 999px; padding: .05rem .45rem; }
-    .ed-nav-count.is-completo { color: #15803d; background: rgba(22,163,74,.12); }
+    .ed-nav-link.is-activo { background: #fff; color: #0f766e; border-left-color: #0d9488; box-shadow: 0 1px 4px rgba(10,22,40,.06); }
+    .ed-nav-num {
+      flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+      font-size: .66rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+      background: #e7e4da; color: #6b7280;
+    }
+    .ed-nav-link.is-activo .ed-nav-num { background: #0d9488; color: #fff; }
+    .ed-nav-texto { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ed-nav-count { flex-shrink: 0; font-size: .66rem; color: #6b7280; background: #fff; border: 1px solid #e5e7eb; border-radius: 999px; padding: .05rem .4rem; }
+    .ed-nav-count:empty { display: none; }
+    .ed-nav-link.is-activo .ed-nav-count { border-color: rgba(13,148,136,.3); }
+    .ed-nav-count.is-completo { color: #15803d; background: rgba(22,163,74,.12); border-color: rgba(22,163,74,.25); }
 
     .ed-bloques { display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; }
     .ed-bloque {
       background: #fff; border: 1px solid #eceae3; border-radius: 16px;
-      padding: 1.4rem 1.6rem; box-shadow: 0 2px 8px rgba(10,22,40,.05);
+      padding: 1.25rem 1.6rem 1.5rem; box-shadow: 0 2px 8px rgba(10,22,40,.05);
       scroll-margin-top: calc(var(--portal-h, 61px) + var(--ed-top-h, 53px) + 16px);
     }
+    .ed-bloque:focus { outline: none; }
+    .ed-bloque:focus-visible { outline: 2px solid #0d9488; outline-offset: 3px; }
+    .ed-bloque-head {
+      display: flex; align-items: flex-start; gap: .85rem;
+      padding-bottom: .9rem; border-bottom: 1px solid #f0eee6;
+    }
+    .ed-bloque-num {
+      flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; margin-top: .1rem;
+      background: #0a1628; color: #f59e0b;
+      font-size: .82rem; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .ed-bloque-textos { min-width: 0; }
     .ed-bloque-titulo {
       font-family: 'Playfair Display Variable', 'Playfair Display', serif;
-      font-size: 1.2rem; font-weight: 700; color: #0a1628;
+      font-size: 1.2rem; font-weight: 700; color: #0a1628; line-height: 1.3;
     }
     .ed-bloque-sub { font-size: .82rem; color: #6b7280; margin-top: .2rem; }
-    .ed-bloque-intro { color: #374151; margin-top: .5rem; line-height: 1.5; }
-    .ed-bloque-titulo + .ed-pregunta, .ed-bloque-sub + .ed-pregunta, .ed-bloque-sub + .ed-fichas { margin-top: 1rem; }
+    .ed-bloque-intro {
+      font-size: .84rem; color: #374151; line-height: 1.55;
+      margin-top: .9rem; padding: .7rem .9rem;
+      background: #faf9f5; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;
+    }
+    .ed-preguntas { display: flex; flex-direction: column; }
+    .ed-preguntas > .ed-pregunta + .ed-pregunta { border-top: 1px dashed #eceae3; }
 
-    .ed-pregunta { display: flex; flex-direction: column; gap: .35rem; margin-top: 1.1rem; }
-    .ed-label { font-size: .88rem; font-weight: 600; color: #0a1628; line-height: 1.4; white-space: pre-line; }
-    .ed-ayuda { font-size: .78rem; color: #6b7280; line-height: 1.45; }
+    .ed-pregunta { display: flex; flex-direction: column; gap: .4rem; padding: 1.1rem 0 .35rem; }
+    .ed-label { font-size: .9rem; font-weight: 600; color: #0a1628; line-height: 1.45; white-space: pre-line; }
+    .ed-label-num { color: #0f766e; font-weight: 700; margin-right: .4rem; font-variant-numeric: tabular-nums; }
+    .ed-ayuda { font-size: .78rem; color: #6b7280; line-height: 1.45; margin-top: -.1rem; }
     .ed-pregunta textarea, .ed-pregunta input, .ed-pregunta select, .ed-otra input {
       padding: .6rem .8rem; border: 1.5px solid #e5e7eb; border-radius: 8px;
       font-size: .92rem; font-family: inherit; color: #0a1628; background: #fff; outline: none;
@@ -1267,12 +1379,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     .ed-contador {
       display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
       font-size: .76rem; font-weight: 600; color: #6b7280;
+      font-variant-numeric: tabular-nums;
+    }
+    .ed-contador .ct-bar {
+      flex-basis: 100%; height: 4px; border-radius: 999px;
+      background: #eceae3; overflow: hidden; margin-top: .1rem;
+    }
+    .ed-contador .ct-fill {
+      display: block; height: 100%; width: 0; border-radius: 999px;
+      background: #0d9488; transition: width .2s ease, background .2s;
     }
     .ed-contador .ct-pes { font-weight: 500; }
     .ed-contador .ct-copiar { margin-left: auto; }
     .ed-contador.is-cerca .ct-num { color: #b45309; }
+    .ed-contador.is-cerca .ct-fill { background: #f59e0b; }
     .ed-contador.is-sobre .ct-num { color: #dc2626; }
     .ed-contador.is-sobre .ct-pes { color: #dc2626; }
+    .ed-contador.is-sobre .ct-fill { background: #dc2626; }
     .ed-opciones { display: flex; flex-direction: column; gap: .3rem; }
     .ed-check { font-size: .86rem; color: #374151; display: flex; align-items: flex-start; gap: .4rem; }
     .ed-check input { accent-color: #0d9488; margin-top: .2rem; }
@@ -1280,18 +1403,21 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     .ed-otra { display: flex; gap: .4rem; align-items: center; margin-top: .2rem; }
     .ed-otra input { flex: 1; max-width: 360px; font-size: .86rem; padding: .4rem .7rem; }
 
-    .ed-fichas { display: flex; flex-direction: column; gap: 1rem; }
+    .ed-fichas { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1rem; }
     .ed-ficha {
-      border: 1.5px solid #e5e7eb; border-radius: 12px; padding: .75rem 1.1rem 1.1rem;
+      border: 1.5px solid #e5e7eb; border-radius: 12px; padding: .9rem 1.1rem 1rem;
+      background: #fcfbf8;
       position: relative;
       min-inline-size: 0; /* los fieldset no encogen por defecto y desbordan en móvil */
     }
     .ed-ficha legend {
-      font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
-      color: #0f766e; padding: 0 .4rem;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+      color: #0f766e; background: #fff; border: 1px solid rgba(13,148,136,.3);
+      border-radius: 999px; padding: .15rem .7rem;
     }
+    .ed-ficha .ed-pregunta textarea, .ed-ficha .ed-pregunta input, .ed-ficha .ed-pregunta select { background: #fff; }
     .ed-ficha-quitar {
-      position: absolute; top: -.7rem; right: .9rem;
+      position: absolute; top: -.75rem; right: .9rem;
       font-family: inherit; font-size: .7rem; font-weight: 600;
       background: #fff; color: #b91c1c; border: 1px solid #fecaca; border-radius: 999px;
       padding: .15rem .6rem; cursor: pointer;
