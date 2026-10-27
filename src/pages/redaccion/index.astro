@@ -317,7 +317,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         fill.style.width = pr.total ? `${Math.round((pr.hechas / pr.total) * 100)}%` : '0%';
         bar.appendChild(fill);
         const txt = document.createElement('span');
-        txt.textContent = `${pr.hechas}/${pr.total} respuestas · ${pr.caracteres.toLocaleString('es-ES')} caracteres`;
+        const nCom = Object.values(esObj(b.comentarios) ? b.comentarios : {}).filter((v) => typeof v === 'string' && v.trim()).length;
+        txt.textContent = `${pr.hechas}/${pr.total} respuestas · ${pr.caracteres.toLocaleString('es-ES')} caracteres` + (nCom ? ` · ${nCom} comentario${nCom === 1 ? '' : 's'}` : '');
         prog.appendChild(bar);
         prog.appendChild(txt);
         card.appendChild(prog);
@@ -473,6 +474,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         estado: b.estado,
         notas: b.notas ?? '',
         respuestas: structuredClone(respuestasDe(b)),
+        comentarios: structuredClone(esObj(b.comentarios) ? b.comentarios : {}),
       };
       ultimoUpdatedAt = b.updated_at;
       sucio = false;
@@ -659,7 +661,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       if (!bl.repetible) {
         const cuerpo = document.createElement('div');
         cuerpo.className = 'ed-preguntas';
-        bl.preguntas.forEach((p, i) => cuerpo.appendChild(renderPregunta(p, actual.respuestas.campos, i + 1)));
+        bl.preguntas.forEach((p, i) => cuerpo.appendChild(renderPregunta(p, actual.respuestas.campos, i + 1, p.id)));
         sec.appendChild(cuerpo);
         return sec;
       }
@@ -743,7 +745,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             wrapP.appendChild(sp);
             cuerpo.appendChild(wrapP);
           }
-          bl.preguntas.forEach((p, k) => cuerpo.appendChild(renderPregunta(p, valores, k + 1)));
+          bl.preguntas.forEach((p, k) => cuerpo.appendChild(renderPregunta(p, valores, k + 1, `${bl.id}[${i + 1}].${p.id}`)));
           fs.appendChild(cuerpo);
           cont.appendChild(fs);
         });
@@ -766,7 +768,52 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
 
     let seq = 0;
-    function renderPregunta(p, valores, numero) {
+    // Una pregunta es su campo más, si lo hay, el comentario de revisión que
+    // dejó Claude Code o una compañera (clave: id o "bloque[n].id" en fichas).
+    function renderPregunta(p, valores, numero, clave) {
+      const wrap = renderCampo(p, valores, numero);
+      const texto = clave && actual.comentarios?.[clave];
+      if (typeof texto === 'string' && texto.trim()) {
+        const com = document.createElement('div');
+        com.className = 'ed-comentario';
+        const cab = document.createElement('div');
+        cab.className = 'ed-comentario-cab';
+        const t = document.createElement('span');
+        t.textContent = 'Comentario de revisión';
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tc-btn';
+        btn.textContent = 'Resuelto';
+        btn.addEventListener('click', () => resolverComentario(clave, com, btn));
+        cab.appendChild(t);
+        cab.appendChild(btn);
+        const cuerpo = document.createElement('p');
+        cuerpo.textContent = texto;
+        com.appendChild(cab);
+        com.appendChild(cuerpo);
+        wrap.appendChild(com);
+      }
+      return wrap;
+    }
+
+    async function resolverComentario(clave, nodo, btn) {
+      btn.disabled = true;
+      const comentarios = { ...actual.comentarios };
+      delete comentarios[clave];
+      const { data, error } = await supabase
+        .from('borradores')
+        .update({ comentarios })
+        .eq('id', actual.id)
+        .select('updated_at');
+      btn.disabled = false;
+      if (error) return aviso('No se pudo marcar el comentario: ' + error.message, 'edAlert');
+      actual.comentarios = comentarios;
+      // El trigger cambia updated_at: se toma el nuevo para no provocar un conflicto
+      if (data?.[0]) ultimoUpdatedAt = data[0].updated_at;
+      nodo.remove();
+    }
+
+    function renderCampo(p, valores, numero) {
       const wrap = document.createElement('div');
       wrap.className = `ed-pregunta tipo-${p.tipo}`;
       const idDom = `q-${p.id}-${++seq}`;
@@ -1115,6 +1162,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         conflictoUpdatedAt = fila.updated_at;
         pintarGuardado('Conflicto', 'is-error');
         document.getElementById('edGuardar').textContent = 'Sobrescribir';
+        if (fila.sesion === 'claude-code') {
+          aviso(`Claude Code ha actualizado este borrador ${hace(fila.updated_at)} (comentarios, notas o respuestas). Descarga tus cambios con "Descargar .md" por si acaso y recarga la página para verlos.`, 'edAlert', true);
+          return;
+        }
         const quien = fila.editado_por === miEmail
           ? `Has guardado este borrador desde otra pestaña o dispositivo ${hace(fila.updated_at)}`
           : `${nombreDe(fila.editado_por)} ha guardado este borrador ${hace(fila.updated_at)}`;
@@ -1402,6 +1453,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     .ed-check:has(input:disabled) { color: #9ca3af; }
     .ed-otra { display: flex; gap: .4rem; align-items: center; margin-top: .2rem; }
     .ed-otra input { flex: 1; max-width: 360px; font-size: .86rem; padding: .4rem .7rem; }
+
+    .ed-comentario {
+      margin-top: .4rem; padding: .6rem .85rem;
+      background: #fff7ed; border: 1px solid #fed7aa; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;
+      font-size: .84rem; color: #374151; line-height: 1.5;
+    }
+    .ed-comentario-cab {
+      display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #b45309;
+      margin-bottom: .3rem;
+    }
+    .ed-comentario p { white-space: pre-line; }
 
     .ed-fichas { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1rem; }
     .ed-ficha {

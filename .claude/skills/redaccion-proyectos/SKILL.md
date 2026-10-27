@@ -29,6 +29,21 @@ Nació del KA154 EuroÁgora (agosto de 2026) y se afinó con las diez solicitude
 
 `proyectos/` es un repositorio privado aparte, excluido del público con `/proyectos/` en `.gitignore` (anclado, para no excluir `src/pages/proyectos/`). Lleva PIF con teléfonos, PRN y fechas de nacimiento: nada de ahí se copia a la skill, a `candidaturas.mjs` ni a ningún fichero del repo público. La skill tiene que poder compartirse tal cual.
 
+## Borradores de la web (/redaccion/)
+
+El equipo y los becarios redactan en `https://estrellasdelsur.eu/redaccion/`, con las preguntas literales del portal y el contador. `scripts/borrador.mjs` conecta esos borradores con esta skill usando la cuenta del portal de quien lo ejecuta (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`, nunca en el repo):
+
+```
+node scripts/borrador.mjs listar
+node scripts/borrador.mjs bajar "EMBER"            # deja proyectos/web/ember.md en el formato de la skill
+node scripts/borrador.mjs comentar "EMBER" rev.md  # "### pregunta literal" + comentario, visible bajo esa respuesta en la web
+node scripts/borrador.mjs notas "EMBER" nota.md    # resumen de la evaluación (nota por criterio con margen) en las notas de revisión
+node scripts/borrador.mjs subir proyectos/web/ember.md   # reemplaza las respuestas que lleve el fichero
+node scripts/borrador.mjs estado "EMBER" revisado
+```
+
+Flujo habitual cuando piden "evalúa el borrador X" o "mejora X": `bajar`, aplicar sobre el markdown la receta que toque (evaluador calibrado de `assets/evaluador/`, `assets/comprobacion_mecanica.py`, `assets/contar.py`), y devolver el resultado con `comentar` (reproche por pregunta, con el arreglo concreto) y `notas` (nota estimada por criterio con su margen y las tres prioridades). Las respuestas reescritas solo se suben con `subir` si lo piden expresamente; si no, van como comentario para que quien redacta decida. Al terminar, `estado revisado`. Los textos de las preguntas en `###` tienen que ser literales: así el script sabe a qué respuesta pertenece cada cosa.
+
 ## Lo primero
 
 1. **Receta.** Identificar el encargo y leer la receta de `recetas/` (desde cero, adaptar aprobada, ampliar, tras rechazo, añadir socia).

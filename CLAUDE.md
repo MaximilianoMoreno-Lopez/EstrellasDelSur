@@ -58,6 +58,10 @@ pendientes están fuera del repo, en `borradores/fuentes/formularios/`, porque c
 expedientes de otras entidades. Los borradores se guardan en la tabla `borradores`
 de Supabase (`scripts/sql/2026-10-27-redaccion.sql`) y se exportan al markdown
 que leen las herramientas de la skill `redaccion-proyectos` (`###` por pregunta).
+`scripts/borrador.mjs` baja y sube borradores desde Claude Code con la cuenta del
+portal (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`) y deja comentarios por
+pregunta que se ven en el editor; el uso está en la sección "Borradores de la web"
+de la skill.
 
 ## Cambios programados
 Para abrir o cerrar una convocatoria en una fecha futura sin estar delante:
