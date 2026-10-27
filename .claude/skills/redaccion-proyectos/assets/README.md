@@ -63,6 +63,7 @@ Calcula el presupuesto de movilidad con los importes de la Guía 2026 y lo devue
 
 - Apoyo individual por día y país de la actividad. KA152 usa la tabla A2.1 (España 58, Francia 67, Italia 69, Macedonia del Norte 41, Serbia 47, Turquía 50...). KA153 usa la A2.2 de trabajadores juveniles (España 81, Francia 85, Italia 85...). KA155 paga 78 al día, como mucho 21 días. Están los 33 países del programa y la tarifa única de terceros países vecinos.
 - Días con apoyo individual = días de actividad + días de viaje (2 por defecto) + días extra por viaje sostenible (hasta 4).
+- En KA153 el apoyo individual tiene un tope de 1.100 por persona (Guía 2026, p. 199). Con la tarifa española de 81 se alcanza a partir de 14 días contando viaje y días extra; el script aplica el tope y avisa.
 - Apoyo organizativo 125 por participante y apoyo a la inclusión 125 por participante con menos oportunidades.
 - Viaje por banda de distancia, estándar o sostenible (10-99: 28/56, 100-499: 211/285, 500-1999: 309/417, 2000-2999: 395/535, 3000-3999: 580/785, 4000-7999: 1188, 8000+: 1735). La banda "0-9" es sin viaje. Se puede dar `distancia_km` en lugar de la banda.
 - ESC30: 630 al mes de costes del proyecto y coach por día según el país (España 227, Francia 255; para otro país se pasa `coach_dia`).

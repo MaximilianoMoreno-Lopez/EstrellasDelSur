@@ -53,6 +53,7 @@ APOYO_ORGANIZATIVO = 125      # por participante (KA152, KA153, KA155)
 APOYO_INCLUSION = 125         # por participante con menos oportunidades
 KA155_DIA = 78                # KA155 DiscoverEU inclusión: 78 al día, máximo 21 días
 KA155_MAX_DIAS = 21
+KA153_MAX_IND = 1100          # KA153: apoyo individual como mucho 1.100 por persona (Guía 2026, p. 199)
 MAX_DIAS_GREEN = 4            # días de viaje adicionales con viaje sostenible
 ESC30_MES = 630               # ESC30, costes del proyecto por mes
 ESC30_COACH = {"ES": 227, "FR": 255}   # ESC30, coach por día y país (confirmados)
@@ -124,7 +125,7 @@ TXT = {
     "es": dict(flujo="Flujo", personas="Personas", dias="Días", ind="Apoyo individual ({t} € al día)",
                viaje="Viaje", green="Viaje sostenible", org="Apoyo organizativo (125 € por participante)",
                inc="Apoyo a la inclusión (125 € por participante con menos oportunidades)", total="Total",
-               d="d", concepto="Concepto", calculo="Cálculo", importe="Importe",
+               d="d", tope="tope por persona", concepto="Concepto", calculo="Cálculo", importe="Importe",
                esc_mes="Costes del proyecto ({m} meses × 630 €)", esc_coach="Coach ({d} días × {t} €)",
                esc_inc="Apoyo a la inclusión (costes reales)", esc_exc="Costes excepcionales",
                total_act="Total de la actividad",
@@ -132,7 +133,7 @@ TXT = {
     "fr": dict(flujo="Flow", personas="Personnes", dias="Jours", ind="Individual support ({t} € par jour)",
                viaje="Travel", green="Green travel", org="Organisational support (125 € par participant)",
                inc="Inclusion support for organisations (125 € par participant ayant moins d'opportunités)",
-               total="Total", d="j", concepto="Poste", calculo="Calcul", importe="Montant",
+               total="Total", d="j", tope="plafond par personne", concepto="Poste", calculo="Calcul", importe="Montant",
                esc_mes="Coûts du projet ({m} mois × 630 €)", esc_coach="Coach ({d} jours × {t} €)",
                esc_inc="Soutien à l'inclusion (coûts réels)", esc_exc="Coûts exceptionnels",
                total_act="Total de l'activité",
@@ -140,7 +141,7 @@ TXT = {
     "en": dict(flujo="Flow", personas="Persons", dias="Days", ind="Individual support ({t} € per day)",
                viaje="Travel", green="Green travel", org="Organisational support (125 € per participant)",
                inc="Inclusion support for organisations (125 € per participant with fewer opportunities)",
-               total="Total", d="d", concepto="Item", calculo="Calculation", importe="Amount",
+               total="Total", d="d", tope="cap per person", concepto="Item", calculo="Calculation", importe="Amount",
                esc_mes="Project costs ({m} months × 630 €)", esc_coach="Coach ({d} days × {t} €)",
                esc_inc="Inclusion support (real costs)", esc_exc="Exceptional costs",
                total_act="Total activity grant",
@@ -246,7 +247,12 @@ def calcular_ka1(cfg, lang, avisos):
         if accion == "KA155" and dias > KA155_MAX_DIAS:
             avisos.append("Flujo %s: %d días, KA155 paga como mucho %d" % (nombre, dias, KA155_MAX_DIAS))
             dias = KA155_MAX_DIAS
-        ind = pers * dias * tarifa
+        tope = accion == "KA153" and dias * tarifa > KA153_MAX_IND
+        if tope:
+            avisos.append("Flujo %s: %d días × %s € = %s € por persona; KA153 paga como mucho %s € por persona "
+                          "(Guía 2026, p. 199); se cuenta el tope"
+                          % (nombre, dias, ent(tarifa, "es"), ent(dias * tarifa, "es"), ent(KA153_MAX_IND, "es")))
+        ind = pers * (KA153_MAX_IND if tope else dias * tarifa)
         imp_viaje = b[4] if green else b[3]
         viaje = 0 if green else pers * imp_viaje
         vgreen = pers * imp_viaje if green else 0
@@ -259,7 +265,8 @@ def calcular_ka1(cfg, lang, avisos):
         dias_txt = "%d" % dias if not extra else "%d + %d" % (dias_base, extra)
         filas.append([
             nombre, pers, dias_txt,
-            "%d × %d %s = %s" % (pers, dias, t["d"], eur(ind, lang)),
+            ("%d × %s (%s) = %s" % (pers, ent(KA153_MAX_IND, lang), t["tope"], eur(ind, lang))) if tope
+            else "%d × %d %s = %s" % (pers, dias, t["d"], eur(ind, lang)),
             ("%d × %s = %s" % (pers, ent(imp_viaje, lang), eur(viaje, lang))) if viaje else eur(0, lang),
             ("%d × %s = %s" % (pers, ent(imp_viaje, lang), eur(vgreen, lang))) if vgreen else eur(0, lang),
             "%d × 125 = %s" % (part, eur(org, lang)),
