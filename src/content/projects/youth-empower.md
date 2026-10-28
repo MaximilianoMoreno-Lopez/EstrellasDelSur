@@ -25,6 +25,7 @@ apply: "https://forms.gle/Qmwptpx4KeNDiazg7"
 - **Participantes:** 28 trabajadores juveniles de Países Bajos, Chequia, Turquía, Italia, Croacia, Portugal y España, con 2 formadores
 - **Plazas para España:** 4 participantes
 - **Coordina:** Stichting Civitas (Países Bajos)
+- **Código del proyecto:** 2026-1-NL02-KA153-YOU-000390706
 - **Fecha límite de inscripciones:** Evaluaremos las cartas sobre la marcha, ¡no te lo pienses más!
 
 ## Sobre el proyecto
