@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Guía: redactar solicitudes con la web y Claude Code</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="_plan-base.css" rel="stylesheet">
+<style>
+  @page{ margin:11mm 14mm 10mm 14mm; }
+  body{font-size:8.7pt;line-height:1.4;}
+  .cover{padding-bottom:8px;margin-bottom:10px;}
+  .cover img{width:42px;height:42px;}
+  .cover .org{font-size:11.5pt;}
+  h1.doc-title{font-size:17pt;margin-bottom:2px;}
+  .doc-sub{margin-bottom:9px;font-size:8.8pt;}
+  h2{font-size:9.2pt;margin:9px 0 4px;padding-bottom:3px;}
+  p{margin:0 0 5px;text-align:left;}
+  ul{margin:2px 0 5px;}
+  ul li{padding:1.5px 0 1.5px 16px;}
+  ul li::before{top:8px;width:5px;height:5px;}
+  ol{margin:2px 0 6px;padding-left:18px;}
+  ol li{padding:2px 0;}
+  code{font-family:Consolas,'Courier New',monospace;font-size:8.6pt;background:#f3f4f6;border-radius:4px;padding:1px 5px;color:var(--navy);overflow-wrap:anywhere;}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 22px;}
+  .pasos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:4px 0 8px;}
+  .paso{border:1px solid var(--line);border-radius:10px;padding:6px 9px;}
+  .paso b{display:block;color:var(--teal-dark);font-size:8.2pt;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+  .frases li{font-style:italic;color:var(--navy);}
+  .callout{background:#fff7ed;border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 8px 8px 0;margin:8px 0;font-size:8.9pt;}
+  .flujo{display:flex;align-items:stretch;gap:6px;margin:6px 0 10px;}
+  .flujo div{flex:1;background:#f0fdfa;border:1px solid #99f6e4;border-radius:8px;padding:6px 8px;font-size:8.6pt;}
+  .flujo div b{display:block;color:var(--teal-dark);font-size:8pt;margin-bottom:2px;}
+  footer{margin-top:12px;padding-top:6px;border-top:1px solid var(--line);font-size:8pt;color:var(--gray);display:flex;justify-content:space-between;}
+</style>
+</head>
+<body>
+
+  <div class="cover">
+    <img src="../public/images/logo.svg" alt="Estrellas del Sur">
+    <div class="org">
+      Asociación Cultural Estrellas del Sur
+      <small>Córdoba · Erasmus+ · Cuerpo Europeo de Solidaridad</small>
+    </div>
+  </div>
+
+  <span class="doc-period">Guía interna · Octubre de 2026</span>
+  <h1 class="doc-title">Redactar solicitudes con la web y Claude Code</h1>
+  <p class="doc-sub">La web es donde se escribe; Claude Code, con la skill de redacción, es quien evalúa y mejora. Cada persona usa su propia suscripción de Claude y su cuenta del portal.</p>
+
+  <div class="flujo">
+    <div><b>1. Escribes</b> en estrellasdelsur.eu/redaccion/ con las preguntas literales del portal y el contador.</div>
+    <div><b>2. Pides</b> en Claude Code: "evalúa el borrador EMBER". Baja el borrador y aplica la skill.</div>
+    <div><b>3. Lees</b> en la web los comentarios bajo cada pregunta y la nota estimada en las notas.</div>
+    <div><b>4. Corriges</b> y marcas cada comentario como resuelto; después vuelves a pedir evaluación.</div>
+  </div>
+
+  <h2>Instalar una sola vez</h2>
+  <div class="pasos">
+    <div class="paso"><b>Claude Code</b>Instala Node.js (nodejs.org, versión LTS) y después, en una terminal, <code>npm install -g @anthropic-ai/claude-code</code>. Escribe <code>claude</code> y entra con tu cuenta de Claude (plan Pro o Max).</div>
+    <div class="paso"><b>El repositorio</b>Descárgalo con <code>git clone</code> desde github.com/MaximilianoMoreno-Lopez/EstrellasDelSur y, dentro de la carpeta, ejecuta <code>npm install</code>. Ahí viven la skill de redacción y el script que habla con la web.</div>
+    <div class="paso"><b>Tus credenciales</b>Crea en la carpeta un fichero <code>.env.local</code> con las dos claves públicas de Supabase (te las pasa Maxi) y <code>PORTAL_EMAIL</code> y <code>PORTAL_PASSWORD</code>, los de tu cuenta del portal. Ese fichero no se sube nunca al repositorio.</div>
+  </div>
+  <p>Comprueba que funciona con <code>node scripts/borrador.mjs listar</code>: tiene que salir la lista de borradores de la web.</p>
+
+  <div class="grid">
+    <div>
+      <h2>Escribir en la web</h2>
+      <ul>
+        <li>Entra en el portal y abre <b>Redacción de proyectos</b>. "Nuevo borrador", título de trabajo y acción (KA152, KA153, KA154, KA210 o KA220).</li>
+        <li>Las preguntas son las literales del formulario oficial, en su orden. El índice de la izquierda marca por dónde vas y cuántas respuestas lleva cada bloque.</li>
+        <li>El contador avisa en ámbar en los últimos 100 caracteres y en rojo si te pasas. En KA1 el tope es 5.000 y el objetivo de 4.000 a 4.900; en KA2, 3.000 con campos de 250, 1.000 y 4.000.</li>
+        <li>Se guarda solo a los pocos segundos ("Guardado hh:mm" arriba). Las socias, actividades y flujos se añaden como fichas.</li>
+        <li>Cuando quieras revisión, cambia el estado a <b>Para revisar</b>. "Descargar .md" te da una copia en texto.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Pedir ayuda a Claude Code</h2>
+      <p>Abre una terminal en la carpeta del repositorio, escribe <code>claude</code> y pide en lenguaje normal:</p>
+      <ul class="frases">
+        <li>"Evalúa el borrador EMBER"</li>
+        <li>"Mejora la respuesta de necesidades del borrador EMBER, más concreta y con cifras"</li>
+        <li>"Revisa el estilo del borrador EMBER y dime qué suena a IA"</li>
+        <li>"Traduce al inglés el resumen de EMBER"</li>
+      </ul>
+      <p>Claude baja el borrador, trabaja con el evaluador calibrado y las rúbricas de cada acción, y deja el resultado en la web: un recuadro ámbar bajo cada pregunta con el arreglo concreto y la nota estimada por criterio en las notas. Los textos reescritos solo sustituyen los tuyos si lo pides expresamente.</p>
+    </div>
+  </div>
+
+  <h2>Reglas que no se saltan</h2>
+  <ul>
+    <li><b>Ningún dato inventado de una socia.</b> Lo que no esté en su ficha o lo haya dicho ella, se pregunta.</li>
+    <li>Cada argumento se cuenta entero en un bloque y en el resto se remite; sin repetir párrafos entre bloques.</li>
+    <li>Sin guiones largos, sin emojis, sin muletillas; frases completas y cifras que cuadren entre sí (participantes, días, plazas por socia).</li>
+    <li>Antes de enviar en el portal oficial se revisa el PDF exportado del portal, no el borrador: ahí es donde se cuelan los restos de trabajo.</li>
+    <li>Los borradores son de la asociación y no se comparten fuera del equipo.</li>
+  </ul>
+
+  <div class="callout">Si al abrir un borrador la web dice que Claude Code lo ha actualizado, descarga el .md por si acaso y recarga la página: así ves los comentarios nuevos sin pisar nada.</div>
+
+  <footer>
+    <span>Dudas: maxi@estrellasdelsur.eu</span>
+    <span>estrellasdelsur.eu/redaccion/</span>
+  </footer>
+
+</body>
+</html>
