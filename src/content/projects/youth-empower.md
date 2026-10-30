@@ -2,6 +2,7 @@
 title: "Youth Empower+"
 type: "Formación"
 status: "past"
+infoCompleta: true
 flag: "🇹🇷"
 description: "Curso de formación Erasmus+ en Ankara (Turquía) para trabajadores juveniles sobre educación financiera, empleabilidad y derechos laborales de los jóvenes con menos oportunidades. Seis días de juegos, simulaciones y creación de actividades de educación no formal, con alojamiento y comidas cubiertos."
 location: "Ankara (Turquía)"
