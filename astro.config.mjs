@@ -40,6 +40,7 @@ export default defineConfig({
         !page.includes('/radar/') &&
         !page.includes('/equipo/') &&
         !page.includes('/redaccion/') &&
+        !page.includes('/facturas/') &&
         !page.endsWith('/404/'),
       changefreq: 'weekly',
       priority: 0.7,

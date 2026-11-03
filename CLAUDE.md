@@ -63,6 +63,13 @@ portal (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`) y deja comentarios p
 pregunta que se ven en el editor; el uso está en la sección "Borradores de la web"
 de la skill.
 
+## Facturas (/facturas/)
+Página interna (solo miembros de la tabla `equipo`) para hacer facturas o notas de cargo
+y sacarlas en PDF con "Imprimir". El HTML de la factura lo genera `src/lib/factura.mjs`
+(emisor, IBAN, socias habituales en `CLIENTES` y la nota de IVA del traspaso de
+subvención) y los estilos están en `src/styles/factura.css`. El borrador se guarda solo
+en el `localStorage` del navegador; no hay historial ni numeración automática.
+
 ## Cambios programados
 Para abrir o cerrar una convocatoria en una fecha futura sin estar delante:
 añadir una entrada en `scripts/programados.json` (slug, `cuando` en ISO con

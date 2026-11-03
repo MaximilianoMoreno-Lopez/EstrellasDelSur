@@ -1,0 +1,106 @@
+/* Factura (diseño minimalista). La usa /facturas/ y la genera src/lib/factura.mjs.
+   Una página A4 de 210 x 297 mm; en pantalla se escala con zoom. */
+
+.fx-page {
+  --fx-navy: #0a1628;
+  --fx-teal: #0d9488;
+  --fx-teal-text: #0f766e;
+  --fx-ink: #1f2937;
+  --fx-mute: #6b7280;
+  --fx-hair: #e5e7eb;
+
+  width: 210mm;
+  min-height: 297mm;
+  padding: 18mm 20mm 14mm;
+  background: #fff;
+  color: var(--fx-ink);
+  font-family: 'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
+  font-size: 9.5pt;
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.fx-page *, .fx-page *::before, .fx-page *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.fx-page strong { font-weight: 600; color: var(--fx-ink); }
+.fx-mute { color: var(--fx-mute); }
+.fx-c { text-align: center; }
+.fx-r { text-align: right; }
+
+.fx-k {
+  font-size: 7pt;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fx-mute);
+  margin-bottom: 1.2mm;
+  white-space: pre-wrap;
+}
+
+.fx-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.fx-logo { width: 19mm; height: 19mm; }
+.fx-emisor { text-align: right; font-size: 8.5pt; color: var(--fx-mute); line-height: 1.5; }
+.fx-emisor strong { display: block; font-size: 9pt; margin-bottom: .6mm; }
+
+.fx-title {
+  font-family: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  font-size: 32pt;
+  line-height: 1.1;
+  color: var(--fx-navy);
+  margin-top: 10mm;
+}
+.fx-title span { color: var(--fx-teal); }
+.fx-sub { font-size: 7.5pt; letter-spacing: .3em; text-transform: uppercase; color: var(--fx-mute); margin: 1.5mm 0 8mm; }
+
+.fx-meta { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.25fr; gap: 6mm; margin-bottom: 10mm; }
+.fx-meta strong { display: block; }
+.fx-cliente p.fx-mute { font-size: 9pt; margin-top: .6mm; }
+.fx-proy { font-size: 8.5pt; overflow-wrap: anywhere; }
+
+.fx-items { width: 100%; border-collapse: collapse; }
+.fx-items th {
+  font-size: 7pt; font-weight: 400; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fx-mute); text-align: left;
+  padding: 0 0 2.2mm; border-bottom: 1.2pt solid var(--fx-navy);
+}
+.fx-items th.fx-c { text-align: center; }
+.fx-items th.fx-r { text-align: right; }
+.fx-items td { padding: 2.8mm 0; border-bottom: .6pt solid var(--fx-hair); vertical-align: top; }
+.fx-items td + td, .fx-items th + th { padding-left: 3mm; }
+.fx-items th:nth-child(2), .fx-items td:nth-child(2) { width: 15mm; }
+.fx-items th:nth-child(3), .fx-items td:nth-child(3) { width: 30mm; }
+.fx-items th:nth-child(4), .fx-items td:nth-child(4) { width: 32mm; }
+.fx-items tr { break-inside: avoid; }
+
+.fx-totals { margin: 5mm 0 0 auto; border-collapse: collapse; min-width: 80mm; }
+.fx-totals td { padding: 1.3mm 0; text-align: right; }
+.fx-totals td:first-child { color: var(--fx-mute); padding-right: 10mm; }
+.fx-total td {
+  border-top: 1.4pt solid var(--fx-teal);
+  padding-top: 3mm;
+  font-family: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
+  font-size: 13pt; color: var(--fx-navy);
+}
+.fx-total td:first-child { color: var(--fx-navy); }
+.fx-total td:last-child { font-size: 16pt; font-weight: 700; color: var(--fx-teal-text); white-space: nowrap; }
+
+.fx-pago { margin-top: 11mm; break-inside: avoid; }
+.fx-pago p + p { margin-top: .8mm; }
+.fx-nota { margin-top: 3mm !important; font-size: 8pt; font-style: italic; color: var(--fx-mute); max-width: 165mm; }
+
+.fx-foot {
+  margin-top: auto;
+  padding-top: 3mm;
+  break-inside: avoid;
+  border-top: .6pt solid var(--fx-hair);
+  text-align: center;
+  font-size: 7.5pt;
+  color: var(--fx-mute);
+}
+.fx-pago { margin-bottom: 8mm; }
+
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body { background: #fff !important; }
+  .fx-page { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

@@ -1,0 +1,365 @@
+---
+import PortalLayout from '../layouts/PortalLayout.astro';
+import '../styles/factura.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<PortalLayout title="Facturas">
+  <div id="loadingState" class="state-center">
+    <div class="spinner"></div>
+    <p>Cargando…</p>
+  </div>
+
+  <div id="fxApp" style="display:none">
+    <div class="fx-head fx-noprint">
+      <div>
+        <h1 class="fx-h1">Facturas</h1>
+        <p class="fx-lead">Rellena los datos y dale a imprimir. En el diálogo elige «Guardar como PDF».</p>
+      </div>
+      <div class="fx-actions">
+        <a href={`${base}/equipo/`} class="fx-btn-ghost">Panel de trabajo</a>
+        <button type="button" id="nuevaBtn" class="fx-btn-ghost">Nueva factura</button>
+        <button type="button" id="imprimirBtn" class="fx-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>
+          Imprimir o guardar PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="fx-layout">
+      <form id="fxForm" class="fx-form fx-noprint" novalidate>
+        <fieldset>
+          <legend>Documento</legend>
+          <div class="fx-grid">
+            <label>Tipo
+              <select name="tipo">
+                <option value="factura">Factura</option>
+                <option value="nota">Nota de cargo</option>
+              </select>
+            </label>
+            <label>Número <input name="numero" placeholder="018" autocomplete="off" /></label>
+            <label>Fecha <input name="fecha" type="date" /></label>
+            <label>Vencimiento <input name="vence" type="date" /></label>
+          </div>
+          <label>Proyecto <input name="proyecto" placeholder="2025-1-CZ01-KA151-YOU-000300700" autocomplete="off" /></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Cliente</legend>
+          <label>Socia
+            <select id="clientePreset">
+              <option value="">Escribir a mano</option>
+            </select>
+          </label>
+          <label>Nombre <input name="cliente.nombre" autocomplete="off" /></label>
+          <label>Dirección <textarea name="cliente.direccion" rows="2"></textarea></label>
+          <div class="fx-grid fx-grid-2">
+            <label>Identificación fiscal <input name="cliente.fiscal" placeholder="IN 03376010" autocomplete="off" /></label>
+            <label>A la atención de <input name="cliente.atencion" placeholder="Opcional" autocomplete="off" /></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Conceptos</legend>
+          <div class="fx-lines-head" aria-hidden="true">
+            <span>Descripción</span><span>Cant.</span><span>Precio (€)</span><span>Importe</span><span></span>
+          </div>
+          <div id="fxLineas"></div>
+          <button type="button" id="addLinea" class="fx-btn-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Añadir línea
+          </button>
+          <p class="fx-hint">Si un importe es un total repartido entre personas, ponlo con cantidad 1 y el nº de participantes en la descripción, para que no se descuadre por céntimos.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>IVA y nota</legend>
+          <div class="fx-grid fx-grid-2">
+            <label>IVA (%) <input name="ivaPct" type="number" min="0" max="100" step="0.01" inputmode="decimal" /></label>
+            <div class="fx-totales" id="fxTotales"></div>
+          </div>
+          <label>Nota al pie <textarea name="nota" rows="4"></textarea></label>
+          <button type="button" id="notaDefecto" class="fx-btn-link">Poner la nota del traspaso de subvención</button>
+        </fieldset>
+
+        <details>
+          <summary>Datos bancarios</summary>
+          <div class="fx-grid fx-grid-3">
+            <label>IBAN <input name="pago.iban" autocomplete="off" /></label>
+            <label>BIC <input name="pago.bic" autocomplete="off" /></label>
+            <label>Banco <input name="pago.banco" autocomplete="off" /></label>
+          </div>
+        </details>
+
+        <p class="fx-hint">El borrador se guarda solo en este navegador.</p>
+      </form>
+
+      <div class="fx-preview-wrap">
+        <p class="fx-avisos fx-noprint" id="fxAvisos" role="status"></p>
+        <div class="fx-preview" id="fxPreview"><div id="fxDoc"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { supabase } from '../lib/supabase.js';
+    import {
+      CLIENTES, NOTA_SUBVENCION, PAGO, calcular, eur, facturaVacia, renderFactura, tituloArchivo,
+    } from '../lib/factura.mjs';
+
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+    const CLAVE = 'eds-factura-borrador';
+    const form = document.getElementById('fxForm') as HTMLFormElement;
+    const lineasEl = document.getElementById('fxLineas')!;
+    const doc = document.getElementById('fxDoc')!;
+    const preview = document.getElementById('fxPreview')!;
+    const avisos = document.getElementById('fxAvisos')!;
+    const totalesEl = document.getElementById('fxTotales')!;
+    const preset = document.getElementById('clientePreset') as HTMLSelectElement;
+
+    let f: any = cargar();
+
+    function cargar() {
+      try {
+        const raw = localStorage.getItem(CLAVE);
+        if (raw) {
+          const d = JSON.parse(raw);
+          const v = facturaVacia();
+          return { ...v, ...d, cliente: { ...v.cliente, ...d.cliente }, pago: { ...PAGO, ...d.pago } };
+        }
+      } catch {}
+      return facturaVacia();
+    }
+    function guardar() {
+      try { localStorage.setItem(CLAVE, JSON.stringify(f)); } catch {}
+    }
+
+    const get = (obj: any, ruta: string) => ruta.split('.').reduce((o, k) => o?.[k], obj);
+    function set(obj: any, ruta: string, v: any) {
+      const ks = ruta.split('.');
+      const last = ks.pop()!;
+      ks.reduce((o, k) => (o[k] ??= {}), obj)[last] = v;
+    }
+
+    // ---------- Formulario <-> estado ----------
+    function volcarFormulario() {
+      for (const el of Array.from(form.elements) as HTMLInputElement[]) {
+        if (!el.name || el.closest('#fxLineas')) continue;
+        el.value = get(f, el.name) ?? '';
+      }
+      const c = CLIENTES.find((x) => x.nombre === f.cliente.nombre);
+      preset.value = c ? c.id : '';
+      pintarLineas();
+    }
+
+    function filaLinea(l: any, i: number) {
+      const row = document.createElement('div');
+      row.className = 'fx-line';
+      row.innerHTML = `
+        <input data-k="desc" aria-label="Descripción" placeholder="Concepto">
+        <input data-k="cant" aria-label="Cantidad" type="number" step="any" min="0" inputmode="decimal">
+        <input data-k="precio" aria-label="Precio en euros" type="number" step="0.01" inputmode="decimal">
+        <output class="fx-line-imp"></output>
+        <button type="button" class="fx-line-del" aria-label="Quitar línea">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>`;
+      row.dataset.i = String(i);
+      for (const inp of Array.from(row.querySelectorAll('input'))) inp.value = l[inp.dataset.k!] ?? '';
+      return row;
+    }
+    function pintarLineas() {
+      lineasEl.replaceChildren(...f.lineas.map(filaLinea));
+    }
+
+    form.addEventListener('input', (e) => {
+      const el = e.target as HTMLInputElement;
+      const row = el.closest('.fx-line') as HTMLElement | null;
+      if (row) {
+        const l = f.lineas[Number(row.dataset.i)];
+        l[el.dataset.k!] = el.dataset.k === 'desc' ? el.value : el.value === '' ? '' : Number(el.value);
+      } else if (el.name) {
+        set(f, el.name, el.type === 'number' ? (el.value === '' ? 0 : Number(el.value)) : el.value);
+        if (el.name === 'cliente.nombre') preset.value = CLIENTES.find((x) => x.nombre === el.value)?.id ?? '';
+      }
+      actualizar();
+    });
+
+    lineasEl.addEventListener('click', (e) => {
+      const del = (e.target as HTMLElement).closest('.fx-line-del');
+      if (!del) return;
+      const i = Number((del.closest('.fx-line') as HTMLElement).dataset.i);
+      f.lineas.splice(i, 1);
+      if (!f.lineas.length) f.lineas.push({ desc: '', cant: 1, precio: 0 });
+      pintarLineas();
+      actualizar();
+    });
+
+    document.getElementById('addLinea')!.addEventListener('click', () => {
+      f.lineas.push({ desc: '', cant: 1, precio: '' });
+      pintarLineas();
+      actualizar();
+      (lineasEl.lastElementChild?.querySelector('input') as HTMLInputElement)?.focus();
+    });
+
+    for (const c of CLIENTES) preset.add(new Option(c.nombre, c.id));
+    preset.addEventListener('change', () => {
+      const c = CLIENTES.find((x) => x.id === preset.value);
+      if (!c) return;
+      f.cliente = { ...f.cliente, nombre: c.nombre, direccion: c.direccion, fiscal: c.fiscal };
+      volcarFormulario();
+      actualizar();
+    });
+
+    document.getElementById('notaDefecto')!.addEventListener('click', () => {
+      f.nota = NOTA_SUBVENCION;
+      (form.elements.namedItem('nota') as HTMLTextAreaElement).value = f.nota;
+      actualizar();
+    });
+
+    document.getElementById('nuevaBtn')!.addEventListener('click', () => {
+      if (!confirm('¿Empezar una factura nueva? Se borra el borrador actual.')) return;
+      f = facturaVacia();
+      volcarFormulario();
+      actualizar();
+    });
+
+    // ---------- Vista previa ----------
+    function actualizar() {
+      const c = calcular(f);
+      lineasEl.querySelectorAll<HTMLOutputElement>('.fx-line-imp').forEach((o, i) => (o.textContent = eur(c.lineas[i]?.importe)));
+      totalesEl.innerHTML = `<span>Base ${eur(c.base)}</span><span>IVA ${eur(c.iva)}</span><strong>Total ${eur(c.total)}</strong>`;
+      doc.innerHTML = renderFactura(f, { logo: `${base}/images/logo-factura.png` });
+
+      const faltan = [];
+      if (!f.numero) faltan.push('el número');
+      if (!f.cliente.nombre) faltan.push('el cliente');
+      if (!c.lineas.some((l) => l.desc && l.importe)) faltan.push('algún concepto con importe');
+      avisos.textContent = faltan.length ? `Falta ${faltan.join(', ')}.` : '';
+      guardar();
+    }
+
+    function escalar() {
+      const mm = 793.7; // 210 mm en px CSS
+      const z = Math.min(1, preview.clientWidth / mm);
+      doc.style.zoom = String(z);
+    }
+    new ResizeObserver(escalar).observe(preview);
+
+    // ---------- Imprimir ----------
+    const tituloPagina = document.title;
+    document.getElementById('imprimirBtn')!.addEventListener('click', () => {
+      document.title = tituloArchivo(f) || tituloPagina; // nombre que propone el PDF
+      window.print();
+    });
+    window.addEventListener('afterprint', () => (document.title = tituloPagina));
+
+    // ---------- Acceso: solo el equipo ----------
+    async function init() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return window.location.replace('/portal/login/');
+      const miEmail = session.user.email.toLowerCase();
+      const { data: equipo, error } = await supabase.from('equipo').select('email');
+      if (error) return window.location.replace('/portal/login/');
+      if (!equipo?.some((m) => m.email === miEmail)) return window.location.replace('/portal/dashboard/');
+
+      document.getElementById('loadingState')!.style.display = 'none';
+      document.getElementById('fxApp')!.style.display = '';
+      volcarFormulario();
+      actualizar();
+      escalar();
+    }
+    init();
+  </script>
+</PortalLayout>
+
+<style>
+  .fx-head {
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .fx-h1 { font-family: 'Playfair Display Variable', 'Playfair Display', serif; font-size: 1.9rem; font-weight: 600; }
+  .fx-lead { color: #4b5563; font-size: .92rem; margin-top: .25rem; }
+  .fx-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .fx-btn, .fx-btn-ghost {
+    display: inline-flex; align-items: center; gap: .45rem;
+    border-radius: 999px; padding: .55rem 1.15rem;
+    font: inherit; font-size: .86rem; font-weight: 600; text-decoration: none; cursor: pointer;
+    transition: border-color .15s, color .15s, background .15s;
+  }
+  .fx-btn { background: #0d9488; color: #fff; border: 1.5px solid #0d9488; }
+  .fx-btn:hover { background: #0f766e; border-color: #0f766e; }
+  .fx-btn-ghost { border: 1.5px solid #d1d5db; background: #fff; color: #374151; }
+  .fx-btn-ghost:hover { border-color: #0d9488; color: #0f766e; }
+  .fx-btn-link {
+    display: inline-flex; align-items: center; gap: .35rem;
+    background: none; border: 0; padding: .3rem 0; cursor: pointer;
+    font: inherit; font-size: .85rem; font-weight: 600; color: #0f766e;
+  }
+  .fx-btn-link:hover { text-decoration: underline; }
+
+  .fx-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.75rem; align-items: start; }
+  @media (max-width: 960px) { .fx-layout { grid-template-columns: minmax(0, 1fr); } }
+
+  .fx-form { display: flex; flex-direction: column; gap: 1rem; }
+  .fx-form fieldset, .fx-form details {
+    border: 1px solid #e5e7eb; border-radius: 14px; background: #fff; padding: 1rem 1.1rem 1.1rem;
+    display: flex; flex-direction: column; gap: .7rem; min-width: 0;
+  }
+  .fx-form legend, .fx-form summary { font-weight: 700; font-size: .95rem; padding: 0 .3rem; }
+  .fx-form summary { cursor: pointer; padding: 0; }
+  .fx-form details[open] summary { margin-bottom: .7rem; }
+  .fx-form label { display: flex; flex-direction: column; gap: .3rem; font-size: .8rem; font-weight: 600; color: #374151; min-width: 0; }
+  .fx-form :global(input), .fx-form :global(select), .fx-form :global(textarea) {
+    font: inherit; font-size: .9rem; font-weight: 400; color: #0a1628;
+    border: 1.5px solid #d1d5db; border-radius: 9px; padding: .5rem .65rem; background: #fff; width: 100%; min-width: 0;
+  }
+  .fx-form :global(textarea) { resize: vertical; line-height: 1.4; }
+  .fx-form :global(input:focus), .fx-form :global(select:focus), .fx-form :global(textarea:focus) { border-color: #0d9488; outline: none; box-shadow: 0 0 0 3px rgba(13,148,136,.15); }
+  .fx-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; }
+  .fx-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fx-grid-3 { grid-template-columns: 2fr 1fr 1fr; }
+  @media (max-width: 560px) { .fx-grid, .fx-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fx-grid-2 { grid-template-columns: minmax(0, 1fr); } }
+
+  .fx-lines-head, .fx-form :global(.fx-line) {
+    display: grid; grid-template-columns: minmax(0, 1fr) 3.6rem 5.6rem 5.4rem 1.8rem; gap: .4rem; align-items: center;
+  }
+  .fx-lines-head { font-size: .72rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .05em; }
+  #fxLineas { display: flex; flex-direction: column; gap: .45rem; }
+  .fx-form :global(.fx-line-imp) { font-size: .85rem; text-align: right; color: #0a1628; font-variant-numeric: tabular-nums; }
+  .fx-form :global(.fx-line-del) {
+    width: 1.8rem; height: 1.8rem; border-radius: 8px; border: 0; background: none; color: #9ca3af; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .fx-form :global(.fx-line-del:hover) { background: #fee2e2; color: #b91c1c; }
+  @media (max-width: 560px) {
+    .fx-lines-head { display: none; }
+    .fx-form :global(.fx-line) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 1.8rem; padding-bottom: .45rem; border-bottom: 1px solid #f3f4f6; }
+    .fx-form :global(.fx-line input[data-k="desc"]) { grid-column: 1 / -1; }
+    .fx-form :global(.fx-line-imp) { display: none; }
+  }
+  .fx-totales { display: flex; flex-direction: column; justify-content: flex-end; font-size: .85rem; color: #4b5563; font-variant-numeric: tabular-nums; }
+  .fx-totales :global(strong) { color: #0f766e; font-size: 1rem; }
+  .fx-hint { font-size: .78rem; color: #6b7280; line-height: 1.45; }
+
+  .fx-preview-wrap { position: sticky; top: calc(var(--portal-h, 64px) + 1rem); }
+  .fx-avisos { min-height: 1.3em; font-size: .82rem; color: #b45309; margin-bottom: .4rem; }
+  .fx-preview {
+    background: #fff; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(10,22,40,.06), 0 10px 30px rgba(10,22,40,.10);
+  }
+  @media (max-width: 960px) { .fx-preview-wrap { position: static; } }
+</style>
+
+<!-- Al imprimir solo sale la factura, a tamaño real. Global porque oculta
+     la cabecera y el pie del PortalLayout. -->
+<style is:global>
+  @media print {
+    .portal-header, .portal-footer, .fx-noprint { display: none !important; }
+    body { display: block !important; min-height: 0 !important; background: #fff !important; }
+    .portal-main { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+    .fx-layout { display: block !important; }
+    .fx-preview-wrap { position: static !important; }
+    .fx-preview { box-shadow: none !important; border-radius: 0 !important; overflow: visible !important; }
+    #fxDoc { zoom: 1 !important; }
+  }
+</style>
