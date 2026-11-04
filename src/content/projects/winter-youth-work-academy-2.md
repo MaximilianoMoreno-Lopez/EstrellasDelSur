@@ -1,7 +1,7 @@
 ---
 title: "Winter Youth Work Academy 2"
 type: "Formación"
-status: "active"
+status: "past"
 flag: "🇵🇱"
 description: "Curso de formación Erasmus+ para trabajadores juveniles en Rabka-Zdrój (Polonia) sobre la calidad y la práctica del trabajo con jóvenes: evaluación, mentoring, trabajo juvenil de calle, en centros e internacional, e intercambio de buenas prácticas. Alojamiento y comidas cubiertos."
 location: "Rabka-Zdrój (Polonia)"
