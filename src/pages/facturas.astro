@@ -14,30 +14,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="fx-head fx-noprint">
       <div>
         <h1 class="fx-h1">Facturas</h1>
-        <p class="fx-lead">Rellena los datos y dale a imprimir. En el diálogo elige «Guardar como PDF».</p>
+        <p class="fx-lead">Rellena los datos y emítela. Al emitir recibe el siguiente número y queda guardada para todo el equipo; luego dale a imprimir y elige «Guardar como PDF».</p>
       </div>
       <div class="fx-actions">
         <a href={`${base}/equipo/`} class="fx-btn-ghost">Panel de trabajo</a>
         <button type="button" id="nuevaBtn" class="fx-btn-ghost">Nueva factura</button>
-        <button type="button" id="imprimirBtn" class="fx-btn">
+        <button type="button" id="copiarBtn" class="fx-btn-ghost" hidden>Copiar en una nueva</button>
+        <button type="button" id="borrarBtn" class="fx-btn-ghost fx-btn-danger" hidden>Borrar</button>
+        <button type="button" id="guardarBtn" class="fx-btn-ghost" hidden>Guardar cambios</button>
+        <button type="button" id="emitirBtn" class="fx-btn">Emitir factura</button>
+        <button type="button" id="imprimirBtn" class="fx-btn" hidden>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>
           Imprimir o guardar PDF
         </button>
       </div>
     </div>
 
+    <details class="fx-emitidas fx-noprint" open>
+      <summary>Facturas emitidas</summary>
+      <div id="fxLista" class="fx-lista"></div>
+    </details>
+
     <div class="fx-layout">
       <form id="fxForm" class="fx-form fx-noprint" novalidate>
         <fieldset>
           <legend>Documento</legend>
-          <div class="fx-grid">
-            <label>Tipo
-              <select name="tipo">
-                <option value="factura">Factura</option>
-                <option value="nota">Nota de cargo</option>
-              </select>
-            </label>
-            <label>Número <input name="numero" placeholder="018" autocomplete="off" /></label>
+          <div class="fx-grid fx-grid-doc">
+            <div class="fx-num"><span>Número</span><output id="fxNumero"></output></div>
             <label>Fecha <input name="fecha" type="date" /></label>
             <label>Vencimiento <input name="vence" type="date" /></label>
           </div>
@@ -91,7 +94,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           </div>
         </details>
 
-        <p class="fx-hint">El borrador se guarda solo en este navegador.</p>
+        <p class="fx-hint" id="fxEstado"></p>
       </form>
 
       <div class="fx-preview-wrap">
@@ -104,7 +107,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <script>
     import { supabase } from '../lib/supabase.js';
     import {
-      CLIENTES, NOTA_SUBVENCION, PAGO, calcular, eur, facturaVacia, renderFactura, tituloArchivo,
+      CLIENTES, NOTA_SUBVENCION, PAGO, calcular, eur, facturaVacia, fechaES, numeroTexto, renderFactura, tituloArchivo,
     } from '../lib/factura.mjs';
 
     const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -116,23 +119,51 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     const avisos = document.getElementById('fxAvisos')!;
     const totalesEl = document.getElementById('fxTotales')!;
     const preset = document.getElementById('clientePreset') as HTMLSelectElement;
+    const numeroEl = document.getElementById('fxNumero')!;
+    const estadoEl = document.getElementById('fxEstado')!;
+    const listaEl = document.getElementById('fxLista')!;
+    const btn = (id: string) => document.getElementById(id) as HTMLButtonElement;
 
-    let f: any = cargar();
+    // Dos modos. Borrador: sin número, vive solo en el localStorage de este
+    // navegador. Emitida: tiene número y está en la tabla facturas de Supabase;
+    // se edita con el mismo número y se guarda para todo el equipo.
+    type Emitida = { id: string; numero: number; updated_at: string; creado_por: string; created_at: string; editado_por: string };
+    let f: any = cargarBorrador();
+    let actual: Emitida | null = null;
+    let guardado = ''; // la emitida tal como está en Supabase, para saber si hay cambios
+    let emitidas: any[] = [];
+    let nombres = new Map<string, string>();
+    let soyAdmin = false;
+    let ocupado = false;
 
-    function cargar() {
+    const sucio = () => !!actual && JSON.stringify(f) !== guardado;
+    const nombreDe = (email?: string) => (email && nombres.get(email)) || email || 'alguien';
+
+    function normalizar(d: any) {
+      const v = facturaVacia();
+      return { ...v, ...d, cliente: { ...v.cliente, ...d?.cliente }, pago: { ...PAGO, ...d?.pago } };
+    }
+    function cargarBorrador() {
       try {
         const raw = localStorage.getItem(CLAVE);
         if (raw) {
-          const d = JSON.parse(raw);
-          const v = facturaVacia();
-          return { ...v, ...d, cliente: { ...v.cliente, ...d.cliente }, pago: { ...PAGO, ...d.pago } };
+          const d = normalizar(JSON.parse(raw));
+          delete d.tipo; // borradores de antes de la numeración
+          d.numero = '';
+          return d;
         }
       } catch {}
       return facturaVacia();
     }
-    function guardar() {
+    function guardarBorrador() {
+      if (actual) return;
       try { localStorage.setItem(CLAVE, JSON.stringify(f)); } catch {}
     }
+    function borrarBorrador() {
+      try { localStorage.removeItem(CLAVE); } catch {}
+    }
+    const borradorConDatos = (d: any) =>
+      !!(d.cliente?.nombre || d.proyecto || d.lineas?.some((l: any) => l.desc || Number(l.precio)));
 
     const get = (obj: any, ruta: string) => ruta.split('.').reduce((o, k) => o?.[k], obj);
     function set(obj: any, ruta: string, v: any) {
@@ -194,7 +225,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       actualizar();
     });
 
-    document.getElementById('addLinea')!.addEventListener('click', () => {
+    btn('addLinea').addEventListener('click', () => {
       f.lineas.push({ desc: '', cant: 1, precio: '' });
       pintarLineas();
       actualizar();
@@ -210,33 +241,232 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       actualizar();
     });
 
-    document.getElementById('notaDefecto')!.addEventListener('click', () => {
+    btn('notaDefecto').addEventListener('click', () => {
       f.nota = NOTA_SUBVENCION;
       (form.elements.namedItem('nota') as HTMLTextAreaElement).value = f.nota;
       actualizar();
     });
 
-    document.getElementById('nuevaBtn')!.addEventListener('click', () => {
-      if (!confirm('¿Empezar una factura nueva? Se borra el borrador actual.')) return;
-      f = facturaVacia();
-      volcarFormulario();
-      actualizar();
-    });
+    // ---------- Vista previa y estado ----------
+    function faltan() {
+      const r = [];
+      if (!f.cliente.nombre) r.push('el cliente');
+      if (!f.fecha) r.push('la fecha');
+      if (!calcular(f).lineas.some((l) => l.desc && l.importe)) r.push('algún concepto con importe');
+      return r;
+    }
 
-    // ---------- Vista previa ----------
     function actualizar() {
       const c = calcular(f);
       lineasEl.querySelectorAll<HTMLOutputElement>('.fx-line-imp').forEach((o, i) => (o.textContent = eur(c.lineas[i]?.importe)));
       totalesEl.innerHTML = `<span>Base ${eur(c.base)}</span><span>IVA ${eur(c.iva)}</span><strong>Total ${eur(c.total)}</strong>`;
       doc.innerHTML = renderFactura(f, { logo: `${base}/images/logo-factura.png` });
-
-      const faltan = [];
-      if (!f.numero) faltan.push('el número');
-      if (!f.cliente.nombre) faltan.push('el cliente');
-      if (!c.lineas.some((l) => l.desc && l.importe)) faltan.push('algún concepto con importe');
-      avisos.textContent = faltan.length ? `Falta ${faltan.join(', ')}.` : '';
-      guardar();
+      const fl = faltan();
+      avisos.textContent = fl.length ? `Falta ${fl.join(', ')}.` : '';
+      guardarBorrador();
+      pintarModo();
     }
+
+    function pintarModo() {
+      const emitida = !!actual;
+      btn('emitirBtn').hidden = emitida;
+      btn('imprimirBtn').hidden = !emitida;
+      btn('copiarBtn').hidden = !emitida;
+      btn('guardarBtn').hidden = !emitida;
+      btn('guardarBtn').disabled = !sucio() || ocupado;
+      btn('emitirBtn').disabled = ocupado;
+      const ultima = emitidas[0]?.numero;
+      btn('borrarBtn').hidden = !(emitida && soyAdmin && actual!.numero === ultima);
+
+      if (!actual) {
+        numeroEl.textContent = 'Se pone al emitir';
+        numeroEl.className = 'fx-mute-txt';
+        estadoEl.textContent = 'Borrador sin emitir. Se guarda solo en este navegador hasta que le des a «Emitir factura».';
+      } else {
+        numeroEl.textContent = f.numero;
+        numeroEl.className = '';
+        const hecha = `Emitida por ${nombreDe(actual.creado_por)} el ${fechaES(actual.created_at.slice(0, 10))}`;
+        const cambio = actual.editado_por && actual.updated_at !== actual.created_at
+          ? `. Último cambio de ${nombreDe(actual.editado_por)} el ${fechaES(actual.updated_at.slice(0, 10))}`
+          : '';
+        estadoEl.textContent = sucio() ? `${hecha}. Tienes cambios sin guardar.` : `${hecha}${cambio}.`;
+      }
+      for (const b of Array.from(listaEl.querySelectorAll<HTMLElement>('[data-id]'))) {
+        b.classList.toggle('is-actual', b.dataset.id === actual?.id);
+      }
+    }
+
+    // ---------- Listado de emitidas ----------
+    async function listar() {
+      const { data, error } = await supabase
+        .from('facturas')
+        .select('id, numero, fecha, cliente, total, creado_por')
+        .order('numero', { ascending: false });
+      if (error) {
+        listaEl.innerHTML = '<p class="fx-hint">No se ha podido cargar el listado. Comprueba que la tabla facturas está creada en Supabase.</p>';
+        emitidas = [];
+        return false;
+      }
+      emitidas = data ?? [];
+      if (!emitidas.length) {
+        listaEl.innerHTML = '<p class="fx-hint">Aún no hay ninguna emitida desde aquí.</p>';
+      } else {
+        listaEl.replaceChildren(
+          ...emitidas.map((e) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'fx-fila';
+            b.dataset.id = e.id;
+            b.innerHTML = '<strong></strong><span></span><span class="fx-fila-cli"></span><span class="fx-fila-tot"></span><span class="fx-fila-who"></span>';
+            const [n, fe, cli, tot, who] = Array.from(b.children);
+            n.textContent = numeroTexto(e.numero);
+            fe.textContent = fechaES(e.fecha);
+            cli.textContent = e.cliente || 'Sin cliente';
+            tot.textContent = eur(e.total);
+            who.textContent = nombreDe(e.creado_por);
+            return b;
+          })
+        );
+      }
+      pintarModo();
+      return true;
+    }
+
+    listaEl.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLElement>('[data-id]');
+      if (b && b.dataset.id !== actual?.id) abrir(b.dataset.id!);
+    });
+
+    function cambiosPerdidos() {
+      return sucio() && !confirm('Tienes cambios sin guardar en esta factura. ¿Salir sin guardarlos?');
+    }
+
+    async function abrir(id: string) {
+      if (cambiosPerdidos()) return;
+      const { data, error } = await supabase.from('facturas').select('*').eq('id', id).maybeSingle();
+      if (error || !data) {
+        avisos.textContent = 'No se ha podido abrir la factura. Prueba otra vez.';
+        return;
+      }
+      ponerEmitida(data);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function ponerEmitida(row: any) {
+      actual = row;
+      f = normalizar(row.datos);
+      delete f.tipo;
+      f.numero = numeroTexto(row.numero);
+      f.fecha = row.fecha;
+      guardado = JSON.stringify(f);
+      volcarFormulario();
+      actualizar();
+    }
+
+    // ---------- Acciones ----------
+    btn('emitirBtn').addEventListener('click', async () => {
+      const fl = faltan();
+      if (fl.length) { avisos.textContent = `Antes de emitir falta ${fl.join(', ')}.`; return; }
+      if (!confirm(`¿Emitir la factura a ${f.cliente.nombre} por ${eur(calcular(f).total)}? Recibirá el siguiente número y quedará guardada para todo el equipo.`)) return;
+      ocupado = true; pintarModo();
+      const { data, error } = await supabase.rpc('emitir_factura', {
+        p_fecha: f.fecha,
+        p_cliente: f.cliente.nombre,
+        p_total: calcular(f).total,
+        p_datos: { ...f, numero: '' },
+      });
+      ocupado = false;
+      if (error || !data) {
+        avisos.textContent = 'No se ha podido emitir. No se ha gastado ningún número; prueba otra vez.';
+        pintarModo();
+        return;
+      }
+      borrarBorrador();
+      ponerEmitida(Array.isArray(data) ? data[0] : data);
+      await listar();
+    });
+
+    async function guardarCambios() {
+      if (!actual) return false;
+      if (!sucio()) return true;
+      const fl = faltan();
+      if (fl.length) { avisos.textContent = `Para guardar falta ${fl.join(', ')}.`; return false; }
+      ocupado = true; pintarModo();
+      const { data, error } = await supabase
+        .from('facturas')
+        .update({ fecha: f.fecha, cliente: f.cliente.nombre, total: calcular(f).total, datos: { ...f, numero: '' } })
+        .eq('id', actual.id)
+        .eq('updated_at', actual.updated_at)
+        .select('*');
+      ocupado = false;
+      if (error) {
+        avisos.textContent = 'No se han podido guardar los cambios. Prueba otra vez.';
+        pintarModo();
+        return false;
+      }
+      if (!data?.length) {
+        // Otra persona guardó después de que abrieras la factura.
+        avisos.textContent = 'Alguien ha cambiado esta factura mientras la tenías abierta. No se ha guardado lo tuyo; ábrela otra vez desde el listado para ver su versión.';
+        pintarModo();
+        return false;
+      }
+      actual = data[0];
+      guardado = JSON.stringify(f);
+      pintarModo();
+      await listar();
+      return true;
+    }
+    btn('guardarBtn').addEventListener('click', guardarCambios);
+
+    btn('nuevaBtn').addEventListener('click', () => {
+      if (actual) {
+        if (cambiosPerdidos()) return;
+        actual = null;
+        f = cargarBorrador(); // si había un borrador a medias, se recupera
+      } else {
+        if (borradorConDatos(f) && !confirm('¿Empezar una factura nueva? Se borra el borrador actual.')) return;
+        f = facturaVacia();
+      }
+      volcarFormulario();
+      actualizar();
+    });
+
+    btn('copiarBtn').addEventListener('click', () => {
+      if (cambiosPerdidos()) return;
+      const previo = cargarBorrador();
+      if (borradorConDatos(previo) && !confirm('Ya tienes un borrador sin emitir. ¿Sustituirlo por la copia de esta factura?')) return;
+      const v = facturaVacia();
+      f = { ...structuredClone(f), numero: '', fecha: v.fecha, vence: v.vence };
+      actual = null;
+      volcarFormulario();
+      actualizar();
+    });
+
+    btn('borrarBtn').addEventListener('click', async () => {
+      if (!actual) return;
+      if (!confirm(`¿Borrar la factura ${f.numero}? Su número quedará libre para la siguiente. Solo tiene sentido si no se ha enviado a nadie.`)) return;
+      const { data, error } = await supabase.from('facturas').delete().eq('id', actual.id).select('id');
+      if (error || !data?.length) {
+        avisos.textContent = 'No se ha podido borrar. Solo se puede borrar la última emitida.';
+        return;
+      }
+      // El contenido vuelve a borrador por si hay que corregirla y emitirla otra vez.
+      actual = null;
+      f.numero = '';
+      volcarFormulario();
+      actualizar();
+      await listar();
+    });
+
+    // ---------- Imprimir ----------
+    const tituloPagina = document.title;
+    btn('imprimirBtn').addEventListener('click', async () => {
+      if (!(await guardarCambios())) return;
+      document.title = tituloArchivo(f) || tituloPagina; // nombre que propone el PDF
+      window.print();
+    });
+    window.addEventListener('afterprint', () => (document.title = tituloPagina));
+    window.addEventListener('beforeunload', (e) => { if (sucio()) e.preventDefault(); });
 
     function escalar() {
       const mm = 793.7; // 210 mm en px CSS
@@ -245,28 +475,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
     new ResizeObserver(escalar).observe(preview);
 
-    // ---------- Imprimir ----------
-    const tituloPagina = document.title;
-    document.getElementById('imprimirBtn')!.addEventListener('click', () => {
-      document.title = tituloArchivo(f) || tituloPagina; // nombre que propone el PDF
-      window.print();
-    });
-    window.addEventListener('afterprint', () => (document.title = tituloPagina));
-
     // ---------- Acceso: solo el equipo ----------
     async function init() {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) return window.location.replace('/portal/login/');
       const miEmail = session.user.email.toLowerCase();
-      const { data: equipo, error } = await supabase.from('equipo').select('email');
+      const { data: equipo, error } = await supabase.from('equipo').select('email, nombre, rol');
       if (error) return window.location.replace('/portal/login/');
-      if (!equipo?.some((m) => m.email === miEmail)) return window.location.replace('/portal/dashboard/');
+      const yo = equipo?.find((m) => m.email === miEmail);
+      if (!yo) return window.location.replace('/portal/dashboard/');
+      soyAdmin = yo.rol === 'admin';
+      nombres = new Map(equipo.map((m) => [m.email, (m.nombre || m.email).split(' ')[0]]));
 
       document.getElementById('loadingState')!.style.display = 'none';
       document.getElementById('fxApp')!.style.display = '';
       volcarFormulario();
       actualizar();
       escalar();
+      await listar();
     }
     init();
   </script>
@@ -290,6 +516,37 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .fx-btn:hover { background: #0f766e; border-color: #0f766e; }
   .fx-btn-ghost { border: 1.5px solid #d1d5db; background: #fff; color: #374151; }
   .fx-btn-ghost:hover { border-color: #0d9488; color: #0f766e; }
+  .fx-btn[hidden], .fx-btn-ghost[hidden] { display: none; }
+  .fx-btn:disabled, .fx-btn-ghost:disabled { opacity: .5; cursor: default; }
+  .fx-btn-danger:hover { border-color: #b91c1c; color: #b91c1c; }
+
+  .fx-emitidas {
+    border: 1px solid #e5e7eb; border-radius: 14px; background: #fff; padding: .9rem 1.1rem; margin-bottom: 1.25rem;
+  }
+  .fx-emitidas summary { font-weight: 700; font-size: .95rem; cursor: pointer; }
+  .fx-emitidas[open] summary { margin-bottom: .6rem; }
+  .fx-lista { display: flex; flex-direction: column; max-height: 15rem; overflow-y: auto; }
+  .fx-lista :global(.fx-fila) {
+    display: grid; grid-template-columns: 3.2rem 5.6rem minmax(0, 1fr) 7rem 6rem; gap: .6rem; align-items: center;
+    width: 100%; text-align: left; font: inherit; font-size: .86rem; color: #374151;
+    background: none; border: 0; border-bottom: 1px solid #f3f4f6; padding: .5rem .4rem; cursor: pointer; border-radius: 8px;
+  }
+  .fx-lista :global(.fx-fila:hover) { background: #f0fdfa; }
+  .fx-lista :global(.fx-fila.is-actual) { background: #ccfbf1; }
+  .fx-lista :global(.fx-fila strong) { color: #0f766e; font-variant-numeric: tabular-nums; }
+  .fx-lista :global(.fx-fila-cli) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #0a1628; }
+  .fx-lista :global(.fx-fila-tot) { text-align: right; font-variant-numeric: tabular-nums; }
+  .fx-lista :global(.fx-fila-who) { color: #6b7280; font-size: .8rem; text-align: right; }
+  @media (max-width: 560px) {
+    .fx-lista :global(.fx-fila) { grid-template-columns: 2.8rem minmax(0, 1fr) auto; }
+    .fx-lista :global(.fx-fila > span:nth-child(2)), .fx-lista :global(.fx-fila-who) { display: none; }
+  }
+
+  .fx-grid-doc { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fx-num { display: flex; flex-direction: column; gap: .3rem; font-size: .8rem; font-weight: 600; color: #374151; min-width: 0; }
+  .fx-num output { font-size: .9rem; font-weight: 700; color: #0f766e; padding: .55rem 0; }
+  .fx-num output.fx-mute-txt { font-weight: 400; color: #6b7280; }
+
   .fx-btn-link {
     display: inline-flex; align-items: center; gap: .35rem;
     background: none; border: 0; padding: .3rem 0; cursor: pointer;

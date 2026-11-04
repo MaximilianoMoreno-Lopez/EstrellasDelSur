@@ -64,11 +64,15 @@ pregunta que se ven en el editor; el uso está en la sección "Borradores de la 
 de la skill.
 
 ## Facturas (/facturas/)
-Página interna (solo miembros de la tabla `equipo`) para hacer facturas o notas de cargo
-y sacarlas en PDF con "Imprimir". El HTML de la factura lo genera `src/lib/factura.mjs`
-(emisor, IBAN, socias habituales en `CLIENTES` y la nota de IVA del traspaso de
-subvención) y los estilos están en `src/styles/factura.css`. El borrador se guarda solo
-en el `localStorage` del navegador; no hay historial ni numeración automática.
+Página interna (solo miembros de la tabla `equipo`) para hacer facturas y sacarlas en PDF
+con "Imprimir". Hay una sola serie (no hay notas de cargo). El HTML de la factura lo genera
+`src/lib/factura.mjs` (emisor, IBAN, socias habituales en `CLIENTES` y la nota de IVA del
+traspaso de subvención) y los estilos están en `src/styles/factura.css`. Mientras no se
+emite, la factura es un borrador sin número en el `localStorage`. Al pulsar "Emitir", la
+función `emitir_factura` de Supabase le da el siguiente número con un bloqueo, para que
+dos personas no se pisen, y la guarda en la tabla `facturas`
+(`scripts/sql/2026-11-04-facturas.sql`). Las emitidas salen en un listado, se abren, se
+editan con el mismo número y se reimprimen; un admin puede borrar solo la última.
 
 ## Cambios programados
 Para abrir o cerrar una convocatoria en una fecha futura sin estar delante:

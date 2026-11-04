@@ -3,6 +3,9 @@
 // Este módulo no toca el DOM: calcula importes y devuelve el HTML de la
 // factura, que la página pinta en la vista previa y el navegador imprime.
 // Los estilos están en src/styles/factura.css (clases .fx-*).
+//
+// Solo hay una serie de facturas. El número lo da Supabase al emitir
+// (tabla facturas, scripts/sql/2026-11-04-facturas.sql); aquí solo se formatea.
 
 export const EMISOR = {
   nombre: 'Asociación Cultural Estrellas del Sur',
@@ -36,11 +39,6 @@ export const CLIENTES = [
   },
 ];
 
-export const TIPOS = {
-  factura: { es: 'Factura', en: 'Invoice' },
-  nota: { es: 'Nota de cargo', en: 'Debit note' },
-};
-
 // Texto por defecto para el traspaso de la subvención entre socias.
 // Pendiente de que lo confirme la gestoría.
 export const NOTA_SUBVENCION =
@@ -52,7 +50,6 @@ export function facturaVacia(hoy = new Date()) {
   const vence = new Date(hoy);
   vence.setDate(vence.getDate() + 30);
   return {
-    tipo: 'factura',
     numero: '',
     fecha: iso(hoy),
     vence: iso(vence),
@@ -89,15 +86,16 @@ const esc = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const lineasHTML = (txt) => esc(txt).split(/\r?\n/).filter(Boolean).join('<br>');
 
+// 18 -> "018", como se han numerado siempre.
+export const numeroTexto = (n) => (n ? String(n).padStart(3, '0') : '');
+
 // Nombre que propone el navegador al guardar el PDF.
 export function tituloArchivo(f) {
-  const t = TIPOS[f.tipo]?.es || 'Factura';
-  return [t, f.numero, f.cliente?.nombre].filter(Boolean).join(' ').replace(/[\\/:*?"<>|]/g, '');
+  return ['Factura', f.numero, f.cliente?.nombre].filter(Boolean).join(' ').replace(/[\\/:*?"<>|]/g, '');
 }
 
 export function renderFactura(f, { logo = '/images/logo-factura.png' } = {}) {
   const { lineas, base, iva, total } = calcular(f);
-  const tipo = TIPOS[f.tipo] || TIPOS.factura;
   const c = f.cliente || {};
   const p = f.pago || {};
   const filas = lineas
@@ -122,8 +120,8 @@ export function renderFactura(f, { logo = '/images/logo-factura.png' } = {}) {
     </div>
   </header>
 
-  <h1 class="fx-title">${esc(tipo.es)} <span>${esc(f.numero)}</span></h1>
-  <p class="fx-sub">${esc(tipo.en)}</p>
+  <h1 class="fx-title">Factura <span>${esc(f.numero || 'sin emitir')}</span></h1>
+  <p class="fx-sub">Invoice</p>
 
   <section class="fx-meta">
     <div class="fx-cliente">
@@ -152,7 +150,7 @@ export function renderFactura(f, { logo = '/images/logo-factura.png' } = {}) {
   <section class="fx-pago">
     <p class="fx-k">Pago por transferencia  ·  Bank transfer</p>
     <p><span class="fx-mute">IBAN</span> <strong>${esc(p.iban)}</strong>&nbsp;&nbsp;&nbsp; <span class="fx-mute">BIC</span> <strong>${esc(p.bic)}</strong>&nbsp;&nbsp;&nbsp; <span class="fx-mute">${esc(p.banco)}</span></p>
-    <p><span class="fx-mute">Concepto  ·  Reference</span> <strong>${esc(tipo.es)} ${esc(f.numero)}</strong></p>
+    <p><span class="fx-mute">Concepto  ·  Reference</span> <strong>Factura ${esc(f.numero)}</strong></p>
     ${f.nota ? `<p class="fx-nota">${lineasHTML(f.nota)}</p>` : ''}
   </section>
 
