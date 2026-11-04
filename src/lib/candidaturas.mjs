@@ -35,7 +35,7 @@ export const ORGANIZACIONES = [
   'Estrella Magec',
 ];
 
-export const PROGRAMAS = ['Erasmus+', 'Cuerpo Europeo de Solidaridad', 'Consejo de Europa'];
+export const PROGRAMAS = ['Erasmus+', 'Cuerpo Europeo de Solidaridad', 'Consejo de Europa', 'CERV'];
 
 export const ESTADOS = ['preparacion', 'presentada', 'aprobada', 'reserva', 'rechazada'];
 
@@ -46,9 +46,11 @@ export const CRITERIOS = {
   KA154: [['Relevancia', 30], ['Diseño', 40], ['Gestión', 30]],
   KA155: [['Relevancia', 40], ['Diseño', 40], ['Gestión', 20]],
   ESC30: [['Relevancia', 40], ['Diseño', 40], ['Gestión', 20]],
+  // CERV (EACEA): umbral total 70 y 25 de 40 en relevancia.
+  'CERV-LS': [['Relevancia', 40], ['Calidad', 40], ['Impacto', 20]],
 };
 
-export const ULTIMA_ACTUALIZACION = '2026-10-06';
+export const ULTIMA_ACTUALIZACION = '2026-11-04';
 
 // Atajo para escribir notas con los pesos de cada acción.
 const n = (accion, r, d, g) => ({
@@ -329,6 +331,34 @@ export const CANDIDATURAS = [
     comentarios: null,
     leccion: 'Nuevo KA155 de Estrella del Rif en octubre de 2026, tras la aprobación de febrero con un viaje suprimido. Evaluador calibrado: 74 más o menos 8. Necesidad bien situada con dato del INE de Melilla; resta la capacidad de una entidad pequeña que ya ejecuta otro KA155 y un KA154.',
     carpeta: null,
+  },
+
+  // ── CERV, EACEA (resuelta en octubre de 2026) ─────────────────
+  {
+    id: 'shield-ai-cerv',
+    nombre: 'SHIELD-AI: Protecting Truth and Democracy in the Age of AI',
+    organizacion: 'Estrellas del Sur',
+    programa: 'CERV',
+    accion: 'CERV-LS',
+    agencia: 'EACEA',
+    ronda: 'CERV-2026-CITIZENS-CIV',
+    fechaPresentacion: null,
+    estado: 'reserva',
+    notaEstimada: null,
+    nota: {
+      total: 71,
+      criterios: [
+        { nombre: 'Relevancia', puntos: 26, max: 40 },
+        { nombre: 'Calidad', puntos: 31, max: 40 },
+        { nombre: 'Impacto', puntos: 14, max: 20 },
+      ],
+    },
+    importePedido: 206755,
+    importeConcedido: null,
+    recorte: null,
+    comentarios: 'Supera el umbral de 70 y no se financia por falta de presupuesto. Relevancia en 26 de 40, uno por encima de su umbral, porque la prioridad pedía manipulación e injerencia informativa extranjera (FIMI) y el proyecto trata la desinformación en general, con datos europeos sólidos pero sin línea de base por país, género y menores de 16 y 17 sin análisis propio y complementariedad sin proyectos con nombre. En calidad, restos de redacción en el texto, sin tabla de personal con nombres o perfiles, escalabilidad entre países ingenua, evaluación sin métodos para medir el cambio y plataforma sin protocolo de datos de menores. En impacto, más productos que cambios duraderos, difusión sin medir su eficacia y plataforma sin plan de financiación posterior. Elogia la matriz de objetivos y paquetes de trabajo, la participación, los indicadores y el efecto multiplicador del consorcio con Maldita.es.',
+    leccion: 'Primera candidatura CERV de la red, 71 (26/31/14) con umbral de 70: en una convocatoria directa de la Comisión el aprobado no basta. La relevancia se pierde si el proyecto no responde a la prioridad exacta (FIMI, no desinformación general), y la Parte B se presentó con [name], X EUR e Insert text en las tablas de la plantilla.',
+    carpeta: 'cerv/SHIELD-AI_2026_CITIZENS-CIV',
   },
 
   // ── En preparación ────────────────────────────────────────────

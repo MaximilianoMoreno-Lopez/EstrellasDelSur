@@ -376,3 +376,21 @@ En los ocho casos con las dos versiones, la v2 baja entre 3 y 5 puntos las seis 
 
 Sobre la versión del portal: Bridges Beyond the Mediterranean (KA152) 53, ACCESS-YW (KA153) 58, EU Voices (KA154) 51, Green Tracks octubre (KA155) 57, Melilla is Europe octubre (KA155) 74, y Billets d'Europe en su versión del portal 66 (igual que sobre el borrador: el portal conserva el hueco de la consulta a los jóvenes). Congeladas en `proyectos/referencias/resultados/2026-2_predicciones_v1_nuevas.json`.
 
+
+## Primer caso fuera de Erasmus+ y CES: SHIELD-AI, CERV (2026-11-04)
+
+Carta de la EACEA del 27/10/2026, ESR del 23/10/2026. Material en `proyectos/cerv/SHIELD-AI_2026_CITIZENS-CIV/`.
+
+| Caso | Programa | Real | Desglose (R/C/I sobre 40/40/20) | Umbrales | Estimada | Resultado |
+|---|---|---|---|---|---|---|
+| SHIELD-AI | CERV-LS, EACEA | 71 | 26/31/14 | total 70, relevancia 25 | ninguna | Supera el umbral, sin fondos |
+
+**No entra en la muestra ni en el MAE.** No hubo predicción congelada antes de la carta y la v1 no cubre este programa. El prompt habla de agencias nacionales, rúbricas KA1 y ESC y de un patrón en el que casi nada cae entre 61 y 71. En CERV el umbral es 70 y SHIELD-AI cayó justo en esa franja.
+
+Lo que sirve de este caso para el evaluador:
+
+- **Otra escala.** Los expertos de la Comisión puntúan con más dispersión por subcriterio y casi todos los párrafos del ESR terminan en un "however". Un proyecto con elogios en todos los criterios se quedó en el 65, el 78 y el 70 % de cada uno.
+- **Lo que pesó.** El encaje con la prioridad exacta (FIMI), la base de datos por país, el análisis de género y de infancia, la tabla de personal, la sostenibilidad financiera de la plataforma, el RGPD y la complementariedad con proyectos con nombre. La v1 no tiene topes ni anclas para nada de esto.
+- **Coincide con la v1** en castigar el diagnóstico remitido a una actividad futura y la difusión sin medir su eficacia, y en no premiar el aparato (plataforma, embajadores, red) sin quién lo sostiene.
+
+**Para usarlo con CERV** haría falta una variante del prompt con la rúbrica de `perfiles/cerv-ls.md`, los umbrales de 70 y 25 y anclas sacadas de este ESR. Con un solo caso no se puede calibrar. Hasta tener más, una nota simulada en CERV no se comunica como estimación, solo como lista de debilidades. Una prueba ciega sobre la Parte B de SHIELD-AI diría cuánto se desvía la v1 adaptada; hay que hacerla antes de que el evaluador lea este apartado.

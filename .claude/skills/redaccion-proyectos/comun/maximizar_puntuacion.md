@@ -30,6 +30,8 @@ Datos reales de 26 resultados de la red. La tabla completa, los reproches litera
 10. **Trabajo juvenil no formal, nunca académico.** Torneos universitarios, modelos de instituciones y "excelencia" se leen como "ámbito formativo-académico" (Conexión Atlántica 2026, 52; DebatIA 2025, 60). Formato deliberativo con un producto que se entrega a alguien.
 11. **Impacto local con fecha, lugar y destinatario.** "No se detalla el impacto potencial que tendrá el proyecto en la comunidad local" (Igualdad y Deporte 2025, 59) y seguimiento "sin llegar a concretar a qué entidades locales o municipios" (Re-Think 2025, 59). Una actividad abierta con entidad anfitriona, plazas y un instrumento que la mida dentro del proyecto. En KA153, además, cómo se transfiere lo aprendido a los compañeros de cada socia (Igualdad y Deporte 2025, 59).
 12. **No repetir lo que ya te financiaron.** El INJUVE denegó una KA154 porque la entidad "recibió financiación en la ronda anterior para una iniciativa similar" y prefirió "nuevas propuestas que ofrezcan enfoques más novedosos" (Verde y Claro 2025, 59).
+13. **Responder a la prioridad exacta de la convocatoria.** Si la convocatoria pide manipulación e injerencia informativa extranjera, un proyecto de desinformación general pierde relevancia aunque todo lo demás esté bien. La palabra FIMI no aparecía en la Parte B y la relevancia se quedó en 26 de 40, un punto sobre su umbral (SHIELD-AI 2026, CERV, 71). Nombrar la prioridad con sus términos y dedicarle actividades propias.
+14. **Línea de base por país del consorcio.** Una cifra con fuente para cada país, no solo datos europeos. Remitir el diagnóstico a una actividad futura se lee como punto de partida débil (SHIELD-AI 2026, CERV, 71).
 
 ## Diseño y calidad (40 puntos)
 
@@ -65,6 +67,8 @@ Datos reales de 26 resultados de la red. La tabla completa, los reproches litera
 11. **Logística con nombres.** "Excesivamente genérica en aspectos esenciales como el alojamiento, el transporte o la seguridad" (Conexión Atlántica 2026, 52). Sede y albergue con capacidad, compra agrupada de billetes, póliza nombrada y responsable de protección.
 12. **En ESC30, presupuesto por partidas.** Una "hoja compartida" para 5.040 EUR dejó la gestión en 10 de 20 (Haro Queer 2026, 60) y 3.780 EUR sin desglose hicieron dudar de la capacidad de la entidad (ChemSafe 2026, 57). Partidas que sumen el total y un circuito de pago.
 13. **Movilidades a la medida de la entidad.** Una entidad nueva con tres viajes perdió al menos uno (Melilla is Europe 2026, 79) y cuatro viajes idénticos sin razón escrita restaron (Green Tracks 2026, 58). Dos viajes, o el primero como piloto con acompañantes identificados, y días de viaje según la banda real, con 0 para el grupo local (Frames of Us 2026, 72).
+14. **Equipo con nombres o perfiles funcionales.** Tabla de personas con meses-persona y tareas. Sin ella no se puede valorar si el equipo da para el proyecto (SHIELD-AI 2026, CERV, 71).
+15. **Sostenibilidad con quién paga.** Una plataforma o una red no se sostienen solas: quién paga el alojamiento, el mantenimiento y los contenidos cuando acaba la subvención (SHIELD-AI 2026, CERV, 71).
 
 ## Forma (no puntúa sola, pero resta)
 
@@ -72,6 +76,7 @@ Datos reales de 26 resultados de la red. La tabla completa, los reproches litera
 - Fechas. Todo día de la semana comprobado con `fechas.py` (Cadres Communs tenía la Journée en "sábado 25" cuando era domingo).
 - Estilo sin tics de IA (`comun/reglas_estilo.md`). El evaluador lee decenas seguidas y el texto genérico baja la nota de todos los criterios.
 - Cada argumento contado entero en un bloque y remitido en el resto.
+- Las tablas de la plantilla se rellenan o se borran. `[name]`, `X EUR`, `Insert text` e `[insert call identifier]` llegaron al evaluador y el ESR lo anotó como restos de redacción (SHIELD-AI 2026, CERV, 71). Revisar también los anexos.
 - Originalidad frente a la referencia aprobada, frente a las hermanas de la misma ronda y frente a los proyectos anteriores de la misma solicitante (DiáLogos fue señalada por su parecido con D-EU-BATING).
 
 ## Cuando llega una carta de resultados

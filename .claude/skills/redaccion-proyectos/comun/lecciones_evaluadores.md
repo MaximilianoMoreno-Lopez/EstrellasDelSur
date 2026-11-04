@@ -11,6 +11,7 @@ Criterios en el orden de la carta, relevancia / diseño / gestión. Pesos 30/40/
 | Democracia sin barreras | Estrella del Rif | KA154 | ES02 | 2026 R1 | 80 | Aprobada con recorte, 26.706 de 49.416 EUR | Alta calidad y consorcio solvente, pero "ambición operativa" y "dispersión de recursos entre múltiples frentes" |
 | Melilla is Europe | Estrella del Rif | KA155 | ES02 | 2026 R1 | 79 | Aprobada con recorte, 9.158 de 27.474 EUR | Necesidades sólidas, pero entidad nueva con tres viajes y sin itinerario concreto |
 | Frames of Us | Federación | KA152 | ES02 | 2026 R1 | 72 | Aprobada con recorte, 29.082 de 33.200 EUR | Cumple sin reproches; se recorta a 6 días más 2 de viaje por falta de presupuesto |
+| SHIELD-AI | Estrellas del Sur | CERV-LS | EACEA | CERV-2026-CITIZENS-CIV | 71 (26/31/14, R/C/I sobre 40/40/20) | Supera el umbral de 70, sin fondos | La prioridad era FIMI y el proyecto trata desinformación general; restos de plantilla y sin tabla de personal |
 | Decide con Información | Federación | ESC30 | ES02 | 2026 R1 | 68 | Aprobada, 4.461 EUR | "Un proyecto sin grandes propósitos, pero con una presentación coherente, con objetivos reales" |
 | DiáLogos Europa | Estrellas del Sur | KA154 | ES02 | 2025 R1 | sin nota | Aprobada, 33.598 EUR sin recorte | Reenvío que redujo importe y participantes como pidió la carta anterior |
 | Green Tracks | Estrellas del Sur | KA155 | ES02 | 2025 R2 | 61 (23/21/17) | Calidad suficiente, sin fondos | Gestión y evaluación "poco precisas y ambiciosas para la capacidad de la entidad" |
@@ -306,3 +307,19 @@ Cómo pedir para que no recorten.
 - Los jóvenes como receptores. Si la implicación en la planificación no se acredita, la agencia lo dice aunque el resto esté bien (DebatIA 2026, 60).
 - En KA153, la capacidad de la entidad cuenta en relevancia: actividades habituales con jóvenes, trabajadores del ámbito de la juventud del equipo, proyectos previos y resultados (DigiTE 2026, 57, 17/20/20; ya pasó en Igualdad y Deporte 2025, 59, 15/25/19).
 
+
+## Añadido el 2026-11-04, primera carta de la EACEA (SHIELD-AI, CERV)
+
+Primera candidatura de la red a una convocatoria directa de la Comisión. El informe (ESR) lo firman expertos de la EACEA, no una agencia nacional, y se nota en el tipo de reproche. Detalle completo en `proyectos/cerv/SHIELD-AI_2026_CITIZENS-CIV/trabajo/feedback_agencia.md`.
+
+- **El umbral no es la línea de financiación.** 71 con umbral de 70 y sin fondos. En CERV hay que apuntar bastante por encima del umbral.
+- **La prioridad exacta manda en relevancia.** La prioridad 3 era manipulación e injerencia informativa extranjera (FIMI) y el proyecto, de desinformación general, no la nombra ni una vez. La relevancia quedó en 26 de 40, un punto sobre su umbral eliminatorio de 25 (SHIELD-AI 2026, 71).
+- **Línea de base por país.** "Solid" a escala europea, pero sin cifras de cada país del consorcio. Dejar el diagnóstico local para un grupo focal del primer paquete de trabajo es "a weaker starting baseline" (SHIELD-AI 2026, 71). Es el mismo reproche que el INJUVE hace a los datos europeos generales (Mind the Gap 2026, 54).
+- **Género y menores como análisis, no como dato desagregado.** Pidió narrativas concretas contra las jóvenes, un enfoque interseccional y separar a los de 16 y 17 de los de 18 a 24 en necesidades, métodos y salvaguardas. Lo que está bien en el anexo de protección no cuenta si no aparece en la metodología y en la evaluación.
+- **Equipo con nombres o perfiles.** Sin tabla de personal con meses-persona y tareas, no puede valorar si el equipo da para la ambición técnica. En la Parte B estaban las tablas de la plantilla con `[name]` y `X EUR`.
+- **Restos de redacción.** El ESR los menciona de forma expresa: `[name]` ocho veces, tres `Insert text`, tres `[insert call identifier]` y huecos `[Insert name and contact]` en el anexo de protección de la infancia.
+- **Sostenibilidad con dinero.** Una plataforma no se sostiene sola. Quién paga alojamiento, mantenimiento, seguridad y contenidos cuando acaba la subvención.
+- **RGPD operativo.** Una plataforma que registra datos de menores necesita protocolo de privacidad y moderación contra el acoso escritos en el texto.
+- **Complementariedad con nombres.** Proyectos e iniciativas concretas con las que se complementa, y el proyecto europeo anterior que se escala.
+- **Ruta política con destinatarios.** Qué institución recibe las recomendaciones, por qué canal y qué seguimiento hay.
+- **Lo que elogió.** Matriz de objetivos y paquetes de trabajo, flujo metodológico progresivo, participación, indicadores, calendario y un consorcio con una entidad de verificación de datos (Maldita.es), juveniles, una autoridad pública y redes europeas.
