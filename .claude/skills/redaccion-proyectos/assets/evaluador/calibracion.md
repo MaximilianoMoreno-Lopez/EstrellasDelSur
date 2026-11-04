@@ -394,3 +394,17 @@ Lo que sirve de este caso para el evaluador:
 - **Coincide con la v1** en castigar el diagnóstico remitido a una actividad futura y la difusión sin medir su eficacia, y en no premiar el aparato (plataforma, embajadores, red) sin quién lo sostiene.
 
 **Para usarlo con CERV** haría falta una variante del prompt con la rúbrica de `perfiles/cerv-ls.md`, los umbrales de 70 y 25 y anclas sacadas de este ESR. Con un solo caso no se puede calibrar. Hasta tener más, una nota simulada en CERV no se comunica como estimación, solo como lista de debilidades. Una prueba ciega sobre la Parte B de SHIELD-AI diría cuánto se desvía la v1 adaptada; hay que hacerla antes de que el evaluador lea este apartado.
+
+### Prueba ciega con la v1 adaptada (2026-11-04)
+
+Dos evaluadoras con `evaluador.md` v1, `anclas.md` y una rúbrica CERV sin notas (criterios 40/40/20, umbrales 70 y 25, prioridad FIMI), sobre la propuesta presentada. Detalle en `proyectos/cerv/SHIELD-AI_2026_CITIZENS-CIV/trabajo/evaluacion_ciega_v1_adaptada.md`.
+
+| Caso | Real | Desglose real | v1 adaptada | Desglose v1 | Individuales | Error |
+|---|---|---|---|---|---|---|
+| SHIELD-AI (CERV) | 71 | 26/31/14 | 56 | 23/22/11 | 56 y 55 | -15 (-3/-9/-3) |
+
+Lado del umbral fallado: las dos la dan por eliminada y la EACEA la pasó.
+
+**Diagnóstico.** Las debilidades coinciden con el ESR en lo esencial (FIMI ausente, necesidad sin base por país, complementariedad sin proyectos, sin tabla de personal, restos de plantilla, red y plataforma sin quién las sostenga). La nota falla por los topes del perfil B, sobre todo en calidad: T8 la limita a 22 de 40 y la EACEA dio 31, y T14 limita el total a 58. La EACEA puntuó la estructura (matriz de objetivos y WP, indicadores, calendario, riesgos) con generosidad y trató como menores una docena de incoherencias de cifras, restos en español y huecos de plantilla que el INJUVE habría castigado.
+
+**Regla mientras no haya más casos CERV.** El evaluador sirve para CERV como lista de debilidades, no como nota. No aplicar los perfiles A, B y C ni los topes T8 y T14; con un solo caso no se corrige el sesgo sumando 15. Si hace falta una cifra, decir "por debajo de la nota real en torno a 15 en el único caso medido" y no comunicarla como estimación. Lo que el ESR vio y el evaluador no (escalabilidad entre países, espacios seguros con perspectiva de género, RGPD en el texto principal y no solo en el anexo, resolución de problemas frente a voto, métodos de evaluación del cambio) pasa a la lista de comprobación de `perfiles/cerv-ls.md`.

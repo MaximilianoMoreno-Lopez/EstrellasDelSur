@@ -34,13 +34,16 @@ Aún no existe `perfiles/rubricas/cerv-ls.md`. Los elementos de la tabla anterio
 - **Plataformas.** Protocolo RGPD, moderación contra el acoso y plan de financiación cuando acaba la subvención.
 - **Complementariedad con nombres** de proyectos e iniciativas (EDMO, proyectos CERV y Erasmus+ anteriores) y el proyecto europeo que se escala.
 - **Escalabilidad entre países** con idioma, marco legal e infraestructura digital de cada uno.
+- **Espacios seguros con perspectiva de género** en talleres y hackathon, explicados en la metodología y no solo como cuota.
+- **Protección de datos y moderación en la Parte B.** Lo que está solo en el anexo de salvaguarda no cuenta como RGPD de la plataforma.
+- **Cifras iguales en todas las secciones y en la Parte A.** La EACEA lo pasó por alto en SHIELD-AI, pero la prueba ciega encontró una docena de cifras que cambian.
 - **Resolución de problemas** distinta de la toma de decisiones por mayoría.
 - **Evaluación del cambio** con métodos y momentos, no solo indicadores de producto.
 - **La plantilla de la Parte B trae tablas de ejemplo** (`[name]`, `X EUR`, `Insert text`, `[insert call identifier]`). Se rellenan o se borran, anexos incluidos.
 - **Lista de proyectos anteriores** en el formato pedido y con presupuestos.
 
 ## Evaluador simulado
-El evaluador calibrado v1 (`assets/evaluador/`) está hecho para Erasmus+ y CES en agencias nacionales. No vale para CERV sin adaptarlo: escala distinta (umbral total de 70 y eliminatorio en relevancia) y expertos de la Comisión. Ver la sección CERV de `assets/evaluador/calibracion.md`.
+El evaluador calibrado v1 (`assets/evaluador/`) está hecho para Erasmus+ y CES en agencias nacionales. Probado a ciegas sobre SHIELD-AI con una rúbrica CERV, acertó las debilidades y se quedó 15 puntos por debajo (sobre todo en calidad, por los topes del perfil B). En CERV se usa como lista de debilidades, sin perfiles A, B y C ni topes T8 y T14, y sin comunicar la cifra como estimación. Ver la sección CERV de `assets/evaluador/calibracion.md`.
 
 ## Cómo cerrar este perfil
 - Texto de la convocatoria CERV-2026-CITIZENS-CIV (call document) para los criterios literales, las prioridades y los importes.
