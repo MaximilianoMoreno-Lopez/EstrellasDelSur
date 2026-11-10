@@ -14,6 +14,11 @@ export const ADMIN_EMAILS = [
   'pablo@estrellasdelsur.eu',
   'paula@estrellasdelsur.eu',
   'admin@estrellasdelsur.eu',
+  'samet@estrellasdelsur.eu',
+  'enkira@estrellasdelsur.eu',
+  'hela@estrellasdelsur.eu',
+  'luana@estrellasdelsur.eu',
+  'claudia@estrellasdelsur.eu',
 ];
 
 export function isAdmin(email) {
