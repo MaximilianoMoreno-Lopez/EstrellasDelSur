@@ -44,8 +44,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       if (session) redirect(session.user.email);
     });
 
-    function redirect(email) {
-      window.location.replace(isAdmin(email) ? '/admin/' : '/portal/dashboard/');
+    // Admins al panel de admin; el resto del equipo (miembros y becarios de la
+    // tabla `equipo`) al panel de trabajo; participantes a su perfil. La RLS de
+    // `equipo` solo devuelve filas a quien es miembro, así que basta con mirar
+    // si la consulta trae algo.
+    async function redirect(email) {
+      if (isAdmin(email)) return window.location.replace('/admin/');
+      const { data } = await supabase.from('equipo').select('email').limit(1);
+      window.location.replace(data?.length ? '/equipo/' : '/portal/dashboard/');
     }
 
     const form = document.getElementById('loginForm');
@@ -70,7 +76,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       if (error) {
         errorMsg.textContent = error.message === 'Invalid login credentials'
           ? 'Correo o contraseña incorrectos.'
-          : error.message;
+          : error.message === 'Email not confirmed'
+            ? 'Aún no has confirmado tu correo. Abre el enlace que te enviamos al registrarte.'
+            : error.message;
         errorMsg.style.display = 'block';
         btnText.style.display = 'inline';
         btnSpinner.style.display = 'none';

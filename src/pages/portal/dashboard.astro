@@ -19,6 +19,9 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       <div id="adminLink" style="display:none">
         <a href="/admin/" class="btn-admin">Panel de admin →</a>
       </div>
+      <div id="equipoLink" style="display:none">
+        <a href="/equipo/" class="btn-admin">Panel de trabajo →</a>
+      </div>
     </div>
 
     <div id="alertMsg" class="alert" style="display:none"></div>
@@ -173,6 +176,10 @@ import PortalLayout from '../../layouts/PortalLayout.astro';
       document.getElementById('userEmail').textContent = email;
       if (isAdmin(email)) {
         document.getElementById('adminLink').style.display = 'block';
+      } else {
+        // La RLS de `equipo` solo devuelve filas a sus miembros
+        const { data: yo } = await supabase.from('equipo').select('email').limit(1);
+        if (yo?.length) document.getElementById('equipoLink').style.display = 'block';
       }
 
       // Load existing participant data
