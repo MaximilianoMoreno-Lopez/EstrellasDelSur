@@ -1,7 +1,7 @@
 ---
 title: "Bridges to a Greener Future"
 type: "Intercambio"
-status: "active"
+status: "past"
 flag: "🇹🇷"
 description: "Intercambio juvenil Erasmus+ en Karaman (Turquía) sobre sostenibilidad, cambio climático y transición verde. Ocho días de talleres, simulaciones y retos al aire libre para pensar iniciativas verdes en tu propia comunidad. Alojamiento y comidas cubiertos."
 location: "Karaman (Turquía)"
@@ -15,6 +15,7 @@ apply: "https://forms.gle/dNDMAVSGjsKRFjBm7"
 edad: "18-29 años"
 idioma: "Inglés"
 coste: "Cuota de socio 50 € (solo si te seleccionan)"
+infoCompleta: true
 ---
 
 ## Datos del proyecto

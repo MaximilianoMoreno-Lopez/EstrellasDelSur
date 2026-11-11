@@ -1,8 +1,8 @@
 ---
 title: "Lead 2 Last"
 type: "Formación"
-status: "past"
-infoCompleta: true
+status: "active"
+infoCompleta: false
 flag: "🇭🇷"
 description: "Curso de formación Erasmus+ en Zadar (Croacia), junto al mar, sobre liderazgo y sostenibilidad de las organizaciones juveniles. Una semana para trabajadores juveniles y responsables de entidades que quieren equipos y proyectos que aguanten en el tiempo. Alojamiento y comidas cubiertos."
 location: "Zadar (Croacia)"
