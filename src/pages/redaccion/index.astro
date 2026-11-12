@@ -47,6 +47,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div id="alertMsg" class="rd-alert" role="alert" style="display:none"></div>
 
     <div id="lista" class="rd-lista"></div>
+
+    <!-- Solo admins: borradores borrados, recuperables desde su última copia -->
+    <section id="papelera" class="rd-papelera" style="display:none">
+      <h2 class="rd-papelera-titulo">Papelera</h2>
+      <p class="rd-hint">Borradores eliminados. Al recuperarlos vuelven tal como estaban justo antes de borrarse.</p>
+      <ul id="papeleraLista" class="rd-papelera-lista"></ul>
+    </section>
   </div>
 
   <!-- Editor -->
@@ -71,6 +78,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <option value="revisado">Revisado</option>
           <option value="presentado">Presentado</option>
         </select>
+        <button type="button" id="edComBtn" class="btn-ghost ed-com-ir" style="display:none" title="Ir al siguiente comentario abierto"></button>
+        <button type="button" id="edHistorial" class="btn-ghost">Historial</button>
         <button type="button" id="edDescargar" class="btn-ghost">Descargar .md</button>
         <button type="button" id="edGuardar" class="btn-new">Guardar</button>
       </div>
@@ -88,12 +97,38 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="ed-bloques" id="edBloques"></div>
     </div>
 
+    <!-- Comentarios cuya pregunta ya no está (una ficha quitada, una pregunta
+         que cambió en el JSON): se enseñan aquí para que no se pierdan. -->
+    <section class="ed-huerfanos" id="edHuerfanos" style="display:none">
+      <h2 class="ed-bloque-titulo">Otros comentarios</h2>
+      <p class="ed-bloque-sub">Comentarios de fichas quitadas o de preguntas que ya no están en el formulario.</p>
+      <div id="edHuerfanosLista"></div>
+    </section>
+
     <section class="ed-notas">
       <h2 class="ed-bloque-titulo">Notas de revisión</h2>
       <p class="ed-bloque-sub">Para quien revise el borrador: dudas, datos que faltan, qué hay que confirmar. No forman parte del formulario.</p>
       <label class="sr-only" for="edNotas">Notas de revisión</label>
       <textarea id="edNotas" rows="4" placeholder="Falta confirmar el tope de viaje de Lisboa…"></textarea>
     </section>
+
+    <dialog id="hisDialog" class="his" aria-labelledby="hisTitulo">
+      <div class="his-cab">
+        <h2 id="hisTitulo" class="ed-bloque-titulo">Historial de versiones</h2>
+        <button type="button" id="hisCerrar" class="tc-btn">Cerrar</button>
+      </div>
+      <div id="hisMsg" class="rd-alert his-msg" role="status" style="display:none"></div>
+      <p class="his-intro">El servidor guarda una copia sola al empezar cada sesión de edición, cada 10 minutos mientras se escribe y antes de cualquier cambio grande. Recuperar no borra lo actual, porque antes se guarda otra copia.</p>
+      <form id="hisForm" class="his-manual">
+        <label class="sr-only" for="hisEtiqueta">Nombre de la versión</label>
+        <input type="text" id="hisEtiqueta" maxlength="120" placeholder="Nombre opcional, p. ej. Antes de la revisión de Paula" />
+        <button type="submit" class="btn-ghost" id="hisGuardar">Guardar versión ahora</button>
+      </form>
+      <div class="his-cuerpo">
+        <ul id="hisLista" class="his-lista"></ul>
+        <div id="hisDetalle" class="his-detalle"></div>
+      </div>
+    </dialog>
   </div>
 
   <script>
@@ -101,6 +136,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     import {
       FORMULARIOS, formularioDe, limiteDe, contar, contarPesimista,
       estadoContador, preguntasTexto, aMarkdown,
+      aplanar, ponerValor, partirClave, etiquetaClave, avisosRedaccion,
     } from '../../lib/formularios.mjs';
 
     let equipo = [];
@@ -123,6 +159,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     // Identifica esta pestaña: otra pestaña o el móvil con la misma cuenta
     // cuentan como otra persona a efectos de conflicto.
     const miSesion = crypto.randomUUID();
+
+    // Comentarios por pregunta (tabla borrador_comentarios). Van aparte de
+    // las respuestas: publicar o resolver un comentario nunca toca el texto
+    // ni provoca un conflicto de guardado.
+    let comentarios = [];             // filas del borrador abierto
+    let comentariosOk = false;        // false si la tabla no existe todavía
+    let abiertosPorBorrador = {};     // id de borrador -> comentarios abiertos (lista)
+    const zonasCom = new Map();       // clave -> { lista, textarea }
+    const resueltosVisibles = new Set(); // claves con los resueltos desplegados
+    const respondiendo = new Map();   // id de hilo -> texto de la respuesta a medias
+    let timerComentarios = null;
+    const REFRESCO_COMENTARIOS_MS = 45000;
 
     const ESTADOS = {
       borrador: 'Borrador',
@@ -178,6 +226,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         return;
       }
       borradores = data ?? [];
+
+      // Comentarios abiertos por borrador, para las tarjetas. Si la tabla
+      // aún no existe, la lista funciona igual sin el recuento.
+      const { data: abiertos } = await supabase
+        .from('borrador_comentarios')
+        .select('borrador_id')
+        .eq('resuelto', false)
+        .is('padre_id', null);
+      abiertosPorBorrador = {};
+      (abiertos ?? []).forEach((c) => { abiertosPorBorrador[c.borrador_id] = (abiertosPorBorrador[c.borrador_id] ?? 0) + 1; });
     }
 
     // ── Helpers ───────────────────────────────────────────────
@@ -259,6 +317,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       document.getElementById('listaView').style.display = 'block';
       if (window.location.hash) history.replaceState(null, '', window.location.pathname);
       renderLista();
+      renderPapelera();
     }
 
     function renderLista() {
@@ -317,10 +376,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         fill.style.width = pr.total ? `${Math.round((pr.hechas / pr.total) * 100)}%` : '0%';
         bar.appendChild(fill);
         const txt = document.createElement('span');
-        const nCom = Object.values(esObj(b.comentarios) ? b.comentarios : {}).filter((v) => typeof v === 'string' && v.trim()).length;
-        txt.textContent = `${pr.hechas}/${pr.total} respuestas · ${pr.caracteres.toLocaleString('es-ES')} caracteres` + (nCom ? ` · ${nCom} comentario${nCom === 1 ? '' : 's'}` : '');
+        txt.textContent = `${pr.hechas}/${pr.total} respuestas · ${pr.caracteres.toLocaleString('es-ES')} caracteres`;
         prog.appendChild(bar);
         prog.appendChild(txt);
+        const nCom = abiertosPorBorrador[b.id] ?? 0;
+        if (nCom) {
+          const com = document.createElement('span');
+          com.className = 'bo-com';
+          com.textContent = `${nCom} comentario${nCom === 1 ? '' : 's'} sin resolver`;
+          prog.appendChild(com);
+        }
         card.appendChild(prog);
 
         const foot = document.createElement('div');
@@ -355,11 +420,67 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
 
     async function borrar(b) {
-      if (!confirm(`¿Borrar el borrador "${b.titulo}"? No se puede deshacer.`)) return;
+      const aviso_ = comentariosOk
+        ? `¿Borrar el borrador "${b.titulo}"? Se podrá recuperar desde la papelera, pero sus comentarios se pierden.`
+        : `¿Borrar el borrador "${b.titulo}"? No se puede deshacer.`;
+      if (!confirm(aviso_)) return;
       const { error } = await supabase.from('borradores').delete().eq('id', b.id);
       if (error) return aviso('No se pudo borrar: ' + error.message);
       borradores = borradores.filter((x) => x.id !== b.id);
       renderLista();
+      renderPapelera();
+    }
+
+    // Papelera (solo admins): la copia "borrado" más reciente de cada
+    // borrador que ya no existe. Recuperar lo vuelve a crear con el mismo id,
+    // así sale de la papelera y conserva su historial de versiones.
+    async function renderPapelera() {
+      const sec = document.getElementById('papelera');
+      if (!soyAdmin) { sec.style.display = 'none'; return; }
+      const { data, error } = await supabase
+        .from('borrador_versiones')
+        .select('id, borrador_id, titulo, accion, created_at, creado_por')
+        .eq('motivo', 'borrado')
+        .order('created_at', { ascending: false })
+        .limit(50);
+      if (error || !data) { sec.style.display = 'none'; return; }
+      const vivos = new Set(borradores.map((b) => b.id));
+      const vistos = new Set();
+      const filas = data.filter((v) => !vivos.has(v.borrador_id) && !vistos.has(v.borrador_id) && vistos.add(v.borrador_id));
+      const ul = document.getElementById('papeleraLista');
+      ul.replaceChildren();
+      filas.forEach((v) => {
+        const li = document.createElement('li');
+        const t = document.createElement('span');
+        t.textContent = `${v.titulo} (${v.accion}), borrado por ${nombreDe(v.creado_por)} ${hace(v.created_at)}`;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tc-btn is-avanzar';
+        btn.textContent = 'Recuperar';
+        btn.addEventListener('click', () => recuperarBorrado(v.id, btn));
+        li.appendChild(t);
+        li.appendChild(btn);
+        ul.appendChild(li);
+      });
+      sec.style.display = filas.length ? 'block' : 'none';
+    }
+
+    async function recuperarBorrado(versionId, btn) {
+      btn.disabled = true;
+      const { data: v, error } = await supabase.from('borrador_versiones').select('*').eq('id', versionId).single();
+      if (error) { btn.disabled = false; return aviso('No se pudo leer la copia: ' + error.message); }
+      const { data, error: e2 } = await supabase
+        .from('borradores')
+        .insert({ id: v.borrador_id, titulo: v.titulo, accion: v.accion, estado: v.estado ?? 'borrador', respuestas: v.respuestas, notas: v.notas })
+        .select()
+        .single();
+      btn.disabled = false;
+      if (e2) return aviso('No se pudo recuperar: ' + e2.message);
+      borradores.unshift(data);
+      renderLista();
+      btn.closest('li')?.remove();
+      if (!document.querySelector('#papeleraLista li')) document.getElementById('papelera').style.display = 'none';
+      aviso(`"${v.titulo}" recuperado.`);
     }
 
     // ── Nuevo borrador ────────────────────────────────────────
@@ -424,6 +545,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         guardar();
       });
       document.getElementById('edDescargar').addEventListener('click', descargar);
+      document.getElementById('edComBtn').addEventListener('click', irAlSiguienteComentario);
+      montarHistorial();
       document.getElementById('edTitulo').addEventListener('input', (e) => {
         actual.titulo = e.target.value;
         document.getElementById('edH1').textContent = actual.titulo || 'Sin título';
@@ -452,6 +575,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       // pestaña no da tiempo: ahí la protección es el aviso de beforeunload.
       document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'hidden' && sucio) guardar();
+        // Al volver a la pestaña se traen los comentarios nuevos de las demás
+        if (document.visibilityState === 'visible' && actual) cargarComentarios();
       });
       // Los elementos fijos (cabecera del portal y barra del editor) cambian
       // de alto según el ancho y según haya aviso: se miden y el CSS los usa.
@@ -474,8 +599,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         estado: b.estado,
         notas: b.notas ?? '',
         respuestas: structuredClone(respuestasDe(b)),
-        comentarios: structuredClone(esObj(b.comentarios) ? b.comentarios : {}),
       };
+      comentarios = [];
+      zonasCom.clear();
+      resueltosVisibles.clear();
+      respondiendo.clear();
       ultimoUpdatedAt = b.updated_at;
       sucio = false;
       version = 0;
@@ -491,6 +619,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       document.getElementById('edNotas').value = actual.notas;
       document.getElementById('edAccion').textContent = `${formulario.accion} · ${formulario.nombre}`;
       document.getElementById('edGuardar').textContent = 'Guardar';
+      // Hasta saber que la tabla de comentarios existe no se enseñan sus botones
+      document.getElementById('editorView').classList.toggle('sin-comentarios', !comentariosOk);
       pintarGuardado('Guardado');
 
       renderNav();
@@ -502,6 +632,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       window.scrollTo(0, 0);
       document.getElementById('edH1').focus({ preventScroll: true });
       montarSeguimiento();
+      cargarComentarios();
+      if (timerComentarios) clearInterval(timerComentarios);
+      timerComentarios = setInterval(() => {
+        if (document.visibilityState === 'visible') cargarComentarios();
+      }, REFRESCO_COMENTARIOS_MS);
     }
 
     // Resalta en el índice el bloque que ocupa la zona de lectura: el último
@@ -555,6 +690,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         if (!confirm('Hay cambios sin guardar. ¿Salir igualmente?')) return;
         sucio = false;
       }
+      if (timerComentarios) { clearInterval(timerComentarios); timerComentarios = null; }
+      const dlg = document.getElementById('hisDialog');
+      if (dlg.open) dlg.close();
       actual = null;
       await cargarBorradores();
       mostrarLista();
@@ -577,8 +715,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         t.textContent = bl.tituloEs ?? bl.titulo;
         const c = document.createElement('span');
         c.className = 'ed-nav-count';
+        const com = document.createElement('span');
+        com.className = 'ed-nav-com';
         a.appendChild(n);
         a.appendChild(t);
+        a.appendChild(com);
         a.appendChild(c);
         a.addEventListener('click', (e) => {
           e.preventDefault();
@@ -621,7 +762,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     function renderBloques() {
       const wrap = document.getElementById('edBloques');
       wrap.replaceChildren();
+      zonasCom.clear();
       formulario.bloques.forEach((bl, i) => wrap.appendChild(renderBloque(bl, i)));
+      refrescarIndicadores();
     }
 
     function renderBloque(bl, indice) {
@@ -694,6 +837,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               marcarSucio();
               pintarFichas();
               actualizarNav();
+              reindexarComentarios(bl.id, i + 1);
               enfocar('.ed-ficha-add');
             });
             fs.appendChild(quitar);
@@ -758,6 +902,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           marcarSucio();
           pintarFichas();
           actualizarNav();
+          refrescarIndicadores();
           enfocar('.ed-ficha:last-of-type textarea, .ed-ficha:last-of-type input, .ed-ficha:last-of-type select');
         });
         cont.appendChild(add);
@@ -768,49 +913,612 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
 
     let seq = 0;
-    // Una pregunta es su campo más, si lo hay, el comentario de revisión que
-    // dejó Claude Code o una compañera (clave: id o "bloque[n].id" en fichas).
+    // Una pregunta es su campo más su zona de comentarios (clave: id de la
+    // pregunta o "bloque[n].id" en las fichas repetidas).
     function renderPregunta(p, valores, numero, clave) {
       const wrap = renderCampo(p, valores, numero);
-      const texto = clave && actual.comentarios?.[clave];
-      if (typeof texto === 'string' && texto.trim()) {
-        const com = document.createElement('div');
-        com.className = 'ed-comentario';
-        const cab = document.createElement('div');
-        cab.className = 'ed-comentario-cab';
-        const t = document.createElement('span');
-        t.textContent = 'Comentario de revisión';
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'tc-btn';
-        btn.textContent = 'Resuelto';
-        btn.addEventListener('click', () => resolverComentario(clave, com, btn));
-        cab.appendChild(t);
-        cab.appendChild(btn);
-        const cuerpo = document.createElement('p');
-        cuerpo.textContent = texto;
-        com.appendChild(cab);
-        com.appendChild(cuerpo);
-        wrap.appendChild(com);
-      }
+      if (clave) wrap.appendChild(zonaComentarios(clave, p, wrap.querySelector('textarea')));
       return wrap;
     }
 
-    async function resolverComentario(clave, nodo, btn) {
-      btn.disabled = true;
-      const comentarios = { ...actual.comentarios };
-      delete comentarios[clave];
+    // ── Comentarios ───────────────────────────────────────────
+    async function cargarComentarios() {
+      if (!actual) return;
+      const id = actual.id;
       const { data, error } = await supabase
-        .from('borradores')
-        .update({ comentarios })
-        .eq('id', actual.id)
-        .select('updated_at');
-      btn.disabled = false;
-      if (error) return aviso('No se pudo marcar el comentario: ' + error.message, 'edAlert');
-      actual.comentarios = comentarios;
-      // El trigger cambia updated_at: se toma el nuevo para no provocar un conflicto
-      if (data?.[0]) ultimoUpdatedAt = data[0].updated_at;
-      nodo.remove();
+        .from('borrador_comentarios')
+        .select('*')
+        .eq('borrador_id', id)
+        .order('created_at');
+      if (!actual || actual.id !== id) return;
+      if (error) {
+        // Sin la migración aplicada el editor sigue igual, sin comentarios
+        comentariosOk = false;
+        document.getElementById('editorView').classList.add('sin-comentarios');
+        console.warn('Comentarios no disponibles:', error.message);
+        return;
+      }
+      comentariosOk = true;
+      document.getElementById('editorView').classList.remove('sin-comentarios');
+      comentarios = data ?? [];
+      pintarComentarios();
+    }
+
+    const hilosDe = (filtro) => comentarios
+      .filter((c) => !c.padre_id && filtro(c))
+      .map((c) => ({ ...c, respuestas: comentarios.filter((r) => r.padre_id === c.id) }));
+    const puedeBorrar = (c) => soyAdmin || c.autor === miEmail;
+    const plural = (n, uno, varios) => `${n} ${n === 1 ? uno : varios}`;
+
+    // Repinta las listas de comentarios sin tocar los campos de respuesta ni
+    // el formulario de comentario nuevo. Si alguien estaba escribiendo una
+    // respuesta a un hilo, se le devuelve el foco donde lo tenía.
+    function pintarComentarios() {
+      if (!actual || !formulario) return;
+      const foco = document.activeElement;
+      const focoResp = foco?.dataset?.resp ?? null;
+      const ini = focoResp ? foco.selectionStart : 0;
+      const fin = focoResp ? foco.selectionEnd : 0;
+      for (const [clave, zona] of zonasCom) {
+        if (!zona.lista.isConnected) { zonasCom.delete(clave); continue; }
+        pintarLista(zona.lista, hilosDe((c) => c.clave === clave), zona.textarea, clave, false);
+      }
+      const huerfanos = hilosDe((c) => !zonasCom.has(c.clave));
+      pintarLista(document.getElementById('edHuerfanosLista'), huerfanos, null, '_huerfanos', true);
+      document.getElementById('edHuerfanos').style.display = huerfanos.length ? 'block' : 'none';
+      refrescarIndicadores();
+      if (focoResp) {
+        const ta = document.querySelector(`textarea[data-resp="${focoResp}"]`);
+        if (ta) { ta.focus({ preventScroll: true }); ta.setSelectionRange(ini, fin); }
+      }
+    }
+
+    function pintarLista(cont, hilos, textarea, clave, mostrarDonde) {
+      cont.replaceChildren();
+      const abiertos = hilos.filter((h) => !h.resuelto);
+      const resueltos = hilos.filter((h) => h.resuelto);
+      abiertos.forEach((h) => cont.appendChild(renderHilo(h, textarea, mostrarDonde)));
+      if (!resueltos.length) return;
+      const ver = resueltosVisibles.has(clave);
+      const t = document.createElement('button');
+      t.type = 'button';
+      t.className = 'ed-com-link';
+      t.setAttribute('aria-expanded', String(ver));
+      t.textContent = ver ? 'Ocultar resueltos' : `Ver ${plural(resueltos.length, 'comentario resuelto', 'comentarios resueltos')}`;
+      t.addEventListener('click', () => {
+        if (ver) resueltosVisibles.delete(clave); else resueltosVisibles.add(clave);
+        pintarComentarios();
+      });
+      cont.appendChild(t);
+      if (ver) resueltos.forEach((h) => cont.appendChild(renderHilo(h, textarea, mostrarDonde)));
+    }
+
+    function cabeceraComentario(c) {
+      const cab = document.createElement('div');
+      cab.className = 'ed-com-cab';
+      const quien = document.createElement('strong');
+      quien.textContent = c.origen === 'claude-code' ? 'Claude Code' : nombreDe(c.autor);
+      cab.appendChild(quien);
+      const cuando = document.createElement('span');
+      cuando.textContent = c.origen === 'claude-code'
+        ? `${hace(c.created_at)}, lanzado por ${nombreDe(c.autor)}`
+        : hace(c.created_at);
+      cuando.title = new Date(c.created_at).toLocaleString('es-ES');
+      cab.appendChild(cuando);
+      return cab;
+    }
+
+    function botonMini(texto, onClick, clase = 'ed-com-link') {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = clase;
+      b.textContent = texto;
+      b.addEventListener('click', onClick);
+      return b;
+    }
+
+    // Lleva la vista a un fragmento dentro de una respuesta y lo selecciona.
+    // El textarea crece con el texto, así que se calcula a qué altura cae.
+    function senalarEnTexto(ta, cita) {
+      const i = ta.value.indexOf(cita);
+      if (i < 0) return false;
+      const r = ta.getBoundingClientRect();
+      const y = window.scrollY + r.top + r.height * (i / Math.max(1, ta.value.length)) - window.innerHeight / 2;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      ta.focus({ preventScroll: true });
+      ta.setSelectionRange(i, i + cita.length);
+      return true;
+    }
+
+    function renderHilo(h, textarea, mostrarDonde) {
+      const art = document.createElement('article');
+      art.className = 'ed-com' + (h.resuelto ? ' is-resuelto' : '');
+      art.id = `com-${h.id}`;
+      art.tabIndex = -1;
+      if (mostrarDonde) {
+        const donde = document.createElement('p');
+        donde.className = 'ed-com-donde';
+        donde.textContent = etiquetaClave(h.clave, formulario) + (h.clave.endsWith('~quitada') ? ' (ficha quitada)' : '');
+        art.appendChild(donde);
+      }
+      art.appendChild(cabeceraComentario(h));
+      if (h.cita) {
+        const q = document.createElement('blockquote');
+        q.className = 'ed-com-cita';
+        q.textContent = h.cita;
+        art.appendChild(q);
+        if (textarea && !h.resuelto) {
+          const sigue = textarea.value.includes(h.cita);
+          const b = botonMini(sigue ? 'Señalar en la respuesta' : 'Ese fragmento ya ha cambiado', () => {
+            if (!senalarEnTexto(textarea, h.cita)) { b.textContent = 'Ese fragmento ya ha cambiado'; b.disabled = true; }
+          });
+          b.disabled = !sigue;
+          art.appendChild(b);
+        }
+      }
+      const p = document.createElement('p');
+      p.className = 'ed-com-texto';
+      p.textContent = h.texto;
+      art.appendChild(p);
+
+      h.respuestas.forEach((r) => {
+        const d = document.createElement('div');
+        d.className = 'ed-com-resp';
+        d.appendChild(cabeceraComentario(r));
+        const pr = document.createElement('p');
+        pr.className = 'ed-com-texto';
+        pr.textContent = r.texto;
+        d.appendChild(pr);
+        if (puedeBorrar(r)) d.appendChild(botonMini('Borrar', () => borrarComentario(r)));
+        art.appendChild(d);
+      });
+
+      if (h.resuelto) {
+        const res = document.createElement('p');
+        res.className = 'ed-com-estado';
+        res.textContent = `Resuelto por ${nombreDe(h.resuelto_por)} ${hace(h.resuelto_at)}`;
+        art.appendChild(res);
+      }
+
+      const acc = document.createElement('div');
+      acc.className = 'ed-com-acc';
+      if (!h.resuelto && !respondiendo.has(h.id)) {
+        acc.appendChild(botonMini('Responder', () => {
+          respondiendo.set(h.id, '');
+          pintarComentarios();
+          document.querySelector(`textarea[data-resp="${h.id}"]`)?.focus();
+        }));
+      }
+      acc.appendChild(botonMini(h.resuelto ? 'Reabrir' : 'Marcar como resuelto', () => cambiarResuelto(h), h.resuelto ? 'tc-btn' : 'tc-btn is-avanzar'));
+      if (puedeBorrar(h)) acc.appendChild(botonMini('Borrar', () => borrarComentario(h)));
+      art.appendChild(acc);
+
+      if (respondiendo.has(h.id)) {
+        const f = document.createElement('form');
+        f.className = 'ed-com-form';
+        const ta = document.createElement('textarea');
+        ta.rows = 2;
+        ta.dataset.resp = h.id;
+        ta.value = respondiendo.get(h.id);
+        ta.setAttribute('aria-label', 'Respuesta al comentario');
+        ta.placeholder = 'Hecho, lo he cambiado así… / No lo veo porque…';
+        ta.addEventListener('input', () => respondiendo.set(h.id, ta.value));
+        const cancelar = () => { respondiendo.delete(h.id); pintarComentarios(); };
+        ta.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !ta.value.trim()) cancelar();
+          if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) f.requestSubmit();
+        });
+        const pie = document.createElement('div');
+        pie.className = 'ed-com-form-pie';
+        pie.appendChild(botonMini('Cancelar', cancelar, 'tc-btn'));
+        const enviar = document.createElement('button');
+        enviar.type = 'submit';
+        enviar.className = 'tc-btn is-avanzar';
+        enviar.textContent = 'Responder';
+        pie.appendChild(enviar);
+        f.appendChild(ta);
+        f.appendChild(pie);
+        f.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const texto = ta.value.trim();
+          if (!texto) return ta.focus();
+          enviar.disabled = true;
+          const ok = await publicarComentario({ clave: h.clave, texto, padre_id: h.id });
+          enviar.disabled = false;
+          if (ok) { respondiendo.delete(h.id); pintarComentarios(); }
+        });
+        art.appendChild(f);
+      }
+      return art;
+    }
+
+    // Zona de comentarios de una pregunta: la lista de hilos y el botón para
+    // abrir uno nuevo. Si hay un trozo de la respuesta seleccionado al pulsar
+    // "Comentar", queda citado en el comentario.
+    function zonaComentarios(clave, p, textarea) {
+      const zona = document.createElement('div');
+      zona.className = 'ed-coms';
+      const lista = document.createElement('div');
+      lista.className = 'ed-coms-lista';
+      zona.appendChild(lista);
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'ed-com-nuevo';
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg>';
+      btn.appendChild(document.createTextNode(' Comentar'));
+      btn.setAttribute('aria-label', `Comentar la pregunta: ${p.texto.slice(0, 80)}`);
+      zona.appendChild(btn);
+
+      const form = document.createElement('form');
+      form.className = 'ed-com-form';
+      form.hidden = true;
+      const citaBox = document.createElement('div');
+      citaBox.className = 'ed-com-cita-prev';
+      citaBox.hidden = true;
+      const citaTxt = document.createElement('blockquote');
+      citaTxt.className = 'ed-com-cita';
+      citaBox.appendChild(citaTxt);
+      const ta = document.createElement('textarea');
+      ta.rows = 3;
+      ta.setAttribute('aria-label', `Comentario sobre: ${p.texto.slice(0, 80)}`);
+      ta.placeholder = textarea
+        ? 'Qué cambiarías y por qué. Truco: selecciona antes un trozo de la respuesta y quedará citado.'
+        : 'Qué cambiarías y por qué.';
+      const pie = document.createElement('div');
+      pie.className = 'ed-com-form-pie';
+      const enviar = document.createElement('button');
+      enviar.type = 'submit';
+      enviar.className = 'tc-btn is-avanzar';
+      enviar.textContent = 'Publicar comentario';
+      form.appendChild(citaBox);
+      form.appendChild(ta);
+      form.appendChild(pie);
+      zona.appendChild(form);
+
+      let cita = '';
+      const cerrar = () => {
+        form.hidden = true;
+        btn.hidden = false;
+        ta.value = '';
+        cita = '';
+        citaBox.hidden = true;
+      };
+      const quitarCita = botonMini('Quitar la cita', () => { cita = ''; citaBox.hidden = true; ta.focus(); });
+      citaBox.appendChild(quitarCita);
+      pie.appendChild(botonMini('Cancelar', () => {
+        if (ta.value.trim() && !confirm('¿Descartar el comentario sin publicarlo?')) return;
+        cerrar();
+        btn.focus();
+      }, 'tc-btn'));
+      pie.appendChild(enviar);
+
+      btn.addEventListener('click', () => {
+        // La selección del textarea se conserva aunque el foco pase al botón
+        cita = textarea ? textarea.value.slice(textarea.selectionStart, textarea.selectionEnd).trim().slice(0, 400) : '';
+        citaTxt.textContent = cita;
+        citaBox.hidden = !cita;
+        form.hidden = false;
+        btn.hidden = true;
+        ta.focus();
+      });
+      ta.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !ta.value.trim()) { cerrar(); btn.focus(); }
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) form.requestSubmit();
+      });
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const texto = ta.value.trim();
+        if (!texto) return ta.focus();
+        enviar.disabled = true;
+        const ok = await publicarComentario({ clave, texto, cita: cita || null });
+        enviar.disabled = false;
+        if (ok) cerrar();
+      });
+
+      zonasCom.set(clave, { lista, textarea });
+      pintarLista(lista, hilosDe((c) => c.clave === clave), textarea, clave, false);
+      return zona;
+    }
+
+    async function publicarComentario(fila) {
+      if (!actual) return false;
+      const id = actual.id;
+      const { data, error } = await supabase
+        .from('borrador_comentarios')
+        .insert({ borrador_id: id, ...fila })
+        .select()
+        .single();
+      if (error) {
+        aviso('No se pudo publicar el comentario: ' + error.message, 'edAlert');
+        return false;
+      }
+      if (actual?.id === id) comentarios.push(data);
+      pintarComentarios();
+      return true;
+    }
+
+    async function cambiarResuelto(c) {
+      const { data, error } = await supabase
+        .from('borrador_comentarios')
+        .update({ resuelto: !c.resuelto })
+        .eq('id', c.id)
+        .select()
+        .single();
+      if (error) return aviso('No se pudo cambiar el comentario: ' + error.message, 'edAlert');
+      comentarios = comentarios.map((x) => (x.id === data.id ? data : x));
+      pintarComentarios();
+    }
+
+    async function borrarComentario(c) {
+      const conRespuestas = comentarios.some((x) => x.padre_id === c.id);
+      const msg = c.padre_id
+        ? '¿Borrar esta respuesta?'
+        : `¿Borrar este comentario${conRespuestas ? ' y sus respuestas' : ''}? Si ya está atendido es mejor marcarlo como resuelto, así queda constancia.`;
+      if (!confirm(msg)) return;
+      const { error } = await supabase.from('borrador_comentarios').delete().eq('id', c.id);
+      if (error) return aviso('No se pudo borrar el comentario: ' + error.message, 'edAlert');
+      comentarios = comentarios.filter((x) => x.id !== c.id && x.padre_id !== c.id);
+      pintarComentarios();
+    }
+
+    // Al quitar la ficha n de un bloque, las de detrás se renumeran: sus
+    // comentarios las siguen, y los de la ficha quitada pasan a "Otros
+    // comentarios" en vez de caer en la ficha que ocupa su lugar.
+    async function reindexarComentarios(blId, quitada) {
+      if (!comentariosOk) return;
+      const cambios = [];
+      comentarios.forEach((c) => {
+        if (c.clave.endsWith('~quitada')) return;
+        const { bloque, ficha, pregunta } = partirClave(c.clave);
+        if (bloque !== blId) return;
+        if (ficha === quitada) cambios.push([c, `${c.clave}~quitada`]);
+        else if (ficha > quitada) cambios.push([c, `${blId}[${ficha - 1}].${pregunta}`]);
+      });
+      if (!cambios.length) { pintarComentarios(); return; }
+      // Primero en pantalla, para que ningún comentario se vea en la ficha
+      // equivocada mientras responde el servidor
+      cambios.forEach(([c, clave]) => { c.clave = clave; });
+      pintarComentarios();
+      for (const [c, clave] of cambios) {
+        const { error } = await supabase.from('borrador_comentarios').update({ clave }).eq('id', c.id);
+        if (error) {
+          aviso('No se pudieron mover los comentarios de la ficha quitada. Recarga la página para verlos donde estaban: ' + error.message, 'edAlert');
+          break;
+        }
+      }
+    }
+
+    function perteneceA(clave, bl) {
+      if (clave.endsWith('~quitada')) return false;
+      const { bloque, pregunta } = partirClave(clave);
+      return bl.repetible ? bloque === bl.id : (!bloque && bl.preguntas.some((p) => p.id === pregunta));
+    }
+
+    // Contadores de comentarios abiertos en el índice y en la barra fija
+    function refrescarIndicadores() {
+      if (!actual || !formulario) return;
+      const abiertos = comentarios.filter((c) => !c.padre_id && !c.resuelto);
+      formulario.bloques.forEach((bl) => {
+        const el = document.querySelector(`.ed-nav-link[data-bloque="${bl.id}"] .ed-nav-com`);
+        if (!el) return;
+        const n = abiertos.filter((c) => perteneceA(c.clave, bl)).length;
+        el.textContent = n ? String(n) : '';
+        el.title = n ? plural(n, 'comentario sin resolver', 'comentarios sin resolver') : '';
+      });
+      const btn = document.getElementById('edComBtn');
+      btn.style.display = abiertos.length ? '' : 'none';
+      btn.textContent = plural(abiertos.length, 'comentario abierto', 'comentarios abiertos');
+    }
+
+    // Salta al siguiente comentario abierto por debajo de la vista; al
+    // llegar al último vuelve al primero.
+    function irAlSiguienteComentario() {
+      const arts = [...document.querySelectorAll('#editorView .ed-com:not(.is-resuelto)')];
+      if (!arts.length) return;
+      const raiz = getComputedStyle(document.documentElement);
+      const fijo = (parseFloat(raiz.getPropertyValue('--portal-h')) || 61) + (parseFloat(raiz.getPropertyValue('--ed-top-h')) || 53);
+      const centro = window.innerHeight / 2;
+      const sig = arts.find((a) => a.getBoundingClientRect().top > Math.max(fijo, centro) + 4) ?? arts[0];
+      sig.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      sig.focus({ preventScroll: true });
+    }
+
+    // ── Historial de versiones ────────────────────────────────
+    const MOTIVOS = {
+      automatica: 'Copia automática',
+      manual: 'Versión guardada',
+      borrado: 'Antes de borrarse',
+      inicial: 'Copia inicial',
+    };
+    const fechaCorta = (iso) => new Date(iso).toLocaleString('es-ES', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+
+    function avisoHis(msg) { aviso(msg, 'hisMsg'); }
+
+    function montarHistorial() {
+      const dlg = document.getElementById('hisDialog');
+      document.getElementById('edHistorial').addEventListener('click', () => {
+        dlg.showModal();
+        cargarVersiones();
+      });
+      document.getElementById('hisCerrar').addEventListener('click', () => dlg.close());
+      // Clic en el fondo oscuro: cierra
+      dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+      document.getElementById('hisForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('hisGuardar');
+        const inp = document.getElementById('hisEtiqueta');
+        btn.disabled = true;
+        const ok = await guardarVersion(inp.value);
+        btn.disabled = false;
+        if (ok) {
+          inp.value = '';
+          avisoHis('Versión guardada.');
+          cargarVersiones();
+        }
+      });
+    }
+
+    // Se guarda primero lo pendiente para que la copia lleve lo último
+    async function guardarVersion(etiqueta) {
+      if (!actual) return false;
+      if (enConflicto) { avisoHis('Antes hay que resolver el conflicto de guardado (mira el aviso de arriba).'); return false; }
+      if (sucio) await guardar();
+      if (sucio) await guardar();
+      if (sucio) { avisoHis('No se pudo guardar lo último que has escrito. Inténtalo otra vez.'); return false; }
+      const { error } = await supabase.rpc('guardar_version_borrador', { p_id: actual.id, p_etiqueta: etiqueta?.trim() || null });
+      if (error) { avisoHis('No se pudo guardar la versión: ' + error.message); return false; }
+      return true;
+    }
+
+    async function cargarVersiones() {
+      const ul = document.getElementById('hisLista');
+      const det = document.getElementById('hisDetalle');
+      det.replaceChildren();
+      ul.replaceChildren();
+      const cargando = document.createElement('li');
+      cargando.className = 'his-vacio';
+      cargando.textContent = 'Cargando…';
+      ul.appendChild(cargando);
+      const id = actual.id;
+      const { data, error } = await supabase
+        .from('borrador_versiones')
+        .select('id, motivo, etiqueta, editado_por, guardado_at, creado_por, created_at')
+        .eq('borrador_id', id)
+        .order('created_at', { ascending: false })
+        .limit(200);
+      if (!actual || actual.id !== id) return;
+      ul.replaceChildren();
+      if (error || !data?.length) {
+        const li = document.createElement('li');
+        li.className = 'his-vacio';
+        li.textContent = error ? 'No se pudo cargar el historial: ' + error.message : 'Todavía no hay copias. La primera se hace sola al guardar un cambio.';
+        ul.appendChild(li);
+        return;
+      }
+      data.forEach((v) => {
+        const li = document.createElement('li');
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'his-item';
+        const f = document.createElement('strong');
+        f.textContent = fechaCorta(v.guardado_at ?? v.created_at);
+        const m = document.createElement('span');
+        m.textContent = v.etiqueta || MOTIVOS[v.motivo] || v.motivo;
+        const q = document.createElement('span');
+        q.className = 'his-quien';
+        q.textContent = v.editado_por ? `Lo último lo escribió ${nombreDe(v.editado_por)}` : '';
+        b.appendChild(f);
+        b.appendChild(m);
+        b.appendChild(q);
+        b.addEventListener('click', () => {
+          ul.querySelectorAll('.his-item').forEach((x) => x.classList.toggle('is-sel', x === b));
+          verVersion(v);
+        });
+        li.appendChild(b);
+        ul.appendChild(li);
+      });
+    }
+
+    const resumenValor = (v) => (v === undefined ? '' : Array.isArray(v) ? v.join(', ') : String(v));
+
+    async function verVersion(v) {
+      const det = document.getElementById('hisDetalle');
+      det.replaceChildren();
+      const cargando = document.createElement('p');
+      cargando.className = 'his-vacio';
+      cargando.textContent = 'Cargando…';
+      det.appendChild(cargando);
+      const { data, error } = await supabase.from('borrador_versiones').select('respuestas').eq('id', v.id).single();
+      if (!actual) return;
+      det.replaceChildren();
+      if (error) { avisoHis('No se pudo leer la copia: ' + error.message); return; }
+
+      const antes = respuestasDe({ respuestas: data.respuestas });
+      const deV = new Map(aplanar(antes, formulario).map((x) => [x.clave, x]));
+      const deA = new Map(aplanar(actual.respuestas, formulario).map((x) => [x.clave, x]));
+      const claves = [...deV.keys(), ...[...deA.keys()].filter((k) => !deV.has(k))];
+      const distintas = claves.filter((k) => JSON.stringify(deV.get(k)?.valor) !== JSON.stringify(deA.get(k)?.valor));
+
+      const h = document.createElement('h3');
+      h.className = 'his-det-titulo';
+      h.textContent = `${v.etiqueta || MOTIVOS[v.motivo] || 'Copia'} del ${fechaCorta(v.guardado_at ?? v.created_at)}`;
+      det.appendChild(h);
+      const res = document.createElement('p');
+      res.className = 'rd-hint';
+      res.textContent = distintas.length
+        ? `${plural(distintas.length, 'respuesta es distinta', 'respuestas son distintas')} de lo que hay ahora. Puedes recuperar solo las que quieras.`
+        : 'Las respuestas son iguales a las de ahora.';
+      det.appendChild(res);
+
+      const acc = document.createElement('div');
+      acc.className = 'his-det-acc';
+      acc.appendChild(botonMini('Descargar esta copia en .md', () => {
+        descargarMd(aMarkdown({ titulo: `${actual.titulo} (copia del ${fechaCorta(v.guardado_at ?? v.created_at)})`, respuestas: antes }, formulario),
+          `${slug(actual.titulo)}-copia-${v.id}.md`);
+      }, 'btn-ghost'));
+      if (distintas.length > 1) acc.appendChild(botonMini(`Recuperar las ${distintas.length}`, () => recuperar(v, deV, distintas), 'btn-ghost'));
+      det.appendChild(acc);
+
+      distintas.forEach((k) => {
+        const vieja = deV.get(k)?.valor;
+        const nueva = deA.get(k)?.valor;
+        const fila = document.createElement('div');
+        fila.className = 'his-dif';
+        const cab = document.createElement('div');
+        cab.className = 'his-dif-cab';
+        const t = document.createElement('strong');
+        t.textContent = etiquetaClave(k, formulario);
+        const n = document.createElement('span');
+        const cv = contar(resumenValor(vieja)), ca = contar(resumenValor(nueva));
+        n.textContent = vieja === undefined ? 'En la copia estaba vacía'
+          : nueva === undefined ? `${cv.toLocaleString('es-ES')} caracteres en la copia, ahora vacía`
+          : `${cv.toLocaleString('es-ES')} caracteres en la copia, ${ca.toLocaleString('es-ES')} ahora`;
+        cab.appendChild(t);
+        cab.appendChild(n);
+        fila.appendChild(cab);
+        const pre = document.createElement('pre');
+        pre.className = 'his-dif-texto';
+        pre.hidden = true;
+        pre.textContent = resumenValor(vieja) || '(vacía)';
+        const ver = botonMini('Ver cómo estaba', () => {
+          pre.hidden = !pre.hidden;
+          ver.textContent = pre.hidden ? 'Ver cómo estaba' : 'Ocultar';
+        });
+        const bts = document.createElement('div');
+        bts.className = 'his-dif-acc';
+        bts.appendChild(ver);
+        bts.appendChild(botonMini('Recuperar esta respuesta', () => recuperar(v, deV, [k]), 'tc-btn is-avanzar'));
+        fila.appendChild(bts);
+        fila.appendChild(pre);
+        det.appendChild(fila);
+      });
+    }
+
+    // Pone en el borrador las respuestas elegidas de una copia. Antes guarda
+    // una versión con lo que hay ahora, así recuperar también se deshace.
+    async function recuperar(v, deV, claves) {
+      const n = claves.length;
+      const msg = n === 1
+        ? 'Se sustituye esta respuesta por la de la copia. Lo que hay ahora se guarda antes en el historial. ¿Seguir?'
+        : `Se sustituyen ${n} respuestas por las de la copia. Lo que hay ahora se guarda antes en el historial. ¿Seguir?`;
+      if (!confirm(msg)) return;
+      if (!(await guardarVersion('Antes de recuperar una copia'))) return;
+      claves.forEach((k) => {
+        const val = deV.get(k)?.valor;
+        ponerValor(actual.respuestas, k, val === undefined ? undefined : structuredClone(val));
+      });
+      const y = window.scrollY;
+      bloqueActivo = null;
+      renderNav();
+      renderBloques();
+      pintarComentarios();
+      window.scrollTo(0, y);
+      seguirScroll();
+      marcarSucio();
+      await guardar();
+      avisoHis(n === 1 ? 'Respuesta recuperada.' : `${n} respuestas recuperadas.`);
+      await cargarVersiones();
     }
 
     function renderCampo(p, valores, numero) {
@@ -890,6 +1598,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         wrap.appendChild(fila);
         describe.push(fila.id);
         ta.setAttribute('aria-describedby', describe.join(' '));
+
+        // Avisos de estilo de la skill (guiones largos, corchetes por
+        // completar, OID o PIC…). Solo informan; no bloquean nada.
+        const avisos = document.createElement('p');
+        avisos.className = 'ed-avisos';
+        avisos.hidden = true;
+        wrap.appendChild(avisos);
+        let timerAvisos = null;
+        const pintarAvisos = () => {
+          const lista = avisosRedaccion(ta.value, actual?.respuestas?.idioma ?? 'es');
+          avisos.hidden = lista.length === 0;
+          avisos.textContent = lista.length ? `Revisar: ${lista.map((a) => a.texto).join(' · ')}` : '';
+        };
+        ta.addEventListener('input', () => {
+          if (timerAvisos) clearTimeout(timerAvisos);
+          timerAvisos = setTimeout(pintarAvisos, 400);
+        });
+        pintarAvisos();
 
         const pintar = () => {
           const n = contar(ta.value);
@@ -1163,7 +1889,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         pintarGuardado('Conflicto', 'is-error');
         document.getElementById('edGuardar').textContent = 'Sobrescribir';
         if (fila.sesion === 'claude-code') {
-          aviso(`Claude Code ha actualizado este borrador ${hace(fila.updated_at)} (comentarios, notas o respuestas). Descarga tus cambios con "Descargar .md" por si acaso y recarga la página para verlos.`, 'edAlert', true);
+          aviso(`Claude Code ha actualizado este borrador ${hace(fila.updated_at)} (notas, estado o respuestas; lo anterior queda en Historial). Descarga tus cambios con "Descargar .md" por si acaso y recarga la página para verlos.`, 'edAlert', true);
           return;
         }
         const quien = fila.editado_por === miEmail
@@ -1198,11 +1924,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     }
 
     function descargar() {
-      const md = aMarkdown(actual, formulario);
+      descargarMd(aMarkdown(actual, formulario), `${slug(actual.titulo)}-${formulario.accion.toLowerCase()}.md`);
+    }
+
+    function descargarMd(md, nombre) {
       const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `${slug(actual.titulo)}-${formulario.accion.toLowerCase()}.md`;
+      a.download = nombre;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -1454,17 +2183,117 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     .ed-otra { display: flex; gap: .4rem; align-items: center; margin-top: .2rem; }
     .ed-otra input { flex: 1; max-width: 360px; font-size: .86rem; padding: .4rem .7rem; }
 
-    .ed-comentario {
-      margin-top: .4rem; padding: .6rem .85rem;
+    /* Avisos de estilo bajo cada respuesta */
+    .ed-avisos {
+      font-size: .76rem; color: #92400e; line-height: 1.45;
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: .35rem .65rem;
+    }
+
+    /* Comentarios por pregunta */
+    .sin-comentarios .ed-coms, .sin-comentarios #edHistorial { display: none; }
+    .ed-coms { display: flex; flex-direction: column; gap: .5rem; }
+    .ed-coms-lista { display: flex; flex-direction: column; gap: .5rem; }
+    .ed-coms-lista:empty { display: none; }
+    .ed-com-nuevo {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: .3rem;
+      font-family: inherit; font-size: .74rem; font-weight: 600; color: #6b7280;
+      background: none; border: 1px dashed #d1d5db; border-radius: 999px; padding: .2rem .65rem;
+      cursor: pointer; transition: color .15s, border-color .15s, background .15s;
+    }
+    .ed-com-nuevo:hover { color: #b45309; border-color: #f59e0b; background: #fffbeb; }
+    .ed-com {
+      padding: .65rem .85rem; display: flex; flex-direction: column; gap: .35rem;
       background: #fff7ed; border: 1px solid #fed7aa; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;
-      font-size: .84rem; color: #374151; line-height: 1.5;
+      font-size: .85rem; color: #374151; line-height: 1.5;
+      scroll-margin-top: calc(var(--portal-h, 61px) + var(--ed-top-h, 53px) + 16px);
     }
-    .ed-comentario-cab {
-      display: flex; align-items: center; justify-content: space-between; gap: .5rem;
-      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #b45309;
-      margin-bottom: .3rem;
+    .ed-com:focus { outline: none; }
+    .ed-com:focus-visible { outline: 2px solid #f59e0b; outline-offset: 2px; }
+    .ed-com.is-resuelto { background: #f9fafb; border-color: #e5e7eb; border-left-color: #9ca3af; color: #6b7280; }
+    .ed-com-donde { font-size: .74rem; font-weight: 700; color: #0f766e; }
+    .ed-com-cab { display: flex; align-items: baseline; flex-wrap: wrap; gap: .45rem; font-size: .76rem; color: #6b7280; }
+    .ed-com-cab strong { color: #0a1628; font-size: .8rem; }
+    .ed-com-texto { white-space: pre-line; overflow-wrap: anywhere; }
+    .ed-com-cita {
+      margin: 0; padding: .3rem .6rem; border-left: 2px solid #d1d5db;
+      font-size: .8rem; color: #4b5563; font-style: italic; white-space: pre-line; overflow-wrap: anywhere;
+      max-height: 6.5em; overflow: hidden;
     }
-    .ed-comentario p { white-space: pre-line; }
+    .ed-com-resp { margin-left: .9rem; padding: .35rem 0 .1rem .7rem; border-left: 2px solid #fed7aa; display: flex; flex-direction: column; gap: .2rem; }
+    .ed-com-resp > .ed-com-link { align-self: flex-start; }
+    .ed-com-estado { font-size: .74rem; font-weight: 600; color: #15803d; }
+    .ed-com-acc { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .1rem; }
+    .ed-com-link {
+      align-self: flex-start; font-family: inherit; font-size: .74rem; font-weight: 600;
+      background: none; border: none; padding: 0; color: #0f766e; cursor: pointer; text-decoration: underline; text-underline-offset: 2px;
+    }
+    .ed-com-link:hover { color: #0a1628; }
+    .ed-com-link:disabled { color: #9ca3af; cursor: default; text-decoration: none; }
+    .ed-com-form { display: flex; flex-direction: column; gap: .4rem; }
+    .ed-com-form textarea {
+      width: 100%; padding: .5rem .7rem; border: 1.5px solid #fed7aa; border-radius: 8px; background: #fff;
+      font-family: inherit; font-size: .88rem; color: #0a1628; outline: none; resize: vertical; line-height: 1.45;
+    }
+    .ed-com-form textarea:focus { border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245,158,11,.15); }
+    .ed-com-form-pie { display: flex; justify-content: flex-end; gap: .4rem; }
+    .ed-com-cita-prev { display: flex; flex-direction: column; gap: .2rem; }
+    .ed-com-cita-prev[hidden], .ed-com-nuevo[hidden], .ed-com-form[hidden], .ed-avisos[hidden], .his-dif-texto[hidden] { display: none; }
+    .ed-com-ir { border-color: #f59e0b; color: #b45309; background: #fffbeb; }
+    .ed-com-ir:hover { border-color: #b45309; color: #92400e; }
+    .ed-nav-com {
+      flex-shrink: 0; font-size: .66rem; font-weight: 700; color: #92400e;
+      background: #fef3c7; border: 1px solid #fcd34d; border-radius: 999px; padding: .05rem .4rem;
+    }
+    .ed-nav-com:empty { display: none; }
+    .bo-com { color: #b45309; }
+    .ed-huerfanos { margin-top: 1.5rem; background: #fff; border: 1px solid #eceae3; border-radius: 16px; padding: 1.2rem 1.5rem; }
+    #edHuerfanosLista { display: flex; flex-direction: column; gap: .5rem; margin-top: .75rem; }
+
+    /* Papelera */
+    .rd-papelera { margin-top: 2rem; padding: 1rem 1.2rem; border: 1px dashed #d1d5db; border-radius: 14px; }
+    .rd-papelera-titulo { font-size: .95rem; font-weight: 700; color: #374151; }
+    .rd-papelera-lista { list-style: none; margin: .6rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
+    .rd-papelera-lista li { display: flex; align-items: center; justify-content: space-between; gap: .75rem; font-size: .84rem; color: #374151; }
+
+    /* Historial */
+    .his {
+      width: min(960px, calc(100vw - 32px)); max-height: calc(100vh - 48px);
+      border: none; border-radius: 16px; padding: 1.25rem 1.5rem; color: #0a1628;
+      box-shadow: 0 20px 60px rgba(10,22,40,.25);
+    }
+    .his::backdrop { background: rgba(10,22,40,.45); }
+    .his-cab { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .his-intro { font-size: .82rem; color: #6b7280; line-height: 1.5; margin: .5rem 0 .8rem; }
+    .his-msg { background: #f0fdfa; color: #0f766e; border-color: #99f6e4; }
+    .his-manual { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .his-manual input {
+      flex: 1; min-width: 200px; padding: .45rem .75rem; border: 1.5px solid #e5e7eb; border-radius: 999px;
+      font-family: inherit; font-size: .85rem; outline: none;
+    }
+    .his-manual input:focus { border-color: #0d9488; }
+    .his-cuerpo { display: grid; grid-template-columns: 250px 1fr; gap: 1rem; align-items: start; }
+    .his-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .3rem; max-height: 60vh; overflow-y: auto; }
+    .his-item {
+      width: 100%; text-align: left; display: flex; flex-direction: column; gap: .1rem;
+      font-family: inherit; font-size: .8rem; color: #374151;
+      background: #faf9f5; border: 1px solid #eceae3; border-radius: 8px; padding: .45rem .65rem; cursor: pointer;
+    }
+    .his-item:hover { border-color: #0d9488; }
+    .his-item.is-sel { background: #f0fdfa; border-color: #0d9488; }
+    .his-item strong { font-size: .82rem; color: #0a1628; }
+    .his-quien { font-size: .72rem; color: #6b7280; }
+    .his-vacio { font-size: .84rem; color: #6b7280; padding: .5rem 0; }
+    .his-detalle { display: flex; flex-direction: column; gap: .6rem; min-width: 0; max-height: 60vh; overflow-y: auto; }
+    .his-det-titulo { font-size: 1rem; font-weight: 700; }
+    .his-det-acc { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .his-dif { border: 1px solid #eceae3; border-radius: 10px; padding: .6rem .8rem; display: flex; flex-direction: column; gap: .35rem; }
+    .his-dif-cab { display: flex; flex-direction: column; gap: .1rem; font-size: .8rem; color: #6b7280; }
+    .his-dif-cab strong { color: #0a1628; font-size: .84rem; }
+    .his-dif-acc { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+    .his-dif-texto {
+      margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-family: inherit; font-size: .82rem; line-height: 1.5;
+      background: #faf9f5; border-radius: 8px; padding: .6rem .75rem; max-height: 320px; overflow-y: auto;
+    }
 
     .ed-fichas { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1rem; }
     .ed-ficha {
@@ -1512,6 +2341,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       .ed-pregunta textarea, .ed-pregunta input, .ed-pregunta select, .ed-otra input,
       .ed-notas textarea, .rd-field input, .rd-field select, .ed-estado { font-size: 1rem; }
       .ed-ficha-quitar { position: static; display: inline-block; margin: .35rem 0 0; }
+      .ed-com-form textarea, .his-manual input { font-size: 1rem; }
+      .his { padding: 1rem; }
+      .his-cuerpo { grid-template-columns: 1fr; }
+      .his-lista { max-height: 30vh; }
+      .his-detalle { max-height: none; }
     }
   </style>
 </PortalLayout>

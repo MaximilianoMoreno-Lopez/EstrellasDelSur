@@ -63,6 +63,17 @@ portal (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`) y deja comentarios p
 pregunta que se ven en el editor; el uso está en la sección "Borradores de la web"
 de la skill.
 
+Comentarios e historial (`scripts/sql/2026-11-12-redaccion-comentarios-versiones.sql`):
+cada pregunta tiene un botón "Comentar" que guarda en la tabla `borrador_comentarios`
+(con autor, cita del fragmento seleccionado, respuestas y "resuelto"), aparte de las
+respuestas, así que comentar nunca toca el texto ni provoca conflictos de guardado.
+La tabla `borrador_versiones` la rellena un trigger del servidor antes de cada cambio
+(sesión nueva, cada 10 min o cambio grande) y antes de borrar un borrador; desde
+"Historial" se compara cualquier copia con lo actual y se recupera pregunta a pregunta.
+Las versiones no se editan ni se borran desde la web. Los avisos de estilo bajo cada
+respuesta (`avisosRedaccion` en `formularios.mjs`) son las comprobaciones baratas de
+`comprobacion_mecanica.py` de la skill; si cambia una, cambiar las dos.
+
 ## Facturas (/facturas/)
 Página interna (solo miembros de la tabla `equipo`) para hacer facturas y sacarlas en PDF
 con "Imprimir". Hay una sola serie (no hay notas de cargo). El HTML de la factura lo genera

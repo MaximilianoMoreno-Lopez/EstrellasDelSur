@@ -126,3 +126,105 @@ export function aMarkdown(borrador, formulario) {
   });
   return lineas.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
 }
+
+// ── Claves de pregunta ─────────────────────────────────────────────────
+// Cada respuesta se identifica con una clave: el id de la pregunta o, en las
+// fichas repetidas, "bloque[n].pregunta" con n desde 1. La usan los
+// comentarios y la comparación entre versiones.
+const RE_CLAVE_FICHA = /^(.+)\[(\d+)\]\.(.+)$/;
+
+export function partirClave(clave) {
+  const m = String(clave).match(RE_CLAVE_FICHA);
+  return m ? { bloque: m[1], ficha: Number(m[2]), pregunta: m[3] } : { bloque: null, ficha: null, pregunta: String(clave) };
+}
+
+// Lista plana { clave, bloque, indiceBloque, pregunta, numero, ficha, valor }
+// con todas las respuestas que tienen algo, en el orden del formulario.
+export function aplanar(respuestas, formulario) {
+  const campos = respuestas?.campos ?? {};
+  const repetidos = respuestas?.repetidos ?? {};
+  const out = [];
+  const lleno = (v) => v !== undefined && v !== null && v !== '' && !(Array.isArray(v) && v.length === 0);
+  formulario.bloques.forEach((b, ib) => {
+    if (b.repetible) {
+      (Array.isArray(repetidos[b.id]) ? repetidos[b.id] : []).forEach((ficha, i) => {
+        b.preguntas.forEach((p, k) => {
+          const v = ficha?.[p.id];
+          if (lleno(v)) out.push({ clave: `${b.id}[${i + 1}].${p.id}`, bloque: b, indiceBloque: ib, pregunta: p, numero: k + 1, ficha: i + 1, valor: v });
+        });
+      });
+    } else {
+      b.preguntas.forEach((p, k) => {
+        const v = campos[p.id];
+        if (lleno(v)) out.push({ clave: p.id, bloque: b, indiceBloque: ib, pregunta: p, numero: k + 1, ficha: null, valor: v });
+      });
+    }
+  });
+  return out;
+}
+
+// Pone (o quita, con undefined) el valor de una clave en unas respuestas.
+export function ponerValor(respuestas, clave, valor) {
+  const { bloque, ficha, pregunta } = partirClave(clave);
+  if (bloque) {
+    respuestas.repetidos ??= {};
+    const fichas = (respuestas.repetidos[bloque] ??= []);
+    while (fichas.length < ficha) fichas.push({});
+    if (valor === undefined) delete fichas[ficha - 1][pregunta];
+    else fichas[ficha - 1][pregunta] = valor;
+  } else {
+    respuestas.campos ??= {};
+    if (valor === undefined) delete respuestas.campos[pregunta];
+    else respuestas.campos[pregunta] = valor;
+  }
+}
+
+// Nombre legible de una clave: "3.2 Título del bloque" o con la ficha.
+export function etiquetaClave(clave, formulario) {
+  const limpia = String(clave).replace(/~quitada$/, '');
+  const { bloque, ficha, pregunta } = partirClave(limpia);
+  for (const [ib, b] of formulario.bloques.entries()) {
+    if (bloque && b.id !== bloque) continue;
+    const k = b.preguntas.findIndex((p) => p.id === pregunta);
+    if (k === -1) continue;
+    const ficha_ = ficha ? ` · ${b.etiquetaRepetible ?? 'Ficha'} ${ficha}` : '';
+    return `${ib + 1}.${k + 1} ${b.tituloEs ?? b.titulo}${ficha_}`;
+  }
+  return limpia;
+}
+
+// ── Avisos de redacción ────────────────────────────────────────────────
+// Las comprobaciones baratas de assets/comprobacion_mecanica.py de la skill
+// redaccion-proyectos, para verlas mientras se escribe. Son avisos, no
+// bloquean nada. Devuelve [{ id, texto, n }].
+const AVISOS = [
+  { id: 'guion', re: /[–—]/g, uno: 'guion largo', varios: 'guiones largos' },
+  { id: 'emoji', re: /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F1E6}-\u{1F1FF}]/gu, uno: 'emoji', varios: 'emojis' },
+  { id: 'marca', re: /\b(?:TODO|TBD|XXX|FIXME|LOREM)\b/g, uno: 'marca de edición olvidada (TODO, XXX…)', varios: 'marcas de edición olvidadas (TODO, XXX…)' },
+  { id: 'vacio', re: /\[\s*\]/g, uno: 'corchete vacío', varios: 'corchetes vacíos' },
+  { id: 'hueco', re: /\[[^\][\n]{2,80}\]/g, uno: 'dato entre corchetes por completar', varios: 'datos entre corchetes por completar' },
+  { id: 'espacios', re: /\S {2,}(?=\S)/g, uno: 'doble espacio', varios: 'dobles espacios' },
+  { id: 'admin', re: /\bE1\d{7}\b|\b(?:OID|PIC)\b\s*[:nº#]?\s*\d|\bno\s+(?:somos|es|son)\s+(?:un\s+)?organismo\s+p[uú]blico\b|\bnot\s+a\s+public\s+body\b/gi,
+    uno: 'dato administrativo que el formulario ya trae (OID, PIC, organismo público)', varios: 'datos administrativos que el formulario ya trae (OID, PIC, organismo público)' },
+  { id: 'idioma', re: /\bnivel(?:es)?\s+(?:de\s+)?(?:idioma|ingl[eé]s|lengua)\b|\b(?:english|language)\s+(?:level|proficiency|requirement)\b|\blevel\s+of\s+english\b|\b(?:buen|alto|b[aá]sico|suficiente|intermedio)\s+nivel\s+de\s+ingl[eé]s\b|\b(?:good|basic|working|fluent|intermediate)\s+(?:command\s+of\s+|knowledge\s+of\s+)?english\b/gi,
+    uno: 'mención al nivel de idioma (mejor contar el apoyo que se da)', varios: 'menciones al nivel de idioma (mejor contar el apoyo que se da)' },
+  { id: 'fuente', re: /\([^)]{0,120}?\b(?:provided by|according to|as reported by|source:|facilitad[oa]s? por|proporcionad[oa]s? por|aportad[oa]s? por|comunicad[oa]s? por|seg[uú]n (?:el|la|los|las)\s+(?:PIF|socia|socias|coordinadora|organizaci[oó]n))\b[^)]{0,120}?\)/gi,
+    uno: 'paréntesis que cita de dónde sale un dato', varios: 'paréntesis que citan de dónde sale un dato' },
+  { id: 'anglicismo', soloEs: true, re: /\b(?:feedback|newcomers?|networking|know-how|deadline)\b/gi, uno: 'anglicismo evitable', varios: 'anglicismos evitables' },
+  { id: 'enumera', soloEs: true, re: /\b(?:distinguimos|identificamos|hemos identificado|se articula en|abordamos)\s+(?:dos|tres|cuatro|cinco)\b/gi,
+    uno: 'apertura enumerativa ("distinguimos tres…")', varios: 'aperturas enumerativas ("distinguimos tres…")' },
+  // Uno por respuesta se tolera; el aviso salta a partir del segundo
+  { id: 'nosino', soloEs: true, minimo: 2, re: /\bno\s+[^.,;\n]{2,60},?\s+sino\b/gi, uno: '', varios: 'veces "no X, sino Y" (como mucho uno por bloque)' },
+];
+
+export function avisosRedaccion(texto, idioma = 'es') {
+  const t = String(texto ?? '');
+  if (!t.trim()) return [];
+  const out = [];
+  for (const a of AVISOS) {
+    if (a.soloEs && idioma !== 'es') continue;
+    const n = (t.match(a.re) ?? []).length;
+    if (n >= (a.minimo ?? 1)) out.push({ id: a.id, n, texto: `${n} ${n === 1 ? a.uno : a.varios}` });
+  }
+  return out;
+}

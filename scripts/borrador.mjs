@@ -14,20 +14,27 @@
 //   node scripts/borrador.mjs listar
 //   node scripts/borrador.mjs bajar "EMBER" [--salida proyectos/web/ember.md]
 //   node scripts/borrador.mjs subir proyectos/web/ember.md
+//   node scripts/borrador.mjs comentarios "EMBER"
 //   node scripts/borrador.mjs comentar "EMBER" comentarios.json
 //   node scripts/borrador.mjs notas "EMBER" evaluacion.md
 //   node scripts/borrador.mjs estado "EMBER" revisado
 //
 // "bajar" acepta el título (o parte, sin distinguir mayúsculas) o el id.
+// "bajar" deja además, si hay comentarios del equipo sin resolver, un
+// <nombre>.comentarios.md al lado con cada uno bajo su pregunta.
+// "comentarios" los enseña en la terminal.
 // "subir" lee el id de la cabecera del markdown y reemplaza las respuestas
-// que encuentre; las preguntas que no estén en el fichero no se tocan.
-// "comentar" recibe un JSON { "preguntaId": "texto" } o un markdown con
-// "### pregunta literal" seguida del comentario. Un comentario vacío lo borra.
+// que encuentre; las preguntas que no estén en el fichero no se tocan. Antes
+// guarda una versión del borrador, que se recupera desde Historial en la web.
+// "comentar" recibe un JSON { "preguntaId": "texto" } (o { "preguntaId":
+// { "texto": "...", "cita": "fragmento" } }) o un markdown con "### pregunta
+// literal" seguida del comentario. Cada uno se publica como comentario nuevo
+// de Claude Code; uno vacío marca como resueltos los abiertos de esa pregunta.
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
-import { FORMULARIOS, formularioDe, aMarkdown, contar } from '../src/lib/formularios.mjs';
+import { formularioDe, aMarkdown, contar, etiquetaClave, partirClave } from '../src/lib/formularios.mjs';
 
 const RAIZ = process.cwd();
 
@@ -169,6 +176,39 @@ function leerComentarios(ruta, f) {
   return out;
 }
 
+// Comentarios sin resolver de un borrador, en hilos y por orden de llegada
+async function comentariosAbiertos(sb, b) {
+  const { data, error } = await sb.from('borrador_comentarios').select('*').eq('borrador_id', b.id).order('created_at');
+  if (error) {
+    console.error('Aviso: no se pudieron leer los comentarios (¿falta la migración 2026-11-12?): ' + error.message);
+    return [];
+  }
+  return data
+    .filter((c) => !c.padre_id && !c.resuelto)
+    .map((c) => ({ ...c, respuestas: data.filter((r) => r.padre_id === c.id) }));
+}
+
+// Markdown con los comentarios abiertos bajo el texto literal de su pregunta,
+// para leerlo junto al borrador. Las claves de fichas llevan su número.
+export function comentariosAMarkdown(b, f, hilos) {
+  const texto = (clave) => {
+    const { bloque, pregunta } = partirClave(clave.replace(/~quitada$/, ''));
+    const bl = bloque ? f.bloques.find((x) => x.id === bloque) : f.bloques.find((x) => x.preguntas.some((p) => p.id === pregunta));
+    return bl?.preguntas.find((p) => p.id === pregunta)?.texto.replace(/\s*\n\s*/g, ' ') ?? clave;
+  };
+  const quien = (c) => (c.origen === 'claude-code' ? 'Claude Code' : c.autor);
+  const lineas = [`# Comentarios abiertos de ${b.titulo}`, '', `Borrador: ${b.id}`, ''];
+  for (const h of hilos) {
+    lineas.push(`## ${etiquetaClave(h.clave, f)}${h.clave.endsWith('~quitada') ? ' (ficha quitada)' : ''}`, '', `### ${texto(h.clave)}`, '');
+    lineas.push(`**${quien(h)}**, ${h.created_at.slice(0, 16).replace('T', ' ')} (clave ${h.clave})`, '');
+    if (h.cita) lineas.push(...h.cita.split('\n').map((l) => `> ${l}`), '');
+    lineas.push(h.texto, '');
+    for (const r of h.respuestas) lineas.push(`- **${quien(r)}**: ${r.texto.replace(/\n/g, ' ')}`);
+    if (h.respuestas.length) lineas.push('');
+  }
+  return lineas.join('\n');
+}
+
 async function main() {
   const [orden, ...args] = process.argv.slice(2);
   if (!orden || orden === 'ayuda') {
@@ -194,8 +234,10 @@ async function main() {
     const salida = args.includes('--salida') ? args[args.indexOf('--salida') + 1] : `proyectos/web/${slug(b.titulo)}.md`;
     mkdirSync(dirname(resolve(RAIZ, salida)), { recursive: true });
     writeFileSync(resolve(RAIZ, salida), aMarkdownConId(b, f));
-    const n = Object.keys(b.comentarios ?? {}).length;
-    console.log(`Bajado "${b.titulo}" (${b.accion}, ${b.estado}) a ${salida}${n ? `; tiene ${n} comentarios` : ''}${b.notas ? '; notas: ' + b.notas.slice(0, 80).replace(/\n/g, ' ') : ''}`);
+    const hilos = await comentariosAbiertos(sb, b);
+    const salidaCom = salida.replace(/\.md$/, '') + '.comentarios.md';
+    if (hilos.length) writeFileSync(resolve(RAIZ, salidaCom), comentariosAMarkdown(b, f, hilos));
+    console.log(`Bajado "${b.titulo}" (${b.accion}, ${b.estado}) a ${salida}${hilos.length ? `; ${hilos.length} comentarios sin resolver en ${salidaCom}` : ''}${b.notas ? '; notas: ' + b.notas.slice(0, 80).replace(/\n/g, ' ') : ''}`);
     return;
   }
 
@@ -227,9 +269,24 @@ async function main() {
       return typeof v === 'string' && lim && contar(v) > lim ? `${p.id} (${contar(v)}/${lim})` : null;
     }).filter(Boolean);
     if (sobre.length) console.error(`Aviso: respuestas por encima del tope: ${sobre.join(', ')}`);
+    // Copia de lo que hay antes de reemplazar, recuperable desde Historial
+    const { error: errorVersion } = await sb.rpc('guardar_version_borrador', { p_id: id, p_etiqueta: 'Antes de subir desde Claude Code' });
+    if (errorVersion) fallo('No se pudo guardar la versión previa, así que no se sube nada: ' + errorVersion.message);
     const { error } = await sb.from('borradores').update({ respuestas: nuevas, sesion: 'claude-code' }).eq('id', id);
     if (error) fallo('No se pudo subir: ' + error.message);
     console.log(`Subidas ${nCampos} respuestas a "${b.titulo}"`);
+    return;
+  }
+
+  if (orden === 'comentarios') {
+    const ref = args[0];
+    if (!ref) fallo('Uso: comentarios <borrador>');
+    const sb = await cliente();
+    const b = await buscar(sb, ref);
+    const f = formularioDe(b.accion);
+    const hilos = await comentariosAbiertos(sb, b);
+    if (!hilos.length) { console.log(`"${b.titulo}" no tiene comentarios sin resolver`); return; }
+    console.log(comentariosAMarkdown(b, f, hilos));
     return;
   }
 
@@ -240,15 +297,29 @@ async function main() {
     const b = await buscar(sb, ref);
     const f = formularioDe(b.accion);
     const nuevos = leerComentarios(resolve(RAIZ, ruta), f);
-    const comentarios = { ...(b.comentarios ?? {}) };
-    let puestos = 0, quitados = 0;
-    for (const [k, v] of Object.entries(nuevos)) {
-      if (v && String(v).trim()) { comentarios[k] = String(v).trim(); puestos += 1; }
-      else if (k in comentarios) { delete comentarios[k]; quitados += 1; }
+    const filas = [];
+    const aResolver = [];
+    for (const [clave, v] of Object.entries(nuevos)) {
+      const texto = String((v && typeof v === 'object' ? v.texto : v) ?? '').trim();
+      const cita = v && typeof v === 'object' && v.cita ? String(v.cita).trim().slice(0, 400) : null;
+      if (texto) filas.push({ borrador_id: b.id, clave, texto, cita, origen: 'claude-code' });
+      else aResolver.push(clave);
     }
-    const { error } = await sb.from('borradores').update({ comentarios, sesion: 'claude-code' }).eq('id', b.id);
-    if (error) fallo('No se pudieron guardar los comentarios: ' + error.message);
-    console.log(`"${b.titulo}": ${puestos} comentarios puestos, ${quitados} quitados, ${Object.keys(comentarios).length} en total`);
+    if (filas.length) {
+      const { error } = await sb.from('borrador_comentarios').insert(filas);
+      if (error) fallo('No se pudieron guardar los comentarios: ' + error.message);
+    }
+    let resueltos = 0;
+    if (aResolver.length) {
+      const { data, error } = await sb.from('borrador_comentarios')
+        .update({ resuelto: true })
+        .eq('borrador_id', b.id).eq('resuelto', false).is('padre_id', null)
+        .in('clave', aResolver)
+        .select('id');
+      if (error) fallo('No se pudieron resolver los comentarios: ' + error.message);
+      resueltos = data.length;
+    }
+    console.log(`"${b.titulo}": ${filas.length} comentarios publicados, ${resueltos} marcados como resueltos`);
     return;
   }
 
@@ -276,7 +347,7 @@ async function main() {
     return;
   }
 
-  fallo(`Orden desconocida: ${orden}. Órdenes: listar, bajar, subir, comentar, notas, estado`);
+  fallo(`Orden desconocida: ${orden}. Órdenes: listar, bajar, subir, comentarios, comentar, notas, estado`);
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/').split('/').pop())) {

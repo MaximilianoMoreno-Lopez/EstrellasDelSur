@@ -35,7 +35,8 @@ El equipo y los becarios redactan en `https://estrellasdelsur.eu/redaccion/`, co
 
 ```
 node scripts/borrador.mjs listar
-node scripts/borrador.mjs bajar "EMBER"            # deja proyectos/web/ember.md en el formato de la skill
+node scripts/borrador.mjs bajar "EMBER"            # deja proyectos/web/ember.md y, si hay, ember.comentarios.md
+node scripts/borrador.mjs comentarios "EMBER"      # comentarios del equipo sin resolver, bajo su pregunta
 node scripts/borrador.mjs comentar "EMBER" rev.md  # "### pregunta literal" + comentario, visible bajo esa respuesta en la web
 node scripts/borrador.mjs notas "EMBER" nota.md    # resumen de la evaluación (nota por criterio con margen) en las notas de revisión
 node scripts/borrador.mjs subir proyectos/web/ember.md   # reemplaza las respuestas que lleve el fichero
@@ -43,6 +44,8 @@ node scripts/borrador.mjs estado "EMBER" revisado
 ```
 
 Flujo habitual cuando piden "evalúa el borrador X" o "mejora X": `bajar`, aplicar sobre el markdown la receta que toque (evaluador calibrado de `assets/evaluador/`, `assets/comprobacion_mecanica.py`, `assets/contar.py`), y devolver el resultado con `comentar` (reproche por pregunta, con el arreglo concreto) y `notas` (nota estimada por criterio con su margen y las tres prioridades). Las respuestas reescritas solo se suben con `subir` si lo piden expresamente; si no, van como comentario para que quien redacta decida. Al terminar, `estado revisado`. Los textos de las preguntas en `###` tienen que ser literales: así el script sabe a qué respuesta pertenece cada cosa.
+
+El equipo también marca cosas desde la web con el botón "Comentar" de cada pregunta, a veces citando el fragmento exacto. `bajar` las deja en `<nombre>.comentarios.md`: son encargos de quien redacta y van antes que la mejora general. Para cerrar uno después de atenderlo, `comentar` con esa pregunta y el texto vacío (en JSON, `{ "clave": "" }`, con la clave que sale en el fichero). Para citar un fragmento desde Claude Code, `{ "clave": { "texto": "...", "cita": "fragmento literal" } }`. `subir` guarda antes una versión del borrador, que se recupera desde "Historial" en la web, así que nunca se pierde lo que había.
 
 ## Lo primero
 
