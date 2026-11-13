@@ -72,7 +72,13 @@ La tabla `borrador_versiones` la rellena un trigger del servidor antes de cada c
 "Historial" se compara cualquier copia con lo actual y se recupera pregunta a pregunta.
 Las versiones no se editan ni se borran desde la web. Los avisos de estilo bajo cada
 respuesta (`avisosRedaccion` en `formularios.mjs`) son las comprobaciones baratas de
-`comprobacion_mecanica.py` de la skill; si cambia una, cambiar las dos.
+`comprobacion_mecanica.py` de la skill; si cambia una, cambiar las dos. Los fragmentos
+citados en comentarios abiertos se marcan en ámbar con una capa detrás del textarea
+(`pintarMarcas`), que copia sus estilos de texto: si cambia el estilo del textarea, revisar
+que la marca sigue cayendo encima. Responsables de cada borrador en la tabla
+`borrador_responsables` (`scripts/sql/2026-11-12-redaccion-responsables.sql`), aparte de
+`borradores` para que asignar desde la lista no provoque conflictos de guardado; la lista
+filtra por "Asignados a mí" y "Sin asignar".
 
 ## Facturas (/facturas/)
 Página interna (solo miembros de la tabla `equipo`) para hacer facturas y sacarlas en PDF

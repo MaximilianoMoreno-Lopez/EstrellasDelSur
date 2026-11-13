@@ -46,6 +46,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <div id="alertMsg" class="rd-alert" role="alert" style="display:none"></div>
 
+    <div class="rd-filtros" id="filtros" role="group" aria-label="Qué borradores ver" style="display:none">
+      <button type="button" class="rd-filtro" data-filtro="todos">Todos</button>
+      <button type="button" class="rd-filtro" data-filtro="mios">Asignados a mí</button>
+      <button type="button" class="rd-filtro" data-filtro="sin">Sin asignar</button>
+    </div>
+
     <div id="lista" class="rd-lista"></div>
 
     <!-- Solo admins: borradores borrados, recuperables desde su última copia -->
@@ -90,6 +96,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <label class="sr-only" for="edTitulo">Título del borrador</label>
       <input type="text" id="edTitulo" class="ed-titulo" placeholder="Título de trabajo" />
       <p class="ed-accion" id="edAccion"></p>
+      <div id="edResp" class="ed-resp"></div>
     </div>
 
     <div class="ed-layout">
@@ -166,6 +173,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     let comentarios = [];             // filas del borrador abierto
     let comentariosOk = false;        // false si la tabla no existe todavía
     let abiertosPorBorrador = {};     // id de borrador -> comentarios abiertos (lista)
+    // Responsables de cada borrador (tabla borrador_responsables, aparte para
+    // que asignar no cambie el borrador ni provoque conflictos de guardado)
+    let responsables = {};            // id de borrador -> [emails]
+    let responsablesOk = false;
+    let filtro = 'todos';
+    try { filtro = localStorage.getItem('redaccion-filtro') || 'todos'; } catch { /* sin almacenamiento */ }
     const zonasCom = new Map();       // clave -> { lista, textarea }
     const resueltosVisibles = new Set(); // claves con los resueltos desplegados
     const respondiendo = new Map();   // id de hilo -> texto de la respuesta a medias
@@ -203,6 +216,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       soyAdmin = equipo.find((m) => m.email === miEmail)?.rol === 'admin';
 
       montarNuevo();
+      montarFiltros();
       montarEditor();
       await cargarBorradores();
 
@@ -236,6 +250,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         .is('padre_id', null);
       abiertosPorBorrador = {};
       (abiertos ?? []).forEach((c) => { abiertosPorBorrador[c.borrador_id] = (abiertosPorBorrador[c.borrador_id] ?? 0) + 1; });
+
+      const { data: resp, error: errorResp } = await supabase
+        .from('borrador_responsables')
+        .select('borrador_id, email')
+        .order('created_at');
+      responsablesOk = !errorResp;
+      responsables = {};
+      (resp ?? []).forEach((r) => { (responsables[r.borrador_id] ??= []).push(r.email); });
     }
 
     // ── Helpers ───────────────────────────────────────────────
@@ -327,6 +349,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       document.getElementById('listaSub').textContent =
         `${borradores.length} borrador${borradores.length === 1 ? '' : 'es'} · ${FORMULARIOS.length} formularios disponibles`;
 
+      // Filtro por responsables (solo si la tabla existe)
+      const filtros = document.getElementById('filtros');
+      filtros.style.display = responsablesOk && borradores.length ? 'flex' : 'none';
+      filtros.querySelectorAll('.rd-filtro').forEach((btn) => {
+        btn.setAttribute('aria-pressed', String(btn.dataset.filtro === filtro));
+      });
+      const visibles = !responsablesOk ? borradores : borradores.filter((b) => {
+        const r = responsables[b.id] ?? [];
+        if (filtro === 'mios') return r.includes(miEmail);
+        if (filtro === 'sin') return r.length === 0;
+        return true;
+      });
+
       if (borradores.length === 0) {
         const p = document.createElement('p');
         p.className = 'rd-vacio';
@@ -334,8 +369,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         wrap.appendChild(p);
         return;
       }
+      if (visibles.length === 0) {
+        const p = document.createElement('p');
+        p.className = 'rd-vacio';
+        p.textContent = filtro === 'mios' ? 'No tienes ningún borrador asignado.' : 'Todos los borradores tienen a alguien asignado.';
+        wrap.appendChild(p);
+        return;
+      }
 
-      borradores.forEach((b) => {
+      visibles.forEach((b) => {
         const card = document.createElement('article');
         card.className = 'bo-card';
 
@@ -365,6 +407,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         sub.className = 'bo-sub';
         sub.textContent = f ? f.nombre : 'Formulario no disponible';
         card.appendChild(sub);
+        if (responsablesOk) card.appendChild(selectorResponsables(b.id, b.titulo));
 
         const pr = progreso(b);
         const prog = document.createElement('div');
@@ -483,6 +526,130 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       aviso(`"${v.titulo}" recuperado.`);
     }
 
+    // ── Responsables ──────────────────────────────────────────
+    function montarFiltros() {
+      document.querySelectorAll('#filtros .rd-filtro').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          filtro = btn.dataset.filtro;
+          try { localStorage.setItem('redaccion-filtro', filtro); } catch { /* sin almacenamiento */ }
+          renderLista();
+        });
+      });
+      // Un clic fuera o Escape cierra el desplegable de responsables abierto
+      document.addEventListener('click', (e) => {
+        document.querySelectorAll('.resp-panel:not([hidden])').forEach((p) => {
+          if (!p.parentElement.contains(e.target)) cerrarPanelResp(p);
+        });
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        document.querySelectorAll('.resp-panel:not([hidden])').forEach((p) => {
+          cerrarPanelResp(p);
+          p.parentElement.querySelector('.resp-btn')?.focus();
+        });
+      });
+    }
+
+    function cerrarPanelResp(panel) {
+      panel.hidden = true;
+      panel.parentElement.querySelector('.resp-btn')?.setAttribute('aria-expanded', 'false');
+    }
+
+    function iniciales(nombre) {
+      return String(nombre).trim().split(/\s+/).slice(0, 2).map((w) => w[0] ?? '').join('').toUpperCase();
+    }
+
+    // Quién se encarga de un borrador: fichas con nombre y un desplegable con
+    // casillas para asignar o quitar. Cada casilla se guarda al momento.
+    function selectorResponsables(id, titulo) {
+      const cont = document.createElement('div');
+      cont.className = 'resp';
+      cont.dataset.borrador = id;
+      const lista = document.createElement('div');
+      lista.className = 'resp-lista';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'resp-btn';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', `Responsables de ${titulo}`);
+      const panel = document.createElement('div');
+      panel.className = 'resp-panel';
+      panel.hidden = true;
+      panel.setAttribute('role', 'group');
+      panel.setAttribute('aria-label', `Quién se encarga de ${titulo}`);
+
+      const pintar = () => {
+        const r = responsables[id] ?? [];
+        lista.replaceChildren();
+        if (!r.length) {
+          const s = document.createElement('span');
+          s.className = 'resp-nadie';
+          s.textContent = 'Sin asignar';
+          lista.appendChild(s);
+        }
+        r.forEach((email) => {
+          const ch = document.createElement('span');
+          ch.className = 'resp-chip' + (email === miEmail ? ' is-yo' : '');
+          ch.title = nombreDe(email);
+          const av = document.createElement('span');
+          av.className = 'resp-av';
+          av.setAttribute('aria-hidden', 'true');
+          av.textContent = iniciales(nombreDe(email));
+          ch.appendChild(av);
+          ch.appendChild(document.createTextNode(nombreDe(email).split(/\s+/)[0]));
+          lista.appendChild(ch);
+        });
+        btn.textContent = r.length ? 'Cambiar' : 'Asignar';
+        panel.querySelectorAll('input').forEach((c) => { c.checked = r.includes(c.value); });
+      };
+
+      equipo.forEach((m) => {
+        const l = document.createElement('label');
+        l.className = 'resp-op';
+        const c = document.createElement('input');
+        c.type = 'checkbox';
+        c.value = m.email;
+        c.addEventListener('change', async () => {
+          c.disabled = true;
+          const quiere = c.checked;
+          const { error } = quiere
+            ? await supabase.from('borrador_responsables').insert({ borrador_id: id, email: m.email })
+            : await supabase.from('borrador_responsables').delete().eq('borrador_id', id).eq('email', m.email);
+          c.disabled = false;
+          // Una fila que ya existía (otra persona asignó a la vez) cuenta como hecha
+          if (error && !(quiere && error.code === '23505')) {
+            c.checked = !quiere;
+            const donde = document.getElementById('editorView').style.display === 'none' ? 'alertMsg' : 'edAlert';
+            return aviso('No se pudo cambiar la asignación: ' + error.message, donde);
+          }
+          const r = new Set(responsables[id] ?? []);
+          if (quiere) r.add(m.email); else r.delete(m.email);
+          responsables[id] = [...r];
+          // Repinta cualquier otro selector del mismo borrador que esté en pantalla
+          document.querySelectorAll(`.resp[data-borrador="${id}"]`).forEach((el) => el._pintar?.());
+        });
+        l.appendChild(c);
+        l.appendChild(document.createTextNode(' ' + m.nombre + (m.email === miEmail ? ' (tú)' : '')));
+        panel.appendChild(l);
+      });
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const abrir = panel.hidden;
+        document.querySelectorAll('.resp-panel:not([hidden])').forEach(cerrarPanelResp);
+        panel.hidden = !abrir;
+        btn.setAttribute('aria-expanded', String(abrir));
+        if (abrir) panel.querySelector('input')?.focus();
+      });
+
+      cont._pintar = pintar;
+      cont.appendChild(lista);
+      cont.appendChild(btn);
+      cont.appendChild(panel);
+      pintar();
+      return cont;
+    }
+
     // ── Nuevo borrador ────────────────────────────────────────
     function montarNuevo() {
       const sel = document.getElementById('nfAccion');
@@ -531,6 +698,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         btn.disabled = false;
         if (error) return aviso('No se pudo crear el borrador: ' + error.message);
         borradores.unshift(data);
+        // Quien lo crea queda como responsable; se cambia desde la cabecera
+        if (responsablesOk) {
+          const { error: errorResp } = await supabase.from('borrador_responsables').insert({ borrador_id: data.id, email: miEmail });
+          if (!errorResp) responsables[data.id] = [miEmail];
+        }
         form.style.display = 'none';
         titulo.value = '';
         abrirEditor(data);
@@ -618,6 +790,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       document.getElementById('edBloques').lang = actual.respuestas.idioma;
       document.getElementById('edNotas').value = actual.notas;
       document.getElementById('edAccion').textContent = `${formulario.accion} · ${formulario.nombre}`;
+      const edResp = document.getElementById('edResp');
+      edResp.replaceChildren();
+      if (responsablesOk) {
+        const et = document.createElement('span');
+        et.className = 'ed-resp-et';
+        et.textContent = 'Responsables';
+        edResp.appendChild(et);
+        edResp.appendChild(selectorResponsables(b.id, b.titulo));
+      }
       document.getElementById('edGuardar').textContent = 'Guardar';
       // Hasta saber que la tabla de comentarios existe no se enseñan sus botones
       document.getElementById('editorView').classList.toggle('sin-comentarios', !comentariosOk);
@@ -962,6 +1143,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       for (const [clave, zona] of zonasCom) {
         if (!zona.lista.isConnected) { zonasCom.delete(clave); continue; }
         pintarLista(zona.lista, hilosDe((c) => c.clave === clave), zona.textarea, clave, false);
+        if (zona.textarea) pintarMarcas(zona.textarea, clave);
       }
       const huerfanos = hilosDe((c) => !zonasCom.has(c.clave));
       pintarLista(document.getElementById('edHuerfanosLista'), huerfanos, null, '_huerfanos', true);
@@ -1035,6 +1217,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       art.className = 'ed-com' + (h.resuelto ? ' is-resuelto' : '');
       art.id = `com-${h.id}`;
       art.tabIndex = -1;
+      if (h.cita && !h.resuelto) enlazarMarca(art, h.id);
       if (mostrarDonde) {
         const donde = document.createElement('p');
         donde.className = 'ed-com-donde';
@@ -1218,7 +1401,63 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
       zonasCom.set(clave, { lista, textarea });
       pintarLista(lista, hilosDe((c) => c.clave === clave), textarea, clave, false);
+      if (textarea) {
+        textarea.dataset.clave = clave;
+        // Se mide cuando el textarea ya está en la página
+        requestAnimationFrame(() => pintarMarcas(textarea, clave));
+      }
       return zona;
+    }
+
+    // Marca en la capa de detrás del textarea los fragmentos citados por
+    // comentarios abiertos de esa pregunta. Se recalcula al escribir, así la
+    // marca sigue al texto; si el fragmento se cambia, la marca desaparece.
+    const ESTILOS_COPIADOS = ['fontFamily', 'fontSize', 'fontWeight', 'lineHeight', 'letterSpacing', 'wordSpacing',
+      'paddingTop', 'paddingLeft', 'paddingBottom', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth'];
+    function pintarMarcas(ta, clave) {
+      const capa = ta.previousElementSibling;
+      if (!capa?.classList.contains('ed-ta-marcas')) return;
+      const valor = ta.value;
+      const rangos = [];
+      comentarios.forEach((c) => {
+        if (c.padre_id || c.resuelto || c.clave !== clave || !c.cita) return;
+        const i = valor.indexOf(c.cita);
+        if (i >= 0) rangos.push([i, i + c.cita.length, c.id]);
+      });
+      if (!rangos.length) {
+        if (!capa.hidden) { capa.hidden = true; capa.replaceChildren(); }
+        return;
+      }
+      rangos.sort((a, b) => a[0] - b[0]);
+      const cs = getComputedStyle(ta);
+      ESTILOS_COPIADOS.forEach((p) => { capa.style[p] = cs[p]; });
+      // Si el textarea tiene barra de scroll, el texto se estrecha lo mismo
+      const barra = ta.offsetWidth - ta.clientWidth - parseFloat(cs.borderLeftWidth) - parseFloat(cs.borderRightWidth);
+      capa.style.paddingRight = `${parseFloat(cs.paddingRight) + Math.max(0, barra)}px`;
+      capa.replaceChildren();
+      let pos = 0;
+      rangos.forEach(([ini, fin, id]) => {
+        if (ini < pos) return; // dos citas que se pisan: se marca la primera
+        capa.appendChild(document.createTextNode(valor.slice(pos, ini)));
+        const m = document.createElement('mark');
+        m.dataset.com = id;
+        m.textContent = valor.slice(ini, fin);
+        capa.appendChild(m);
+        pos = fin;
+      });
+      // El espacio final hace que un salto de línea al final también cuente
+      capa.appendChild(document.createTextNode(valor.slice(pos) + ' '));
+      capa.hidden = false;
+      capa.scrollTop = ta.scrollTop;
+    }
+
+    // Al pasar por un comentario se intensifica su fragmento en la respuesta
+    function enlazarMarca(art, id) {
+      const activar = (si) => document.querySelectorAll(`mark[data-com="${id}"]`).forEach((m) => m.classList.toggle('is-activa', si));
+      art.addEventListener('mouseenter', () => activar(true));
+      art.addEventListener('mouseleave', () => activar(false));
+      art.addEventListener('focusin', () => activar(true));
+      art.addEventListener('focusout', () => activar(false));
     }
 
     async function publicarComentario(fila) {
@@ -1561,7 +1800,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         ta.rows = 6;
         ta.value = typeof valores[p.id] === 'string' ? valores[p.id] : '';
         ta.spellcheck = true;
-        wrap.appendChild(ta);
+        // Detrás del textarea, una capa con el mismo texto donde se marcan
+        // los fragmentos citados en comentarios abiertos (un textarea no
+        // permite dar color a una parte de su texto).
+        const caja = document.createElement('div');
+        caja.className = 'ed-ta';
+        const marcas = document.createElement('div');
+        marcas.className = 'ed-ta-marcas';
+        marcas.setAttribute('aria-hidden', 'true');
+        marcas.hidden = true;
+        caja.appendChild(marcas);
+        caja.appendChild(ta);
+        wrap.appendChild(caja);
+        ta.addEventListener('scroll', () => { marcas.scrollTop = ta.scrollTop; });
+        ta.addEventListener('input', () => { if (ta.dataset.clave) pintarMarcas(ta, ta.dataset.clave); });
 
         const fila = document.createElement('div');
         fila.className = 'ed-contador';
@@ -2151,6 +2403,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       line-height: 1.5; transition: border-color .15s, box-shadow .15s;
     }
     .ed-pregunta textarea { resize: vertical; min-height: 120px; }
+    /* Respuesta larga con la capa de fragmentos comentados detrás: el fondo
+       blanco pasa a la caja y el textarea se vuelve transparente encima. */
+    .ed-ta { position: relative; background: #fff; border-radius: 8px; }
+    .ed-ta > textarea { position: relative; z-index: 1; display: block; width: 100%; }
+    .ed-pregunta .ed-ta > textarea, .ed-ficha .ed-pregunta .ed-ta > textarea { background: transparent; }
+    .ed-ta-marcas {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+      box-sizing: border-box; border-style: solid; border-color: transparent;
+      white-space: pre-wrap; overflow-wrap: break-word; word-break: normal;
+      color: transparent;
+    }
+    .ed-ta-marcas[hidden] { display: none; }
+    .ed-ta-marcas mark {
+      color: transparent; background: rgba(245,158,11,.28); border-radius: 3px;
+      box-decoration-break: clone; -webkit-box-decoration-break: clone;
+      transition: background .15s;
+    }
+    .ed-ta-marcas mark.is-activa { background: rgba(245,158,11,.6); }
     .ed-pregunta input, .ed-pregunta select { max-width: 360px; }
     .ed-pregunta textarea:focus, .ed-pregunta input:focus, .ed-pregunta select:focus, .ed-otra input:focus {
       border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,.12);
@@ -2248,6 +2518,48 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     .bo-com { color: #b45309; }
     .ed-huerfanos { margin-top: 1.5rem; background: #fff; border: 1px solid #eceae3; border-radius: 16px; padding: 1.2rem 1.5rem; }
     #edHuerfanosLista { display: flex; flex-direction: column; gap: .5rem; margin-top: .75rem; }
+
+    /* Responsables */
+    .rd-filtros { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .rd-filtro {
+      font-family: inherit; font-size: .8rem; font-weight: 600; color: #4b5563;
+      background: #fff; border: 1.5px solid #e5e7eb; border-radius: 999px; padding: .3rem .85rem; cursor: pointer;
+    }
+    .rd-filtro:hover { border-color: #0d9488; color: #0f766e; }
+    .rd-filtro[aria-pressed="true"] { background: #0a1628; border-color: #0a1628; color: #fff; }
+    .resp { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; }
+    .resp-lista { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .resp-chip {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-size: .74rem; font-weight: 600; color: #374151;
+      background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 999px; padding: .1rem .5rem .1rem .15rem;
+    }
+    .resp-chip.is-yo { background: rgba(13,148,136,.09); border-color: rgba(13,148,136,.3); color: #0f766e; }
+    .resp-av {
+      width: 18px; height: 18px; border-radius: 50%; background: #0a1628; color: #f59e0b;
+      font-size: .58rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .resp-chip.is-yo .resp-av { background: #0d9488; color: #fff; }
+    .resp-nadie { font-size: .74rem; color: #9ca3af; font-style: italic; }
+    .resp-btn {
+      font-family: inherit; font-size: .72rem; font-weight: 600; color: #0f766e;
+      background: none; border: 1px dashed rgba(13,148,136,.45); border-radius: 999px; padding: .1rem .55rem; cursor: pointer;
+    }
+    .resp-btn:hover { background: rgba(13,148,136,.08); }
+    .resp-panel {
+      position: absolute; top: calc(100% + 4px); left: 0; z-index: 20;
+      min-width: 220px; max-height: 260px; overflow-y: auto;
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: .4rem;
+      box-shadow: 0 10px 30px rgba(10,22,40,.15);
+      display: flex; flex-direction: column;
+    }
+    .resp-panel[hidden] { display: none; }
+    .resp-op { display: flex; align-items: center; gap: .45rem; font-size: .82rem; color: #374151; padding: .3rem .4rem; border-radius: 6px; cursor: pointer; }
+    .resp-op:hover { background: #f0fdfa; }
+    .resp-op input { accent-color: #0d9488; }
+    .ed-resp { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-top: .5rem; }
+    .ed-resp:empty { display: none; }
+    .ed-resp-et { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #6b7280; }
 
     /* Papelera */
     .rd-papelera { margin-top: 2rem; padding: 1rem 1.2rem; border: 1px dashed #d1d5db; border-radius: 14px; }
