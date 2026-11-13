@@ -196,14 +196,15 @@ export function etiquetaClave(clave, formulario) {
 // ── Avisos de redacción ────────────────────────────────────────────────
 // Las comprobaciones baratas de assets/comprobacion_mecanica.py de la skill
 // redaccion-proyectos, para verlas mientras se escribe. Son avisos, no
-// bloquean nada. Devuelve [{ id, texto, n }].
+// bloquean nada. Devuelve [{ id, texto, n, posiciones: [[inicio, fin]] }].
 const AVISOS = [
   { id: 'guion', re: /[–—]/g, uno: 'guion largo', varios: 'guiones largos' },
   { id: 'emoji', re: /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F1E6}-\u{1F1FF}]/gu, uno: 'emoji', varios: 'emojis' },
   { id: 'marca', re: /\b(?:TODO|TBD|XXX|FIXME|LOREM)\b/g, uno: 'marca de edición olvidada (TODO, XXX…)', varios: 'marcas de edición olvidadas (TODO, XXX…)' },
   { id: 'vacio', re: /\[\s*\]/g, uno: 'corchete vacío', varios: 'corchetes vacíos' },
   { id: 'hueco', re: /\[[^\][\n]{2,80}\]/g, uno: 'dato entre corchetes por completar', varios: 'datos entre corchetes por completar' },
-  { id: 'espacios', re: /\S {2,}(?=\S)/g, uno: 'doble espacio', varios: 'dobles espacios' },
+  // La letra de delante solo sirve para no contar la sangría: se marca desde el espacio
+  { id: 'espacios', re: /\S {2,}(?=\S)/g, desde: 1, uno: 'doble espacio', varios: 'dobles espacios' },
   { id: 'admin', re: /\bE1\d{7}\b|\b(?:OID|PIC)\b\s*[:nº#]?\s*\d|\bno\s+(?:somos|es|son)\s+(?:un\s+)?organismo\s+p[uú]blico\b|\bnot\s+a\s+public\s+body\b/gi,
     uno: 'dato administrativo que el formulario ya trae (OID, PIC, organismo público)', varios: 'datos administrativos que el formulario ya trae (OID, PIC, organismo público)' },
   { id: 'idioma', re: /\bnivel(?:es)?\s+(?:de\s+)?(?:idioma|ingl[eé]s|lengua)\b|\b(?:english|language)\s+(?:level|proficiency|requirement)\b|\blevel\s+of\s+english\b|\b(?:buen|alto|b[aá]sico|suficiente|intermedio)\s+nivel\s+de\s+ingl[eé]s\b|\b(?:good|basic|working|fluent|intermediate)\s+(?:command\s+of\s+|knowledge\s+of\s+)?english\b/gi,
@@ -223,8 +224,9 @@ export function avisosRedaccion(texto, idioma = 'es') {
   const out = [];
   for (const a of AVISOS) {
     if (a.soloEs && idioma !== 'es') continue;
-    const n = (t.match(a.re) ?? []).length;
-    if (n >= (a.minimo ?? 1)) out.push({ id: a.id, n, texto: `${n} ${n === 1 ? a.uno : a.varios}` });
+    const posiciones = [...t.matchAll(a.re)].map((m) => [m.index + (a.desde ?? 0), m.index + m[0].length]);
+    const n = posiciones.length;
+    if (n >= (a.minimo ?? 1)) out.push({ id: a.id, n, texto: `${n} ${n === 1 ? a.uno : a.varios}`, posiciones });
   }
   return out;
 }
