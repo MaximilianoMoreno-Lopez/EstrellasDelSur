@@ -33,7 +33,7 @@ Nació del KA154 EuroÁgora (agosto de 2026) y se afinó con las diez solicitude
 
 El equipo y los becarios redactan en `https://estrellasdelsur.eu/redaccion/`, con las preguntas literales del portal, el contador, comentarios por pregunta, historial de versiones y responsables. **Lo que se redacte o revise para un formulario que tiene la web (KA152, KA153, KA154, KA210, KA220) acaba ahí**, no solo en un Word local: es donde el equipo lo lee, lo comenta y lo corrige. El Word sigue siendo un entregable cuando lo pidan. Para el resto de convocatorias (KA155, ESC, CERV, Consejo de Europa) se sigue trabajando en `proyectos/`.
 
-`scripts/borrador.mjs` hace de puente con la cuenta del portal de quien lo ejecuta (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`, nunca en el repo). Si faltan, el script lo dice: pedir al usuario que las añada él a `.env.local`, sin que pegue la contraseña en el chat.
+`scripts/borrador.mjs` hace de puente con la cuenta del portal de quien lo ejecuta (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`, nunca en el repo). Si faltan, el script lo dice: pedir al usuario que las añada él a `.env.local`, sin que pegue la contraseña en el chat. En la web, lo que llega por el script firma como **Estrella**, la asistente de redacción (cuenta `claude@estrellasdelsur.eu`, rol becario); al hablar con el equipo de lo que se ha dejado en la web, referirse a ella con ese nombre.
 
 ```
 node scripts/borrador.mjs listar

@@ -38,7 +38,7 @@
 // "comentar" recibe un JSON { "preguntaId": "texto" } (o { "preguntaId":
 // { "texto": "...", "cita": "fragmento" } }) o un markdown con "### pregunta
 // literal" seguida del comentario. Cada uno se publica como comentario nuevo
-// de Claude Code; uno vacío marca como resueltos los abiertos de esa pregunta.
+// de Estrella (la asistente de redacción); uno vacío marca como resueltos los abiertos de esa pregunta.
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -296,7 +296,7 @@ export function comentariosAMarkdown(b, f, hilos) {
     const bl = bloque ? f.bloques.find((x) => x.id === bloque) : f.bloques.find((x) => x.preguntas.some((p) => p.id === pregunta));
     return bl?.preguntas.find((p) => p.id === pregunta)?.texto.replace(/\s*\n\s*/g, ' ') ?? clave;
   };
-  const quien = (c) => (c.origen === 'claude-code' ? 'Claude Code' : c.autor);
+  const quien = (c) => (c.origen === 'claude-code' ? 'Estrella' : c.autor);
   const lineas = [`# Comentarios abiertos de ${b.titulo}`, '', `Borrador: ${b.id}`, ''];
   for (const h of hilos) {
     lineas.push(`## ${etiquetaClave(h.clave, f)}${h.clave.endsWith('~quitada') ? ' (ficha quitada)' : ''}`, '', `### ${texto(h.clave)}`, '');
@@ -449,7 +449,7 @@ async function main() {
       return;
     }
     // Copia de lo que hay antes de reemplazar, recuperable desde Historial
-    const { error: errorVersion } = await sb.rpc('guardar_version_borrador', { p_id: id, p_etiqueta: 'Antes de subir desde Claude Code' });
+    const { error: errorVersion } = await sb.rpc('guardar_version_borrador', { p_id: id, p_etiqueta: 'Antes de que Estrella subiera cambios' });
     if (errorVersion) fallo('No se pudo guardar la versión previa, así que no se sube nada: ' + errorVersion.message);
     const { error } = await sb.from('borradores').update({ respuestas: nuevas, sesion: 'claude-code' }).eq('id', id);
     if (error) fallo('No se pudo subir: ' + error.message);

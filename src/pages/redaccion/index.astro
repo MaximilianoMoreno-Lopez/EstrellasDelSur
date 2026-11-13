@@ -192,6 +192,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       presentado: 'Presentado',
     };
     const IDIOMAS = ['es', 'en', 'fr'];
+    // Nombre con el que firma la asistente de redacción (Claude Code con la
+    // skill redaccion-proyectos, vía scripts/borrador.mjs)
+    const ASISTENTE = 'Estrella';
     const AUTOSAVE_MS = 2500;
     const AUTOSAVE_TOPE_MS = 20000;
 
@@ -1179,10 +1182,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       const cab = document.createElement('div');
       cab.className = 'ed-com-cab';
       const quien = document.createElement('strong');
-      quien.textContent = c.origen === 'claude-code' ? 'Claude Code' : nombreDe(c.autor);
+      const deAsistente = c.origen === 'claude-code';
+      quien.textContent = deAsistente ? ASISTENTE : nombreDe(c.autor);
       cab.appendChild(quien);
       const cuando = document.createElement('span');
-      cuando.textContent = c.origen === 'claude-code'
+      // Si lo lanzó alguien del equipo con su propia cuenta, se dice quién
+      cuando.textContent = deAsistente && nombreDe(c.autor) !== ASISTENTE
         ? `${hace(c.created_at)}, lanzado por ${nombreDe(c.autor)}`
         : hace(c.created_at);
       cuando.title = new Date(c.created_at).toLocaleString('es-ES');
@@ -2186,7 +2191,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         pintarGuardado('Conflicto', 'is-error');
         document.getElementById('edGuardar').textContent = 'Sobrescribir';
         if (fila.sesion === 'claude-code') {
-          aviso(`Claude Code ha actualizado este borrador ${hace(fila.updated_at)} (notas, estado o respuestas; lo anterior queda en Historial). Descarga tus cambios con "Descargar .md" por si acaso y recarga la página para verlos.`, 'edAlert', true);
+          aviso(`${ASISTENTE} ha actualizado este borrador ${hace(fila.updated_at)} (notas, estado o respuestas; lo anterior queda en Historial). Descarga tus cambios con "Descargar .md" por si acaso y recarga la página para verlos.`, 'edAlert', true);
           return;
         }
         const quien = fila.editado_por === miEmail
