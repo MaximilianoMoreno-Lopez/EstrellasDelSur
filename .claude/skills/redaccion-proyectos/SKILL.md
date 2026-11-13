@@ -1,6 +1,6 @@
 ---
 name: redaccion-proyectos
-description: Redactar, revisar, adaptar, ampliar o rehacer tras un rechazo solicitudes de subvención de proyectos europeos (Erasmus+ KA152, KA153, KA154, KA155, KA210, KA220; Cuerpo Europeo de Solidaridad ESC30 y ESC51; Fundación Europea de la Juventud del Consejo de Europa y otras convocatorias) buscando la máxima puntuación, con horarios, presupuesto y Word listos para pegar. Usar cuando el usuario pida escribir un formulario, un borrador de solicitud, adaptar una solicitud aprobada, añadir una socia, mejorar una solicitud rechazada o registrar el resultado de una candidatura.
+description: Redactar, revisar, adaptar, ampliar o rehacer tras un rechazo solicitudes de subvención de proyectos europeos (Erasmus+ KA152, KA153, KA154, KA155, KA210, KA220; Cuerpo Europeo de Solidaridad ESC30 y ESC51; Fundación Europea de la Juventud del Consejo de Europa y otras convocatorias) buscando la máxima puntuación, con horarios, presupuesto y Word listos para pegar. Usar cuando el usuario pida escribir un formulario, un borrador de solicitud, adaptar una solicitud aprobada, añadir una socia, mejorar una solicitud rechazada o registrar el resultado de una candidatura. Lo que se redacta o revisa para KA152, KA153, KA154, KA210 o KA220 se crea o se sube a la web /redaccion/ con scripts/borrador.mjs (plantilla, crear, bajar, comentar, notas, subir).
 ---
 
 # Redacción de solicitudes de proyectos europeos
@@ -29,23 +29,45 @@ Nació del KA154 EuroÁgora (agosto de 2026) y se afinó con las diez solicitude
 
 `proyectos/` es un repositorio privado aparte, excluido del público con `/proyectos/` en `.gitignore` (anclado, para no excluir `src/pages/proyectos/`). Lleva PIF con teléfonos, PRN y fechas de nacimiento: nada de ahí se copia a la skill, a `candidaturas.mjs` ni a ningún fichero del repo público. La skill tiene que poder compartirse tal cual.
 
-## Borradores de la web (/redaccion/)
+## La web es el sitio de trabajo (/redaccion/)
 
-El equipo y los becarios redactan en `https://estrellasdelsur.eu/redaccion/`, con las preguntas literales del portal y el contador. `scripts/borrador.mjs` conecta esos borradores con esta skill usando la cuenta del portal de quien lo ejecuta (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`, nunca en el repo):
+El equipo y los becarios redactan en `https://estrellasdelsur.eu/redaccion/`, con las preguntas literales del portal, el contador, comentarios por pregunta, historial de versiones y responsables. **Lo que se redacte o revise para un formulario que tiene la web (KA152, KA153, KA154, KA210, KA220) acaba ahí**, no solo en un Word local: es donde el equipo lo lee, lo comenta y lo corrige. El Word sigue siendo un entregable cuando lo pidan. Para el resto de convocatorias (KA155, ESC, CERV, Consejo de Europa) se sigue trabajando en `proyectos/`.
+
+`scripts/borrador.mjs` hace de puente con la cuenta del portal de quien lo ejecuta (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`, nunca en el repo). Si faltan, el script lo dice: pedir al usuario que las añada él a `.env.local`, sin que pegue la contraseña en el chat.
 
 ```
 node scripts/borrador.mjs listar
+node scripts/borrador.mjs plantilla KA152-YOU --titulo "EMBER" --salida proyectos/web/ember.md   # preguntas literales vacías, con su tope
+node scripts/borrador.mjs crear proyectos/web/ember.md --responsables paula@estrellasdelsur.eu   # borrador nuevo en la web
 node scripts/borrador.mjs bajar "EMBER"            # deja proyectos/web/ember.md y, si hay, ember.comentarios.md
 node scripts/borrador.mjs comentarios "EMBER"      # comentarios del equipo sin resolver, bajo su pregunta
-node scripts/borrador.mjs comentar "EMBER" rev.md  # "### pregunta literal" + comentario, visible bajo esa respuesta en la web
-node scripts/borrador.mjs notas "EMBER" nota.md    # resumen de la evaluación (nota por criterio con margen) en las notas de revisión
+node scripts/borrador.mjs comentar "EMBER" rev.json # comentario por pregunta, visible y marcado en la web
+node scripts/borrador.mjs notas "EMBER" nota.md    # resumen de la evaluación en las notas de revisión
 node scripts/borrador.mjs subir proyectos/web/ember.md   # reemplaza las respuestas que lleve el fichero
 node scripts/borrador.mjs estado "EMBER" revisado
 ```
 
-Flujo habitual cuando piden "evalúa el borrador X" o "mejora X": `bajar`, aplicar sobre el markdown la receta que toque (evaluador calibrado de `assets/evaluador/`, `assets/comprobacion_mecanica.py`, `assets/contar.py`), y devolver el resultado con `comentar` (reproche por pregunta, con el arreglo concreto) y `notas` (nota estimada por criterio con su margen y las tres prioridades). Las respuestas reescritas solo se suben con `subir` si lo piden expresamente; si no, van como comentario para que quien redacta decida. Al terminar, `estado revisado`. Los textos de las preguntas en `###` tienen que ser literales: así el script sabe a qué respuesta pertenece cada cosa.
+`crear` y `subir` aceptan `--simulacro` (dicen qué subirían sin tocar nada) y avisan de los encabezados `###` que no reconocen, que no se suben, y de las respuestas por encima del tope. Las preguntas se reconocen por su texto literal o, si el encabezado está resumido ("Aims. Please describe..."), por parecido; aun así, lo más seguro es redactar sobre la `plantilla`.
 
-El equipo también marca cosas desde la web con el botón "Comentar" de cada pregunta, a veces citando el fragmento exacto. `bajar` las deja en `<nombre>.comentarios.md`: son encargos de quien redacta y van antes que la mejora general. Para cerrar uno después de atenderlo, `comentar` con esa pregunta y el texto vacío (en JSON, `{ "clave": "" }`, con la clave que sale en el fichero). Para citar un fragmento desde Claude Code, `{ "clave": { "texto": "...", "cita": "fragmento literal" } }`. `subir` guarda antes una versión del borrador, que se recupera desde "Historial" en la web, así que nunca se pierde lo que había.
+### Redactar un proyecto nuevo
+
+1. Seguir la receta y el proceso de siempre (biblia, perfil, palancas), pero redactar las respuestas sobre `plantilla <accion>`, que trae los bloques, las fichas repetibles (`#### Socia 1`, `#### Socia 2`...) y las preguntas literales en el orden del portal. Las líneas `<!-- ... -->` con el tope no se suben.
+2. Pasar `assets/contar.py` y `assets/comprobacion_mecanica.py` sobre el fichero.
+3. `crear --simulacro` y, si cuadra, `crear` con `--responsables` de quien lo vaya a llevar (si no se dice, queda asignado a quien ejecuta el script). El script apunta `Borrador: <id>` en el fichero y devuelve el enlace.
+4. Evaluar como en "Revisar" (abajo) y dejar la nota en `notas`. Estado `para_revisar` si lo tiene que mirar alguien.
+
+### Revisar o evaluar un borrador de la web
+
+1. `bajar`. Si sale `<nombre>.comentarios.md`, son encargos del equipo y van antes que la mejora general.
+2. Aplicar el evaluador calibrado de `assets/evaluador/` (o `assets/workflow_evaluacion.js`), `comprobacion_mecanica.py` y `contar.py` sobre el markdown.
+3. Devolverlo a la web, no al chat:
+   - `comentar` con un JSON por pregunta: `{ "clave": { "texto": "reproche y arreglo concreto", "cita": "fragmento literal de la respuesta" } }`. La cita sale marcada en ámbar en la respuesta; tiene que ser texto copiado tal cual (la web la busca literalmente). Las claves son el `id` de la pregunta o `bloque[n].id` en fichas, las mismas que salen en `.comentarios.md`.
+   - `notas` con la nota estimada por criterio y su margen ("82 más o menos 8"), y las tres prioridades.
+   - `estado revisado`.
+4. Las respuestas reescritas solo se suben con `subir` si lo piden expresamente ("mejóralo", "aplica los cambios", "escríbelo en la web"); si solo piden revisar, van como comentario para que quien redacta decida. `subir` guarda antes una versión, recuperable desde "Historial" en la web, así que nunca se pierde lo que había.
+5. Para cerrar un comentario del equipo después de atenderlo, `comentar` con esa clave y el texto vacío (`{ "clave": "" }`).
+
+Al terminar, dar al usuario el enlace `https://estrellasdelsur.eu/redaccion/#<id>` y un resumen corto: nota con margen, cuántos comentarios se han dejado y qué se ha subido.
 
 ## Lo primero
 

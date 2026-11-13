@@ -12,6 +12,8 @@
 //
 // Uso:
 //   node scripts/borrador.mjs listar
+//   node scripts/borrador.mjs plantilla KA152-YOU --titulo "EMBER" --salida proyectos/web/ember.md
+//   node scripts/borrador.mjs crear proyectos/web/ember.md [--responsables paula@...,maxi@...] [--simulacro]
 //   node scripts/borrador.mjs bajar "EMBER" [--salida proyectos/web/ember.md]
 //   node scripts/borrador.mjs subir proyectos/web/ember.md
 //   node scripts/borrador.mjs comentarios "EMBER"
@@ -19,6 +21,13 @@
 //   node scripts/borrador.mjs notas "EMBER" evaluacion.md
 //   node scripts/borrador.mjs estado "EMBER" revisado
 //
+// "plantilla" escribe un markdown vacío con las preguntas literales de la
+// acción, en el orden del portal y con su tope; se redacta encima.
+// "crear" sube ese markdown como borrador nuevo de la web, lo asigna (por
+// defecto a quien ejecuta el script) y apunta su id en el fichero, así los
+// cambios siguientes van con "subir". Las preguntas se reconocen por su texto
+// literal o, si el encabezado está resumido, por parecido; las que no se
+// reconocen se listan y no se suben. "subir" y "crear" aceptan --simulacro.
 // "bajar" acepta el título (o parte, sin distinguir mayúsculas) o el id.
 // "bajar" deja además, si hay comentarios del equipo sin resolver, un
 // <nombre>.comentarios.md al lado con cada uno bajo su pregunta.
@@ -34,7 +43,7 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
-import { formularioDe, aMarkdown, contar, etiquetaClave, partirClave } from '../src/lib/formularios.mjs';
+import { formularioDe, aMarkdown, contar, etiquetaClave, partirClave, aplanar, limiteDe, FORMULARIOS } from '../src/lib/formularios.mjs';
 
 const RAIZ = process.cwd();
 
@@ -85,31 +94,75 @@ function aMarkdownConId(b, f) {
   return md.replace(/^(# .*\n)/, `$1\nBorrador: ${b.id}\nEstado: ${b.estado}\n`);
 }
 
-// Lee el markdown y devuelve { id, campos, repetidos } con las respuestas que
-// contiene. Reconoce los bloques por su título, las fichas por "#### Etiqueta n"
-// y las preguntas por su texto literal.
+// Palabras de un texto para comparar encabezados con preguntas literales
+const palabras = (t) => (t ?? '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2);
+
+// Busca la pregunta de un encabezado "### ...". Primero el texto literal en
+// el bloque actual, luego en todo el formulario, y por último por parecido:
+// vale un encabezado resumido ("Aims. Please describe...") si casi todas sus
+// palabras están en una sola pregunta y no empata con otra.
+export function buscarPregunta(texto, f, bloque) {
+  const t = normalizar(texto).replace(/\.{3}$|…$/, '').trim();
+  const todas = f.bloques.flatMap((b) => b.preguntas.map((p) => ({ p, b })));
+  const exacta = (lista) => lista.find(({ p }) => normalizar(p.texto) === t)
+    ?? lista.find(({ p }) => t.length >= 25 && normalizar(p.texto).startsWith(t));
+  const delBloque = bloque ? todas.filter(({ b }) => b === bloque) : [];
+  const hallada = exacta(delBloque) ?? exacta(todas);
+  if (hallada) return hallada;
+  const h = new Set(palabras(t));
+  if (h.size < 4) return null;
+  const puntuadas = todas.map((x) => {
+    const q = new Set(palabras(x.p.texto));
+    let comunes = 0;
+    h.forEach((w) => { if (q.has(w)) comunes += 1; });
+    return { ...x, contiene: comunes / h.size, jaccard: comunes / (h.size + q.size - comunes) };
+  }).sort((a, b) => b.contiene - a.contiene || b.jaccard - a.jaccard || (b.b === bloque) - (a.b === bloque));
+  const [mejor, segunda] = puntuadas;
+  if (!mejor || mejor.contiene < 0.8) return null;
+  if (segunda && segunda.contiene === mejor.contiene && segunda.jaccard === mejor.jaccard && segunda.b !== bloque) return null;
+  return { p: mejor.p, b: mejor.b };
+}
+
+// Lee el markdown y devuelve { id, campos, repetidos, reconocidas, perdidas }.
+// Reconoce los bloques por su título, las fichas por "#### Etiqueta n" y las
+// preguntas con buscarPregunta. Si un título de bloque no coincide, la
+// pregunta se busca en todo el formulario; las de un bloque repetible sin
+// "#### Etiqueta n" delante van a su primera ficha. Las líneas de comentario
+// HTML (<!-- ... -->) de la plantilla no cuentan como respuesta.
 export function deMarkdown(md, f) {
   const id = md.match(/^Borrador:\s*(\S+)/m)?.[1] ?? null;
   const porTitulo = new Map(f.bloques.map((b) => [normalizar(b.titulo), b]));
   const campos = {};
   const repetidos = {};
-  let bloque = null;
-  let ficha = null;      // objeto de la ficha actual en un bloque repetible
-  let pregunta = null;
+  const perdidas = [];
+  let reconocidas = 0;
+  let bloque = null;     // bloque del último "## " reconocido
+  let ficha = null;      // { bloque, valores } de la última "#### Etiqueta n"
+  let actual = null;     // { p, b, destino } de la pregunta abierta
+  let previa = null;     // { p, b } de la última pregunta reconocida
   let lineas = [];
 
+  const fichaDe = (b, i) => {
+    repetidos[b.id] ??= [];
+    while (repetidos[b.id].length <= i) repetidos[b.id].push({});
+    return repetidos[b.id][i];
+  };
+
   const cerrar = () => {
-    if (!bloque || !pregunta) return;
-    const destino = bloque.repetible ? ficha : campos;
-    if (!destino) return;
-    let cuerpo = lineas.filter((l) => !/^\*[\d.,\s]+caracteres\*$/.test(l.trim())).join('\n').trim();
-    if (pregunta.tipo === 'opciones') {
+    if (!actual) return;
+    const { p, destino } = actual;
+    const cuerpo = lineas
+      .filter((l) => !/^\*[\d.,\s]+caracteres\*$/.test(l.trim()) && !/^\s*<!--.*-->\s*$/.test(l))
+      .join('\n').trim();
+    if (p.tipo === 'opciones') {
       const ops = cuerpo.split('\n').map((l) => l.replace(/^\s*[-*]\s+/, '').trim()).filter(Boolean);
-      if (ops.length) destino[pregunta.id] = ops;
+      if (ops.length) { destino[p.id] = ops; reconocidas += 1; }
     } else if (cuerpo) {
-      destino[pregunta.id] = cuerpo;
+      destino[p.id] = cuerpo;
+      reconocidas += 1;
     }
-    pregunta = null;
+    actual = null;
     lineas = [];
   };
 
@@ -119,31 +172,78 @@ export function deMarkdown(md, f) {
       cerrar();
       bloque = porTitulo.get(normalizar(m[1])) ?? null;
       ficha = null;
+      previa = null;
       continue;
     }
-    if ((m = linea.match(/^#### (.+?)\s+(\d+)$/)) && bloque?.repetible) {
-      cerrar();
-      repetidos[bloque.id] ??= [];
-      const i = Number(m[2]) - 1;
-      while (repetidos[bloque.id].length <= i) repetidos[bloque.id].push({});
-      ficha = repetidos[bloque.id][i];
-      continue;
+    if ((m = linea.match(/^#### (.+?)\s+(\d+)\s*$/))) {
+      const etiqueta = normalizar(m[1]).toLowerCase();
+      const b = bloque?.repetible ? bloque
+        : f.bloques.find((x) => x.repetible && normalizar(x.etiquetaRepetible ?? 'Ficha').toLowerCase() === etiqueta);
+      // Si no es una ficha, la línea es texto de la respuesta
+      if (b) {
+        cerrar();
+        bloque = b;
+        ficha = { bloque: b, valores: fichaDe(b, Number(m[2]) - 1) };
+        previa = null;
+        continue;
+      }
     }
     if ((m = linea.match(/^### (.+)$/))) {
       cerrar();
-      const texto = normalizar(m[1]);
-      pregunta = bloque?.preguntas.find((p) => normalizar(p.texto) === texto) ?? null;
-      if (bloque && !pregunta) console.error(`Aviso: pregunta no reconocida en "${bloque.titulo}": ${texto.slice(0, 80)}`);
+      const hallada = buscarPregunta(m[1], f, bloque);
+      if (!hallada) { perdidas.push(normalizar(m[1]).slice(0, 90)); continue; }
+      let { p } = hallada;
+      const { b } = hallada;
+      const destino = !b.repetible ? campos
+        : ficha?.bloque === b ? ficha.valores
+        : fichaDe(b, 0);
+      // Preguntas con el mismo texto en un bloque (las "Please provide a
+      // translation in English" de KA154): se toma la primera que vaya
+      // después de la última pregunta leída, como en el formulario.
+      const gemelas = b.preguntas.filter((q) => normalizar(q.texto) === normalizar(p.texto));
+      if (gemelas.length > 1) {
+        const ultima = previa?.b === b ? b.preguntas.indexOf(previa.p) : -1;
+        p = gemelas.find((q) => b.preguntas.indexOf(q) > ultima) ?? gemelas[0];
+      }
+      actual = { p, b, destino };
+      previa = { p, b };
       continue;
     }
-    if ((m = linea.match(/^Pertenece a:\s*(.+)$/)) && ficha && !pregunta) {
-      ficha._padre = m[1].trim();
+    if ((m = linea.match(/^Pertenece a:\s*(.+)$/)) && ficha && !actual) {
+      ficha.valores._padre = m[1].trim();
       continue;
     }
-    if (pregunta) lineas.push(linea);
+    if (actual) lineas.push(linea);
   }
   cerrar();
-  return { id, campos, repetidos };
+  return { id, campos, repetidos, reconocidas, perdidas };
+}
+
+// Markdown vacío con todas las preguntas literales de una acción, en el
+// orden del portal, para redactar encima y luego "crear" o "subir". Cada
+// pregunta lleva una línea <!-- ... --> con su tope, que no se sube.
+export function plantillaMarkdown(f, titulo) {
+  const lineas = [`# ${titulo}`, '', `Acción: ${f.accion}, ${f.nombre}`, ''];
+  const tope = (p) => {
+    const lim = p.tipo === 'texto' ? (p.limite ?? f.limiteDefecto) : p.limite;
+    const partes = [`tipo ${p.tipo}`];
+    if (lim) partes.push(`tope ${lim.toLocaleString('es-ES')} caracteres`);
+    if (p.opciones?.length) partes.push(`opciones: ${p.opciones.join(' | ')}`);
+    if (p.maximo) partes.push(`máximo ${p.maximo}`);
+    return `<!-- ${partes.join(', ')} -->`;
+  };
+  const volcar = (b) => b.preguntas.forEach((p) => {
+    lineas.push(`### ${p.texto.replace(/\s*\n\s*/g, ' ')}`, tope(p), '', '');
+  });
+  f.bloques.forEach((b) => {
+    lineas.push(`## ${b.titulo}`, '');
+    if (b.repetible) {
+      lineas.push(`<!-- Bloque repetible: copiar desde "#### ${b.etiquetaRepetible ?? 'Ficha'} 1" para añadir fichas 2, 3... -->`, '');
+      lineas.push(`#### ${b.etiquetaRepetible ?? 'Ficha'} 1`, '');
+    }
+    volcar(b);
+  });
+  return lineas.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
 }
 
 // Comentarios desde un JSON o desde un markdown con "### pregunta" + texto.
@@ -209,6 +309,20 @@ export function comentariosAMarkdown(b, f, hilos) {
   return lineas.join('\n');
 }
 
+// Avisos de lo leído de un markdown: preguntas que no se reconocieron (se
+// quedarían sin subir) y respuestas por encima del tope del portal.
+function informe(leido, f) {
+  if (leido.perdidas.length) {
+    console.error(`Aviso: ${leido.perdidas.length} encabezados "###" no corresponden a ninguna pregunta y NO se suben:`);
+    leido.perdidas.forEach((t) => console.error(`  - ${t}`));
+  }
+  const sobre = aplanar({ campos: leido.campos, repetidos: leido.repetidos }, f)
+    .filter((x) => typeof x.valor === 'string')
+    .map((x) => ({ ...x, lim: limiteDe(x.pregunta, f), n: contar(x.valor) }))
+    .filter((x) => x.lim && x.n > x.lim);
+  if (sobre.length) console.error(`Aviso: por encima del tope: ${sobre.map((x) => `${etiquetaClave(x.clave, f)} (${x.n}/${x.lim})`).join(', ')}`);
+}
+
 async function main() {
   const [orden, ...args] = process.argv.slice(2);
   if (!orden || orden === 'ayuda') {
@@ -241,6 +355,71 @@ async function main() {
     return;
   }
 
+  if (orden === 'plantilla') {
+    const accion = (args[0] ?? '').toUpperCase();
+    const f = accion ? (formularioDe(accion) ?? FORMULARIOS.find((x) => x.accion.startsWith(accion))) : null;
+    if (!f) fallo(`Uso: plantilla <${FORMULARIOS.map((x) => x.accion).join('|')}> [--titulo "..."] [--salida fichero.md]`);
+    const titulo = args.includes('--titulo') ? args[args.indexOf('--titulo') + 1] : 'Título de trabajo';
+    const md = plantillaMarkdown(f, titulo);
+    if (args.includes('--salida')) {
+      const salida = args[args.indexOf('--salida') + 1];
+      if (existsSync(resolve(RAIZ, salida))) fallo(`${salida} ya existe; no lo piso. Elige otro nombre.`);
+      mkdirSync(dirname(resolve(RAIZ, salida)), { recursive: true });
+      writeFileSync(resolve(RAIZ, salida), md);
+      console.log(`Plantilla de ${f.accion} (${f.bloques.length} bloques) en ${salida}`);
+    } else {
+      process.stdout.write(md);
+    }
+    return;
+  }
+
+  if (orden === 'crear') {
+    const ruta = args[0];
+    if (!ruta || !existsSync(resolve(RAIZ, ruta))) fallo('Uso: crear <fichero.md> [--accion KA152-YOU] [--titulo "..."] [--responsables correo,correo] [--estado borrador|para_revisar] [--simulacro]');
+    const opcion = (n) => (args.includes(n) ? args[args.indexOf(n) + 1] : null);
+    const md = readFileSync(resolve(RAIZ, ruta), 'utf8');
+    if (/^Borrador:\s*\S+/m.test(md)) fallo('Este markdown ya está en la web (lleva "Borrador: <id>"). Usa "subir" para actualizarlo.');
+    const accion = (opcion('--accion') ?? md.match(/^Acción:\s*([A-Z0-9]+-[A-Z]+)/m)?.[1] ?? '').toUpperCase();
+    const f = formularioDe(accion);
+    if (!f) fallo(`No sé de qué acción es. Pon --accion (${FORMULARIOS.map((x) => x.accion).join(', ')}) o la línea "Acción: KA152-YOU" bajo el título.`);
+    const titulo = opcion('--titulo') ?? md.match(/^# (.+)$/m)?.[1]?.trim();
+    if (!titulo || titulo === 'Título de trabajo') fallo('Falta el título: pon "# Título" en la primera línea o --titulo "..."');
+    const estado = opcion('--estado') ?? 'borrador';
+    if (!['borrador', 'para_revisar', 'revisado', 'presentado'].includes(estado)) fallo(`Estado no válido: ${estado}`);
+    const leido = deMarkdown(md, f);
+    informe(leido, f);
+    if (!leido.reconocidas) fallo('No he reconocido ninguna respuesta en el fichero; no creo nada.');
+    // Idioma de redacción: el de la línea "Idioma: es|en|fr" o, si no hay, se deduce
+    const muestra = Object.values(leido.campos).filter((v) => typeof v === 'string').join(' ').slice(0, 3000);
+    const cuenta = (re) => (muestra.match(re) ?? []).length;
+    const votos = {
+      es: cuenta(/\b(el|los|las|del|que|y|con|para|una)\b/gi),
+      en: cuenta(/\b(the|and|of|will|our|with|to|for)\b/gi),
+      fr: cuenta(/\b(les|des|nous|est|une|avec|pour|du)\b/gi),
+    };
+    const deducido = Object.entries(votos).sort((a, b) => b[1] - a[1])[0];
+    const idioma = /^Idioma:\s*(es|en|fr)\b/m.exec(md)?.[1] ?? (deducido[1] ? deducido[0] : 'es');
+    const respuestas = { idioma, campos: leido.campos, repetidos: leido.repetidos };
+    console.log(`"${titulo}" (${f.accion}): ${leido.reconocidas} respuestas reconocidas, idioma ${idioma}`);
+    if (args.includes('--simulacro')) { console.log('Simulacro: no se ha creado nada.'); return; }
+    const sb = await cliente();
+    const { data: b, error } = await sb.from('borradores')
+      .insert({ titulo, accion: f.accion, estado, respuestas, sesion: 'claude-code' })
+      .select().single();
+    if (error) fallo('No se pudo crear el borrador: ' + error.message);
+    // Responsables: los que se pidan y, si no se pide ninguno, quien ejecuta el script
+    const yo = (process.env.PORTAL_EMAIL ?? '').toLowerCase();
+    const resp = (opcion('--responsables') ?? yo).split(',').map((x) => x.trim().toLowerCase()).filter(Boolean);
+    for (const email of resp) {
+      const { error: e } = await sb.from('borrador_responsables').insert({ borrador_id: b.id, email });
+      if (e) console.error(`Aviso: no se pudo asignar a ${email}: ${e.message}`);
+    }
+    // El id vuelve al markdown para que los cambios siguientes vayan con "subir"
+    writeFileSync(resolve(RAIZ, ruta), md.replace(/^(# .*\r?\n)/, `$1\nBorrador: ${b.id}\nEstado: ${estado}\n`));
+    console.log(`Creado. Responsables: ${resp.join(', ') || 'nadie'}. https://estrellasdelsur.eu/redaccion/#${b.id}`);
+    return;
+  }
+
   if (orden === 'subir') {
     const ruta = args[0];
     if (!ruta || !existsSync(resolve(RAIZ, ruta))) fallo('Falta el fichero markdown a subir');
@@ -250,7 +429,9 @@ async function main() {
     const sb = await cliente();
     const b = await buscar(sb, id);
     const f = formularioDe(b.accion);
-    const { campos, repetidos } = deMarkdown(md, f);
+    const leido = deMarkdown(md, f);
+    const { campos, repetidos } = leido;
+    informe(leido, f);
     const r = b.respuestas ?? { campos: {}, repetidos: {} };
     const nuevas = {
       ...r,
@@ -263,12 +444,10 @@ async function main() {
       if (previas.length > fichas.length) nuevas.repetidos[bl].push(...previas.slice(fichas.length));
     }
     const nCampos = Object.keys(campos).length + Object.values(repetidos).reduce((s, fs) => s + fs.reduce((t, fi) => t + Object.keys(fi).length, 0), 0);
-    const sobre = f.bloques.flatMap((bl) => bl.preguntas).filter((p) => p.tipo === 'texto').map((p) => {
-      const lim = p.limite ?? f.limiteDefecto;
-      const v = campos[p.id];
-      return typeof v === 'string' && lim && contar(v) > lim ? `${p.id} (${contar(v)}/${lim})` : null;
-    }).filter(Boolean);
-    if (sobre.length) console.error(`Aviso: respuestas por encima del tope: ${sobre.join(', ')}`);
+    if (args.includes('--simulacro')) {
+      console.log(`Simulacro: se subirían ${nCampos} respuestas a "${b.titulo}". No se ha tocado nada.`);
+      return;
+    }
     // Copia de lo que hay antes de reemplazar, recuperable desde Historial
     const { error: errorVersion } = await sb.rpc('guardar_version_borrador', { p_id: id, p_etiqueta: 'Antes de subir desde Claude Code' });
     if (errorVersion) fallo('No se pudo guardar la versión previa, así que no se sube nada: ' + errorVersion.message);
@@ -347,7 +526,7 @@ async function main() {
     return;
   }
 
-  fallo(`Orden desconocida: ${orden}. Órdenes: listar, bajar, subir, comentarios, comentar, notas, estado`);
+  fallo(`Orden desconocida: ${orden}. Órdenes: listar, plantilla, crear, bajar, subir, comentarios, comentar, notas, estado`);
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/').split('/').pop())) {

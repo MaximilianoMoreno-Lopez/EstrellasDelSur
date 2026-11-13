@@ -58,10 +58,11 @@ pendientes están fuera del repo, en `borradores/fuentes/formularios/`, porque c
 expedientes de otras entidades. Los borradores se guardan en la tabla `borradores`
 de Supabase (`scripts/sql/2026-10-27-redaccion.sql`) y se exportan al markdown
 que leen las herramientas de la skill `redaccion-proyectos` (`###` por pregunta).
-`scripts/borrador.mjs` baja y sube borradores desde Claude Code con la cuenta del
+`scripts/borrador.mjs` crea, baja y sube borradores desde Claude Code con la cuenta del
 portal (`PORTAL_EMAIL` y `PORTAL_PASSWORD` en `.env.local`) y deja comentarios por
-pregunta que se ven en el editor; el uso está en la sección "Borradores de la web"
-de la skill.
+pregunta que se ven en el editor. Lo que Claude redacta o revisa para esas cinco acciones
+va a la web (`plantilla` y `crear` para uno nuevo, `bajar`, `comentar`, `notas` y `subir`
+para revisar); el flujo está en la sección "La web es el sitio de trabajo" de la skill.
 
 Comentarios e historial (`scripts/sql/2026-11-12-redaccion-comentarios-versiones.sql`):
 cada pregunta tiene un botón "Comentar" que guarda en la tabla `borrador_comentarios`
