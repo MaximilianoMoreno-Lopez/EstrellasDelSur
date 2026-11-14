@@ -20,6 +20,7 @@
 //   node scripts/borrador.mjs comentar "EMBER" comentarios.json
 //   node scripts/borrador.mjs notas "EMBER" evaluacion.md
 //   node scripts/borrador.mjs estado "EMBER" revisado
+//   node scripts/borrador.mjs titulo "EMBER" "EMBER (KA153, ronda de febrero)"
 //
 // "plantilla" escribe un markdown vacío con las preguntas literales de la
 // acción, en el orden del portal y con su tope; se redacta encima.
@@ -427,23 +428,23 @@ async function main() {
     const id = md.match(/^Borrador:\s*(\S+)/m)?.[1];
     if (!id) fallo('El markdown no lleva la línea "Borrador: <id>" (baja primero el borrador con este script)');
     const sb = await cliente();
-    const b = await buscar(sb, id);
+    let b = await buscar(sb, id);
     const f = formularioDe(b.accion);
     const leido = deMarkdown(md, f);
     const { campos, repetidos } = leido;
     informe(leido, f);
-    const r = b.respuestas ?? { campos: {}, repetidos: {} };
-    const nuevas = {
-      ...r,
-      campos: { ...(r.campos ?? {}), ...campos },
-      repetidos: { ...(r.repetidos ?? {}) },
-    };
-    for (const [bl, fichas] of Object.entries(repetidos)) {
-      const previas = Array.isArray(nuevas.repetidos[bl]) ? nuevas.repetidos[bl] : [];
-      nuevas.repetidos[bl] = fichas.map((fi, i) => ({ ...(previas[i] ?? {}), ...fi }));
-      if (previas.length > fichas.length) nuevas.repetidos[bl].push(...previas.slice(fichas.length));
-    }
     const nCampos = Object.keys(campos).length + Object.values(repetidos).reduce((s, fs) => s + fs.reduce((t, fi) => t + Object.keys(fi).length, 0), 0);
+    // Mezcla lo leído con lo que hay: las preguntas que no van en el fichero no se tocan
+    const mezclar = (r0) => {
+      const r = r0 ?? { campos: {}, repetidos: {} };
+      const nuevas = { ...r, campos: { ...(r.campos ?? {}), ...campos }, repetidos: { ...(r.repetidos ?? {}) } };
+      for (const [bl, fichas] of Object.entries(repetidos)) {
+        const previas = Array.isArray(nuevas.repetidos[bl]) ? nuevas.repetidos[bl] : [];
+        nuevas.repetidos[bl] = fichas.map((fi, i) => ({ ...(previas[i] ?? {}), ...fi }));
+        if (previas.length > fichas.length) nuevas.repetidos[bl].push(...previas.slice(fichas.length));
+      }
+      return nuevas;
+    };
     if (args.includes('--simulacro')) {
       console.log(`Simulacro: se subirían ${nCampos} respuestas a "${b.titulo}". No se ha tocado nada.`);
       return;
@@ -451,9 +452,32 @@ async function main() {
     // Copia de lo que hay antes de reemplazar, recuperable desde Historial
     const { error: errorVersion } = await sb.rpc('guardar_version_borrador', { p_id: id, p_etiqueta: 'Antes de que Estrella subiera cambios' });
     if (errorVersion) fallo('No se pudo guardar la versión previa, así que no se sube nada: ' + errorVersion.message);
-    const { error } = await sb.from('borradores').update({ respuestas: nuevas, sesion: 'claude-code' }).eq('id', id);
-    if (error) fallo('No se pudo subir: ' + error.message);
-    console.log(`Subidas ${nCampos} respuestas a "${b.titulo}"`);
+    // Solo se escribe si nadie ha guardado desde la lectura; si alguien lo hizo
+    // (una persona en la web u otra subida en paralelo), se relee y se vuelve a mezclar.
+    for (let intento = 1; intento <= 8; intento += 1) {
+      const { data, error } = await sb.from('borradores')
+        .update({ respuestas: mezclar(b.respuestas), sesion: 'claude-code' })
+        .eq('id', id).eq('updated_at', b.updated_at)
+        .select('id');
+      if (error) fallo('No se pudo subir: ' + error.message);
+      if (data.length) {
+        console.log(`Subidas ${nCampos} respuestas a "${b.titulo}"${intento > 1 ? ` (al intento ${intento}, alguien guardó a la vez)` : ''}`);
+        return;
+      }
+      await new Promise((r) => setTimeout(r, 300 * intento + Math.floor(Math.random() * 400)));
+      b = await buscar(sb, id);
+    }
+    fallo('No se pudo subir: el borrador no deja de cambiar. Inténtalo otra vez en un momento.');
+  }
+
+  if (orden === 'titulo') {
+    const [ref, titulo] = args;
+    if (!ref || !titulo?.trim()) fallo('Uso: titulo <borrador> "Título nuevo"');
+    const sb = await cliente();
+    const b = await buscar(sb, ref);
+    const { error } = await sb.from('borradores').update({ titulo: titulo.trim(), sesion: 'claude-code' }).eq('id', b.id);
+    if (error) fallo(error.message);
+    console.log(`"${b.titulo}" pasa a llamarse "${titulo.trim()}"`);
     return;
   }
 
@@ -526,7 +550,7 @@ async function main() {
     return;
   }
 
-  fallo(`Orden desconocida: ${orden}. Órdenes: listar, plantilla, crear, bajar, subir, comentarios, comentar, notas, estado`);
+  fallo(`Orden desconocida: ${orden}. Órdenes: listar, plantilla, crear, bajar, subir, titulo, comentarios, comentar, notas, estado`);
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/').split('/').pop())) {
