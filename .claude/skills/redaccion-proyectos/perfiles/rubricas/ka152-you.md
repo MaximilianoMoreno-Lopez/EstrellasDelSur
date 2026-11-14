@@ -4,27 +4,28 @@ Bandas por criterio: de 30 puntos, muy bueno 26-30, bueno 21-25, suficiente 15-2
 Reglas del experto que afectan a todo: no puede suponer nada que no esté escrito; lo que sirve para un criterio cuenta aunque esté en otro bloque; los elementos no se puntúan por separado, el experto coloca el criterio entero en una banda pero el comentario debe citarlos uno a uno; varios elementos tratados con frases genéricas llevan a suficiente y un elemento central ausente lleva a débil (inferencia a partir de las definiciones de banda); se aplica proporcionalidad según tamaño y experiencia; si la relevancia no llega al umbral la agencia puede cortar ahí la evaluación; si ve texto igual o parecido en dos solicitudes de la ronda, o dudas de contenido original y autoría, avisa a la agencia.
 
 ## Relevancia, justificación e impacto (30)
-1. Perfil, experiencia, actividades y grupo destinatario de la solicitante relevantes para juventud EN LA PRÁCTICA: pericia del equipo, actividad cotidiana y experiencia previa, sobre todo FUERA de Erasmus+. No basta la relevancia formal o nominal.
+1. Perfil, experiencia, actividades y grupo destinatario de la solicitante relevantes para juventud EN LA PRÁCTICA: pericia del equipo, actividad cotidiana y experiencia previa, sobre todo FUERA de Erasmus+. No basta la relevancia formal o nominal. La guía en castellano cuenta la experiencia «de su personal y/u otras personas que participarán en el proyecto», así que la trayectoria de facilitación y voluntariado también suma si se nombra (Guía ES 2026, p. 21).
 2. Contribución a prioridades del EU Youth Dialogue o a los 11 Youth Goals (Estrategia de Juventud 2019-2027).
 3. Contribución a las dimensiones de inclusión y diversidad, verde, digital y participativa del Programa (capítulo Prioridades de la Guía y estrategias).
-4. Relevancia para los objetivos de la acción (intercambios juveniles: aprendizaje no formal, intercultural, participación, competencias).
+4. Relevancia para los objetivos de la acción (intercambios juveniles: aprendizaje no formal, intercultural, participación, competencias). Los objetivos y el marco general del proyecto tienen que ser «complementarios» con los de la acción y abordarlos «de manera cualitativa», no basta con enumerarlos (Guía ES 2026, p. 21).
 5. Valores de la UE (dignidad, libertad, democracia, igualdad, Estado de Derecho, derechos humanos, no discriminación). El experto mira cuatro puntos de control: integrados en objetivos, metodologías, actividades y resultados, y explicar con claridad cómo el proyecto los apoya y los hace avanzar es una fortaleza adicional; enfoque no discriminatorio que beneficie a participantes diversos, con medidas contra toda discriminación por género, etnia, discapacidad u otras; componente educativo que mejore la comprensión y el aprecio de los valores; oportunidades de aprender y vivir los valores repartidas por varios componentes del proyecto, no como pieza aislada. Desde 2025 la guía no habla de "promover" los valores sino de aprenderlos y vivirlos.
+   Discrepancia con la Guía ES 2026 (p. 21): la versión castellana sí habla de promover. El elemento se titula «el respeto y la promoción de los valores compartidos de la UE» y la ventaja adicional es explicar «cómo el proyecto apoya y promueve estos valores». Aprender y vivir los valores es solo el cuarto punto de control («oportunidades de aprender y experimentar los valores de la UE»). En castellano conviene escribir las dos cosas, que el proyecto promueve los valores y que da ocasiones de aprenderlos y experimentarlos.
 6. Necesidades de las organizaciones y de los participantes: justificación clara, cómo se identificó la demanda, relevancia para participantes, comunidad y grupo destinatario.
 7. Resultados de aprendizaje de calidad: claramente definidos, alineados con las necesidades y alcanzables con las actividades.
-8. Impacto durante y después, dentro y fuera del consorcio, local, regional, nacional, europeo; perspectiva de largo plazo.
+8. Impacto durante y después, dentro y fuera del consorcio, local, regional, nacional, europeo; perspectiva de largo plazo. La guía en castellano cierra la lista en «europeo o mundial» y añade el impacto en «comunidades/prácticas» cuando sea pertinente (Guía ES 2026, p. 22).
 9. Recién llegadas y menos experimentadas: plan o intención de llegar a organizaciones y grupos de jóvenes que nunca o rara vez se han beneficiado de la acción (definiciones del glosario de la Guía del Programa).
 
 ## Calidad del diseño y la ejecución (40)
 1. Preparación, ejecución y seguimiento descritos de forma clara y convincente: reparto de tareas, programa, métodos, logística, implicación de participantes, seguimiento; jóvenes implicados en la concepción, preparación, ejecución y seguimiento.
 2. Representación equilibrada por países y género: el Programa busca equilibrio geográfico y de género y el experto lo mira en la composición de los grupos. Actividades accesibles e inclusivas, abiertas a participantes de perfiles y capacidades diversas, con participantes con menos oportunidades y uso de las ocasiones de diversificar, empezando por cómo se define la selección.
 3. Prácticas sostenibles y respetuosas con el medio ambiente en el contenido de las actividades y los objetivos y en lo práctico, aprovechando al máximo la financiación de viaje sostenible.
-4. Métodos de aprendizaje no formal e informal (incluidos los digitales) que estimulen creatividad, participación activa e iniciativa, adaptados al grupo y que lleven al desarrollo personal, socioeducativo y profesional de todos los participantes; procesos de aprendizaje planificados de forma participativa y analizados a lo largo del proyecto; formas concretas en que lo digital y lo virtual apoyan el aprendizaje y complementan lo presencial; cómo se abordan los objetivos de aprendizaje de cada participante, se apoya la reflexión y se identifican y reconocen los resultados; Youthpass usado como PROCESO de reflexión, no solo como certificado.
+4. Métodos de aprendizaje no formal e informal (incluidos los digitales) que estimulen creatividad, participación activa e iniciativa, adaptados al grupo y que lleven al desarrollo personal, socioeducativo y profesional de todos los participantes; procesos de aprendizaje planificados de forma participativa y analizados a lo largo del proyecto; formas concretas en que lo digital y lo virtual apoyan el aprendizaje y complementan lo presencial; cómo se abordan los objetivos de aprendizaje de cada participante, se apoya la reflexión y se identifican y reconocen los resultados; Youthpass usado como PROCESO de reflexión, no solo como certificado. El título del elemento habla de «las herramientas europeas de transparencia y reconocimiento, en particular Youthpass», y usar el proceso Youthpass además del certificado se considera «un elemento de calidad del proyecto», no un requisito (Guía ES 2026, p. 23).
 
 ## Calidad de la gestión (30)
 1. Organización práctica, gestión y apoyo satisfactorios en todas las fases.
 2. Seguridad y protección adecuadas y eficaces; prevención y reducción de riesgos; acompañantes para jóvenes con menos oportunidades si procede.
 3. Tareas y responsabilidades claramente definidas y asignadas, conforme a los estándares de calidad Erasmus.
-4. Cooperación y comunicación entre organizaciones y con otros actores: consorcio cohesionado, implicación activa de todas, medios de comunicación (herramientas digitales), perfil adecuado de las socias, roles acordados, capacidad de seguimiento y difusión, capacidad de apoyo a menos oportunidades.
+4. Cooperación y comunicación entre organizaciones y con otros actores: consorcio cohesionado, implicación activa de todas, medios de comunicación (herramientas digitales), perfil adecuado de las socias, roles acordados, capacidad de seguimiento y difusión, capacidad de apoyo a menos oportunidades. La guía en castellano pide además «objetivos comunes que alcanzar» y mira «el nivel de creación de redes, cooperación y compromiso de cada organización participante»; el perfil de las socias pesa cuando la actividad exige cualificación «(por ejemplo, el trabajo con jóvenes)» y la capacidad de apoyo se mira «en el caso de los proyectos de inclusión», con «necesidades especiales o con menos oportunidades» (Guía ES 2026, p. 24).
 5. Evaluación de las diferentes fases y de los resultados: seguimiento durante la ejecución para ajustar, y evaluación final que compruebe objetivos y expectativas.
 6. Difusión dentro y fuera de las organizaciones: medidas pensadas en común, si procede, para la visibilidad del proyecto y de Erasmus+, y medidas de cada organización para difundir y explotar los resultados, incluidos los learning outcomes, en beneficio de todos los actores (p. 25).
 7. Sostenibilidad: mecanismos, actividades o prácticas con potencial de seguir funcionando cuando acabe la financiación (p. 25).
@@ -92,3 +93,37 @@ Cartas de ES02 de febrero de 2026 y de octubre de 2025, con la nota de cada caso
 - ES02 premia el intercambio pequeño y concreto. Ninguna carta pidió más productos, más indicadores ni más socias, y cuatro de cinco pidieron menos (Mind the Gap 2026, 54; Semillas de Cambio 2026, 51; EcoVibe 2025, 58; Frames of Us 2026, 72).
 - Corregir una carta añadiendo capas empeora la gestión (Mind the Gap 2026, 54). Se corrige concretando lo que ya está.
 - Con 72 la aprobada sufrió recorte de días. Para llegar a la franja sin recorte hace falta la consulta previa con número y fecha y una sola hoja de cifras (Frames of Us 2026, 72).
+
+## Formulación en castellano (Guía ES 2026)
+Traducción oficial de la guía de expertos (versión 1, 22-12-2025), capítulo «Proyectos de movilidad para jóvenes: Intercambios juveniles», pp. 21-25. Son las expresiones que un evaluador del INJUVE repite en la carta. Úsalas al redactar y búscalas al comparar con una carta. Equivalencias que cambian respecto al inglés: learning outcomes son «resultados de aprendizaje», green es «ecología», Youth Goals son «Objetivos de la UE para la Juventud», EU Youth Dialogue es «Diálogo de la UE con los jóvenes», newcomers son «organizaciones de nueva incorporación» y stakeholders son «terceras partes con un papel relevante».
+
+Criterios
+- «Pertinencia, justificación e impacto» («puntuación máxima 30 puntos») (p. 21)
+- «Calidad del diseño y la ejecución del proyecto» («puntuación máxima: 40 puntos») (p. 22)
+- «Calidad de la gestión del proyecto» («puntuación máxima: 30 puntos») (p. 23)
+
+Pertinencia, justificación e impacto
+1. «forma parte genuina del ámbito»; «no se refiere únicamente a la relevancia formal o nominal»; «especialmente fuera del programa Erasmus+» (p. 21)
+2. «prioridades del Diálogo de la UE con los jóvenes»; «los 11 Objetivos de la UE para la Juventud»; «Estrategia Europea de la Juventud 2019-2027» (p. 21)
+3. «dimensiones de inclusión y diversidad, ecología, digitalización y participación del Programa»; «Prioridades del programa» (p. 21)
+4. «pertinente para los objetivos de la Acción»; «complementarios»; «de manera cualitativa» (p. 21)
+5. «el respeto y la promoción de los valores compartidos de la UE»; «apoya y promueve estos valores»; «enfoque no discriminatorio»; «componentes educativos»; «aprender y experimentar los valores de la UE»; «en lugar de tratarlos como elementos independientes» (pp. 21-22)
+6. «justificación del proyecto»; «por qué es necesario el proyecto»; «cómo se ha identificado la demanda»; «necesidades de los participantes individuales» (p. 22)
+7. «resultados de aprendizaje de alta calidad»; «claramente definidos en consonancia con las necesidades identificadas»; «alcanzables a través de las actividades propuestas» (p. 22)
+8. «perspectiva a largo plazo»; «impacto duradero»; «durante y después de la duración del proyecto»; «a nivel local, regional, nacional y/o europeo o mundial» (p. 22)
+9. «organizaciones nuevas y menos experimentadas»; «organizaciones de nueva incorporación»; «grupos de jóvenes»; «nunca o no regularmente se han beneficiado» (p. 22)
+
+Calidad del diseño y la ejecución del proyecto
+1. «fases de preparación, ejecución y seguimiento»; «la división de tareas, el programa de actividades, los métodos de trabajo, las disposiciones prácticas»; «los jóvenes participan en la concepción del proyecto» (p. 22)
+2. «representación equilibrada de los participantes en términos de países y género»; «equilibrio geográfico y de género»; «de manera accesible e inclusiva»; «participantes con menos oportunidades»; «diversos antecedentes y capacidades» (p. 22)
+3. «prácticas sostenibles y respetuosas con el medio ambiente»; «medios de transporte sostenibles» (p. 23)
+4. «aprendizaje no formal e informal»; «la creatividad, la participación activa y la iniciativa»; «desarrollo personal, socioeducativo y profesional»; «se planifican de forma participativa»; «complementar las actividades físicas»; «el proceso y la herramienta Youthpass»; «un elemento de calidad del proyecto» (p. 23)
+
+Calidad de la gestión del proyecto
+1. «disposiciones prácticas, la gestión y las modalidades de apoyo»; «en todas sus fases» (p. 23)
+2. «la seguridad y la protección de participantes»; «prevenir y reducir los riesgos»; «un alto nivel de seguridad y protección»; «acompañantes» (p. 23)
+3. «claramente asignadas y distribuidas»; «estándares de calidad de Erasmus» (p. 23)
+4. «plan de cooperación y comunicación»; «consorcio cohesionado»; «participación activa de todos los socios»; «objetivos comunes que alcanzar»; «una definición clara y consensuada de las funciones y tareas» (p. 24)
+5. «evaluar las diferentes fases y resultados»; «evaluación final»; «expectativas de las organizaciones participantes y de los participantes»; «realizar los ajustes pertinentes» (p. 24)
+6. «visibilidad del programa Erasmus+»; «difundir y explotar los resultados»; «incluidos sus resultados de aprendizaje» (p. 25)
+7. «sostenibilidad de sus resultados más allá de la duración del proyecto»; «sobrevivir a la duración de la financiación» (p. 25)

@@ -30,6 +30,7 @@ En las cartas de la red, las rechazadas caen entre 45 y 58, las que quedan con c
    La banda Suficiente es ancha. Una rechazada típica está en su parte baja (15-17 de 30, 20-22 de 40, 10-12 de 20); una aprobada nunca está en ella salvo en un criterio aislado. Usar la parte alta de Suficiente en los tres criterios (19-20 de 30, 26-27 de 40) es la forma más habitual de equivocarse: produce un 65 que la agencia no pone.
 4. Umbral: 60 sobre 100 y al menos la mitad de cada criterio. En las agencias con cupo territorial solo se financian, en la práctica, las que superan con holgura los 70; con 60 la carta dice "calidad suficiente, sin presupuesto".
 5. Si la relevancia es débil, el resto se evalúa igual, pero la solicitud queda rechazada.
+6. Débil tiene dos frases en la guía: «la solicitud no cumple el criterio o no puede evaluarse debido a que falta información o se encuentra incompleta» y «la respuesta no aborda la pregunta formulada o aporta muy poca información relevante» (Guía ES 2026, p. 10). Una respuesta que contesta a otra pregunta es Débil en ese elemento. Antes de cerrar, pasar la lista "Al evaluar, comprobar siempre" de `comun/guia_expertos_2026.md`. Añadido el 14-11-2026 sin cambiar bandas ni anclas: no afecta a las predicciones congeladas de `calibracion.md`.
 6. Ponderación: KA152, KA153 y KA154 puntúan 30/40/30 (relevancia, diseño, gestión). KA155 y ESC30 puntúan 40/40/20.
 
 ## Paso 0. Juicio global: los cinco núcleos

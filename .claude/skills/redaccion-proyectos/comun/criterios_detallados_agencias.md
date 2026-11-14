@@ -22,10 +22,10 @@ Definiciones literales de 2026 **[UE]** (3.3, p. 10).
 
 | Banda | Texto de la guía | Traducción oficial 2024 (INJUVE) |
 |---|---|---|
-| Very good | "addresses all relevant aspects of the criterion in question convincingly and successfully. The answer provides all the information and evidence needed and there are no concerns or areas of weakness" | Muy bien |
+| Very good | "addresses all relevant aspects of the criterion in question convincingly and successfully. The answer provides all the information and evidence needed and there are no concerns or areas of weakness" | Muy bueno (Guía ES 2026, p. 10; "Muy bien" era la traducción de 2024) |
 | Good | "addresses the criterion well, although some small improvements could be made" | Bueno |
 | Fair | "broadly addresses the criterion, but there are some weaknesses. The answer gives some relevant information, but there are several areas where detail is lacking or the information is unclear" | Aceptable |
-| Weak | "fails to address the criterion or cannot be judged due to missing or incomplete information" | Débil |
+| Weak | "fails to address the criterion or cannot be judged due to missing or incomplete information. The answer does not address the question asked, or gives very little relevant information" | Débil |
 
 En la skill llamamos "Suficiente" a la banda Fair. La traducción oficial de 2024 dice "Aceptable". Es la misma banda.
 
@@ -255,7 +255,7 @@ Lista concreta, con la fuente. Aplicadas el 6-10-2026 las 1 a 12 y las 18 a 20; 
 17. Añadir a la tabla de bandas la fila de 25 (22-25, 18-21, 13-17, 0-12) para KA220.
 
 ### `comun/buenas_practicas_evaluadores.md`
-18. Sección a, punto 6. La definición de Débil que cita ("does not address the question asked, or gives very little relevant information") no es la de la guía de proyectos 2026. La literal es "fails to address the criterion or cannot be judged due to missing or incomplete information".
+18. Sección a, punto 6. Anulado el 14-11-2026. Este punto decía que "does not address the question asked, or gives very little relevant information" no era de la guía de proyectos 2026, y sí lo es: la definición de Débil tiene dos frases, "fails to address the criterion or cannot be judged due to missing or incomplete information" y esa (Guía ES 2026, p. 10, y la inglesa en la misma página).
 19. Sección d, último punto. Es falso que el INJUVE publique traducida la guía de 2026. El enlace "2026_v1" es el PDF inglés, idéntico byte a byte a `proyectos/referencias/guias/Guide_for_Experts_quality_assessment_2026.pdf`. La última traducción oficial es la de 2024 v3.
 20. Sección d, desempates. Ya no es cierto que no haya regla para KA152, KA153 y KA154. La de 2026 está en el punto 3.1 de este documento.
 21. Sección d, cupos. Añadir los porcentajes de 2026 (Andalucía 14,8908 %, La Rioja 1,4697 %), el reparto 60/40 dentro de A1 y el nuevo mecanismo en dos fases. El tope anual con 80 % en la ronda 1 era de 2025.

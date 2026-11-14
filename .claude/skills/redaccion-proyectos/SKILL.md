@@ -22,6 +22,7 @@ Nació del KA154 EuroÁgora (agosto de 2026) y se afinó con las diez solicitude
 | Lo que hicieron los evaluadores con nuestros textos (26 resultados, reproches, recortes) | `comun/lecciones_evaluadores.md` | skill |
 | Lo que dicen las guías y las agencias que valoran y penalizan | `comun/buenas_practicas_evaluadores.md` | skill |
 | Evaluador simulado calibrado (prompt, anclas, calibración y margen) | `assets/evaluador/` (`evaluador.md`, `anclas.md`, `calibracion.md`) | skill |
+| Guía para expertos 2026 en castellano, destilada: reglas del experto, bandas, vocabulario de las cartas y las dos listas de comprobación (al redactar y al evaluar) | `comun/guia_expertos_2026.md`; el PDF, en `proyectos/referencias/guias/` | skill |
 | Resultados y notas de todas las candidaturas | `src/lib/candidaturas.mjs` (tablero en `/radar/`) | repo público, sin datos personales |
 | Fichas de organizaciones y socias | `proyectos/referencias/organizaciones/` | repo privado |
 | Solicitudes, PIF, guías, aprobadas de referencia, plantillas | `proyectos/` | repo privado |
@@ -72,10 +73,11 @@ Al terminar, dar al usuario el enlace `https://estrellasdelsur.eu/redaccion/#<id
 ## Lo primero
 
 1. **Receta.** Identificar el encargo y leer la receta de `recetas/` (desde cero, adaptar aprobada, ampliar, tras rechazo, añadir socia).
-2. **Perfil.** Leer `perfiles/<accion>.md` y su rúbrica. `VERIFICADO` es fiable; `BORRADOR` o `ESQUELETO` hay que cerrarlo antes de redactar siguiendo su sección "Cómo cerrar este perfil". Si la acción no tiene perfil, copiar `perfiles/_plantilla.md`.
+2. **Perfil.** Leer `perfiles/<accion>.md` y su rúbrica, incluida su sección "Formulación en castellano (Guía ES 2026)". `VERIFICADO` es fiable; `BORRADOR` o `ESQUELETO` hay que cerrarlo antes de redactar siguiendo su sección "Cómo cerrar este perfil". Si la acción no tiene perfil, copiar `perfiles/_plantilla.md`.
 3. **Historial de resultados.** Mirar en `src/lib/candidaturas.mjs` qué ha presentado ya la solicitante (con qué nota y lección) y qué hermanas van en la misma ronda.
 4. **Fichas.** Leer la ficha de la solicitante y de cada socia en `proyectos/referencias/organizaciones/`. Son la única fuente de datos permitidos de cada entidad y llevan sus reglas duras (quién figura dónde, qué no se puede afirmar).
 5. **Palancas.** `comun/maximizar_puntuacion.md` es la lista de comprobación del verificador de rúbrica.
+6. **Guía de expertos, siempre.** La sección 5 de `comun/guia_expertos_2026.md` tiene dos listas, "Al redactar, comprobar siempre" y "Al evaluar, comprobar siempre". La primera se aplica a cada bloque antes de darlo por escrito y la segunda a toda evaluación, también a las rápidas y a las revisiones de borradores de la web. La castellana es traducción de cortesía; si discrepa de la inglesa, manda la inglesa.
 
 ## Disciplina de tokens
 
@@ -108,12 +110,12 @@ Advertencias que ya costaron caras:
 - Ningún dato de una entidad fuera de su ficha.
 
 ### 4. Redacción
-Formularios largos, redactores en paralelo con `assets/workflow_redaccion.js`, uno por bloque, con las preguntas literales como encabezados `###`. Formularios cortos, una sola mano de un tirón. Cada argumento se cuenta entero en un bloque y en el resto se remite. Longitud objetivo 4.000 a 4.900 caracteres sobre 5.000.
+Formularios largos, redactores en paralelo con `assets/workflow_redaccion.js`, uno por bloque, con las preguntas literales como encabezados `###`. Formularios cortos, una sola mano de un tirón. Cada argumento se cuenta entero en un bloque y en el resto se remite. Longitud objetivo 4.000 a 4.900 caracteres sobre 5.000. En solicitudes en castellano, usar los términos de la sección "Formulación en castellano" de la rúbrica, que son los que lee el evaluador del INJUVE («Pertinencia», «organizaciones de nueva incorporación», «Objetivos de la UE para la Juventud»...); en inglés, sus equivalentes de la guía inglesa.
 
 ### 5. Verificación adversarial
 Sobre el borrador ensamblado, como mínimo:
 - **Coherencia**: cifras, fechas, ciudades, placeholders, repeticiones entre bloques.
-- **Rúbrica y palancas**: elemento a elemento, más la carta de la agencia si es una reescritura.
+- **Rúbrica y palancas**: elemento a elemento, más la carta de la agencia si es una reescritura, y la lista "Al redactar, comprobar siempre" de `comun/guia_expertos_2026.md`.
 - **Originalidad**: contra la referencia aprobada, las hermanas de la misma ronda y los proyectos anteriores de la solicitante.
 - **Estilo e idioma**: `comun/reglas_estilo.md`, tono de IA y longitudes.
 - **Protección** si el tema es sensible.

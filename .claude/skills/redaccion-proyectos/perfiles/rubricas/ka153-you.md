@@ -4,27 +4,27 @@ Bandas por criterio: de 30 puntos, muy bueno 26-30, bueno 21-25, suficiente 15-2
 Reglas del experto que afectan a todo: no puede suponer nada que no esté escrito; lo que sirve para un criterio cuenta aunque esté en otro bloque; los elementos no se puntúan por separado, el experto coloca el criterio entero en una banda pero el comentario debe citarlos uno a uno; varios elementos tratados con frases genéricas llevan a suficiente y un elemento central ausente lleva a débil (inferencia a partir de las definiciones de banda); se aplica proporcionalidad según tamaño y experiencia; si la relevancia no llega al umbral la agencia puede cortar ahí la evaluación; si ve texto igual o parecido en dos solicitudes de la ronda, o dudas de contenido original y autoría, avisa a la agencia.
 
 ## Relevancia, justificación e impacto (30)
-1. Perfil, experiencia y actividades de la solicitante relevantes para el trabajo juvenil EN LA PRÁCTICA: pericia del equipo, actividad cotidiana y experiencia previa, sobre todo fuera de Erasmus+. No basta la relevancia nominal.
+1. Perfil, experiencia y actividades de la solicitante relevantes para el trabajo juvenil EN LA PRÁCTICA: pericia del equipo, actividad cotidiana y experiencia previa, sobre todo fuera de Erasmus+. No basta la relevancia nominal. La guía en castellano cuenta la experiencia «de su personal y/u otras personas que participarán en el proyecto», así que la de formadores y facilitadores también suma si se nombra (Guía ES 2026, p. 26).
 2. Contribución a prioridades del EU Youth Dialogue o a los 11 Youth Goals (Estrategia de Juventud 2019-2027).
 3. Contribución a las dimensiones de inclusión y diversidad, verde, digital y participativa, tal como las define el capítulo "Priorities of the Programme" y sus estrategias.
 4. Relevancia para los objetivos de la acción, citados y abordados de forma cualitativa, complementarios con el marco del proyecto.
-5. Valores de la UE: integrados en objetivos, metodologías, actividades y resultados; enfoque no discriminatorio con medidas contra la discriminación por género, etnia, discapacidad u otras; componentes educativos sobre los valores; valores repartidos por varias actividades y no como pieza aislada.
+5. Valores de la UE: integrados en objetivos, metodologías, actividades y resultados; enfoque no discriminatorio con medidas contra la discriminación por género, etnia, discapacidad u otras; componentes educativos sobre los valores; valores repartidos por varias actividades y no como pieza aislada. Explicar con claridad «cómo el proyecto apoya y promueve estos valores» sería «una ventaja adicional» (Guía ES 2026, p. 27).
 6. Necesidades de desarrollo de las personas trabajadoras participantes y de sus organizaciones: por qué hace falta, cómo se identificó la demanda, relevancia para participantes, comunidad y grupo destinatario.
-7. Idoneidad del proyecto para cinco cosas: reforzar o transformar la práctica de las organizaciones (calidad, innovación y reconocimiento del trabajo juvenil, de lo local a lo global); learning outcomes de calidad, definidos según las necesidades y alcanzables con las actividades; implicar a participantes activos en trabajo juvenil y a organizaciones con trabajo regular con jóvenes a nivel local; impacto durante y después con perspectiva de largo plazo; impacto fuera de las organizaciones y en quien no participa, del nivel local al europeo.
+7. Idoneidad del proyecto para cinco cosas: reforzar o transformar la práctica de las organizaciones (calidad, innovación y reconocimiento del trabajo juvenil, de lo local a lo global); learning outcomes de calidad, definidos según las necesidades y alcanzables con las actividades; implicar a participantes activos en trabajo juvenil y a organizaciones con trabajo regular con jóvenes a nivel local; impacto durante y después con perspectiva de largo plazo; impacto fuera de las organizaciones y en quien no participa, del nivel local al europeo. La guía en castellano llega hasta «europeo o mundial» y pide tener en cuenta el impacto en otros, «cuando sea pertinente, también en las comunidades y las prácticas de trabajo juvenil» (Guía ES 2026, p. 28).
 8. Dentro del elemento anterior el experto busca además que el proyecto dote a las personas trabajadoras de competencias y métodos para su desarrollo profesional, incluido el trabajo juvenil digital, con impacto claro en su trabajo regular con jóvenes y en su organización, contribuyendo a la European Youth Work Agenda (calidad, innovación y reconocimiento).
-9. Si aplica, actividades de desarrollo del sistema y de alcance (system development and outreach): impacto esperado sobre el entorno del trabajo juvenil.
+9. Si aplica, actividades de desarrollo del sistema y de alcance (system development and outreach): impacto esperado sobre el entorno del trabajo juvenil. La guía en castellano traduce outreach como divulgación, «el desarrollo del sistema propuesto y las actividades de divulgación», y el entorno es «el entorno del trabajo con jóvenes» (Guía ES 2026, p. 28).
 10. Recién llegadas y menos experimentadas: plan o intención de llegar a organizaciones, grupos de jóvenes y personas trabajadoras que nunca o rara vez se han beneficiado de la acción (definiciones del glosario de la Guía del Programa).
 
 ## Calidad del diseño y la implementación (40)
-1. Coherencia entre necesidades, objetivos, perfiles de participantes y actividades. Los objetivos se explican desde las necesidades y retos de la organización y su logro produce cambios en la organización, no solo en la práctica de quien viaja: tienen que atender al personal a mayor escala. La cadena de actividades a objetivos tiene que ser lógica y convincente.
+1. Coherencia entre necesidades, objetivos, perfiles de participantes y actividades. Los objetivos se explican desde las necesidades y retos de la organización y su logro produce cambios en la organización, no solo en la práctica de quien viaja: tienen que atender al personal a mayor escala. La cadena de actividades a objetivos tiene que ser lógica y convincente. La guía en castellano lo concreta como contribuir «no solo a la práctica de los participantes, sino también a la mejora de la calidad del trabajo juvenil dentro de las organizaciones participantes» (Guía ES 2026, p. 29).
 2. Todas las fases (preparación, ejecución y seguimiento) descritas con claridad: reparto de tareas, programa, métodos de trabajo, logística, implicación activa de participantes en todas las fases y medidas de seguimiento.
 3. Representación equilibrada por países y por género en la composición de los grupos.
 4. Selección de personas trabajadoras adecuada y conforme a la definición de youth worker de la base jurídica: conexión real de cada participante con el trabajo juvenil local.
-5. Actividades accesibles e inclusivas, abiertas a orígenes y capacidades diversas: procesos de aprendizaje no formal e informal que estimulen creatividad, participación activa e iniciativa, métodos adaptados al grupo que desarrollen competencias personales, socioeducativas y profesionales, aprendizaje planificado de forma participativa y analizado a lo largo del proyecto.
+5. Actividades accesibles e inclusivas, abiertas a orígenes y capacidades diversas: procesos de aprendizaje no formal e informal que estimulen creatividad, participación activa e iniciativa, métodos adaptados al grupo que desarrollen competencias personales, socioeducativas y profesionales, aprendizaje planificado de forma participativa y analizado a lo largo del proyecto. El desarrollo de competencias se pide para «todos los participantes y las organizaciones participantes implicadas», no solo para quien viaja (Guía ES 2026, p. 29).
 6. Prácticas sostenibles y respetuosas con el medio ambiente en el contenido y en lo práctico, aprovechando al máximo la financiación de viaje sostenible.
 7. Métodos de aprendizaje, herramientas digitales y componentes virtuales adecuados, que apoyen el aprendizaje y complementen lo presencial.
 8. Apoyo a la reflexión, identificación y documentación de los learning outcomes y uso de Youthpass: cómo se abordan los objetivos de aprendizaje de cada participante y, como elemento de calidad, Youthpass usado como proceso para estimular la reflexión y no solo como certificado.
-9. Si aplica, herramientas y prácticas de desarrollo del sistema y de alcance adecuadas y replicables: si otras organizaciones pueden adaptarlas o reutilizarlas y cómo se darán a conocer al sector.
+9. Si aplica, herramientas y prácticas de desarrollo del sistema y de alcance adecuadas y replicables: si otras organizaciones pueden adaptarlas o reutilizarlas y cómo se darán a conocer al sector. En castellano el experto se centra en «el diseño y la calidad de las actividades complementarias (si las hay) y en su replicabilidad», y pregunta cómo se darán a conocer «a otros actores del sector» para «inspirar a otras organizaciones y procesos» (Guía ES 2026, p. 30).
 
 ## Calidad de la gestión (30)
 1. Disposiciones prácticas, gestión y modalidades de apoyo satisfactorias en todas las fases.
@@ -32,7 +32,7 @@ Reglas del experto que afectan a todo: no puede suponer nada que no esté escrit
 3. Tareas y responsabilidades definidas y asignadas conforme a los estándares de calidad de Erasmus+: que no quede ninguna tarea relevante sin responsable.
 4. Cooperación y comunicación entre participantes, organizaciones y otras partes interesadas como marco de gestión: consorcio cohesionado con implicación activa de todas y metas comunes; grado de red, cooperación y compromiso de cada socia; medios de comunicación (incluidos los digitales); perfil y trayectoria de cada socia cuando la actividad exige cualificación; roles y tareas acordados; capacidad de seguimiento y difusión; en proyectos de inclusión, pericia para apoyar a personas con necesidades especiales o menos oportunidades.
 5. Evaluación de las fases y de los resultados según los objetivos: medidas de evaluación de resultados, evaluación final que compruebe objetivos y expectativas, y seguimiento durante la ejecución para ajustar sobre la marcha.
-6. Difusión dentro y fuera de las organizaciones: medidas pensadas en común para la visibilidad del proyecto y del Programa, y medidas de cada socia para difundir y explotar los resultados, incluidos los learning outcomes.
+6. Difusión dentro y fuera de las organizaciones: medidas pensadas en común para la visibilidad del proyecto y del Programa, y medidas de cada socia para difundir y explotar los resultados, incluidos los learning outcomes. En KA153 la guía en castellano dice que las organizaciones «han reflexionado conjuntamente», sin el «si procede» de KA152 y KA154, así que la reflexión común tiene que estar escrita, y la explotación es «en beneficio de todos los agentes implicados» (Guía ES 2026, p. 31).
 7. Sostenibilidad: mecanismos, actividades o prácticas con potencial de seguir funcionando cuando acabe la financiación.
 
 ## Cómo sacar el máximo en cada elemento
@@ -101,3 +101,43 @@ Cartas de ES02 (febrero de 2026 y octubre de 2025) y de FR02 (febrero de 2026), 
 - La relevancia es el criterio que hunde los KA153 de la red. Las dos cartas de ES02 dejan la relevancia en 15/30 por lo mismo, trabajo juvenil regular no demostrado y necesidad sin detección propia, aunque el diseño saque 22 o 25 (Debate2Participate 2026, 52; Igualdad Deporte 2025, 59).
 - Cada participante tiene que estar ligado a una socia y al trabajo juvenil regular de esa socia en su territorio. Es reproche literal en dos cartas (Igualdad Deporte 2025, 59; CAP 2026, 20).
 - Socias verificables o ninguna. Una socia que el evaluador no puede identificar o cuya ficha habla de otro proyecto arrastra la gestión entera (CAP 2026, 20; Debate2Participate 2026, 52).
+
+## Formulación en castellano (Guía ES 2026)
+Traducción oficial de la guía de expertos (versión 1, 22-12-2025), capítulo «Proyectos de movilidad para trabajadores del ámbito de la Juventud», pp. 26-31. Son las expresiones que un evaluador del INJUVE repite en la carta. Úsalas al redactar y búscalas al comparar con una carta. Equivalencias que cambian respecto al inglés: youth workers son «trabajadores juveniles», youth work es «trabajo juvenil» o «trabajo con jóvenes», learning outcomes son «resultados de aprendizaje», green es «ecología», European Youth Work Agenda es «Agenda Europea del Trabajo Juvenil», system development and outreach es «desarrollo del sistema y de divulgación», newcomers son «nuevos participantes» y stakeholders son «otras partes interesadas pertinentes».
+
+Criterios
+- «Pertinencia, justificación e impacto» («puntuación máxima: 30 puntos») (p. 26)
+- «Calidad del diseño y la ejecución del proyecto» («puntuación máxima: 40 puntos») (p. 29)
+- «Calidad de la gestión del proyecto» («puntuación máxima: 30 puntos») (p. 30)
+
+Pertinencia, justificación e impacto
+1. «pertinentes para el ámbito del trabajo con jóvenes»; «forma parte genuina del ámbito»; «relevancia formal o nominal»; «especialmente fuera del programa Erasmus+» (p. 26)
+2. «prioridades del Diálogo de la UE con los jóvenes»; «los once objetivos de la UE para la Juventud»; «Estrategia de la UE para la Juventud 2019-2027» (p. 26)
+3. «dimensiones de inclusión y diversidad, ecología, digitalización y participación del programa» (p. 26)
+4. «objetivos de la Acción»; «complementarios»; «de manera cualitativa» (p. 26)
+5. «el respeto y la promoción de los valores compartidos de la UE»; «enfoque no discriminatorio»; «componentes educativos»; «experimentar y aprender sobre los valores de la UE»; «en lugar de tratarlos como elementos independientes» (p. 27)
+6. «necesidades de desarrollo de los trabajadores juveniles y las organizaciones del ámbito de la Juventud»; «cómo se ha identificado la necesidad del proyecto» (p. 27)
+7. «reforzar o transformar la práctica de las organizaciones participantes»; «la calidad, la innovación y el reconocimiento del trabajo juvenil»; «resultados de aprendizaje de alta calidad»; «participantes activos en el trabajo con jóvenes»; «un trabajo regular con jóvenes a nivel local»; «durante y después de la duración del proyecto» (p. 28)
+8. «competencias y métodos para su desarrollo profesional»; «trabajo juvenil digital»; «trabajo juvenil de calidad a nivel local, nacional y europeo»; «Agenda Europea del Trabajo Juvenil» (p. 28)
+9. «el desarrollo del sistema propuesto y las actividades de divulgación»; «el entorno del trabajo con jóvenes» (p. 28)
+10. «organizaciones nuevas y menos experimentadas»; «nuevos participantes»; «trabajadores juveniles que nunca se han beneficiado» (p. 28)
+
+Calidad del diseño y la ejecución del proyecto
+1. «coherencia entre las necesidades identificadas, los objetivos del proyecto, los perfiles de los participantes y las actividades propuestas»; «cambios positivos a nivel de la organización»; «las necesidades del personal a una escala más amplia»; «conducirá lógicamente al logro de los objetivos» (p. 29)
+2. «todas las fases del proyecto (preparación, ejecución y seguimiento)»; «participación activa de los participantes en todas las fases»; «el reparto de tareas, el programa de actividades» (p. 29)
+3. «representación equilibrada de los participantes en términos de países y género»; «equilibrio geográfico y de género» (p. 29)
+4. «la definición de trabajador juvenil en la base jurídica»; «una conexión real entre los trabajadores juveniles y el ámbito local del trabajo juvenil» (p. 29)
+5. «de forma accesible e inclusiva»; «diversos orígenes y capacidades»; «la creatividad, la participación activa y la iniciativa»; «se planifican de manera participativa» (p. 29)
+6. «prácticas sostenibles y respetuosas con el medio ambiente»; «medios de transporte sostenibles» (p. 29)
+7. «las herramientas digitales o los componentes virtuales»; «complementar las actividades físicas» (p. 29)
+8. «la reflexión, la identificación y documentación de los resultados del aprendizaje»; «herramientas de transparencia y reconocimiento, en particular Youthpass»; «el proceso y la herramienta Youthpass»; «elemento de calidad del proyecto» (p. 30)
+9. «actividades de desarrollo del sistema y de divulgación»; «actividades complementarias»; «replicabilidad»; «adaptar o reutilizar»; «inspirar a otras organizaciones» (p. 30)
+
+Calidad de la gestión del proyecto
+1. «disposiciones prácticas, la gestión y las modalidades de apoyo»; «la ejecución eficaz del proyecto en todas sus fases» (p. 30)
+2. «la seguridad y la protección de los participantes»; «prevenir y reducir los riesgos»; «un alto nivel de seguridad y protección» (p. 30)
+3. «la distribución de tareas y responsabilidades»; «estándares de calidad de Erasmus+»; «cubierto y asignado claramente» (p. 30)
+4. «participantes del grupo o grupos»; «otras partes interesadas pertinentes»; «consorcio cohesionado»; «el nivel de trabajo en red, cooperación y compromiso»; «una definición clara y consensuada de las funciones y tareas»; «necesidades especiales o con menos oportunidades» (pp. 30-31)
+5. «medidas para evaluar los resultados de las actividades»; «evaluación final»; «supervisarán la ejecución»; «los ajustes necesarios» (p. 31)
+6. «han reflexionado conjuntamente»; «visibilidad del programa Erasmus+»; «difundir y explotar los resultados» (p. 31)
+7. «disposiciones destinadas a garantizar la sostenibilidad»; «sobrevivir a la duración de la financiación» (p. 31)

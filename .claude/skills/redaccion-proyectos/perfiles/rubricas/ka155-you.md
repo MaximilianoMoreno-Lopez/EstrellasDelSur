@@ -4,7 +4,7 @@ Bandas por criterio: de 40 puntos, muy bueno 34-40, bueno 28-33, suficiente 20-2
 Reglas del experto que afectan a todo: no puede suponer nada que no esté escrito; lo que sirve para un criterio cuenta aunque esté en otro bloque; los elementos no se puntúan por separado, el experto coloca el criterio entero en una banda pero el comentario debe citarlos uno a uno; varios elementos tratados con frases genéricas llevan a suficiente y un elemento central ausente lleva a débil (inferencia a partir de las definiciones de banda); se aplica proporcionalidad; si la relevancia no llega al umbral la agencia puede cortar ahí la evaluación; si ve texto igual o parecido en dos solicitudes de la ronda, o dudas de contenido original y autoría, avisa a la agencia.
 
 ## Relevancia, justificación e impacto (40)
-1. Relevancia para los objetivos y el formato de la acción (parte B de la Guía del Programa), para las necesidades de la organización y de participantes y para el aprendizaje por descubrimiento. Justificación clara: por qué hace falta, cómo se identificó la demanda, relevancia para cada participante, la comunidad y el grupo destinatario. El experto comprueba en particular:
+1. Relevancia para los objetivos y el formato de la acción (parte B de la Guía del Programa), para las necesidades de la organización y de participantes y para el aprendizaje por descubrimiento. Justificación clara: por qué hace falta, cómo se identificó la demanda, relevancia para cada participante, la comunidad y el grupo destinatario. En KA155 la guía en castellano habla de «el grupo destinatario específico» sin el «si lo hay» que lleva en las otras tres acciones, así que el grupo hay que describirlo siempre y con detalle (Guía ES 2026, p. 38). El experto comprueba en particular:
    - que participan EXCLUSIVAMENTE jóvenes con menos oportunidades según la Guía y la Estrategia de Inclusión y Diversidad, y que viajan en igualdad de condiciones con sus pares de DiscoverEU;
    - que el proyecto promueve diversidad, diálogo intercultural e interreligioso, libertad, tolerancia y derechos humanos, y refuerza el pensamiento crítico y la iniciativa en la preparación, el acompañamiento y el seguimiento del viaje.
 2. Valores de la UE citados e integrados en objetivos, metodologías, acciones y resultados. Articular cómo el proyecto los hace avanzar es una fortaleza adicional. Aquí el experto tiene un solo punto de control (p. 38), sin los de no discriminación, componente educativo y valores repartidos por varios componentes de KA152, KA153 y KA154. No gastar caracteres en ellos como si fueran elementos aparte.
@@ -18,13 +18,13 @@ Reglas del experto que afectan a todo: no puede suponer nada que no esté escrit
 2. Claridad, completitud y calidad de todas las fases: preparación a medida de las necesidades de cada participante, apoyo durante el viaje, actividades y seguimiento. El experto busca que organización y participantes hayan ACORDADO el reparto de tareas, el programa de actividades durante el viaje, los métodos, la logística, la atención a sus necesidades y el seguimiento.
 3. Implicación de participantes en todas las fases con papel activo y con tanta autonomía como sea posible.
 4. Diseño accesible e inclusivo: uso de las ocasiones de llegar al público destinatario (en la selección, por ejemplo) y a perfiles y capacidades diversas; actividades y perfiles que encajan en la acción; implicación de los jóvenes antes, durante y después del viaje; igualdad de condiciones con sus pares mientras viajan por Europa.
-5. Reflexión, identificación y documentación de los learning outcomes y uso de Youthpass: objetivos de aprendizaje de cada participante, apoyo a la reflexión, identificación y reconocimiento. Youthpass como proceso es elemento de calidad. El Youthpass específico de esta acción puede no estar disponible todavía, y entonces el experto valora los resultados de aprendizaje de forma general.
+5. Reflexión, identificación y documentación de los learning outcomes y uso de Youthpass: objetivos de aprendizaje de cada participante, apoyo a la reflexión, identificación y reconocimiento. Youthpass como proceso es elemento de calidad. El Youthpass específico de esta acción puede no estar disponible todavía, y entonces el experto valora los resultados de aprendizaje de forma general. El título del elemento en castellano empieza por «la calidad de los preparativos», así que la preparación de cada participante para su propio aprendizaje se puntúa también aquí (Guía ES 2026, p. 40).
 6. Seguridad y protección adecuadas y eficaces: prevención y reducción de riesgos con estándar alto y número suficiente de acompañantes si hace falta.
 7. Prácticas sostenibles y respetuosas con el medio ambiente en el contenido y los objetivos del proyecto y en lo práctico, aprovechando la financiación de viaje sostenible.
 
 ## Calidad de la gestión (20)
 1. Disposiciones prácticas, gestión y modalidades de apoyo en todas las fases.
-2. Cooperación y comunicación con otras partes interesadas, si procede: cooperación cohesionada y metas comunes; red, cooperación y compromiso de la organización con esas partes; perfil de las organizaciones cuando la actividad exige cualificación; roles y tareas acordados; capacidad de seguimiento y difusión; capacidad y pericia para apoyar a personas con necesidades especiales o menos oportunidades.
+2. Cooperación y comunicación con otras partes interesadas, si procede: cooperación cohesionada y metas comunes; red, cooperación y compromiso de la organización con esas partes; perfil de las organizaciones cuando la actividad exige cualificación; roles y tareas acordados; capacidad de seguimiento y difusión; capacidad y pericia para apoyar a personas con necesidades especiales o menos oportunidades. En KA155 la cooperación entera va con «si procede» y la definición de funciones y tareas de cada organización solo se pide «cuando sea pertinente», porque la entidad puede ir sola; si hay partes interesadas, lo que se mira es el «compromiso de la organización con otras partes interesadas pertinentes» (Guía ES 2026, p. 41).
 3. Evaluación de las diferentes fases y de los resultados: medidas por fase, evaluación final que compruebe objetivos y expectativas de organización y participantes, y seguimiento de las movilidades durante la ejecución para ajustar.
 4. Difusión dentro y fuera de la organización: medidas para la visibilidad del proyecto y del Programa, y difusión y explotación de los resultados, incluidos los learning outcomes.
 
@@ -83,3 +83,34 @@ Cartas de ES02, con la nota en relevancia, diseño y gestión cuando la carta la
 ### Lectura para KA155
 - Lo que decide el dinero en KA155 es la ejecución concreta. Con relevancia muy buena la aprobada se llevó un tercio de lo pedido por no tener itinerario, calendario ni acompañantes identificados (Melilla is Europe 2026, 79).
 - Anunciar mejoras que el evaluador no encuentra en el bloque penaliza más que callarlas (Green Tracks 2026, 58).
+
+## Formulación en castellano (Guía ES 2026)
+Traducción oficial de la guía de expertos (versión 1, 22-12-2025), capítulo «Proyecto de movilidad para jóvenes: DiscoverEU Acción de inclusión», pp. 38-41. Son las expresiones que un evaluador del INJUVE repite en la carta. Úsalas al redactar y búscalas al comparar con una carta. En KA155 el primer criterio se llama «Relevancia» y no «Pertinencia» como en KA152, KA153 y KA154, y el segundo es solo «Calidad del diseño del proyecto», sin «y la ejecución». Equivalencias que cambian respecto al inglés: learning by discovery es «aprendizaje a través del descubrimiento», peers son «compañeros», grassroots organisations son «organizaciones de base», learning outcomes son «resultados de aprendizaje» y green es «ecología». La guía usa a la vez «DiscoverEU Inclusion» y «acción de inclusión DiscoverEU».
+
+Criterios
+- «Relevancia, justificación e impacto» («puntuación máxima: 40 puntos») (p. 38)
+- «Calidad del diseño del proyecto» («puntuación máxima: 40 puntos») (p. 39)
+- «Calidad de la gestión del proyecto» («puntuación máxima: 20 puntos») (p. 41)
+
+Relevancia, justificación e impacto
+1. «los objetivos y al formato de la Acción»; «el aprendizaje a través del descubrimiento»; «cómo se ha identificado la demanda del proyecto»; «exclusivamente a jóvenes con menos oportunidades»; «en igualdad de condiciones con sus compañeros»; «diálogo intercultural e interreligioso»; «el pensamiento crítico y el sentido de la iniciativa» (p. 38)
+2. «el respeto y la promoción de los valores compartidos de la UE»; «objetivos, metodologías, acciones y/o resultados esperados»; «apoya y promueve estos valores»; «una ventaja adicional» (p. 38)
+3. «el impacto potencial del proyecto»; «perspectiva a largo plazo»; «impacto duradero»; «también tras la finalización del proyecto» (pp. 38-39)
+4. «experiencia previa en el trabajo con jóvenes con menos oportunidades a nivel local sobre el terreno»; «organizaciones de base»; «con suficiente antelación»; «lo más autónomos posible» (p. 39)
+5. «dimensiones de inclusión y diversidad, ecología, digitalización y participación del programa»; «el itinerario de viaje»; «al menos una de las prioridades»; «rutas DiscoverEU» (p. 39)
+6. «organizaciones de nueva incorporación»; «organizaciones menos experimentadas»; «puedan demostrar experiencia en el trabajo con jóvenes con menos oportunidades» (p. 39)
+
+Calidad del diseño del proyecto
+1. «coherencia entre las necesidades identificadas, los objetivos del proyecto, los perfiles de los participantes y las actividades propuestas»; «cambios positivos a nivel de la organización y de los participantes» (p. 39)
+2. «preparación adaptada a las necesidades específicas de los participantes, apoyo durante el viaje, realización de actividades y seguimiento»; «han acordado el reparto de tareas»; «el programa de actividades durante el viaje»; «conducirá lógicamente al logro de los objetivos» (p. 39)
+3. «un papel activo»; «la mayor autonomía posible» (p. 40)
+4. «de forma accesible e inclusiva»; «en todas las etapas de su viaje DiscoverEU (antes, durante y después)»; «la igualdad de condiciones con sus compañeros de DiscoverEU» (p. 40)
+5. «la calidad de los preparativos»; «la reflexión, la identificación y documentación de los resultados del aprendizaje»; «el proceso y la herramienta Youthpass»; «de manera general» (p. 40)
+6. «la seguridad y la protección de los participantes»; «prevenir y reducir los riesgos»; «un número suficiente de acompañantes» (p. 40)
+7. «prácticas sostenibles y respetuosas con el medio ambiente»; «medios de transporte sostenibles» (p. 40)
+
+Calidad de la gestión del proyecto
+1. «las disposiciones prácticas, la gestión y las modalidades de apoyo»; «la ejecución eficaz del proyecto en todas sus fases» (p. 41)
+2. «la cooperación y la comunicación con otras partes interesadas pertinentes, si procede»; «una cooperación cohesionada»; «una definición clara y consensuada de las funciones y tareas»; «necesidades especiales o con menos oportunidades» (p. 41)
+3. «evaluar las diferentes fases y resultados del proyecto»; «evaluación final»; «supervisarán la ejecución de las actividades de movilidad»; «los ajustes necesarios» (p. 41)
+4. «difundir los resultados del proyecto dentro y fuera de las organizaciones participantes»; «visibilidad del programa Erasmus+»; «difundir y explotar los resultados» (p. 41)
